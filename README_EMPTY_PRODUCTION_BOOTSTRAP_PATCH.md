@@ -1,29 +1,22 @@
-# Empty-production bootstrap patch
+# Empty-production bootstrap patch v2
 
-This patch adds a narrow `--bootstrap-empty-production` mode to the Stage 26
-migration runner.
+This corrective patch contains the Stage 26 empty-production bootstrap mode and
+two fixes required for the current deployment:
 
-It is intended only for a pre-launch production database whose `public` schema
-has zero relations. It does not relax the normal Stage 26 production gate for
-an existing production database.
+1. Fix `git_blob_sha()` to use the real Git blob header NUL byte:
+   `f"blob {len(data)}\0"` rather than a literal backslash + `0`.
+   This resolves false `migration identity mismatch` errors for canonical
+   migrations 001 through 007.
+2. Add `backups/` to the root `.gitignore` so server-side database backup files
+   do not appear as untracked Git files.
 
-Required checks before execution:
+The normal Stage 26 production gate remains unchanged for non-empty production
+databases.
 
-1. Canonical migration file identities still match the Stage 26 contract.
-2. `--backup-id` is present.
-3. The production target's `public` schema contains zero tables/views/sequences.
-4. A separate rehearsal database exists and contains the expected Stage 21 and
-   Stage 23 terminal schema/version markers.
-5. The rehearsal DB name is not the production DB name.
+After merging this patch into `main`, pull/re-sync the server, rebuild the
+backend image, and confirm:
 
-After merging and rebuilding the backend:
+    docker compose exec backend python ops/stage26/migration_runner.py --help | grep bootstrap
 
-docker compose exec backend python ops/stage26/migration_runner.py \
-  --target production \
-  --execute \
-  --bootstrap-empty-production \
-  --bootstrap-rehearsal-db grammar_mastery_rehearsal_20260809 \
-  --confirm-release-id "production-bootstrap-20260809" \
-  --backup-id "<REAL_BACKUP_ID>"
-
-Never use the literal placeholder `<REAL_BACKUP_ID>`.
+Then run the production bootstrap using the already successful rehearsal DB and
+a real backup ID.

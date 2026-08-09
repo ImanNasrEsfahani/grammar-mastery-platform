@@ -13,3 +13,4 @@ venv/
 source_materials/
 *.pdf
 secrets/
+backups/

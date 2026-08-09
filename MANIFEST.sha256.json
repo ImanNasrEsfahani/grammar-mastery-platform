@@ -1,5 +1,6 @@
 {
-  "README_EMPTY_PRODUCTION_BOOTSTRAP_PATCH.md": "614b2d05db37da158d3fbf82fa079cb1f6154623de73fca639084c28a51eea6b",
-  "ops/stage26/migration_runner.py": "d7d80c89c3cf7f5fe1fe8f3bfc92d213218863117d2d22cc40804d91d236f6d0",
+  ".gitignore": "ea6e06e51b6c419726d09cf0cb5c8ca072d447b3e16bb2f349feaae6c1cca044",
+  "README_EMPTY_PRODUCTION_BOOTSTRAP_PATCH.md": "492d65b255b850cdd47298f714a45ce12d5aec00ed74530d766e7f0c422c0748",
+  "ops/stage26/migration_runner.py": "01f05eea55a220ab86d304745ae3a4c257683f2694ab9099c17eddb970e0ce31",
   "tests/test_stage26_bootstrap_empty_production.py": "6c1bc55511b95058da277d96838a2f96e8a7ae84c3c120f4c43c52a6768bc02f"
 }
