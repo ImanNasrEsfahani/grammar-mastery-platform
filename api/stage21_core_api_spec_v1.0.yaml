@@ -1,0 +1,1565 @@
+openapi: 3.1.0
+info:
+  title: Grammar Mastery Core API
+  version: 1.0.0
+  description: >-
+    Stage 21 Django REST Framework implementation contract. Owner: Iman.
+    Prepared 2026-08-09 UTC. Next.js 16 Active LTS is the selected Stage 22
+    consumer. Learning and authorization rules remain backend-owned.
+    Learner question projections never expose an answer key before submission.
+  x-contract-version: grammar-mastery-api-v1.0.0
+  x-status: DJANGO_DRF_IMPLEMENTATION_PROFILE_VALIDATED_PENDING_OWNER_ACCEPTANCE
+  x-implementation-profile:
+    version: stage21-django-nextjs-profile-v1.0.0
+    backend: Django 5.2 LTS
+    api_adapter: Django REST Framework 3.16+
+    serving_interface: ASGI
+    frontend_consumer: Next.js 16 Active LTS
+    frontend_implementation_stage: 22
+    contract_mode: contract-first
+servers:
+  - url: /api/v1
+    description: Deployment-relative Django REST API, preferably same-origin behind Next.js
+security:
+  - bearerAuth: []
+tags:
+  - name: Auth
+  - name: Content
+  - name: Tests
+  - name: Attempts
+  - name: Review
+  - name: Mastery
+  - name: Analytics
+  - name: Admin
+paths:
+  /auth/register:
+    post:
+      tags: [Auth]
+      operationId: registerUser
+      summary: Register a learner account
+      security: []
+      x-service: AUTH
+      x-roles: [PUBLIC]
+      x-rate-limit-policy: register
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+      responses:
+        '201':
+          description: Learner registered
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserEnvelope'
+        '409': {$ref: '#/components/responses/Conflict'}
+        '422': {$ref: '#/components/responses/Validation'}
+        '429': {$ref: '#/components/responses/RateLimited'}
+  /auth/login:
+    post:
+      tags: [Auth]
+      operationId: loginUser
+      summary: Create a revocable login session
+      security: []
+      x-service: AUTH
+      x-roles: [PUBLIC]
+      x-rate-limit-policy: login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        '200':
+          description: Session created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthTokenEnvelope'
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '422': {$ref: '#/components/responses/Validation'}
+        '429': {$ref: '#/components/responses/RateLimited'}
+  /auth/logout:
+    post:
+      tags: [Auth]
+      operationId: logoutUser
+      summary: Revoke the current session
+      x-service: AUTH
+      x-roles: [USER, ADMIN, CONTENT_EDITOR, REVIEWER]
+      responses:
+        '204': {description: Session revoked}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+  /lessons:
+    get:
+      tags: [Content]
+      operationId: listLessons
+      summary: List active lessons
+      x-service: CONTENT
+      x-roles: [USER]
+      parameters:
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageAfter'
+        - $ref: '#/components/parameters/Sort'
+        - name: filter[category_id]
+          in: query
+          schema: {type: string, format: uuid}
+        - name: filter[tag_id]
+          in: query
+          schema: {type: string, format: uuid}
+      responses:
+        '200':
+          description: Lesson page
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LessonCollectionEnvelope'
+        '400': {$ref: '#/components/responses/BadQuery'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+  /lessons/{lessonId}:
+    parameters:
+      - $ref: '#/components/parameters/LessonId'
+    get:
+      tags: [Content]
+      operationId: getLesson
+      summary: Get a lesson and active subtopics
+      x-service: CONTENT
+      x-roles: [USER]
+      responses:
+        '200':
+          description: Lesson detail
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LessonDetailEnvelope'
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '404': {$ref: '#/components/responses/NotFound'}
+  /tests:
+    post:
+      tags: [Tests]
+      operationId: createTest
+      summary: Create a test from a versioned configuration
+      description: Fails safely when no eligible PUBLISHED inventory exists.
+      x-service: TEST_ORCHESTRATION
+      x-roles: [USER]
+      x-owner-scope: SELF
+      x-idempotency: REQUIRED
+      parameters:
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TestCreateRequest'
+      responses:
+        '201':
+          description: Test snapshot created
+          headers:
+            Idempotent-Replayed: {$ref: '#/components/headers/IdempotentReplayed'}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TestEnvelope'
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '409': {$ref: '#/components/responses/Conflict'}
+        '422': {$ref: '#/components/responses/Validation'}
+  /tests/{testId}:
+    parameters:
+      - $ref: '#/components/parameters/TestId'
+    get:
+      tags: [Tests]
+      operationId: getTest
+      summary: Get owner-scoped test metadata
+      description: This resource never contains question answer keys.
+      x-service: TEST_ORCHESTRATION
+      x-roles: [USER]
+      x-owner-scope: SELF
+      responses:
+        '200':
+          description: Test metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TestEnvelope'
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '404': {$ref: '#/components/responses/NotFound'}
+  /tests/{testId}/attempts:
+    parameters:
+      - $ref: '#/components/parameters/TestId'
+    post:
+      tags: [Attempts]
+      operationId: startAttempt
+      summary: Start an attempt for a frozen test
+      x-service: TEST_ORCHESTRATION
+      x-roles: [USER]
+      x-owner-scope: SELF
+      x-idempotency: REQUIRED
+      parameters:
+        - $ref: '#/components/parameters/IdempotencyKey'
+      responses:
+        '201':
+          description: Attempt started
+          headers:
+            Idempotent-Replayed: {$ref: '#/components/headers/IdempotentReplayed'}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttemptEnvelope'
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '409': {$ref: '#/components/responses/Conflict'}
+  /attempts/{attemptId}/next:
+    parameters:
+      - $ref: '#/components/parameters/AttemptId'
+    get:
+      tags: [Attempts]
+      operationId: getNextAttemptQuestion
+      summary: Get the next unanswered frozen question
+      description: Uses the answer-key-free AttemptQuestion schema.
+      x-service: ANSWER_PIPELINE
+      x-roles: [USER]
+      x-owner-scope: SELF
+      responses:
+        '200':
+          description: Next question
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttemptQuestionEnvelope'
+        '204': {description: No unanswered question remains}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '409': {$ref: '#/components/responses/Conflict'}
+  /attempts/{attemptId}/answers:
+    parameters:
+      - $ref: '#/components/parameters/AttemptId'
+    post:
+      tags: [Attempts]
+      operationId: submitAttemptAnswer
+      summary: Submit one answer transactionally
+      description: Commits answer, mastery, Error Review and SRS effects atomically.
+      x-service: ANSWER_PIPELINE
+      x-roles: [USER]
+      x-owner-scope: SELF
+      x-idempotency: REQUIRED
+      x-rate-limit-policy: answer
+      parameters:
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AnswerRequest'
+      responses:
+        '200':
+          description: Answer accepted; feedback applies only to this item
+          headers:
+            Idempotent-Replayed: {$ref: '#/components/headers/IdempotentReplayed'}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnswerReceiptEnvelope'
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '409': {$ref: '#/components/responses/Conflict'}
+        '422': {$ref: '#/components/responses/Validation'}
+        '429': {$ref: '#/components/responses/RateLimited'}
+  /attempts/{attemptId}/complete:
+    parameters:
+      - $ref: '#/components/parameters/AttemptId'
+    post:
+      tags: [Attempts]
+      operationId: completeAttempt
+      summary: Complete and score an attempt
+      x-service: ANSWER_PIPELINE
+      x-roles: [USER]
+      x-owner-scope: SELF
+      x-idempotency: REQUIRED
+      parameters:
+        - $ref: '#/components/parameters/IdempotencyKey'
+      responses:
+        '200':
+          description: Attempt completed
+          headers:
+            Idempotent-Replayed: {$ref: '#/components/headers/IdempotentReplayed'}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttemptEnvelope'
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '409': {$ref: '#/components/responses/Conflict'}
+  /attempts/{attemptId}/result:
+    parameters:
+      - $ref: '#/components/parameters/AttemptId'
+    get:
+      tags: [Attempts]
+      operationId: getAttemptResult
+      summary: Get a completed attempt result
+      x-service: ANSWER_PIPELINE
+      x-roles: [USER]
+      x-owner-scope: SELF
+      responses:
+        '200':
+          description: Completed result and item feedback
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttemptResultEnvelope'
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '409': {$ref: '#/components/responses/Conflict'}
+  /reviews:
+    get:
+      tags: [Review]
+      operationId: listReviews
+      summary: List mistake groups and spaced-review concepts
+      x-service: ERROR_REVIEW
+      x-roles: [USER]
+      x-owner-scope: SELF
+      parameters:
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageAfter'
+        - $ref: '#/components/parameters/Sort'
+        - name: filter[kind]
+          in: query
+          schema: {type: string, enum: [MISTAKE, SPACED]}
+        - name: filter[resolution_status]
+          in: query
+          schema: {type: string, enum: [UNRESOLVED, CORRECTED, EXCLUDED_CONTENT_ISSUE]}
+        - name: filter[marked]
+          in: query
+          schema: {type: boolean}
+        - name: filter[due]
+          in: query
+          schema: {type: boolean}
+      responses:
+        '200':
+          description: Review collection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReviewCollectionEnvelope'
+        '400': {$ref: '#/components/responses/BadQuery'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+  /reviews/{reviewId}:
+    parameters:
+      - $ref: '#/components/parameters/ReviewId'
+    get:
+      tags: [Review]
+      operationId: getReviewItem
+      summary: Open one frozen review item
+      description: Feedback is hidden until retry or an audited explicit reveal.
+      x-service: ERROR_REVIEW
+      x-roles: [USER]
+      x-owner-scope: SELF
+      responses:
+        '200':
+          description: Review item without a premature answer key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReviewItemEnvelope'
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '404': {$ref: '#/components/responses/NotFound'}
+  /reviews/{reviewId}/grade:
+    parameters:
+      - $ref: '#/components/parameters/ReviewId'
+    post:
+      tags: [Review]
+      operationId: gradeReview
+      summary: Submit a retrieval-practice retry
+      description: Resolution evidence only; original score/mastery/SRS evidence is unchanged.
+      x-service: ERROR_REVIEW
+      x-roles: [USER]
+      x-owner-scope: SELF
+      x-idempotency: REQUIRED
+      parameters:
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReviewGradeRequest'
+      responses:
+        '200':
+          description: Retry graded and review state updated
+          headers:
+            Idempotent-Replayed: {$ref: '#/components/headers/IdempotentReplayed'}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReviewFeedbackEnvelope'
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '409': {$ref: '#/components/responses/Conflict'}
+        '422': {$ref: '#/components/responses/Validation'}
+  /reviews/{reviewId}/reveal:
+    parameters:
+      - $ref: '#/components/parameters/ReviewId'
+    post:
+      tags: [Review]
+      operationId: revealReviewAnswer
+      summary: Explicitly reveal and audit feedback
+      description: Reveal alone does not resolve the review item.
+      x-service: ERROR_REVIEW
+      x-roles: [USER]
+      x-owner-scope: SELF
+      responses:
+        '200':
+          description: Feedback revealed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReviewFeedbackEnvelope'
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '404': {$ref: '#/components/responses/NotFound'}
+  /reviews/{reviewId}/mark:
+    parameters:
+      - $ref: '#/components/parameters/ReviewId'
+    put:
+      tags: [Review]
+      operationId: setReviewMark
+      summary: Mark or unmark a review item
+      x-service: ERROR_REVIEW
+      x-roles: [USER]
+      x-owner-scope: SELF
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReviewMarkRequest'
+      responses:
+        '200':
+          description: Mark state updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReviewItemEnvelope'
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '404': {$ref: '#/components/responses/NotFound'}
+  /mastery:
+    get:
+      tags: [Mastery]
+      operationId: getMastery
+      summary: Get current mastery with confidence and coverage
+      x-service: MASTERY
+      x-roles: [USER]
+      x-owner-scope: SELF
+      parameters:
+        - name: filter[scope_type]
+          in: query
+          schema: {type: string, enum: [SUBTOPIC, LESSON, CATEGORY, TAG]}
+        - name: filter[scope_id]
+          in: query
+          schema: {type: string, format: uuid}
+      responses:
+        '200':
+          description: Current mastery resources
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MasteryCollectionEnvelope'
+        '400': {$ref: '#/components/responses/BadQuery'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+  /progress:
+    get:
+      tags: [Mastery]
+      operationId: getProgress
+      summary: Get persisted mastery snapshots and trend completeness
+      x-service: ANALYTICS
+      x-roles: [USER]
+      x-owner-scope: SELF
+      parameters:
+        - name: filter[scope_type]
+          in: query
+          schema: {type: string, enum: [SUBTOPIC, LESSON, CATEGORY, TAG]}
+        - name: filter[scope_id]
+          in: query
+          schema: {type: string, format: uuid}
+        - name: filter[from]
+          in: query
+          schema: {type: string, format: date-time}
+        - name: filter[to]
+          in: query
+          schema: {type: string, format: date-time}
+      responses:
+        '200':
+          description: Persisted progress series
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProgressEnvelope'
+        '400': {$ref: '#/components/responses/BadQuery'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+  /dashboard:
+    get:
+      tags: [Analytics]
+      operationId: getDashboard
+      summary: Get one aggregated learning-dashboard resource
+      x-service: ANALYTICS
+      x-roles: [USER]
+      x-owner-scope: SELF
+      responses:
+        '200':
+          description: Stage 18 dashboard summary
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DashboardEnvelope'
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '503': {$ref: '#/components/responses/Unavailable'}
+  /next-actions/current:
+    get:
+      tags: [Analytics]
+      operationId: getCurrentNextAction
+      summary: Get the highest-priority safe learner action
+      x-service: ANALYTICS
+      x-roles: [USER]
+      x-owner-scope: SELF
+      responses:
+        '200':
+          description: One action selected by the Stage 18 priority contract
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NextActionEnvelope'
+        '401': {$ref: '#/components/responses/Unauthorized'}
+  /analytics/jobs:
+    post:
+      tags: [Analytics]
+      operationId: createAnalyticsJob
+      summary: Queue a heavy analytics rebuild or backfill
+      x-service: ANALYTICS
+      x-roles: [ADMIN]
+      x-idempotency: REQUIRED
+      parameters:
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AnalyticsJobRequest'
+      responses:
+        '202':
+          description: Job queued
+          headers:
+            Idempotent-Replayed: {$ref: '#/components/headers/IdempotentReplayed'}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalyticsJobEnvelope'
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '409': {$ref: '#/components/responses/Conflict'}
+        '422': {$ref: '#/components/responses/Validation'}
+  /analytics/jobs/{jobId}:
+    parameters:
+      - $ref: '#/components/parameters/JobId'
+    get:
+      tags: [Analytics]
+      operationId: getAnalyticsJob
+      summary: Get heavy analytics job state
+      x-service: ANALYTICS
+      x-roles: [ADMIN]
+      responses:
+        '200':
+          description: Job state
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalyticsJobEnvelope'
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+  /admin/questions:
+    get:
+      tags: [Admin]
+      operationId: listAdminQuestions
+      summary: Search and filter the question bank
+      x-service: ADMIN
+      x-roles: [ADMIN, CONTENT_EDITOR, REVIEWER]
+      parameters:
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageAfter'
+        - $ref: '#/components/parameters/Sort'
+        - name: filter[lesson_id]
+          in: query
+          schema: {type: string, format: uuid}
+        - name: filter[status]
+          in: query
+          schema: {$ref: '#/components/schemas/QuestionStatus'}
+        - name: filter[difficulty]
+          in: query
+          schema: {$ref: '#/components/schemas/Difficulty'}
+      responses:
+        '200':
+          description: Staff question-bank page
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminQuestionCollectionEnvelope'
+        '400': {$ref: '#/components/responses/BadQuery'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+    post:
+      tags: [Admin]
+      operationId: createAdminQuestionDraft
+      summary: Create a DRAFT question
+      x-service: ADMIN
+      x-roles: [ADMIN, CONTENT_EDITOR]
+      x-rate-limit-policy: admin_mutation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QuestionDraftRequest'
+      responses:
+        '201':
+          description: Draft created and audited
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminQuestionEnvelope'
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '422': {$ref: '#/components/responses/Validation'}
+        '429': {$ref: '#/components/responses/RateLimited'}
+  /admin/questions/{questionId}:
+    parameters:
+      - $ref: '#/components/parameters/QuestionId'
+    patch:
+      tags: [Admin]
+      operationId: createAdminQuestionRevision
+      summary: Create an immutable question revision
+      x-service: ADMIN
+      x-roles: [ADMIN, CONTENT_EDITOR]
+      x-rate-limit-policy: admin_mutation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QuestionRevisionRequest'
+      responses:
+        '200':
+          description: New revision created and audited
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminQuestionEnvelope'
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '409': {$ref: '#/components/responses/Conflict'}
+        '422': {$ref: '#/components/responses/Validation'}
+        '429': {$ref: '#/components/responses/RateLimited'}
+  /admin/questions/{questionId}/review:
+    parameters:
+      - $ref: '#/components/parameters/QuestionId'
+    post:
+      tags: [Admin]
+      operationId: reviewAdminQuestion
+      summary: Approve reject or request changes
+      description: Backend enforces reviewer identity different from author or generator.
+      x-service: ADMIN
+      x-roles: [ADMIN, REVIEWER]
+      x-stage11-transition-gate: true
+      x-rate-limit-policy: admin_mutation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QuestionReviewRequest'
+      responses:
+        '200':
+          description: Dedicated review action recorded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminQuestionEnvelope'
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '409': {$ref: '#/components/responses/Conflict'}
+        '422': {$ref: '#/components/responses/Validation'}
+        '429': {$ref: '#/components/responses/RateLimited'}
+  /admin/questions/{questionId}/retire:
+    parameters:
+      - $ref: '#/components/parameters/QuestionId'
+    post:
+      tags: [Admin]
+      operationId: retireAdminQuestion
+      summary: Immediately retire unsafe content
+      x-service: ADMIN
+      x-roles: [ADMIN]
+      x-rate-limit-policy: admin_mutation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RetirementRequest'
+      responses:
+        '200':
+          description: Question retired; history preserved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminQuestionEnvelope'
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '409': {$ref: '#/components/responses/Conflict'}
+        '429': {$ref: '#/components/responses/RateLimited'}
+  /admin/questions/{questionId}/retire-request:
+    parameters:
+      - $ref: '#/components/parameters/QuestionId'
+    post:
+      tags: [Admin]
+      operationId: requestAdminQuestionRetirement
+      summary: Request an auditable retirement decision
+      x-service: ADMIN
+      x-roles: [CONTENT_EDITOR, REVIEWER]
+      x-rate-limit-policy: admin_mutation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RetirementRequest'
+      responses:
+        '202':
+          description: Retirement request queued
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericEnvelope'
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '429': {$ref: '#/components/responses/RateLimited'}
+  /admin/imports/preview:
+    post:
+      tags: [Admin]
+      operationId: previewAdminImport
+      summary: Validate a DRAFT-only import without mutation
+      x-service: ADMIN
+      x-roles: [ADMIN, CONTENT_EDITOR]
+      x-import-status: DRAFT
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportPreviewRequest'
+      responses:
+        '200':
+          description: Preview plus confirmation token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PreviewEnvelope'
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '422': {$ref: '#/components/responses/Validation'}
+  /admin/imports/commit:
+    post:
+      tags: [Admin]
+      operationId: commitAdminImport
+      summary: Commit the exact DRAFT-only import preview
+      x-service: ADMIN
+      x-roles: [ADMIN, CONTENT_EDITOR]
+      x-import-status: DRAFT
+      x-stage11-transition-gate: true
+      x-idempotency: REQUIRED
+      parameters:
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommitPreviewRequest'
+      responses:
+        '200':
+          description: Exact preview committed atomically and audited
+          headers:
+            Idempotent-Replayed: {$ref: '#/components/headers/IdempotentReplayed'}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericEnvelope'
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '409': {$ref: '#/components/responses/Conflict'}
+        '422': {$ref: '#/components/responses/Validation'}
+  /admin/questions/bulk-status/preview:
+    post:
+      tags: [Admin]
+      operationId: previewAdminBulkStatus
+      summary: Preview safe bulk status transitions
+      x-service: ADMIN
+      x-roles: [ADMIN, CONTENT_EDITOR]
+      x-stage11-transition-gate: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BulkStatusPreviewRequest'
+      responses:
+        '200':
+          description: Transition preview plus confirmation token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PreviewEnvelope'
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '409': {$ref: '#/components/responses/Conflict'}
+        '422': {$ref: '#/components/responses/Validation'}
+  /admin/questions/bulk-status/commit:
+    post:
+      tags: [Admin]
+      operationId: commitAdminBulkStatus
+      summary: Commit the exact safe bulk status preview
+      x-service: ADMIN
+      x-roles: [ADMIN, CONTENT_EDITOR]
+      x-stage11-transition-gate: true
+      x-idempotency: REQUIRED
+      parameters:
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommitPreviewRequest'
+      responses:
+        '200':
+          description: Safe transitions committed atomically and audited
+          headers:
+            Idempotent-Replayed: {$ref: '#/components/headers/IdempotentReplayed'}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericEnvelope'
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '409': {$ref: '#/components/responses/Conflict'}
+        '422': {$ref: '#/components/responses/Validation'}
+  /admin/audit-log:
+    get:
+      tags: [Admin]
+      operationId: listAdminAuditEvents
+      summary: Read correlated immutable admin audit history
+      x-service: ADMIN
+      x-roles: [ADMIN, REVIEWER]
+      parameters:
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageAfter'
+        - $ref: '#/components/parameters/Sort'
+        - name: filter[action]
+          in: query
+          schema: {type: string, maxLength: 60}
+        - name: filter[resource_id]
+          in: query
+          schema: {type: string, format: uuid}
+      responses:
+        '200':
+          description: Correlated Stage 12 and Stage 20 audit records
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuditCollectionEnvelope'
+        '400': {$ref: '#/components/responses/BadQuery'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Session-backed Stage 21 bearer access token
+  headers:
+    IdempotentReplayed:
+      description: True when the stored response was replayed for the same key and request hash
+      schema: {type: boolean}
+  parameters:
+    IdempotencyKey:
+      name: Idempotency-Key
+      in: header
+      required: true
+      schema: {type: string, minLength: 16, maxLength: 128, pattern: '^[!-~]+$'}
+    PageSize:
+      name: page[size]
+      in: query
+      schema: {type: integer, minimum: 1, maximum: 100, default: 25}
+    PageAfter:
+      name: page[after]
+      in: query
+      schema: {type: string, minLength: 16, maxLength: 512}
+    Sort:
+      name: sort
+      in: query
+      schema: {type: string, maxLength: 120}
+    LessonId: {name: lessonId, in: path, required: true, schema: {type: string, format: uuid}}
+    TestId: {name: testId, in: path, required: true, schema: {type: string, format: uuid}}
+    AttemptId: {name: attemptId, in: path, required: true, schema: {type: string, format: uuid}}
+    ReviewId: {name: reviewId, in: path, required: true, schema: {type: string, format: uuid}}
+    JobId: {name: jobId, in: path, required: true, schema: {type: string, format: uuid}}
+    QuestionId: {name: questionId, in: path, required: true, schema: {type: string, format: uuid}}
+  responses:
+    BadQuery:
+      description: Query parameter invalid
+      content: {application/json: {schema: {$ref: '#/components/schemas/ErrorResponse'}}}
+    Unauthorized:
+      description: Authentication required or token/session invalid
+      content: {application/json: {schema: {$ref: '#/components/schemas/ErrorResponse'}}}
+    Forbidden:
+      description: Authenticated principal lacks permission
+      content: {application/json: {schema: {$ref: '#/components/schemas/ErrorResponse'}}}
+    NotFound:
+      description: Resource absent or concealed owner mismatch
+      content: {application/json: {schema: {$ref: '#/components/schemas/ErrorResponse'}}}
+    Conflict:
+      description: State or idempotency conflict
+      content: {application/json: {schema: {$ref: '#/components/schemas/ErrorResponse'}}}
+    Validation:
+      description: Request validation or safe inventory failure
+      content: {application/json: {schema: {$ref: '#/components/schemas/ErrorResponse'}}}
+    RateLimited:
+      description: Versioned rate limit exceeded
+      headers:
+        Retry-After: {schema: {type: integer, minimum: 1}}
+      content: {application/json: {schema: {$ref: '#/components/schemas/ErrorResponse'}}}
+    Unavailable:
+      description: Required dependency unavailable
+      content: {application/json: {schema: {$ref: '#/components/schemas/ErrorResponse'}}}
+  schemas:
+    Meta:
+      type: object
+      additionalProperties: false
+      required: [request_id, api_version]
+      properties:
+        request_id: {type: string, minLength: 8, maxLength: 128}
+        api_version: {const: v1}
+    Page:
+      type: object
+      additionalProperties: false
+      required: [page_size, has_more, next_cursor]
+      properties:
+        page_size: {type: integer, minimum: 1, maximum: 100}
+        has_more: {type: boolean}
+        next_cursor: {type: [string, 'null']}
+    ErrorResponse:
+      type: object
+      additionalProperties: false
+      required: [error]
+      properties:
+        error:
+          type: object
+          additionalProperties: false
+          required: [code, message, fields, request_id]
+          properties:
+            code: {type: string, pattern: '^[A-Z][A-Z0-9_]{2,79}$'}
+            message: {type: string, minLength: 1, maxLength: 500}
+            fields:
+              type: object
+              additionalProperties:
+                type: array
+                minItems: 1
+                items: {type: string, minLength: 1, maxLength: 300}
+            request_id: {type: string, minLength: 8, maxLength: 128}
+    RegisterRequest:
+      type: object
+      additionalProperties: false
+      required: [email, password]
+      properties:
+        email: {type: string, format: email, maxLength: 320}
+        password: {type: string, minLength: 12, maxLength: 256, writeOnly: true}
+        display_name: {type: [string, 'null'], maxLength: 200}
+        locale: {type: string, enum: [fa-IR, en-CA], default: fa-IR}
+        timezone: {type: string, minLength: 1, maxLength: 80, default: UTC}
+    LoginRequest:
+      type: object
+      additionalProperties: false
+      required: [email, password]
+      properties:
+        email: {type: string, format: email, maxLength: 320}
+        password: {type: string, minLength: 1, maxLength: 256, writeOnly: true}
+    User:
+      type: object
+      additionalProperties: false
+      required: [id, email, roles]
+      properties:
+        id: {type: string, format: uuid}
+        email: {type: string, format: email}
+        display_name: {type: [string, 'null']}
+        roles:
+          type: array
+          minItems: 1
+          uniqueItems: true
+          items: {type: string, enum: [USER, ADMIN, CONTENT_EDITOR, REVIEWER]}
+    AuthToken:
+      type: object
+      additionalProperties: false
+      required: [access_token, token_type, expires_in, session_id]
+      properties:
+        access_token: {type: string, minLength: 40, readOnly: true}
+        token_type: {const: Bearer}
+        expires_in: {type: integer, minimum: 60}
+        session_id: {type: string, format: uuid}
+    UserEnvelope:
+      type: object
+      additionalProperties: false
+      required: [data, meta]
+      properties: {data: {$ref: '#/components/schemas/User'}, meta: {$ref: '#/components/schemas/Meta'}}
+    AuthTokenEnvelope:
+      type: object
+      additionalProperties: false
+      required: [data, meta]
+      properties: {data: {$ref: '#/components/schemas/AuthToken'}, meta: {$ref: '#/components/schemas/Meta'}}
+    Subtopic:
+      type: object
+      additionalProperties: false
+      required: [id, code, title_fr, active]
+      properties:
+        id: {type: string, format: uuid}
+        code: {type: string}
+        title_fr: {type: string}
+        title_fa: {type: [string, 'null']}
+        short_definition_fa: {type: [string, 'null']}
+        active: {type: boolean}
+    Lesson:
+      type: object
+      additionalProperties: false
+      required: [id, lesson_no, title_fr, short_title, category_id, subcategory_id, active]
+      properties:
+        id: {type: string, format: uuid}
+        lesson_no: {type: integer, minimum: 1, maximum: 52}
+        title_fr: {type: string}
+        short_title: {type: string}
+        category_id: {type: string, format: uuid}
+        subcategory_id: {type: string, format: uuid}
+        tcf_weight: {type: number, minimum: 0}
+        active: {type: boolean}
+    LessonDetail:
+      type: object
+      additionalProperties: false
+      required: [id, lesson_no, title_fr, short_title, category_id, subcategory_id, active, subtopics]
+      properties:
+        id: {type: string, format: uuid}
+        lesson_no: {type: integer, minimum: 1, maximum: 52}
+        title_fr: {type: string}
+        short_title: {type: string}
+        category_id: {type: string, format: uuid}
+        subcategory_id: {type: string, format: uuid}
+        tcf_weight: {type: number, minimum: 0}
+        active: {type: boolean}
+        subtopics: {type: array, items: {$ref: '#/components/schemas/Subtopic'}}
+    LessonCollectionEnvelope:
+      type: object
+      additionalProperties: false
+      required: [data, page, meta]
+      properties:
+        data: {type: array, items: {$ref: '#/components/schemas/Lesson'}}
+        page: {$ref: '#/components/schemas/Page'}
+        meta: {$ref: '#/components/schemas/Meta'}
+    LessonDetailEnvelope:
+      type: object
+      additionalProperties: false
+      required: [data, meta]
+      properties: {data: {$ref: '#/components/schemas/LessonDetail'}, meta: {$ref: '#/components/schemas/Meta'}}
+    Difficulty: {type: string, enum: [EASY, MEDIUM, HARD, VERY_HARD]}
+    QuestionStatus: {type: string, enum: [DRAFT, READY_FOR_REVIEW, CHANGES_REQUESTED, APPROVED, PUBLISHED, REJECTED, RETIRED]}
+    TestCreateRequest:
+      type: object
+      additionalProperties: false
+      required: [schema_version, mode, question_count, scope, difficulty_mix_pct]
+      properties:
+        schema_version: {type: string, enum: [test-config-schema-v0.9.0, adaptive-selection-config-v0.9.0]}
+        mode: {type: string, enum: [custom, tcf, adaptive, review, mistakes]}
+        question_count: {type: integer, minimum: 1, maximum: 100}
+        scope: {type: object, minProperties: 1, additionalProperties: true}
+        difficulty_mix_pct:
+          type: object
+          additionalProperties: false
+          required: [EASY, MEDIUM, HARD, VERY_HARD]
+          properties:
+            EASY: {type: number, minimum: 0, maximum: 100}
+            MEDIUM: {type: number, minimum: 0, maximum: 100}
+            HARD: {type: number, minimum: 0, maximum: 100}
+            VERY_HARD: {type: number, minimum: 0, maximum: 100}
+        lesson_allocation: {type: object, additionalProperties: true}
+        type_allocation: {type: object, additionalProperties: true}
+        seed: {type: [string, 'null'], maxLength: 256}
+    Test:
+      type: object
+      additionalProperties: false
+      required: [id, mode, question_count, created_at]
+      properties:
+        id: {type: string, format: uuid}
+        mode: {type: string}
+        title: {type: [string, 'null']}
+        question_count: {type: integer, minimum: 1}
+        selection_model_version: {type: string}
+        created_at: {type: string, format: date-time}
+    TestEnvelope:
+      type: object
+      additionalProperties: false
+      required: [data, meta]
+      properties: {data: {$ref: '#/components/schemas/Test'}, meta: {$ref: '#/components/schemas/Meta'}}
+    Attempt:
+      type: object
+      additionalProperties: false
+      required: [id, test_id, status, started_at]
+      properties:
+        id: {type: string, format: uuid}
+        test_id: {type: string, format: uuid}
+        status: {type: string, enum: [IN_PROGRESS, COMPLETED, ABANDONED]}
+        started_at: {type: string, format: date-time}
+        completed_at: {type: [string, 'null'], format: date-time}
+        score_raw: {type: [number, 'null']}
+        score_pct: {type: [number, 'null'], minimum: 0, maximum: 100}
+    AttemptEnvelope:
+      type: object
+      additionalProperties: false
+      required: [data, meta]
+      properties: {data: {$ref: '#/components/schemas/Attempt'}, meta: {$ref: '#/components/schemas/Meta'}}
+    AttemptOption:
+      type: object
+      additionalProperties: false
+      required: [id, position, text]
+      properties:
+        id: {type: string, format: uuid}
+        position: {type: string, enum: [A, B, C, D]}
+        text: {type: string, maxLength: 500}
+    AttemptQuestion:
+      type: object
+      additionalProperties: false
+      description: Pre-answer allow-list; intentionally has no correct option or explanation fields.
+      required: [test_question_id, question_revision_id, position, stem, stem_locale, question_type, difficulty, options]
+      properties:
+        test_question_id: {type: string, format: uuid}
+        question_revision_id: {type: string, format: uuid}
+        position: {type: integer, minimum: 1}
+        stem: {type: string, maxLength: 2000}
+        stem_locale: {type: string, enum: [fr-FR, fa-IR]}
+        question_type: {type: string}
+        difficulty: {$ref: '#/components/schemas/Difficulty'}
+        options:
+          type: array
+          minItems: 4
+          maxItems: 4
+          items: {$ref: '#/components/schemas/AttemptOption'}
+        media:
+          type: array
+          items:
+            type: object
+            additionalProperties: false
+            required: [type, uri]
+            properties:
+              type: {type: string, enum: [IMAGE, AUDIO, VIDEO]}
+              uri: {type: string, format: uri-reference}
+              alt_text: {type: [string, 'null']}
+              transcript: {type: [string, 'null']}
+    AttemptQuestionEnvelope:
+      type: object
+      additionalProperties: false
+      required: [data, meta]
+      properties: {data: {$ref: '#/components/schemas/AttemptQuestion'}, meta: {$ref: '#/components/schemas/Meta'}}
+    AnswerRequest:
+      type: object
+      additionalProperties: false
+      required: [test_question_id, selected_option_id]
+      properties:
+        test_question_id: {type: string, format: uuid}
+        selected_option_id: {type: string, format: uuid}
+        response_ms: {type: [integer, 'null'], minimum: 0, maximum: 86400000}
+    AnswerFeedback:
+      type: object
+      additionalProperties: false
+      required: [is_correct, selected_option_id, correct_option_id]
+      properties:
+        is_correct: {type: boolean}
+        selected_option_id: {type: string, format: uuid}
+        correct_option_id: {type: string, format: uuid}
+        selected_option_explanation: {type: [string, 'null']}
+        correct_option_explanation: {type: [string, 'null']}
+        full_explanation: {type: [string, 'null']}
+    AnswerReceipt:
+      type: object
+      additionalProperties: false
+      required: [answer_id, attempt_id, test_question_id, answered_at, feedback, mastery, review_schedule]
+      properties:
+        answer_id: {type: string, format: uuid}
+        attempt_id: {type: string, format: uuid}
+        test_question_id: {type: string, format: uuid}
+        answered_at: {type: string, format: date-time}
+        feedback: {$ref: '#/components/schemas/AnswerFeedback'}
+        mastery: {$ref: '#/components/schemas/MasteryItem'}
+        review_item_id: {type: [string, 'null'], format: uuid}
+        review_schedule: {type: object, additionalProperties: true}
+    AnswerReceiptEnvelope:
+      type: object
+      additionalProperties: false
+      required: [data, meta]
+      properties: {data: {$ref: '#/components/schemas/AnswerReceipt'}, meta: {$ref: '#/components/schemas/Meta'}}
+    AttemptResult:
+      type: object
+      additionalProperties: false
+      required: [attempt_id, status, score_raw, score_pct, completed_at, breakdown]
+      properties:
+        attempt_id: {type: string, format: uuid}
+        status: {const: COMPLETED}
+        score_raw: {type: number}
+        score_pct: {type: number, minimum: 0, maximum: 100}
+        completed_at: {type: string, format: date-time}
+        breakdown:
+          type: array
+          items:
+            type: object
+            additionalProperties: false
+            required: [test_question_id, position, answer_id, feedback]
+            properties:
+              test_question_id: {type: string, format: uuid}
+              position: {type: integer, minimum: 1}
+              answer_id: {type: string, format: uuid}
+              feedback: {$ref: '#/components/schemas/AnswerFeedback'}
+    AttemptResultEnvelope:
+      type: object
+      additionalProperties: false
+      required: [data, meta]
+      properties: {data: {$ref: '#/components/schemas/AttemptResult'}, meta: {$ref: '#/components/schemas/Meta'}}
+    ReviewSummary:
+      type: object
+      additionalProperties: false
+      required: [id, kind, status, marked]
+      properties:
+        id: {type: string, format: uuid}
+        kind: {type: string, enum: [MISTAKE, SPACED]}
+        status: {type: string}
+        group_key: {type: [string, 'null']}
+        repeat_count: {type: integer, minimum: 0}
+        due_at: {type: [string, 'null'], format: date-time}
+        marked: {type: boolean}
+    ReviewCollectionEnvelope:
+      type: object
+      additionalProperties: false
+      required: [data, page, meta]
+      properties:
+        data: {type: array, items: {$ref: '#/components/schemas/ReviewSummary'}}
+        page: {$ref: '#/components/schemas/Page'}
+        meta: {$ref: '#/components/schemas/Meta'}
+    ReviewItem:
+      type: object
+      additionalProperties: false
+      required: [id, resolution_status, reviewability, marked, feedback_state, question]
+      properties:
+        id: {type: string, format: uuid}
+        resolution_status: {type: string, enum: [UNRESOLVED, CORRECTED, EXCLUDED_CONTENT_ISSUE]}
+        reviewability: {type: string, enum: [RETRY_ALLOWED, HISTORY_ONLY]}
+        marked: {type: boolean}
+        feedback_state: {type: string, enum: [HIDDEN, REVEALED]}
+        previous_selected_option_id: {type: [string, 'null'], format: uuid}
+        question: {$ref: '#/components/schemas/AttemptQuestion'}
+    ReviewItemEnvelope:
+      type: object
+      additionalProperties: false
+      required: [data, meta]
+      properties: {data: {$ref: '#/components/schemas/ReviewItem'}, meta: {$ref: '#/components/schemas/Meta'}}
+    ReviewGradeRequest:
+      type: object
+      additionalProperties: false
+      required: [selected_option_id]
+      properties: {selected_option_id: {type: string, format: uuid}}
+    ReviewMarkRequest:
+      type: object
+      additionalProperties: false
+      required: [marked]
+      properties: {marked: {type: boolean}}
+    ReviewFeedbackEnvelope:
+      type: object
+      additionalProperties: false
+      required: [data, meta]
+      properties:
+        data:
+          type: object
+          additionalProperties: false
+          required: [review_item, feedback]
+          properties:
+            review_item: {$ref: '#/components/schemas/ReviewItem'}
+            feedback: {$ref: '#/components/schemas/AnswerFeedback'}
+        meta: {$ref: '#/components/schemas/Meta'}
+    MasteryItem:
+      type: object
+      additionalProperties: false
+      required: [mastery_score_pct, confidence, coverage_ratio, mastery_band, model_version]
+      properties:
+        scope_type: {type: string, enum: [SUBTOPIC, LESSON, CATEGORY, TAG]}
+        scope_id: {type: string, format: uuid}
+        mastery_score_pct: {type: number, minimum: 0, maximum: 100}
+        confidence: {type: number, minimum: 0, maximum: 1}
+        coverage_ratio: {type: number, minimum: 0, maximum: 1}
+        evidence_count: {type: integer, minimum: 0}
+        mastery_band: {type: string, enum: [NO_EVIDENCE, UNCERTAIN, WEAK, DEVELOPING, STRONG]}
+        model_version: {type: string}
+    MasteryCollectionEnvelope:
+      type: object
+      additionalProperties: false
+      required: [data, meta]
+      properties:
+        data: {type: array, items: {$ref: '#/components/schemas/MasteryItem'}}
+        meta: {$ref: '#/components/schemas/Meta'}
+    ProgressPoint:
+      type: object
+      additionalProperties: false
+      required: [scope_type, scope_id, mastery_score_pct, confidence, coverage_ratio, evidence_count, mastery_band, model_version, captured_at]
+      properties:
+        scope_type: {type: string, enum: [SUBTOPIC, LESSON, CATEGORY, TAG]}
+        scope_id: {type: string, format: uuid}
+        mastery_score_pct: {type: number, minimum: 0, maximum: 100}
+        confidence: {type: number, minimum: 0, maximum: 1}
+        coverage_ratio: {type: number, minimum: 0, maximum: 1}
+        evidence_count: {type: integer, minimum: 0}
+        mastery_band: {type: string, enum: [NO_EVIDENCE, UNCERTAIN, WEAK, DEVELOPING, STRONG]}
+        model_version: {type: string}
+        captured_at: {type: string, format: date-time}
+    ProgressEnvelope:
+      type: object
+      additionalProperties: false
+      required: [data, meta]
+      properties:
+        data:
+          type: object
+          additionalProperties: false
+          required: [points, incomplete_data]
+          properties:
+            points:
+              type: array
+              items: {$ref: '#/components/schemas/ProgressPoint'}
+            incomplete_data: {type: boolean}
+            warning: {type: [string, 'null']}
+        meta: {$ref: '#/components/schemas/Meta'}
+    DashboardEnvelope:
+      type: object
+      additionalProperties: false
+      required: [data, meta]
+      properties:
+        data:
+          type: object
+          additionalProperties: false
+          required: [as_of, next_action, mastery, review_queue, error_review, recent_test, trend, activity]
+          properties:
+            as_of: {type: string, format: date-time}
+            next_action: {type: string, enum: [OVERDUE_REVIEW, DUE_REVIEW, CRITICAL_CONFIDENT_LESSON, WEAK_CONFIDENT_LESSON, DEVELOPING_LESSON, BUILD_EVIDENCE, REGULAR_PRACTICE]}
+            mastery: {type: array, items: {$ref: '#/components/schemas/MasteryItem'}}
+            review_queue: {type: object, additionalProperties: true}
+            error_review: {type: object, additionalProperties: true}
+            recent_test: {type: [object, 'null'], additionalProperties: true}
+            trend: {type: object, additionalProperties: true}
+            activity: {type: object, additionalProperties: true}
+        meta: {$ref: '#/components/schemas/Meta'}
+    NextActionEnvelope:
+      type: object
+      additionalProperties: false
+      required: [data, meta]
+      properties:
+        data:
+          type: object
+          additionalProperties: false
+          required: [code, destination, reason]
+          properties:
+            code: {type: string}
+            destination: {type: string, pattern: '^/(en|fa)/'}
+            reason: {type: string}
+        meta: {$ref: '#/components/schemas/Meta'}
+    AnalyticsJobRequest:
+      type: object
+      additionalProperties: false
+      required: [job_type, input]
+      properties:
+        job_type: {type: string, enum: [DASHBOARD_REBUILD, MASTERY_BACKFILL, PROGRESS_REBUILD, QUESTION_METRICS_REBUILD]}
+        input: {type: object, additionalProperties: true}
+    AnalyticsJob:
+      type: object
+      additionalProperties: false
+      required: [id, job_type, state, progress_pct, queued_at]
+      properties:
+        id: {type: string, format: uuid}
+        job_type: {type: string}
+        state: {type: string, enum: [QUEUED, RUNNING, SUCCEEDED, FAILED, CANCELLED]}
+        progress_pct: {type: number, minimum: 0, maximum: 100}
+        queued_at: {type: string, format: date-time}
+        started_at: {type: [string, 'null'], format: date-time}
+        completed_at: {type: [string, 'null'], format: date-time}
+        error_code: {type: [string, 'null']}
+        result: {type: [object, 'null'], additionalProperties: true}
+    AnalyticsJobEnvelope:
+      type: object
+      additionalProperties: false
+      required: [data, meta]
+      properties: {data: {$ref: '#/components/schemas/AnalyticsJob'}, meta: {$ref: '#/components/schemas/Meta'}}
+    QuestionOptionInput:
+      type: object
+      additionalProperties: false
+      required: [position, text, explanation]
+      properties:
+        position: {type: string, enum: [A, B, C, D]}
+        text: {type: string, minLength: 1, maxLength: 500}
+        explanation: {type: string, minLength: 1, maxLength: 2000}
+        misconception_id: {type: [string, 'null'], format: uuid}
+    QuestionDraftRequest:
+      type: object
+      additionalProperties: false
+      required: [external_id, lesson_id, primary_subtopic_id, question_type_code, stem, full_explanation, difficulty, source_type, source_ref, correct_option_position, options]
+      properties:
+        external_id: {type: string, minLength: 1, maxLength: 100}
+        lesson_id: {type: string, format: uuid}
+        primary_subtopic_id: {type: string, format: uuid}
+        question_type_code: {type: string, minLength: 1, maxLength: 40}
+        stem: {type: string, minLength: 1, maxLength: 2000}
+        full_explanation: {type: string, minLength: 1, maxLength: 4000}
+        difficulty: {$ref: '#/components/schemas/Difficulty'}
+        source_type: {type: string, enum: [BOOK_DIRECT, PROJECT_SYNTHETIC_FROM_RULE, EXTERNAL_REVIEWED]}
+        source_ref: {type: string, minLength: 1}
+        correct_option_position: {type: string, enum: [A, B, C, D]}
+        options: {type: array, minItems: 4, maxItems: 4, items: {$ref: '#/components/schemas/QuestionOptionInput'}}
+        status: {const: DRAFT}
+    QuestionRevisionRequest:
+      type: object
+      additionalProperties: false
+      minProperties: 1
+      properties:
+        stem: {type: string, minLength: 1, maxLength: 2000}
+        full_explanation: {type: string, minLength: 1, maxLength: 4000}
+        difficulty: {$ref: '#/components/schemas/Difficulty'}
+        source_ref: {type: string, minLength: 1}
+        correct_option_position: {type: string, enum: [A, B, C, D]}
+        options: {type: array, minItems: 4, maxItems: 4, items: {$ref: '#/components/schemas/QuestionOptionInput'}}
+    QuestionReviewRequest:
+      type: object
+      additionalProperties: false
+      required: [action]
+      properties:
+        action: {type: string, enum: [APPROVE, REJECT, REQUEST_CHANGES]}
+        notes: {type: [string, 'null'], maxLength: 4000}
+        reason_codes: {type: array, uniqueItems: true, items: {type: string, maxLength: 60}}
+    RetirementRequest:
+      type: object
+      additionalProperties: false
+      required: [reason]
+      properties:
+        reason: {type: string, minLength: 1, maxLength: 2000}
+        source_report_id: {type: [string, 'null'], format: uuid}
+    AdminQuestion:
+      type: object
+      additionalProperties: true
+      required: [id, question_uid, revision, status, author_actor_id]
+      properties:
+        id: {type: string, format: uuid}
+        question_uid: {type: string, format: uuid}
+        revision: {type: integer, minimum: 1}
+        status: {$ref: '#/components/schemas/QuestionStatus'}
+        author_actor_id: {type: string, format: uuid}
+        reviewer_actor_id: {type: [string, 'null'], format: uuid}
+        quality_metrics: {type: [object, 'null'], additionalProperties: true}
+        metric_sample_size: {type: integer, minimum: 0}
+    AdminQuestionEnvelope:
+      type: object
+      additionalProperties: false
+      required: [data, meta]
+      properties: {data: {$ref: '#/components/schemas/AdminQuestion'}, meta: {$ref: '#/components/schemas/Meta'}}
+    AdminQuestionCollectionEnvelope:
+      type: object
+      additionalProperties: false
+      required: [data, page, meta]
+      properties:
+        data: {type: array, items: {$ref: '#/components/schemas/AdminQuestion'}}
+        page: {$ref: '#/components/schemas/Page'}
+        meta: {$ref: '#/components/schemas/Meta'}
+    ImportRow:
+      allOf:
+        - $ref: '#/components/schemas/QuestionDraftRequest'
+        - type: object
+          required: [status]
+          properties: {status: {const: DRAFT}}
+    ImportPreviewRequest:
+      type: object
+      additionalProperties: false
+      required: [schema_version, batch_id, rows]
+      properties:
+        schema_version: {const: stage20-bulk-import-v1.0.0}
+        batch_id: {type: string, format: uuid}
+        rows: {type: array, minItems: 1, maxItems: 1000, items: {$ref: '#/components/schemas/ImportRow'}}
+    BulkStatusPreviewRequest:
+      type: object
+      additionalProperties: false
+      required: [batch_id, question_ids, target_status]
+      properties:
+        batch_id: {type: string, format: uuid}
+        question_ids: {type: array, minItems: 1, maxItems: 1000, uniqueItems: true, items: {type: string, format: uuid}}
+        target_status: {type: string, enum: [DRAFT, READY_FOR_REVIEW, CHANGES_REQUESTED]}
+    CommitPreviewRequest:
+      type: object
+      additionalProperties: false
+      required: [batch_id, confirmation_token]
+      properties:
+        batch_id: {type: string, format: uuid}
+        confirmation_token: {type: string, minLength: 16, maxLength: 512}
+    PreviewEnvelope:
+      type: object
+      additionalProperties: false
+      required: [data, meta]
+      properties:
+        data:
+          type: object
+          additionalProperties: false
+          required: [batch_id, valid_count, rejected_count, confirmation_token]
+          properties:
+            batch_id: {type: string, format: uuid}
+            valid_count: {type: integer, minimum: 0}
+            rejected_count: {type: integer, minimum: 0}
+            errors: {type: array, items: {type: object, additionalProperties: true}}
+            confirmation_token: {type: string, minLength: 16}
+        meta: {$ref: '#/components/schemas/Meta'}
+    AuditCollectionEnvelope:
+      type: object
+      additionalProperties: false
+      required: [data, page, meta]
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+            required: [id, action, resource_type, occurred_at]
+            properties:
+              id: {type: string, format: uuid}
+              canonical_audit_log_id: {type: integer}
+              action: {type: string}
+              resource_type: {type: string}
+              resource_id: {type: [string, 'null'], format: uuid}
+              request_id: {type: [string, 'null']}
+              occurred_at: {type: string, format: date-time}
+        page: {$ref: '#/components/schemas/Page'}
+        meta: {$ref: '#/components/schemas/Meta'}
+    GenericEnvelope:
+      type: object
+      additionalProperties: false
+      required: [data, meta]
+      properties:
+        data: {type: object, additionalProperties: true}
+        meta: {$ref: '#/components/schemas/Meta'}

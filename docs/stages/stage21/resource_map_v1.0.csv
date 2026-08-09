@@ -1,0 +1,35 @@
+resource,operation_id,method,path,access,owner_scope,idempotency,service,upstream_contract,notes
+Auth,registerUser,POST,/auth/register,Public,NONE,OPTIONAL,AUTH,Stage12 users,Rate-limited; creates USER role only
+Auth,loginUser,POST,/auth/login,Public,NONE,OPTIONAL,AUTH,Stage12 users,Rate-limited; returns a session-backed access token
+Auth,logoutUser,POST,/auth/logout,User,SELF,OPTIONAL,AUTH,Stage21 auth policy,Revokes the current sid
+Lesson,listLessons,GET,/lessons,User,SELF,NONE,CONTENT,Stage1/2,Cursor pagination plus allow-listed filter/sort
+Lesson,getLesson,GET,/lessons/{lessonId},User,SELF,NONE,CONTENT,Stage1/2,Returns lesson and active subtopics
+Test,createTest,POST,/tests,User,SELF,REQUIRED,TEST_ORCHESTRATION,Stage13/14/16,Returns NO_ELIGIBLE_QUESTIONS when the published pool is empty
+Test,getTest,GET,/tests/{testId},Owner,SELF,NONE,TEST_ORCHESTRATION,Stage13,Metadata only; no answer key
+Attempt,startAttempt,POST,/tests/{testId}/attempts,Owner,SELF,REQUIRED,TEST_ORCHESTRATION,Stage12/13,Creates one in-progress attempt replay-safely
+Attempt,getNextAttemptQuestion,GET,/attempts/{attemptId}/next,Owner,SELF,NONE,ANSWER_PIPELINE,Stage12/13,Frozen public question projection without answer-key fields
+Attempt,submitAttemptAnswer,POST,/attempts/{attemptId}/answers,Owner,SELF,REQUIRED,ANSWER_PIPELINE,Stage12/15/16/17,Atomic answer to mastery to review to SRS transaction
+Attempt,completeAttempt,POST,/attempts/{attemptId}/complete,Owner,SELF,REQUIRED,ANSWER_PIPELINE,Stage12/13,Freezes score and completion timestamp
+Attempt,getAttemptResult,GET,/attempts/{attemptId}/result,Owner,SELF,NONE,ANSWER_PIPELINE,Stage12/16,Available only after completion
+Review,listReviews,GET,/reviews,User,SELF,NONE,ERROR_REVIEW,Stage16/17,Filters mistake groups and due concepts in one resource
+Review,getReviewItem,GET,/reviews/{reviewId},Owner,SELF,NONE,ERROR_REVIEW,Stage16,Frozen retry projection; answer hidden until retry or reveal
+Review,gradeReview,POST,/reviews/{reviewId}/grade,Owner,SELF,REQUIRED,ERROR_REVIEW,Stage16,Retry grade is resolution evidence and does not mutate original score
+Review,revealReviewAnswer,POST,/reviews/{reviewId}/reveal,Owner,SELF,OPTIONAL,ERROR_REVIEW,Stage16,Audited explicit reveal; does not resolve item
+Review,setReviewMark,PUT,/reviews/{reviewId}/mark,Owner,SELF,OPTIONAL,ERROR_REVIEW,Stage16/17,Mark is a due-queue tiebreak only
+Mastery,getMastery,GET,/mastery,User,SELF,NONE,MASTERY,Stage15,Scope filter; score always paired with confidence and coverage
+Progress,getProgress,GET,/progress,User,SELF,NONE,ANALYTICS,Stage15/18,Persisted snapshots only; missing periods are explicit
+Dashboard,getDashboard,GET,/dashboard,User,SELF,NONE,ANALYTICS,Stage18,Aggregated KPI resource prevents per-card fan-out
+NextAction,getCurrentNextAction,GET,/next-actions/current,User,SELF,NONE,ANALYTICS,Stage18,Uses Stage18 CTA priority and returns one safe action
+AnalyticsJob,createAnalyticsJob,POST,/analytics/jobs,Admin,NONE,REQUIRED,ANALYTICS,Stage18/21,Queues bounded heavy rebuild or backfill work
+AnalyticsJob,getAnalyticsJob,GET,/analytics/jobs/{jobId},Admin,NONE,NONE,ANALYTICS,Stage21,Returns job state and result metadata
+AdminQuestion,listAdminQuestions,GET,/admin/questions,EditorOrReviewer,NONE,NONE,ADMIN,Stage20,Search/filter bank with metric sample sizes
+AdminQuestion,createAdminQuestionDraft,POST,/admin/questions,Editor,NONE,OPTIONAL,ADMIN,Stage10/20,Always creates DRAFT
+AdminQuestion,createAdminQuestionRevision,PATCH,/admin/questions/{questionId},Editor,NONE,OPTIONAL,ADMIN,Stage11/12/20,Creates an immutable revision rather than editing history
+AdminQuestion,reviewAdminQuestion,POST,/admin/questions/{questionId}/review,Reviewer,NONE,OPTIONAL,ADMIN,Stage11/20,Reviewer must differ from author or generator
+AdminQuestion,retireAdminQuestion,POST,/admin/questions/{questionId}/retire,Admin,NONE,OPTIONAL,ADMIN,Stage11/12/20,Immediate retirement preserves historical snapshots
+AdminQuestion,requestAdminQuestionRetirement,POST,/admin/questions/{questionId}/retire-request,EditorOrReviewer,NONE,OPTIONAL,ADMIN,Stage20,Creates an auditable request only
+AdminImport,previewAdminImport,POST,/admin/imports/preview,Editor,NONE,OPTIONAL,ADMIN,Stage10/20/23,Non-mutating DRAFT-only validation preview
+AdminImport,commitAdminImport,POST,/admin/imports/commit,Editor,NONE,REQUIRED,ADMIN,Stage20/23,Commits the exact confirmation token atomically
+AdminBulkStatus,previewAdminBulkStatus,POST,/admin/questions/bulk-status/preview,Editor,NONE,OPTIONAL,ADMIN,Stage11/20,Forbids approve publish reject and retire targets
+AdminBulkStatus,commitAdminBulkStatus,POST,/admin/questions/bulk-status/commit,Editor,NONE,REQUIRED,ADMIN,Stage11/20,Validates every transition and fails atomically
+AdminAudit,listAdminAuditEvents,GET,/admin/audit-log,AdminOrReviewer,NONE,NONE,ADMIN,Stage12/20,Reads correlated append-only canonical and domain audit history

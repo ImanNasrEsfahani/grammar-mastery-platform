@@ -1,0 +1,287 @@
+{
+  "manifest": {
+    "project": "Grammar Mastery Platform",
+    "stage": 21,
+    "name": "Backend and Core APIs",
+    "package_version": "stage21-v1.1-review",
+    "prepared_at_utc": "2026-08-09",
+    "status": "DJANGO_DRF_IMPLEMENTATION_PROFILE_VALIDATED_PENDING_OWNER_ACCEPTANCE",
+    "governance": {
+      "content_owner": "Iman",
+      "technical_owner": "Iman",
+      "product_owner": "Iman",
+      "governance_version": "governance-v1.0.0"
+    },
+    "versions": {
+      "api": "grammar-mastery-api-v1.0.0",
+      "auth_policy": "auth-policy-v1.0.0",
+      "error_contract": "api-error-v1.0.0",
+      "idempotency": "api-idempotency-v1.0.0",
+      "pagination": "api-pagination-v1.0.0",
+      "service_boundaries": "backend-services-v1.0.0",
+      "storage_patch": "api-runtime-storage-v1.0.0",
+      "implementation_profile": "stage21-django-nextjs-profile-v1.0.0"
+    }
+  },
+  "api": {
+    "style": "REST_JSON_RESOURCE_ORIENTED",
+    "openapi": "3.1.0",
+    "base_path": "/api/v1",
+    "media_type": "application/json",
+    "time_format": "RFC3339_UTC",
+    "identifier_format": "UUID",
+    "response_envelopes": {
+      "single": ["data", "meta"],
+      "collection": ["data", "page", "meta"],
+      "error": ["error"]
+    }
+  },
+  "technology_stack": {
+    "decision_status": "ACCEPTED_BY_OWNER",
+    "backend": {
+      "framework": "Django",
+      "series": "5.2 LTS",
+      "minimum_patch": "5.2.17",
+      "api_framework": "Django REST Framework",
+      "api_framework_series": "3.16+",
+      "python_runtime": "3.12+",
+      "serving_interface": "ASGI",
+      "database": "PostgreSQL 15+",
+      "adapter_package": "src/backend/django_adapter",
+      "schema_ownership": "Stage12-21 versioned SQL remains canonical; Django must not create duplicate identity or learning tables"
+    },
+    "frontend": {
+      "framework": "Next.js",
+      "release_line": "16 Active LTS",
+      "minimum_security_patch": "16.2.11",
+      "router": "App Router",
+      "language": "TypeScript strict",
+      "implementation_stage": 22,
+      "api_client": "OpenAPI-derived types and server-side API client"
+    },
+    "integration": {
+      "topology": "Browser -> Next.js server boundary -> Django REST API /api/v1 -> application/domain services -> PostgreSQL",
+      "auth_transport": "Next.js server-side boundary forwards Bearer access tokens; browser persistence in localStorage is forbidden",
+      "same_origin": "Prefer one public origin with /api/v1 reverse-proxied to Django",
+      "business_logic": "selection, scoring, mastery, Error Review, SRS and authorization remain Django/backend-only"
+    }
+  },
+  "service_boundaries": {
+    "AUTH": "credentials, sessions, access-token verification and role claims",
+    "CONTENT": "read-only lessons, subtopics and stable taxonomy identifiers",
+    "TEST_ORCHESTRATION": "Stage13/14 selection, immutable test snapshots and attempt lifecycle",
+    "ANSWER_PIPELINE": "answer validation, scoring and one transaction across answer, mastery, error-review and SRS state",
+    "ERROR_REVIEW": "Stage16 filters, groups, retry/reveal/mark events and resolution state",
+    "MASTERY": "Stage15 computation and persisted current/snapshot resources",
+    "ANALYTICS": "Stage18 dashboard/progress reads and asynchronous heavy aggregation jobs",
+    "ADMIN": "Stage20 bank, review, import-preview/commit, retirement and correlated audit operations"
+  },
+  "auth_policy": {
+    "access_token": {
+      "format": "JWT_HS256_SESSION_BACKED_WITH_DRF_AUTHENTICATION_ADAPTER",
+      "authorization_header": "Bearer <token>",
+      "required_claims": ["iss", "aud", "sub", "sid", "roles", "iat", "exp", "jti"],
+      "default_ttl_seconds": 900,
+      "session_backed_revocation": true
+    },
+    "password": {
+      "reference_algorithm": "PBKDF2-HMAC-SHA256",
+      "iterations": 600000,
+      "salt_bytes": 16,
+      "derived_key_bytes": 32,
+      "production_policy_review": "STAGE25"
+    },
+    "roles": ["USER", "ADMIN", "CONTENT_EDITOR", "REVIEWER"],
+    "default_registration_role": "USER",
+    "stage20_actor_mapping": {
+      "USER": "USER",
+      "ADMIN": "ADMIN",
+      "CONTENT_EDITOR": "CONTENT_AUTHOR",
+      "REVIEWER": "REVIEWER"
+    },
+    "ownership_rule": "learner resources require principal.sub == resource.user_id; unauthorized ownership checks return RESOURCE_NOT_FOUND to prevent enumeration",
+    "logout_rule": "revoke the server-side session identified by sid; all later tokens for that session fail closed",
+    "authorization_location": "Django REST Framework permission plus application/service ownership checks; never UI-only"
+  },
+  "rate_limits": {
+    "policy_status": "INITIAL_VERSIONED_POLICY_REVIEW_STAGE25",
+    "register": {"limit": 5, "window_seconds": 3600, "key": "ip"},
+    "login": {"limit": 5, "window_seconds": 900, "key": "ip+normalized_email"},
+    "answer": {"limit": 120, "window_seconds": 60, "key": "user_id"},
+    "admin_mutation": {"limit": 30, "window_seconds": 60, "key": "user_id"},
+    "response": "429 RATE_LIMITED with Retry-After"
+  },
+  "idempotency": {
+    "required_header": "Idempotency-Key",
+    "key_min_length": 16,
+    "key_max_length": 128,
+    "ttl_seconds": 86400,
+    "required_operations": [
+      "createTest",
+      "startAttempt",
+      "submitAttemptAnswer",
+      "completeAttempt",
+      "gradeReview",
+      "createAnalyticsJob",
+      "commitAdminImport",
+      "commitAdminBulkStatus"
+    ],
+    "scope": "principal_id + operation_id + key",
+    "same_request": "return the original status/body and Idempotent-Replayed: true",
+    "different_request": "409 IDEMPOTENCY_KEY_REUSED",
+    "in_progress": "409 IDEMPOTENCY_IN_PROGRESS",
+    "request_fingerprint": "SHA-256 of canonical JSON body plus stable path parameters"
+  },
+  "query_standard": {
+    "pagination": "opaque cursor using page[size] and page[after]",
+    "default_page_size": 25,
+    "maximum_page_size": 100,
+    "filter_syntax": "filter[field]=value; repeat parameters for multi-value filters",
+    "sorting": "sort=field,-descending_field; endpoint allow-list only",
+    "unknown_filter_or_sort": "400 QUERY_PARAMETER_INVALID"
+  },
+  "answer_safety": {
+    "before_submission_forbidden": [
+      "correct_option_id",
+      "is_correct",
+      "full_explanation",
+      "option.explanation",
+      "option.misconception_id",
+      "answer_key_metadata"
+    ],
+    "after_submission": "only the submitted item may reveal correctness and feedback",
+    "result_gate": "full result is available only after attempt COMPLETED",
+    "admin_exception": "authorized staff review resources may include the answer key"
+  },
+  "transaction_contract": {
+    "answer_order": [
+      "validate ownership, attempt state, frozen question and option",
+      "insert immutable user_answer",
+      "update Stage15 current mastery and append snapshot",
+      "materialize/update Stage16 error-review state when applicable",
+      "update Stage17 concept schedule and append event",
+      "complete idempotency record"
+    ],
+    "atomicity": "all writes commit or roll back together; raw answer remains the authoritative replay input after an out-of-band recovery",
+    "retry": "storage failures retry only through the same idempotency key"
+  },
+  "error_contract": {
+    "shape": {"error": ["code", "message", "fields", "request_id"]},
+    "stable_for_clients": ["code", "HTTP status"],
+    "human_facing": ["message"],
+    "field_errors": "object keyed by request-field path",
+    "request_id": "returned on every error and correlated with logs/audit records",
+    "status_mapping": {
+      "400": ["INVALID_JSON", "QUERY_PARAMETER_INVALID"],
+      "401": ["AUTHENTICATION_REQUIRED", "TOKEN_INVALID", "SESSION_REVOKED"],
+      "403": ["FORBIDDEN"],
+      "404": ["RESOURCE_NOT_FOUND"],
+      "405": ["METHOD_NOT_ALLOWED"],
+      "406": ["NOT_ACCEPTABLE"],
+      "409": ["STATE_CONFLICT", "IDEMPOTENCY_KEY_REUSED", "IDEMPOTENCY_IN_PROGRESS"],
+      "415": ["UNSUPPORTED_MEDIA_TYPE"],
+      "422": ["VALIDATION_ERROR", "NO_ELIGIBLE_QUESTIONS"],
+      "429": ["RATE_LIMITED"],
+      "500": ["INTERNAL_ERROR"],
+      "503": ["DEPENDENCY_UNAVAILABLE"]
+    }
+  },
+  "analytics": {
+    "inline": "bounded user-scoped current snapshot reads",
+    "asynchronous": "heavy rebuilds, cohort/admin aggregation and historical backfills",
+    "job_states": ["QUEUED", "RUNNING", "SUCCEEDED", "FAILED", "CANCELLED"],
+    "dashboard_rule": "one aggregated dashboard resource; no chatty per-card fan-out",
+    "historical_rule": "persisted snapshots only; never interpolate missing periods into a learning claim"
+  },
+  "compatibility_and_impact": {
+    "existing_questions": "no question content, revision, status or answer-key field is migrated by Stage21",
+    "historical_attempts": "immutable snapshots and answers remain unchanged",
+    "historical_reports": "new API projections read existing history without rewriting it",
+    "imports": "Stage10/20 row schemas remain unchanged; Stage21 adds transport/idempotency storage only",
+    "stage20_api": "all Stage20 operations are incorporated into the versioned Stage21 OpenAPI without weakening permissions or workflow gates",
+    "breaking_change_policy": "additive changes within v1; incompatible request/response changes require /api/v2 and a migration/deprecation record"
+  },
+  "risk_controls": [
+    {
+      "risk": "ANSWER_LEAKAGE",
+      "preventive": "separate public AttemptQuestion schema and post-answer feedback schema",
+      "detection": "contract test recursively rejects forbidden answer-key fields before submission"
+    },
+    {
+      "risk": "N_PLUS_ONE_QUERY",
+      "preventive": "aggregate endpoints and repository bulk-fetch ports",
+      "detection": "Stage24 query-count/performance budgets for list, next-question and dashboard resources"
+    },
+    {
+      "risk": "FAT_CONTROLLER",
+      "preventive": "Django REST Framework views/serializers translate transport only; domain services own calculations and transitions",
+      "detection": "adapter tests plus service-boundary review and unit tests that invoke domain/application services without HTTP"
+    },
+    {
+      "risk": "BREAKING_CHANGES",
+      "preventive": "versioned base path, immutable operation IDs and OpenAPI compatibility review",
+      "detection": "Stage24 OpenAPI diff/consumer contract test"
+    }
+  ],
+  "decisions": [
+    {
+      "code": "S21_D01_RUNTIME_FRAMEWORK",
+      "status": "RESOLVED_DJANGO_DRF",
+      "decision": "Django 5.2 LTS with Django REST Framework 3.16+ and ASGI",
+      "decided_by": "Iman",
+      "decided_at_utc": "2026-08-09",
+      "impact": "Django/DRF owns HTTP adaptation, request correlation, authentication and coarse role permission; application/domain contracts remain transport-independent"
+    },
+    {
+      "code": "S21_D02_SIGNING_KEY_LIFECYCLE",
+      "status": "DEFERRED_TO_STAGE25_SECURITY",
+      "current_safe_boundary": "key material must be injected; never committed",
+      "impact": "rotation, KMS/secret manager and multi-key verification"
+    },
+    {
+      "code": "S21_D03_ANALYTICS_RUNNER",
+      "status": "NEEDS_DECISION_BEFORE_DEPLOYMENT",
+      "current_safe_boundary": "persisted job contract and asynchronous service port",
+      "impact": "worker/queue technology and materialized-refresh scheduling"
+    },
+    {
+      "code": "S21_D04_PRODUCTION_BASE_URL",
+      "status": "NEEDS_DECISION_BEFORE_DEPLOYMENT",
+      "current_safe_boundary": "/api/v1 deployment-relative server",
+      "impact": "environment configuration and generated client base URL only"
+    },
+    {
+      "code": "S21_D05_FRONTEND_FRAMEWORK",
+      "status": "RESOLVED_NEXTJS",
+      "decision": "Next.js 16 Active LTS with App Router and strict TypeScript",
+      "decided_by": "Iman",
+      "decided_at_utc": "2026-08-09",
+      "impact": "Stage22 uses an OpenAPI-derived server-side client and must not duplicate backend learning or authorization logic"
+    }
+  ],
+  "downstream": {
+    "stage22": ["Next.js 16 Active LTS App Router scaffold", "strict TypeScript OpenAPI-derived client", "server-side auth boundary", "page-to-resource mapping", "error and empty-state handling"],
+    "stage23": ["import upload/parser/rollback adapter behind frozen preview/commit resources"],
+    "stage24": ["unit, integration, contract, E2E, leakage, performance and OpenAPI compatibility tests"],
+    "stage25": ["production token/key policy", "rate-limit calibration", "privacy/retention", "security headers and abuse controls"],
+    "stage26": ["Django ASGI and Next.js deployment topology", "PostgreSQL migration execution", "job runner", "observability and backups"],
+    "stage27": ["empirical mastery/SRS/difficulty calibration from live evidence"]
+  },
+  "runtime_dependencies": [
+    {
+      "code": "S13_B01_NO_PUBLISHED_INVENTORY",
+      "status": "EXPECTED_RUNTIME_BLOCK",
+      "effect": "test creation returns NO_ELIGIBLE_QUESTIONS; the API never fabricates serving content"
+    },
+    {
+      "code": "POSTGRESQL_TARGET_EXECUTION",
+      "status": "DEPLOYMENT_VERIFICATION_PENDING",
+      "effect": "DDL is reviewable but not claimed as executed on a live target"
+    },
+    {
+      "code": "LIVE_USER_CALIBRATION",
+      "status": "POST_DEPLOY_DEPENDENCY",
+      "effect": "reference behavior is deterministic; empirical quality claims remain Stage27"
+    }
+  ]
+}

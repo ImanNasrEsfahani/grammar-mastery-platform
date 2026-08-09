@@ -1,0 +1,4 @@
+-r requirements.txt
+
+# Contract validation and repository tests.
+PyYAML>=6.0,<7.0

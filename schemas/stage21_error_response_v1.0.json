@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://grammar-mastery.local/schemas/stage21-error-response-v1.0.0.json",
+  "title": "Stage21 API Error Response",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["error"],
+  "properties": {
+    "error": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "message", "fields", "request_id"],
+      "properties": {
+        "code": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Z0-9_]{2,79}$"
+        },
+        "message": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "fields": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 300
+            }
+          }
+        },
+        "request_id": {
+          "type": "string",
+          "minLength": 8,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9._:-]+$"
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "error": {
+        "code": "VALIDATION_ERROR",
+        "message": "The request contains invalid fields.",
+        "fields": {
+          "question_count": ["Must be at least 1."]
+        },
+        "request_id": "req_01J4STAGE21"
+      }
+    }
+  ]
+}
+

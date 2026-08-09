@@ -1,0 +1,71 @@
+{
+  "stage": 21,
+  "validation_version": "stage21-validation-v1.1.0",
+  "validated_at_utc": "2026-08-09",
+  "status": "PASS_DJANGO_DRF_IMPLEMENTATION_PROFILE_READY_FOR_OWNER_REVIEW",
+  "owner": "Iman",
+  "package_version": "stage21-v1.1-review",
+  "checks": {
+    "roadmap_outputs_present": true,
+    "owner_date_version_status_present": true,
+    "django_5_2_lts_backend_selected": true,
+    "django_rest_framework_adapter_imported_and_tested": true,
+    "django_system_checks_pass": true,
+    "nextjs_16_active_lts_frontend_selected_for_stage22": true,
+    "canonical_stage12_users_table_preserved": true,
+    "api_base_path_versioned": true,
+    "resource_oriented_contract": true,
+    "openapi_3_1_parses": true,
+    "operation_ids_unique": true,
+    "resource_map_exactly_matches_openapi": true,
+    "authorization_defined_in_backend_contract": true,
+    "stage20_role_matrix_preserved": true,
+    "stage11_independent_review_gate_preserved": true,
+    "attempt_answer_complete_idempotency_defined": true,
+    "consistent_error_schema": true,
+    "pagination_filter_sort_standard_defined": true,
+    "preanswer_answer_key_schema_excluded": true,
+    "answer_mastery_review_srs_transaction_tested": true,
+    "review_retry_does_not_mutate_original_learning_evidence": true,
+    "dashboard_aggregation_boundary_defined": true,
+    "heavy_analytics_job_contract_defined": true,
+    "postgres_patch_is_additive": true,
+    "historical_question_attempt_report_impact_recorded": true,
+    "resolved_framework_decisions_recorded": true,
+    "unresolved_decisions_explicit": true,
+    "downstream_stage22_to_stage27_dependencies_recorded": true
+  },
+  "counts": {
+    "openapi_paths": 33,
+    "openapi_operations": 34,
+    "resource_map_rows": 34,
+    "required_idempotent_operations": 8,
+    "resolved_framework_decisions": 2,
+    "explicit_needs_decision": 3,
+    "stage21_tests_passed": 45,
+    "stage21_tests_failed": 0,
+    "integrated_tests_passed": 130,
+    "integrated_tests_failed": 0
+  },
+  "commands": [
+    "python tools/validate_baseline.py",
+    "python -m unittest discover -s tests -v",
+    "python tools/validate_stage21.py"
+  ],
+  "runtime_evidence": {
+    "django": "5.2.17 PASS",
+    "django_rest_framework": "3.18.0 PASS",
+    "django_adapter_contract_tests": "6/6 PASS",
+    "transport_independent_application_services": "PASS",
+    "nextjs": "SELECTED_FOR_STAGE22_NOT_IMPLEMENTED_IN_STAGE21",
+    "live_postgresql_execution": "NOT_RUN_DEPLOYMENT_VERIFICATION_PENDING",
+    "real_published_inventory": "EXPECTED_BLOCK_ZERO_PUBLISHED_QUESTIONS",
+    "live_user_calibration": "NOT_AVAILABLE_STAGE27_DEPENDENCY"
+  },
+  "acceptance": {
+    "content_owner": "PENDING_IMAN_ACCEPTANCE",
+    "technical_owner": "PENDING_IMAN_ACCEPTANCE",
+    "ready_for_next_stage": false,
+    "current_readiness": "READY_FOR_OWNER_REVIEW"
+  }
+}

@@ -1,4 +1,4 @@
-# Project status — canonical baseline + Stage 16–20 handoff
+# Project status — canonical baseline + Stage 16–21 handoff
 
 | Stage | Scope | Repository status |
 |---:|---|---|
@@ -22,6 +22,7 @@
 | 18 | Learning Dashboard | `RECONSTRUCTED_REFERENCE_PENDING_OWNER_REVIEW` |
 | 19 | Site IA / Page Responsibilities | `RECONSTRUCTED_REFERENCE_PRIOR_63_PASS_PENDING_OWNER_REVIEW` |
 | 20 | Admin Panel Contract | `RECONSTRUCTED_REFERENCE_PENDING_OWNER_REVIEW` |
+| 21 | Backend and Core APIs | `DJANGO_DRF_PROFILE_VALIDATED_PENDING_OWNER_ACCEPTANCE` |
 
 ## Operational blockers (not design defects)
 
@@ -31,6 +32,9 @@
 - **Empirical calibration:** observed difficulty, adaptive weights, distractor quality and mastery/SRS calibration remain Stage 27 responsibilities after live data exists.
 - **Stage 16/17 acceptance:** the original packages are checksum-verified and reference-tested, but their source manifests recorded final Iman acceptance as pending.
 - **Stage 18–20 artifact provenance:** the earlier sandbox deliverables were not persisted in Library. The repository versions are explicit reconstructions from the roadmap and recoverable prior decisions, not byte-identical recoveries.
+- **Stage 21 selected stack:** Django 5.2 LTS plus Django REST Framework 3.16+ is fixed for Backend; Next.js 16 Active LTS is fixed for the Stage 22 Frontend. Production base URL and analytics worker remain explicit deployment decisions.
+- **Stage 21 security/deployment:** signing-key lifecycle and calibrated production rate limits remain Stage 25 work; PostgreSQL Patch 006 has not been executed on a live target.
+- **Stage 21 acceptance:** 45/45 Stage 21 tests and the integrated 130/130 suite pass, but formal Iman content/technical acceptance is not inferred from implementation alone.
 
 ## Governance
 

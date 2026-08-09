@@ -1,0 +1,4 @@
+decision_code,status,owner,needed_by,current_safe_boundary,impact
+S21_D02_SIGNING_KEY_LIFECYCLE,DEFERRED_TO_STAGE25_SECURITY,Iman,Stage25 security,Runtime-injected key and no committed secret,Defines rotation KMS or secret-manager and multi-key verification
+S21_D03_ANALYTICS_RUNNER,NEEDS_DECISION_BEFORE_DEPLOYMENT,Iman,Stage26 deployment,Persisted analytics job plus asynchronous port,Selects worker queue and refresh scheduler
+S21_D04_PRODUCTION_BASE_URL,NEEDS_DECISION_BEFORE_DEPLOYMENT,Iman,Stage26 deployment,Deployment-relative /api/v1,Sets environment URLs and generated-client base configuration
