@@ -1,0 +1,2 @@
+experiment_id,slug,status,hypothesis,primary_metric,baseline_model_version,candidate_model_version,candidate_traffic_share,min_duration_days,min_observations_per_arm,result,decision,notes
+,stage27_first_live_calibration,BLOCKED_NO_LIVE_DATA,Reserved first empirical calibration slot; hypothesis must be finalized before start,delayed_correct_rate_14d,,,0.10,14,200,,,No live Stage26 deployment or learner telemetry exists; this is a template row not an executed experiment

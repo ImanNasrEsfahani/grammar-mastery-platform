@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "stage27_experiment_v1.0.schema.json",
+  "title": "Stage27CalibrationExperiment",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "experiment_id",
+    "slug",
+    "hypothesis",
+    "primary_metric",
+    "guardrails",
+    "baseline_model_version",
+    "candidate_model_version",
+    "candidate_traffic_share",
+    "minimum_duration_days",
+    "minimum_observations_per_arm",
+    "status"
+  ],
+  "properties": {
+    "experiment_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]{2,79}$"
+    },
+    "hypothesis": {
+      "type": "string",
+      "minLength": 20
+    },
+    "primary_metric": {
+      "enum": [
+        "delayed_correct_rate_7d",
+        "delayed_correct_rate_14d",
+        "repeat_error_rate",
+        "mastery_gain",
+        "review_recovery_rate"
+      ]
+    },
+    "guardrails": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 3
+      }
+    },
+    "baseline_model_version": {
+      "type": "string",
+      "minLength": 3
+    },
+    "candidate_model_version": {
+      "type": "string",
+      "minLength": 3
+    },
+    "candidate_traffic_share": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "maximum": 0.25
+    },
+    "minimum_duration_days": {
+      "type": "integer",
+      "minimum": 14
+    },
+    "minimum_observations_per_arm": {
+      "type": "integer",
+      "minimum": 200
+    },
+    "status": {
+      "enum": [
+        "DRAFT",
+        "READY",
+        "RUNNING",
+        "STOPPED",
+        "ANALYZED",
+        "ACCEPTED",
+        "REJECTED"
+      ]
+    },
+    "started_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "ended_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    }
+  }
+}

@@ -1,0 +1,4012 @@
+{
+  "question_id": "00000000-0000-0000-0000-000000000027",
+  "correct_option_id": "A",
+  "observations": [
+    {
+      "is_correct": true,
+      "response_ms": 18000,
+      "selected_option_id": "A",
+      "mastery_before": 20.0,
+      "report_flag": true,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 18100,
+      "selected_option_id": "A",
+      "mastery_before": 20.7,
+      "report_flag": true,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 18200,
+      "selected_option_id": "A",
+      "mastery_before": 21.4,
+      "report_flag": true,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 18300,
+      "selected_option_id": "A",
+      "mastery_before": 22.1,
+      "report_flag": true,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 18400,
+      "selected_option_id": "A",
+      "mastery_before": 22.8,
+      "report_flag": true,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 18500,
+      "selected_option_id": "A",
+      "mastery_before": 23.5,
+      "report_flag": true,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 18600,
+      "selected_option_id": "A",
+      "mastery_before": 24.2,
+      "report_flag": true,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 18700,
+      "selected_option_id": "A",
+      "mastery_before": 24.9,
+      "report_flag": true,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 18800,
+      "selected_option_id": "A",
+      "mastery_before": 25.6,
+      "report_flag": true,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 18900,
+      "selected_option_id": "A",
+      "mastery_before": 26.3,
+      "report_flag": true,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 19000,
+      "selected_option_id": "A",
+      "mastery_before": 27.0,
+      "report_flag": true,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 19100,
+      "selected_option_id": "A",
+      "mastery_before": 27.7,
+      "report_flag": true,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 19200,
+      "selected_option_id": "A",
+      "mastery_before": 28.4,
+      "report_flag": true,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 19300,
+      "selected_option_id": "A",
+      "mastery_before": 29.1,
+      "report_flag": true,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 19400,
+      "selected_option_id": "A",
+      "mastery_before": 29.799999999999997,
+      "report_flag": true,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 19500,
+      "selected_option_id": "A",
+      "mastery_before": 30.5,
+      "report_flag": true,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 19600,
+      "selected_option_id": "A",
+      "mastery_before": 31.2,
+      "report_flag": true,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 19700,
+      "selected_option_id": "A",
+      "mastery_before": 31.9,
+      "report_flag": true,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 19800,
+      "selected_option_id": "A",
+      "mastery_before": 32.6,
+      "report_flag": true,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 19900,
+      "selected_option_id": "A",
+      "mastery_before": 33.3,
+      "report_flag": true,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 20000,
+      "selected_option_id": "A",
+      "mastery_before": 34.0,
+      "report_flag": true,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 20100,
+      "selected_option_id": "A",
+      "mastery_before": 34.7,
+      "report_flag": true,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 20200,
+      "selected_option_id": "A",
+      "mastery_before": 35.4,
+      "report_flag": true,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 20300,
+      "selected_option_id": "A",
+      "mastery_before": 36.099999999999994,
+      "report_flag": true,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 20400,
+      "selected_option_id": "A",
+      "mastery_before": 36.8,
+      "report_flag": true,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 20500,
+      "selected_option_id": "A",
+      "mastery_before": 37.5,
+      "report_flag": true,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 20600,
+      "selected_option_id": "A",
+      "mastery_before": 38.2,
+      "report_flag": true,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 20700,
+      "selected_option_id": "A",
+      "mastery_before": 38.9,
+      "report_flag": true,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 20800,
+      "selected_option_id": "A",
+      "mastery_before": 39.599999999999994,
+      "report_flag": true,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 20900,
+      "selected_option_id": "A",
+      "mastery_before": 40.3,
+      "report_flag": true,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 21000,
+      "selected_option_id": "A",
+      "mastery_before": 41.0,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 21100,
+      "selected_option_id": "A",
+      "mastery_before": 41.7,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 21200,
+      "selected_option_id": "A",
+      "mastery_before": 42.4,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 21300,
+      "selected_option_id": "A",
+      "mastery_before": 43.099999999999994,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 21400,
+      "selected_option_id": "A",
+      "mastery_before": 43.8,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 21500,
+      "selected_option_id": "A",
+      "mastery_before": 44.5,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 21600,
+      "selected_option_id": "A",
+      "mastery_before": 45.2,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 21700,
+      "selected_option_id": "A",
+      "mastery_before": 45.9,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 21800,
+      "selected_option_id": "A",
+      "mastery_before": 46.599999999999994,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 21900,
+      "selected_option_id": "A",
+      "mastery_before": 47.3,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 22000,
+      "selected_option_id": "A",
+      "mastery_before": 48.0,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 22100,
+      "selected_option_id": "A",
+      "mastery_before": 48.7,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 22200,
+      "selected_option_id": "A",
+      "mastery_before": 49.4,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 22300,
+      "selected_option_id": "A",
+      "mastery_before": 50.099999999999994,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 22400,
+      "selected_option_id": "A",
+      "mastery_before": 50.8,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 22500,
+      "selected_option_id": "A",
+      "mastery_before": 51.5,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 22600,
+      "selected_option_id": "A",
+      "mastery_before": 52.199999999999996,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 22700,
+      "selected_option_id": "A",
+      "mastery_before": 52.9,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 22800,
+      "selected_option_id": "A",
+      "mastery_before": 53.599999999999994,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 22900,
+      "selected_option_id": "A",
+      "mastery_before": 54.3,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 23000,
+      "selected_option_id": "A",
+      "mastery_before": 55.0,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 23100,
+      "selected_option_id": "A",
+      "mastery_before": 55.699999999999996,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 23200,
+      "selected_option_id": "A",
+      "mastery_before": 56.4,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 23300,
+      "selected_option_id": "A",
+      "mastery_before": 57.099999999999994,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 23400,
+      "selected_option_id": "A",
+      "mastery_before": 57.8,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 23500,
+      "selected_option_id": "A",
+      "mastery_before": 58.5,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 23600,
+      "selected_option_id": "A",
+      "mastery_before": 59.199999999999996,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 23700,
+      "selected_option_id": "A",
+      "mastery_before": 59.9,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 23800,
+      "selected_option_id": "A",
+      "mastery_before": 60.599999999999994,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 23900,
+      "selected_option_id": "A",
+      "mastery_before": 61.3,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 24000,
+      "selected_option_id": "A",
+      "mastery_before": 62.0,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 24100,
+      "selected_option_id": "A",
+      "mastery_before": 62.699999999999996,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 24200,
+      "selected_option_id": "A",
+      "mastery_before": 63.4,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 24300,
+      "selected_option_id": "A",
+      "mastery_before": 64.1,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 24400,
+      "selected_option_id": "A",
+      "mastery_before": 64.8,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 24500,
+      "selected_option_id": "A",
+      "mastery_before": 65.5,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 24600,
+      "selected_option_id": "A",
+      "mastery_before": 66.19999999999999,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 24700,
+      "selected_option_id": "A",
+      "mastery_before": 66.9,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 24800,
+      "selected_option_id": "A",
+      "mastery_before": 67.6,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 24900,
+      "selected_option_id": "A",
+      "mastery_before": 68.3,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 25000,
+      "selected_option_id": "A",
+      "mastery_before": 69.0,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 25100,
+      "selected_option_id": "A",
+      "mastery_before": 69.69999999999999,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 25200,
+      "selected_option_id": "A",
+      "mastery_before": 70.4,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 25300,
+      "selected_option_id": "A",
+      "mastery_before": 71.1,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 25400,
+      "selected_option_id": "A",
+      "mastery_before": 71.8,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 25500,
+      "selected_option_id": "A",
+      "mastery_before": 72.5,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 25600,
+      "selected_option_id": "A",
+      "mastery_before": 73.19999999999999,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 25700,
+      "selected_option_id": "A",
+      "mastery_before": 73.9,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 25800,
+      "selected_option_id": "A",
+      "mastery_before": 74.6,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 25900,
+      "selected_option_id": "A",
+      "mastery_before": 75.3,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 18000,
+      "selected_option_id": "A",
+      "mastery_before": 76.0,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 18100,
+      "selected_option_id": "A",
+      "mastery_before": 76.69999999999999,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 18200,
+      "selected_option_id": "A",
+      "mastery_before": 77.4,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 18300,
+      "selected_option_id": "A",
+      "mastery_before": 78.1,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 18400,
+      "selected_option_id": "A",
+      "mastery_before": 78.8,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 18500,
+      "selected_option_id": "A",
+      "mastery_before": 79.5,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 18600,
+      "selected_option_id": "A",
+      "mastery_before": 80.19999999999999,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 18700,
+      "selected_option_id": "A",
+      "mastery_before": 80.9,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 18800,
+      "selected_option_id": "A",
+      "mastery_before": 81.6,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": true,
+      "response_ms": 18900,
+      "selected_option_id": "A",
+      "mastery_before": 82.3,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 19000,
+      "selected_option_id": "C",
+      "mastery_before": 83.0,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 19100,
+      "selected_option_id": "C",
+      "mastery_before": 83.69999999999999,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 19200,
+      "selected_option_id": "B",
+      "mastery_before": 84.39999999999999,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 19300,
+      "selected_option_id": "D",
+      "mastery_before": 85.1,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 19400,
+      "selected_option_id": "B",
+      "mastery_before": 85.8,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 19500,
+      "selected_option_id": "D",
+      "mastery_before": 86.5,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 19600,
+      "selected_option_id": "B",
+      "mastery_before": 87.19999999999999,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 19700,
+      "selected_option_id": "D",
+      "mastery_before": 87.89999999999999,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 19800,
+      "selected_option_id": "B",
+      "mastery_before": 88.6,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 19900,
+      "selected_option_id": "D",
+      "mastery_before": 89.3,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 20000,
+      "selected_option_id": "C",
+      "mastery_before": 20.0,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 20100,
+      "selected_option_id": "C",
+      "mastery_before": 20.7,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 20200,
+      "selected_option_id": "B",
+      "mastery_before": 21.4,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 20300,
+      "selected_option_id": "D",
+      "mastery_before": 22.1,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 20400,
+      "selected_option_id": "B",
+      "mastery_before": 22.8,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 20500,
+      "selected_option_id": "D",
+      "mastery_before": 23.5,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 20600,
+      "selected_option_id": "B",
+      "mastery_before": 24.2,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 20700,
+      "selected_option_id": "D",
+      "mastery_before": 24.9,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 20800,
+      "selected_option_id": "B",
+      "mastery_before": 25.6,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 20900,
+      "selected_option_id": "D",
+      "mastery_before": 26.3,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 21000,
+      "selected_option_id": "B",
+      "mastery_before": 27.0,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 21100,
+      "selected_option_id": "D",
+      "mastery_before": 27.7,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 21200,
+      "selected_option_id": "B",
+      "mastery_before": 28.4,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 21300,
+      "selected_option_id": "D",
+      "mastery_before": 29.1,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 21400,
+      "selected_option_id": "B",
+      "mastery_before": 29.799999999999997,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 21500,
+      "selected_option_id": "D",
+      "mastery_before": 30.5,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 21600,
+      "selected_option_id": "B",
+      "mastery_before": 31.2,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 21700,
+      "selected_option_id": "D",
+      "mastery_before": 31.9,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 21800,
+      "selected_option_id": "B",
+      "mastery_before": 32.6,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 21900,
+      "selected_option_id": "D",
+      "mastery_before": 33.3,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 22000,
+      "selected_option_id": "B",
+      "mastery_before": 34.0,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 22100,
+      "selected_option_id": "D",
+      "mastery_before": 34.7,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 22200,
+      "selected_option_id": "B",
+      "mastery_before": 35.4,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 22300,
+      "selected_option_id": "D",
+      "mastery_before": 36.099999999999994,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 22400,
+      "selected_option_id": "B",
+      "mastery_before": 36.8,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 22500,
+      "selected_option_id": "D",
+      "mastery_before": 37.5,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 22600,
+      "selected_option_id": "B",
+      "mastery_before": 38.2,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 22700,
+      "selected_option_id": "D",
+      "mastery_before": 38.9,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 22800,
+      "selected_option_id": "B",
+      "mastery_before": 39.599999999999994,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 22900,
+      "selected_option_id": "D",
+      "mastery_before": 40.3,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 23000,
+      "selected_option_id": "B",
+      "mastery_before": 41.0,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 23100,
+      "selected_option_id": "D",
+      "mastery_before": 41.7,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 23200,
+      "selected_option_id": "B",
+      "mastery_before": 42.4,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 23300,
+      "selected_option_id": "D",
+      "mastery_before": 43.099999999999994,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 23400,
+      "selected_option_id": "B",
+      "mastery_before": 43.8,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 23500,
+      "selected_option_id": "D",
+      "mastery_before": 44.5,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 23600,
+      "selected_option_id": "B",
+      "mastery_before": 45.2,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 23700,
+      "selected_option_id": "D",
+      "mastery_before": 45.9,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 23800,
+      "selected_option_id": "B",
+      "mastery_before": 46.599999999999994,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 23900,
+      "selected_option_id": "D",
+      "mastery_before": 47.3,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 24000,
+      "selected_option_id": "B",
+      "mastery_before": 48.0,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 24100,
+      "selected_option_id": "D",
+      "mastery_before": 48.7,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 24200,
+      "selected_option_id": "B",
+      "mastery_before": 49.4,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 24300,
+      "selected_option_id": "D",
+      "mastery_before": 50.099999999999994,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 24400,
+      "selected_option_id": "B",
+      "mastery_before": 50.8,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 24500,
+      "selected_option_id": "D",
+      "mastery_before": 51.5,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 24600,
+      "selected_option_id": "B",
+      "mastery_before": 52.199999999999996,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 24700,
+      "selected_option_id": "D",
+      "mastery_before": 52.9,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 24800,
+      "selected_option_id": "B",
+      "mastery_before": 53.599999999999994,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 24900,
+      "selected_option_id": "D",
+      "mastery_before": 54.3,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 25000,
+      "selected_option_id": "B",
+      "mastery_before": 55.0,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 25100,
+      "selected_option_id": "D",
+      "mastery_before": 55.699999999999996,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 25200,
+      "selected_option_id": "B",
+      "mastery_before": 56.4,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 25300,
+      "selected_option_id": "D",
+      "mastery_before": 57.099999999999994,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 25400,
+      "selected_option_id": "B",
+      "mastery_before": 57.8,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 25500,
+      "selected_option_id": "D",
+      "mastery_before": 58.5,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 25600,
+      "selected_option_id": "B",
+      "mastery_before": 59.199999999999996,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 25700,
+      "selected_option_id": "D",
+      "mastery_before": 59.9,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 25800,
+      "selected_option_id": "B",
+      "mastery_before": 60.599999999999994,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 25900,
+      "selected_option_id": "D",
+      "mastery_before": 61.3,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 18000,
+      "selected_option_id": "B",
+      "mastery_before": 62.0,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 18100,
+      "selected_option_id": "D",
+      "mastery_before": 62.699999999999996,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 18200,
+      "selected_option_id": "B",
+      "mastery_before": 63.4,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 18300,
+      "selected_option_id": "D",
+      "mastery_before": 64.1,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 18400,
+      "selected_option_id": "B",
+      "mastery_before": 64.8,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 18500,
+      "selected_option_id": "D",
+      "mastery_before": 65.5,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 18600,
+      "selected_option_id": "B",
+      "mastery_before": 66.19999999999999,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 18700,
+      "selected_option_id": "D",
+      "mastery_before": 66.9,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 18800,
+      "selected_option_id": "B",
+      "mastery_before": 67.6,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 18900,
+      "selected_option_id": "D",
+      "mastery_before": 68.3,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 19000,
+      "selected_option_id": "B",
+      "mastery_before": 69.0,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 19100,
+      "selected_option_id": "D",
+      "mastery_before": 69.69999999999999,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 19200,
+      "selected_option_id": "B",
+      "mastery_before": 70.4,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 19300,
+      "selected_option_id": "D",
+      "mastery_before": 71.1,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 19400,
+      "selected_option_id": "B",
+      "mastery_before": 71.8,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 19500,
+      "selected_option_id": "D",
+      "mastery_before": 72.5,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 19600,
+      "selected_option_id": "B",
+      "mastery_before": 73.19999999999999,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 19700,
+      "selected_option_id": "D",
+      "mastery_before": 73.9,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 19800,
+      "selected_option_id": "B",
+      "mastery_before": 74.6,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 19900,
+      "selected_option_id": "D",
+      "mastery_before": 75.3,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 20000,
+      "selected_option_id": "B",
+      "mastery_before": 76.0,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 20100,
+      "selected_option_id": "D",
+      "mastery_before": 76.69999999999999,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 20200,
+      "selected_option_id": "B",
+      "mastery_before": 77.4,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 20300,
+      "selected_option_id": "D",
+      "mastery_before": 78.1,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 20400,
+      "selected_option_id": "B",
+      "mastery_before": 78.8,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 20500,
+      "selected_option_id": "D",
+      "mastery_before": 79.5,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 20600,
+      "selected_option_id": "B",
+      "mastery_before": 80.19999999999999,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 20700,
+      "selected_option_id": "D",
+      "mastery_before": 80.9,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 20800,
+      "selected_option_id": "B",
+      "mastery_before": 81.6,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 20900,
+      "selected_option_id": "D",
+      "mastery_before": 82.3,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 21000,
+      "selected_option_id": "B",
+      "mastery_before": 83.0,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 21100,
+      "selected_option_id": "D",
+      "mastery_before": 83.69999999999999,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 21200,
+      "selected_option_id": "B",
+      "mastery_before": 84.39999999999999,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 21300,
+      "selected_option_id": "D",
+      "mastery_before": 85.1,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 21400,
+      "selected_option_id": "B",
+      "mastery_before": 85.8,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 21500,
+      "selected_option_id": "D",
+      "mastery_before": 86.5,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 21600,
+      "selected_option_id": "B",
+      "mastery_before": 87.19999999999999,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 21700,
+      "selected_option_id": "D",
+      "mastery_before": 87.89999999999999,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 21800,
+      "selected_option_id": "B",
+      "mastery_before": 88.6,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 21900,
+      "selected_option_id": "D",
+      "mastery_before": 89.3,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 22000,
+      "selected_option_id": "B",
+      "mastery_before": 20.0,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 22100,
+      "selected_option_id": "D",
+      "mastery_before": 20.7,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 22200,
+      "selected_option_id": "B",
+      "mastery_before": 21.4,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 22300,
+      "selected_option_id": "D",
+      "mastery_before": 22.1,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 22400,
+      "selected_option_id": "B",
+      "mastery_before": 22.8,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 22500,
+      "selected_option_id": "D",
+      "mastery_before": 23.5,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 22600,
+      "selected_option_id": "B",
+      "mastery_before": 24.2,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 22700,
+      "selected_option_id": "D",
+      "mastery_before": 24.9,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 22800,
+      "selected_option_id": "B",
+      "mastery_before": 25.6,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 22900,
+      "selected_option_id": "D",
+      "mastery_before": 26.3,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 23000,
+      "selected_option_id": "B",
+      "mastery_before": 27.0,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 23100,
+      "selected_option_id": "D",
+      "mastery_before": 27.7,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 23200,
+      "selected_option_id": "B",
+      "mastery_before": 28.4,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 23300,
+      "selected_option_id": "D",
+      "mastery_before": 29.1,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 23400,
+      "selected_option_id": "B",
+      "mastery_before": 29.799999999999997,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 23500,
+      "selected_option_id": "D",
+      "mastery_before": 30.5,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 23600,
+      "selected_option_id": "B",
+      "mastery_before": 31.2,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 23700,
+      "selected_option_id": "D",
+      "mastery_before": 31.9,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 23800,
+      "selected_option_id": "B",
+      "mastery_before": 32.6,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 23900,
+      "selected_option_id": "D",
+      "mastery_before": 33.3,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 24000,
+      "selected_option_id": "B",
+      "mastery_before": 34.0,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 24100,
+      "selected_option_id": "D",
+      "mastery_before": 34.7,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 24200,
+      "selected_option_id": "B",
+      "mastery_before": 35.4,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 24300,
+      "selected_option_id": "D",
+      "mastery_before": 36.099999999999994,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 24400,
+      "selected_option_id": "B",
+      "mastery_before": 36.8,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 24500,
+      "selected_option_id": "D",
+      "mastery_before": 37.5,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 24600,
+      "selected_option_id": "B",
+      "mastery_before": 38.2,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 24700,
+      "selected_option_id": "D",
+      "mastery_before": 38.9,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 24800,
+      "selected_option_id": "B",
+      "mastery_before": 39.599999999999994,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 24900,
+      "selected_option_id": "D",
+      "mastery_before": 40.3,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 25000,
+      "selected_option_id": "B",
+      "mastery_before": 41.0,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 25100,
+      "selected_option_id": "D",
+      "mastery_before": 41.7,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 25200,
+      "selected_option_id": "B",
+      "mastery_before": 42.4,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 25300,
+      "selected_option_id": "D",
+      "mastery_before": 43.099999999999994,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 25400,
+      "selected_option_id": "B",
+      "mastery_before": 43.8,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 25500,
+      "selected_option_id": "D",
+      "mastery_before": 44.5,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 25600,
+      "selected_option_id": "B",
+      "mastery_before": 45.2,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 25700,
+      "selected_option_id": "D",
+      "mastery_before": 45.9,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 25800,
+      "selected_option_id": "B",
+      "mastery_before": 46.599999999999994,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 25900,
+      "selected_option_id": "D",
+      "mastery_before": 47.3,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 18000,
+      "selected_option_id": "B",
+      "mastery_before": 48.0,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 18100,
+      "selected_option_id": "D",
+      "mastery_before": 48.7,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 18200,
+      "selected_option_id": "B",
+      "mastery_before": 49.4,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 18300,
+      "selected_option_id": "D",
+      "mastery_before": 50.099999999999994,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 18400,
+      "selected_option_id": "B",
+      "mastery_before": 50.8,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 18500,
+      "selected_option_id": "D",
+      "mastery_before": 51.5,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 18600,
+      "selected_option_id": "B",
+      "mastery_before": 52.199999999999996,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 18700,
+      "selected_option_id": "D",
+      "mastery_before": 52.9,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 18800,
+      "selected_option_id": "B",
+      "mastery_before": 53.599999999999994,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 18900,
+      "selected_option_id": "D",
+      "mastery_before": 54.3,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 19000,
+      "selected_option_id": "B",
+      "mastery_before": 55.0,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 19100,
+      "selected_option_id": "D",
+      "mastery_before": 55.699999999999996,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 19200,
+      "selected_option_id": "B",
+      "mastery_before": 56.4,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 19300,
+      "selected_option_id": "D",
+      "mastery_before": 57.099999999999994,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 19400,
+      "selected_option_id": "B",
+      "mastery_before": 57.8,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 19500,
+      "selected_option_id": "D",
+      "mastery_before": 58.5,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 19600,
+      "selected_option_id": "B",
+      "mastery_before": 59.199999999999996,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 19700,
+      "selected_option_id": "D",
+      "mastery_before": 59.9,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 19800,
+      "selected_option_id": "B",
+      "mastery_before": 60.599999999999994,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 19900,
+      "selected_option_id": "D",
+      "mastery_before": 61.3,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 20000,
+      "selected_option_id": "B",
+      "mastery_before": 62.0,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 20100,
+      "selected_option_id": "D",
+      "mastery_before": 62.699999999999996,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 20200,
+      "selected_option_id": "B",
+      "mastery_before": 63.4,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 20300,
+      "selected_option_id": "D",
+      "mastery_before": 64.1,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 20400,
+      "selected_option_id": "B",
+      "mastery_before": 64.8,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 20500,
+      "selected_option_id": "D",
+      "mastery_before": 65.5,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 20600,
+      "selected_option_id": "B",
+      "mastery_before": 66.19999999999999,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 20700,
+      "selected_option_id": "D",
+      "mastery_before": 66.9,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 20800,
+      "selected_option_id": "B",
+      "mastery_before": 67.6,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 20900,
+      "selected_option_id": "D",
+      "mastery_before": 68.3,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 21000,
+      "selected_option_id": "B",
+      "mastery_before": 69.0,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 21100,
+      "selected_option_id": "D",
+      "mastery_before": 69.69999999999999,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 21200,
+      "selected_option_id": "B",
+      "mastery_before": 70.4,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 21300,
+      "selected_option_id": "D",
+      "mastery_before": 71.1,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 21400,
+      "selected_option_id": "B",
+      "mastery_before": 71.8,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 21500,
+      "selected_option_id": "D",
+      "mastery_before": 72.5,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 21600,
+      "selected_option_id": "B",
+      "mastery_before": 73.19999999999999,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 21700,
+      "selected_option_id": "D",
+      "mastery_before": 73.9,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 21800,
+      "selected_option_id": "B",
+      "mastery_before": 74.6,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 21900,
+      "selected_option_id": "D",
+      "mastery_before": 75.3,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 22000,
+      "selected_option_id": "B",
+      "mastery_before": 76.0,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 22100,
+      "selected_option_id": "D",
+      "mastery_before": 76.69999999999999,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 22200,
+      "selected_option_id": "B",
+      "mastery_before": 77.4,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 22300,
+      "selected_option_id": "D",
+      "mastery_before": 78.1,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 22400,
+      "selected_option_id": "B",
+      "mastery_before": 78.8,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 22500,
+      "selected_option_id": "D",
+      "mastery_before": 79.5,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 22600,
+      "selected_option_id": "B",
+      "mastery_before": 80.19999999999999,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 22700,
+      "selected_option_id": "D",
+      "mastery_before": 80.9,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 22800,
+      "selected_option_id": "B",
+      "mastery_before": 81.6,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 22900,
+      "selected_option_id": "D",
+      "mastery_before": 82.3,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 23000,
+      "selected_option_id": "B",
+      "mastery_before": 83.0,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 23100,
+      "selected_option_id": "D",
+      "mastery_before": 83.69999999999999,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 23200,
+      "selected_option_id": "B",
+      "mastery_before": 84.39999999999999,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 23300,
+      "selected_option_id": "D",
+      "mastery_before": 85.1,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 23400,
+      "selected_option_id": "B",
+      "mastery_before": 85.8,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 23500,
+      "selected_option_id": "D",
+      "mastery_before": 86.5,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 23600,
+      "selected_option_id": "B",
+      "mastery_before": 87.19999999999999,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 23700,
+      "selected_option_id": "D",
+      "mastery_before": 87.89999999999999,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 23800,
+      "selected_option_id": "B",
+      "mastery_before": 88.6,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 23900,
+      "selected_option_id": "D",
+      "mastery_before": 89.3,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 24000,
+      "selected_option_id": "B",
+      "mastery_before": 20.0,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 24100,
+      "selected_option_id": "D",
+      "mastery_before": 20.7,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 24200,
+      "selected_option_id": "B",
+      "mastery_before": 21.4,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 24300,
+      "selected_option_id": "D",
+      "mastery_before": 22.1,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 24400,
+      "selected_option_id": "B",
+      "mastery_before": 22.8,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 24500,
+      "selected_option_id": "D",
+      "mastery_before": 23.5,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 24600,
+      "selected_option_id": "B",
+      "mastery_before": 24.2,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 24700,
+      "selected_option_id": "D",
+      "mastery_before": 24.9,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 24800,
+      "selected_option_id": "B",
+      "mastery_before": 25.6,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 24900,
+      "selected_option_id": "D",
+      "mastery_before": 26.3,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 25000,
+      "selected_option_id": "B",
+      "mastery_before": 27.0,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 25100,
+      "selected_option_id": "D",
+      "mastery_before": 27.7,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 25200,
+      "selected_option_id": "B",
+      "mastery_before": 28.4,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 25300,
+      "selected_option_id": "D",
+      "mastery_before": 29.1,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 25400,
+      "selected_option_id": "B",
+      "mastery_before": 29.799999999999997,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 25500,
+      "selected_option_id": "D",
+      "mastery_before": 30.5,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 25600,
+      "selected_option_id": "B",
+      "mastery_before": 31.2,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 25700,
+      "selected_option_id": "D",
+      "mastery_before": 31.9,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 25800,
+      "selected_option_id": "B",
+      "mastery_before": 32.6,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 25900,
+      "selected_option_id": "D",
+      "mastery_before": 33.3,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 18000,
+      "selected_option_id": "B",
+      "mastery_before": 34.0,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 18100,
+      "selected_option_id": "D",
+      "mastery_before": 34.7,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 18200,
+      "selected_option_id": "B",
+      "mastery_before": 35.4,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 18300,
+      "selected_option_id": "D",
+      "mastery_before": 36.099999999999994,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 18400,
+      "selected_option_id": "B",
+      "mastery_before": 36.8,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 18500,
+      "selected_option_id": "D",
+      "mastery_before": 37.5,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 18600,
+      "selected_option_id": "B",
+      "mastery_before": 38.2,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 18700,
+      "selected_option_id": "D",
+      "mastery_before": 38.9,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 18800,
+      "selected_option_id": "B",
+      "mastery_before": 39.599999999999994,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 18900,
+      "selected_option_id": "D",
+      "mastery_before": 40.3,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 19000,
+      "selected_option_id": "B",
+      "mastery_before": 41.0,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 19100,
+      "selected_option_id": "D",
+      "mastery_before": 41.7,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 19200,
+      "selected_option_id": "B",
+      "mastery_before": 42.4,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 19300,
+      "selected_option_id": "D",
+      "mastery_before": 43.099999999999994,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 19400,
+      "selected_option_id": "B",
+      "mastery_before": 43.8,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 19500,
+      "selected_option_id": "D",
+      "mastery_before": 44.5,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 19600,
+      "selected_option_id": "B",
+      "mastery_before": 45.2,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 19700,
+      "selected_option_id": "D",
+      "mastery_before": 45.9,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 19800,
+      "selected_option_id": "B",
+      "mastery_before": 46.599999999999994,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 19900,
+      "selected_option_id": "D",
+      "mastery_before": 47.3,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 20000,
+      "selected_option_id": "B",
+      "mastery_before": 48.0,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 20100,
+      "selected_option_id": "D",
+      "mastery_before": 48.7,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 20200,
+      "selected_option_id": "B",
+      "mastery_before": 49.4,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 20300,
+      "selected_option_id": "D",
+      "mastery_before": 50.099999999999994,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 20400,
+      "selected_option_id": "B",
+      "mastery_before": 50.8,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 20500,
+      "selected_option_id": "D",
+      "mastery_before": 51.5,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 20600,
+      "selected_option_id": "B",
+      "mastery_before": 52.199999999999996,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 20700,
+      "selected_option_id": "D",
+      "mastery_before": 52.9,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 20800,
+      "selected_option_id": "B",
+      "mastery_before": 53.599999999999994,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 20900,
+      "selected_option_id": "D",
+      "mastery_before": 54.3,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 21000,
+      "selected_option_id": "B",
+      "mastery_before": 55.0,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 21100,
+      "selected_option_id": "D",
+      "mastery_before": 55.699999999999996,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 21200,
+      "selected_option_id": "B",
+      "mastery_before": 56.4,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 21300,
+      "selected_option_id": "D",
+      "mastery_before": 57.099999999999994,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 21400,
+      "selected_option_id": "B",
+      "mastery_before": 57.8,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 21500,
+      "selected_option_id": "D",
+      "mastery_before": 58.5,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 21600,
+      "selected_option_id": "B",
+      "mastery_before": 59.199999999999996,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 21700,
+      "selected_option_id": "D",
+      "mastery_before": 59.9,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 21800,
+      "selected_option_id": "B",
+      "mastery_before": 60.599999999999994,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 21900,
+      "selected_option_id": "D",
+      "mastery_before": 61.3,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 22000,
+      "selected_option_id": "B",
+      "mastery_before": 62.0,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 22100,
+      "selected_option_id": "D",
+      "mastery_before": 62.699999999999996,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 22200,
+      "selected_option_id": "B",
+      "mastery_before": 63.4,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 22300,
+      "selected_option_id": "D",
+      "mastery_before": 64.1,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 22400,
+      "selected_option_id": "B",
+      "mastery_before": 64.8,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 22500,
+      "selected_option_id": "D",
+      "mastery_before": 65.5,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 22600,
+      "selected_option_id": "B",
+      "mastery_before": 66.19999999999999,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 22700,
+      "selected_option_id": "D",
+      "mastery_before": 66.9,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 22800,
+      "selected_option_id": "B",
+      "mastery_before": 67.6,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 22900,
+      "selected_option_id": "D",
+      "mastery_before": 68.3,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 23000,
+      "selected_option_id": "B",
+      "mastery_before": 69.0,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 23100,
+      "selected_option_id": "D",
+      "mastery_before": 69.69999999999999,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 23200,
+      "selected_option_id": "B",
+      "mastery_before": 70.4,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 23300,
+      "selected_option_id": "D",
+      "mastery_before": 71.1,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 23400,
+      "selected_option_id": "B",
+      "mastery_before": 71.8,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 23500,
+      "selected_option_id": "D",
+      "mastery_before": 72.5,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 23600,
+      "selected_option_id": "B",
+      "mastery_before": 73.19999999999999,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 23700,
+      "selected_option_id": "D",
+      "mastery_before": 73.9,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 23800,
+      "selected_option_id": "B",
+      "mastery_before": 74.6,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 23900,
+      "selected_option_id": "D",
+      "mastery_before": 75.3,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 24000,
+      "selected_option_id": "B",
+      "mastery_before": 76.0,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 24100,
+      "selected_option_id": "D",
+      "mastery_before": 76.69999999999999,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 24200,
+      "selected_option_id": "B",
+      "mastery_before": 77.4,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 24300,
+      "selected_option_id": "D",
+      "mastery_before": 78.1,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 24400,
+      "selected_option_id": "B",
+      "mastery_before": 78.8,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 24500,
+      "selected_option_id": "D",
+      "mastery_before": 79.5,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 24600,
+      "selected_option_id": "B",
+      "mastery_before": 80.19999999999999,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 24700,
+      "selected_option_id": "D",
+      "mastery_before": 80.9,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 24800,
+      "selected_option_id": "B",
+      "mastery_before": 81.6,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 24900,
+      "selected_option_id": "D",
+      "mastery_before": 82.3,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 25000,
+      "selected_option_id": "B",
+      "mastery_before": 83.0,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 25100,
+      "selected_option_id": "D",
+      "mastery_before": 83.69999999999999,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 25200,
+      "selected_option_id": "B",
+      "mastery_before": 84.39999999999999,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 25300,
+      "selected_option_id": "D",
+      "mastery_before": 85.1,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 25400,
+      "selected_option_id": "B",
+      "mastery_before": 85.8,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 25500,
+      "selected_option_id": "D",
+      "mastery_before": 86.5,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 25600,
+      "selected_option_id": "B",
+      "mastery_before": 87.19999999999999,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 25700,
+      "selected_option_id": "D",
+      "mastery_before": 87.89999999999999,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 25800,
+      "selected_option_id": "B",
+      "mastery_before": 88.6,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 25900,
+      "selected_option_id": "D",
+      "mastery_before": 89.3,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 18000,
+      "selected_option_id": "B",
+      "mastery_before": 20.0,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 18100,
+      "selected_option_id": "D",
+      "mastery_before": 20.7,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 18200,
+      "selected_option_id": "B",
+      "mastery_before": 21.4,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 18300,
+      "selected_option_id": "D",
+      "mastery_before": 22.1,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 18400,
+      "selected_option_id": "B",
+      "mastery_before": 22.8,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 18500,
+      "selected_option_id": "D",
+      "mastery_before": 23.5,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 18600,
+      "selected_option_id": "B",
+      "mastery_before": 24.2,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 18700,
+      "selected_option_id": "D",
+      "mastery_before": 24.9,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 18800,
+      "selected_option_id": "B",
+      "mastery_before": 25.6,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 18900,
+      "selected_option_id": "D",
+      "mastery_before": 26.3,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 19000,
+      "selected_option_id": "B",
+      "mastery_before": 27.0,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 19100,
+      "selected_option_id": "D",
+      "mastery_before": 27.7,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 19200,
+      "selected_option_id": "B",
+      "mastery_before": 28.4,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 19300,
+      "selected_option_id": "D",
+      "mastery_before": 29.1,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 19400,
+      "selected_option_id": "B",
+      "mastery_before": 29.799999999999997,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 19500,
+      "selected_option_id": "D",
+      "mastery_before": 30.5,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 19600,
+      "selected_option_id": "B",
+      "mastery_before": 31.2,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 19700,
+      "selected_option_id": "D",
+      "mastery_before": 31.9,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 19800,
+      "selected_option_id": "B",
+      "mastery_before": 32.6,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 19900,
+      "selected_option_id": "D",
+      "mastery_before": 33.3,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 20000,
+      "selected_option_id": "B",
+      "mastery_before": 34.0,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 20100,
+      "selected_option_id": "D",
+      "mastery_before": 34.7,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 20200,
+      "selected_option_id": "B",
+      "mastery_before": 35.4,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 20300,
+      "selected_option_id": "D",
+      "mastery_before": 36.099999999999994,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 20400,
+      "selected_option_id": "B",
+      "mastery_before": 36.8,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 20500,
+      "selected_option_id": "D",
+      "mastery_before": 37.5,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 20600,
+      "selected_option_id": "B",
+      "mastery_before": 38.2,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 20700,
+      "selected_option_id": "D",
+      "mastery_before": 38.9,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 20800,
+      "selected_option_id": "B",
+      "mastery_before": 39.599999999999994,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 20900,
+      "selected_option_id": "D",
+      "mastery_before": 40.3,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 21000,
+      "selected_option_id": "B",
+      "mastery_before": 41.0,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 21100,
+      "selected_option_id": "D",
+      "mastery_before": 41.7,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 21200,
+      "selected_option_id": "B",
+      "mastery_before": 42.4,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 21300,
+      "selected_option_id": "D",
+      "mastery_before": 43.099999999999994,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 21400,
+      "selected_option_id": "B",
+      "mastery_before": 43.8,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 21500,
+      "selected_option_id": "D",
+      "mastery_before": 44.5,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 21600,
+      "selected_option_id": "B",
+      "mastery_before": 45.2,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 21700,
+      "selected_option_id": "D",
+      "mastery_before": 45.9,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 21800,
+      "selected_option_id": "B",
+      "mastery_before": 46.599999999999994,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 21900,
+      "selected_option_id": "D",
+      "mastery_before": 47.3,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 22000,
+      "selected_option_id": "B",
+      "mastery_before": 48.0,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 22100,
+      "selected_option_id": "D",
+      "mastery_before": 48.7,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 22200,
+      "selected_option_id": "B",
+      "mastery_before": 49.4,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 22300,
+      "selected_option_id": "D",
+      "mastery_before": 50.099999999999994,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 22400,
+      "selected_option_id": "B",
+      "mastery_before": 50.8,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 22500,
+      "selected_option_id": "D",
+      "mastery_before": 51.5,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 22600,
+      "selected_option_id": "B",
+      "mastery_before": 52.199999999999996,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 22700,
+      "selected_option_id": "D",
+      "mastery_before": 52.9,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 22800,
+      "selected_option_id": "B",
+      "mastery_before": 53.599999999999994,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 22900,
+      "selected_option_id": "D",
+      "mastery_before": 54.3,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 23000,
+      "selected_option_id": "B",
+      "mastery_before": 55.0,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 23100,
+      "selected_option_id": "D",
+      "mastery_before": 55.699999999999996,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 23200,
+      "selected_option_id": "B",
+      "mastery_before": 56.4,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 23300,
+      "selected_option_id": "D",
+      "mastery_before": 57.099999999999994,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 23400,
+      "selected_option_id": "B",
+      "mastery_before": 57.8,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 23500,
+      "selected_option_id": "D",
+      "mastery_before": 58.5,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 23600,
+      "selected_option_id": "B",
+      "mastery_before": 59.199999999999996,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 23700,
+      "selected_option_id": "D",
+      "mastery_before": 59.9,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 23800,
+      "selected_option_id": "B",
+      "mastery_before": 60.599999999999994,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 23900,
+      "selected_option_id": "D",
+      "mastery_before": 61.3,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 24000,
+      "selected_option_id": "B",
+      "mastery_before": 62.0,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 24100,
+      "selected_option_id": "D",
+      "mastery_before": 62.699999999999996,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 24200,
+      "selected_option_id": "B",
+      "mastery_before": 63.4,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 24300,
+      "selected_option_id": "D",
+      "mastery_before": 64.1,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 24400,
+      "selected_option_id": "B",
+      "mastery_before": 64.8,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 24500,
+      "selected_option_id": "D",
+      "mastery_before": 65.5,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 24600,
+      "selected_option_id": "B",
+      "mastery_before": 66.19999999999999,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 24700,
+      "selected_option_id": "D",
+      "mastery_before": 66.9,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 24800,
+      "selected_option_id": "B",
+      "mastery_before": 67.6,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 24900,
+      "selected_option_id": "D",
+      "mastery_before": 68.3,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 25000,
+      "selected_option_id": "B",
+      "mastery_before": 69.0,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 25100,
+      "selected_option_id": "D",
+      "mastery_before": 69.69999999999999,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 25200,
+      "selected_option_id": "B",
+      "mastery_before": 70.4,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 25300,
+      "selected_option_id": "D",
+      "mastery_before": 71.1,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 25400,
+      "selected_option_id": "B",
+      "mastery_before": 71.8,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 25500,
+      "selected_option_id": "D",
+      "mastery_before": 72.5,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 25600,
+      "selected_option_id": "B",
+      "mastery_before": 73.19999999999999,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 25700,
+      "selected_option_id": "D",
+      "mastery_before": 73.9,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 25800,
+      "selected_option_id": "B",
+      "mastery_before": 74.6,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 25900,
+      "selected_option_id": "D",
+      "mastery_before": 75.3,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 18000,
+      "selected_option_id": "B",
+      "mastery_before": 76.0,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 18100,
+      "selected_option_id": "D",
+      "mastery_before": 76.69999999999999,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 18200,
+      "selected_option_id": "B",
+      "mastery_before": 77.4,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 18300,
+      "selected_option_id": "D",
+      "mastery_before": 78.1,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 18400,
+      "selected_option_id": "B",
+      "mastery_before": 78.8,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 18500,
+      "selected_option_id": "D",
+      "mastery_before": 79.5,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 18600,
+      "selected_option_id": "B",
+      "mastery_before": 80.19999999999999,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 18700,
+      "selected_option_id": "D",
+      "mastery_before": 80.9,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 18800,
+      "selected_option_id": "B",
+      "mastery_before": 81.6,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 18900,
+      "selected_option_id": "D",
+      "mastery_before": 82.3,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 19000,
+      "selected_option_id": "B",
+      "mastery_before": 83.0,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 19100,
+      "selected_option_id": "D",
+      "mastery_before": 83.69999999999999,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 19200,
+      "selected_option_id": "B",
+      "mastery_before": 84.39999999999999,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 19300,
+      "selected_option_id": "D",
+      "mastery_before": 85.1,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 19400,
+      "selected_option_id": "B",
+      "mastery_before": 85.8,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 19500,
+      "selected_option_id": "D",
+      "mastery_before": 86.5,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 19600,
+      "selected_option_id": "B",
+      "mastery_before": 87.19999999999999,
+      "report_flag": false,
+      "repeat_error_flag": true
+    },
+    {
+      "is_correct": false,
+      "response_ms": 19700,
+      "selected_option_id": "D",
+      "mastery_before": 87.89999999999999,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 19800,
+      "selected_option_id": "B",
+      "mastery_before": 88.6,
+      "report_flag": false,
+      "repeat_error_flag": false
+    },
+    {
+      "is_correct": false,
+      "response_ms": 19900,
+      "selected_option_id": "D",
+      "mastery_before": 89.3,
+      "report_flag": false,
+      "repeat_error_flag": false
+    }
+  ],
+  "option_ids": [
+    "A",
+    "B",
+    "C",
+    "D"
+  ]
+}

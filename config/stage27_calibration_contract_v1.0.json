@@ -1,0 +1,93 @@
+{
+  "stage": 27,
+  "name": "Calibration after Deploy and data-driven improvement",
+  "contract_version": "stage27-calibration-v1.0.0",
+  "prepared_at_utc": "2026-08-09",
+  "owner": "Iman",
+  "repository": "ImanNasrEsfahani/grammar-mastery-platform",
+  "branch": "main",
+  "status": "REFERENCE_CALIBRATION_FRAMEWORK_VALIDATED_EMPIRICAL_EXECUTION_BLOCKED",
+  "roadmap_outputs": [
+    "question_quality_dashboard",
+    "calibration_rules",
+    "retirement_workflow",
+    "model_versions",
+    "experiment_log"
+  ],
+  "historical_integrity": {
+    "rewrite_historical_answers": false,
+    "rewrite_historical_mastery": false,
+    "in_place_edit_published_question": false,
+    "new_model_version_required": true,
+    "new_question_revision_required_for_content_change": true
+  },
+  "metrics": {
+    "sample_size": true,
+    "correct_rate": true,
+    "response_time": {
+      "median": true,
+      "p90": true
+    },
+    "option_selection": true,
+    "discrimination": "top27_minus_bottom27_pre_answer_mastery",
+    "report_rate": true,
+    "repeat_error_rate": true
+  },
+  "sample_gates": {
+    "informational_min_n": 30,
+    "review_min_n": 100,
+    "decision_min_n": 200,
+    "discrimination_min_band_n": 20
+  },
+  "initial_review_thresholds": {
+    "weak_distractor_selection_rate_below": 0.05,
+    "extreme_hard_correct_rate_at_or_below": 0.2,
+    "extreme_easy_correct_rate_at_or_above": 0.95,
+    "low_discrimination_at_or_below": 0.1,
+    "negative_discrimination_below": 0.0,
+    "high_report_rate_at_or_above": 0.03,
+    "high_repeat_error_rate_at_or_above": 0.2
+  },
+  "threshold_semantics": "Initial project guardrails only. They open review/candidate actions; they never auto-publish difficulty changes or retire content.",
+  "retirement": {
+    "automatic_retirement": false,
+    "candidate_requires_decision_min_n": true,
+    "human_review_required": true,
+    "stage11_workflow_preserved": true,
+    "fast_disable_for_critical_content_issue_preserved": true
+  },
+  "model_version_seed": {
+    "difficulty": "initial-difficulty-model-v0.9.0",
+    "adaptive_selector": "adaptive-selector-v0.9.0",
+    "adaptive_score": "adaptive-score-v0.9.0",
+    "mastery": "mastery-evidence-v0.9.0",
+    "srs": "spaced-review-v0.9.0"
+  },
+  "experiments": {
+    "default_candidate_traffic_share": 0.1,
+    "max_candidate_traffic_share": 0.25,
+    "minimum_duration_days": 14,
+    "minimum_observations_per_arm": 200,
+    "automatic_promotion": false,
+    "predeclared_primary_metric_required": true,
+    "guardrails_required": true,
+    "history_rewrite_forbidden": true
+  },
+  "allowed_primary_learning_metrics": [
+    "delayed_correct_rate_7d",
+    "delayed_correct_rate_14d",
+    "repeat_error_rate",
+    "mastery_gain",
+    "review_recovery_rate"
+  ],
+  "runtime_blockers": [
+    "Stage26 has no live production deployment evidence",
+    "No production PostgreSQL target/migration execution evidence",
+    "Zero PUBLISHED question inventory blocks real learner item statistics",
+    "No live learner history exists for empirical calibration",
+    "Stage26 provider/monitoring/backup decisions remain unresolved"
+  ],
+  "formal_ready": false,
+  "ready_condition": "Live Stage26 deployment plus sufficient PUBLISHED inventory and real telemetry must produce reviewable empirical calibration evidence; owner acceptance is then required.",
+  "base_main_tree_sha": "37bd1461c7b4870438d8bffebe99aa2e6ce980bd"
+}

@@ -1,0 +1,133 @@
+{
+  "package": "grammar-mastery-stage27-v1.0",
+  "stage": 27,
+  "stage_only": true,
+  "file_count": 25,
+  "files": [
+    {
+      "path": "README_STAGE27.txt",
+      "sha256": "7f325365d6d4883f7c3a69b09791af80ecc0c13438768e6f5c16a73279dfb449",
+      "bytes": 535
+    },
+    {
+      "path": "config/stage27_calibration_contract_v1.0.json",
+      "sha256": "52cc8c90aa7f9c1e502167e1f252a5e6d9bb656f67d028543fafb9abe6fc09ee",
+      "bytes": 3404
+    },
+    {
+      "path": "data/calibration/model_versions_seed_v1.0.csv",
+      "sha256": "a91caded08eba36da2a3300fbdba4b572132d56e24c712a3ee603b6887e11250",
+      "bytes": 440
+    },
+    {
+      "path": "database/postgres/008_stage27_calibration_v1.0.sql",
+      "sha256": "b9b6f7addf115bdc17b9ce31c781052ad60ada4aa1aacdb629a0173130cb8d10",
+      "bytes": 6505
+    },
+    {
+      "path": "docs/stages/stage27/PACKAGE_APPLY.md",
+      "sha256": "cf0c47a91c021e0c2b68549ca38a6ba84f0837a5434f11fb97c5fec10ff5b486",
+      "bytes": 778
+    },
+    {
+      "path": "docs/stages/stage27/README.md",
+      "sha256": "7d855de95cae1d558143ae66da911b9e2d36e55c6ae4a919630e137cd6b49d47",
+      "bytes": 2021
+    },
+    {
+      "path": "docs/stages/stage27/calibration_rules_v1.0.md",
+      "sha256": "5104d1cb3f4ec6b145d7e89e5511447caa536e334d59caa09e5039635f70ea1c",
+      "bytes": 1406
+    },
+    {
+      "path": "docs/stages/stage27/experiment_log_v1.0.csv",
+      "sha256": "de19b4659f6b6c9f28bc16e0a1426e1be806ce277a511d3ab2b59aa5279436c4",
+      "bytes": 473
+    },
+    {
+      "path": "docs/stages/stage27/model_versioning_v1.0.md",
+      "sha256": "cdc789aaf84b98fba6344000194bf741d3375b56b7a034203d059ae1227607fa",
+      "bytes": 1107
+    },
+    {
+      "path": "docs/stages/stage27/needs_decision_v1.0.csv",
+      "sha256": "bb6848a37a3805c8abbf93f83cf283a2261b78054ab7f463e48a4122e8bb3e57",
+      "bytes": 1289
+    },
+    {
+      "path": "docs/stages/stage27/question_quality_dashboard_v1.0.md",
+      "sha256": "81cb9be925cd61753d5f8ee1dc793dbd633c3961dfa0bda1cc66252164a69a8a",
+      "bytes": 1145
+    },
+    {
+      "path": "docs/stages/stage27/reference_dashboard_example_v1.0.json",
+      "sha256": "83508a98a862b26f2cdf2d021f8d02c1c68a7ab4c45b4f4d57cd532d94e6893d",
+      "bytes": 1661
+    },
+    {
+      "path": "docs/stages/stage27/retirement_workflow_v1.0.md",
+      "sha256": "bf165e21cd31bc7941def737a99303d398f1fdf66c3cd836fb4882caf2679243",
+      "bytes": 1015
+    },
+    {
+      "path": "docs/stages/stage27/review_report_v1.0.md",
+      "sha256": "1719866bbe020f59f5ed7b5f860a30e6fe0784999238126da9ccd7114651bce3",
+      "bytes": 3951
+    },
+    {
+      "path": "docs/stages/stage27/validation_v1.0.json",
+      "sha256": "6ee2a56019265acc82d947509827bbe46e7bbf55da76b633b23e5a05e2d67fca",
+      "bytes": 1902
+    },
+    {
+      "path": "schemas/stage27_experiment_v1.0.schema.json",
+      "sha256": "c44b26b9d60979c05389cc0be0cac04b13f1492ec0b1cd4578bd8f0f915c6907",
+      "bytes": 1964
+    },
+    {
+      "path": "src/calibration/__init__.py",
+      "sha256": "292c007ddfd75aed190764f309f31f060680e01e2e299ff5cf079a639f4fb0fe",
+      "bytes": 326
+    },
+    {
+      "path": "src/calibration/dashboard.py",
+      "sha256": "b91f1d804a3d688d0c2dc19bd8fdf4ac93feba299bd20d7af4603b37884893d0",
+      "bytes": 476
+    },
+    {
+      "path": "src/calibration/experiments.py",
+      "sha256": "d96db6ab34bf9040377e885213c1637dc03f801535f1224a29e50bda117859a5",
+      "bytes": 1500
+    },
+    {
+      "path": "src/calibration/metrics.py",
+      "sha256": "64deab21cca77aefc770faa12d90dc704c63aa56973b88229a0f3094c268aa68",
+      "bytes": 2631
+    },
+    {
+      "path": "src/calibration/rules.py",
+      "sha256": "d000071479b340dc031e5205312a064e1250c95185304d423bb3609a37d72c77",
+      "bytes": 2675
+    },
+    {
+      "path": "tests/fixtures/stage27/reference_events_v1.0.json",
+      "sha256": "0f60e26db15a7deb668e5ee2c2ff13012c0e0dbfcd5225078f20730d025bd02a",
+      "bytes": 97443
+    },
+    {
+      "path": "tests/test_stage27_calibration.py",
+      "sha256": "99eecddbb1b74f7eabf93fdeab4487f990229159f82d9ba24c43b0c4a4c279da",
+      "bytes": 3184
+    },
+    {
+      "path": "tools/run_stage27_reference.py",
+      "sha256": "8840c36ddffcc0863c62e52e303f1fb3e8a6d79c33c9557cfaa520a98b7dd6f5",
+      "bytes": 618
+    },
+    {
+      "path": "tools/validate_stage27.py",
+      "sha256": "81d9412b3d9da16be7ae4f70a9fa908cf11553d2e3d14f384c340a5cf0ec31e9",
+      "bytes": 1730
+    }
+  ]
+}

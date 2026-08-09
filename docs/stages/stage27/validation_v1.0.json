@@ -1,0 +1,56 @@
+{
+  "stage": 27,
+  "version": "stage27-calibration-v1.0.0",
+  "validated_at_utc": "2026-08-09",
+  "status": "PASS_REFERENCE_WITH_EMPIRICAL_EXECUTION_BLOCKED",
+  "base_main": {
+    "branch": "main",
+    "tree_sha": "37bd1461c7b4870438d8bffebe99aa2e6ce980bd",
+    "root_readme_present": true,
+    "root_status_present": true,
+    "root_roadmap_present": false,
+    "root_agents_present": false
+  },
+  "roadmap_outputs": {
+    "question_quality_dashboard": "PASS_REFERENCE",
+    "calibration_rules": "PASS_REFERENCE",
+    "retirement_workflow": "PASS_REFERENCE",
+    "model_versions": "PASS_REFERENCE",
+    "experiment_log": "PASS_TEMPLATE_NO_LIVE_EXPERIMENT"
+  },
+  "dedicated_tests": {
+    "total": 8,
+    "passed": 8,
+    "failed": 0
+  },
+  "overlay_validator": {
+    "status": "PASS",
+    "destructive_history_operations_detected": false
+  },
+  "database_patch": {
+    "path": "database/postgres/008_stage27_calibration_v1.0.sql",
+    "type": "ADDITIVE_REFERENCE",
+    "live_execution_claimed": false,
+    "required_predecessor": "database/postgres/007_stage23_import_pipeline_v1.1.sql"
+  },
+  "reference_example": {
+    "sample_size": 500,
+    "correct_rate": 0.18,
+    "weak_distractor_C_selection_rate": 0.008,
+    "report_rate": 0.06,
+    "expected_action": "CONTENT_QA_BEFORE_DIFFICULTY",
+    "auto_very_hard": false
+  },
+  "not_claimed": [
+    "live production telemetry",
+    "real question quality statistics",
+    "empirically calibrated difficulty thresholds",
+    "empirically calibrated adaptive weights",
+    "empirically calibrated mastery or SRS parameters",
+    "executed A/B experiment",
+    "target PostgreSQL Patch008 execution",
+    "formal final owner acceptance"
+  ],
+  "formal_ready": false,
+  "reason": "Stage27 requires real post-deploy data. Stage26 live deployment evidence and PUBLISHED inventory are still blocked, so only the reference framework can be validated now."
+}

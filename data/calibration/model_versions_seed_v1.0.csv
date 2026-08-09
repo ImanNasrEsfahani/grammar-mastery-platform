@@ -1,0 +1,6 @@
+component,version,status,source_stage,note
+DIFFICULTY,initial-difficulty-model-v0.9.0,BASELINE,8,Initial model; live calibration pending
+ADAPTIVE_SELECTOR,adaptive-selector-v0.9.0,BASELINE,14,Initial selector; weights are pre-empirical
+ADAPTIVE_SCORE,adaptive-score-v0.9.0,BASELINE,14,Initial score formula
+MASTERY,mastery-evidence-v0.9.0,BASELINE,15,Initial evidence model
+SRS,spaced-review-v0.9.0,BASELINE,17,Initial scheduling intervals

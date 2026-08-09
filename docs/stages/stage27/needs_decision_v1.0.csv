@@ -1,0 +1,8 @@
+decision_id,kind,status,need_or_dependency,safe_current_boundary,blocks_empirical_stage27,owner
+S27_B01_LIVE_DEPLOYMENT,UPSTREAM_RUNTIME,BLOCKED,Complete Stage26 live deployment and provider bindings,Reference calibration framework only,YES,Iman
+S27_B02_PUBLISHED_INVENTORY,CONTENT_RUNTIME,BLOCKED,Create independently reviewed PUBLISHED question inventory,No synthetic item is counted as production,YES,Content/Ops
+S27_B03_LIVE_TELEMETRY,DATA,BLOCKED,Collect real answer/response/report/mastery-before observations,Only synthetic fixtures used for tests,YES,Iman
+S27_B04_POSTGRES_MIGRATION,DATA,BLOCKED,Execute canonical Stage26 sequence plus Patch008 on target PostgreSQL,SQL is delivered but not claimed executed,YES,Iman
+S27_D01_THRESHOLD_APPROVAL,CALIBRATION,PENDING_EMPIRICAL_REVIEW,Approve/revise initial review thresholds after enough live data,Thresholds only open review and never auto-apply,NO,Iman
+S27_D02_EXPERIMENT_METRIC,EXPERIMENT,PENDING_LIVE_USE,Predeclare hypothesis/primary learning metric/guardrails for each real experiment,Experiment engine refuses unversioned ad-hoc promotion,NO,Iman
+S27_R01_ROOT_DOC_DRIFT,DOCUMENTATION,NON_BLOCKING,Root README/STATUS lag Stage25/26 and ROADMAP.md/AGENTS.md are absent,Stage27 overlay does not rewrite earlier/root files,NO,Iman

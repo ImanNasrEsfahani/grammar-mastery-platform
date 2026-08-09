@@ -1,0 +1,62 @@
+{
+  "question_id": "00000000-0000-0000-0000-000000000027",
+  "sample_size": 500,
+  "correct_rate": 0.18,
+  "median_response_ms": 21800.0,
+  "p90_response_ms": 25100.0,
+  "option_distribution": {
+    "A": 0.18,
+    "B": 0.406,
+    "C": 0.008,
+    "D": 0.406
+  },
+  "correct_option_id": "A",
+  "discrimination": -0.074074,
+  "report_rate": 0.06,
+  "repeat_error_rate": 0.204,
+  "flags": [
+    {
+      "code": "S27_AMBIGUITY_CANDIDATE",
+      "severity": "CRITICAL",
+      "action": "CONTENT_QA_BEFORE_DIFFICULTY",
+      "detail": "low correctness + elevated reports; review content before changing difficulty"
+    },
+    {
+      "code": "S27_NEGATIVE_DISCRIMINATION",
+      "severity": "CRITICAL",
+      "action": "QA_FIRST",
+      "detail": "discrimination=-0.074"
+    },
+    {
+      "code": "S27_EXTREME_LOW_CORRECT_RATE",
+      "severity": "HIGH",
+      "action": "REVIEW_DIFFICULTY_AND_CONTENT",
+      "detail": "correct_rate=0.180; do not auto-label VERY_HARD"
+    },
+    {
+      "code": "S27_HIGH_REPORT_RATE",
+      "severity": "HIGH",
+      "action": "OPEN_REVIEW",
+      "detail": "report_rate=0.060"
+    },
+    {
+      "code": "S27_RETIREMENT_CANDIDATE",
+      "severity": "HIGH",
+      "action": "HUMAN_REVIEW_REQUIRED",
+      "detail": "candidate only; retirement must use Stage11 workflow and preserve history"
+    },
+    {
+      "code": "S27_REPEAT_ERROR",
+      "severity": "MEDIUM",
+      "action": "EDUCATIONAL_REVIEW",
+      "detail": "repeat_error_rate=0.204"
+    },
+    {
+      "code": "S27_WEAK_DISTRACTOR",
+      "severity": "MEDIUM",
+      "action": "OPEN_REVIEW",
+      "detail": "option C share=0.008"
+    }
+  ],
+  "needs_review": true
+}
