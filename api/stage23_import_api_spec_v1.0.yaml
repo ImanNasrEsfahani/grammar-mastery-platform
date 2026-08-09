@@ -1,0 +1,172 @@
+openapi: 3.1.0
+info:
+  title: Grammar Mastery Stage 23 Import API
+  version: 1.0.0
+  description: Additive Stage 23 contract under the Stage 21 /api/v1 boundary.
+servers:
+  - url: /api/v1
+security:
+  - bearerAuth: []
+paths:
+  /admin/imports/upload:
+    post:
+      operationId: uploadAdminImport
+      summary: Retain and hash a CSV/XLSX source before parsing
+      x-roles: [ADMIN, CONTENT_EDITOR]
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [batch_id, schema_version, file]
+              properties:
+                batch_id: {type: string, format: uuid}
+                schema_version: {const: question-import-schema-v0.9.0}
+                file: {type: string, format: binary}
+      responses:
+        '201': {description: Raw source retained and batch created}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '409': {$ref: '#/components/responses/Conflict'}
+        '422': {$ref: '#/components/responses/Validation'}
+  /admin/imports/{batchId}/preview:
+    post:
+      operationId: previewStage23Import
+      summary: Parse, normalize, validate, deduplicate and preview without question mutation
+      x-roles: [ADMIN, CONTENT_EDITOR]
+      parameters:
+        - $ref: '#/components/parameters/BatchId'
+      responses:
+        '200':
+          description: Row/field preview and one-time confirmation token
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/PreviewReport'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '409': {$ref: '#/components/responses/Conflict'}
+        '422': {$ref: '#/components/responses/Validation'}
+  /admin/imports/{batchId}/semantic-decisions:
+    post:
+      operationId: resolveStage23SemanticDuplicate
+      summary: Record a reviewed semantic duplicate decision and reseal preview
+      x-roles: [ADMIN, CONTENT_EDITOR, REVIEWER]
+      parameters:
+        - $ref: '#/components/parameters/BatchId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [row_number, decision, reason]
+              properties:
+                row_number: {type: integer, minimum: 2}
+                decision: {enum: [ACCEPT_DISTINCT, REJECT_DUPLICATE]}
+                reason: {type: string, minLength: 1, maxLength: 2000}
+      responses:
+        '200': {description: Decision audited and preview token rotated}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '409': {$ref: '#/components/responses/Conflict'}
+        '422': {$ref: '#/components/responses/Validation'}
+  /admin/imports/{batchId}/commit:
+    post:
+      operationId: commitStage23Import
+      summary: Atomically commit the exact committable DRAFT-only preview
+      x-roles: [ADMIN, CONTENT_EDITOR]
+      x-idempotency: REQUIRED
+      parameters:
+        - $ref: '#/components/parameters/BatchId'
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [preview_sha256, confirmation_token]
+              properties:
+                preview_sha256: {type: string, pattern: '^[0-9a-f]{64}$'}
+                confirmation_token: {type: string, minLength: 32, maxLength: 512}
+      responses:
+        '200': {description: Batch committed and post-checks passed}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '409': {$ref: '#/components/responses/Conflict'}
+        '422': {$ref: '#/components/responses/Validation'}
+  /admin/imports/{batchId}:
+    get:
+      operationId: getStage23ImportAudit
+      summary: Read batch status, retained provenance and append-only audit timeline
+      x-roles: [ADMIN, CONTENT_EDITOR, REVIEWER]
+      parameters:
+        - $ref: '#/components/parameters/BatchId'
+      responses:
+        '200': {description: Batch audit projection}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {description: Batch not found}
+  /admin/imports/{batchId}/rollback:
+    post:
+      operationId: rollbackStage23Import
+      summary: Revert an untouched unreferenced DRAFT import batch atomically
+      x-roles: [ADMIN]
+      x-idempotency: REQUIRED
+      parameters:
+        - $ref: '#/components/parameters/BatchId'
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [reason]
+              properties:
+                reason: {type: string, minLength: 1, maxLength: 2000}
+      responses:
+        '200': {description: Eligible imported Drafts removed; audit and raw source retained}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '409': {description: Changed or referenced questions require retirement workflow}
+        '422': {$ref: '#/components/responses/Validation'}
+components:
+  securitySchemes:
+    bearerAuth: {type: http, scheme: bearer, bearerFormat: JWT}
+  parameters:
+    BatchId:
+      name: batchId
+      in: path
+      required: true
+      schema: {type: string, format: uuid}
+    IdempotencyKey:
+      name: Idempotency-Key
+      in: header
+      required: true
+      schema: {type: string, minLength: 16, maxLength: 128}
+  schemas:
+    PreviewReport:
+      type: object
+      additionalProperties: true
+      required: [batch_id, preview_sha256, committable, valid_count, invalid_count, duplicate_count, semantic_review_count, errors, confirmation_token]
+      properties:
+        batch_id: {type: string, format: uuid}
+        preview_sha256: {type: string, pattern: '^[0-9a-f]{64}$'}
+        committable: {type: boolean}
+        valid_count: {type: integer, minimum: 0}
+        invalid_count: {type: integer, minimum: 0}
+        duplicate_count: {type: integer, minimum: 0}
+        semantic_review_count: {type: integer, minimum: 0}
+        errors: {type: array, items: {type: object, additionalProperties: true}}
+        confirmation_token: {type: string, minLength: 32, writeOnly: true}
+  responses:
+    Unauthorized: {description: Authentication required or invalid}
+    Forbidden: {description: Backend role check failed}
+    Conflict: {description: Batch state, duplicate, stale preview or idempotency conflict}
+    Validation: {description: Stable row/field validation errors}

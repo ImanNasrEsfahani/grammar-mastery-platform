@@ -1,0 +1,5 @@
+decision_code,topic,status,owner,safe_current_boundary,target_stage
+S24_B01_DEPLOYED_HTTP_TARGET,Base URL and complete routed Django API for deployed E2E,DEFERRED_TO_STAGE26,Iman,Keep in-process E2E evidence explicitly labeled and claim no deployed result,26
+S24_B02_TARGET_POSTGRESQL_EXECUTION,Target PostgreSQL DSN and execution window,DEFERRED_TO_STAGE26,Iman,Run only the isolated-schema CI/profile and do not touch production data,26
+S24_D01_BROWSER_E2E_RUNTIME,Deployed browser runner and authenticated seed strategy,DEFERRED_TO_STAGE26,Iman,Retain jsdom lifecycle gate and require synthetic reviewed fixtures,26
+S24_D02_PRODUCTION_PERFORMANCE_SLA,Production latency percentiles and concurrency/load targets,DEFERRED_TO_STAGE27,Iman,Use versioned synthetic regression budgets and label them NOT_CLAIMED as SLA,27

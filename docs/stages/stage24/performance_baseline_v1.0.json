@@ -1,0 +1,33 @@
+{
+  "classification": "DETERMINISTIC_SYNTHETIC_NON_PRODUCTION",
+  "dashboard": {
+    "budget_ms": 1500.0,
+    "median_ms": 17.771,
+    "p95_ms": 18.308,
+    "pass": true,
+    "samples_ms": [17.771, 18.308, 17.669, 17.994, 17.634]
+  },
+  "environment": {
+    "implementation": "CPython",
+    "platform": "Linux-6.18.35-x86_64-with-glibc2.39",
+    "python": "3.12.13",
+    "storage": "IN_MEMORY_REFERENCE"
+  },
+  "measured_at_utc": "2026-08-09T06:47:58.138736Z",
+  "overall_pass": true,
+  "production_sla": "NOT_CLAIMED",
+  "profile_version": "stage24-performance-profile-v1.0.0",
+  "selection": {
+    "budget_ms": 1500.0,
+    "median_ms": 203.494,
+    "p95_ms": 210.621,
+    "pass": true,
+    "samples_ms": [203.494, 199.829, 210.621, 200.09, 203.892]
+  },
+  "stage": 24,
+  "volume": {
+    "dashboard_history_points": 10636,
+    "dashboard_mastery_scopes": 304,
+    "question_bank_rows": 10636
+  }
+}

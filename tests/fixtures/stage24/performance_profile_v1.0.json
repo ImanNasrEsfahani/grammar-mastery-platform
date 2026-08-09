@@ -1,0 +1,14 @@
+{
+  "profile_version": "stage24-performance-profile-v1.0.0",
+  "classification": "DETERMINISTIC_SYNTHETIC_NON_PRODUCTION",
+  "seed": "stage24-reference-seed-v1.0",
+  "question_bank_rows": 10636,
+  "dashboard_mastery_scopes": 304,
+  "dashboard_history_points": 10636,
+  "adaptive_question_count": 40,
+  "warmups": 2,
+  "iterations": 5,
+  "selection_p95_budget_ms": 1500,
+  "dashboard_p95_budget_ms": 1500,
+  "notes": "The row counts mirror Full bank and knowledge-map scale. Budgets are CI regression guardrails, not production SLAs."
+}

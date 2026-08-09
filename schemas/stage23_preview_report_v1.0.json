@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://grammar-mastery.local/schemas/stage23-preview-report-v1.0.0.json",
+  "title": "Stage 23 Import Preview Report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["batch_id", "schema_version", "pipeline_version", "raw_sha256", "row_count", "valid_count", "invalid_count", "duplicate_count", "semantic_review_count", "committable", "errors", "rows", "preview_sha256", "confirmation_token"],
+  "properties": {
+    "batch_id": {"type": "string", "format": "uuid"},
+    "schema_version": {"const": "question-import-schema-v0.9.0"},
+    "pipeline_version": {"const": "stage23-import-pipeline-v1.0.0"},
+    "raw_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "row_count": {"type": "integer", "minimum": 1, "maximum": 1000},
+    "valid_count": {"type": "integer", "minimum": 0},
+    "invalid_count": {"type": "integer", "minimum": 0},
+    "duplicate_count": {"type": "integer", "minimum": 0},
+    "semantic_review_count": {"type": "integer", "minimum": 0},
+    "committable": {"type": "boolean"},
+    "preview_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "confirmation_token": {"type": "string", "minLength": 32, "writeOnly": true},
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["row_number", "field", "code", "message", "severity"],
+        "properties": {
+          "row_number": {"type": "integer", "minimum": 2},
+          "field": {"type": "string", "minLength": 1},
+          "code": {"type": "string", "pattern": "^[A-Z0-9_]+$"},
+          "message": {"type": "string", "minLength": 1},
+          "severity": {"enum": ["ERROR", "WARNING"]}
+        }
+      }
+    },
+    "rows": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["row_number", "external_id", "disposition", "fingerprint_sha256", "duplicate_classification"],
+        "properties": {
+          "row_number": {"type": "integer", "minimum": 2},
+          "external_id": {"type": "string"},
+          "disposition": {"enum": ["VALID", "INVALID", "DUPLICATE", "SEMANTIC_REVIEW"]},
+          "fingerprint_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "duplicate_classification": {"enum": ["UNIQUE", "EXACT_EXISTING", "EXACT_IN_BATCH", "SEMANTIC_EXISTING_REVIEW", "SEMANTIC_IN_BATCH_REVIEW"]}
+        }
+      }
+    }
+  }
+}

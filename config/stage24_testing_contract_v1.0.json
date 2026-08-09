@@ -1,0 +1,66 @@
+{
+  "stage": 24,
+  "name": "Multi-layer Testing",
+  "contract_version": "stage24-testing-v1.0.0",
+  "prepared_at_utc": "2026-08-09",
+  "release_status": "REFERENCE_MULTILAYER_SUITE_VALIDATED_LIVE_STACK_EVIDENCE_PENDING",
+  "governance": {
+    "content_owner": "Iman",
+    "technical_owner": "Iman",
+    "owner_acceptance": "PENDING_IMAN_REVIEW"
+  },
+  "source": {
+    "roadmap_stage": 24,
+    "roadmap_title_fa": "طراحی و اجرای Testing چندلایه",
+    "repository_baseline_commit": "e04967b799b8c254dee651d5e54902847f749b29",
+    "stage23_package_version": "stage23-v1.0"
+  },
+  "test_pyramid": [
+    {"layer": "UNIT", "targets": ["weight normalization", "question invariants", "generator quotas", "mastery", "SRS"]},
+    {"layer": "INTEGRATION", "targets": ["authorization", "idempotency", "transaction rollback", "import commit and rollback"]},
+    {"layer": "CONTRACT", "targets": ["OpenAPI response shape", "authentication and roles", "pre-answer leakage", "migration compatibility"]},
+    {"layer": "E2E", "targets": ["register", "login", "create test", "answer", "result", "review"]},
+    {"layer": "PERFORMANCE", "targets": ["adaptive question selection", "learning dashboard projection"]}
+  ],
+  "fixture_policy": {
+    "dataset": "tests/fixtures/stage24/reference_dataset_v1.0.json",
+    "profile": "tests/fixtures/stage24/performance_profile_v1.0.json",
+    "classification": "DETERMINISTIC_SYNTHETIC_NON_PRODUCTION",
+    "seed": "stage24-reference-seed-v1.0",
+    "production_data_allowed": false
+  },
+  "ci_gates": {
+    "python": "all repository unittest tests pass",
+    "frontend": "generated types, lint, strict TypeScript, Vitest and production build pass",
+    "postgresql": "fresh isolated schema accepts the approved migration sequence",
+    "performance": "reference p95 stays within versioned non-production guardrail",
+    "flake": "no automatic retry; a failure remains a failure until diagnosed"
+  },
+  "performance": {
+    "reference_only": true,
+    "question_bank_rows": 10636,
+    "dashboard_mastery_scopes": 304,
+    "dashboard_history_points": 10636,
+    "iterations": 5,
+    "warmups": 2,
+    "selection_p95_budget_ms": 1500,
+    "dashboard_p95_budget_ms": 1500,
+    "production_sla_status": "DEFERRED_TO_STAGE27_EMPIRICAL_CALIBRATION"
+  },
+  "migration_compatibility": {
+    "detected_issue": "Stage12 and Stage23 v1.0 both create import_batches with incompatible columns and states.",
+    "historical_file_policy": "database/postgres/007_stage23_import_pipeline_v1.0.sql remains unchanged for audit history and must not be applied.",
+    "approved_replacement": "database/postgres/007_stage23_import_pipeline_v1.1.sql",
+    "replacement_strategy": "Use question_import_* names so the Stage12 legacy import_batches table remains intact."
+  },
+  "evidence_boundaries": {
+    "validated_here": ["in-memory domain/application paths", "contract/static checks", "Next.js component lifecycle", "local synthetic performance baseline"],
+    "ci_profile_available": ["fresh PostgreSQL 15 migration integration"],
+    "not_claimed": ["deployed HTTP API E2E", "browser E2E against a deployed stack", "production PostgreSQL result", "production performance SLA", "real learner behavior"]
+  },
+  "downstream": {
+    "stage25": ["security and abuse testing", "raw upload scanning and retention"],
+    "stage26": ["deployed HTTP/browser E2E", "target PostgreSQL execution", "object storage and worker topology"],
+    "stage27": ["production performance SLA", "empirical model calibration"]
+  }
+}

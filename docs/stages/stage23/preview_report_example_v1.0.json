@@ -1,0 +1,40 @@
+{
+  "example_only": true,
+  "batch_id": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+  "schema_version": "question-import-schema-v0.9.0",
+  "pipeline_version": "stage23-import-pipeline-v1.0.0",
+  "raw_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+  "row_count": 2,
+  "valid_count": 1,
+  "invalid_count": 1,
+  "duplicate_count": 0,
+  "semantic_review_count": 0,
+  "committable": false,
+  "preview_sha256": "2222222222222222222222222222222222222222222222222222222222222222",
+  "confirmation_token": "REDACTED_EXAMPLE_TOKEN_NOT_VALID_FOR_COMMIT_1234",
+  "errors": [
+    {
+      "row_number": 128,
+      "field": "difficulty",
+      "code": "ENUM_INVALID",
+      "message": "Use EASY, MEDIUM, HARD or VERY_HARD; typos are rejected.",
+      "severity": "ERROR"
+    }
+  ],
+  "rows": [
+    {
+      "row_number": 127,
+      "external_id": "L01-Q127",
+      "disposition": "VALID",
+      "fingerprint_sha256": "3333333333333333333333333333333333333333333333333333333333333333",
+      "duplicate_classification": "UNIQUE"
+    },
+    {
+      "row_number": 128,
+      "external_id": "L01-Q128",
+      "disposition": "INVALID",
+      "fingerprint_sha256": "4444444444444444444444444444444444444444444444444444444444444444",
+      "duplicate_classification": "UNIQUE"
+    }
+  ]
+}

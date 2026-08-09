@@ -1,0 +1,52 @@
+{
+  "fixture_version": "stage24-reference-fixture-v1.0.0",
+  "classification": "DETERMINISTIC_SYNTHETIC_NON_PRODUCTION",
+  "now": "2026-08-09T12:00:00Z",
+  "user_id": "11111111-1111-4111-8111-111111111111",
+  "other_user_id": "22222222-2222-4222-8222-222222222222",
+  "question_snapshot": {
+    "test_question_id": "60000000-0000-4000-8000-000000000001",
+    "position": 1,
+    "question_revision_id": "10000000-0000-4000-8000-000000000001",
+    "question_uid": "20000000-0000-4000-8000-000000000001",
+    "lesson_id": "eb643021-d5f2-4093-8fd2-835a2199ef3f",
+    "subtopic_id": "cfdb9cd8-73ac-48d3-8b53-3434fe851607",
+    "stem": "Je ___ à Vancouver.",
+    "stem_locale": "fr-FR",
+    "question_type": "CLOZE_SINGLE",
+    "difficulty": "MEDIUM",
+    "correct_option_id": "50000000-0000-4000-8000-000000000001",
+    "full_explanation": "Avec je, on emploie suis.",
+    "question_status": "PUBLISHED",
+    "serving_enabled": true,
+    "is_current_revision": true,
+    "blocked_not_scorable": false,
+    "compatibility_status": "ALLOWED",
+    "internal_answer_key_metadata": {"fixture_only": true},
+    "options": [
+      {"id": "50000000-0000-4000-8000-000000000001", "position": "A", "text": "suis", "explanation": "Correct : je suis.", "misconception_id": null},
+      {"id": "50000000-0000-4000-8000-000000000002", "position": "B", "text": "es", "explanation": "es accompagne tu.", "misconception_id": "70000000-0000-4000-8000-000000000002"},
+      {"id": "50000000-0000-4000-8000-000000000003", "position": "C", "text": "est", "explanation": "est accompagne il, elle ou on.", "misconception_id": "70000000-0000-4000-8000-000000000003"},
+      {"id": "50000000-0000-4000-8000-000000000004", "position": "D", "text": "sommes", "explanation": "sommes accompagne nous.", "misconception_id": "70000000-0000-4000-8000-000000000004"}
+    ]
+  },
+  "fixed_mastery_wrong_medium": {
+    "evidence_score_pct": 0.0,
+    "mastery_score_pct": 46.501943,
+    "confidence": 0.069961137,
+    "evidence_count": 1,
+    "effective_evidence": 1.0,
+    "stability": 0.5,
+    "coverage_ratio": 1.0,
+    "mastery_band": "UNCERTAIN",
+    "model_version": "mastery-evidence-v0.9.0"
+  },
+  "fixed_srs_wrong_first_answer": {
+    "learning_state": "LEARNING",
+    "interval_days": 1.0,
+    "due_at": "2026-08-10T12:00:00Z",
+    "success_streak": 0,
+    "lapse_count": 0,
+    "scheduler_version": "spaced-review-v0.9.0"
+  }
+}

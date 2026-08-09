@@ -1,0 +1,40 @@
+{
+  "package": "grammar-mastery-stage23-v1.0",
+  "stage": 23,
+  "version": "stage23-import-pipeline-v1.0.0",
+  "created_at_utc": "2026-08-09",
+  "owner": "Iman",
+  "base": {
+    "github_main_commit": "f82e7d68b3f48ac184f07f2328107808a8fa6ad8",
+    "stage22_only_package_sha256": "287a1e9600beb3a6cade0ca3d0508664881ffc01990c15eb903da07a53b8a32e"
+  },
+  "scope": "STAGE23_ONLY_OVERLAY",
+  "content_file_count": 24,
+  "manifest_self_hash_excluded": true,
+  "files": [
+    {"path": "README.md", "sha256": "65f6a546ce7bfbfcda33160c60a1ef0e66b10fa0f71113431aa2bbda43fe8e2f"},
+    {"path": "STATUS.md", "sha256": "c9920ab8e60e96b6228814eeb24139bb4a61a3f306b582f056b3257a051e3dc3"},
+    {"path": "api/stage23_import_api_spec_v1.0.yaml", "sha256": "64f676c708e2061e1dc500100d127028d7e8533972f4ff58127f6ceeb452af3c"},
+    {"path": "config/stage23_import_pipeline_contract_v1.0.json", "sha256": "567e36abc2fc8cb3865cfcbc0a79592f6115963dddc1593be3d637e28ae10119"},
+    {"path": "database/postgres/007_stage23_import_pipeline_v1.0.sql", "sha256": "7b0dd2a1b7f91dd436d0690f801e8b4f6d854ca496067c2f15dcfd76b36cc8f3"},
+    {"path": "docs/stages/stage23/PACKAGE_APPLY.md", "sha256": "52526ba888f832c4cb9cd8d202cc60ac3612d180f1e40ceb1ca49c1539d2da0c"},
+    {"path": "docs/stages/stage23/README.md", "sha256": "7081c2bcef63781eecd9ff7648a397d4cfeb70266cdc1ded1b7b9c1e91ee80dc"},
+    {"path": "docs/stages/stage23/batch_audit_v1.0.md", "sha256": "0e2d39d439a151397a65b7ba58236fb833486f8a2104d4829a44fe3fa98b52a9"},
+    {"path": "docs/stages/stage23/import_schema_v1.0.md", "sha256": "761e7e394f0fcaa088c5da5b63bf75d56890596199979731d87e444d08ccc20e"},
+    {"path": "docs/stages/stage23/needs_decision_v1.0.csv", "sha256": "f72ee5aa74cb5d3386feb4f97d2df6768ca5eb91779367c3d429b8ec6c739350"},
+    {"path": "docs/stages/stage23/preview_report_example_v1.0.json", "sha256": "d7324c34c2eaf0a985dd8e88da9e40b5c7d7900e3a7ddc50170b5d897137cce8"},
+    {"path": "docs/stages/stage23/review_report_v1.0.md", "sha256": "5be57fc8652c1761774e9ff19562ac52b01447de997e0b0e81cd606f7a5bf072"},
+    {"path": "docs/stages/stage23/rollback_strategy_v1.0.md", "sha256": "14797612897b9be885df5e2f22a81b80aebc5b7f0ab0474be2d845024fd8e2b2"},
+    {"path": "docs/stages/stage23/validation_v1.0.json", "sha256": "c8db460605749deab546e60332f43ed3058f4af999ec516a3f6ae2ae0d9463cf"},
+    {"path": "requirements.txt", "sha256": "7ceb9c81d8453541f81747e1249d014a68865f23573bf8f0fd0f6f41cf70e9ee"},
+    {"path": "schemas/stage23_import_batch_v1.0.json", "sha256": "0a4df897f38252a730113d938d91321a74682c7bf38f3920bb3ee4cd9bfa2708"},
+    {"path": "schemas/stage23_preview_report_v1.0.json", "sha256": "63aca42cc7bfb42f506d5035cb5823772289c40ef8d681653de8cc1572c892f4"},
+    {"path": "src/backend/import_pipeline/__init__.py", "sha256": "579921fe3cfd8bf8b275e0922efb8e542aded3bee53a5c38c476c01e3a80197a"},
+    {"path": "src/backend/import_pipeline/dedupe.py", "sha256": "50ab3d6eee4b805650fbb7acb4c072d886afc5fc50c4548d63a3d372b32f8ddb"},
+    {"path": "src/backend/import_pipeline/normalization.py", "sha256": "734b146718e1995ca1274335fc3053396601b947ba4e383022ee088f23e55f06"},
+    {"path": "src/backend/import_pipeline/pipeline.py", "sha256": "d1a4ad93cb5d32f9e072655b56af4281d22dad87a4741fb5bc07225b9236a39c"},
+    {"path": "src/backend/import_pipeline/validator.py", "sha256": "333e301bc9c673f2c7955791d7d47085146fd8068fc691942972c495b676f1c9"},
+    {"path": "tests/test_stage23_import_pipeline.py", "sha256": "b9cede9da58d3e167defd460761af72f5811892e836a8f6cb443be1bb4901d3d"},
+    {"path": "tools/validate_stage23.py", "sha256": "69ffca341d54dd097cb66f75335d8aebcba942197f221c46f1106eb42adc873a"}
+  ]
+}

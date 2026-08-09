@@ -1,0 +1,26 @@
+{
+  "plan_version": "stage24-migration-plan-v1.0.0",
+  "database": "PostgreSQL 15+",
+  "fresh_schema_sequence": [
+    "database/postgres/001_stage12_schema_v0.9.sql",
+    "database/postgres/002_stage15_mastery_patch_v0.9.sql",
+    "database/postgres/003_stage16_error_review_v0.9.sql",
+    "database/postgres/004_stage17_spaced_repetition_v0.9.sql",
+    "database/postgres/005_stage20_audit_log_migration_v1.0.sql",
+    "database/postgres/006_stage21_api_runtime_v1.0.sql",
+    "database/postgres/007_stage23_import_pipeline_v1.1.sql"
+  ],
+  "superseded_without_live_execution": [
+    {
+      "path": "database/postgres/007_stage23_import_pipeline_v1.0.sql",
+      "reason": "It redefines the Stage12 import_batches table with incompatible columns and states, then indexes missing columns."
+    }
+  ],
+  "required_postconditions": {
+    "legacy_table_preserved": "import_batches",
+    "stage23_tables": ["question_import_batches", "question_import_batch_rows", "question_import_batch_events"],
+    "append_only_trigger": "trg_s23_question_import_events_append_only",
+    "transition_trigger": "trg_s23_question_import_batch_transition"
+  },
+  "live_execution_status": "CI_PROFILE_PROVIDED_TARGET_EXECUTION_PENDING"
+}

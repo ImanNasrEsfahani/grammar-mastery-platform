@@ -1,0 +1,57 @@
+{
+  "stage": 23,
+  "contract_version": "stage23-import-pipeline-v1.0.0",
+  "validated_at_utc": "2026-08-09",
+  "status": "PASS_PENDING_OWNER_ACCEPTANCE",
+  "owner": "Iman",
+  "source": {
+    "github_repository": "ImanNasrEsfahani/grammar-mastery-platform",
+    "main_commit": "f82e7d68b3f48ac184f07f2328107808a8fa6ad8",
+    "github_main_scope": "Stages 1-21",
+    "github_roadmap_md": "NOT_PRESENT",
+    "github_agents_md": "NOT_PRESENT",
+    "roadmap_pdf_sha256": "8a561160d698ffb811453d20b9c610fbb644c7593cca10b3bca6728c7969e6a7",
+    "stage22_only_package_sha256": "287a1e9600beb3a6cade0ca3d0508664881ffc01990c15eb903da07a53b8a32e"
+  },
+  "checks": [
+    {"name": "baseline_data_validation", "command": "python tools/validate_baseline.py", "result": "PASS"},
+    {"name": "stage21_validator", "command": "python tools/validate_stage21.py", "result": "PASS", "operations": 34, "paths": 33},
+    {"name": "stage22_validator", "command": "python tools/validate_stage22.py", "result": "PASS", "passed": 12, "failed": 0},
+    {"name": "stage23_validator", "command": "python tools/validate_stage23.py", "result": "PASS", "passed": 20, "failed": 0},
+    {"name": "integrated_python_tests", "command": "python -m unittest discover -s tests -v", "result": "PASS", "passed": 162, "failed": 0},
+    {"name": "json_syntax", "command": "parse all Stage23 JSON files", "result": "PASS"},
+    {"name": "openapi_yaml", "command": "parse api/stage23_import_api_spec_v1.0.yaml", "result": "PASS", "paths": 6},
+    {"name": "python_compile", "command": "python -m py_compile src/backend/import_pipeline/*.py", "result": "PASS"},
+    {"name": "postgresql_static_safety", "command": "Stage23 validator SQL assertions", "result": "PASS", "tables": 3},
+    {"name": "stage23_package_scope_and_hashes", "command": "verify Stage23 package manifest and ZIP", "result": "PASS"}
+  ],
+  "roadmap_outputs": {
+    "import_schema": "PASS",
+    "validator": "PASS",
+    "preview_report": "PASS",
+    "batch_audit": "PASS",
+    "rollback_strategy": "PASS",
+    "valid_invalid_examples": "PASS",
+    "downstream_dependencies": "RECORDED"
+  },
+  "behavior_evidence": {
+    "csv_and_xlsx": "PASS",
+    "row_and_field_errors": "PASS",
+    "no_typo_autocorrection": "PASS",
+    "lookup_fail_closed": "PASS",
+    "exact_fingerprint_semantic_dedupe": "PASS",
+    "preview_non_mutating": "PASS",
+    "token_rotation_and_stale_rejection": "PASS",
+    "atomic_draft_only_commit": "PASS",
+    "raw_hash_and_append_only_audit": "PASS",
+    "safe_rollback_boundary": "PASS"
+  },
+  "known_dependencies": [
+    {"code": "S23_B01_LIVE_POSTGRESQL_PATCH", "status": "STAGE24_26_OPERATIONAL_EVIDENCE", "impact": "Patch 007 has not been executed on the eventual target PostgreSQL instance."},
+    {"code": "S23_D01_RAW_FILE_RETENTION", "status": "DEFERRED_TO_STAGE25", "impact": "Reference policy retains evidence; production duration/privacy rules remain open."},
+    {"code": "S23_D02_OBJECT_STORAGE_PROVIDER", "status": "DEFERRED_TO_STAGE26", "impact": "Storage adapter uses an opaque object key and hash."},
+    {"code": "S23_D03_SEMANTIC_THRESHOLD", "status": "DEFERRED_TO_STAGE27", "impact": "Current semantic signature only flags human review."},
+    {"code": "S13_B01_NO_PUBLISHED_INVENTORY", "status": "EXPECTED_RUNTIME_BLOCK", "impact": "Imports create Drafts; independent Stage11 review is still required before learner tests can run."}
+  ],
+  "owner_acceptance": "PENDING_IMAN_REVIEW"
+}

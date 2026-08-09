@@ -1,0 +1,89 @@
+{
+  "stage": 23,
+  "name": "Question Bank Import Pipeline",
+  "contract_version": "stage23-import-pipeline-v1.0.0",
+  "prepared_at_utc": "2026-08-09",
+  "release_status": "REFERENCE_IMPLEMENTATION_VALIDATED_PENDING_OWNER_ACCEPTANCE",
+  "governance": {
+    "content_owner": "Iman",
+    "technical_owner": "Iman",
+    "change_authority": "Iman"
+  },
+  "input": {
+    "formats": ["CSV_UTF8", "XLSX"],
+    "question_row_schema": "question-import-schema-v0.9.0",
+    "column_count": 46,
+    "max_file_bytes_reference": 20971520,
+    "max_rows_reference": 1000,
+    "status": "DRAFT_ONLY"
+  },
+  "phases": [
+    {"order": 1, "code": "UPLOAD", "effect": "retain raw bytes/object plus SHA-256 before parsing"},
+    {"order": 2, "code": "PARSE", "effect": "read exact ordered headers and declared schema version"},
+    {"order": 3, "code": "NORMALIZE", "effect": "NFC, trim, line endings, known enum casing and stable pipe lists; no typo correction"},
+    {"order": 4, "code": "VALIDATE", "effect": "required, type, enum, version, cross-field and fail-closed lookup validation"},
+    {"order": 5, "code": "DEDUPE", "effect": "Stage10 fingerprint plus exact and conservative semantic-review signatures"},
+    {"order": 6, "code": "PREVIEW", "effect": "non-mutating row/field report and preview-bound confirmation token"},
+    {"order": 7, "code": "COMMIT", "effect": "single transaction; all rows valid; DRAFT only; stale preview rejected"},
+    {"order": 8, "code": "POST_CHECK", "effect": "count, DRAFT-only, FK and audit correlation checks inside the transaction"},
+    {"order": 9, "code": "ROLLBACK", "effect": "atomic removal only for untouched unreferenced DRAFT imports; otherwise dedicated retirement workflow"}
+  ],
+  "batch_states": ["UPLOADED", "PARSED", "PREVIEW_READY", "COMMITTED", "FAILED", "ROLLED_BACK"],
+  "row_dispositions": ["VALID", "INVALID", "DUPLICATE", "SEMANTIC_REVIEW", "COMMITTED", "ROLLED_BACK"],
+  "lookup_policy": {
+    "entities": ["lesson", "subtopic", "question_type", "tag", "misconception", "actor"],
+    "rule": "Every identifier/code pair must resolve to the same active canonical record; unknown values are rejected and never created."
+  },
+  "deduplication": {
+    "exact": "normalized Stage10 SHA-256 fingerprint, checked in-batch and against DB",
+    "fingerprint_fields": ["stem", "lesson_id", "subtopic_id", "question_type", "correct_option_text", "sorted_option_texts"],
+    "semantic": "conservative accent/punctuation/spacing-insensitive signature; flag only, never auto-merge",
+    "semantic_decisions": ["ACCEPT_DISTINCT", "REJECT_DUPLICATE"],
+    "decision_requires": ["actor_id", "reason", "audit_event", "new_confirmation_token"]
+  },
+  "commit_policy": {
+    "partial_commit": "FORBIDDEN",
+    "invalid_rows": "BLOCK_BATCH",
+    "unresolved_semantic_rows": "BLOCK_BATCH",
+    "confirmation": "token hash and preview SHA-256 bind the exact reviewed payload",
+    "idempotency": "Stage21 Idempotency-Key remains required at the HTTP boundary",
+    "question_status": "DRAFT"
+  },
+  "audit": {
+    "raw_file": "retained with object key, size, content type and SHA-256",
+    "events": ["UPLOADED", "PARSED", "PREVIEWED", "SEMANTIC_REVIEW_RESOLVED", "COMMITTED", "POST_CHECKED", "FAILED", "ROLLED_BACK"],
+    "history": "append-only and correlated to Stage12 audit_logs plus Stage20 admin_audit_events",
+    "secrets": "confirmation token plaintext is returned once and never persisted; only SHA-256 is stored"
+  },
+  "rollback": {
+    "automatic_preconditions": ["batch is COMMITTED", "every linked question is DRAFT", "no later revision, review, test snapshot, user evidence, metric, report, publish or serving reference exists"],
+    "automatic_action": "delete only imported content rows in one transaction while retaining raw file, normalized rows, preview hashes and audit events",
+    "blocked_action": "use Stage11/20 retirement workflow; never delete historical evidence"
+  },
+  "valid_example": {
+    "difficulty": "MEDIUM",
+    "lesson_resolution": "lesson_id and L01 resolve to the same active lesson",
+    "result": "VALID"
+  },
+  "invalid_example": {
+    "difficulty": "meduim",
+    "result": "ENUM_INVALID on the exact row and field; no new enum/category is created"
+  },
+  "risk_controls": [
+    {"risk": "POLLUTED_DATA", "preventive": "frozen schema, fail-closed lookups and atomic commit", "detection": "row error metrics, post-check and audit alerts"},
+    {"risk": "WIDESPREAD_DUPLICATES", "preventive": "exact/fingerprint/semantic layers", "detection": "duplicate and semantic-review ratios per batch"},
+    {"risk": "WRONG_LESSON_MAPPING", "preventive": "ID/code pair and subtopic ownership checks", "detection": "mapping mismatch counts and sampled preview review"},
+    {"risk": "PARTIAL_IMPORT", "preventive": "single transaction and all-or-none policy", "detection": "committed count/FK/audit post-check before transaction success"}
+  ],
+  "downstream": {
+    "stage24": ["PostgreSQL integration, API consumer, malformed-file, concurrency, rollback, property and performance tests"],
+    "stage25": ["upload malware/content scanning, authorization abuse tests, raw-file retention and sensitive-data policy"],
+    "stage26": ["object storage, worker topology, backup/restore and operational alerting"],
+    "stage27": ["empirical duplicate thresholds and batch-quality calibration"]
+  },
+  "open_decisions": [
+    {"code": "S23_D01_RAW_FILE_RETENTION", "status": "DEFERRED_TO_STAGE25", "safe_boundary": "retain raw input and reports; no automated deletion"},
+    {"code": "S23_D02_OBJECT_STORAGE_PROVIDER", "status": "DEFERRED_TO_STAGE26", "safe_boundary": "repository stores an opaque raw_object_key plus verified hash"},
+    {"code": "S23_D03_SEMANTIC_THRESHOLD", "status": "DEFERRED_TO_STAGE27", "safe_boundary": "deterministic conservative signature only flags human review and never auto-merges"}
+  ]
+}

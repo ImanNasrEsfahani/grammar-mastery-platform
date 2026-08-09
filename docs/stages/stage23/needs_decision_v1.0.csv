@@ -1,0 +1,4 @@
+decision_code,topic,status,owner,safe_current_boundary,target_stage
+S23_D01_RAW_FILE_RETENTION,Production retention period for raw files and reports,DEFERRED_TO_STAGE25,Iman,Retain evidence and perform no automated deletion,25
+S23_D02_OBJECT_STORAGE_PROVIDER,Production raw-file object storage provider,DEFERRED_TO_STAGE26,Iman,Use opaque raw_object_key plus SHA-256 without provider-specific logic,26
+S23_D03_SEMANTIC_THRESHOLD,Empirical semantic duplicate threshold/model,DEFERRED_TO_STAGE27,Iman,Deterministic conservative signature flags review and never auto-merges,27

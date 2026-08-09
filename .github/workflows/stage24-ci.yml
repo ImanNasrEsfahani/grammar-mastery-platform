@@ -1,0 +1,76 @@
+name: Stage 24 multi-layer test gate
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: stage24-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  python-reference:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: python -m pip install -r requirements-dev.txt
+      - run: python tools/validate_baseline.py
+      - run: python tools/validate_stage21.py
+      - run: python tools/validate_stage22.py
+      - run: python tools/validate_stage23.py
+      - run: python tools/validate_stage24.py
+      - run: python -m unittest discover -s tests -v
+      - run: python tools/run_stage24_performance.py --check
+
+  frontend:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: npm ci
+      - run: npm run validate
+
+  postgresql-fresh-schema:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: stage24
+          POSTGRES_PASSWORD: stage24_ci_only
+          POSTGRES_DB: grammar_mastery_stage24
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U stage24 -d grammar_mastery_stage24"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      GMP_STAGE24_POSTGRES_DSN: postgresql://stage24:stage24_ci_only@127.0.0.1:5432/grammar_mastery_stage24
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: python -m pip install -r requirements-dev.txt
+      - run: python -m unittest discover -s tests -p 'test_stage24_postgres.py' -v
