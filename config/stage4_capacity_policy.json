@@ -1,0 +1,15 @@
+{
+  "semantic_version": "capacity-weight-ratio-v0.9.0",
+  "base_min": 100,
+  "min_active_weight_pct": 0.94,
+  "formula": "target_full=ROUND_HALF_UP(BaseMin*weight/min_active_weight)",
+  "expanded_fraction": 0.5,
+  "mvp_fraction": 0.25,
+  "totals": {
+    "full": 10636,
+    "expanded": 5331,
+    "mvp": 2666
+  },
+  "difficulty_distribution_owner": "Stage9",
+  "question_type_allocation_owner": "Stage6"
+}

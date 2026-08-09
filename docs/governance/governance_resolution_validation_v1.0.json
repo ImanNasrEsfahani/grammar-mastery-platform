@@ -1,0 +1,51 @@
+{
+  "run_at_utc": "2026-08-08T22:35:00+00:00",
+  "status": "PASS",
+  "checks": [
+    {
+      "code": "G01",
+      "result": "PASS",
+      "detail": "Content Owner resolved to Iman"
+    },
+    {
+      "code": "G02",
+      "result": "PASS",
+      "detail": "Technical Reviewer/Owner resolved to Iman"
+    },
+    {
+      "code": "G03",
+      "result": "PASS",
+      "detail": "Authoritative source frozen; SHA256=b6162aacc084cd78ec46f43972fdc68f9330576ea909f4a51767c3333c7e74ca"
+    },
+    {
+      "code": "G04",
+      "result": "PASS",
+      "detail": "Persian label policy resolved under owner delegation"
+    },
+    {
+      "code": "G05",
+      "result": "PASS",
+      "detail": "8 Stage1 structural/reference/assessment sections confirmed not lessons"
+    },
+    {
+      "code": "G06",
+      "result": "PASS",
+      "detail": "Stage1 stable lesson/subtopic IDs unchanged"
+    },
+    {
+      "code": "G07",
+      "result": "PASS",
+      "detail": "Stage2 category/subcategory/tag IDs unchanged"
+    },
+    {
+      "code": "G08",
+      "result": "PASS",
+      "detail": "Historical v0.9 artifacts preserved; v1.0 files emitted separately"
+    }
+  ],
+  "remaining_blockers_that_are_not_governance": [
+    "Stage11 independent reviewer for real published questions",
+    "Stage13 zero published inventory for runtime generation",
+    "Stage27 live user data for empirical calibration"
+  ]
+}

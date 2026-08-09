@@ -1,0 +1,123 @@
+{
+  "semantic_versions": {
+    "catalogue": "question-type-catalogue-v0.9.0",
+    "compatibility": "question-type-compatibility-v0.9.0",
+    "allocation": "question-type-allocation-v0.9.0",
+    "ui": "question-type-ui-contract-v0.9.0"
+  },
+  "response_mode": "SINGLE_CHOICE_4",
+  "cognitive_mix": {
+    "RECALL": 0.2,
+    "APPLICATION": 0.4,
+    "DISCRIMINATION": 0.4
+  },
+  "compatibility_factors": {
+    "PREFERRED": 1.0,
+    "ALLOWED": 0.55,
+    "CONDITIONAL": 0.25,
+    "NOT_SUITABLE": 0.0
+  },
+  "base_type_shares": {
+    "CLOZE_SINGLE": 0.1,
+    "CLOZE_CONTEXT": 0.11,
+    "CORRECT_SENTENCE": 0.09,
+    "INCORRECT_SENTENCE": 0.07,
+    "ERROR_LOCATION": 0.05,
+    "CONJUGATION": 0.06,
+    "TENSE_CHOICE": 0.06,
+    "PRONOUN_CHOICE": 0.05,
+    "PREPOSITION_CHOICE": 0.05,
+    "REWRITE_EQUIV": 0.08,
+    "FR_TO_FA": 0.04,
+    "FA_TO_FR": 0.04,
+    "DIALOGUE_COMPLETE": 0.08,
+    "REGISTER_CHOICE": 0.03,
+    "CONTRAST_RULES": 0.09
+  },
+  "question_types": [
+    {
+      "code": "CLOZE_SINGLE",
+      "name_fa": "جای خالی تک‌قاعده",
+      "cognitive_level": "RECALL"
+    },
+    {
+      "code": "CLOZE_CONTEXT",
+      "name_fa": "جای خالی در context",
+      "cognitive_level": "APPLICATION"
+    },
+    {
+      "code": "CORRECT_SENTENCE",
+      "name_fa": "انتخاب جمله صحیح",
+      "cognitive_level": "DISCRIMINATION"
+    },
+    {
+      "code": "INCORRECT_SENTENCE",
+      "name_fa": "یافتن جمله غلط",
+      "cognitive_level": "DISCRIMINATION"
+    },
+    {
+      "code": "ERROR_LOCATION",
+      "name_fa": "تشخیص نوع/محل خطا",
+      "cognitive_level": "DISCRIMINATION"
+    },
+    {
+      "code": "CONJUGATION",
+      "name_fa": "صرف فعل",
+      "cognitive_level": "RECALL"
+    },
+    {
+      "code": "TENSE_CHOICE",
+      "name_fa": "انتخاب زمان",
+      "cognitive_level": "APPLICATION"
+    },
+    {
+      "code": "PRONOUN_CHOICE",
+      "name_fa": "انتخاب ضمیر",
+      "cognitive_level": "APPLICATION"
+    },
+    {
+      "code": "PREPOSITION_CHOICE",
+      "name_fa": "انتخاب حرف اضافه",
+      "cognitive_level": "APPLICATION"
+    },
+    {
+      "code": "REWRITE_EQUIV",
+      "name_fa": "بازنویسی هم‌معنی",
+      "cognitive_level": "DISCRIMINATION"
+    },
+    {
+      "code": "FR_TO_FA",
+      "name_fa": "فرانسوی به فارسی",
+      "cognitive_level": "RECALL"
+    },
+    {
+      "code": "FA_TO_FR",
+      "name_fa": "فارسی به فرانسوی",
+      "cognitive_level": "APPLICATION"
+    },
+    {
+      "code": "DIALOGUE_COMPLETE",
+      "name_fa": "تکمیل مکالمه",
+      "cognitive_level": "APPLICATION"
+    },
+    {
+      "code": "REGISTER_CHOICE",
+      "name_fa": "سطح رسمی/محاوره‌ای",
+      "cognitive_level": "DISCRIMINATION"
+    },
+    {
+      "code": "CONTRAST_RULES",
+      "name_fa": "تمایز دو قاعده نزدیک",
+      "cognitive_level": "DISCRIMINATION"
+    }
+  ],
+  "validated_counts": {
+    "lessons": 52,
+    "subtopics": 304,
+    "lesson_compatibility_rows": 780,
+    "subtopic_compatibility_rows": 4560,
+    "allocation_rows": 780,
+    "examples": 30
+  },
+  "matrix_note": "Detailed historical compatibility matrix remains governed by question-type-compatibility-v0.9.0; this baseline stores the policy and canonical upstream data. No heuristic remapping is invented during repository consolidation."
+}

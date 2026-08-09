@@ -1,0 +1,22 @@
+{
+  "semantic_versions": {
+    "schema": "question-import-schema-v0.9.0",
+    "data_dictionary": "question-data-dictionary-v0.9.0",
+    "validator": "question-import-validator-v0.9.0",
+    "fingerprint": "question-fingerprint-v0.9.0",
+    "db_mapping": "question-import-db-mapping-v0.9.0",
+    "media": "question-media-contract-v0.9.0"
+  },
+  "import_columns": 46,
+  "data_dictionary_fields": 47,
+  "validation_rules": 23,
+  "reference_tests": "4/4 PASS",
+  "governance": "RESOLVED",
+  "fingerprint": "SHA-256(normalized stem + stable links + type + correct text + sorted option texts); option-order resistant",
+  "boundary": {
+    "stage11": "QA transitions/publication",
+    "stage12": "physical relational DB",
+    "stage23": "bulk import preview/dedup/rollback",
+    "stage27": "empirical calibration"
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "manifest": {
+    "project": "Grammar Mastery Platform",
+    "document": "Project Governance & Upstream Blocker Resolution",
+    "version": "governance-v1.0.0",
+    "effective_at": "2026-08-08T15:35:00-07:00",
+    "recorded_at_utc": "2026-08-08T22:35:00+00:00",
+    "status": "ACTIVE_CANONICAL",
+    "basis": "Explicit project-owner decisions supplied by Iman in project conversation."
+  },
+  "decisions": [
+    {
+      "decision_code": "D01_CONTENT_OWNER",
+      "upstream_alias": "UPSTREAM_D01_CONTENT_OWNER",
+      "status": "RESOLVED",
+      "value": "Iman",
+      "role": "Content Owner",
+      "authority": "Final owner of lesson/subtopic/taxonomy/content-policy decisions and revisions.",
+      "resolved_by": "Iman",
+      "resolved_at": "2026-08-08T15:35:00-07:00"
+    },
+    {
+      "decision_code": "D02_TECH_REVIEWER",
+      "upstream_alias": "UPSTREAM_D02_TECH_REVIEWER",
+      "status": "RESOLVED",
+      "value": "Iman",
+      "role": "Technical Reviewer / Technical Owner",
+      "authority": "Final technical owner for stable IDs, schema, API/import contracts, versioning and architecture sign-off.",
+      "resolved_by": "Iman",
+      "resolved_at": "2026-08-08T15:35:00-07:00",
+      "important_boundary": "This role assignment does not waive Stage11 independent human-review requirements for real question APPROVED/PUBLISHED transitions when the same actor authored/generated the question."
+    },
+    {
+      "decision_code": "D03_SOURCE_EDITION",
+      "upstream_alias": "UPSTREAM_D03_SOURCE_EDITION",
+      "status": "RESOLVED_FROZEN",
+      "value": {
+        "file_name": "grammaire progressive intermédiaire livre @TefTeacher.pdf",
+        "title": "Grammaire Progressive du Français — Niveau intermédiaire — 3e édition",
+        "sha256": "b6162aacc084cd78ec46f43972fdc68f9330576ea909f4a51767c3333c7e74ca",
+        "authoritative": true
+      },
+      "resolved_by": "Iman",
+      "resolved_at": "2026-08-08T15:35:00-07:00"
+    },
+    {
+      "decision_code": "D04_PERSIAN_DISPLAY_TITLES",
+      "status": "RESOLVED",
+      "value": "ChatGPT prepares/reviews Persian display labels and explanations under Content Owner authorization; current project Persian wording may be treated as approved initial canonical wording unless later revised through versioned review.",
+      "resolved_by": "Iman",
+      "resolved_at": "2026-08-08T15:35:00-07:00"
+    },
+    {
+      "decision_code": "D05_NON_LESSON_POLICY",
+      "status": "RESOLVED",
+      "value": "BILAN, Conjugaisons, Activités communicatives, Test d’évaluation, Index and analogous structural/reference/assessment sections are not lessons. They remain non-lesson source/reference/assessment entities.",
+      "resolved_by": "Iman",
+      "resolved_at": "2026-08-08T15:35:00-07:00"
+    },
+    {
+      "decision_code": "D06_TAXONOMY_FAMILY",
+      "status": "RESOLVED_PREVIOUSLY_STAGE2",
+      "value": "Use Stage2 canonical taxonomy: 11 top-level categories + 27 subcategories + controlled tags. Stage1 grammar_family_draft is historical only.",
+      "resolved_by": "Stage2 design + owner sign-off",
+      "resolved_at": "2026-08-08T15:35:00-07:00"
+    }
+  ],
+  "source_fingerprints": {
+    "authoritative_book_sha256": "b6162aacc084cd78ec46f43972fdc68f9330576ea909f4a51767c3333c7e74ca",
+    "project_guide_sha256": "8a561160d698ffb811453d20b9c610fbb644c7593cca10b3bca6728c7969e6a7",
+    "project_guide_version": "1.0"
+  },
+  "downstream_resolution_policy": {
+    "applies_to_stages": "1..27",
+    "resolved_upstream_blockers": [
+      "UPSTREAM_D01_CONTENT_OWNER",
+      "UPSTREAM_D02_TECH_REVIEWER",
+      "UPSTREAM_D03_SOURCE_EDITION"
+    ],
+    "rule": "Any downstream package whose only formal-readiness blockers are these three upstream codes may treat those blockers as RESOLVED by governance-v1.0.0. Stage-specific blockers remain in force.",
+    "historical_artifacts": "Existing v0.9 files are preserved as historical review snapshots and are not overwritten."
+  },
+  "remaining_non_governance_dependencies": [
+    {
+      "code": "QA_INDEPENDENT_REVIEW_REAL_CONTENT",
+      "stage": 11,
+      "status": "FUTURE_OPERATIONAL_DEPENDENCY",
+      "detail": "Real questions cannot become APPROVED/PUBLISHED without a reviewer independent from the author/generator, per the Stage11 workflow. This does not block design stages."
+    },
+    {
+      "code": "POSTGRESQL_TARGET_EXECUTION",
+      "stage": 12,
+      "status": "FUTURE_DEPLOYMENT_VERIFICATION",
+      "detail": "Canonical PostgreSQL DDL should be executed against the real target environment before production deployment. SQLite/reference validation remains valid for design."
+    },
+    {
+      "code": "S13_B01_NO_PUBLISHED_INVENTORY",
+      "stage": 13,
+      "status": "RUNTIME_BLOCKER_ONLY",
+      "detail": "Static generator design can be formally accepted, but real production test generation still needs PUBLISHED serving inventory."
+    },
+    {
+      "code": "LIVE_USER_CALIBRATION",
+      "stage": 27,
+      "status": "POST_DEPLOY_DEPENDENCY",
+      "detail": "Empirical misconception frequency, observed difficulty and calibration require real usage data."
+    }
+  ]
+}

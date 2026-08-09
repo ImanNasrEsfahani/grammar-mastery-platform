@@ -1,0 +1,36 @@
+{
+  "semantic_versions": {
+    "generator": "test-generator-v0.9.0",
+    "config_schema": "test-config-schema-v0.9.0",
+    "quota": "test-quota-policy-v0.9.0",
+    "fallback": "generator-fallback-v0.9.0",
+    "seed": "generator-seed-v0.9.0",
+    "snapshot": "test-snapshot-v0.9.0",
+    "eligibility": "serving-eligibility-v0.9.0"
+  },
+  "release_status": "ACCEPTED_REFERENCE_GOVERNANCE_RESOLVED",
+  "runtime_status": "BLOCKED_EXPECTED_ZERO_PUBLISHED_INVENTORY",
+  "hard_gates": [
+    "current exact revision",
+    "PUBLISHED",
+    "serving enabled",
+    "in resolved scope",
+    "Stage6 compatible / guarded conditional",
+    "not BLOCKED_NOT_SCORABLE",
+    "no duplicate logical question_uid in a test",
+    "repetition policy before ranking"
+  ],
+  "quota_algorithm": "largest remainder -> exact lesson×difficulty matrix -> type quotas -> exact strata before randomization",
+  "fallback_default": "STRICT_FAIL",
+  "fallback_tiers": [
+    "F1_TYPE opt-in",
+    "F2_DIFFICULTY adjacent opt-in",
+    "F3_RECENT opt-in"
+  ],
+  "seed_streams": [
+    "selection",
+    "question_order",
+    "option_order:<question_revision_id>"
+  ],
+  "reference_tests": "17/17 PASS"
+}

@@ -1,0 +1,25 @@
+{
+  "semantic_version": "question-qa-workflow-v0.9.0",
+  "release_status": "ACCEPTED_REFERENCE_GOVERNANCE_RESOLVED",
+  "core_contract": "Machine validation -> independent human review -> APPROVED -> explicit publish batch -> PUBLISHED",
+  "logical_states": [
+    "DRAFT",
+    "GENERATED",
+    "NEEDS_REVIEW",
+    "APPROVED",
+    "PUBLISHED",
+    "REJECTED",
+    "RETIRED",
+    "CHANGES_REQUESTED"
+  ],
+  "counts": {
+    "allowed_transitions": 13,
+    "blocked_anti_transitions": 4,
+    "qa_checks": 26,
+    "rejection_reasons": 22
+  },
+  "approval_gate": "reviewer_id must differ from author/generator actor; Iman ownership does not waive independent review for real Production questions",
+  "published_edit": "immutable in place; changes create new revision and repeat validation/review",
+  "fast_disable": "critical user report may disable serving through overlay without deleting history",
+  "queue_order": "P0 critical report -> P1 re-review -> P2 ready for review; then age, Stage9 gap, Stage3 TCF as tie-breakers"
+}

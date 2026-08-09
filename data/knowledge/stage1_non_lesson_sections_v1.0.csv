@@ -1,0 +1,9 @@
+﻿code,title_fr,book_pages,pdf_pages,kind,status,policy_version
+BILAN_1,BILAN,72;73,74;75,assessment_section,confirmed_not_lesson,governance-v1.0.0
+BILAN_2,BILAN,138;139,140;141,assessment_section,confirmed_not_lesson,governance-v1.0.0
+BILAN_3,BILAN,220;221,222;223,assessment_section,confirmed_not_lesson,governance-v1.0.0
+BILAN_4,BILAN,256;257,258;259,assessment_section,confirmed_not_lesson,governance-v1.0.0
+CONJUGAISONS,CONJUGAISONS,258,260,reference_section,confirmed_not_lesson,governance-v1.0.0
+ACTIVITES_COMMUNICATIVES,ACTIVITÉS COMMUNICATIVES,264,266,activity_section,confirmed_not_lesson,governance-v1.0.0
+TEST_EVALUATION,TEST D’ÉVALUATION,273,275,assessment_section,confirmed_not_lesson,governance-v1.0.0
+INDEX,INDEX,277,279,reference_section,confirmed_not_lesson,governance-v1.0.0

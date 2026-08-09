@@ -1,0 +1,38 @@
+{
+  "semantic_versions": {
+    "model": "mastery-evidence-v0.9.0",
+    "provider": "mastery-provider-contract-v0.9.0"
+  },
+  "release_status": "ACCEPTED_REFERENCE_BY_OWNER",
+  "runtime_status": "BLOCKED_EXPECTED_ZERO_PUBLISHED_HISTORY",
+  "config": {
+    "prior_score_pct": 50,
+    "recency_half_life_days": 45,
+    "difficulty_weights": {
+      "EASY": 0.8,
+      "MEDIUM": 1,
+      "HARD": 1.2,
+      "VERY_HARD": 1.4
+    },
+    "misconception": {
+      "repeat_window_days": 90,
+      "increment": 0.15,
+      "max_extra": 0.45
+    },
+    "confidence": {
+      "evidence_scale": 12,
+      "stability_floor": 0.75,
+      "stability_share": 0.25,
+      "max": 0.99
+    },
+    "thresholds": {
+      "weak_below": 55,
+      "strong_at_or_above": 80,
+      "min_confidence_for_label": 0.45
+    }
+  },
+  "formula": "recency=2^(-age/45); evidence score is difficulty*recency weighted correctness with repeated-misconception penalty; confidence excludes misconception multiplier; mastery=50+confidence*(evidence_score-50)",
+  "scope": "SUBTOPIC direct; LESSON equal active subtopic aggregation; CATEGORY Stage3-weighted lesson aggregation; TAG deferred",
+  "response_time": "diagnostic only in v0.9",
+  "reference_tests": "20/20 PASS"
+}

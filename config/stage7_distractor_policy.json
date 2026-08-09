@@ -1,0 +1,28 @@
+{
+  "semantic_version": "distractor-rule-set-v0.9.0",
+  "misconception_catalogue_version": "misconception-catalogue-v0.9.0",
+  "coverage": {
+    "subtopics": 304,
+    "misconception_candidates": 945,
+    "min_per_subtopic": 3,
+    "max_per_subtopic": 4,
+    "exception_specific": 33
+  },
+  "families": {
+    "CONTEXT_ROLE_MISMATCH": 304,
+    "EXCEPTION_NEGLECT": 33,
+    "NEAR_FORM_CONFUSION": 304,
+    "OVERGENERALIZATION": 304
+  },
+  "principles": [
+    "Each distractor maps to an explicit misconception before review/publish",
+    "Correct option maps to no misconception",
+    "No absurd distractors or trick ambiguity",
+    "Empirical distractor commonness is NOT_YET_OBSERVED before live data"
+  ],
+  "weak_distractor_initial_heuristic": {
+    "selection_rate_below_pct": 5,
+    "minimum_attempts": 100,
+    "owner": "Stage27 calibration"
+  }
+}

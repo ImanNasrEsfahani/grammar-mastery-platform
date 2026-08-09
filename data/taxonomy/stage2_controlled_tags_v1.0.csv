@@ -1,0 +1,36 @@
+﻿tag_id,tag_code,slug,tag_group,display_name_fr,display_name_fa_draft,fa_label_status,membership_rule_fa,status,taxonomy_version
+d650b9ae-7207-53fe-8b27-9f8e130d114b,TAG001,present,Temporal,Présent,حال,approved_project_translation_v1.0,وقتی présent به‌صورت صریح در محتوای درس نقش ثانویه/مقایسه‌ای دارد.,active,taxonomy-v0.9.0
+8d053260-0d4d-54a6-a41b-fbc55307c767,TAG002,past,Temporal,Passé,گذشته,approved_project_translation_v1.0,وقتی یک یا چند ساخت گذشته نقش ثانویه یا مقایسه‌ای دارند.,active,taxonomy-v0.9.0
+4b6fce9c-3dfa-5d0b-93d8-0627d9226726,TAG003,future,Temporal,Futur,آینده,approved_project_translation_v1.0,وقتی آینده نقش ثانویه یا مقایسه‌ای دارد.,active,taxonomy-v0.9.0
+80aa4964-2aca-5508-b693-484e0df9b977,TAG004,agreement,Structure,Accord,تطابق,approved_project_translation_v1.0,برای توافق جنس/شمار یا accord du participe/adjectif.,active,taxonomy-v0.9.0
+b1f3d05e-5e60-585c-9b28-f4263258f8f9,TAG005,articles,Structure,Articles,حروف تعریف,approved_project_translation_v1.0,برای رفتار article در درسی که article دستهٔ اصلی آن نیست یا به‌صورت cross-cutting مطرح است.,active,taxonomy-v0.9.0
+16604b24-295e-5cbf-b631-1b2ba0182a71,TAG006,negation,Sentence,Négation,نفی,approved_project_translation_v1.0,برای ساخت یا جایگاه نفی به‌عنوان ویژگی ثانویه.,active,taxonomy-v0.9.0
+c9500ddf-691d-571f-acd7-f84a5ff2fbef,TAG007,interrogation,Sentence,Interrogation,پرسش,approved_project_translation_v1.0,برای پرسش/وارونگی/ساخت interrogative به‌عنوان ویژگی ثانویه.,active,taxonomy-v0.9.0
+672bf43b-99af-59dd-ae89-677691337966,TAG008,pronunciation,Form,Prononciation,تلفظ,approved_project_translation_v1.0,وقتی کتاب نکتهٔ آوایی/liaison مستقل ثبت کرده است.,active,taxonomy-v0.9.0
+c5fee91c-2b19-5ffc-a9e7-ad921705cd5b,TAG009,orthography,Form,Orthographe,املا,approved_project_translation_v1.0,وقتی تغییر یا قاعدهٔ نوشتاری مستقل در subtopicها وجود دارد.,active,taxonomy-v0.9.0
+0367c229-2bde-5243-816f-f09652db4779,TAG010,register_variation,Usage,Registre / oral-écrit,سطح رسمی/گفتاری-نوشتاری,approved_project_translation_v1.0,وقتی تفاوت رسمی/محاوره‌ای یا oral/écrit در دادهٔ مرحله ۱ صریح است.,active,taxonomy-v0.9.0
+9d00725b-c9f7-5950-91e7-8b2922bf1071,TAG011,possession,Meaning,Possession,مالکیت,approved_project_translation_v1.0,برای روابط ملکی به‌عنوان بعد جانبی.,active,taxonomy-v0.9.0
+9a30daab-9085-530e-a965-6006eed20f20,TAG012,demonstration,Meaning,Démonstration,اشاره,approved_project_translation_v1.0,برای ارجاع اشاره‌ای.,active,taxonomy-v0.9.0
+3e2542cd-1c52-54e4-ac7d-4a56792c1790,TAG013,indefiniteness,Meaning,Indéfini,نامعین,approved_project_translation_v1.0,برای quantifieurs/pronoms نامعین و polarity مربوط.,active,taxonomy-v0.9.0
+57d015ad-a95a-5a0e-950f-ce447563a34c,TAG014,quantity,Meaning,Quantité,کمیت,approved_project_translation_v1.0,برای مقدار/کمیت به‌عنوان ویژگی جانبی.,active,taxonomy-v0.9.0
+b530dc7b-beb5-53d4-8bc4-1c7cade79b6c,TAG015,comparison,Meaning,Comparaison,مقایسه,approved_project_translation_v1.0,برای comparatif/superlatif یا مقایسهٔ صریح.,active,taxonomy-v0.9.0
+182b6937-4137-5bf4-bfd5-2892d92340b4,TAG016,spatial_reference,Meaning,Repérage spatial,ارجاع مکانی,approved_project_translation_v1.0,برای مکان، مبدأ/مقصد یا رابطهٔ فضایی.,active,taxonomy-v0.9.0
+cae8cde8-4202-58ad-9560-1062a31662e6,TAG017,temporal_reference,Meaning,Repérage temporel,ارجاع زمانی,approved_project_translation_v1.0,برای تاریخ/زمان/chronologie به‌عنوان بعد جانبی.,active,taxonomy-v0.9.0
+e4130b6d-3460-55cb-b4ad-f041a54f03bb,TAG018,duration,Meaning,Durée,مدت,approved_project_translation_v1.0,برای durée، depuis/pour/pendant/en یا بازهٔ زمانی.,active,taxonomy-v0.9.0
+569e17d6-a1e0-5859-b62a-9ad5ac80b1a1,TAG019,pronoun_placement,Structure,Place des pronoms,جایگاه ضمیر,approved_project_translation_v1.0,وقتی ترتیب یا جایگاه ضمیر بخش مستقل درس است.,active,taxonomy-v0.9.0
+3594ef1a-8161-5af3-8347-d85c2afdc150,TAG020,object_reference,Structure,Référence pronominale,ارجاع متممی,approved_project_translation_v1.0,برای جانشینی COD/COI/lieu/chose توسط pronoun.,active,taxonomy-v0.9.0
+1e002e80-ed67-58ba-ad43-c6dc48fab115,TAG021,relative_clause,Clause,Proposition relative,بند موصولی,approved_project_translation_v1.0,برای relative clause و antecedent/reference.,active,taxonomy-v0.9.0
+de1f76fb-8eac-507d-9209-b764382f58b7,TAG022,reported_speech,Clause,Discours rapporté,گفتار گزارش‌شده,approved_project_translation_v1.0,برای transformation و concordance در گفتار غیرمستقیم.,active,taxonomy-v0.9.0
+af9c0e0d-0e6a-547c-ba82-035400c48b48,TAG023,verb_complementation,Structure,Complémentation verbale,وابستگی/متمم فعل,approved_project_translation_v1.0,برای à/de/Ø، infinitif یا ساخت مکمل فعل.,active,taxonomy-v0.9.0
+d47a0fa3-dd8a-54f7-856b-b9978b063a9d,TAG024,movement,Meaning,Déplacement,حرکت,approved_project_translation_v1.0,برای افعال/ساخت‌های مبدأ، مقصد و حرکت.,active,taxonomy-v0.9.0
+104ef8bd-d244-530b-92b3-2306851aea6b,TAG025,condition_hypothesis,Clause,Condition / hypothèse,شرط/فرض,approved_project_translation_v1.0,برای si/quand/au cas où و روابط فرضی.,active,taxonomy-v0.9.0
+3802ca3e-551c-5a80-ba60-e96c41af0524,TAG026,logical_relation,Clause,Relation logique,رابطه منطقی,approved_project_translation_v1.0,برای cause/conséquence/but/opposition/concession.,active,taxonomy-v0.9.0
+c556850b-2987-5116-8a64-031367f8535a,TAG027,subordination,Clause,Subordination,وابستگی بند,approved_project_translation_v1.0,وقتی conjonction/relative/que-clause رابطهٔ بند وابسته می‌سازد.,active,taxonomy-v0.9.0
+df4b941c-a7ab-50a1-87ba-efb63195f89d,TAG028,voice,Verb,Voix,وجه معلوم/مجهول,approved_project_translation_v1.0,برای active/passive یا agent.,active,taxonomy-v0.9.0
+183c9a4f-0f2c-5296-b108-d343f6ac82d4,TAG029,aspect,Verb,Aspect,نمود,approved_project_translation_v1.0,برای شروع/ادامه/نزدیکی وقوع یا périphrase aspectuelle.,active,taxonomy-v0.9.0
+ae5625a8-e7c5-5fc0-ae85-b00be80fed07,TAG030,nonfinite_form,Verb,Forme non finie,صورت غیرشخصی,approved_project_translation_v1.0,برای infinitif/gérondif/participe présent یا infinitif passé.,active,taxonomy-v0.9.0
+f93a80e7-46a8-5a66-9774-2268aefa3cec,TAG031,politeness_modality,Usage,Politesse / modalité,ادب/وجهیت,approved_project_translation_v1.0,برای درخواست مؤدبانه، توصیه، میل، الزام یا احتمال وقتی نقش آموزشی دارد.,active,taxonomy-v0.9.0
+06122eda-5012-5d73-8b2d-b6da7ea1cefa,TAG032,lexicalized_expression,Usage,Expression figée,عبارت تثبیت‌شده,approved_project_translation_v1.0,برای locution/expression figée که بخشی از الگوی گرامری درس است.,active,taxonomy-v0.9.0
+8ceb7dd8-e70b-593d-9c77-1f6f0e8a4b34,TAG033,existence_presentation,Sentence,Existence / présentation,وجود/معرفی,approved_project_translation_v1.0,برای il y a/c’est/il est و معرفی/شناسایی.,active,taxonomy-v0.9.0
+898d55cf-2424-5f35-8a90-0f9902a85f54,TAG034,partitive,Structure,Partitif,جزئی/partitif,approved_project_translation_v1.0,برای du/de la/des و رفتار partitif.,active,taxonomy-v0.9.0
+81efc445-1951-5bc9-bcbb-9e7002e0cdab,TAG035,impersonal_construction,Sentence,Construction impersonnelle,ساخت بی‌شخص,approved_project_translation_v1.0,برای il faut/il fait/ساخت‌های بی‌شخص صریح.,active,taxonomy-v0.9.0

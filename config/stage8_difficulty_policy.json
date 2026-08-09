@@ -1,0 +1,44 @@
+{
+  "semantic_versions": {
+    "rubric": "difficulty-rubric-v0.9.0",
+    "initial": "initial-difficulty-model-v0.9.0",
+    "observed": "observed-difficulty-metric-v0.9.0",
+    "confidence": "difficulty-confidence-v0.9.0",
+    "recalibration": "difficulty-recalibration-v0.9.0"
+  },
+  "levels": {
+    "EASY": [
+      1.0,
+      1.74
+    ],
+    "MEDIUM": [
+      1.75,
+      2.49
+    ],
+    "HARD": [
+      2.5,
+      3.24
+    ],
+    "VERY_HARD": [
+      3.25,
+      4.0
+    ]
+  },
+  "initial_dimensions": {
+    "rules": 0.25,
+    "distractor_similarity": 0.25,
+    "context_integration": 0.15,
+    "exception_burden": 0.15,
+    "inference_burden": 0.2
+  },
+  "initial_formula": "1 + .25*Rules + .25*Distractor + .15*Context + .15*Exception + .20*Inference (dimension scores 0..3)",
+  "hard_gate": "Ambiguous/multiple-correct, unsupported trick/exception or incompatible items => BLOCKED_NOT_SCORABLE, never Very Hard",
+  "observed_formula": "1 + 3*(.85*(1-MasteryAdjustedCorrectRate)+.15*CorrectRTPercentile)",
+  "confidence": {
+    "NONE": "N=0",
+    "LOW": "1<=N<=49",
+    "MEDIUM": "50<=N<=199",
+    "HIGH": "N>=200 and >=30 eligible attempts per mastery band and RT reference cohort>=200"
+  },
+  "recalibration": "No auto-publish; high-confidence drift opens review; >=2-level drift or negative discrimination routes to QA first."
+}
