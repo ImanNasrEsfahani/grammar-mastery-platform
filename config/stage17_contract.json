@@ -1,0 +1,111 @@
+{
+  "manifest": {
+    "project": "Grammar Mastery Platform",
+    "stage": 17,
+    "stage_name_fa": "State Machine مرور فاصله‌دار",
+    "package_version": "stage17-v0.9-review",
+    "created_at_utc": "2026-08-09T00:00:00Z",
+    "status": "substantive_complete_reference_validated_pending_owner_acceptance",
+    "governance": {
+      "stage_owner": "Iman",
+      "content_owner": "Iman",
+      "technical_owner": "Iman",
+      "product_owner": "Iman",
+      "final_reviewer": "Iman",
+      "authoritative_book": "Grammaire Progressive du Français - Niveau intermédiaire - 3e édition",
+      "source_sha256": "b6162aacc084cd78ec46f43972fdc68f9330576ea909f4a51767c3333c7e74ca",
+      "translation_policy": "draft_project_translation"
+    },
+    "versions": {
+      "scheduler": "spaced-review-v0.9.0",
+      "state_machine": "spaced-review-state-machine-v0.9.0",
+      "storage_patch": "spaced-review-storage-patch-v0.9.0",
+      "mastery_provider": "mastery-provider-contract-v0.9.0",
+      "stage12_schema": "relational-schema-v0.9.0",
+      "stage16_error_review": "error-review-v0.9.0"
+    }
+  },
+  "roadmap_contract": {
+    "NEW": "first evidence creates a short next interval",
+    "LEARNING": "unstable success remains on 1-3 day review",
+    "REVIEW": "stable success expands interval",
+    "LAPSED": "wrong answer after mastery reduces interval without deleting history",
+    "SUSPENDED": "unsafe/retired content is not scheduled; concept/history are preserved",
+    "anti_memorization": "scheduler makes SUBTOPIC concept due; serving chooses another eligible question from that subtopic when possible"
+  },
+  "state_machine": {
+    "stable_success_source": "Stage15 mastery_band=STRONG through mastery-provider-contract-v0.9.0",
+    "transitions": [
+      {"from":"NEW","event":"first scorable evidence, not stable success","to":"LEARNING","interval_days":1},
+      {"from":"NEW","event":"first scorable stable success","to":"REVIEW","interval_days":7},
+      {"from":"LEARNING","event":"correct but unstable","to":"LEARNING","interval_days":"1 then 3; capped at 3"},
+      {"from":"LEARNING","event":"correct and STRONG","to":"REVIEW","interval_days":7},
+      {"from":"LEARNING","event":"wrong","to":"LEARNING","interval_days":1},
+      {"from":"REVIEW","event":"correct and STRONG","to":"REVIEW","interval_days":"max(7, previous*2), cap 180"},
+      {"from":"REVIEW","event":"correct but no longer STRONG","to":"LEARNING","interval_days":3},
+      {"from":"REVIEW","event":"wrong","to":"LAPSED","interval_days":"clamp(previous*0.25, 1, 3)"},
+      {"from":"LAPSED","event":"correct and STRONG","to":"REVIEW","interval_days":3},
+      {"from":"LAPSED","event":"correct but unstable","to":"LEARNING","interval_days":1},
+      {"from":"LAPSED","event":"wrong","to":"LAPSED","interval_days":1},
+      {"from":"ANY_ACTIVE","event":"no safe eligible question pool","to":"SUSPENDED","interval_days":"preserve historical value; not due"},
+      {"from":"SUSPENDED","event":"safe pool restored","to":"previous state","interval_days":"preserve; due immediately if old due passed"}
+    ],
+    "lapse_count_policy": "increment only when entering LAPSED from REVIEW; repeated wrongs while already LAPSED do not double-count a single lapse episode",
+    "history_policy": "raw user_answers and spaced_review_events remain auditable; no reset/delete on lapse"
+  },
+  "stage12_storage_integration": {
+    "existing_table": "review_queue",
+    "existing_operational_status_semantics": ["SCHEDULED", "DUE", "COMPLETED", "SUSPENDED"],
+    "decision": "do not overload existing status; add learning_state with exact Stage17 roadmap states",
+    "additive_columns": ["learning_state", "success_streak", "state_before_suspend", "suspended_reason", "last_scheduled_at", "scheduler_metadata"],
+    "new_append_only_table": "spaced_review_events",
+    "due_view": "v_spaced_review_due",
+    "no_destructive_migration": true
+  },
+  "stage15_integration": {
+    "input": ["SUBTOPIC mastery_band", "confidence", "last_evidence_at", "mastery_model_version"],
+    "stable_rule": "use Stage15 STRONG band; do not create a second hidden mastery threshold",
+    "unscorable_rule": "is_correct=null does not update SRS",
+    "version_rule": "mastery provider contract mismatch fails closed"
+  },
+  "stage16_integration": {
+    "review_retry": "resolution evidence only in v0.9; does not advance SRS or mastery",
+    "marked_for_review": "may be a due-queue tiebreak only; never pulls a not-yet-due concept forward",
+    "content_issue": "hard-exclude the affected question from serving; never count its invalidation as user lapse",
+    "evidence_replay": "if content exclusion lowers a REVIEW concept below STRONG, it may return to LEARNING sooner without increasing lapse_count",
+    "suspension": "suspend concept only if no safe eligible question remains for that subtopic"
+  },
+  "question_diversity": {
+    "due_target": "SUBTOPIC",
+    "hard_requirements": ["PUBLISHED", "same primary_subtopic_id", "not retired/disabled", "no confirmed active content issue"],
+    "soft_rule": "exclude last 3 distinct question_uid values for the subtopic when alternatives exist",
+    "fallback": "if safe pool is non-empty but soft exclusions exhaust it, relax only the diversity exclusion and log DIVERSITY_FALLBACK",
+    "never_relax": "content-safety exclusions"
+  },
+  "failure_contract": [
+    {"code":"S17_CONFIG_INVALID","action":"fail closed; do not write due/state"},
+    {"code":"S17_MASTERY_PROVIDER_VERSION_MISMATCH","action":"reject scheduling event; no guess"},
+    {"code":"S17_MISSING_SUBTOPIC","action":"data-integrity failure; Stage17 creates no QUESTION-scoped concept schedule"},
+    {"code":"S17_ANSWER_REJECTED_WHILE_SUSPENDED","action":"do not advance; restore a safe pool first"},
+    {"code":"S17_NO_SAFE_POOL","action":"SUSPENDED; preserve state/history and surface content inventory need"},
+    {"code":"S17_DIVERSITY_POOL_EXHAUSTED","action":"relax only recent-question soft exclusion; log fallback"},
+    {"code":"S17_STORAGE_WRITE_FAILED","action":"raw evidence remains authoritative; retry idempotently at Stage21"}
+  ],
+  "risk_controls": [
+    {"risk":"SAME_SENTENCE_MEMORIZATION","preventive":"concept-level due + recent question_uid soft exclusion","detection":"same_question_uid_repeat_rate"},
+    {"risk":"OVER_REPETITION","preventive":"1/3 day learning steps + growing review interval + 180-day cap","detection":"reviews_per_user_day and p95 interval"},
+    {"risk":"HISTORY_LOSS_ON_LAPSE","preventive":"append-only events and lapse_count; no answer deletion","detection":"replay/state digest check"},
+    {"risk":"BAD_CONTENT_BECOMES_USER_WEAKNESS","preventive":"Stage16 evidence exclusion + safety hard exclusion + no lapse on invalidation","detection":"confirmed-content-issue served count must be zero"},
+    {"risk":"DUPLICATE_STRENGTH_MODEL","preventive":"Stage15 STRONG defines stability; Stage17 interval is scheduling state, not a second mastery score","detection":"scheduler has no independent mastery threshold"}
+  ],
+  "downstream_dependencies": {
+    "stage18": ["due_count", "overdue_count", "learning_state distribution", "next_due_at", "suspended concept count"],
+    "stage21": ["transactional answer->mastery->SRS handler", "due queue endpoint", "idempotent event write", "question-selection handoff"],
+    "stage25": ["retention/privacy for spaced_review_events and review history"],
+    "stage27": ["calibrate learning intervals", "review growth", "lapse multiplier", "max interval", "diversity window", "review effectiveness"]
+  },
+  "runtime_dependencies": [
+    {"code":"S17_R01_NO_PUBLISHED_INVENTORY","status":"EXPECTED_RUNTIME_BLOCK","detail_fa":"بانک production هنوز سؤال Published کافی برای مرور واقعی و سنجش تنوع ندارد."},
+    {"code":"S17_R02_NO_LIVE_USER_HISTORY","status":"EXPECTED_RUNTIME_BLOCK","detail_fa":"تاریخچه واقعی پاسخ کاربر برای اعتبارسنجی تجربی interval و lapse وجود ندارد."}
+  ]
+}

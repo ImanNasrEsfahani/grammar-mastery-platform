@@ -1,0 +1,44 @@
+{
+  "manifest": {
+    "project": "Grammar Mastery Platform",
+    "stage": 17,
+    "version": "stage17-worked-example-v0.9.0",
+    "data_status": "SYNTHETIC_ANSWER_HISTORY_USING_REAL_UPSTREAM_SUBTOPIC_ID",
+    "source_scope": {
+      "lesson_no": 32,
+      "title_fr": "LES RELATIFS",
+      "primary_subtopic_code": "L32-S04",
+      "primary_subtopic_id": "cc58425c-1b50-4810-99a1-446683b31f5f",
+      "primary_subtopic_title_fr": "Relatif « dont »"
+    }
+  },
+  "timeline": [
+    {"at":"2026-08-01T09:00:00Z","event":"wrong / UNCERTAIN","from":"NEW","to":"LEARNING","interval_days":1,"due_at":"2026-08-02T09:00:00Z","lapse_count":0},
+    {"at":"2026-08-02T09:00:00Z","event":"correct / UNCERTAIN","from":"LEARNING","to":"LEARNING","interval_days":1,"due_at":"2026-08-03T09:00:00Z","lapse_count":0},
+    {"at":"2026-08-03T09:00:00Z","event":"correct / DEVELOPING","from":"LEARNING","to":"LEARNING","interval_days":3,"due_at":"2026-08-06T09:00:00Z","lapse_count":0},
+    {"at":"2026-08-06T09:00:00Z","event":"correct / STRONG","from":"LEARNING","to":"REVIEW","interval_days":7,"due_at":"2026-08-13T09:00:00Z","lapse_count":0},
+    {"at":"2026-08-13T09:00:00Z","event":"correct / STRONG","from":"REVIEW","to":"REVIEW","interval_days":14,"due_at":"2026-08-27T09:00:00Z","lapse_count":0},
+    {"at":"2026-08-27T09:00:00Z","event":"wrong after mastery","from":"REVIEW","to":"LAPSED","interval_days":3,"due_at":"2026-08-30T09:00:00Z","lapse_count":1},
+    {"at":"2026-08-30T09:00:00Z","event":"correct / STRONG","from":"LAPSED","to":"REVIEW","interval_days":3,"due_at":"2026-09-02T09:00:00Z","lapse_count":1},
+    {"at":"2026-09-01T09:00:00Z","event":"safe pool empty","from":"REVIEW","to":"SUSPENDED","interval_days":3,"historical_due_at":"2026-09-02T09:00:00Z","state_before_suspend":"REVIEW"},
+    {"at":"2026-09-03T09:00:00Z","event":"safe pool restored (4 questions)","from":"SUSPENDED","to":"REVIEW","interval_days":3,"due_at":"2026-09-03T09:00:00Z","lapse_count":1}
+  ],
+  "question_selection_handoff": {
+    "target_scope": "SUBTOPIC",
+    "subtopic_id": "cc58425c-1b50-4810-99a1-446683b31f5f",
+    "hard_requirements": {
+      "question_status": "PUBLISHED",
+      "exclude_retired_or_disabled": true,
+      "exclude_confirmed_content_issue": true
+    },
+    "soft_excluded_recent_question_uids": ["syn-q-07", "syn-q-06", "syn-q-05"],
+    "fallback_if_only_safe_question_was_recent": "relax recent-uid exclusion, serve safe question, log DIVERSITY_FALLBACK",
+    "hard_exclusions_relaxable": false
+  },
+  "assertions": [
+    "wrong after REVIEW reduces 14 days to 3 days and increments lapse_count",
+    "suspension preserves prior state/history and removes concept from due serving",
+    "resume restores REVIEW and makes an overdue concept due immediately",
+    "scheduler targets the concept; actual sentence/question may change"
+  ]
+}

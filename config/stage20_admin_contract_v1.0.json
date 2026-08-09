@@ -1,0 +1,115 @@
+{
+  "stage": 20,
+  "name": "Admin Panel",
+  "contract_version": "admin-panel-v1.0.0",
+  "release_status": "RECONSTRUCTED_REFERENCE_PENDING_OWNER_REVIEW",
+  "source_package": "stage20_admin_panel_v1.0.zip",
+  "provenance": "artifact names recovered from prior summary; original sandbox bytes were not persisted",
+  "governance": {
+    "product_owner": "Iman",
+    "content_owner": "Iman",
+    "technical_owner": "Iman"
+  },
+  "roles": ["ADMIN", "CONTENT_EDITOR", "REVIEWER"],
+  "role_storage_mapping": {
+    "ADMIN": "ADMIN",
+    "CONTENT_EDITOR": "CONTENT_AUTHOR",
+    "REVIEWER": "REVIEWER"
+  },
+  "permissions": {
+    "VIEW_BANK": ["ADMIN", "CONTENT_EDITOR", "REVIEWER"],
+    "CREATE_DRAFT": ["ADMIN", "CONTENT_EDITOR"],
+    "EDIT_DRAFT": ["ADMIN", "CONTENT_EDITOR"],
+    "REVIEW_CONTEXT": ["ADMIN", "REVIEWER"],
+    "APPROVE_REJECT": ["ADMIN", "REVIEWER"],
+    "BULK_IMPORT": ["ADMIN", "CONTENT_EDITOR"],
+    "BULK_STATUS_CHANGE": ["ADMIN", "CONTENT_EDITOR"],
+    "RETIRE_IMMEDIATE": ["ADMIN"],
+    "RETIRE_REQUEST": ["CONTENT_EDITOR", "REVIEWER"],
+    "VIEW_AUDIT_LOG": ["ADMIN", "REVIEWER"]
+  },
+  "hard_rules": [
+    "permissions are enforced by backend authorization, never only by hidden UI controls",
+    "independent publication review requires reviewer != author/generator",
+    "all question/option/explanation edits create immutable revision/audit evidence",
+    "bulk mutations require preview plus explicit confirmation",
+    "bulk imports create DRAFT questions only",
+    "bulk status changes cannot produce APPROVED, PUBLISHED, REJECTED or RETIRED",
+    "every status mutation is validated against the Stage11 transition contract",
+    "APPROVED requires an independent reviewer and PUBLISHED requires an explicit publish batch",
+    "question retirement preserves historical attempts and snapshots",
+    "quality metrics are displayed with sample size"
+  ],
+  "bulk_import_policy": {
+    "accepted_row_status": "DRAFT",
+    "server_behavior": "reject any row whose requested status is not DRAFT; never coerce privileged states silently",
+    "post_import_next_step": "Stage11 machine validation and independent review"
+  },
+  "bulk_status_policy": {
+    "allowed_target_statuses": ["DRAFT", "READY_FOR_REVIEW", "CHANGES_REQUESTED"],
+    "forbidden_target_statuses": ["APPROVED", "PUBLISHED", "REJECTED", "RETIRED"],
+    "transition_gate": "validate every item against the Stage11 contract at config/stage11_workflow.json and fail the batch atomically",
+    "approval_path": "dedicated review action with reviewer != author/generator",
+    "publication_path": "explicit Stage11/12 publish batch after APPROVED",
+    "retirement_path": "dedicated immediate-retire or retire-request endpoint"
+  },
+  "question_bank_filters": [
+    "lesson",
+    "status",
+    "question_type",
+    "difficulty",
+    "author",
+    "quality_metric"
+  ],
+  "screens": [
+    "BANK_LIST",
+    "QUESTION_EDITOR",
+    "REVIEW_QUEUE",
+    "REVIEW_DETAIL",
+    "BULK_IMPORT_PREVIEW",
+    "BULK_STATUS_PREVIEW",
+    "AUDIT_LOG"
+  ],
+  "staff_routes": {
+    "prefix": "/staff",
+    "BANK_LIST": "/staff/questions",
+    "QUESTION_EDITOR": "/staff/questions/:question_id",
+    "REVIEW_QUEUE": "/staff/reviews",
+    "REVIEW_DETAIL": "/staff/reviews/:question_id",
+    "BULK_IMPORT_PREVIEW": "/staff/imports",
+    "BULK_STATUS_PREVIEW": "/staff/questions/bulk-status",
+    "AUDIT_LOG": "/staff/audit"
+  },
+  "review_detail": {
+    "single_screen_fields": [
+      "stem",
+      "options",
+      "correct_answer",
+      "option_explanations",
+      "lesson",
+      "subtopic",
+      "source",
+      "difficulty",
+      "duplicate_warnings",
+      "quality_metrics",
+      "sample_size",
+      "revision_history"
+    ],
+    "actions": ["APPROVE", "REJECT", "REQUEST_CHANGES", "RETIRE_REQUEST"]
+  },
+  "bulk_workflow": ["UPLOAD", "PARSE", "VALIDATE", "PREVIEW", "CONFIRM", "COMMIT", "AUDIT_RESULT"],
+  "audit_contract": {
+    "canonical_history_table": "audit_logs",
+    "admin_domain_table": "admin_audit_events",
+    "write_rule": "Stage21 writes both records in one transaction; admin_audit_events supplements and never replaces Stage12 audit_logs",
+    "correlation_fields": ["canonical_audit_log_id", "request_id", "batch_id"],
+    "immutability": "both histories are append-only"
+  },
+  "downstream": {
+    "stage21": ["admin API implementation and backend authorization"],
+    "stage22": ["admin UI components and responsive/accessibility behavior"],
+    "stage23": ["full import pipeline and rollback semantics"],
+    "stage24": ["permission, bulk and audit acceptance tests"],
+    "stage25": ["security, retention and sensitive audit policy"]
+  }
+}

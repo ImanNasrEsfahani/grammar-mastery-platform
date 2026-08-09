@@ -1,0 +1,71 @@
+{
+  "fixture_notice": "Synthetic review-history fixture. Lesson/subtopic/misconception IDs are real upstream IDs; question/answer/user IDs and sentences are test-only and are not production inventory.",
+  "upstream_real_ids": {
+    "lesson_id": "4ec05ffb-8465-4c5c-9a50-d67136ad0472",
+    "lesson_no": 32,
+    "lesson_title_fr": "LES RELATIFS",
+    "subtopic_id": "cc58425c-1b50-4810-99a1-446683b31f5f",
+    "subtopic_code": "L32-S04",
+    "subtopic_title_fr": "Relatif « dont »",
+    "misconception_id": "dac62b22-7d9b-540f-b765-e4ad0c1fd476",
+    "misconception_family": "NEAR_FORM_CONFUSION",
+    "misconception_name_fa": "اشتباه با فرم/قاعده نزدیک",
+    "catalogue_version": "misconception-catalogue-v0.9.0"
+  },
+  "scenario_fa": "کاربر در سه سؤال جداگانه که ساخت dont را هدف می‌گیرند، distractor نزدیک que را انتخاب کرده است. به‌جای سه خط پراکنده، Stage16 هر سه را در یک misconception group قرار می‌دهد.",
+  "synthetic_errors": [
+    {
+      "question_id": "10000000-0000-4000-8000-000000000001",
+      "stem": "C’est un problème ___ je parle souvent.",
+      "previous_answer": "que",
+      "correct_answer": "dont",
+      "wrong_at": "2026-08-01T12:00:00Z",
+      "difficulty_code": "MEDIUM",
+      "resolution_status": "UNRESOLVED"
+    },
+    {
+      "question_id": "10000000-0000-4000-8000-000000000002",
+      "stem": "Voici le projet ___ il est fier.",
+      "previous_answer": "que",
+      "correct_answer": "dont",
+      "wrong_at": "2026-08-04T12:00:00Z",
+      "difficulty_code": "MEDIUM",
+      "resolution_status": "UNRESOLVED"
+    },
+    {
+      "question_id": "10000000-0000-4000-8000-000000000003",
+      "stem": "La personne ___ je me souviens habite ici.",
+      "previous_answer": "que",
+      "correct_answer": "dont",
+      "wrong_at": "2026-08-08T12:00:00Z",
+      "difficulty_code": "HARD",
+      "resolution_status": "UNRESOLVED"
+    }
+  ],
+  "expected_group": {
+    "group_key": "MISCONCEPTION:dac62b22-7d9b-540f-b765-e4ad0c1fd476",
+    "group_quality": "MISCONCEPTION",
+    "eligible_wrong_count": 3,
+    "unresolved_count": 3,
+    "corrected_count": 0,
+    "group_resolution": "UNRESOLVED"
+  },
+  "retrieval_flow_example": [
+    {"step": 1, "event": "ITEM_OPENED", "feedback_state": "HIDDEN", "visible": "stem + four frozen options; no answer key"},
+    {"step": 2, "event": "RETRY_SUBMITTED", "retry_answer": "dont", "is_correct": true, "new_resolution": "CORRECTED"},
+    {"step": 3, "feedback_state": "REVEALED", "visible": "previous answer + retry answer + correct answer + all option explanations + misconception diagnostic"},
+    {"step": 4, "event": "MARKED_FOR_REVIEW", "marked_for_review": true, "note": "mark is stored for later review/SRS handoff; Stage16 does not assign a due date"}
+  ],
+  "invalid_content_example": {
+    "condition": "question is confirmed ambiguous after the original test",
+    "expected_actions": [
+      "preserve original user_answer and historical snapshot",
+      "set review item to EXCLUDED_CONTENT_ISSUE",
+      "set reviewability to HISTORY_ONLY",
+      "append learning evidence EXCLUDE event with CONTENT_AMBIGUITY",
+      "exclude that answer from future Stage15 mastery replay",
+      "never count it as user weakness"
+    ],
+    "forbidden_actions": ["delete historical wrong answer", "keep it in misconception repeat count", "allow retry of unsafe revision"]
+  }
+}

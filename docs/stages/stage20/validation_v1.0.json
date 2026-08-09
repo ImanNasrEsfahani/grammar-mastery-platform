@@ -1,0 +1,30 @@
+{
+  "stage": 20,
+  "validation_version": "stage20-validation-v1.0.0-reconstructed",
+  "status": "PASS_REFERENCE_CONTRACT",
+  "provenance": "reconstructed from prior Stage20 artifact names, roadmap, and Stage11/12 contracts",
+  "checks": {
+    "admin_ia_present": true,
+    "three_roles_defined": true,
+    "backend_permission_rule_explicit": true,
+    "independent_reviewer_rule_preserved": true,
+    "bank_filters_complete": true,
+    "revision_log_required": true,
+    "bulk_preview_before_commit_required": true,
+    "bulk_confirmation_required": true,
+    "bulk_import_draft_only": true,
+    "bulk_status_cannot_approve_publish_reject_or_retire": true,
+    "stage11_transition_gate_required_for_each_bulk_item": true,
+    "review_detail_single_screen_contract": true,
+    "immediate_retire_path_present": true,
+    "quality_metric_sample_size_required": true,
+    "append_only_audit_storage_defined": true,
+    "stage12_audit_log_remains_canonical": true,
+    "content_editor_maps_to_stage12_content_author": true,
+    "staff_route_prefix_preserved": true
+  },
+  "runtime_validation": {
+    "status": "NOT_RUN_NO_STAGE21_BACKEND_OR_STAGE22_FRONTEND",
+    "classification": "implementation dependency, not a Stage20 reference-contract failure"
+  }
+}

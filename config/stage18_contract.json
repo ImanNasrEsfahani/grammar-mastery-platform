@@ -1,0 +1,82 @@
+{
+  "stage": 18,
+  "name": "Learning Dashboard",
+  "contract_version": "dashboard-contract-v0.9.0",
+  "release_status": "REFERENCE_CONTRACT_RECONSTRUCTED_READY_FOR_OWNER_REVIEW",
+  "governance": {
+    "content_owner": "Iman",
+    "technical_owner": "Iman",
+    "product_owner": "Iman"
+  },
+  "source_contracts": {
+    "mastery": "mastery-provider-contract-v0.9.0",
+    "error_review": "error-review-v0.9.0",
+    "spaced_repetition": "spaced-review-v0.9.0"
+  },
+  "kpis": {
+    "overall_mastery": {
+      "source": "Stage15 mastery provider",
+      "display_with": ["confidence", "coverage"],
+      "rule": "never display mastery without confidence and coverage context"
+    },
+    "lesson_status": {
+      "confidence_gate": 0.45,
+      "insufficient_evidence_label": "INSUFFICIENT_EVIDENCE",
+      "bands": [
+        {"code": "CRITICAL", "min_pct": 0, "max_exclusive_pct": 40},
+        {"code": "WEAK", "min_pct": 40, "max_exclusive_pct": 55},
+        {"code": "DEVELOPING", "min_pct": 55, "max_exclusive_pct": 80},
+        {"code": "STRONG", "min_pct": 80, "max_inclusive_pct": 100}
+      ],
+      "rule": "if confidence < 0.45, do not assign Critical/Weak/Developing/Strong"
+    },
+    "review_queue": ["due_count", "overdue_count", "next_due_at", "suspended_concept_count"],
+    "error_review": ["unresolved_group_count", "corrected_item_count", "top_misconception_groups"],
+    "activity": ["questions_answered", "tests_completed", "reviews_completed"],
+    "trend": {
+      "source": "persisted mastery snapshots",
+      "incomplete_data_policy": "show explicit warning; never infer missing periods"
+    }
+  },
+  "cta_priority": [
+    "OVERDUE_REVIEW",
+    "DUE_REVIEW",
+    "CRITICAL_CONFIDENT_LESSON",
+    "WEAK_CONFIDENT_LESSON",
+    "DEVELOPING_LESSON",
+    "BUILD_EVIDENCE",
+    "REGULAR_PRACTICE"
+  ],
+  "mobile_priority": [
+    "next_action",
+    "overall_mastery_confidence_coverage",
+    "due_reviews",
+    "weak_lessons",
+    "recent_test",
+    "trend",
+    "activity_quantity"
+  ],
+  "states": {
+    "loading": "skeleton cards without fabricated KPI values",
+    "no_learning_evidence": "show BUILD_EVIDENCE CTA and no weakness label",
+    "no_due_reviews": "show next_due_at when available; otherwise regular practice CTA",
+    "partial_snapshots": "render available points with incomplete-data warning",
+    "error": "preserve last safe snapshot if available and show retry",
+    "offline": "show cached snapshot timestamp and disable actions requiring network"
+  },
+  "anti_patterns": [
+    "mastery percentage without confidence/coverage",
+    "weakness claim below confidence gate",
+    "trend inference across missing snapshots",
+    "quantity metrics presented as learning quality",
+    "dashboard overcrowding",
+    "streak optimization that biases toward easy questions"
+  ],
+  "downstream": {
+    "stage19": ["dashboard route responsibility", "CTA destinations", "empty/error/offline states"],
+    "stage21": ["dashboard summary endpoint", "next-action endpoint"],
+    "stage22": ["mobile-first information hierarchy"],
+    "stage24": ["dashboard performance tests"],
+    "stage27": ["empirical KPI calibration"]
+  }
+}

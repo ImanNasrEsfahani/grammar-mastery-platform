@@ -1,0 +1,33 @@
+{
+  "project": "Grammar Mastery Platform",
+  "stage": 16,
+  "package_version": "stage16-v0.9-review",
+  "status": "substantive_complete_reference_validated_pending_owner_acceptance",
+  "core_validation": "PASS",
+  "reference_tests": "26/26 PASS",
+  "sqlite_integration": "PASS",
+  "formal_ready_for_next_stage": false,
+  "formal_ready_blockers": ["S16_B01_FINAL_OWNER_TECH_ACCEPTANCE"],
+  "runtime_live_validation": "EXPECTED_BLOCK_NO_PUBLISHED_INVENTORY_OR_LIVE_USER_HISTORY",
+  "artifacts": [
+    {"name":"README_stage16.txt","sha256":"1ec45021969d779f3e93638ec58b7935fe8f2096b2ec0f9a74d06ac503491199"},
+    {"name":"stage16_error_review_v0.9.json","sha256":"4addb086a01f997f6f51ed8b39ca8b25caea5f8747f6c897d4a94f7e2d2b849f"},
+    {"name":"stage16_config.schema.json","sha256":"4e8c7760a49fa50eae3b564a028ebd10514e9bd176e4981a9f1104754e8a1c65"},
+    {"name":"stage16_error_review_config_v0.9.json","sha256":"796eba26b9e79cbe7a9d4b783858e306d0106b17cffda7eddaca465dbf6210ea"},
+    {"name":"stage16_review_engine.py","sha256":"939a179e6458018d24df8877174c2d482185f6aebcde7be9559deef25d06087f"},
+    {"name":"stage16_review_tests.py","sha256":"7cff6cf800fd04a33fcb1a82c298f5e3b1d48fee6b2661d7997e2a54ee7b133b"},
+    {"name":"stage16_postgresql_patch_v0.9.sql","sha256":"901101c54b907314bd5e8d1f02d69004d114ed6ea2447aea3872e9f839a0ff58"},
+    {"name":"stage16_sqlite_patch_v0.9.sql","sha256":"32d93bdee72d5a49484beac05e18c61a5b3686e6fbcc86fa454ad5b24f47524f"},
+    {"name":"stage16_worked_example_v0.9.json","sha256":"327a774942107c861a5758a815f24458755486ab25f8dea40139bcb2eeb7fb45"},
+    {"name":"stage16_validation_v0.9.json","sha256":"9b91b0c81f731e4b7504304facadd30826f7a0958b73267a90aa2b2051958e5b"},
+    {"name":"stage16_review_report_v0.9.md","sha256":"465923fd29f837b951183f22923a3417473a7efcc8e4a5490adda88d545c0934"}
+  ],
+  "dependencies": {
+    "stage7": "misconception-catalogue-v0.9.0",
+    "stage12": "relational-schema-v0.9.0",
+    "stage13": "test-generator-v0.9.0 / test-snapshot-v0.9.0",
+    "stage14": "adaptive-selector-v0.9.0",
+    "stage15": "mastery-evidence-v0.9.0",
+    "governance": "governance-v1.0.0"
+  }
+}

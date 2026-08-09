@@ -1,0 +1,40 @@
+{
+  "project": "Grammar Mastery Platform",
+  "stage": 17,
+  "package_version": "stage17-v0.9-review",
+  "status": "substantive_complete_reference_validated_pending_owner_acceptance",
+  "core_validation": "PASS",
+  "reference_tests": "32/32 PASS",
+  "sqlite_integration": "PASS",
+  "formal_ready_for_next_stage": false,
+  "formal_ready_blockers": ["S17_B01_FINAL_OWNER_TECH_ACCEPTANCE"],
+  "runtime_live_validation": "EXPECTED_BLOCK_NO_PUBLISHED_INVENTORY_OR_LIVE_USER_HISTORY",
+  "governance": {
+    "stage_owner": "Iman",
+    "content_owner": "Iman",
+    "technical_owner": "Iman",
+    "product_owner": "Iman",
+    "final_reviewer": "Iman"
+  },
+  "artifacts": [
+    {"name":"README_stage17.txt","sha256":"09a0881ae7764e9837175a04d1a1aff5d3121cd2dc7a76dbd35f73f9febc4450"},
+    {"name":"stage17_spaced_repetition_v0.9.json","sha256":"0cd71361f95f58a82ad2274c4d0c10bbe64253bdaf5b2b699b91da1dfdb9c185"},
+    {"name":"stage17_config.schema.json","sha256":"89006a0b1e37f4cedce0e0e33f7518f8c7cbc6ab37d6c15bc45acd18320803fe"},
+    {"name":"stage17_scheduler_config_v0.9.json","sha256":"e0b8bc82776b605e43c65d99bafc6e3292938f9138ce53def42a8baaaf3ebf29"},
+    {"name":"stage17_scheduler.py","sha256":"3762c4d3607b98358678d607a33b4181747250c4e7ded54506cf9747827986dc"},
+    {"name":"stage17_scheduler_tests.py","sha256":"11f564562dd981b7196de56fc051c62d16d995f8fad29ee748c95bf53412f96e"},
+    {"name":"stage17_postgresql_patch_v0.9.sql","sha256":"c5b7f0b52dad09b87064f736e98068543db21fc587c7709b2588f692ae1ac554"},
+    {"name":"stage17_sqlite_patch_v0.9.sql","sha256":"87b5f6a50975afdd6046053656e08395cf683c98bd413e30221f0954ebf6dc42"},
+    {"name":"stage17_worked_example_v0.9.json","sha256":"d85aae01020b970c0dc4b3cf8820e7fac5a42a413f644d7f9e856112c730e33a"},
+    {"name":"stage17_validation_v0.9.json","sha256":"058c51f34c26cd68a5227dc8e44539e596111f5e8d1e284727fb05fbd03d779c"},
+    {"name":"stage17_review_report_v0.9.md","sha256":"bb3815f35ecc9a4b43a5a23064a1d8fd51d34bc1c6fb41c55abd2e1635dd9ced"}
+  ],
+  "dependencies": {
+    "stage12": "relational-schema-v0.9.0 / review_queue",
+    "stage13": "frozen test question snapshots",
+    "stage14": "adaptive question selection handoff",
+    "stage15": "mastery-evidence-v0.9.0 / mastery-provider-contract-v0.9.0",
+    "stage16": "error-review-v0.9.0 / learning-evidence-exclusion-v0.9.0",
+    "governance": "governance-v1.0.0 + upstream-governance-resolution-patch-v1.0.0"
+  }
+}

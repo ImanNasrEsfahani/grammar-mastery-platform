@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://grammar-mastery.local/schemas/stage16-error-review-config-v0.9.0.json",
+  "title": "Stage16 Error Review Config",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["model_version", "grouping", "retrieval_practice", "resolution", "default_filters"],
+  "properties": {
+    "model_version": {"const": "error-review-v0.9.0"},
+    "grouping": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["primary", "fallback"],
+      "properties": {
+        "primary": {"const": "MISCONCEPTION"},
+        "fallback": {"const": "SUBTOPIC_UNMAPPED"}
+      }
+    },
+    "retrieval_practice": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["require_retry_before_auto_reveal", "allow_explicit_reveal"],
+      "properties": {
+        "require_retry_before_auto_reveal": {"const": true},
+        "allow_explicit_reveal": {"type": "boolean", "default": true}
+      }
+    },
+    "resolution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["statuses", "correct_retry_status", "wrong_retry_status"],
+      "properties": {
+        "statuses": {
+          "type": "array",
+          "uniqueItems": true,
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {"enum": ["UNRESOLVED", "CORRECTED", "EXCLUDED_CONTENT_ISSUE"]}
+        },
+        "correct_retry_status": {"const": "CORRECTED"},
+        "wrong_retry_status": {"const": "UNRESOLVED"}
+      }
+    },
+    "default_filters": {"$ref": "#/$defs/filters"}
+  },
+  "$defs": {
+    "uuid": {"type": "string", "format": "uuid"},
+    "filters": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "date_from": {"type": ["string", "null"], "format": "date-time"},
+        "date_to": {"type": ["string", "null"], "format": "date-time"},
+        "lesson_ids": {"type": "array", "items": {"$ref": "#/$defs/uuid"}, "uniqueItems": true},
+        "subtopic_ids": {"type": "array", "items": {"$ref": "#/$defs/uuid"}, "uniqueItems": true},
+        "misconception_ids": {"type": "array", "items": {"$ref": "#/$defs/uuid"}, "uniqueItems": true},
+        "difficulty_codes": {"type": "array", "uniqueItems": true, "items": {"enum": ["EASY", "MEDIUM", "HARD", "VERY_HARD"]}},
+        "min_repeat_count": {"type": "integer", "minimum": 1, "default": 1},
+        "resolution_statuses": {"type": "array", "uniqueItems": true, "items": {"enum": ["UNRESOLVED", "CORRECTED", "EXCLUDED_CONTENT_ISSUE"]}},
+        "marked_only": {"type": "boolean", "default": false}
+      }
+    }
+  }
+}
