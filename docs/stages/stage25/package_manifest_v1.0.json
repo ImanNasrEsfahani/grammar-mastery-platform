@@ -1,0 +1,71 @@
+﻿{
+    "package":  "grammar-mastery-stage25-v1.0",
+    "stage":  25,
+    "version":  "stage25-security-v1.0.0",
+    "created_at_utc":  "2026-08-09",
+    "owner":  "Iman",
+    "base":  {
+                 "github_main_commit":  "b6ba24c19d1d77c67b84de7d4b07bc4917d09385"
+             },
+    "scope":  "STAGE25_ONLY_OVERLAY",
+    "content_file_count":  14,
+    "manifest_self_hash_excluded":  true,
+    "files":  [
+                  {
+                      "path":  "config/stage25_security_contract_v1.0.json",
+                      "sha256":  "f3184287847ad6a23a45366a1c12296205c76bfd07a08be0f369e7df1e0d519a"
+                  },
+                  {
+                      "path":  "src/backend/stage25_security.py",
+                      "sha256":  "4f9ced10d9b461b90038ff42d1617220b59e78d83d61302ccfb6ad201126516d"
+                  },
+                  {
+                      "path":  "tests/test_stage25_security.py",
+                      "sha256":  "eb756749396dbb69854a5bd4636cffaa6c9edf6079cc7d5fd63891780d266efd"
+                  },
+                  {
+                      "path":  "tools/validate_stage25.py",
+                      "sha256":  "d8a9cdb67d1e161574f38e6b123af7a08a96e2dfd2e3fd73c1cf4bb352b33b08"
+                  },
+                  {
+                      "path":  "docs/stages/stage25/README.md",
+                      "sha256":  "54786d25124cc4cec313257c74f3b8b1419d2f6c5eb9882b96f654ba85b032b2"
+                  },
+                  {
+                      "path":  "docs/stages/stage25/PACKAGE_APPLY.md",
+                      "sha256":  "1c1f83fe5a2869eeb68e7a40b7a8e9dfa915dd10b6576566cbbf66789d5283fb"
+                  },
+                  {
+                      "path":  "docs/stages/stage25/auth_design_v1.0.md",
+                      "sha256":  "c93124c01358cd13c2080dea069c96d3035dfa8a2849f06ec36f2ab2269e60e8"
+                  },
+                  {
+                      "path":  "docs/stages/stage25/backup_restore_plan_v1.0.md",
+                      "sha256":  "c015b5f0bbb208e65347b9f3ea072ca59cf0f606ce2a18623e76b0225b658547"
+                  },
+                  {
+                      "path":  "docs/stages/stage25/needs_decision_v1.0.csv",
+                      "sha256":  "cfeedf3e2d87f3e15a9e13228ed21a0f2f3677e48e9925f529c243619cd455fe"
+                  },
+                  {
+                      "path":  "docs/stages/stage25/rbac_matrix_v1.0.csv",
+                      "sha256":  "272517bf6b1c0e95573ccea0671ee257eea41955deff5e15e335e5dfe22253df"
+                  },
+                  {
+                      "path":  "docs/stages/stage25/review_report_v1.0.md",
+                      "sha256":  "125c16d993d0893d3625d0f5d4ccb5ef99cfb08163c25eee542b0ffe4cf234ac"
+                  },
+                  {
+                      "path":  "docs/stages/stage25/security_checklist_v1.0.md",
+                      "sha256":  "df0d84d57babc79732c4f35ae33f3775494b8855f9dffe2c7f8574c30756b22e"
+                  },
+                  {
+                      "path":  "docs/stages/stage25/threat_control_matrix_v1.0.csv",
+                      "sha256":  "3c1e7e1a60ce181c63a427641b85709a1a321c75fdd65caad1e1b5752992ca03"
+                  },
+                  {
+                      "path":  "docs/stages/stage25/validation_v1.0.json",
+                      "sha256":  "b36a8cab0023628619b34f4e7b02587f483f143d9c0123eb66b57edb6f900855"
+                  }
+              ]
+}

@@ -1,0 +1,12 @@
+resource,action,USER,CONTENT_EDITOR,REVIEWER,ADMIN,object_rule,audit_required
+learner_profile,read,OWN,NONE,NONE,ANY,owner or admin,yes
+learner_attempt,read,OWN,NONE,NONE,ANY,owner or admin,yes
+learner_attempt,answer,OWN,NONE,NONE,NONE,owner and active attempt,yes
+question,read_draft,NONE,ANY,ANY,ANY,staff role,yes
+question,edit,NONE,ANY,NONE,ANY,editor cannot publish,yes
+question,approve,NONE,NONE,ANY,ANY,reviewer must differ from author,yes
+question,publish,NONE,NONE,NONE,ANY,approved revision only,yes
+import_batch,preview,NONE,ANY,NONE,ANY,staff role and clean scan,yes
+import_batch,commit,NONE,ANY,NONE,ANY,clean scan plus preview token,yes
+user_role,change,NONE,NONE,NONE,ANY,cannot remove final admin,yes
+audit_log,read,NONE,NONE,NONE,ANY,least privilege,yes

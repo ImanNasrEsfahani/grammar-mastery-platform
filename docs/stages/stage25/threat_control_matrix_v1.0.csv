@@ -1,0 +1,12 @@
+threat,preventive_control,detection,response,evidence,status
+credential_stuffing,dual IP/account login limits and uniform auth errors,rate-limit and failed-login metric,revoke sessions and investigate source,test_stage25_security.py,REFERENCE_VALIDATED
+session_theft,short token TTL server session revocation secure cookie and key rotation,unexpected session/security event,revoke session and rotate affected key,security contract,ADAPTER_PENDING_STAGE26
+XSS,output encoding and restrictive CSP,CSP violation reporting,block release and patch sink,header validation test,REFERENCE_VALIDATED
+CSRF,SameSite cookie plus CSRF token on unsafe cookie-authenticated methods,CSRF rejection metric,reject and investigate burst,security contract,ADAPTER_PENDING_STAGE26
+SQL_injection,ORM/parameterized query and strict input validation,database error/security alert,reject and patch query review,Stage24 tests,REFERENCE_VALIDATED
+IDOR,backend role plus object-owner checks,403/404 anomaly metric,revoke and review access,Stage21 authorization tests,REFERENCE_VALIDATED
+answer_scraping,no answer fields before submit plus per-user limit,leak contract and answer-rate alert,revoke session and investigate,answer leak test,REFERENCE_VALIDATED
+admin_abuse,least privilege separation independent review and immutable audit,high-risk admin action alert,suspend role and preserve evidence,RBAC matrix,REFERENCE_VALIDATED
+malicious_upload,quarantine size limit fail-closed scan bound to SHA-256,scan failure/rejection metric,reject and retain safe metadata only,upload gate tests,ADAPTER_PENDING_STAGE26
+data_loss,encrypted versioned backups plus quarterly restore drills,backup age and drill failure alert,restore isolated then controlled recovery,manifest verifier test,PRODUCTION_DRILL_STAGE26
+secret_leak,no repository secrets runtime injection and rotation,secret scanning and provider alert,rotate and revoke immediately,security checklist,ADAPTER_PENDING_STAGE26

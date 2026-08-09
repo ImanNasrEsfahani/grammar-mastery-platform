@@ -1,0 +1,55 @@
+{
+  "stage": 25,
+  "name": "Security, Privacy and Data Protection",
+  "contract_version": "stage25-security-v1.0.0",
+  "prepared_at_utc": "2026-08-09",
+  "release_status": "REFERENCE_SECURITY_CONTROLS_VALIDATED_PRODUCTION_ADAPTERS_PENDING_OWNER_ACCEPTANCE",
+  "owners": {"content": "Iman", "technical": "Iman", "privacy": "Iman"},
+  "authentication": {
+    "password_hash": "Django Argon2id preferred; PBKDF2-SHA256 accepted migration fallback",
+    "access_token_ttl_seconds": 900,
+    "session_max_age_seconds": 2592000,
+    "rotation": "signing keys carry a non-secret key id; verify active and retiring keys; new tokens use active key only",
+    "revocation": "server-side session id is checked on every authenticated request",
+    "browser_storage": "HttpOnly Secure SameSite=Lax cookie at the same-origin boundary; never localStorage"
+  },
+  "security_headers": {
+    "Content-Security-Policy": "default-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'",
+    "X-Content-Type-Options": "nosniff",
+    "Referrer-Policy": "strict-origin-when-cross-origin",
+    "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+    "Strict-Transport-Security": "max-age=31536000; includeSubDomains"
+  },
+  "rate_limits": {
+    "login_per_ip": {"limit": 10, "window_seconds": 900},
+    "login_per_account": {"limit": 5, "window_seconds": 900},
+    "answer_per_user": {"limit": 120, "window_seconds": 60},
+    "import_per_staff": {"limit": 10, "window_seconds": 3600},
+    "admin_write_per_staff": {"limit": 60, "window_seconds": 60}
+  },
+  "privacy": {
+    "data_minimization": "collect only identity, learning evidence, security audit and content provenance required by documented product behavior",
+    "raw_import_retention_days": 90,
+    "security_audit_retention_days": 365,
+    "deletion": "scheduled deletion requires legal/owner confirmation and immutable deletion audit; user learning history follows an approved erasure/export workflow",
+    "log_redaction": "passwords, tokens, cookies, authorization headers and secrets are always redacted"
+  },
+  "uploads": {
+    "max_bytes": 20971520,
+    "policy": "quarantine until a scanner returns clean evidence bound to the exact SHA-256; timeout, error or missing evidence rejects commit",
+    "production_scanner": "REQUIRED_STAGE26_ADAPTER"
+  },
+  "backup": {
+    "rpo_hours": 24,
+    "rto_hours": 4,
+    "encryption": "at rest and in transit",
+    "restore_drill_frequency_days": 90,
+    "success": "restore into isolated environment, verify manifest, migrations, row counts and critical read path",
+    "production_execution": "STAGE26"
+  },
+  "secrets": {"repository_values_forbidden": true, "runtime_injection_required": true, "rotation_audit_required": true},
+  "downstream": {
+    "stage26": ["select secret manager and malware scanner", "exercise production-like restore", "deploy HTTPS headers and alerts"],
+    "stage27": ["calibrate limits from observed abuse and false-positive evidence"]
+  }
+}

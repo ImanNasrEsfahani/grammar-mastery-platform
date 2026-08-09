@@ -1,0 +1,6 @@
+decision_id,decision,status,safe_current_boundary,owner,due_stage
+S25_D01_SECRET_MANAGER,Select production secret and signing-key manager,DEFERRED_TO_STAGE26,Runtime injection required and repository values forbidden,Iman,26
+S25_D02_MALWARE_SCANNER,Select production upload scanning provider,DEFERRED_TO_STAGE26,Uploads remain quarantined and commit fails closed without clean bound evidence,Iman,26
+S25_D03_RETENTION,Approve 90-day raw import and 365-day security audit retention defaults,PENDING_OWNER_APPROVAL,No automated deletion is enabled,Iman,25
+S25_D04_RPO_RTO,Confirm 24-hour RPO and 4-hour RTO with measured restore drill,DEFERRED_TO_STAGE26,Targets are planning values and not production claims,Iman,26
+S25_D05_MFA,Select MFA enforcement for administrators and reviewers,DEFERRED_TO_STAGE26,Least privilege revocable sessions dual-key login limiting and audit remain mandatory,Iman,26
