@@ -5,7 +5,7 @@ from django.http import JsonResponse
 from django.urls import include, path
 
 
-RUNTIME_VERSION = "docker-runtime-v1.0.2-postgres-auth"
+RUNTIME_VERSION = "docker-runtime-v1.0.3-postgres-dashboard"
 
 
 def live(_request):

@@ -3,7 +3,7 @@ from __future__ import annotations
 from rest_framework.exceptions import MethodNotAllowed
 from rest_framework.views import APIView
 
-from backend.django_adapter import runtime_auth
+from backend.django_adapter import runtime_auth, runtime_dashboard
 from backend.errors import APIError
 
 
@@ -11,9 +11,9 @@ class ContractEndpointView(APIView):
     """Route a frozen Stage 21 operation to a bound runtime provider.
 
     The Stage 26 routing hotfix established the complete HTTP surface. Runtime
-    providers are bound incrementally. Auth is now PostgreSQL-backed; operations
-    without a production provider continue to fail closed with the Stage 21
-    JSON dependency error rather than falling through to an HTML 404.
+    providers are bound incrementally. Auth plus the Stage 18 dashboard/next
+    action surfaces are now PostgreSQL-backed; operations without a production
+    provider continue to fail closed with the Stage 21 JSON dependency error.
     """
 
     operations: dict[str, str] = {}
@@ -31,6 +31,10 @@ class ContractEndpointView(APIView):
             return runtime_auth.login_request(request)
         if operation_id == "logoutUser":
             return runtime_auth.logout_request(request)
+        if operation_id == "getDashboard":
+            return runtime_dashboard.dashboard_request(request)
+        if operation_id == "getCurrentNextAction":
+            return runtime_dashboard.next_action_request(request)
 
         raise APIError(
             503,

@@ -1,0 +1,10 @@
+{
+  "patch": "grammar-mastery-runtime-dashboard-provider-v1",
+  "files": {
+    "README_RUNTIME_DASHBOARD_PROVIDER.md": "8fd569b213d3db05a33f5c565d681c73e09077ec5972e13fa88271cbde5de3ae",
+    "docker/backend/gmp_runtime/urls.py": "b5ec716eab61eb590bcdf29d85991eab69d4150f7d8da6cc6fb7feb1c2e3add3",
+    "src/backend/django_adapter/runtime_dashboard.py": "7b4ffbbe102cb2942b3f6167b73534ff387ee353329a73a36c9c6fead11da1ba",
+    "src/backend/django_adapter/views.py": "a90a0fccecbac89abc4d6e3645f62fff268cf7fa4d8a59e1b71e9bc2689fa3d7",
+    "tests/test_runtime_dashboard_provider.py": "a078b115776098da075e7929de775dae5778a70b7738ed8907d397497e957bc3"
+  }
+}
