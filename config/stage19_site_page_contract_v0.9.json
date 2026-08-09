@@ -1,0 +1,59 @@
+{
+  "stage": 19,
+  "name": "Site Information Architecture",
+  "contract_version": "site-ia-v0.9.0",
+  "release_status": "RECONSTRUCTED_REFERENCE_PENDING_OWNER_REVIEW",
+  "source_package": "stage19_ia_site_pages_v0.9.zip",
+  "provenance": "package name and invariants recovered from prior summary; original sandbox bytes were not persisted",
+  "governance": {
+    "product_owner": "Iman",
+    "technical_owner": "Iman"
+  },
+  "locales": {
+    "supported": ["en", "fa"],
+    "canonical_prefixes": ["/en", "/fa"],
+    "route_slugs_are_localized": false,
+    "labels_may_be_localized": true
+  },
+  "surfaces": {
+    "PUBLIC": {"guard": "anonymous_or_authenticated", "purpose": "authentication entry"},
+    "AUTHENTICATED": {"guard": "authenticated_user", "purpose": "learner product"},
+    "STAFF": {"guard": "staff_role_required", "purpose": "reserved for Stage20 admin IA", "reserved_prefix": "/staff"}
+  },
+  "page_responsibility_count": 12,
+  "localized_canonical_route_count": 26,
+  "route_map_semantics": {
+    "file": "data/product/stage19_route_map_v0.9.csv",
+    "scope": "canonical localized landing routes",
+    "review_landing_template": "/:locale/review",
+    "supplemental_deep_links_not_counted": ["/:locale/review/:group_key"]
+  },
+  "parameterized_route_templates": [
+    "/:locale/attempts/:attempt_id",
+    "/:locale/attempts/:attempt_id/result",
+    "/:locale/lessons/:lesson_id",
+    "/:locale/review/:group_key"
+  ],
+  "required_states": ["LOADING", "EMPTY", "ERROR", "OFFLINE_RETRY", "UNAUTHORIZED"],
+  "responsibility_rules": {
+    "TEST_RUNNER": "solve the frozen test snapshot; exclude dashboard distractions",
+    "RESULT": "report score and breakdown for one attempt; do not become the learning review workflow",
+    "REVIEW": "consume Stage16/17 mistake and due-review data; do not recalculate test score",
+    "LESSON_ANALYTICS": "explain mastery/history and offer next action; do not duplicate Progress",
+    "PROGRESS": "show longitudinal snapshots; do not become attempt detail"
+  },
+  "navigation_rules": [
+    "navigation follows user mental model rather than database structure",
+    "every authenticated primary CTA resolves to a guarded canonical destination",
+    "stable slugs never depend on translated labels",
+    "parameter IDs use stable UUIDs/identifiers rather than display titles",
+    "unauthorized staff routes fail closed",
+    "keyboard focus order follows visual task order"
+  ],
+  "downstream": {
+    "stage20": ["STAFF reserved surface and guard"],
+    "stage21": ["resource boundaries and route/API mapping"],
+    "stage22": ["page components, accessibility and responsive implementation"],
+    "stage24": ["route/state acceptance tests"]
+  }
+}

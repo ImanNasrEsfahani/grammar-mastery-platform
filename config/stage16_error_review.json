@@ -1,0 +1,21 @@
+{
+  "model_version": "error-review-v0.9.0",
+  "grouping": {"primary": "MISCONCEPTION", "fallback": "SUBTOPIC_UNMAPPED"},
+  "retrieval_practice": {"require_retry_before_auto_reveal": true, "allow_explicit_reveal": true},
+  "resolution": {
+    "statuses": ["UNRESOLVED", "CORRECTED", "EXCLUDED_CONTENT_ISSUE"],
+    "correct_retry_status": "CORRECTED",
+    "wrong_retry_status": "UNRESOLVED"
+  },
+  "default_filters": {
+    "date_from": null,
+    "date_to": null,
+    "lesson_ids": [],
+    "subtopic_ids": [],
+    "misconception_ids": [],
+    "difficulty_codes": [],
+    "min_repeat_count": 1,
+    "resolution_statuses": ["UNRESOLVED"],
+    "marked_only": false
+  }
+}

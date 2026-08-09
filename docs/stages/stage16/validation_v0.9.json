@@ -1,0 +1,70 @@
+{
+  "project": "Grammar Mastery Platform",
+  "stage": 16,
+  "package_version": "stage16-v0.9-review",
+  "validated_at_utc": "2026-08-09T00:00:00Z",
+  "overall_reference_status": "PASS",
+  "automated_tests": {
+    "runner": "python3 -m unittest -v stage16_review_tests.py",
+    "passed": 26,
+    "failed": 0,
+    "errors": 0,
+    "status": "PASS",
+    "coverage_topics": [
+      "wrong/correct/unscorable eligibility",
+      "latest answer_sequence deduplication",
+      "misconception grouping and unmapped fallback",
+      "retired/disabled history preservation",
+      "content ambiguity exclusion",
+      "retry correction/reopen semantics",
+      "retrieval-practice feedback gate",
+      "mark/unmark",
+      "all required review filter dimensions",
+      "repeat-count filtering",
+      "deterministic priority",
+      "source answer non-mutation",
+      "mastery evidence exclusion/reinstatement",
+      "config fail-closed checks"
+    ]
+  },
+  "sqlite_patch_validation": {
+    "base": "stage12_grammar_mastery_v0.9.sqlite",
+    "pre_patch": "stage15_sqlite_patch_v0.9.sql",
+    "stage16_patch": "stage16_sqlite_patch_v0.9.sql",
+    "integrity_check": "ok",
+    "foreign_key_check_rows": 0,
+    "stage16_tables_created": 3,
+    "stage16_views_created": 2,
+    "status": "PASS"
+  },
+  "json_validation": {
+    "syntax": "PASS",
+    "runtime_contract_validation": "PASS via validate_config automated tests",
+    "external_jsonschema_library": "NOT_AVAILABLE_IN_RUNTIME; not required for reference pass because schema is delivered and contract invariants are executed by reference tests"
+  },
+  "valid_example": "Three synthetic Lesson32/dont errors map to the source-package NEAR_FORM_CONFUSION fixture and one unresolved group; the family exists in Stage7 policy, while the fixture UUID is not independently present in the current canonical repository artifacts. Correct retry resolves one item without mutating source test statistics.",
+  "invalid_example": "Confirmed ambiguous content is retained as history but becomes EXCLUDED_CONTENT_ISSUE/HISTORY_ONLY and is excluded from future mastery evidence replay.",
+  "runtime_live_validation": {
+    "status": "EXPECTED_BLOCK",
+    "reasons": [
+      "Stage12 executable snapshot has zero Published questions",
+      "no live user answer history exists in the current project snapshot"
+    ],
+    "classification": "external runtime prerequisite, not a Stage16 design/reference failure"
+  },
+  "roadmap_must_checks": {
+    "filter_date_lesson_subtopic_misconception_difficulty_repeat": true,
+    "show_previous_correct_option_explanations_after_retrieval_gate": true,
+    "mark_for_review": true,
+    "group_similar_by_misconception": true,
+    "separate_unresolved_and_corrected": true,
+    "review_does_not_change_original_test_stats": true
+  },
+  "roadmap_must_not_checks": {
+    "plain_unprioritized_wrong_list": false,
+    "automatic_answer_reveal_before_retry": false,
+    "retired_question_history_deleted": false,
+    "ambiguous_question_counted_as_user_weakness": false,
+    "review_equated_with_full_test_retake": false
+  }
+}

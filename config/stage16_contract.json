@@ -1,0 +1,97 @@
+{
+  "manifest": {
+    "project": "Grammar Mastery Platform",
+    "stage": 16,
+    "stage_name_fa": "ساخت سیستم مرور اشتباهات و Error Review",
+    "package_version": "stage16-v0.9-review",
+    "created_at_utc": "2026-08-09T00:00:00Z",
+    "status": "substantive_complete_reference_validated_pending_owner_acceptance",
+    "governance": {
+      "content_owner": "Iman",
+      "technical_owner": "Iman",
+      "governance_version": "governance-v1.0.0",
+      "authoritative_book": "Grammaire Progressive du Français - Niveau intermédiaire - 3e édition"
+    },
+    "versions": {
+      "error_review_model": "error-review-v0.9.0",
+      "filters": "error-review-filters-v0.9.0",
+      "grouping": "mistake-grouping-v0.9.0",
+      "resolution": "error-resolution-v0.9.0",
+      "events": "error-review-events-v0.9.0",
+      "ux": "error-review-ux-v0.9.0",
+      "evidence_exclusion": "learning-evidence-exclusion-v0.9.0",
+      "storage_patch": "error-review-storage-patch-v0.9.0"
+    }
+  },
+  "goal_fa": "تبدیل پاسخ‌های غلط به تجربه آموزشی قابل جست‌وجو، فیلتر، گروه‌بندی و تکرار که علت خطا را نشان می‌دهد و بدون تغییر آمار آزمون اصلی الگوهای misconception را آشکار می‌کند.",
+  "roadmap_outputs": {
+    "review_filters": ["date", "lesson", "subtopic", "misconception", "difficulty", "repeat_count", "resolution_status", "marked_only"],
+    "mistake_grouping": "MISCONCEPTION first; stable SUBTOPIC_UNMAPPED fallback when no mapped misconception exists",
+    "resolution_status": ["UNRESOLVED", "CORRECTED", "EXCLUDED_CONTENT_ISSUE"],
+    "review_events": ["ITEM_OPENED", "RETRY_SUBMITTED", "ANSWER_REVEALED", "MARKED_FOR_REVIEW", "UNMARKED_FOR_REVIEW", "CONTENT_EXCLUDED", "CONTENT_REINSTATED"],
+    "ux_flow": "GROUP_LIST -> GROUP_DETAIL -> RETRY_WITH_FEEDBACK_HIDDEN -> RETRY_SUBMITTED_OR_EXPLICIT_REVEAL -> FEEDBACK_WITH_PREVIOUS_AND_CORRECT_AND_OPTION_EXPLANATIONS -> MARK_OR_NEXT"
+  },
+  "source_contract": {
+    "wrong_answer_source": "latest answer_sequence per (attempt_id,test_question_id), is_correct=false",
+    "unscorable_policy": "is_correct=null never creates an error review item",
+    "question_revision": "use exact frozen Stage13 test_questions snapshot for history and retry; never silently swap to a newer revision",
+    "misconception_source": "selected distractor option misconception_id from Stage7/Stage12",
+    "difficulty_source": "frozen question revision initial_difficulty_code",
+    "retired_policy": "retain history; exact retired/disabled revision becomes HISTORY_ONLY and is not retried",
+    "content_issue_policy": "confirmed ambiguity/invalid content is EXCLUDED_CONTENT_ISSUE, HISTORY_ONLY, and creates a learning-evidence exclusion event"
+  },
+  "grouping": {
+    "primary_key": "MISCONCEPTION:<misconception_uuid>",
+    "fallback_key": "SUBTOPIC:<subtopic_uuid>:UNMAPPED",
+    "fallback_semantics": "data-quality fallback only; does not invent a misconception",
+    "repeat_count": "count of eligible original wrong-answer review items in the group; review retry failures do not inflate original mistake count",
+    "group_resolution": "UNRESOLVED if any active item unresolved; else CORRECTED if any corrected item; else EXCLUDED_CONTENT_ISSUE",
+    "default_priority": ["marked group first", "unresolved before resolved", "higher eligible wrong count", "more recent last wrong", "stable group_key tie-break"]
+  },
+  "retrieval_practice": {
+    "require_retry_before_auto_reveal": true,
+    "before_retry_show": ["frozen question stem", "frozen options in original order", "review context without answer key"],
+    "after_retry_or_explicit_reveal_show": ["previous user answer", "retry answer if any", "correct answer", "all option explanations", "mapped misconception diagnostic"],
+    "explicit_reveal_without_retry": "allowed but audited as ANSWER_REVEALED and does not resolve the item",
+    "correct_retry": "sets item CORRECTED",
+    "later_wrong_retry": "reopens item to UNRESOLVED"
+  },
+  "statistics_and_mastery_boundary": {
+    "original_test_stats": "immutable; review events never update test_attempts score or source user_answers",
+    "stage15_mastery": "review retries are resolution evidence, not mastery evidence in v0.9; no hidden change to Stage15 formula",
+    "content_issue_correction": "learning-evidence exclusion events gate the affected source answer out of future Stage15 mastery replay; raw answer remains auditable",
+    "stage17_srs": "Stage16 records review outcomes/marks only; it does not calculate interval_days, due_at, strength, or scheduler_version"
+  },
+  "storage": {
+    "current_state_table": "error_review_items",
+    "append_only_event_table": "error_review_events",
+    "append_only_evidence_exclusion_table": "learning_evidence_exclusion_events",
+    "group_view": "v_error_review_groups",
+    "mastery_exclusion_view": "v_learning_evidence_exclusion_state",
+    "patches": ["stage16_postgresql_patch_v0.9.sql", "stage16_sqlite_patch_v0.9.sql"]
+  },
+  "failure_contract": [
+    {"code":"REVIEW_CONFIG_VERSION_MISMATCH","action":"fail closed; do not serve review session"},
+    {"code":"REVIEW_MISSING_PRIMARY_SUBTOPIC","action":"data integrity failure; no grouping guess"},
+    {"code":"REVIEW_UNKNOWN_DIFFICULTY","action":"data integrity failure; no implicit difficulty mapping"},
+    {"code":"REVIEW_RETRY_NOT_ALLOWED_HISTORY_ONLY","action":"show historical record only; do not accept retry"},
+    {"code":"REVIEW_EVENT_USER_MISMATCH","action":"reject event"},
+    {"code":"REVIEW_RETRY_RESULT_REQUIRED","action":"reject incomplete retry event"},
+    {"code":"NO_REVIEWABLE_ERRORS","action":"normal empty state; suggest regular/adaptive practice, not fabricated review items"}
+  ],
+  "risk_controls": [
+    {"risk":"ENDLESS_LIST","preventive":"misconception grouping + deterministic default priority + filters","detection":"monitor unresolved groups/items and p95 queue size"},
+    {"risk":"PASSIVE_REVIEW","preventive":"feedback hidden until retry or explicit audited reveal","detection":"monitor reveal_without_retry_rate and corrected_after_retry_rate"},
+    {"risk":"CONTENT_ERROR_ATTRIBUTED_TO_USER","preventive":"EXCLUDED_CONTENT_ISSUE + evidence exclusion event","detection":"alert if confirmed ambiguous source answer remains mastery-eligible"},
+    {"risk":"OVER_REPETITION","preventive":"Stage16 does not self-schedule; history-only safety gate and stable grouping","detection":"monitor same-question review count and hand off interval policy to Stage17"},
+    {"risk":"UNMAPPED_MISCONCEPTION","preventive":"explicit SUBTOPIC_UNMAPPED fallback, never invented diagnosis","detection":"monitor unmapped_group_share; block misleading misconception label"
+    }
+  ],
+  "downstream_dependencies": {
+    "stage17": ["review outcome events", "marked_for_review", "resolution_status", "last review event time", "reviewability"],
+    "stage18": ["unresolved groups", "corrected items", "top misconception groups", "unmapped share", "review completion metrics"],
+    "stage21": ["list/filter groups", "open item", "submit retry", "reveal answer", "mark/unmark endpoints"],
+    "stage25": ["review event retention and user-history privacy policy"],
+    "stage27": ["unmapped misconception rate", "passive reveal rate", "correction rate", "repeat distribution", "empirical review effectiveness"]
+  }
+}

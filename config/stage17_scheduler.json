@@ -1,0 +1,43 @@
+{
+  "scheduler_version": "spaced-review-v0.9.0",
+  "state_machine_version": "spaced-review-state-machine-v0.9.0",
+  "mastery_provider_contract_version": "mastery-provider-contract-v0.9.0",
+  "target_scope": "SUBTOPIC",
+  "states": ["NEW", "LEARNING", "REVIEW", "LAPSED", "SUSPENDED"],
+  "stable_mastery_bands": ["STRONG"],
+  "learning_intervals_days": [1.0, 3.0],
+  "review_initial_days": 7.0,
+  "review_growth_factor": 2.0,
+  "max_review_interval_days": 180.0,
+  "lapse": {
+    "interval_multiplier": 0.25,
+    "min_days": 1.0,
+    "max_days": 3.0,
+    "recovery_days": 3.0
+  },
+  "diversity": {
+    "recent_question_uid_window": 3,
+    "prefer_different_question_uid": true,
+    "relax_soft_exclusion_if_pool_exhausted": true,
+    "never_relax_safety_exclusions": true
+  },
+  "content_safety": {
+    "question_status_required": "PUBLISHED",
+    "exclude_retired_or_disabled": true,
+    "exclude_confirmed_content_issue": true,
+    "suspend_concept_only_when_safe_pool_empty": true
+  },
+  "event_policy": {
+    "unscorable_answer": "IGNORE",
+    "stage16_review_retry_advances_srs": false,
+    "content_exclusion_creates_lapse": false,
+    "raw_history_is_append_only": true
+  },
+  "queue_policy": {
+    "operational_statuses": ["SCHEDULED", "DUE", "COMPLETED", "SUSPENDED"],
+    "due_is_derived_from_due_at": true,
+    "state_priority_for_equal_due_at": ["LAPSED", "LEARNING", "REVIEW", "NEW"],
+    "marked_signal_is_tiebreak_only": true
+  },
+  "calibration_status": "INITIAL_VERSIONED_CONFIGURATION_CALIBRATE_STAGE27"
+}

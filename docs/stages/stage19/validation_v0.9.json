@@ -1,0 +1,24 @@
+{
+  "stage": 19,
+  "validation_version": "stage19-validation-v0.9.0-reconstructed",
+  "status": "PASS_RECONSTRUCTED_CONTRACT",
+  "prior_reported_result": {
+    "assertions": 63,
+    "passed": 63,
+    "failed": 0,
+    "warnings": 0,
+    "source": "recovered prior assistant summary; original sandbox package not persisted in Library"
+  },
+  "reconstruction_invariants": {
+    "page_responsibilities": 12,
+    "localized_canonical_routes": 26,
+    "parameterized_route_templates": 4,
+    "review_group_deep_link_is_supplemental_not_counted_in_26_landings": true,
+    "supported_locales": ["en", "fa"],
+    "stable_nonlocalized_slugs": true,
+    "result_review_analytics_separated": true,
+    "required_states_defined": true,
+    "staff_surface_fail_closed_and_reserved_for_stage20": true,
+    "navigation_targets_resolve_to_known_page_keys": true
+  }
+}

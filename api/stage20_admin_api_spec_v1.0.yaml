@@ -1,0 +1,135 @@
+openapi: 3.1.0
+info:
+  title: Grammar Mastery Stage 20 Admin API Contract
+  version: 1.0.0
+x-implementation-boundary: Stage 21 owns backend implementation and Stage 22 owns frontend implementation.
+servers:
+  - url: /
+    description: Deployment-relative Stage 21 server
+security:
+  - bearerAuth: []
+paths:
+  /admin/questions:
+    get:
+      operationId: listAdminQuestions
+      summary: Search and filter the question bank
+      x-roles: [ADMIN, CONTENT_EDITOR, REVIEWER]
+      responses:
+        "200":
+          description: Filtered question-bank result
+    post:
+      operationId: createAdminQuestionDraft
+      summary: Create a draft question
+      description: New questions are always created as DRAFT.
+      x-roles: [ADMIN, CONTENT_EDITOR]
+      responses:
+        "201":
+          description: Draft question created
+  /admin/questions/{questionId}:
+    parameters:
+      - $ref: "#/components/parameters/QuestionId"
+    patch:
+      operationId: createAdminQuestionRevision
+      summary: Create a new revision for editable question content
+      x-roles: [ADMIN, CONTENT_EDITOR]
+      responses:
+        "200":
+          description: New immutable question revision created
+  /admin/questions/{questionId}/review:
+    parameters:
+      - $ref: "#/components/parameters/QuestionId"
+    post:
+      operationId: reviewAdminQuestion
+      summary: Approve reject or request changes
+      description: Backend must enforce reviewer != author/generator for independent publication review.
+      x-roles: [ADMIN, REVIEWER]
+      x-stage11-transition-gate: true
+      responses:
+        "200":
+          description: Review action recorded through the Stage 11 workflow
+  /admin/questions/{questionId}/retire:
+    parameters:
+      - $ref: "#/components/parameters/QuestionId"
+    post:
+      operationId: retireAdminQuestion
+      summary: Immediately retire problematic content
+      x-roles: [ADMIN]
+      responses:
+        "200":
+          description: Question retired without deleting immutable history
+  /admin/questions/{questionId}/retire-request:
+    parameters:
+      - $ref: "#/components/parameters/QuestionId"
+    post:
+      operationId: requestAdminQuestionRetirement
+      summary: Request retirement for review
+      x-roles: [CONTENT_EDITOR, REVIEWER]
+      responses:
+        "202":
+          description: Auditable retirement request accepted
+  /admin/imports/preview:
+    post:
+      operationId: previewAdminImport
+      summary: Validate and preview a bulk import without mutation
+      description: Every imported row must request DRAFT status.
+      x-roles: [ADMIN, CONTENT_EDITOR]
+      x-import-status: DRAFT
+      responses:
+        "200":
+          description: Non-mutating import preview and confirmation token
+  /admin/imports/commit:
+    post:
+      operationId: commitAdminImport
+      summary: Commit the exact previously previewed batch
+      description: The server rejects any row not in DRAFT and never silently coerces a privileged state.
+      x-roles: [ADMIN, CONTENT_EDITOR]
+      x-import-status: DRAFT
+      x-stage11-transition-gate: true
+      responses:
+        "200":
+          description: Draft-only import batch committed and audited
+  /admin/questions/bulk-status/preview:
+    post:
+      operationId: previewAdminBulkStatus
+      summary: Preview a bulk status mutation
+      description: Allowed targets are DRAFT, READY_FOR_REVIEW and CHANGES_REQUESTED only.
+      x-roles: [ADMIN, CONTENT_EDITOR]
+      x-forbidden-targets: [APPROVED, PUBLISHED, REJECTED, RETIRED]
+      x-stage11-transition-gate: true
+      responses:
+        "200":
+          description: Non-mutating transition preview and confirmation token
+  /admin/questions/bulk-status/commit:
+    post:
+      operationId: commitAdminBulkStatus
+      summary: Commit the exact confirmed bulk status mutation
+      description: Every transition is validated against Stage 11 and the batch fails atomically.
+      x-roles: [ADMIN, CONTENT_EDITOR]
+      x-forbidden-targets: [APPROVED, PUBLISHED, REJECTED, RETIRED]
+      x-stage11-transition-gate: true
+      responses:
+        "200":
+          description: Allowed bulk transitions committed and audited
+  /admin/audit-log:
+    get:
+      operationId: listAdminAuditEvents
+      summary: Query immutable admin audit events
+      description: Stage 12 audit_logs is canonical; Stage 20 admin events are linked domain supplements.
+      x-roles: [ADMIN, REVIEWER]
+      responses:
+        "200":
+          description: Immutable correlated audit history
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  parameters:
+    QuestionId:
+      name: questionId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid

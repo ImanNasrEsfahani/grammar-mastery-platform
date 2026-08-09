@@ -2,9 +2,9 @@
 
 Data-driven French grammar learning platform derived from the project roadmap: knowledge map → taxonomy → content planning → question QA → relational database → test generation → adaptive selection → mastery and later review/SRS/product stages.
 
-## Current baseline
+## Current repository state
 
-This commit consolidates the **best accepted repository baseline through Stage 15**. It does not relabel historical v0.9 formulas as new empirical facts: validated semantic model IDs remain versioned, while upstream governance blockers have been formally resolved.
+The accepted canonical baseline remains **Stages 1–15**. Repository-ready Stage 16–20 deliverables are layered on top without relabeling historical v0.9 formulas as new empirical facts. Stage 16/17 are verified imports of their original Library packages; Stage 18–20 are explicitly marked reconstructions where the earlier sandbox artifacts were not persisted.
 
 Key facts:
 
@@ -18,6 +18,11 @@ Key facts:
 - Stage 13 deterministic test-generator reference implementation.
 - Stage 14 adaptive priority model.
 - Stage 15 confidence-aware mastery model.
+- Stage 16 Error Review reference engine and additive storage patch.
+- Stage 17 concept-level spaced-repetition scheduler and additive storage patch.
+- Stage 18 actionable learning-dashboard contract.
+- Stage 19 localized site IA and page-responsibility contract.
+- Stage 20 admin roles, API, bulk-import and audit contracts.
 
 See [STATUS.md](STATUS.md) for readiness and blockers.
 
@@ -31,8 +36,11 @@ See [STATUS.md](STATUS.md) for readiness and blockers.
 - `data/planning/` — weights, capacity and difficulty targets
 - `config/` — versioned stage contracts/policies
 - `schemas/` — machine-readable import schema
-- `database/postgres/` — Stage 12 base schema + Stage 15 additive patch
-- `src/` — reference engines for Stages 13–15
+- `database/postgres/` — Stage 12 base schema plus additive Stage 15–17 and Stage 20 patches
+- `database/sqlite/` — executable reference patches for Stages 16–17
+- `api/` — API contracts introduced by product/admin stages
+- `src/` — reference engines for Stages 13–17
+- `data/product/` — product/IA matrices for Stage 19
 - `tests/` — repository contract tests
 - `tools/` — baseline validation
 - `artifacts/` — canonical package artifacts
@@ -48,6 +56,8 @@ python tools/validate_baseline.py
 python -m unittest discover -s tests -v
 ```
 
+The integrated repository suite contains 85 tests: the original 74 mapped tests plus 11 conservative integration-hardening regressions.
+
 ## Next roadmap work
 
-Stage 16 — Error Review; Stage 17 — Spaced Repetition; Stage 18+ product/UI/admin/backend/deployment. Real Stage 13/14 runtime remains blocked until a reviewed `PUBLISHED` question inventory exists.
+Stage 21 — Backend/API implementation. Stage 22+ covers frontend, import tooling, testing, security, deployment and empirical calibration. Real learning-runtime validation still requires a reviewed `PUBLISHED` question inventory and live user history.

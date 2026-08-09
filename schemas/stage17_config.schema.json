@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "stage17-config.schema.json",
+  "title": "Grammar Mastery Platform Stage17 Scheduler Config",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "scheduler_version",
+    "state_machine_version",
+    "mastery_provider_contract_version",
+    "target_scope",
+    "states",
+    "stable_mastery_bands",
+    "learning_intervals_days",
+    "review_initial_days",
+    "review_growth_factor",
+    "max_review_interval_days",
+    "lapse",
+    "diversity",
+    "content_safety",
+    "event_policy",
+    "queue_policy",
+    "calibration_status"
+  ],
+  "properties": {
+    "scheduler_version": {"const": "spaced-review-v0.9.0"},
+    "state_machine_version": {"const": "spaced-review-state-machine-v0.9.0"},
+    "mastery_provider_contract_version": {"const": "mastery-provider-contract-v0.9.0"},
+    "target_scope": {"const": "SUBTOPIC"},
+    "states": {
+      "type": "array",
+      "uniqueItems": true,
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {"enum": ["NEW", "LEARNING", "REVIEW", "LAPSED", "SUSPENDED"]}
+    },
+    "stable_mastery_bands": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"enum": ["STRONG"]}
+    },
+    "learning_intervals_days": {
+      "type": "array",
+      "minItems": 2,
+      "items": {"type": "number", "exclusiveMinimum": 0, "maximum": 30}
+    },
+    "review_initial_days": {"type": "number", "exclusiveMinimum": 0},
+    "review_growth_factor": {"type": "number", "exclusiveMinimum": 1},
+    "max_review_interval_days": {"type": "number", "exclusiveMinimum": 0},
+    "lapse": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["interval_multiplier", "min_days", "max_days", "recovery_days"],
+      "properties": {
+        "interval_multiplier": {"type": "number", "exclusiveMinimum": 0, "exclusiveMaximum": 1},
+        "min_days": {"type": "number", "exclusiveMinimum": 0},
+        "max_days": {"type": "number", "exclusiveMinimum": 0},
+        "recovery_days": {"type": "number", "exclusiveMinimum": 0}
+      }
+    },
+    "diversity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["recent_question_uid_window", "prefer_different_question_uid", "relax_soft_exclusion_if_pool_exhausted", "never_relax_safety_exclusions"],
+      "properties": {
+        "recent_question_uid_window": {"type": "integer", "minimum": 1, "maximum": 20},
+        "prefer_different_question_uid": {"type": "boolean"},
+        "relax_soft_exclusion_if_pool_exhausted": {"type": "boolean"},
+        "never_relax_safety_exclusions": {"type": "boolean"}
+      }
+    },
+    "content_safety": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["question_status_required", "exclude_retired_or_disabled", "exclude_confirmed_content_issue", "suspend_concept_only_when_safe_pool_empty"],
+      "properties": {
+        "question_status_required": {"const": "PUBLISHED"},
+        "exclude_retired_or_disabled": {"const": true},
+        "exclude_confirmed_content_issue": {"const": true},
+        "suspend_concept_only_when_safe_pool_empty": {"const": true}
+      }
+    },
+    "event_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["unscorable_answer", "stage16_review_retry_advances_srs", "content_exclusion_creates_lapse", "raw_history_is_append_only"],
+      "properties": {
+        "unscorable_answer": {"const": "IGNORE"},
+        "stage16_review_retry_advances_srs": {"const": false},
+        "content_exclusion_creates_lapse": {"const": false},
+        "raw_history_is_append_only": {"const": true}
+      }
+    },
+    "queue_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["operational_statuses", "due_is_derived_from_due_at", "state_priority_for_equal_due_at", "marked_signal_is_tiebreak_only"],
+      "properties": {
+        "operational_statuses": {"const": ["SCHEDULED", "DUE", "COMPLETED", "SUSPENDED"]},
+        "due_is_derived_from_due_at": {"const": true},
+        "state_priority_for_equal_due_at": {"const": ["LAPSED", "LEARNING", "REVIEW", "NEW"]},
+        "marked_signal_is_tiebreak_only": {"const": true}
+      }
+    },
+    "calibration_status": {"const": "INITIAL_VERSIONED_CONFIGURATION_CALIBRATE_STAGE27"}
+  }
+}
