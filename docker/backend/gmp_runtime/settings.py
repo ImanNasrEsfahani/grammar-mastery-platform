@@ -68,6 +68,7 @@ if not DATABASES["default"]["PASSWORD"]:
     raise ImproperlyConfigured("A PostgreSQL password must be injected at runtime.")
 
 REST_FRAMEWORK = {
+    "UNAUTHENTICATED_USER": None,
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "backend.django_adapter.authentication.Stage21BearerAuthentication",
     ],

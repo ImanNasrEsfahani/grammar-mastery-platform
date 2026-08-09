@@ -1,30 +1,5 @@
 {
-  "package": "runtime-api-routing-hotfix-v1",
-  "scope": "missing Django Stage21 HTTP routing surface only",
-  "files": {
-    "README_RUNTIME_API_ROUTING_HOTFIX.md": {
-      "sha256": "edb1e5a9ddc4256a518a5f95cede67d0349de94e4666be40760c886cb1ce37ba",
-      "bytes": 2597
-    },
-    "docker/backend/gmp_runtime/urls.py": {
-      "sha256": "d2070201b554e793a672949d719c70db18a0ceeaef64efbcdd3e0f398a16463a",
-      "bytes": 998
-    },
-    "src/backend/django_adapter/permissions.py": {
-      "sha256": "fa92f3ab3331e8e5f2cf788881ae5b35930811d15b7092cdee5b43702515adde",
-      "bytes": 1359
-    },
-    "src/backend/django_adapter/urls.py": {
-      "sha256": "59bc59173567c3b92ff74c60da491e70445e90f6037a4d5aa0aec88dd93fc68c",
-      "bytes": 4113
-    },
-    "src/backend/django_adapter/views.py": {
-      "sha256": "96b704741d045ed556761aad103c31fb0c0f9e2481a2fcadffb295ba1e77cd35",
-      "bytes": 1696
-    },
-    "tests/test_runtime_api_routing_hotfix.py": {
-      "sha256": "78c835aaabccaf5836849fd34a42f9626a4e7435f1f20cb2acaeddd06b355237",
-      "bytes": 2530
-    }
-  }
+  "README_EMPTY_PRODUCTION_BOOTSTRAP_PATCH.md": "614b2d05db37da158d3fbf82fa079cb1f6154623de73fca639084c28a51eea6b",
+  "ops/stage26/migration_runner.py": "d7d80c89c3cf7f5fe1fe8f3bfc92d213218863117d2d22cc40804d91d236f6d0",
+  "tests/test_stage26_bootstrap_empty_production.py": "6c1bc55511b95058da277d96838a2f96e8a7ae84c3c120f4c43c52a6768bc02f"
 }
