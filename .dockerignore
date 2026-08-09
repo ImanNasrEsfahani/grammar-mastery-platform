@@ -35,6 +35,27 @@ backups/
 # The backend image copies only explicit runtime directories, so these do not
 # need to be transferred in the Docker build context.
 artifacts/
-data/
+
+# Keep the general data tree out of the Docker build context, but allow the
+# eight pinned canonical CSV inputs required by the one-time Stage 12 seed.
+data/*
+!data/knowledge/
+!data/taxonomy/
+!data/planning/
+
+data/knowledge/*
+!data/knowledge/stage1_lessons_v1.0.csv
+!data/knowledge/stage1_subtopics_v1.0.csv
+
+data/taxonomy/*
+!data/taxonomy/stage2_categories_v1.0.csv
+!data/taxonomy/stage2_subcategories_v1.0.csv
+!data/taxonomy/stage2_controlled_tags_v1.0.csv
+!data/taxonomy/stage2_lesson_category_mapping_v1.0.csv
+!data/taxonomy/stage2_lesson_tags_v1.0.csv
+
+data/planning/*
+!data/planning/stage3_lesson_weights_v1.0.csv
+
 docs/stages/
 tests/

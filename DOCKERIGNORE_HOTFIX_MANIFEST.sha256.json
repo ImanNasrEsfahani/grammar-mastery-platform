@@ -1,0 +1,7 @@
+{
+  "patch": "canonical-seed-dockerignore-hotfix-v1",
+  "files": {
+    ".dockerignore": "ebd2286ecae3de26e39e3ee5d2f847b746c82e0650befa72b9f63041f8ccbee5",
+    "README_DOCKERIGNORE_HOTFIX.md": "c3cd6f3caa2045aa7bc41991055f25bfbd3b5b7ff5ef49f34b9ba285f3e3074c"
+  }
+}
