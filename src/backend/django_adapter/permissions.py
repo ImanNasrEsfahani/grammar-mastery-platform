@@ -7,12 +7,23 @@ from backend.security import Principal
 
 
 class HasStage21Role(BasePermission):
-    """Enforce view.required_roles against server-verified principal roles."""
+    """Enforce the frozen Stage 21 role contract.
+
+    A route may expose more than one HTTP operation (for example
+    GET+POST /admin/questions), so the hotfix also supports a
+    required_roles_by_method mapping without weakening the existing
+    required_roles behavior.
+    """
 
     message = "You do not have permission to perform this action."
 
     def has_permission(self, request, view) -> bool:
-        required = set(getattr(view, "required_roles", ()))
+        by_method = getattr(view, "required_roles_by_method", None)
+        if isinstance(by_method, dict):
+            required = set(by_method.get(str(request.method).upper(), ()))
+        else:
+            required = set(getattr(view, "required_roles", ()))
+
         if not required:
             return False
         if "PUBLIC" in required:
@@ -26,4 +37,3 @@ def enforce_owner(principal: Principal, resource_owner_id: str) -> None:
 
     if str(principal.user_id) != str(resource_owner_id):
         raise not_found()
-

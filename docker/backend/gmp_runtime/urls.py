@@ -2,10 +2,10 @@ from __future__ import annotations
 
 from django.db import connection
 from django.http import JsonResponse
-from django.urls import path
+from django.urls import include, path
 
 
-RUNTIME_VERSION = "docker-runtime-v1.0.0"
+RUNTIME_VERSION = "docker-runtime-v1.0.1-api-routing-hotfix"
 
 
 def live(_request):
@@ -27,6 +27,8 @@ def ready(_request):
 
 
 urlpatterns = [
+    # Stage 21 contract surface.  The frontend proxy targets /api/v1/*.
+    path("api/v1/", include("backend.django_adapter.urls")),
     path("health/live", live, name="health-live"),
     path("health/ready", ready, name="health-ready"),
 ]
