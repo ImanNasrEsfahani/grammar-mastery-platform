@@ -1,0 +1,14 @@
+{
+  "patch": "grammar-mastery-runtime-auth-provider-v1",
+  "files": {
+    "README_RUNTIME_AUTH_PROVIDER.md": "178cf6bcf25e869649b2c9c97c00c7d89f9f57f6cec5de8813d5188b0cd005b4",
+    "docker/backend/gmp_runtime/settings.py": "78241965f63437210a9de5b96e1128afd42eef8a33ab5398de51abb2769f351a",
+    "docker/backend/gmp_runtime/urls.py": "953a34f622a3edbffb9d41785f4015b60b2a16d8f40d5dc4cdaf994c14845b40",
+    "requirements.txt": "c798317217aab41d3d8891871d338f69b9ae615a8dded0e02bfbae7c5a15bfe7",
+    "src/backend/django_adapter/runtime_auth.py": "e5779b2597236a18af6573fc90ed8fcdba119af94ccfd6330f5fd21666dc0a4a",
+    "src/backend/django_adapter/test_settings.py": "065b4d1dffb943790732672997b438fd77b808575e3ef897eca08e544551ce7b",
+    "src/backend/django_adapter/urls.py": "712aef4bcf8457f1b1a866a4c3951355534bfd3dfa7818e6ef14bb3d58c4cca2",
+    "src/backend/django_adapter/views.py": "c633c5f46721222720ab2c9adb64c43c770e70c073566a8450d471de33943af5",
+    "tests/test_runtime_auth_provider.py": "b01970cdf2e8cb8710845c0ec3957db59280adbb01fe4c74e0ff39ad7458fb15"
+  }
+}

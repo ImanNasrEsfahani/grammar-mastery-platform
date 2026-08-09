@@ -91,10 +91,17 @@ ROUTE_SPECS = [
 
 
 def _view(operations, roles_by_method):
-    return ContractEndpointView.as_view(
-        operations=operations,
-        required_roles_by_method=roles_by_method,
-    )
+    kwargs = {
+        "operations": operations,
+        "required_roles_by_method": roles_by_method,
+    }
+    # OpenAPI marks register/login with security: []; an irrelevant or malformed
+    # Authorization header must not turn those public endpoints into auth gates.
+    if roles_by_method and all(
+        "PUBLIC" in tuple(roles) for roles in roles_by_method.values()
+    ):
+        kwargs["authentication_classes"] = []
+    return ContractEndpointView.as_view(**kwargs)
 
 
 urlpatterns = []

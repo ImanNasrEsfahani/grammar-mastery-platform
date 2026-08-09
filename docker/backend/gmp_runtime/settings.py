@@ -21,6 +21,13 @@ def _csv(name: str, default: str = "") -> list[str]:
     return [item.strip() for item in os.getenv(name, default).split(",") if item.strip()]
 
 
+def _int(name: str, default: int) -> int:
+    try:
+        return int(os.getenv(name, str(default)))
+    except ValueError as exc:
+        raise ImproperlyConfigured(f"{name} must be an integer.") from exc
+
+
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "")
 if len(SECRET_KEY) < 50 or "CHANGE_ME" in SECRET_KEY:
     raise ImproperlyConfigured(
@@ -66,6 +73,36 @@ DATABASES = {
 
 if not DATABASES["default"]["PASSWORD"]:
     raise ImproperlyConfigured("A PostgreSQL password must be injected at runtime.")
+
+# Stage 25: new credentials are Argon2id; Django PBKDF2 remains available only
+# for verification/upgrade of older Django-format hashes.
+PASSWORD_HASHERS = [
+    "django.contrib.auth.hashers.Argon2PasswordHasher",
+    "django.contrib.auth.hashers.PBKDF2PasswordHasher",
+]
+
+# Auth signing material is injected through .env.docker / secret management and
+# is intentionally distinct from DJANGO_SECRET_KEY. A previous key can be kept
+# temporarily during rotation; tokens are selected by non-secret kid.
+STAGE21_JWT_SIGNING_KEY = os.getenv("STAGE21_JWT_SIGNING_KEY", "")
+STAGE21_JWT_KEY_ID = os.getenv("STAGE21_JWT_KEY_ID", "primary-v1")
+STAGE21_JWT_PREVIOUS_SIGNING_KEY = os.getenv(
+    "STAGE21_JWT_PREVIOUS_SIGNING_KEY", ""
+)
+STAGE21_JWT_PREVIOUS_KEY_ID = os.getenv("STAGE21_JWT_PREVIOUS_KEY_ID", "")
+STAGE21_JWT_ISSUER = os.getenv("STAGE21_JWT_ISSUER", "grammar-mastery")
+STAGE21_JWT_AUDIENCE = os.getenv(
+    "STAGE21_JWT_AUDIENCE", "grammar-mastery-api"
+)
+STAGE21_JWT_ACCESS_TTL_SECONDS = _int(
+    "STAGE21_JWT_ACCESS_TTL_SECONDS", 900
+)
+STAGE21_SESSION_TTL_SECONDS = _int(
+    "STAGE21_SESSION_TTL_SECONDS", 30 * 24 * 60 * 60
+)
+STAGE21_TOKEN_VERIFIER = (
+    "backend.django_adapter.runtime_auth.verify_authorization_header"
+)
 
 REST_FRAMEWORK = {
     "UNAUTHENTICATED_USER": None,
