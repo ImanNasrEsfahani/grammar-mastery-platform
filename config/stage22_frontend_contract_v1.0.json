@@ -1,0 +1,121 @@
+{
+  "stage": 22,
+  "name": "Frontend and Fast Question-Solving Experience",
+  "contract_version": "stage22-frontend-v1.0.0",
+  "prepared_at_utc": "2026-08-09",
+  "release_status": "NEXTJS_REFERENCE_IMPLEMENTATION_VALIDATED_PENDING_OWNER_ACCEPTANCE",
+  "governance": {
+    "content_owner": "Iman",
+    "technical_owner": "Iman",
+    "product_owner": "Iman",
+    "change_authority": "Iman"
+  },
+  "framework": {
+    "runtime": "Next.js",
+    "version": "16.2.11",
+    "router": "App Router",
+    "language": "TypeScript strict",
+    "react": "19.2.8",
+    "api_type_source": "api/stage21_core_api_spec_v1.0.yaml"
+  },
+  "required_components": [
+    "QuestionCard",
+    "Option",
+    "Progress",
+    "Explanation",
+    "Navigation"
+  ],
+  "runner_rules": {
+    "answer_submission": "same-origin BFF to Django /api/v1; no full-page reload",
+    "keyboard_shortcuts": ["1", "2", "3", "4", "Enter", "N"],
+    "minimum_touch_target_css_px": 48,
+    "pre_submit_answer_key_policy": "correct answer and explanation must not be present in DOM or client state before the Stage21 answer response",
+    "feedback_policy": "use icon plus text plus restrained color; color is never the only signal",
+    "render_policy": "memoize stable runner leaves and avoid cross-page dashboard data in the runner",
+    "mixed_language_policy": "locale layout owns UI direction; question and option content use explicit language direction or bdi auto direction"
+  },
+  "network_resilience": {
+    "store": "IndexedDB pending_answers",
+    "stored_fields": [
+      "attempt_id",
+      "test_question_id",
+      "selected_option_id",
+      "response_ms",
+      "idempotency_key",
+      "queued_at"
+    ],
+    "forbidden_fields": ["access_token", "refresh_token", "correct_option_id", "explanation"],
+    "retry_rule": "reuse the exact Idempotency-Key until the server accepts or rejects the same payload",
+    "retry_statuses": [0, 429, 502, 503, 504],
+    "conflict_rule": "never silently replace a payload after an idempotency conflict"
+  },
+  "security_boundary": {
+    "browser_token_storage": "FORBIDDEN",
+    "session_cookie": "httpOnly, sameSite=lax, secure in production",
+    "authorization": "backend authoritative; UI visibility is not authorization",
+    "proxy_allowlist": ["accept", "accept-language", "content-type", "idempotency-key", "x-request-id"],
+    "response_header_allowlist": ["content-type", "x-request-id", "retry-after", "idempotent-replayed"]
+  },
+  "responsive_states": {
+    "mobile": "single-column runner, full-width options, sticky safe-area navigation",
+    "tablet": "single-column bounded runner with expanded spacing",
+    "desktop": "bounded reading measure; navigation remains close to the task",
+    "required_application_states": ["LOADING", "EMPTY", "ERROR", "OFFLINE_RETRY", "UNAUTHORIZED"]
+  },
+  "validation": {
+    "valid_example": "online answer submission returns post-answer feedback and removes any queued record",
+    "invalid_example": "response exposes correct_option_id in the pre-submit AttemptQuestion projection",
+    "commands": [
+      "python tools/validate_stage22.py",
+      "python -m unittest tests.test_stage22_frontend_contract -v",
+      "cd frontend && npm run validate"
+    ]
+  },
+  "risks": [
+    {
+      "code": "SLOW_AFTER_MANY_QUESTIONS",
+      "preventive": "isolated runner tree, memoized leaf components and no dashboard fan-out",
+      "detection": "Stage24 browser performance budget and long-session E2E profile"
+    },
+    {
+      "code": "RTL_LTR_BUG",
+      "preventive": "locale dir on document subtree plus bdi/explicit question direction",
+      "detection": "bilingual component tests and Stage24 visual regression"
+    },
+    {
+      "code": "ANSWER_LOSS",
+      "preventive": "IndexedDB pending record written before retry and stable idempotency key",
+      "detection": "pending-answer indicator and retry tests"
+    },
+    {
+      "code": "UI_DISTRACTION",
+      "preventive": "runner-only shell, reduced motion and no non-task cards",
+      "detection": "accessibility/product checklist review"
+    }
+  ],
+  "downstream": {
+    "stage23": ["admin import screen consumes preview/commit resources without bypassing server validation"],
+    "stage24": ["cross-browser E2E, accessibility scan, visual regression, performance and consumer-contract tests"],
+    "stage25": ["CSP, security headers, session/key lifecycle, privacy and abuse controls"],
+    "stage26": ["single-origin reverse proxy, environment URLs, deployment monitoring and backups"],
+    "stage27": ["UX and learning calibration from real runtime evidence"]
+  },
+  "open_decisions": [
+    {
+      "code": "S22_D01_PRODUCTION_ORIGIN",
+      "status": "DEFERRED_TO_STAGE26",
+      "safe_current_boundary": "deployment-relative same-origin browser calls"
+    },
+    {
+      "code": "S22_D02_PRODUCT_VISUAL_BRAND",
+      "status": "NEEDS_OWNER_DECISION_BEFORE_PUBLIC_LAUNCH",
+      "safe_current_boundary": "accessible neutral design tokens; no invented brand assets"
+    },
+    {
+      "code": "S22_D03_MISSING_PAGE_RESOURCES",
+      "status": "NEEDS_STAGE21_API_REVISION_OR_SCOPE_DECISION",
+      "safe_current_boundary": "History, Profile and Settings routes render explicit unavailable states instead of fabricated data",
+      "affected_routes": ["/:locale/history", "/:locale/profile", "/:locale/settings"]
+    }
+  ]
+}

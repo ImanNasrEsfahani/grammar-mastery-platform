@@ -1,4 +1,4 @@
-# Project status — canonical baseline + Stage 16–21 handoff
+# Project status — canonical baseline + Stage 16–22 handoff
 
 | Stage | Scope | Repository status |
 |---:|---|---|
@@ -23,6 +23,7 @@
 | 19 | Site IA / Page Responsibilities | `RECONSTRUCTED_REFERENCE_PRIOR_63_PASS_PENDING_OWNER_REVIEW` |
 | 20 | Admin Panel Contract | `RECONSTRUCTED_REFERENCE_PENDING_OWNER_REVIEW` |
 | 21 | Backend and Core APIs | `DJANGO_DRF_PROFILE_VALIDATED_PENDING_OWNER_ACCEPTANCE` |
+| 22 | Frontend and Fast Question Experience | `NEXTJS_REFERENCE_IMPLEMENTATION_VALIDATED_PENDING_OWNER_ACCEPTANCE` |
 
 ## Operational blockers (not design defects)
 
@@ -35,6 +36,9 @@
 - **Stage 21 selected stack:** Django 5.2 LTS plus Django REST Framework 3.16+ is fixed for Backend; Next.js 16 Active LTS is fixed for the Stage 22 Frontend. Production base URL and analytics worker remain explicit deployment decisions.
 - **Stage 21 security/deployment:** signing-key lifecycle and calibrated production rate limits remain Stage 25 work; PostgreSQL Patch 006 has not been executed on a live target.
 - **Stage 21 acceptance:** 45/45 Stage 21 tests and the integrated 130/130 suite pass, but formal Iman content/technical acceptance is not inferred from implementation alone.
+- **Stage 22 runtime evidence:** the Next.js implementation is contract-tested, but real end-to-end learning validation remains blocked by the zero-`PUBLISHED` question inventory and by the absence of a deployed Django/PostgreSQL target.
+- **Stage 22 production decisions:** the public origin, production API base URL, analytics worker and security header/key lifecycle remain Stage 25–26 deployment decisions; bearer tokens are already excluded from browser storage.
+- **Stage 22 acceptance:** 142/142 integrated Python tests, 12/12 dedicated Stage 22 contract tests and 7/7 frontend tests pass; lint, strict TypeScript and the Next.js production build also pass. The implementation is ready for Iman's content/technical review; owner acceptance is not inferred automatically.
 
 ## Governance
 

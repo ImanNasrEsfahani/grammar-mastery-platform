@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://grammar-mastery.local/schemas/stage22_pending_answer_v1.0.json",
+  "title": "Stage 22 pending answer retry record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "key",
+    "attempt_id",
+    "test_question_id",
+    "selected_option_id",
+    "response_ms",
+    "idempotency_key",
+    "queued_at"
+  ],
+  "properties": {
+    "key": {"type": "string", "pattern": "^[0-9a-fA-F-]{36}:[0-9a-fA-F-]{36}$"},
+    "attempt_id": {"type": "string", "format": "uuid"},
+    "test_question_id": {"type": "string", "format": "uuid"},
+    "selected_option_id": {"type": "string", "format": "uuid"},
+    "response_ms": {"type": ["integer", "null"], "minimum": 0, "maximum": 86400000},
+    "idempotency_key": {"type": "string", "format": "uuid"},
+    "queued_at": {"type": "string", "format": "date-time"}
+  }
+}

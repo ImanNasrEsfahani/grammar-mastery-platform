@@ -1,0 +1,11 @@
+surface,state,mobile_under_768,tablet_768_to_1023,desktop_1024_plus,automated_control
+TEST_RUNNER,LOADING,"single skeleton card; sticky nav placeholder","bounded skeleton card","bounded reading column","component test: no fabricated values"
+TEST_RUNNER,READY,"one column; 48px options; safe-area nav","one column; wider gaps","max 760px reading measure","CSS contract and keyboard tests"
+TEST_RUNNER,SUBMITTING,"selection locked; progress text announced","same","same","component test prevents double submit"
+TEST_RUNNER,FEEDBACK,"icon+text result; explanation follows options","same","two-area spacing without extra panels","DOM test requires non-color label"
+TEST_RUNNER,OFFLINE_RETRY,"pending badge and full-width Retry","pending badge and Retry","inline Retry near task","IndexedDB/idempotency tests"
+TEST_RUNNER,ERROR,"last safe question retained; retry/exit actions","same","same","error normalization tests"
+DASHBOARD,LOADING,"priority-order skeleton cards","two-column cards","three-column cards","no fabricated KPI values"
+DASHBOARD,OFFLINE_RETRY,"cached timestamp and disabled network CTA","same","same","cache state test deferred Stage24"
+AUTH,ERROR,"field summary above form","bounded form","bounded form","accessible error summary"
+STAFF,UNAUTHORIZED,"fail-closed status","fail-closed status","fail-closed status","backend 403 remains authoritative"

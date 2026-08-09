@@ -1,0 +1,4 @@
+decision_code,status,owner,needed_by,safe_current_boundary,impact
+S22_D01_PRODUCTION_ORIGIN,DEFERRED_TO_STAGE26,Iman,Stage26,"same-origin relative browser calls; server base URL from environment","deployment only"
+S22_D02_PRODUCT_VISUAL_BRAND,NEEDS_OWNER_DECISION_BEFORE_PUBLIC_LAUNCH,Iman,Public launch,"neutral accessible token system; no invented logos or brand assets","colors typography and marketing surfaces"
+S22_D03_MISSING_PAGE_RESOURCES,NEEDS_STAGE21_API_REVISION_OR_SCOPE_DECISION,Iman,Before full Stage19 route acceptance,"History Profile and Settings show explicit unavailable states","three learner pages cannot load real data because Stage21 exposes no matching resources"
