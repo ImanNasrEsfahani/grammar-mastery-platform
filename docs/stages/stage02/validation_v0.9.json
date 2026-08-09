@@ -1,0 +1,234 @@
+{
+  "summary": {
+    "run_at_utc": "2026-08-08T18:47:53.228045+00:00",
+    "status": "PASS",
+    "errors": [],
+    "warnings": [],
+    "lesson_count": 52,
+    "category_count": 11,
+    "subcategory_count": 27,
+    "tag_count": 35,
+    "tag_assignment_count": 150
+  },
+  "rules": [
+    {
+      "code": "V01",
+      "rule": "lesson mapping count == 52",
+      "mechanism": "automated_test",
+      "severity": "error"
+    },
+    {
+      "code": "V02",
+      "rule": "lesson_no coverage exactly 1..52",
+      "mechanism": "automated_test",
+      "severity": "error"
+    },
+    {
+      "code": "V03",
+      "rule": "Stage1 lesson UUIDs preserved exactly",
+      "mechanism": "automated_test",
+      "severity": "error"
+    },
+    {
+      "code": "V04",
+      "rule": "all category/subcategory/tag IDs are valid unique UUIDs",
+      "mechanism": "automated_test",
+      "severity": "error"
+    },
+    {
+      "code": "V05",
+      "rule": "all slugs are unique within their namespace and API-safe [a-z][a-z0-9_]*",
+      "mechanism": "automated_test",
+      "severity": "error"
+    },
+    {
+      "code": "V06",
+      "rule": "every subcategory references an existing category",
+      "mechanism": "automated_test",
+      "severity": "error"
+    },
+    {
+      "code": "V07",
+      "rule": "every lesson maps to exactly one existing category and subcategory",
+      "mechanism": "automated_test",
+      "severity": "error"
+    },
+    {
+      "code": "V08",
+      "rule": "mapped subcategory parent equals mapped primary category",
+      "mechanism": "automated_test",
+      "severity": "error"
+    },
+    {
+      "code": "V09",
+      "rule": "all lesson tags come from controlled tag list",
+      "mechanism": "automated_test",
+      "severity": "error"
+    },
+    {
+      "code": "V10",
+      "rule": "no duplicate tag assignment per lesson",
+      "mechanism": "automated_test",
+      "severity": "error"
+    },
+    {
+      "code": "V11",
+      "rule": "taxonomy-v0.9.0 has 11 top-level active categories",
+      "mechanism": "automated_test + review",
+      "severity": "error"
+    },
+    {
+      "code": "V12",
+      "rule": "non-lesson structural sections are excluded from lesson mapping",
+      "mechanism": "automated_test + policy",
+      "severity": "error"
+    },
+    {
+      "code": "V13",
+      "rule": "all nodes used in current mapping are active",
+      "mechanism": "automated_test",
+      "severity": "error"
+    },
+    {
+      "code": "V14",
+      "rule": "category display_order values are unique",
+      "mechanism": "automated_test",
+      "severity": "error"
+    },
+    {
+      "code": "V15",
+      "rule": "Stage1 grammar_family_draft is not used as canonical taxonomy key",
+      "mechanism": "review_checklist",
+      "severity": "error"
+    },
+    {
+      "code": "V16",
+      "rule": "Persian display labels remain draft until D04 is approved",
+      "mechanism": "review_checklist",
+      "severity": "warning"
+    }
+  ],
+  "valid_invalid_examples": [
+    {
+      "type": "valid",
+      "example": "Lesson 40 LE PASSÉ COMPOSÉ → Category Temps verbaux / Subcategory Temps du passé; tags agreement, pronoun_placement, negation, interrogation.",
+      "why_fa": "هدف اصلی درس زمان گذشته است؛ نفی/پرسش/جایگاه ضمیر ابعاد ثانویه‌اند و به‌صورت tag مانده‌اند."
+    },
+    {
+      "type": "valid_edge",
+      "example": "Lesson 37 LES PRÉPOSITIONS et LES VERBES → Category Prépositions et repérage / Subcategory Prépositions et rection verbale.",
+      "why_fa": "با وجود واژه Verbes در عنوان، subtopicها محور à/de/Ø و وابستگی فعل/اسم/صفت به حرف اضافه‌اند؛ بنابراین قاعده MR09 اعمال شده است."
+    },
+    {
+      "type": "invalid",
+      "example": "Lesson 40 هم‌زمان primary category = Temps verbaux و Structure de phrase.",
+      "why_fa": "Stage 2 فقط یک Category اصلی مجاز می‌داند؛ negation/interrogation باید tag باشند."
+    },
+    {
+      "type": "invalid",
+      "example": "tag = \"important_for_exam\" به‌صورت تایپ آزاد.",
+      "why_fa": "tag آزاد ممنوع است و این بعد آزمونی نیز باید در Stage 3 وزن‌دهی/مدل مربوط مدیریت شود، نه taxonomy ساختاری."
+    }
+  ],
+  "risk_controls": [
+    {
+      "risk": "افراط در تعداد دسته‌ها",
+      "preventive": "11 Category سطح یک با تعریف عضویت صریح؛ موضوعات فرعی با tag و در صورت نیاز Subcategory پوشش داده می‌شوند. ایجاد Category جدید نیازمند rule و overlap review است.",
+      "detection": "گزارش تعداد lesson در هر Category/Subcategory؛ category تک‌درس یا overlap مفهومی در review flag می‌شود."
+    },
+    {
+      "risk": "نامگذاری ناسازگار",
+      "preventive": "UUID + code پایدار، slug ASCII یکتا، labelهای فارسی/فرانسوی جدا و versioned.",
+      "detection": "Validation regex/uniqueness و diff نسخه برای تغییر ناخواسته ID/slug."
+    },
+    {
+      "risk": "وابستگی UI به taxonomy",
+      "preventive": "هیچ route/icon/color/layout داخل taxonomy ذخیره نشده؛ فقط display_order و labels نگهداری می‌شود.",
+      "detection": "Schema review؛ هر field UI-specific در taxonomy package خطا/anti-pattern است."
+    },
+    {
+      "risk": "فیلترهای مبهم در ساخت آزمون",
+      "preventive": "Category/Subcategory سلسله‌مراتبی و tag ثانویه جدا؛ MR13 semantics را صریح می‌کند.",
+      "detection": "در Stage 13/14 contract test باید filter با UUID/slug و AND/OR صریح تست شود."
+    }
+  ],
+  "category_counts": {
+    "CAT01": 7,
+    "CAT02": 6,
+    "CAT03": 7,
+    "CAT04": 5,
+    "CAT05": 5,
+    "CAT06": 4,
+    "CAT07": 2,
+    "CAT08": 7,
+    "CAT09": 5,
+    "CAT10": 2,
+    "CAT11": 2
+  },
+  "subcategory_counts": {
+    "SUB01": 3,
+    "SUB02": 2,
+    "SUB03": 2,
+    "SUB04": 3,
+    "SUB05": 3,
+    "SUB06": 4,
+    "SUB07": 3,
+    "SUB08": 3,
+    "SUB09": 1,
+    "SUB10": 1,
+    "SUB11": 2,
+    "SUB12": 2,
+    "SUB13": 1,
+    "SUB14": 2,
+    "SUB15": 1,
+    "SUB16": 1,
+    "SUB17": 1,
+    "SUB18": 1,
+    "SUB19": 2,
+    "SUB20": 3,
+    "SUB21": 1,
+    "SUB22": 1,
+    "SUB23": 3,
+    "SUB24": 2,
+    "SUB25": 2,
+    "SUB26": 1,
+    "SUB27": 1
+  },
+  "tag_usage_counts": {
+    "agreement": 6,
+    "articles": 9,
+    "aspect": 1,
+    "comparison": 1,
+    "condition_hypothesis": 5,
+    "demonstration": 1,
+    "duration": 4,
+    "existence_presentation": 2,
+    "future": 5,
+    "impersonal_construction": 2,
+    "indefiniteness": 2,
+    "interrogation": 7,
+    "lexicalized_expression": 3,
+    "logical_relation": 1,
+    "movement": 2,
+    "negation": 10,
+    "nonfinite_form": 4,
+    "object_reference": 7,
+    "orthography": 4,
+    "partitive": 2,
+    "past": 7,
+    "politeness_modality": 2,
+    "possession": 1,
+    "present": 5,
+    "pronoun_placement": 5,
+    "pronunciation": 4,
+    "quantity": 4,
+    "register_variation": 5,
+    "relative_clause": 1,
+    "reported_speech": 2,
+    "spatial_reference": 7,
+    "subordination": 8,
+    "temporal_reference": 12,
+    "verb_complementation": 8,
+    "voice": 1
+  }
+}

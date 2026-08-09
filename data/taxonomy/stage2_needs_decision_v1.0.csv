@@ -1,0 +1,7 @@
+﻿decision_code,priority,resolution_status,resolved_value,resolved_by,resolved_at,effect
+UPSTREAM_D01_CONTENT_OWNER,blocking_for_formal_freeze,RESOLVED,RESOLVED — Iman is Content Owner.,Iman,2026-08-08T15:35:00-07:00,Stage2 package cannot be formally Ready for Next Stage without owner approval.
+UPSTREAM_D02_TECH_REVIEWER,blocking_for_formal_ready,RESOLVED,RESOLVED — Iman is Technical Reviewer / Technical Owner.,Iman,2026-08-08T15:35:00-07:00,Final API/import naming review pending.
+UPSTREAM_D03_SOURCE_EDITION,blocking_for_formal_freeze,RESOLVED,RESOLVED_FROZEN — authoritative source SHA256 b6162aacc084cd78ec46f43972fdc68f9330576ea909f4a51767c3333c7e74ca.,Iman,2026-08-08T15:35:00-07:00,Stage1 source refs and therefore Stage2 mapping provenance remain formally pending.
+D04_PERSIAN_DISPLAY_TITLES,non_blocking_for_taxonomy_structure,RESOLVED,RESOLVED — Persian display labels approved as initial canonical project wording under owner delegation to ChatGPT.,Iman,2026-08-08T15:35:00-07:00,Only display labels; UUID/slug unaffected.
+D05_NON_LESSON_POLICY,non_blocking_for_stage2,RESOLVED,RESOLVED — structural/reference/assessment sections remain excluded from 52-lesson taxonomy.,Iman,2026-08-08T15:35:00-07:00,No change to 52-lesson mapping.
+D06_TAXONOMY_FAMILY,resolved_in_stage2,RESOLVED,RESOLVED — canonical taxonomy-v0.9.0 already established in Stage2.,Iman,2026-08-08T15:35:00-07:00,Stage2 core design completed.

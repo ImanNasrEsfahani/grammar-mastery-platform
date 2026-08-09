@@ -1,0 +1,16 @@
+{
+  "release_status": "ACCEPTED_REFERENCE",
+  "semantic_version": "tcf-core-weight-v0.9.0",
+  "profile": "TCF_CORE_CANADA_COMPATIBLE",
+  "coefficients": {
+    "frequency": 0.3,
+    "comprehension": 0.2,
+    "production": 0.25,
+    "error_propensity": 0.15,
+    "dependency": 0.1
+  },
+  "formula": "raw=0.30*frequency+0.20*comprehension+0.25*production+0.15*error_propensity+0.10*dependency; normalize active lessons to 100.00%",
+  "rounding": "largest remainder to 0.01 percentage point",
+  "governance": "D01/D02/D03 resolved 2026-08-08",
+  "provenance_note": "Frequency is a project/expert exposure proxy; no official FEI grammar-topic frequency distribution is claimed."
+}

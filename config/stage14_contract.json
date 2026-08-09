@@ -1,0 +1,35 @@
+{
+  "semantic_versions": {
+    "selector": "adaptive-selector-v0.9.0",
+    "score": "adaptive-score-v0.9.0",
+    "config": "adaptive-selection-config-v0.9.0",
+    "signals": "adaptive-signal-contract-v0.9.0",
+    "cooldown": "adaptive-cooldown-v0.9.0",
+    "exploration": "adaptive-exploration-v0.9.0",
+    "diversity": "adaptive-diversity-v0.9.0"
+  },
+  "release_status": "ACCEPTED_REFERENCE_GOVERNANCE_RESOLVED",
+  "stage15_provider": "RESOLVED_BY_STAGE15",
+  "runtime_status": "BLOCKED_EXPECTED_ZERO_PUBLISHED_INVENTORY",
+  "weights": {
+    "tcf": 0.2,
+    "mastery_gap": 0.3,
+    "review_urgency": 0.2,
+    "novelty": 0.15,
+    "misconception_need": 0.15
+  },
+  "formula": "BaseScore=.20*TCF+.30*MasteryGap+.20*ReviewUrgency+.15*Novelty+.15*MisconceptionNeed; Adjusted=BaseScore*(.75+.25*DifficultyFit)",
+  "cooldown_days": 7,
+  "exploration_share": 0.15,
+  "caps": {
+    "lesson": 0.35,
+    "type": 0.4
+  },
+  "pacing": {
+    "gap>=.70": "max MEDIUM",
+    ".45<=gap<.70": "max HARD",
+    "gap<.45": "max VERY_HARD"
+  },
+  "stage15_provider_rule": "Stage14 mastery_score_pct input receives Stage15 evidence_score_pct plus Stage15 confidence, avoiding double confidence shrinkage.",
+  "reference_tests": "18/18 PASS"
+}

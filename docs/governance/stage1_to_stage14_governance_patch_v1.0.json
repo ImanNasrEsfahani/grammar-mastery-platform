@@ -1,0 +1,74 @@
+{
+  "manifest": {
+    "project": "Grammar Mastery Platform",
+    "version": "upstream-governance-resolution-patch-v1.0.0",
+    "effective_at": "2026-08-08T15:35:00-07:00",
+    "source_governance": "governance-v1.0.0",
+    "status": "ACTIVE"
+  },
+  "resolved_codes": {
+    "UPSTREAM_D01_CONTENT_OWNER": {
+      "status": "RESOLVED",
+      "value": "Iman"
+    },
+    "UPSTREAM_D02_TECH_REVIEWER": {
+      "status": "RESOLVED",
+      "value": "Iman"
+    },
+    "UPSTREAM_D03_SOURCE_EDITION": {
+      "status": "RESOLVED_FROZEN",
+      "sha256": "b6162aacc084cd78ec46f43972fdc68f9330576ea909f4a51767c3333c7e74ca"
+    }
+  },
+  "application_rule": "For Stage2+ historical v0.9 artifacts, replace only these upstream blocker states with RESOLVED. Do not alter core formulas, IDs, schemas, algorithms, validation results, or stage-specific blockers.",
+  "known_stage_effects": [
+    {
+      "stage": 3,
+      "effect": "Upstream formal-freeze blockers cleared; keep D07 TCF profile scope as non-blocking/versioned policy."
+    },
+    {
+      "stage": 4,
+      "effect": "Upstream governance blocker cleared; capacity model unchanged."
+    },
+    {
+      "stage": 5,
+      "effect": "Upstream formal-freeze blocker cleared; Excel Master semantics unchanged."
+    },
+    {
+      "stage": 6,
+      "effect": "Upstream owner/reviewer/source blocker cleared; question-type catalogue unchanged."
+    },
+    {
+      "stage": 7,
+      "effect": "Upstream governance blocker cleared; empirical misconception commonness remains deferred to Stage27."
+    },
+    {
+      "stage": 8,
+      "effect": "Upstream governance blocker cleared; empirical recalibration remains deferred to Stage27."
+    },
+    {
+      "stage": 9,
+      "effect": "Upstream governance warning cleared; bank difficulty distribution unchanged."
+    },
+    {
+      "stage": 10,
+      "effect": "Upstream governance blocker cleared; Question Schema unchanged."
+    },
+    {
+      "stage": 11,
+      "effect": "Design/workflow formal governance blocker cleared. Independent reviewer gate still applies to real question approvals/publications."
+    },
+    {
+      "stage": 12,
+      "effect": "Design/schema governance blocker cleared. Real PostgreSQL target execution remains deployment verification."
+    },
+    {
+      "stage": 13,
+      "effect": "Design/reference formal governance blocker cleared. Runtime real generation remains blocked by zero PUBLISHED inventory."
+    },
+    {
+      "stage": 14,
+      "effect": "Any inherited D01/D02/D03 governance blocker is cleared. Preserve all Stage14-specific runtime/data conditions exactly as defined in its artifact."
+    }
+  ]
+}

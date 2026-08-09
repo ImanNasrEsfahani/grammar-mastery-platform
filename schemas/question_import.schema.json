@@ -1,0 +1,300 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:grammar-mastery:question-import-schema:v0.9.0",
+  "title": "Grammar Mastery Question Import Row",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "external_id",
+    "question_revision",
+    "lesson_id",
+    "lesson_code",
+    "subtopic_id",
+    "subtopic_code",
+    "secondary_subtopic_ids",
+    "question_type",
+    "stem",
+    "stem_locale",
+    "option_a",
+    "option_b",
+    "option_c",
+    "option_d",
+    "option_locale",
+    "correct_option",
+    "full_explanation",
+    "explanation_a",
+    "explanation_b",
+    "explanation_c",
+    "explanation_d",
+    "explanation_locale",
+    "misconception_a_id",
+    "misconception_b_id",
+    "misconception_c_id",
+    "misconception_d_id",
+    "difficulty",
+    "difficulty_score_initial",
+    "difficulty_model_version",
+    "status",
+    "source_type",
+    "source_ref",
+    "author_id",
+    "reviewer_id",
+    "tags",
+    "media_type",
+    "media_uri",
+    "media_alt_text",
+    "media_transcript",
+    "media_source_ref",
+    "taxonomy_version",
+    "question_type_catalogue_version",
+    "compatibility_version",
+    "distractor_rules_version",
+    "content_version"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "question-import-schema-v0.9.0"
+    },
+    "external_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,99}$",
+      "maxLength": 100
+    },
+    "question_revision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "lesson_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "lesson_code": {
+      "type": "string"
+    },
+    "subtopic_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "subtopic_code": {
+      "type": "string"
+    },
+    "secondary_subtopic_ids": {
+      "type": "string"
+    },
+    "question_type": {
+      "enum": [
+        "CLOZE_SINGLE",
+        "CLOZE_CONTEXT",
+        "CORRECT_SENTENCE",
+        "INCORRECT_SENTENCE",
+        "ERROR_LOCATION",
+        "CONJUGATION",
+        "TENSE_CHOICE",
+        "PRONOUN_CHOICE",
+        "PREPOSITION_CHOICE",
+        "REWRITE_EQUIV",
+        "FR_TO_FA",
+        "FA_TO_FR",
+        "DIALOGUE_COMPLETE",
+        "REGISTER_CHOICE",
+        "CONTRAST_RULES"
+      ]
+    },
+    "stem": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000
+    },
+    "stem_locale": {
+      "enum": [
+        "fr-FR",
+        "fa-IR"
+      ]
+    },
+    "option_a": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500
+    },
+    "option_b": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500
+    },
+    "option_c": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500
+    },
+    "option_d": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500
+    },
+    "option_locale": {
+      "enum": [
+        "fr-FR",
+        "fa-IR"
+      ]
+    },
+    "correct_option": {
+      "enum": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    "full_explanation": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4000
+    },
+    "explanation_a": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000
+    },
+    "explanation_b": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000
+    },
+    "explanation_c": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000
+    },
+    "explanation_d": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000
+    },
+    "explanation_locale": {
+      "enum": [
+        "fr-FR",
+        "fa-IR"
+      ]
+    },
+    "difficulty": {
+      "enum": [
+        "EASY",
+        "MEDIUM",
+        "HARD",
+        "VERY_HARD"
+      ]
+    },
+    "difficulty_score_initial": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 1,
+      "maximum": 4
+    },
+    "difficulty_model_version": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "DRAFT",
+        "READY_FOR_REVIEW",
+        "CHANGES_REQUESTED",
+        "APPROVED",
+        "PUBLISHED",
+        "REJECTED",
+        "RETIRED"
+      ]
+    },
+    "source_type": {
+      "enum": [
+        "BOOK_DIRECT",
+        "PROJECT_SYNTHETIC_FROM_RULE",
+        "EXTERNAL_REVIEWED"
+      ]
+    },
+    "source_ref": {
+      "type": "string"
+    },
+    "author_id": {
+      "type": "string"
+    },
+    "reviewer_id": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "string"
+    },
+    "media_type": {
+      "enum": [
+        "NONE",
+        "IMAGE",
+        "AUDIO",
+        "VIDEO"
+      ]
+    },
+    "media_uri": {
+      "type": "string"
+    },
+    "media_alt_text": {
+      "type": "string"
+    },
+    "media_transcript": {
+      "type": "string"
+    },
+    "media_source_ref": {
+      "type": "string"
+    },
+    "taxonomy_version": {
+      "const": "taxonomy-v0.9.0"
+    },
+    "question_type_catalogue_version": {
+      "const": "question-type-catalogue-v0.9.0"
+    },
+    "compatibility_version": {
+      "const": "question-type-compatibility-v0.9.0"
+    },
+    "distractor_rules_version": {
+      "const": "distractor-rule-set-v0.9.0"
+    },
+    "content_version": {
+      "type": "string"
+    },
+    "misconception_a_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 36
+    },
+    "misconception_b_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 36
+    },
+    "misconception_c_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 36
+    },
+    "misconception_d_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 36
+    }
+  },
+  "x-schema-version": "question-import-schema-v0.9.0",
+  "x-notes": {
+    "correct_option": "A/B/C/D key in human import; DB resolves to option UUID.",
+    "observed_difficulty": "Not part of content import; Stage8/27 telemetry remains separate.",
+    "status_transitions": "Defined in Stage11.",
+    "physical_db_schema": "Defined in Stage12."
+  }
+}

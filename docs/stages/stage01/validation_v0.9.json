@@ -1,0 +1,126 @@
+{
+  "summary": {
+    "run_at_utc": "2026-08-08T18:31:54.547016+00:00",
+    "status": "PASS",
+    "lesson_count": 52,
+    "subtopic_count": 304,
+    "prerequisite_relation_count": 86,
+    "related_relation_count": 8,
+    "errors": [],
+    "warnings_count": 0,
+    "warnings_sample": []
+  },
+  "rules": [
+    {
+      "code": "V01",
+      "rule": "lesson_count == 52",
+      "mechanism": "automated_test",
+      "severity": "error"
+    },
+    {
+      "code": "V02",
+      "rule": "lesson_no exactly unique 1..52",
+      "mechanism": "automated_test",
+      "severity": "error"
+    },
+    {
+      "code": "V03",
+      "rule": "all lesson_id are valid unique UUIDs and independent of titles",
+      "mechanism": "automated_test + review",
+      "severity": "error"
+    },
+    {
+      "code": "V04",
+      "rule": "every lesson has >=1 atomic subtopic",
+      "mechanism": "automated_test",
+      "severity": "error"
+    },
+    {
+      "code": "V05",
+      "rule": "all subtopic_id are valid unique UUIDs",
+      "mechanism": "automated_test",
+      "severity": "error"
+    },
+    {
+      "code": "V06",
+      "rule": "every subtopic has definition_short and explanation_long",
+      "mechanism": "automated_test",
+      "severity": "error"
+    },
+    {
+      "code": "V07",
+      "rule": "every subtopic has source_ref + book/pdf page",
+      "mechanism": "automated_test",
+      "severity": "error"
+    },
+    {
+      "code": "V08",
+      "rule": "for mapped content pages pdf_page == book_page + 2",
+      "mechanism": "automated_test",
+      "severity": "warning"
+    },
+    {
+      "code": "V09",
+      "rule": "all dependency references resolve to existing lessons",
+      "mechanism": "automated_test",
+      "severity": "error"
+    },
+    {
+      "code": "V10",
+      "rule": "system_short_title is unique and API-safe [a-z0-9_]+",
+      "mechanism": "automated_test",
+      "severity": "error"
+    },
+    {
+      "code": "V11",
+      "rule": "no external-source rule is attributed to uploaded book",
+      "mechanism": "content_checklist",
+      "severity": "error"
+    },
+    {
+      "code": "V12",
+      "rule": "grammar_family remains draft until Stage 2 taxonomy decision",
+      "mechanism": "review_checklist",
+      "severity": "warning"
+    }
+  ],
+  "examples": [
+    {
+      "type": "valid",
+      "example": "Lesson 32 → subtopic L32-S02 « Relatif que »",
+      "why_fa": "یک نقش دستوری مستقل دارد، تعریف و توضیح جدا دارد، و به صفحه منبع مشخص متصل است."
+    },
+    {
+      "type": "invalid",
+      "example": "Lesson 32 → یک subtopic واحد با عنوان « Les relatifs »",
+      "why_fa": "برای تحلیل خطا کافی نیست؛ qui/que/où/dont و ce qui/ce que/ce dont باید قابل تفکیک باشند."
+    },
+    {
+      "type": "invalid",
+      "example": "lesson_id = 'les-relatifs'",
+      "why_fa": "شناسه از عنوان ساخته شده و با تغییر عنوان می‌شکند؛ UUID پایدار لازم است."
+    }
+  ],
+  "risk_controls": [
+    {
+      "risk": "از دست رفتن نکات فرعی هنگام خلاصه‌سازی",
+      "preventive": "استخراج درس‌به‌درس از صفحات قاعده، ثبت exception/register/comparison و source_ref برای هر زیرموضوع.",
+      "detection": "کنترل پوشش صفحه‌ای هر lesson و spot-check دستی صفحات متراکم؛ هر subtopic بدون source_ref خطا است."
+    },
+    {
+      "risk": "ساخت taxonomy بیش از حد ریز",
+      "preventive": "معیار اتمی: زیرموضوع باید بتواند مستقل سؤال داشته باشد و همچنان معنای آموزشی کامل داشته باشد.",
+      "detection": "گزارش outlier تعداد subtopic در هر درس؛ درس‌های بسیار متراکم مثل Passé composé/Subjonctif نیازمند review دستی هستند."
+    },
+    {
+      "risk": "تداخل عنوان فارسی و فرانسوی",
+      "preventive": "جداسازی title_fr_official، title_fa_draft، system_short_title و UUID.",
+      "detection": "validation یکتایی system_short_title و ممنوعیت استفاده title به‌عنوان PK."
+    },
+    {
+      "risk": "تغییر شناسه‌ها بعد از ورود سؤال",
+      "preventive": "UUIDهای opaque و immutable از همین مرحله.",
+      "detection": "revision policy: تغییر عنوان نباید id را تغییر دهد؛ diff نسخه‌ها باید ID regeneration را flag کند."
+    }
+  ]
+}

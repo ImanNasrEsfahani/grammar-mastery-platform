@@ -1,0 +1,14 @@
+﻿rule_code,rule_name,rule_fa,mechanism
+MR01,one_primary_category,هر lesson دقیقاً یک Category اصلی دارد. وجود چند موضوع فرعی با tag حل می‌شود، نه چند Category اصلی.,automated_test + content_review
+MR02,primary_objective,Category بر اساس هدف آموزشی غالبِ عنوان درس و subtopicهای اتمی تعیین می‌شود؛ نه صرفاً یک واژه مشترک در متن.,content_review
+MR03,subcategory_parent,هر lesson دقیقاً یک Subcategory درون Category اصلی خود دارد؛ Subcategory نباید parent متفاوت داشته باشد.,automated_test
+MR04,tags_secondary_only,Tag فقط بعد ثانویه/cross-cutting را نشان می‌دهد و نمی‌تواند جای Category اصلی را بگیرد.,validation + content_review
+MR05,controlled_tags,Tag آزاد ممنوع است؛ فقط tag_idهای فهرست کنترل‌شده مجازند.,constraint + automated_test
+MR06,stable_identifiers,UUID و code پایدارند؛ label فارسی/فرانسوی و حتی slug قابل revision هستند ولی تغییر آن‌ها نباید UUID را عوض کند.,revision_policy + automated_diff
+MR07,system_names,slugها فقط lowercase ASCII با underscore و یکتا هستند و برای API/filter قابل استفاده‌اند.,automated_test
+MR08,verbs_vs_tenses,اگر محور درس صرف/رفتار یک فعل یا الگوی صرف présent است → Verbes et conjugaison؛ اگر محور، ساخت/کاربرد یک زمان مستقل است → Temps verbaux.,content_review
+MR09,prepositions_vs_verbs,اگر محور درس rection à/de/Ø یا رابطهٔ مکان/زمان است → Prépositions et repérage؛ حتی اگر فعل در عنوان باشد.,content_review
+MR10,conditionnel_vs_hypothesis,"Conditionnel وقتی خودِ mode محور درس است → Modes, voix et aspect؛ Les hypothèses وقتی رابطهٔ si/quand محور است → Condition, hypothèse et relations logiques.",content_review
+MR11,non_lesson_scope,BILAN/Conjugaisons/Activités/Test/Index فعلاً lesson نیستند و در lesson-category mapping وارد نمی‌شوند.,automated_test + policy
+MR12,ui_independence,icon، route، color یا layout در taxonomy ذخیره نمی‌شود؛ UI از UUID/slug و display_order استفاده می‌کند.,schema_review
+MR13,filter_semantics,فیلتر Category/Subcategory سلسله‌مراتبی است؛ tag filter بعد جانبی است. ترکیب چند tag باید AND/OR صریح داشته باشد و از نام نمایشی تفسیر نشود.,API_contract_future_stage

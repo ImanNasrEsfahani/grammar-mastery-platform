@@ -1,0 +1,21 @@
+{
+  "source_book": {
+    "title": "Grammaire Progressive du Français — Niveau intermédiaire — 3e édition",
+    "authors": [
+      "Maïa Grégoire",
+      "Odile Thiévenaz"
+    ],
+    "publisher": "CLE International",
+    "authoritative": true,
+    "sha256": "b6162aacc084cd78ec46f43972fdc68f9330576ea909f4a51767c3333c7e74ca",
+    "repo_inclusion": "EXCLUDED_COPYRIGHT_SOURCE"
+  },
+  "project_guide": {
+    "title": "سند جامع طراحی و اجرای پلتفرم تسلط بر گرامر فرانسه",
+    "version": "1.0",
+    "date": "2026-08",
+    "sha256": "8a561160d698ffb811453d20b9c610fbb644c7593cca10b3bca6728c7969e6a7",
+    "repo_inclusion": "EXCLUDED_FROM_PUBLIC_REPO; provenance only"
+  },
+  "policy": "Extracted/project-authored structured data, code, schemas and review artifacts may be committed; source PDFs stay outside public repository."
+}

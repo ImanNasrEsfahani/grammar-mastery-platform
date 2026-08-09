@@ -1,0 +1,41 @@
+{
+  "semantic_version": "difficulty-distribution-policy-v0.9.0",
+  "profiles": {
+    "FOUNDATION": {
+      "EASY": 30,
+      "MEDIUM": 45,
+      "HARD": 20,
+      "VERY_HARD": 5
+    },
+    "FOUNDATION_COMPLEX": {
+      "EASY": 25,
+      "MEDIUM": 40,
+      "HARD": 30,
+      "VERY_HARD": 5
+    },
+    "BASELINE": {
+      "EASY": 20,
+      "MEDIUM": 40,
+      "HARD": 30,
+      "VERY_HARD": 10
+    },
+    "DISCRIMINATION": {
+      "EASY": 15,
+      "MEDIUM": 35,
+      "HARD": 35,
+      "VERY_HARD": 15
+    },
+    "COMPLEX": {
+      "EASY": 15,
+      "MEDIUM": 30,
+      "HARD": 40,
+      "VERY_HARD": 15
+    }
+  },
+  "very_hard_max_pct": 15,
+  "rounding": "largest remainder; ties EASY->MEDIUM->HARD->VERY_HARD",
+  "inventory_separation": true,
+  "adaptive_session_mix_owner": "Stage14",
+  "empirical_calibration_owner": "Stage27",
+  "lesson39_override": "DISCRIMINATION -> BASELINE, direct Futur Proche bridge cues before empirical calibration"
+}
