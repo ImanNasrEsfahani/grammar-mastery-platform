@@ -5,7 +5,7 @@ from django.http import JsonResponse
 from django.urls import include, path
 
 
-RUNTIME_VERSION = "docker-runtime-v1.0.3-postgres-dashboard"
+RUNTIME_VERSION = "docker-runtime-v1.0.4-postgres-lessons-tests"
 
 
 def live(_request):
@@ -27,7 +27,6 @@ def ready(_request):
 
 
 urlpatterns = [
-    # Stage 21 contract surface.  The frontend proxy targets /api/v1/*.
     path("api/v1/", include("backend.django_adapter.urls")),
     path("health/live", live, name="health-live"),
     path("health/ready", ready, name="health-ready"),

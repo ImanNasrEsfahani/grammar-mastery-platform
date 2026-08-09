@@ -3,17 +3,17 @@ from __future__ import annotations
 from rest_framework.exceptions import MethodNotAllowed
 from rest_framework.views import APIView
 
-from backend.django_adapter import runtime_auth, runtime_dashboard
+from backend.django_adapter import runtime_auth, runtime_dashboard, runtime_learning
 from backend.errors import APIError
 
 
 class ContractEndpointView(APIView):
     """Route a frozen Stage 21 operation to a bound runtime provider.
 
-    The Stage 26 routing hotfix established the complete HTTP surface. Runtime
-    providers are bound incrementally. Auth plus the Stage 18 dashboard/next
-    action surfaces are now PostgreSQL-backed; operations without a production
-    provider continue to fail closed with the Stage 21 JSON dependency error.
+    Runtime providers are bound incrementally. Auth, dashboard/next action,
+    lesson reads, and test creation are PostgreSQL-backed. Operations without a
+    production provider continue to fail closed with the Stage 21 dependency
+    error rather than falling through to Django's HTML 404 surface.
     """
 
     operations: dict[str, str] = {}
@@ -31,6 +31,15 @@ class ContractEndpointView(APIView):
             return runtime_auth.login_request(request)
         if operation_id == "logoutUser":
             return runtime_auth.logout_request(request)
+        if operation_id == "listLessons":
+            return runtime_learning.list_lessons_request(request)
+        if operation_id == "getLesson":
+            return runtime_learning.lesson_detail_request(
+                request,
+                lesson_id=kwargs.get("lessonId"),
+            )
+        if operation_id == "createTest":
+            return runtime_learning.create_test_request(request)
         if operation_id == "getDashboard":
             return runtime_dashboard.dashboard_request(request)
         if operation_id == "getCurrentNextAction":

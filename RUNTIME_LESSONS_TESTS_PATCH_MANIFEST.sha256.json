@@ -1,0 +1,10 @@
+{
+  "patch": "grammar-mastery-runtime-lessons-tests-provider-v1",
+  "files": {
+    "README_RUNTIME_LESSONS_TESTS_PROVIDER.md": "ca868a20c00ee3a17c7cb1a377fb8ed7f62da56f80ecd5b9d2e1aadb086ae05e",
+    "docker/backend/gmp_runtime/urls.py": "a7da2dec7e0e567d007bbbf30b5b0293dd98ccb4f8586826d7a2d3aadd7d02f6",
+    "src/backend/django_adapter/runtime_learning.py": "07fe77801732ce5519d71abb3f734fdbc6657878a7e8a240c60950c3ae00f211",
+    "src/backend/django_adapter/views.py": "c36c7546bec7f8fecadfc70f00a2ae90d411f5ad87470e8afe890f97e4a84e85",
+    "tests/test_runtime_lessons_tests_provider.py": "2458cd46dbdb1286831594213dbe847999754db3fb8a7c94461a4d16a6ba06dd"
+  }
+}
