@@ -1,0 +1,45 @@
+{
+  "package": "grammar-mastery-stage26-ci-hotfix-v1.0.1",
+  "stage": 26,
+  "scope": "STAGE26_ONLY_CORRECTIVE_OVERLAY",
+  "base_main_commit": "6fbc78b0e75f574244b131ed0ca29de91d11bba6",
+  "base_commit_message": "feat: integrate stage 26 operations package",
+  "detected_github_actions_run": 31303438214,
+  "detected_failure_job": "postgres-migration-rehearsal",
+  "correction": "install requirements-dev.txt before live Stage24 PostgreSQL integration test",
+  "local_hotfix_validator_exit_code": 0,
+  "local_hotfix_unit_test_exit_code": 0,
+  "post_apply_requirement": "rerun GitHub Actions; do not infer live production readiness from local overlay validation",
+  "files": [
+    {
+      "path": ".github/workflows/stage26-release-gate.yml",
+      "sha256": "b0f5b8504f8548c8a89d1b5b9c815f0673dbbc9d76351071986cb5a0f452f84e",
+      "bytes": 2962
+    },
+    {
+      "path": "README_STAGE26_HOTFIX.txt",
+      "sha256": "efd86b5a4907489d1e1084e06ad0acf3413eb64235dd39a7b002ba7e89dca5b8",
+      "bytes": 546
+    },
+    {
+      "path": "docs/stages/stage26/CI_HOTFIX_APPLY_v1.0.1.md",
+      "sha256": "da02eb6845e80cbd6224cecda1eb53329f706e6408afe2b5d72ef4facf4741c3",
+      "bytes": 2712
+    },
+    {
+      "path": "docs/stages/stage26/ci_hotfix_review_v1.0.1.md",
+      "sha256": "de140183437f03924a4110610aefbb428d63a87f1ffcaaff95b6e9e4a35303d5",
+      "bytes": 2174
+    },
+    {
+      "path": "tests/test_stage26_ci_hotfix.py",
+      "sha256": "238ccf5f88b0e7021728515c0faf0cded707801577445f73c2b49913d016eb85",
+      "bytes": 997
+    },
+    {
+      "path": "tools/validate_stage26_ci_hotfix.py",
+      "sha256": "dd0e8f5acca86b4d79e7fb4b827a91cf52b21908c703cbe244c501720b552cf7",
+      "bytes": 2168
+    }
+  ]
+}
