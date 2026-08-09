@@ -1,0 +1,9 @@
+{
+  "patch": "grammar-mastery-canonical-reference-seed-v1",
+  "files": {
+    "README_CANONICAL_REFERENCE_SEED.md": "d11af277617eb6ca7cfcf53b862593e603a948e1865e8d2108f895d7e75e7cfe",
+    "docker/backend/Dockerfile": "dd39380366873b8da2d3b5f11902c6801752c28dca1a27ce2617a15dc0d334f7",
+    "ops/stage12/seed_canonical_reference.py": "f7b972f9ade4a50af241df3d5200913916b37bf7fb09a8b3540061bb09953067",
+    "tests/test_canonical_reference_seed.py": "0668559fa4e1c570d6559ca3848f0ac40d2e55719aeaab2b04784f92d31d9758"
+  }
+}
