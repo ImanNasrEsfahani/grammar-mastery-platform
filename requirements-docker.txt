@@ -1,0 +1,4 @@
+-r requirements.txt
+
+# Production WSGI process manager for the Docker runtime.
+gunicorn>=23.0,<24.0
