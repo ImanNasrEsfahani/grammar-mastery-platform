@@ -1,0 +1,89 @@
+name: Stage 26 release readiness gate
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: stage26-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  reference-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: python -m pip install -r requirements-dev.txt
+      - run: python tools/validate_baseline.py
+      - run: python tools/validate_stage21.py
+      - run: python tools/validate_stage22.py
+      - run: python tools/validate_stage23.py
+      - run: python tools/validate_stage24.py
+      - run: python tools/validate_stage25.py
+      - run: python tools/validate_stage26.py
+      - run: PYTHONPATH=src python -m unittest discover -s tests -v
+      - run: python tools/run_stage24_performance.py --check
+
+  frontend:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: npm ci
+      - run: npm run validate
+
+  postgres-migration-rehearsal:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: stage26
+          POSTGRES_PASSWORD: stage26_ci_only
+          POSTGRES_DB: grammar_mastery_stage26
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U stage26 -d grammar_mastery_stage26"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      PGHOST: 127.0.0.1
+      PGPORT: "5432"
+      PGUSER: stage26
+      PGPASSWORD: stage26_ci_only
+      PGDATABASE: grammar_mastery_stage26
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: sudo apt-get update && sudo apt-get install -y postgresql-client
+      - run: python tools/validate_stage26.py
+      - run: python ops/stage26/migration_runner.py --target staging --execute --confirm-release-id "ci-${GITHUB_SHA}"
+      - run: GMP_STAGE24_POSTGRES_DSN="postgresql://stage26:stage26_ci_only@127.0.0.1:5432/grammar_mastery_stage26" python -m unittest discover -s tests -p 'test_stage24_postgres.py' -v
+
+# Provider deployment is deliberately not hard-coded here. After hosting/DNS/TLS,
+# secret-manager, scanner, monitoring and backup providers are selected, the
+# provider adapter must deploy an immutable revision and emit Stage 26 evidence.
+# Production promotion is accepted only by ops/stage26/release_gate.py.

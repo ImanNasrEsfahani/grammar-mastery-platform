@@ -1,0 +1,4 @@
+environment,purpose,data_policy,debug,credentials,monitoring,backup,deploy_gate
+Development,local development and deterministic tests,synthetic only,ON,local non-production runtime injection,developer logs,optional disposable snapshots,unit/integration validation
+Staging,release QA and migration rehearsal,anonymized production-like or synthetic,OFF,separate staging secret binding,production-like structured logs health and error monitoring,scheduled staging recovery point plus restore rehearsal,CI green + canonical migration dry run + smoke/security checks
+Production,real service,real user data after security/privacy gates,OFF,production secret manager only,structured logs health error monitoring alerts and release correlation,scheduled encrypted backups outside primary failure domain + periodic measured restore drill,owner-approved release + staging evidence + pre-release recovery point + rollback plan

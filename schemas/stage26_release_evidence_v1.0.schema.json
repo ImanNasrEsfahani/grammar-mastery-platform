@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "stage26_release_evidence_v1.0.schema.json",
+  "title": "Grammar Mastery Stage 26 Release Evidence",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "release_id", "git_sha", "target_environment", "ci", "migrations", "backup", "providers", "security", "health", "smoke", "monitoring", "rollback", "release_note"],
+  "properties": {
+    "schema_version": {"const": "stage26-release-evidence-v1.0.0"},
+    "release_id": {"type": "string", "minLength": 3},
+    "git_sha": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "target_environment": {"enum": ["staging", "production"]},
+    "ci": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "stage24", "stage25", "stage26"],
+      "properties": {
+        "status": {"enum": ["PASS", "FAIL"]},
+        "stage24": {"enum": ["PASS", "FAIL"]},
+        "stage25": {"enum": ["PASS", "FAIL"]},
+        "stage26": {"enum": ["PASS", "FAIL"]}
+      }
+    },
+    "migrations": {
+      "type": "object", "additionalProperties": false,
+      "required": ["plan_version", "staging_dry_run", "applied", "used_superseded_file"],
+      "properties": {
+        "plan_version": {"const": "stage26-postgres-sequence-v1.0.0"},
+        "staging_dry_run": {"enum": ["PASS", "FAIL", "NOT_APPLICABLE"]},
+        "applied": {"enum": ["PASS", "FAIL", "NOT_RUN"]},
+        "used_superseded_file": {"type": "boolean"}
+      }
+    },
+    "backup": {
+      "type": "object", "additionalProperties": false,
+      "required": ["recovery_point_created", "recovery_point_id", "restore_drill_status", "measured_rto_minutes"],
+      "properties": {
+        "recovery_point_created": {"type": "boolean"},
+        "recovery_point_id": {"type": "string"},
+        "restore_drill_status": {"enum": ["PASS", "FAIL", "NOT_RUN"]},
+        "measured_rto_minutes": {"type": ["number", "null"], "minimum": 0}
+      }
+    },
+    "providers": {
+      "type": "object", "additionalProperties": false,
+      "required": ["compute", "postgres", "backup", "secret_manager", "malware_scanner", "error_monitoring", "dns_tls", "alert_channel", "admin_mfa"],
+      "properties": {
+        "compute": {"type": "string", "minLength": 2},
+        "postgres": {"type": "string", "minLength": 2},
+        "backup": {"type": "string", "minLength": 2},
+        "secret_manager": {"type": "string", "minLength": 2},
+        "malware_scanner": {"type": "string", "minLength": 2},
+        "error_monitoring": {"type": "string", "minLength": 2},
+        "dns_tls": {"type": "string", "minLength": 2},
+        "alert_channel": {"type": "string", "minLength": 2},
+        "admin_mfa": {"type": "string", "minLength": 2}
+      }
+    },
+    "security": {
+      "type": "object", "additionalProperties": false,
+      "required": ["https", "headers", "secret_scan"],
+      "properties": {
+        "https": {"enum": ["PASS", "FAIL"]},
+        "headers": {"enum": ["PASS", "FAIL"]},
+        "secret_scan": {"enum": ["PASS", "FAIL"]}
+      }
+    },
+    "health": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "database_connectivity"],
+      "properties": {
+        "status": {"enum": ["PASS", "FAIL"]},
+        "database_connectivity": {"enum": ["PASS", "FAIL"]}
+      }
+    },
+    "smoke": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "frontend", "safe_api"],
+      "properties": {
+        "status": {"enum": ["PASS", "FAIL"]},
+        "frontend": {"enum": ["PASS", "FAIL"]},
+        "safe_api": {"enum": ["PASS", "FAIL", "BLOCKED_BY_UPSTREAM_RUNTIME"]}
+      }
+    },
+    "monitoring": {
+      "type": "object", "additionalProperties": false,
+      "required": ["configured", "release_window_status", "rollback_threshold_breached"],
+      "properties": {
+        "configured": {"type": "boolean"},
+        "release_window_status": {"enum": ["PASS", "FAIL", "NOT_OBSERVED"]},
+        "rollback_threshold_breached": {"type": "boolean"}
+      }
+    },
+    "rollback": {
+      "type": "object", "additionalProperties": false,
+      "required": ["available", "previous_revision_recorded"],
+      "properties": {
+        "available": {"type": "boolean"},
+        "previous_revision_recorded": {"type": "boolean"}
+      }
+    },
+    "release_note": {"type": "string", "minLength": 3}
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "schema_version": "stage26-release-evidence-v1.0.0",
+  "release_id": "synthetic-production-example",
+  "git_sha": "f5f281ed52c30667d02e7a8d40d0cbba6d537791",
+  "target_environment": "production",
+  "ci": {
+    "status": "PASS",
+    "stage24": "PASS",
+    "stage25": "PASS",
+    "stage26": "PASS"
+  },
+  "migrations": {
+    "plan_version": "stage26-postgres-sequence-v1.0.0",
+    "staging_dry_run": "PASS",
+    "applied": "PASS",
+    "used_superseded_file": false
+  },
+  "backup": {
+    "recovery_point_created": true,
+    "recovery_point_id": "synthetic-rp-001",
+    "restore_drill_status": "PASS",
+    "measured_rto_minutes": 42
+  },
+  "providers": {
+    "compute": "synthetic-provider",
+    "postgres": "synthetic-postgres",
+    "backup": "synthetic-backup",
+    "secret_manager": "synthetic-secret-manager",
+    "malware_scanner": "synthetic-scanner",
+    "error_monitoring": "synthetic-monitoring",
+    "dns_tls": "synthetic-dns-tls",
+    "alert_channel": "synthetic-alert",
+    "admin_mfa": "synthetic-mfa"
+  },
+  "security": {
+    "https": "PASS",
+    "headers": "PASS",
+    "secret_scan": "PASS"
+  },
+  "health": {
+    "status": "PASS",
+    "database_connectivity": "PASS"
+  },
+  "smoke": {
+    "status": "PASS",
+    "frontend": "PASS",
+    "safe_api": "PASS"
+  },
+  "monitoring": {
+    "configured": true,
+    "release_window_status": "PASS",
+    "rollback_threshold_breached": false
+  },
+  "rollback": {
+    "available": true,
+    "previous_revision_recorded": true
+  },
+  "release_note": "Synthetic valid fixture only; not evidence of a real deployment."
+}

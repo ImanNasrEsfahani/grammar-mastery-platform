@@ -1,0 +1,114 @@
+{
+  "stage": 26,
+  "name": "Deploy, Production Operations, Backup and Monitoring",
+  "contract_version": "stage26-operations-v1.0.0",
+  "prepared_at_utc": "2026-08-09",
+  "owner": "Iman",
+  "base": {
+    "repository": "ImanNasrEsfahani/grammar-mastery-platform",
+    "branch": "main",
+    "commit": "f5f281ed52c30667d02e7a8d40d0cbba6d537791",
+    "commit_message": "feat: integrate stage 25 security package"
+  },
+  "release_status": "REFERENCE_OPERATIONS_PACKAGE_VALIDATED_LIVE_DEPLOYMENT_EVIDENCE_BLOCKED",
+  "roadmap_outputs": [
+    "deployment_pipeline",
+    "environment_matrix",
+    "monitoring",
+    "backup_policy",
+    "rollback_runbook"
+  ],
+  "runtime_profile": {
+    "backend": "Django 5.2 LTS + Django REST Framework 3.16+ reference adapter",
+    "frontend": "Next.js 16.2.11 / React 19.2.8 / Node >=24",
+    "database": "PostgreSQL 15+",
+    "api_base_path": "/api/v1"
+  },
+  "environment_policy": {
+    "allowed": ["development", "staging", "production"],
+    "separate_credentials": true,
+    "separate_databases": true,
+    "production_debug": false,
+    "staging_data": "production-like but anonymized or synthetic",
+    "production_data": "real user data only after privacy/security gates pass"
+  },
+  "migration_policy": {
+    "plan_version": "stage26-postgres-sequence-v1.0.0",
+    "staging_before_production": true,
+    "manual_production_sql_forbidden": true,
+    "on_error_stop_required": true,
+    "pre_production_recovery_point_required": true,
+    "superseded_files_forbidden": [
+      "database/postgres/007_stage23_import_pipeline_v1.0.sql"
+    ],
+    "canonical_sequence": [
+      {"order": 1, "path": "database/postgres/001_stage12_schema_v0.9.sql", "git_blob_sha": "1a995db637493832a4988a977be7598444e221d9"},
+      {"order": 2, "path": "database/postgres/002_stage15_mastery_patch_v0.9.sql", "git_blob_sha": "a8314ab136f5f77523166e22e0be2f3a7bcaaab9"},
+      {"order": 3, "path": "database/postgres/003_stage16_error_review_v0.9.sql", "git_blob_sha": "828dd88c5f89740bcbee5d552a7d8705b3bff73c"},
+      {"order": 4, "path": "database/postgres/004_stage17_spaced_repetition_v0.9.sql", "git_blob_sha": "5dd96dad390cd6cf9c5dcf5497035f0f5bd5fe3b"},
+      {"order": 5, "path": "database/postgres/005_stage20_audit_log_migration_v1.0.sql", "git_blob_sha": "93f7a5b043894e2e270081b2b77ea11bbdcfae41"},
+      {"order": 6, "path": "database/postgres/006_stage21_api_runtime_v1.0.sql", "git_blob_sha": "068edb0f5fea7165be88ae56b74e9069022c7aab"},
+      {"order": 7, "path": "database/postgres/007_stage23_import_pipeline_v1.1.sql", "git_blob_sha": "9b695350bb1192d39ddf8363635dacba86854cc1"}
+    ]
+  },
+  "release_gates": {
+    "ci_green": true,
+    "stage24_multilayer_suite": true,
+    "stage25_security_controls": true,
+    "staging_migration_dry_run": true,
+    "staging_health_and_smoke": true,
+    "production_recovery_point": true,
+    "production_health_and_smoke": true,
+    "https_and_security_headers": true,
+    "structured_logs_and_error_monitoring": true,
+    "rollback_available": true,
+    "release_note_recorded": true
+  },
+  "monitoring_guardrails": {
+    "status": "PROVISIONAL_UNTIL_STAGE27_CALIBRATION",
+    "deploy_health_consecutive_failures_before_rollback": 2,
+    "http_5xx_rate_pct_5m_rollback_candidate": 2.0,
+    "api_p95_ms_10m_investigate": 2000,
+    "database_connection_utilization_pct_alert": 80,
+    "backup_age_hours_alert": 26,
+    "restore_drill_age_days_alert": 95,
+    "security_header_mismatch": "BLOCK_RELEASE",
+    "migration_failure": "IMMEDIATE_STOP_AND_ROLLBACK_OR_RESTORE"
+  },
+  "backup": {
+    "target_rpo_hours": 24,
+    "target_rto_hours": 4,
+    "targets_status": "PLANNING_TARGETS_PENDING_MEASURED_STAGE26_DRILL",
+    "restore_drill_frequency_days": 90,
+    "encrypted": true,
+    "off_primary_failure_domain": true,
+    "separate_sets": ["postgresql", "raw_import_objects", "audit_evidence", "deployment_configuration"],
+    "secrets_in_backup_forbidden": true,
+    "usable_only_after_restore_drill": true
+  },
+  "provider_bindings": {
+    "compute_hosting": "REQUIRED_OWNER_INPUT",
+    "staging_origin": "REQUIRED_OWNER_INPUT",
+    "production_origin": "REQUIRED_OWNER_INPUT",
+    "dns_tls_provider": "REQUIRED_OWNER_INPUT",
+    "postgres_provider": "REQUIRED_OWNER_INPUT",
+    "backup_storage_provider": "REQUIRED_OWNER_INPUT",
+    "object_storage_provider": "REQUIRED_OWNER_INPUT",
+    "secret_manager_and_signing_key_store": "REQUIRED_OWNER_INPUT",
+    "malware_scanner": "REQUIRED_OWNER_INPUT",
+    "error_monitoring": "REQUIRED_OWNER_INPUT",
+    "alert_channel": "REQUIRED_OWNER_INPUT",
+    "admin_reviewer_mfa": "REQUIRED_OWNER_INPUT"
+  },
+  "upstream_runtime_constraints": {
+    "deployable_django_http_surface": "NOT_EVIDENCED_IN_CURRENT_BASELINE",
+    "published_question_inventory": 0,
+    "published_inventory_effect": "does not block infrastructure deployment but blocks real learner test-generation E2E",
+    "stage25_retention_approval": "PENDING_OWNER_APPROVAL"
+  },
+  "stage27_handoff": [
+    "calibrate operational alert thresholds from observed production data",
+    "calibrate security rate limits and false-positive rates",
+    "use real response/accuracy data for question and difficulty calibration without rewriting history"
+  ]
+}

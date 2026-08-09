@@ -1,0 +1,13 @@
+decision_id,kind,status,need_or_dependency,safe_current_boundary,blocks_live_production_ready,owner
+S26_D01_HOSTING,PROVIDER,OWNER_INPUT_REQUIRED,Select compute/runtime hosting for Django and Next.js,Reference pipeline remains provider-neutral,YES,Iman
+S26_D02_ORIGINS_DNS_TLS,PROVIDER,OWNER_INPUT_REQUIRED,Provide staging and production origins plus DNS/TLS edge,No public origin is assumed and HTTPS cannot be observed,YES,Iman
+S26_D03_POSTGRES_BACKUP,PROVIDER,OWNER_INPUT_REQUIRED,Select target PostgreSQL and backup/recovery provider,Canonical migration plan is frozen but no live target is touched,YES,Iman
+S26_D04_SECRET_MANAGER,SECURITY,OWNER_INPUT_REQUIRED,Select production secret manager and signing-key store inherited from Stage25,Repository secrets remain forbidden and live injection is not claimed,YES,Iman
+S26_D05_MALWARE_SCANNER,SECURITY,OWNER_INPUT_REQUIRED,Select production upload malware scanner inherited from Stage25,Uploads must remain fail-closed/quarantined without bound clean evidence,YES,Iman
+S26_D06_MONITORING_ALERTS,OPERATIONS,OWNER_INPUT_REQUIRED,Select error monitoring/metrics service and alert channel,Structured event contract and thresholds are defined but no provider is claimed,YES,Iman
+S26_D07_MFA,SECURITY,OWNER_INPUT_REQUIRED,Select MFA enforcement for administrators and reviewers,Least-privilege sessions and backend authorization remain required,YES,Iman
+S26_D08_RETENTION,PRIVACY,PENDING_OWNER_APPROVAL,Approve or revise Stage25 defaults of 90-day raw-import and 365-day security-audit retention,No automated deletion is enabled,YES,Iman
+S26_D09_RPO_RTO,OPERATIONS,MEASUREMENT_REQUIRED,Confirm or revise 24h RPO and 4h RTO with measured isolated restore drill,Values remain planning targets only,YES,Iman
+S26_B01_DJANGO_HTTP,UPSTREAM_RUNTIME,NOT_EVIDENCED,A deployable Django HTTP project/surface must exist and expose the Stage21 contract,Stage26 does not invent missing Stage21 transport endpoints,YES,Iman
+S26_R01_PUBLISHED_INVENTORY,RUNTIME,EXPECTED_BLOCK,Real independently reviewed PUBLISHED questions are required for real learner test-generation E2E,Infrastructure can deploy with NO_ELIGIBLE_QUESTIONS behavior,NO,Content/Ops
+S26_R02_ROOT_DOC_DRIFT,DOCUMENTATION,NON_BLOCKING,Root README/STATUS currently lag the newly integrated Stage25 commit,Stage26 overlay does not rewrite root history/documentation,NO,Iman

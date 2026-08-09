@@ -1,0 +1,52 @@
+{
+  "stage": 26,
+  "version": "stage26-operations-v1.0.0",
+  "validated_at_utc": "2026-08-09",
+  "status": "PASS_REFERENCE_WITH_LIVE_EXECUTION_BLOCKED",
+  "base_main": {
+    "commit": "f5f281ed52c30667d02e7a8d40d0cbba6d537791",
+    "message": "feat: integrate stage 25 security package",
+    "stage25_present": true
+  },
+  "roadmap_outputs": {
+    "deployment_pipeline": "PASS_REFERENCE",
+    "environment_matrix": "PASS",
+    "monitoring": "PASS_REFERENCE",
+    "backup_policy": "PASS_REFERENCE",
+    "rollback_runbook": "PASS"
+  },
+  "dedicated_tests": {
+    "total": 13,
+    "passed": 13,
+    "failed": 0
+  },
+  "overlay_validator": {
+    "status": "PASS",
+    "migration_count": 7,
+    "note": "Full-repository migration file identity checks run after applying the overlay; overlay-only validation intentionally skips unavailable upstream files."
+  },
+  "valid_invalid_evidence": {
+    "valid_fixture": "PASS",
+    "invalid_missing_backup_fixture": "EXPECTED_FAIL"
+  },
+  "migration_contract": {
+    "canonical_last_migration": "database/postgres/007_stage23_import_pipeline_v1.1.sql",
+    "superseded_forbidden": "database/postgres/007_stage23_import_pipeline_v1.0.sql"
+  },
+  "not_claimed": [
+    "live staging deployment",
+    "live production deployment",
+    "target PostgreSQL migration execution",
+    "deployed Django HTTP/API smoke evidence",
+    "real browser E2E against deployed services",
+    "production DNS/TLS/security-header observation",
+    "production secret-manager or signing-key binding",
+    "production malware-scanner binding",
+    "production monitoring/alert provider",
+    "production backup recovery point",
+    "measured production-like restore drill",
+    "owner acceptance"
+  ],
+  "formal_ready_for_stage27": false,
+  "reason": "Stage 26 reference operations artifacts are complete, but live infrastructure/provider decisions and measured deployment/restore evidence are required before production-ready or Stage27 live-calibration claims."
+}
