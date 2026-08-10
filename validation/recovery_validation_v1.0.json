@@ -1,0 +1,146 @@
+{
+  "project": "Grammar Mastery Platform",
+  "package": "question-authoring-recovery-v1.0.0",
+  "status": "PASS",
+  "nature": "RECONSTRUCTED_DETAILED_ARTIFACTS_NOT_BYTE_IDENTICAL_TO_PRIOR_SANDBOX_EXPORTS",
+  "inputs": {
+    "stage1_lessons": "stage1_lessons_v0.9",
+    "stage1_subtopics": "stage1_subtopics_v0.9",
+    "stage2_mapping": "taxonomy-v0.9.0",
+    "stage4_capacity": "capacity-weight-ratio-v0.9.0",
+    "stage6_policy": "question-type-catalogue/compatibility/allocation v0.9.0 preserved in repository policy",
+    "stage7_policy": "distractor-rule-set-v0.9.0 + roadmap Stage7",
+    "roadmap": "Project Guide v1.0, Stage6 pp.32-37, Stage7 pp.38-42"
+  },
+  "counts": {
+    "lessons": 52,
+    "subtopics": 304,
+    "question_types": 15,
+    "subtopic_compatibility": 4560,
+    "lesson_compatibility": 780,
+    "allocation_rows": 780,
+    "misconceptions": 945,
+    "exception_specific": 33,
+    "distractor_rules": 27
+  },
+  "subtopic_compatibility_distribution": {
+    "PREFERRED": 1464,
+    "ALLOWED": 1454,
+    "NOT_SUITABLE": 1354,
+    "CONDITIONAL": 288
+  },
+  "lesson_compatibility_distribution": {
+    "PREFERRED": 372,
+    "ALLOWED": 197,
+    "NOT_SUITABLE": 191,
+    "CONDITIONAL": 20
+  },
+  "misconception_family_distribution": {
+    "OVERGENERALIZATION": 304,
+    "NEAR_FORM_CONFUSION": 304,
+    "CONTEXT_ROLE_MISMATCH": 304,
+    "EXCEPTION_NEGLECT": 33
+  },
+  "misconception_domain_distribution": {
+    "AGREEMENT_FORM": 37,
+    "CONJUGATION_FORM": 89,
+    "DETERMINER_ARTICLE": 74,
+    "GENERAL_GRAMMAR": 76,
+    "MODIFICATION_COMPARISON": 35,
+    "MOOD_CONDITION": 108,
+    "NEGATION_POLARITY": 56,
+    "NONFINITE_ASPECT": 64,
+    "ORTHOGRAPHY": 19,
+    "PREPOSITION_RECTION": 111,
+    "PRONOUN_REFERENCE": 77,
+    "QUANTIFICATION": 15,
+    "QUESTION_STRUCTURE": 31,
+    "RELATIVE_CLAUSE": 27,
+    "REPORTED_SPEECH": 30,
+    "TENSE_ASPECT": 90,
+    "VOICE": 6
+  },
+  "tests": [
+    {
+      "code": "V01",
+      "result": "PASS",
+      "detail": "lessons=52"
+    },
+    {
+      "code": "V02",
+      "result": "PASS",
+      "detail": "subtopics=304"
+    },
+    {
+      "code": "V03",
+      "result": "PASS",
+      "detail": "question_types=15"
+    },
+    {
+      "code": "V04",
+      "result": "PASS",
+      "detail": "subtopic_compatibility_rows=4560"
+    },
+    {
+      "code": "V05",
+      "result": "PASS",
+      "detail": "lesson_compatibility_rows=780"
+    },
+    {
+      "code": "V06",
+      "result": "PASS",
+      "detail": "allocation_rows=780"
+    },
+    {
+      "code": "V07",
+      "result": "PASS",
+      "detail": "per-lesson Full/Expanded/MVP allocations reconcile exactly to Stage4"
+    },
+    {
+      "code": "V08",
+      "result": "PASS",
+      "detail": "bank totals Full=10636 Expanded=5331 MVP=2666"
+    },
+    {
+      "code": "V09",
+      "result": "PASS",
+      "detail": "NOT_SUITABLE allocation is always zero"
+    },
+    {
+      "code": "V10",
+      "result": "PASS",
+      "detail": "all CONDITIONAL subtopic rows require guardrail"
+    },
+    {
+      "code": "V11",
+      "result": "PASS",
+      "detail": "misconceptions=945 min_per_subtopic=3 max=4"
+    },
+    {
+      "code": "V12",
+      "result": "PASS",
+      "detail": "exception_specific=33"
+    },
+    {
+      "code": "V13",
+      "result": "PASS",
+      "detail": "misconception IDs unique"
+    },
+    {
+      "code": "V14",
+      "result": "PASS",
+      "detail": "Stage16 historical dont misconception ID preserved"
+    },
+    {
+      "code": "V15",
+      "result": "PASS",
+      "detail": "distractor_rules=27 (12 global + 15 type-specific)"
+    },
+    {
+      "code": "V16",
+      "result": "PASS",
+      "detail": "source provenance retained"
+    }
+  ],
+  "important_note": "Historical source artifacts were located in File Library and used as reference for schemas, counts, controlled IDs and examples. Raw bytes were not exportable from that source in this runtime. New recovery-generated UUIDs are explicitly tracked in stage7_recovery_id_provenance_v1.0.csv; the Stage16 L32-S04/dont historical misconception ID and several directly recovered IDs are preserved."
+}
