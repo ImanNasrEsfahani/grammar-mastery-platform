@@ -1,7 +1,8 @@
 import type { NextRequest } from "next/server";
-import { cookies } from "next/headers";
+import { NextResponse } from "next/server";
 import { backendUrl, clientResponseHeaders, unavailableResponse, upstreamHeaders } from "@/lib/api/server";
 import type { components } from "@/lib/api/generated";
+import { sessionCookieIsSecure } from "@/lib/auth/session-cookie";
 
 type AuthTokenEnvelope = components["schemas"]["AuthTokenEnvelope"];
 
@@ -28,17 +29,17 @@ export async function POST(request: NextRequest) {
   }
 
   const payload = (await upstream.json()) as AuthTokenEnvelope;
-  const cookieStore = await cookies();
-  cookieStore.set("gmp_access_token", payload.data.access_token, {
+  const response = NextResponse.json(
+    {data: {authenticated: true, expires_in: payload.data.expires_in}, meta: payload.meta},
+    {headers: {"Cache-Control": "no-store", "X-Request-ID": requestId}},
+  );
+  response.cookies.set("gmp_access_token", payload.data.access_token, {
     httpOnly: true,
     sameSite: "lax",
-    secure: process.env.NODE_ENV === "production",
+    secure: sessionCookieIsSecure(request),
     path: "/",
     maxAge: payload.data.expires_in,
   });
 
-  return Response.json(
-    {data: {authenticated: true, expires_in: payload.data.expires_in}, meta: payload.meta},
-    {headers: {"Cache-Control": "no-store", "X-Request-ID": requestId}},
-  );
+  return response;
 }

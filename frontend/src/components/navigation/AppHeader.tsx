@@ -10,19 +10,19 @@ export function AppHeader({locale, authenticated}: {locale: Locale; authenticate
   return (
     <header className="app-header">
       <div className="header-inner">
-        <Link className="brand" href={`/${locale}/dashboard`}>
+        <Link className="brand" href={`/${locale}/dashboard`} prefetch={authenticated}>
           <span className="brand-mark" aria-hidden="true">G</span>
           <span>{labels.productName}</span>
         </Link>
         <nav aria-label={locale === "fa" ? "ناوبری اصلی" : "Primary navigation"}>
           <ul className="nav-list">
-            <li><Link href={`/${locale}/dashboard`}>{labels.dashboard}</Link></li>
-            <li><Link href={`/${locale}/tests/new`}>{labels.practice}</Link></li>
-            <li><Link href={`/${locale}/review`}>{labels.review}</Link></li>
-            <li><Link href={`/${locale}/lessons`}>{labels.lessons}</Link></li>
+            <li><Link href={`/${locale}/dashboard`} prefetch={authenticated}>{labels.dashboard}</Link></li>
+            <li><Link href={`/${locale}/tests/new`} prefetch={authenticated}>{labels.practice}</Link></li>
+            <li><Link href={`/${locale}/review`} prefetch={authenticated}>{labels.review}</Link></li>
+            <li><Link href={`/${locale}/lessons`} prefetch={authenticated}>{labels.lessons}</Link></li>
           </ul>
         </nav>
-        <Link className="locale-switch" href={`/${otherLocale}/dashboard`} hrefLang={otherLocale}>
+        <Link className="locale-switch" href={`/${otherLocale}/dashboard`} hrefLang={otherLocale} prefetch={authenticated}>
           {otherLocale === "fa" ? "فارسی" : "English"}
         </Link>
         {authenticated ? (

@@ -24,8 +24,12 @@ export function AuthForm({mode, locale}: {mode: "login" | "register"; locale: Lo
         ? {email: fields.email, password: fields.password}
         : {email: fields.email, password: fields.password, display_name: fields.displayName || null, locale: isFa ? "fa-IR" : "en-CA", timezone: Intl.DateTimeFormat().resolvedOptions().timeZone};
       await apiRequest(path, {method: "POST", body: JSON.stringify(body)});
-      if (mode === "login") router.replace(`/${locale}/dashboard`);
-      else router.replace(`/${locale}/login?registered=1`);
+      if (mode === "login") {
+        router.replace(`/${locale}/dashboard`);
+        router.refresh();
+      } else {
+        router.replace(`/${locale}/login?registered=1`);
+      }
     } catch (caught) {
       setError(caught instanceof ApiError ? caught : new ApiError({status: 0, code: "NETWORK_ERROR", message: "Authentication failed."}));
     } finally {
