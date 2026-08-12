@@ -1,0 +1,521 @@
+{
+  "project": "Grammar Mastery Platform",
+  "runner": "QUESTION BANK CHAT RUNNER v1.0",
+  "batch_id": "B023",
+  "batch_name": "FULL-L05-P01",
+  "validation_status": "PASS_STATIC_AUTHORING",
+  "import_status": "STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT",
+  "stage23_runtime_executed": false,
+  "repo_snapshot": {
+    "branch": "main",
+    "commit_sha": "a3da6081b578b8e55e30a636a7836a290a7e3faa",
+    "mode": "read_only"
+  },
+  "root_document_audit": {
+    "README.md": "READ",
+    "STATUS.md": "READ",
+    "ROADMAP.md": "NOT_PRESENT_AT_REPO_ROOT__UPLOADED_PROJECT_GUIDE_USED_AS_ROADMAP",
+    "AGENTS.md": "NOT_PRESENT_AT_REPO_ROOT",
+    "blocker_for_authoring": false
+  },
+  "continuation_integrity": {
+    "checkpoint_last_completed_batch": "B022",
+    "checkpoint_next_batch": "B023",
+    "previous_registry_row_count": 961,
+    "previous_registry_expected_sha256": "7ac6095a3d2f0c997e29a7ca17cb082e101fda73f20e014cef8229bcd172d534",
+    "previous_registry_actual_sha256": "7ac6095a3d2f0c997e29a7ca17cb082e101fda73f20e014cef8229bcd172d534",
+    "previous_batch_csv_expected_sha256": "38e2bdbb3e69ae27785c9ce2d6d9de45907e296ac315f369f64418f8a881abad",
+    "previous_batch_csv_actual_sha256": "38e2bdbb3e69ae27785c9ce2d6d9de45907e296ac315f369f64418f8a881abad",
+    "previous_batch_validation_expected_sha256": "106bfa008ae94bfd7211f66d586cd723ab43c3341a65a93d74774d1e13c0de63",
+    "previous_batch_validation_actual_sha256": "106bfa008ae94bfd7211f66d586cd723ab43c3341a65a93d74774d1e13c0de63",
+    "pass": true
+  },
+  "plan": {
+    "name": "Grammar Mastery Platform — Full Question Bank Batch Execution Plan v1.0",
+    "plan_sha256": "59e4fbbad89446bb3370c1db9d4dce3b7275f557bed1ea4b197b967cf91d71d6",
+    "global_batch_no": 23,
+    "lesson_no": 5,
+    "lesson_id": "99f46643-99ba-428d-bdaf-193d018572cc",
+    "lesson_title_fr": "« C’EST » et « IL EST »",
+    "category_code": "CAT09",
+    "subcategory_code": "SUB24",
+    "lesson_part": 1,
+    "lesson_parts_total": 5,
+    "question_ordinal_start": 1,
+    "question_ordinal_end": 50,
+    "batch_question_count": 50,
+    "difficulty_profile": "DISCRIMINATION",
+    "external_id_prefix": "GMP-FULL-B023",
+    "output_csv": "question_bank_full_B023_L05_P01.csv",
+    "expected_zip": "question_bank_full_B023_L05_P01.zip",
+    "plan_depends_on": "B022",
+    "previous_completed_batch": "B022",
+    "next_batch": "B024",
+    "lesson_cumulative_after_batch": 50,
+    "lesson_remaining_after_batch": 168,
+    "lesson_completion": "IN_PROGRESS",
+    "global_cumulative_after_batch": 1011,
+    "global_remaining_after_batch": 9625
+  },
+  "source_provenance": {
+    "authoritative_book": {
+      "sha256": "b6162aacc084cd78ec46f43972fdc68f9330576ea909f4a51767c3333c7e74ca",
+      "lesson_pages_printed": "32-34",
+      "lesson_pages_pdf": "34-36",
+      "authoring_focus_for_B023": "Lesson 5: c’est/ce sont identification; specific il/elle est + adjective vs general c’est + adjective; profession/nationality/religion without article; qualitative professional modification with article; c’est + determined noun vs il est + adjective/profession."
+    },
+    "project_guide": {
+      "sha256": "8a561160d698ffb811453d20b9c610fbb644c7593cca10b3bca6728c7969e6a7",
+      "version": "1.0",
+      "relevant_scope": "Stages 1-11 authoring and static QA"
+    },
+    "stage1_content_version": "stage1-v1.0",
+    "taxonomy_version": "taxonomy-v0.9.0",
+    "stage2_primary_tag": "TAG033",
+    "stage2_secondary_tag_available": "TAG005",
+    "stage4_target_full": 218,
+    "question_type_catalogue_version": "question-type-catalogue-v0.9.0",
+    "compatibility_version": "question-type-compatibility-v0.9.0",
+    "misconception_catalogue_version": "misconception-catalogue-recovered-v1.0.0",
+    "distractor_rules_version": "distractor-rule-set-v0.9.0",
+    "difficulty_model_version": "initial-difficulty-model-v0.9.0",
+    "stage9_profile": "DISCRIMINATION",
+    "stage9_full_targets": {
+      "EASY": 33,
+      "MEDIUM": 76,
+      "HARD": 76,
+      "VERY_HARD": 33
+    },
+    "stage11_workflow_version": "question-qa-workflow-v0.9.0",
+    "schema_version": "question-import-schema-v0.9.0"
+  },
+  "schema_validation": {
+    "expected_column_count": 46,
+    "actual_column_count": 46,
+    "exact_header_order_pass": true,
+    "required_fields_present_pass": true,
+    "status_all_draft_pass": true,
+    "row_count_expected": 50,
+    "row_count_actual": 50,
+    "four_distinct_options_pass": true,
+    "exactly_one_correct_option_pass": true,
+    "correct_option_misconception_blank_pass": true,
+    "distractor_misconception_resolves_pass": true,
+    "stage7_current_main_ids_used_pass": true,
+    "secondary_subtopic_ids_resolve_pass": true,
+    "all_explanations_nonempty_pass": true,
+    "source_ref_nonempty_pass": true,
+    "source_ref_length_pass": true,
+    "media_none_fields_empty_pass": true,
+    "correct_position_distribution": {
+      "A": 13,
+      "B": 13,
+      "C": 12,
+      "D": 12
+    },
+    "correct_position_max_adjacent_streak": 1
+  },
+  "question_type_quota": {
+    "rule": "BR03 Hamilton/largest remainder from Stage6 full targets; first Lesson 5 batch",
+    "lesson_full_targets": {
+      "CLOZE_SINGLE": 25,
+      "CLOZE_CONTEXT": 45,
+      "CORRECT_SENTENCE": 19,
+      "INCORRECT_SENTENCE": 15,
+      "ERROR_LOCATION": 11,
+      "CONJUGATION": 0,
+      "TENSE_CHOICE": 0,
+      "PRONOUN_CHOICE": 0,
+      "PREPOSITION_CHOICE": 0,
+      "REWRITE_EQUIV": 17,
+      "FR_TO_FA": 19,
+      "FA_TO_FR": 9,
+      "DIALOGUE_COMPLETE": 33,
+      "REGISTER_CHOICE": 6,
+      "CONTRAST_RULES": 19
+    },
+    "previous_lesson_batches": {},
+    "expected": {
+      "CLOZE_SINGLE": 6,
+      "CLOZE_CONTEXT": 10,
+      "CORRECT_SENTENCE": 4,
+      "INCORRECT_SENTENCE": 4,
+      "ERROR_LOCATION": 3,
+      "CONJUGATION": 0,
+      "TENSE_CHOICE": 0,
+      "PRONOUN_CHOICE": 0,
+      "PREPOSITION_CHOICE": 0,
+      "REWRITE_EQUIV": 4,
+      "FR_TO_FA": 4,
+      "FA_TO_FR": 2,
+      "DIALOGUE_COMPLETE": 8,
+      "REGISTER_CHOICE": 1,
+      "CONTRAST_RULES": 4
+    },
+    "actual": {
+      "CLOZE_SINGLE": 6,
+      "CLOZE_CONTEXT": 10,
+      "CORRECT_SENTENCE": 4,
+      "INCORRECT_SENTENCE": 4,
+      "ERROR_LOCATION": 3,
+      "REWRITE_EQUIV": 4,
+      "FR_TO_FA": 4,
+      "FA_TO_FR": 2,
+      "DIALOGUE_COMPLETE": 8,
+      "REGISTER_CHOICE": 1,
+      "CONTRAST_RULES": 4
+    },
+    "pass": true,
+    "remaining_after_batch": {
+      "CLOZE_SINGLE": 19,
+      "CLOZE_CONTEXT": 35,
+      "CORRECT_SENTENCE": 15,
+      "INCORRECT_SENTENCE": 11,
+      "ERROR_LOCATION": 8,
+      "CONJUGATION": 0,
+      "TENSE_CHOICE": 0,
+      "PRONOUN_CHOICE": 0,
+      "PREPOSITION_CHOICE": 0,
+      "REWRITE_EQUIV": 13,
+      "FR_TO_FA": 15,
+      "FA_TO_FR": 7,
+      "DIALOGUE_COMPLETE": 25,
+      "REGISTER_CHOICE": 5,
+      "CONTRAST_RULES": 15
+    }
+  },
+  "difficulty_quota": {
+    "rule": "Batch Plan / BR04 + joint BR05",
+    "stage9_full_targets": {
+      "EASY": 33,
+      "MEDIUM": 76,
+      "HARD": 76,
+      "VERY_HARD": 33
+    },
+    "expected": {
+      "EASY": 8,
+      "MEDIUM": 17,
+      "HARD": 17,
+      "VERY_HARD": 8
+    },
+    "actual": {
+      "EASY": 8,
+      "MEDIUM": 17,
+      "HARD": 17,
+      "VERY_HARD": 8
+    },
+    "pass": true,
+    "joint_expected": {
+      "CLOZE_SINGLE": {
+        "EASY": 1,
+        "MEDIUM": 2,
+        "HARD": 2,
+        "VERY_HARD": 1
+      },
+      "CLOZE_CONTEXT": {
+        "EASY": 1,
+        "MEDIUM": 4,
+        "HARD": 4,
+        "VERY_HARD": 1
+      },
+      "CORRECT_SENTENCE": {
+        "EASY": 1,
+        "MEDIUM": 1,
+        "HARD": 1,
+        "VERY_HARD": 1
+      },
+      "INCORRECT_SENTENCE": {
+        "EASY": 1,
+        "MEDIUM": 1,
+        "HARD": 1,
+        "VERY_HARD": 1
+      },
+      "ERROR_LOCATION": {
+        "EASY": 0,
+        "MEDIUM": 1,
+        "HARD": 2,
+        "VERY_HARD": 0
+      },
+      "REWRITE_EQUIV": {
+        "EASY": 1,
+        "MEDIUM": 1,
+        "HARD": 1,
+        "VERY_HARD": 1
+      },
+      "FR_TO_FA": {
+        "EASY": 1,
+        "MEDIUM": 1,
+        "HARD": 1,
+        "VERY_HARD": 1
+      },
+      "FA_TO_FR": {
+        "EASY": 0,
+        "MEDIUM": 1,
+        "HARD": 1,
+        "VERY_HARD": 0
+      },
+      "DIALOGUE_COMPLETE": {
+        "EASY": 1,
+        "MEDIUM": 3,
+        "HARD": 3,
+        "VERY_HARD": 1
+      },
+      "REGISTER_CHOICE": {
+        "EASY": 0,
+        "MEDIUM": 1,
+        "HARD": 0,
+        "VERY_HARD": 0
+      },
+      "CONTRAST_RULES": {
+        "EASY": 1,
+        "MEDIUM": 1,
+        "HARD": 1,
+        "VERY_HARD": 1
+      }
+    },
+    "joint_actual": {
+      "CLOZE_SINGLE": {
+        "EASY": 1,
+        "MEDIUM": 2,
+        "HARD": 2,
+        "VERY_HARD": 1
+      },
+      "CLOZE_CONTEXT": {
+        "EASY": 1,
+        "MEDIUM": 4,
+        "HARD": 4,
+        "VERY_HARD": 1
+      },
+      "CORRECT_SENTENCE": {
+        "EASY": 1,
+        "MEDIUM": 1,
+        "HARD": 1,
+        "VERY_HARD": 1
+      },
+      "INCORRECT_SENTENCE": {
+        "EASY": 1,
+        "MEDIUM": 1,
+        "HARD": 1,
+        "VERY_HARD": 1
+      },
+      "ERROR_LOCATION": {
+        "EASY": 0,
+        "MEDIUM": 1,
+        "HARD": 2,
+        "VERY_HARD": 0
+      },
+      "REWRITE_EQUIV": {
+        "EASY": 1,
+        "MEDIUM": 1,
+        "HARD": 1,
+        "VERY_HARD": 1
+      },
+      "FR_TO_FA": {
+        "EASY": 1,
+        "MEDIUM": 1,
+        "HARD": 1,
+        "VERY_HARD": 1
+      },
+      "FA_TO_FR": {
+        "EASY": 0,
+        "MEDIUM": 1,
+        "HARD": 1,
+        "VERY_HARD": 0
+      },
+      "DIALOGUE_COMPLETE": {
+        "EASY": 1,
+        "MEDIUM": 3,
+        "HARD": 3,
+        "VERY_HARD": 1
+      },
+      "REGISTER_CHOICE": {
+        "EASY": 0,
+        "MEDIUM": 1,
+        "HARD": 0,
+        "VERY_HARD": 0
+      },
+      "CONTRAST_RULES": {
+        "EASY": 1,
+        "MEDIUM": 1,
+        "HARD": 1,
+        "VERY_HARD": 1
+      }
+    },
+    "joint_pass": true,
+    "remaining_after_batch": {
+      "EASY": 25,
+      "MEDIUM": 59,
+      "HARD": 59,
+      "VERY_HARD": 25
+    },
+    "difficulty_band_check": "PASS_50_OF_50",
+    "manual_truthfulness_review": "PASS_50_OF_50"
+  },
+  "coverage_and_compatibility": {
+    "rule": "BR06 compatibility-tier first, then least-used eligible subtopic / code ascending",
+    "cumulative_before_B023": {
+      "L05-S01": 0,
+      "L05-S02": 0,
+      "L05-S03": 0,
+      "L05-S04": 0
+    },
+    "current_batch_counts": {
+      "L05-S03": 20,
+      "L05-S01": 9,
+      "L05-S02": 9,
+      "L05-S04": 12
+    },
+    "cumulative_after_B023": {
+      "L05-S03": 20,
+      "L05-S01": 9,
+      "L05-S02": 9,
+      "L05-S04": 12
+    },
+    "compatibility_tiers_used": {
+      "PREFERRED": 48,
+      "ALLOWED": 2
+    },
+    "not_suitable_used": 0,
+    "conditional_used": 0,
+    "conditional_guardrail_failures": 0,
+    "compatibility_pass": true,
+    "note": "All ERROR_LOCATION items were assigned to L05-S03 where the type is PREFERRED; both FA_TO_FR items use L05-S03 where the type is ALLOWED. No CONDITIONAL or NOT_SUITABLE pairing was needed."
+  },
+  "duplicate_validation": {
+    "previous_batches": [
+      "B001",
+      "B002",
+      "B003",
+      "B004",
+      "B005",
+      "B006",
+      "B007",
+      "B008",
+      "B009",
+      "B010",
+      "B011",
+      "B012",
+      "B013",
+      "B014",
+      "B015",
+      "B016",
+      "B017",
+      "B018",
+      "B019",
+      "B020",
+      "B021",
+      "B022"
+    ],
+    "previous_registry_row_count": 961,
+    "previous_registry_sha256": "7ac6095a3d2f0c997e29a7ca17cb082e101fda73f20e014cef8229bcd172d534",
+    "registry_signature_version": "question-bank-registry-signatures-v1.0",
+    "normalized_duplicate_against_previous": 0,
+    "cross_batch_exact_key_duplicate_against_previous": 0,
+    "registry_fingerprint_duplicate_against_previous": 0,
+    "semantic_signature_duplicate_against_previous": 0,
+    "structural_duplicate_against_previous": 0,
+    "external_id_duplicate_against_previous": 0,
+    "within_batch_normalized_stem_duplicates": 0,
+    "within_batch_exact_key_duplicates": 0,
+    "within_batch_registry_fingerprint_duplicates": 0,
+    "within_batch_semantic_signature_duplicates": 0,
+    "within_batch_structural_signature_duplicates": 0,
+    "semantic_near_duplicate_against_previous": 0,
+    "within_batch_semantic_near_duplicates": 0,
+    "semantic_near_duplicate_threshold": 0.8,
+    "semantic_check_method": "TF-IDF char_wb ngram 3-5 over normalized stem + correct answer",
+    "structural_check_method": "question type + normalized stem; SHA-256 registry signature",
+    "semantic_registry_signature_method": "SHA-256(normalized stem + '|' + normalized correct answer)",
+    "cross_batch_exact_key_method": "lesson_id + subtopic_id + question_type + normalized stem + normalized correct answer",
+    "registry_fingerprint_method": "SHA-256(unit-separator joined normalized stem + stable lesson/subtopic IDs + type + normalized correct + sorted normalized options); option-order resistant",
+    "stage10_fingerprint_contract": "question-fingerprint-v0.9.0 canonical payload collision-audited within B023",
+    "stage10_fingerprints": {
+      "GMP-FULL-B023-Q001": "f8db92c6a76525afec3a9b79fde2b7c24076c30ff15dc61d2d8b657148a9a7aa",
+      "GMP-FULL-B023-Q002": "46ee6bd46f4ac57534c5772831355fcd4b07ca92bb6427c0315a5b7c9875c90d",
+      "GMP-FULL-B023-Q003": "147510272b3a047cf392bd223649121ef3883c2bd9ec00d0ad6b761dd24cbcff",
+      "GMP-FULL-B023-Q004": "39179474bc175ab9545e2f4d3a5007ec97026c0784d86e3b7c12260da535a535",
+      "GMP-FULL-B023-Q005": "7fab842c9f71989552756afc9558e27900163e067a7f2cd9f0e5c1f3f7cdae4f",
+      "GMP-FULL-B023-Q006": "81f784b96a7bf77c97e4d3cc180a1fbe2699ece32797846364125a1cec8537dc",
+      "GMP-FULL-B023-Q007": "51aa3e391f3521f4a52d4d5998a51bcbfbf80d34892254b43934f208a9aa1d19",
+      "GMP-FULL-B023-Q008": "c005171f13a71369a3e747506e3f828094fe0bedf25718c3060aefca2408bbe8",
+      "GMP-FULL-B023-Q009": "d77450b33236a072e2872db4c677b0e6ba684849eb8406852373d32669727fcf",
+      "GMP-FULL-B023-Q010": "0fb112592d76a018a056904cc0cd75d655bd5b1a949ff4c557f2764fad6ec8a9",
+      "GMP-FULL-B023-Q011": "0e6d351de7a53ec2a92b9d9ba20366644e176eecaac8f3cce4f656b93b2d62bf",
+      "GMP-FULL-B023-Q012": "24025ee2a6042fdc48048708633fe3a7882e8c8b6ce9b708c1d9915fc5a180b3",
+      "GMP-FULL-B023-Q013": "dc7b01286d9ee9ad484d1eb275ce76d6c4eda05c7f94fbaa026877119bc70b41",
+      "GMP-FULL-B023-Q014": "875c2df5b01a28694a899bd39e4df4d0c85b4954c805cf72d115db4cc9e188fe",
+      "GMP-FULL-B023-Q015": "99320e83ba7779cb227f6dffd30937785d816faa2a34e41424864d03b930cd98",
+      "GMP-FULL-B023-Q016": "cebbd4b684b7e6cd7b7758d61de10a57c24368e216a6ffe5bd6daff601e6215a",
+      "GMP-FULL-B023-Q017": "993d27de7dbea01880fb98df5e15ebdca65911eb7f044c71c09f00d76e57f19c",
+      "GMP-FULL-B023-Q018": "a85acf50a6dc7f51cc4519798c21ad07182ca9517487f61ff8f48c08fb5fe306",
+      "GMP-FULL-B023-Q019": "ff4dadd8ee31ea6973e38653720f50600093d895dc003d579c1b2a7b94861ec4",
+      "GMP-FULL-B023-Q020": "b3f480f0e69ca351db202c91ef24ad6f7cc6072cedc4e74adcffb08a61682a91",
+      "GMP-FULL-B023-Q021": "4cef0d8ffbede5217c0212532504553de65cd9989f397b5911a7694d4a3b6c31",
+      "GMP-FULL-B023-Q022": "41f60941a84ee331dc87fe7a06fe22f15393d4482f79e163c4b2b46fae673db9",
+      "GMP-FULL-B023-Q023": "96f7ea9c113d78a481841d69286dd6ba517c8b214dba892db6a31f1b9f936c80",
+      "GMP-FULL-B023-Q024": "2b43c3e3e84390c60a25c2608c569e236423ae42a32566bf4149cdbe9140207d",
+      "GMP-FULL-B023-Q025": "fe2353bc2fa940f44291a0da91c1aeea662d37a607df9f980dba5131ef5a0bbf",
+      "GMP-FULL-B023-Q026": "70a6f2301d351f01bc83aac8a41dca5374cdc220ff39932f4d90e2f5cbe88d74",
+      "GMP-FULL-B023-Q027": "11eb964c4b92e6bc3028f6dc8996c0256f5a9cc78d8aee2fdd7e08210870eada",
+      "GMP-FULL-B023-Q028": "9ac9005243d092fa119ceb7213221aa3b5be8a2f8287d34323ddb2ea66bb0d4e",
+      "GMP-FULL-B023-Q029": "1583876da68237289c660eef9d0e804473e19f303f75e236cb0de223ca078e77",
+      "GMP-FULL-B023-Q030": "694ef5b9a769620f310e75d9d754488cee46d05e13a4ab0765933f90df465d07",
+      "GMP-FULL-B023-Q031": "478ec5ec080ab20ce770b030a1ed016c724f97827a1131c86b9ccc063d9a65ae",
+      "GMP-FULL-B023-Q032": "262c7428ef53a5c8a3468c7041ef44d8899571b22b3e2ade077864d02b2b078d",
+      "GMP-FULL-B023-Q033": "6760bfc7e39349760de183d15f21f66f2e5f103790c73091886341d9bbf541f5",
+      "GMP-FULL-B023-Q034": "877323b517ac39e69ba2402138ab3fbd6f3dbebad09c6cd61a5243974f0cc977",
+      "GMP-FULL-B023-Q035": "db86c7ba641ee6460b4160e8f8cbb63fbb5a05cdb267cda75398bd2b3cac113a",
+      "GMP-FULL-B023-Q036": "47994c98e583ff38c28f0f56f88b5f23ccae67be52581084bdb6f8b02b84fa57",
+      "GMP-FULL-B023-Q037": "95713a0e953ee67505781cab61ae52e2d035b377d97bb974b24502bd14392dca",
+      "GMP-FULL-B023-Q038": "1ee86a09e33bd6921c91e1744a20db83c627974a402c55935dd30fd55e5a350b",
+      "GMP-FULL-B023-Q039": "619e8b98593a8210f9a12e32f73a1256c0c667120000db8e51309f23c7bc96cc",
+      "GMP-FULL-B023-Q040": "1baa4c1be5a48b6eaeba1bec47a5a64c51c84143a0cef0693aa77f4b3df78e29",
+      "GMP-FULL-B023-Q041": "77f74204853415f37b07cd499266b40c41d7687d4db3e9c2fc49389677183579",
+      "GMP-FULL-B023-Q042": "c06ed8415bab0a51b892c1818dde223f32c538d903c1d59f97648368ba9c738d",
+      "GMP-FULL-B023-Q043": "aac89b60a2435a0acde3fa74791a3d0063a5e6ed0581bf5bd6e68c6148d72466",
+      "GMP-FULL-B023-Q044": "3408a4907d5a88ec331816785a934ec6744441bbe3376dcef1531ffb5fff9542",
+      "GMP-FULL-B023-Q045": "0b8ebc76828aeb03fc7375e7e07d14d19dacad12e15a8072170f48f50c6563d4",
+      "GMP-FULL-B023-Q046": "220b20e1e327aa5fe969024ec2eb53727cb4cbbaca70dcd01f8a4e1eb2dc7b2e",
+      "GMP-FULL-B023-Q047": "80608d2b385f3966daaf155713a645c10e68d91cb6b70a7941a26e807d047f33",
+      "GMP-FULL-B023-Q048": "7fc21d7383d38bd83e6589f06bda803ef2ebfe52f6773f30715780bd533fb0f9",
+      "GMP-FULL-B023-Q049": "91dad2fb3d520880604a5d91e9c904ae7c79b9950124981dd88c87e934b52a8c",
+      "GMP-FULL-B023-Q050": "f98a073133142ea0329e207b52332b8088ec6563b8c7c305b2a48edcfb319b75"
+    },
+    "within_batch_semantic_candidates_at_or_above_threshold": [],
+    "cross_batch_semantic_candidates_at_or_above_threshold": [],
+    "maximum_cross_batch_semantic_similarity": 0.357853,
+    "maximum_cross_batch_semantic_similarity_question": "GMP-FULL-B023-Q025",
+    "maximum_cross_batch_semantic_similarity_previous": "GMP-FULL-B013-Q026",
+    "maximum_within_batch_semantic_similarity": 0.712982,
+    "maximum_within_batch_semantic_similarity_pair": [
+      "GMP-FULL-B023-Q002",
+      "GMP-FULL-B023-Q018"
+    ],
+    "manual_semantic_single_correct_review": "PASS_50_OF_50"
+  },
+  "content_qa": {
+    "authoritative_scope_only_pass": true,
+    "book_rule_alignment_pass": true,
+    "four_option_parallelism_review": "PASS_50_OF_50",
+    "single_correct_manual_review": "PASS_50_OF_50",
+    "distractor_plausibility_review": "PASS_50_OF_50",
+    "correct_misconception_blank_pass": true,
+    "not_suitable_generation_count": 0,
+    "repair_iterations": 0,
+    "unresolved_failures": 0
+  },
+  "stage23_gate": {
+    "status": "STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT",
+    "scope": "Import/Preview/Commit only",
+    "authoring_blocked": false,
+    "static_validation_blocked": false,
+    "import_preview_commit_executed": false
+  },
+  "result": {
+    "batch_status": "PASS_STATIC_AUTHORING",
+    "questions_generated": 50,
+    "questions_accepted_after_static_validation": 50,
+    "questions_repaired": 0,
+    "next_batch_not_started": "B024"
+  }
+}

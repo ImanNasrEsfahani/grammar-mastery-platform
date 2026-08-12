@@ -1,0 +1,64 @@
+{
+  "checkpoint_version": "question-bank-checkpoint-v1.0",
+  "plan_version": "question_bank_full_batch_plan_v1.0",
+  "updated_after_batch": "B041",
+  "last_completed_batch": "B041",
+  "next_batch": "B042",
+  "global_questions_completed": 1806,
+  "global_questions_target": 10636,
+  "global_questions_remaining": 8830,
+  "lesson_progress": {
+    "lesson_no": 9,
+    "lesson_id": "3a93c97f-cdce-4896-98be-892e3354b7fc",
+    "target": 189,
+    "completed": 189,
+    "remaining": 0,
+    "next_lesson_part": null,
+    "lesson_parts_total": 4,
+    "remaining_type_targets": {
+      "CLOZE_SINGLE": 0,
+      "CLOZE_CONTEXT": 0,
+      "CORRECT_SENTENCE": 0,
+      "INCORRECT_SENTENCE": 0,
+      "ERROR_LOCATION": 0,
+      "CONJUGATION": 0,
+      "TENSE_CHOICE": 0,
+      "PRONOUN_CHOICE": 0,
+      "PREPOSITION_CHOICE": 0,
+      "REWRITE_EQUIV": 0,
+      "FR_TO_FA": 0,
+      "FA_TO_FR": 0,
+      "DIALOGUE_COMPLETE": 0,
+      "REGISTER_CHOICE": 0,
+      "CONTRAST_RULES": 0
+    },
+    "remaining_difficulty_targets": {
+      "EASY": 0,
+      "MEDIUM": 0,
+      "HARD": 0,
+      "VERY_HARD": 0
+    },
+    "lesson_status": "COMPLETED"
+  },
+  "next_lesson": {
+    "lesson_no": 10,
+    "lesson_id": "988143e8-7e0e-46e1-94a0-f87f7a1267f5",
+    "next_batch": "B042",
+    "started": false
+  },
+  "registry": {
+    "file": "question_bank_global_registry.csv",
+    "row_count": 1806,
+    "sha256": "a9016aa20dd8c9ea3a25accbc2444d5a0d389def4acf3714e35067b37a2c0589",
+    "signature_version": "question-bank-registry-signatures-v1.0"
+  },
+  "batch_output": {
+    "csv": "question_bank_full_B041_L09_P04.csv",
+    "csv_sha256": "904e5e378e44f2369d1e0101f4d161c8ef239168e1ad8ad4ff23718b36c16ebe",
+    "validation": "question_bank_full_B041_L09_P04_validation.json",
+    "validation_sha256": "1a89fba9a33941d8d9b299c1b15863edb1f838f2fb214431f83025a536d4c021"
+  },
+  "validation_status": "PASS_STATIC_AUTHORING",
+  "import_status": "STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT",
+  "stage23_runtime_executed": false
+}

@@ -1,0 +1,417 @@
+{
+  "manifest_version": "question-bank-source-batch-manifest-v1.0",
+  "scope": "B001-B041",
+  "created_at_utc": "2026-08-12T17:41:31.991074+00:00",
+  "items": [
+    {
+      "batch_id": "B001",
+      "zip_file": "question_bank_full_B001_L01_P01.zip",
+      "zip_size_bytes": 22611,
+      "zip_sha256": "9dbfd941006ac0dc9476aff14b32f8d77de60ba2446998cfa6b5d3190fbabc12",
+      "question_csv": "question_bank_full_B001_L01_P01.csv",
+      "question_csv_sha256": "ca8e85a4789975393693279387466c6ae1e760f07b479f6c8b73b55b808c16fa",
+      "validation_file": "question_bank_full_B001_L01_P01_validation.json",
+      "validation_sha256": "9a143590d36bc7080e1876f6b005cf476d42a129ce0366d27c51a08830460fba"
+    },
+    {
+      "batch_id": "B002",
+      "zip_file": "question_bank_full_B002_L01_P02.zip",
+      "zip_size_bytes": 30584,
+      "zip_sha256": "6cd0e11006846559486f0314255229c7e2bf8a9266e7421af1d5752cec7448d3",
+      "question_csv": "question_bank_full_B002_L01_P02.csv",
+      "question_csv_sha256": "c63ec6714bb114fbe68ade93b235e635d2508fcaf05f8ded94f99eec3d73af49",
+      "validation_file": "question_bank_full_B002_L01_P02_validation.json",
+      "validation_sha256": "2abaa539bca31f6b360a558d395db41cb872eeb154025574d0821ed152532831"
+    },
+    {
+      "batch_id": "B003",
+      "zip_file": "question_bank_full_B003_L01_P03.zip",
+      "zip_size_bytes": 39877,
+      "zip_sha256": "2cfab8c860fde623142808ac24d9b741d5978d39c4c8af327be86ef2c30a06b4",
+      "question_csv": "question_bank_full_B003_L01_P03.csv",
+      "question_csv_sha256": "272406558466d9e3f8e73f49089aa795175704bdd8a84b3c490fa66750d648c4",
+      "validation_file": "question_bank_full_B003_L01_P03_validation.json",
+      "validation_sha256": "74524f711d94068a4c60d1a951d8f5625ed66c235b72a5c13d54a4d5e3683305"
+    },
+    {
+      "batch_id": "B004",
+      "zip_file": "question_bank_full_B004_L01_P04.zip",
+      "zip_size_bytes": 49021,
+      "zip_sha256": "7b9b47a050d8e298c2b0f98215392294d4d7e0b8e2cfa8320c2797d00472ce7e",
+      "question_csv": "question_bank_full_B004_L01_P04.csv",
+      "question_csv_sha256": "07763129b013c7321846dd0a657e14f94295cbb02627f06dd9b5758826b034ac",
+      "validation_file": "question_bank_full_B004_L01_P04_validation.json",
+      "validation_sha256": "89d35144bd2ecfb7ac93cac3ad719b9bd6456c7bb2713c4751a50fc0c9993761"
+    },
+    {
+      "batch_id": "B005",
+      "zip_file": "question_bank_full_B005_L01_P05.zip",
+      "zip_size_bytes": 55138,
+      "zip_sha256": "f8fa8798cc43d98bb277ba20f72f6ca4c3b50b753a967eccb42ebe0a91f587bc",
+      "question_csv": "question_bank_full_B005_L01_P05.csv",
+      "question_csv_sha256": "c5ff75e6af1afed9b0b142b061818a8b600db2cb04cf3183bc15129422c821e6",
+      "validation_file": "question_bank_full_B005_L01_P05_validation.json",
+      "validation_sha256": "20d79c5dcfd736b4f840366f16b2e9363172c95a85918e85d45a3efcb914f929"
+    },
+    {
+      "batch_id": "B006",
+      "zip_file": "question_bank_full_B006_L01_P06.zip",
+      "zip_size_bytes": 49255,
+      "zip_sha256": "9ef4d4b55948ebba3ae50ed5de480ee30b75fdd556adce3eebcab19f59c9e6e2",
+      "question_csv": "question_bank_full_B006_L01_P06.csv",
+      "question_csv_sha256": "673a9597364ed8e6a3e57281222722fa62ce08585f33763890a6fd6aec4a66c8",
+      "validation_file": "question_bank_full_B006_L01_P06_validation.json",
+      "validation_sha256": "affe1e4e73899440b7e0064a12f5222ed7b11e41fb840b4a55ffafd480b60342"
+    },
+    {
+      "batch_id": "B007",
+      "zip_file": "question_bank_full_B007_L02_P01.zip",
+      "zip_size_bytes": 67735,
+      "zip_sha256": "4409fe200aed1f5ba1ead09efeb54ba113553b3baf0ed5620865798dfa81a1d0",
+      "question_csv": "question_bank_full_B007_L02_P01.csv",
+      "question_csv_sha256": "a18e272a9c469e6b54edf5cb8822bd81e5266b67a854460250c80756569fc5aa",
+      "validation_file": "question_bank_full_B007_L02_P01_validation.json",
+      "validation_sha256": "462bca81b787bbfed3c27682d127f645c96f10cade1cb0fbe56fc94ce60d59bf"
+    },
+    {
+      "batch_id": "B008",
+      "zip_file": "question_bank_full_B008_L02_P02.zip",
+      "zip_size_bytes": 75095,
+      "zip_sha256": "932c8476f450479875fa2f9bd6cde91be77d32cc64e56f40c522130e0620b095",
+      "question_csv": "question_bank_full_B008_L02_P02.csv",
+      "question_csv_sha256": "463727f7e0a986475919f0f740103bb89d51a82fd6503cfa52ddded18a1d577b",
+      "validation_file": "question_bank_full_B008_L02_P02_validation.json",
+      "validation_sha256": "0ebedc0a2e0ba7d81672ae44dcb67e229a5a8f1af13abe22ab16c2d4916df7f3"
+    },
+    {
+      "batch_id": "B009",
+      "zip_file": "question_bank_full_B009_L02_P03.zip",
+      "zip_size_bytes": 83337,
+      "zip_sha256": "1db52d6e5c211018e601f3d540ce77ffb89851012ebc14163e1d19c5f38c4e6f",
+      "question_csv": "question_bank_full_B009_L02_P03.csv",
+      "question_csv_sha256": "6322872243ab94fbfa663c4dd7725c0fd89e95e6a8660ce8c2c4921037956954",
+      "validation_file": "question_bank_full_B009_L02_P03_validation.json",
+      "validation_sha256": "972164f6b296ba3100111e82b1ba6dcb9f3d842c29b81c442284a27dfceb0707"
+    },
+    {
+      "batch_id": "B010",
+      "zip_file": "question_bank_full_B010_L02_P04.zip",
+      "zip_size_bytes": 91924,
+      "zip_sha256": "43905eb2f89c0253da1e50151fd3d973ff297ce9ac1ab62589be0d6d96635341",
+      "question_csv": "question_bank_full_B010_L02_P04.csv",
+      "question_csv_sha256": "cc46003715768e76f4dd5e42441c08a7d176a35e0eaa7a4e0ab9c611edcd2d76",
+      "validation_file": "question_bank_full_B010_L02_P04_validation.json",
+      "validation_sha256": "41c5e473bfa2a65f0e7c8d8d1344f5f0dd023cd72192dcf938fc81c9b2f2270f"
+    },
+    {
+      "batch_id": "B011",
+      "zip_file": "question_bank_full_B011_L02_P05.zip",
+      "zip_size_bytes": 89079,
+      "zip_sha256": "07562dd95f4a68bb78b4d465be8df2fbe2b426f89d4894477bb99ecbd1f3429a",
+      "question_csv": "question_bank_full_B011_L02_P05.csv",
+      "question_csv_sha256": "8bc4717fa25ff9b8bb51defb33912652ae90ecca184011133176ff4024fc35c0",
+      "validation_file": "question_bank_full_B011_L02_P05_validation.json",
+      "validation_sha256": "791ef42fbabf5fe22c0645405f43c5f0807e947a22d36337c0709cac840b511c"
+    },
+    {
+      "batch_id": "B012",
+      "zip_file": "question_bank_full_B012_L03_P01.zip",
+      "zip_size_bytes": 102356,
+      "zip_sha256": "88504b9241d3b40b513fac4818853ac0d24185b088bdd2d5e8a9553dc4216f17",
+      "question_csv": "question_bank_full_B012_L03_P01.csv",
+      "question_csv_sha256": "55e91ade2312fd8ba47193dd9d7196aeb4e82dc39d0abf3bca3ceda3f405c138",
+      "validation_file": "question_bank_full_B012_L03_P01_validation.json",
+      "validation_sha256": "f2bb7f9df9aaae568bd92bc48173d730a098484fb0d5049025667695555b2bcf"
+    },
+    {
+      "batch_id": "B013",
+      "zip_file": "question_bank_full_B013_L03_P02.zip",
+      "zip_size_bytes": 111195,
+      "zip_sha256": "a439a58993da0e99bee1f020beebf5c4fb8751cc26c3d9fad53f6953ded29c8e",
+      "question_csv": "question_bank_full_B013_L03_P02.csv",
+      "question_csv_sha256": "9f7e4bfc464007cc65dc4a35c668e00e8531e96ecfdc4f01b2d8a644a32e6ddd",
+      "validation_file": "question_bank_full_B013_L03_P02_validation.json",
+      "validation_sha256": "579ad77c58e603c69f2c1acc397d8407ee45b6fddbe7630b2e0639c39b74f7c6"
+    },
+    {
+      "batch_id": "B014",
+      "zip_file": "question_bank_full_B014_L03_P03.zip",
+      "zip_size_bytes": 119273,
+      "zip_sha256": "bbafd4c4cf946efd77ab605041be213ff8ba64f5304ff186f2da6545c124dc15",
+      "question_csv": "question_bank_full_B014_L03_P03.csv",
+      "question_csv_sha256": "d576bd01e0521ff59637a12a056ed039d4421f5c7d4dcc236698a3b852cd70cd",
+      "validation_file": "question_bank_full_B014_L03_P03_validation.json",
+      "validation_sha256": "631332d57c8e4dd1b304f3c2d60c43ccd85b36bdb9ba7b4172980086fdacdf37"
+    },
+    {
+      "batch_id": "B015",
+      "zip_file": "question_bank_full_B015_L03_P04.zip",
+      "zip_size_bytes": 128555,
+      "zip_sha256": "09a1ff508f836c13b0fdb5ff519c229acbc6d679c0d701ccd2bf2d3575dc398b",
+      "question_csv": "question_bank_full_B015_L03_P04.csv",
+      "question_csv_sha256": "5c294c6b63cab6981be3695e438e5b359bfa3581f3688989c1bf369cea84568c",
+      "validation_file": "question_bank_full_B015_L03_P04_validation.json",
+      "validation_sha256": "0ff7145d3e483438b88c58f2fd7596558a57e320c335f70b81ee101b121ebcf0"
+    },
+    {
+      "batch_id": "B016",
+      "zip_file": "question_bank_full_B016_L03_P05.zip",
+      "zip_size_bytes": 136427,
+      "zip_sha256": "d6ee1cf95f8e4bcba326f43d6ff78faee2dd6edc63d697d1bde0d64c97637677",
+      "question_csv": "question_bank_full_B016_L03_P05.csv",
+      "question_csv_sha256": "18cb47724d27756cff6093fb2bd4f52354061c52788e8a9ffac39f1f84a79ee8",
+      "validation_file": "question_bank_full_B016_L03_P05_validation.json",
+      "validation_sha256": "9859bb0ce4e7c5d7b11f627d221b43ba10c5f1f21de376d7276288c705f651af"
+    },
+    {
+      "batch_id": "B017",
+      "zip_file": "question_bank_full_B017_L04_P01.zip",
+      "zip_size_bytes": 146394,
+      "zip_sha256": "51af5aa3cb19bcc699f6b22aefd4739000ca997bae6f93c4cb3bff2eb3dee667",
+      "question_csv": "question_bank_full_B017_L04_P01.csv",
+      "question_csv_sha256": "5bd220933f2b6f501434440d11578f2bb8b9233b1dd7ced9d32ab5704e6fdf17",
+      "validation_file": "question_bank_full_B017_L04_P01_validation.json",
+      "validation_sha256": "48f71a4966cbfbefc24ad2bf9e6212af9bfd52a03ed90fafdd76b819b75eee62"
+    },
+    {
+      "batch_id": "B018",
+      "zip_file": "question_bank_full_B018_L04_P02.zip",
+      "zip_size_bytes": 156522,
+      "zip_sha256": "0b301f815622f615eb871d911fe8f2283c118950ef103f1ade9a58f3ba546c1b",
+      "question_csv": "question_bank_full_B018_L04_P02.csv",
+      "question_csv_sha256": "43fa556c12ce8aef81ea1d91d6c8f917063b6436f19e9bf314ec81501e432e0a",
+      "validation_file": "question_bank_full_B018_L04_P02_validation.json",
+      "validation_sha256": "5a5766c8d36794f81f80b524557ebdbf3827668038d4bf92cc4e5d9b800608e5"
+    },
+    {
+      "batch_id": "B019",
+      "zip_file": "question_bank_full_B019_L04_P03.zip",
+      "zip_size_bytes": 165497,
+      "zip_sha256": "7c20d70993496bd5b0ba79eb4b07834ded6269662a7d14d259f34e5fc2f2848b",
+      "question_csv": "question_bank_full_B019_L04_P03.csv",
+      "question_csv_sha256": "c918a2f8a508427442da9ccb3d111fa45ad26a269e45c4f891bdc2379fe4b44e",
+      "validation_file": "question_bank_full_B019_L04_P03_validation.json",
+      "validation_sha256": "a25dd5303c62a57aa82062b8451e7d5b061390cb74f195bc9a651ee898394c78"
+    },
+    {
+      "batch_id": "B020",
+      "zip_file": "question_bank_full_B020_L04_P04.zip",
+      "zip_size_bytes": 172823,
+      "zip_sha256": "f27d431afbd22f9b7ea9e9fec0bc83dfbd2062920993848aefd807dce05f7342",
+      "question_csv": "question_bank_full_B020_L04_P04.csv",
+      "question_csv_sha256": "057070d156cb07f3d4e54b278bec2cdd5761f5316ac150220a36d647da053bbb",
+      "validation_file": "question_bank_full_B020_L04_P04_validation.json",
+      "validation_sha256": "6ca2218b03997cff2f9378cb50763f1edb40563ac6d690bcf8fcc13102c964ce"
+    },
+    {
+      "batch_id": "B021",
+      "zip_file": "question_bank_full_B021_L04_P05.zip",
+      "zip_size_bytes": 182262,
+      "zip_sha256": "6f083f57628a3f948a45a6641623214a194e9c0c1df05283571fac6c161de166",
+      "question_csv": "question_bank_full_B021_L04_P05.csv",
+      "question_csv_sha256": "0b26d38cbd9e5e099f88253fb2fc9b2b79ee394c0259d1b9b21b763e4556e48e",
+      "validation_file": "question_bank_full_B021_L04_P05_validation.json",
+      "validation_sha256": "4c9a850047c55e075fc4afa1290e10602c63171e0ca43c0fe5668153862b4f64"
+    },
+    {
+      "batch_id": "B022",
+      "zip_file": "question_bank_full_B022_L04_P06.zip",
+      "zip_size_bytes": 173553,
+      "zip_sha256": "2bf76920cd33e189824cbbc90ceca84244c64c61adbd39adec67a99dbacd2b8e",
+      "question_csv": "question_bank_full_B022_L04_P06.csv",
+      "question_csv_sha256": "38e2bdbb3e69ae27785c9ce2d6d9de45907e296ac315f369f64418f8a881abad",
+      "validation_file": "question_bank_full_B022_L04_P06_validation.json",
+      "validation_sha256": "106bfa008ae94bfd7211f66d586cd723ab43c3341a65a93d74774d1e13c0de63"
+    },
+    {
+      "batch_id": "B023",
+      "zip_file": "question_bank_full_B023_L05_P01.zip",
+      "zip_size_bytes": 197072,
+      "zip_sha256": "852922f5ad76e9978a28b11dda9c6122a9cd0459c0b792599e45a612fc43db0a",
+      "question_csv": "question_bank_full_B023_L05_P01.csv",
+      "question_csv_sha256": "a49b24919367b88b8fd082d0c705872b9ce8316cf738c49c39ac9f0c2459b023",
+      "validation_file": "question_bank_full_B023_L05_P01_validation.json",
+      "validation_sha256": "2db832d24c02d4be01443ad49e3182a5ff1d5e42e1493cc96f5a6a55dfb1e60d"
+    },
+    {
+      "batch_id": "B024",
+      "zip_file": "question_bank_full_B024_L05_P02.zip",
+      "zip_size_bytes": 207647,
+      "zip_sha256": "c4d2cc1a5dac87dd217b072a46bfafefe2033773cd1958d5780ef8347ede77f9",
+      "question_csv": "question_bank_full_B024_L05_P02.csv",
+      "question_csv_sha256": "5bf675d248b40d6fd869806cd9d8e1b60743e6e5c460e881e05355d6544a403a",
+      "validation_file": "question_bank_full_B024_L05_P02_validation.json",
+      "validation_sha256": "f01ca719a30c95e084afca92f2521cc9d09815c3718204c1424903746c7a1620"
+    },
+    {
+      "batch_id": "B025",
+      "zip_file": "question_bank_full_B025_L05_P03.zip",
+      "zip_size_bytes": 216807,
+      "zip_sha256": "23a26153cc191f768fe1dd3c4473ab8a39f6a97cfda71271b882301632072947",
+      "question_csv": "question_bank_full_B025_L05_P03.csv",
+      "question_csv_sha256": "22153449a2adf3514b7db91416b549a53641144bd5000086a5ac1df0d078e6c8",
+      "validation_file": "question_bank_full_B025_L05_P03_validation.json",
+      "validation_sha256": "22193c6e58a07a2cadee5320ab8a477774ce71c15ad4db7d5d2a23452f9dbd7f"
+    },
+    {
+      "batch_id": "B026",
+      "zip_file": "question_bank_full_B026_L05_P04.zip",
+      "zip_size_bytes": 223722,
+      "zip_sha256": "5929e3de08eddad613c7d7a18d680b526e123fbd18b8509ad5a85fca98181e5e",
+      "question_csv": "question_bank_full_B026_L05_P04.csv",
+      "question_csv_sha256": "8b4fa20ba39a7391aad3d4e45e881219e2119c7b16bf3914a5e62f904db3a059",
+      "validation_file": "question_bank_full_B026_L05_P04_validation.json",
+      "validation_sha256": "ed33b5dc6f8cf9c6bc2fa3c728c0bfb7d0a328e22d43686e664c58777adb0389"
+    },
+    {
+      "batch_id": "B027",
+      "zip_file": "question_bank_full_B027_L05_P05.zip",
+      "zip_size_bytes": 219889,
+      "zip_sha256": "81a8001bba7ea4d5839939026114ab0dcba8c72842204cf8c70446d626b6b7a7",
+      "question_csv": "question_bank_full_B027_L05_P05.csv",
+      "question_csv_sha256": "63ba8b0cb0f5e1e874dfc7f4b238e33f9b0d047e65c56ca31b908eaabe3158b4",
+      "validation_file": "question_bank_full_B027_L05_P05_validation.json",
+      "validation_sha256": "86740952651775e885ccadcee9d8affe3fb4bd53d4303fa82b4d2c37e59c4494"
+    },
+    {
+      "batch_id": "B028",
+      "zip_file": "question_bank_full_B028_L06_P01.zip",
+      "zip_size_bytes": 231140,
+      "zip_sha256": "f8836d11278ab6424f918a123ed68803b04898c98c001a722955b454bbd8e569",
+      "question_csv": "question_bank_full_B028_L06_P01.csv",
+      "question_csv_sha256": "8aad8f7f3e443420b8b873edb1ead48f63799b10702d199661a1b13a9313da86",
+      "validation_file": "question_bank_full_B028_L06_P01_validation.json",
+      "validation_sha256": "27b3fabdb20d0e28d236f30951be5e7c757a80ff6081b8ac5b54c2a2f545c0cc"
+    },
+    {
+      "batch_id": "B029",
+      "zip_file": "question_bank_full_B029_L06_P02.zip",
+      "zip_size_bytes": 240012,
+      "zip_sha256": "b508c605e980af6c47e30d62b15d92028c123f952d91d2cd719b47e267a7ccce",
+      "question_csv": "question_bank_full_B029_L06_P02.csv",
+      "question_csv_sha256": "7ce01f9eb9bb709f5596a96324a54ce6334f286e6e92f3a4af7c77c6239d7709",
+      "validation_file": "question_bank_full_B029_L06_P02_validation.json",
+      "validation_sha256": "e671dad63119db81e61e7c49de0cc0d66c3f071399bddca188e4bd58d4427d40"
+    },
+    {
+      "batch_id": "B030",
+      "zip_file": "question_bank_full_B030_L06_P03.zip",
+      "zip_size_bytes": 249423,
+      "zip_sha256": "bf069e81b6aef320df364a43c9677cdbc6fa39997e1964da52278aff71ec6257",
+      "question_csv": "question_bank_full_B030_L06_P03.csv",
+      "question_csv_sha256": "948e01c1f94a9c55ce32db1c5bc381e4caf668bca5eb1f790127d8549d1aae5b",
+      "validation_file": "question_bank_full_B030_L06_P03_validation.json",
+      "validation_sha256": "82d5fa8983220cf0b96f163068e29b7a52706f5db4496ca0588edcc2d37c99dd"
+    },
+    {
+      "batch_id": "B031",
+      "zip_file": "question_bank_full_B031_L06_P04.zip",
+      "zip_size_bytes": 249826,
+      "zip_sha256": "f3afeab331304b53255f907c4896f862457d3c00f823b8595c693ea48fce9979",
+      "question_csv": "question_bank_full_B031_L06_P04.csv",
+      "question_csv_sha256": "36303733a1cbc423020cafc43fbb4d5198c51c1dfa3b1bf5ff48fadd8eb96ce1",
+      "validation_file": "question_bank_full_B031_L06_P04_validation.json",
+      "validation_sha256": "72154fc5de014f082deb565b0b1bbf3fd95c7d7dace405486180a963c466fd84"
+    },
+    {
+      "batch_id": "B032",
+      "zip_file": "question_bank_full_B032_L07_P01.zip",
+      "zip_size_bytes": 260083,
+      "zip_sha256": "b92a4d868b38811dfbf305e3e7490d1fa251fccb1e76a654c9c51fc198aa452d",
+      "question_csv": "question_bank_full_B032_L07_P01.csv",
+      "question_csv_sha256": "08f5a178d224e33784b33833aa3408356605c16ce612c2243090a4de20d721e2",
+      "validation_file": "question_bank_full_B032_L07_P01_validation.json",
+      "validation_sha256": "d8efb5ee9ae44234b1c2f7a884573cfd0e02efec3110870f62ba9a0f7bc14857"
+    },
+    {
+      "batch_id": "B033",
+      "zip_file": "question_bank_full_B033_L07_P02.zip",
+      "zip_size_bytes": 270283,
+      "zip_sha256": "073d3e03eb908278db51ef6292c54be422e3176a6158dada16c40a6732ae518b",
+      "question_csv": "question_bank_full_B033_L07_P02.csv",
+      "question_csv_sha256": "a123fe7c044db0264bbfcd2ca0f1e9860b66e847e3e1818dda532fbfdb2254a1",
+      "validation_file": "question_bank_full_B033_L07_P02_validation.json",
+      "validation_sha256": "36c124fa41385efb071c5aa98f870ab2852041b3e27d4b3a42acec4805e4b6f8"
+    },
+    {
+      "batch_id": "B034",
+      "zip_file": "question_bank_full_B034_L08_P01.zip",
+      "zip_size_bytes": 278223,
+      "zip_sha256": "e9ec90736bc58b33e8ea3418b74654b28dfeef55a8998de512899a254258c7fe",
+      "question_csv": "question_bank_full_B034_L08_P01.csv",
+      "question_csv_sha256": "9ad663cfe19a5a429bda8eeee265a6defab822d0dd6cbf565afebb8093028e63",
+      "validation_file": "question_bank_full_B034_L08_P01_validation.json",
+      "validation_sha256": "7370ca41e4d92550711b10edc67546e33e698b5c1d749bf64735dbeb22e839d6"
+    },
+    {
+      "batch_id": "B035",
+      "zip_file": "question_bank_full_B035_L08_P02.zip",
+      "zip_size_bytes": 287364,
+      "zip_sha256": "37410fcf3b7cacbd3fb8c789d2f195bff5937982b243ca81d8c85170d1ec4590",
+      "question_csv": "question_bank_full_B035_L08_P02.csv",
+      "question_csv_sha256": "21500c7c9ac0bc98cbf9945556901407dc6cf061a72e56463c07088f802e14d5",
+      "validation_file": "question_bank_full_B035_L08_P02_validation.json",
+      "validation_sha256": "6679a168f48845eaa2281122779168f6fd89c591b8cb507cf9e2a923b1896a8e"
+    },
+    {
+      "batch_id": "B036",
+      "zip_file": "question_bank_full_B036_L08_P03.zip",
+      "zip_size_bytes": 294715,
+      "zip_sha256": "2ead3c6e647c0077963e5be7205e0cb4f19bd6facf0fe0d360d70fab9e81bb06",
+      "question_csv": "question_bank_full_B036_L08_P03.csv",
+      "question_csv_sha256": "dcbad35a766657d4176cd3faae8f7b790ab2008717b3a518a9f2f5ffac76e32a",
+      "validation_file": "question_bank_full_B036_L08_P03_validation.json",
+      "validation_sha256": "d192a7b5dc46afa3608556bbb4aa2a1ede58c8d7b82cbfa2a272626beca91f95"
+    },
+    {
+      "batch_id": "B037",
+      "zip_file": "question_bank_full_B037_L08_P04.zip",
+      "zip_size_bytes": 295196,
+      "zip_sha256": "1020171ffb329f611317016b5da837a56be1313ac49b4a2fd60a30b768dbdab3",
+      "question_csv": "question_bank_full_B037_L08_P04.csv",
+      "question_csv_sha256": "dbf0bcd45f5568a11d6b559a0d21e33185124e7b93da92bfd7c3dc1d31b6161c",
+      "validation_file": "question_bank_full_B037_L08_P04_validation.json",
+      "validation_sha256": "9d4fc4d71cc541afc3c61cb8e8307b578bde17381813690928ec87422e60f4f6"
+    },
+    {
+      "batch_id": "B038",
+      "zip_file": "question_bank_full_B038_L09_P01.zip",
+      "zip_size_bytes": 311138,
+      "zip_sha256": "9b9590fdcd51293889aefa6a87f55a15d1aa722c7be4f04566d29a6d647ab805",
+      "question_csv": "question_bank_full_B038_L09_P01.csv",
+      "question_csv_sha256": "510f96f2c7d10843f65d096f1541139545688e314aa568efeece44b0b95a74a5",
+      "validation_file": "question_bank_full_B038_L09_P01_validation.json",
+      "validation_sha256": "be2a834e381e17930c90ef0ac4eaca61c58506c48b9054bbcc7b0c39277915ec"
+    },
+    {
+      "batch_id": "B039",
+      "zip_file": "question_bank_full_B039_L09_P02.zip",
+      "zip_size_bytes": 321281,
+      "zip_sha256": "afda467d1e1e263b8fffba06e1ab97367d8a45693f1549facfa192538967b22d",
+      "question_csv": "question_bank_full_B039_L09_P02.csv",
+      "question_csv_sha256": "6a3e7e9f32fb409e825c9334977586caa92a6f30fa8f5e8120b751df35957e3d",
+      "validation_file": "question_bank_full_B039_L09_P02_validation.json",
+      "validation_sha256": "474377447651ff45ffb535b904ddce22966c9bd8a8beb6450467c3b93e07499e"
+    },
+    {
+      "batch_id": "B040",
+      "zip_file": "question_bank_full_B040_L09_P03.zip",
+      "zip_size_bytes": 333420,
+      "zip_sha256": "98c41ad84bac299b22c5ac685ef4053197fe3b328e958bea07ba8fd7ce8ad00e",
+      "question_csv": "question_bank_full_B040_L09_P03.csv",
+      "question_csv_sha256": "3ef12939ae2516b1456237f789f3dabfedd8d352a9e3841917a9c742b4f1d5df",
+      "validation_file": "question_bank_full_B040_L09_P03_validation.json",
+      "validation_sha256": "1363297fd548096abdd77c53dc66005d3131fb4413da3d4a67a5c5752aff5490"
+    },
+    {
+      "batch_id": "B041",
+      "zip_file": "question_bank_full_B041_L09_P04.zip",
+      "zip_size_bytes": 338658,
+      "zip_sha256": "786bce825ef0c5cc0c6c37a5b7e4f904b589f1dbd89174ffd53a689c61354360",
+      "question_csv": "question_bank_full_B041_L09_P04.csv",
+      "question_csv_sha256": "904e5e378e44f2369d1e0101f4d161c8ef239168e1ad8ad4ff23718b36c16ebe",
+      "validation_file": "question_bank_full_B041_L09_P04_validation.json",
+      "validation_sha256": "1a89fba9a33941d8d9b299c1b15863edb1f838f2fb214431f83025a536d4c021"
+    }
+  ]
+}

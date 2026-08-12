@@ -1,0 +1,505 @@
+{
+  "validation_version": "question-bank-static-authoring-validation-v1.0",
+  "batch_id": "B031",
+  "status": "PASS_STATIC_AUTHORING",
+  "generated_at_local": "2026-08-11",
+  "stage23_import_status": "STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT",
+  "stage23_runtime_executed": false,
+  "repository": {
+    "repository": "ImanNasrEsfahani/grammar-mastery-platform",
+    "branch": "main",
+    "commit_sha": "a3da6081b578b8e55e30a636a7836a290a7e3faa",
+    "access_mode": "READ_ONLY",
+    "github_writes_performed": false,
+    "root_file_audit": {
+      "README.md": "READ",
+      "STATUS.md": "READ",
+      "ROADMAP.md": "NOT_PRESENT_AT_ROOT__PROJECT_GUIDE_USED",
+      "AGENTS.md": "NOT_PRESENT_AT_ROOT",
+      "missing_root_files_authoring_blocker": false
+    }
+  },
+  "continuation_integrity": {
+    "previous_checkpoint_file": "question_bank_checkpoint.json",
+    "previous_checkpoint_last_completed": "B030",
+    "previous_checkpoint_next": "B031",
+    "previous_registry_expected_sha256": "02759445481763c8601fd680dc34a33ecd415d9e90553bfbd31d2f154fa3856b",
+    "previous_registry_actual_sha256": "02759445481763c8601fd680dc34a33ecd415d9e90553bfbd31d2f154fa3856b",
+    "previous_registry_row_count": 1329,
+    "previous_batch_csv_expected_sha256": "948e01c1f94a9c55ce32db1c5bc381e4caf668bca5eb1f790127d8549d1aae5b",
+    "previous_batch_csv_actual_sha256": "948e01c1f94a9c55ce32db1c5bc381e4caf668bca5eb1f790127d8549d1aae5b",
+    "previous_batch_validation_expected_sha256": "82d5fa8983220cf0b96f163068e29b7a52706f5db4496ca0588edcc2d37c99dd",
+    "previous_batch_validation_actual_sha256": "82d5fa8983220cf0b96f163068e29b7a52706f5db4496ca0588edcc2d37c99dd",
+    "pass": true
+  },
+  "plan": {
+    "name": "Grammar Mastery Platform — Full Question Bank Batch Execution Plan v1.0",
+    "plan_sha256": "59e4fbbad89446bb3370c1db9d4dce3b7275f557bed1ea4b197b967cf91d71d6",
+    "global_batch_no": 31,
+    "lesson_no": 6,
+    "lesson_id": "f07ba2d4-e9cf-441c-ad53-85194d85e1ff",
+    "lesson_title_fr": "LES POSSESSIFS",
+    "category_code": "CAT05",
+    "subcategory_code": "SUB12",
+    "lesson_part": 4,
+    "lesson_parts_total": 4,
+    "question_ordinal_start": 151,
+    "question_ordinal_end": 169,
+    "batch_question_count": 19,
+    "difficulty_profile": "BASELINE",
+    "external_id_prefix": "GMP-FULL-B031",
+    "output_csv": "question_bank_full_B031_L06_P04.csv",
+    "expected_zip": "question_bank_full_B031_L06_P04.zip",
+    "plan_depends_on": "B030",
+    "sequential_previous_checkpoint": "B030",
+    "next_batch": "B032",
+    "lesson_cumulative_after_batch": 169,
+    "lesson_remaining_after_batch": 0,
+    "global_cumulative_after_batch": 1348,
+    "global_remaining_after_batch": 9288
+  },
+  "source_provenance": {
+    "authoritative_book": {
+      "sha256": "b6162aacc084cd78ec46f43972fdc68f9330576ea909f4a51767c3333c7e74ca",
+      "lesson_pages_printed": "36-37",
+      "lesson_pages_pdf": "38-39",
+      "authoring_focus_for_B031": "Lesson 6 only: final residual coverage of possessive adjective agreement; mon/ton/son before vowel or h muet; definite article with body parts when the possessor is evident; possessive pronouns; adjective-versus-pronoun contrast; on=nous versus generic on."
+    },
+    "project_guide": {
+      "sha256": "8a561160d698ffb811453d20b9c610fbb644c7593cca10b3bca6728c7969e6a7",
+      "version": "1.0",
+      "relevant_scope": "Stages 1-11 authoring and static QA"
+    },
+    "github_source_shas": {
+      "stage1_subtopics": "d1604a65b44f04654823bb9b2f0cc1a0218269d1",
+      "stage2_mapping": "090b0db74f705b13eebffe990b2467550033d3e6",
+      "stage2_tags": "67f9d08f9678fc01c6bc44c44790768454e91fab",
+      "stage4_targets": "24e38bff93970173c0cca177336485e96660a651",
+      "stage6_targets": "8f5edea191c6304b498b44fc4a3fcb9281a7abce",
+      "stage6_compatibility": "aaddf210bc5130b56d501338ef73b6054b2904e8",
+      "stage7_misconceptions": "f29839f77cede96ca7f6a9aa3ecace645e10e2ed",
+      "stage7_distractor_rules": "add62b4906c4f3a7ae98ca556df3f478e50b94e5",
+      "stage8_policy": "a7102a0dbfbf6e969abf0b5cbe1aafe085895601",
+      "stage9_targets": "813ad10d560ee4fb175f9aeffdd5f789fa131055",
+      "stage10_contract": "f0bab66d66be7665c765094235f354e30ce5543b",
+      "stage11_workflow": "3396f06477da1f09efe03cedd72cb90be6dc592a"
+    },
+    "stage1_content_version": "stage1-v1.0",
+    "taxonomy_version": "taxonomy-v0.9.0",
+    "stage2_primary_tag": "TAG011",
+    "stage2_secondary_tag_available": "TAG005",
+    "stage4_target_full": 169,
+    "question_type_catalogue_version": "question-type-catalogue-v0.9.0",
+    "compatibility_version": "question-type-compatibility-v0.9.0",
+    "misconception_catalogue_version": "misconception-catalogue-recovered-v1.0.0",
+    "distractor_rules_version": "distractor-rule-set-v0.9.0",
+    "difficulty_model_version": "initial-difficulty-model-v0.9.0",
+    "stage9_profile": "BASELINE",
+    "stage9_full_targets": {
+      "EASY": 34,
+      "MEDIUM": 67,
+      "HARD": 51,
+      "VERY_HARD": 17
+    },
+    "stage11_workflow_version": "question-qa-workflow-v0.9.0",
+    "schema_version": "question-import-schema-v0.9.0"
+  },
+  "schema_validation": {
+    "expected_column_count": 46,
+    "actual_column_count": 46,
+    "exact_header_order_pass": true,
+    "required_fields_present_pass": true,
+    "status_all_draft_pass": true,
+    "row_count_expected": 19,
+    "row_count_actual": 19,
+    "four_distinct_options_pass": true,
+    "exactly_one_correct_option_pass": true,
+    "correct_option_misconception_blank_pass": true,
+    "distractor_misconception_resolves_pass": true,
+    "stage7_current_main_ids_used_pass": true,
+    "secondary_subtopic_ids_resolve_pass": true,
+    "all_explanations_nonempty_pass": true,
+    "source_ref_nonempty_pass": true,
+    "source_ref_length_pass": true,
+    "media_none_fields_empty_pass": true,
+    "correct_position_distribution": {
+      "D": 6,
+      "C": 5,
+      "A": 4,
+      "B": 4
+    },
+    "correct_position_max_adjacent_streak": 1,
+    "lesson_cumulative_correct_position_distribution_after_batch": {
+      "A": 42,
+      "B": 42,
+      "C": 42,
+      "D": 43
+    }
+  },
+  "question_type_quota": {
+    "rule": "BR03 consumes the exact B030 checkpoint residual because the final Lesson 6 batch size equals the remaining type total.",
+    "lesson_full_targets": {
+      "CLOZE_SINGLE": 19,
+      "CLOZE_CONTEXT": 28,
+      "CORRECT_SENTENCE": 17,
+      "INCORRECT_SENTENCE": 14,
+      "ERROR_LOCATION": 10,
+      "CONJUGATION": 0,
+      "TENSE_CHOICE": 0,
+      "PRONOUN_CHOICE": 13,
+      "PREPOSITION_CHOICE": 0,
+      "REWRITE_EQUIV": 9,
+      "FR_TO_FA": 15,
+      "FA_TO_FR": 6,
+      "DIALOGUE_COMPLETE": 21,
+      "REGISTER_CHOICE": 0,
+      "CONTRAST_RULES": 17
+    },
+    "previous_remaining_targets": {
+      "CLOZE_SINGLE": 2,
+      "CLOZE_CONTEXT": 3,
+      "CORRECT_SENTENCE": 2,
+      "INCORRECT_SENTENCE": 2,
+      "ERROR_LOCATION": 1,
+      "CONJUGATION": 0,
+      "TENSE_CHOICE": 0,
+      "PRONOUN_CHOICE": 1,
+      "PREPOSITION_CHOICE": 0,
+      "REWRITE_EQUIV": 1,
+      "FR_TO_FA": 2,
+      "FA_TO_FR": 1,
+      "DIALOGUE_COMPLETE": 2,
+      "REGISTER_CHOICE": 0,
+      "CONTRAST_RULES": 2
+    },
+    "expected": {
+      "CLOZE_SINGLE": 2,
+      "CLOZE_CONTEXT": 3,
+      "CORRECT_SENTENCE": 2,
+      "INCORRECT_SENTENCE": 2,
+      "ERROR_LOCATION": 1,
+      "CONJUGATION": 0,
+      "TENSE_CHOICE": 0,
+      "PRONOUN_CHOICE": 1,
+      "PREPOSITION_CHOICE": 0,
+      "REWRITE_EQUIV": 1,
+      "FR_TO_FA": 2,
+      "FA_TO_FR": 1,
+      "DIALOGUE_COMPLETE": 2,
+      "REGISTER_CHOICE": 0,
+      "CONTRAST_RULES": 2
+    },
+    "actual": {
+      "CLOZE_SINGLE": 2,
+      "CLOZE_CONTEXT": 3,
+      "CORRECT_SENTENCE": 2,
+      "INCORRECT_SENTENCE": 2,
+      "ERROR_LOCATION": 1,
+      "PRONOUN_CHOICE": 1,
+      "REWRITE_EQUIV": 1,
+      "FR_TO_FA": 2,
+      "FA_TO_FR": 1,
+      "DIALOGUE_COMPLETE": 2,
+      "CONTRAST_RULES": 2
+    },
+    "pass": true,
+    "remaining_after_batch": {
+      "CLOZE_SINGLE": 0,
+      "CLOZE_CONTEXT": 0,
+      "CORRECT_SENTENCE": 0,
+      "INCORRECT_SENTENCE": 0,
+      "ERROR_LOCATION": 0,
+      "CONJUGATION": 0,
+      "TENSE_CHOICE": 0,
+      "PRONOUN_CHOICE": 0,
+      "PREPOSITION_CHOICE": 0,
+      "REWRITE_EQUIV": 0,
+      "FR_TO_FA": 0,
+      "FA_TO_FR": 0,
+      "DIALOGUE_COMPLETE": 0,
+      "REGISTER_CHOICE": 0,
+      "CONTRAST_RULES": 0
+    }
+  },
+  "difficulty_quota": {
+    "rule": "BR04 exact Batch Plan margins + BR05 product/floor/residual joint allocation.",
+    "lesson_full_targets": {
+      "EASY": 34,
+      "MEDIUM": 67,
+      "HARD": 51,
+      "VERY_HARD": 17
+    },
+    "previous_remaining_targets": {
+      "EASY": 4,
+      "MEDIUM": 7,
+      "HARD": 6,
+      "VERY_HARD": 2
+    },
+    "expected": {
+      "EASY": 4,
+      "MEDIUM": 7,
+      "HARD": 6,
+      "VERY_HARD": 2
+    },
+    "actual": {
+      "MEDIUM": 7,
+      "HARD": 6,
+      "EASY": 4,
+      "VERY_HARD": 2
+    },
+    "pass": true,
+    "type_by_difficulty_expected": {
+      "CLOZE_SINGLE": {
+        "EASY": 0,
+        "MEDIUM": 1,
+        "HARD": 1,
+        "VERY_HARD": 0
+      },
+      "CLOZE_CONTEXT": {
+        "EASY": 1,
+        "MEDIUM": 1,
+        "HARD": 1,
+        "VERY_HARD": 0
+      },
+      "CORRECT_SENTENCE": {
+        "EASY": 0,
+        "MEDIUM": 1,
+        "HARD": 1,
+        "VERY_HARD": 0
+      },
+      "INCORRECT_SENTENCE": {
+        "EASY": 0,
+        "MEDIUM": 1,
+        "HARD": 1,
+        "VERY_HARD": 0
+      },
+      "ERROR_LOCATION": {
+        "EASY": 1,
+        "MEDIUM": 0,
+        "HARD": 0,
+        "VERY_HARD": 0
+      },
+      "PRONOUN_CHOICE": {
+        "EASY": 1,
+        "MEDIUM": 0,
+        "HARD": 0,
+        "VERY_HARD": 0
+      },
+      "REWRITE_EQUIV": {
+        "EASY": 0,
+        "MEDIUM": 0,
+        "HARD": 0,
+        "VERY_HARD": 1
+      },
+      "FR_TO_FA": {
+        "EASY": 0,
+        "MEDIUM": 1,
+        "HARD": 1,
+        "VERY_HARD": 0
+      },
+      "FA_TO_FR": {
+        "EASY": 0,
+        "MEDIUM": 0,
+        "HARD": 0,
+        "VERY_HARD": 1
+      },
+      "DIALOGUE_COMPLETE": {
+        "EASY": 0,
+        "MEDIUM": 1,
+        "HARD": 1,
+        "VERY_HARD": 0
+      },
+      "CONTRAST_RULES": {
+        "EASY": 1,
+        "MEDIUM": 1,
+        "HARD": 0,
+        "VERY_HARD": 0
+      }
+    },
+    "type_by_difficulty_actual": {
+      "CLOZE_SINGLE": {
+        "EASY": 0,
+        "MEDIUM": 1,
+        "HARD": 1,
+        "VERY_HARD": 0
+      },
+      "CLOZE_CONTEXT": {
+        "EASY": 1,
+        "MEDIUM": 1,
+        "HARD": 1,
+        "VERY_HARD": 0
+      },
+      "CORRECT_SENTENCE": {
+        "EASY": 0,
+        "MEDIUM": 1,
+        "HARD": 1,
+        "VERY_HARD": 0
+      },
+      "INCORRECT_SENTENCE": {
+        "EASY": 0,
+        "MEDIUM": 1,
+        "HARD": 1,
+        "VERY_HARD": 0
+      },
+      "ERROR_LOCATION": {
+        "EASY": 1,
+        "MEDIUM": 0,
+        "HARD": 0,
+        "VERY_HARD": 0
+      },
+      "PRONOUN_CHOICE": {
+        "EASY": 1,
+        "MEDIUM": 0,
+        "HARD": 0,
+        "VERY_HARD": 0
+      },
+      "REWRITE_EQUIV": {
+        "EASY": 0,
+        "MEDIUM": 0,
+        "HARD": 0,
+        "VERY_HARD": 1
+      },
+      "FR_TO_FA": {
+        "EASY": 0,
+        "MEDIUM": 1,
+        "HARD": 1,
+        "VERY_HARD": 0
+      },
+      "FA_TO_FR": {
+        "EASY": 0,
+        "MEDIUM": 0,
+        "HARD": 0,
+        "VERY_HARD": 1
+      },
+      "DIALOGUE_COMPLETE": {
+        "EASY": 0,
+        "MEDIUM": 1,
+        "HARD": 1,
+        "VERY_HARD": 0
+      },
+      "CONTRAST_RULES": {
+        "EASY": 1,
+        "MEDIUM": 1,
+        "HARD": 0,
+        "VERY_HARD": 0
+      }
+    },
+    "type_by_difficulty_pass": true,
+    "remaining_after_batch": {
+      "EASY": 0,
+      "MEDIUM": 0,
+      "HARD": 0,
+      "VERY_HARD": 0
+    },
+    "stage8_scores_in_band_pass": true
+  },
+  "coverage_and_compatibility": {
+    "rule": "BR06 PREFERRED > ALLOWED > CONDITIONAL; within tier least cumulative subtopic use, then subtopic code.",
+    "cumulative_subtopic_counts_before_batch": {
+      "L06-S01": 26,
+      "L06-S02": 26,
+      "L06-S03": 26,
+      "L06-S04": 72
+    },
+    "expected_current_batch_subtopic_counts": {
+      "L06-S01": 4,
+      "L06-S02": 4,
+      "L06-S03": 3,
+      "L06-S04": 8
+    },
+    "actual_current_batch_subtopic_counts": {
+      "L06-S01": 4,
+      "L06-S02": 4,
+      "L06-S04": 8,
+      "L06-S03": 3
+    },
+    "cumulative_subtopic_counts_after_batch": {
+      "L06-S01": 30,
+      "L06-S02": 30,
+      "L06-S03": 29,
+      "L06-S04": 80
+    },
+    "compatibility_tier_counts": {
+      "PREFERRED": 15,
+      "ALLOWED": 4
+    },
+    "not_suitable_count": 0,
+    "conditional_count": 0,
+    "conditional_guardrails": [],
+    "pass": true
+  },
+  "duplicate_validation": {
+    "normalization": "Unicode NFC + casefold + NBSP-to-space + whitespace collapse",
+    "semantic_method": "TF-IDF char_wb 3-5 grams on normalized stem + correct answer; cosine threshold 0.8",
+    "semantic_threshold": 0.8,
+    "prior_registry_rows_compared": 1329,
+    "normalized_stem_duplicate_cross": 0,
+    "structural_signature_duplicate_cross": 0,
+    "semantic_signature_duplicate_cross": 0,
+    "registry_fingerprint_duplicate_cross": 0,
+    "external_id_duplicate_cross": 0,
+    "within_batch_normalized_stem_duplicates": 0,
+    "within_batch_structural_signature_duplicates": 0,
+    "within_batch_semantic_signature_duplicates": 0,
+    "within_batch_registry_fingerprint_duplicates": 0,
+    "within_batch_stage10_fingerprint_duplicates": 0,
+    "semantic_near_duplicates_cross": 0,
+    "semantic_near_duplicates_within": 0,
+    "max_cross_batch_similarity": 0.6232524680764905,
+    "max_cross_batch_pair": {
+      "new": "GMP-FULL-B031-Q018",
+      "previous": "GMP-FULL-B028-Q046"
+    },
+    "max_within_batch_similarity": 0.2989239160545971,
+    "max_within_batch_pair": {
+      "a": "GMP-FULL-B031-Q009",
+      "b": "GMP-FULL-B031-Q006"
+    },
+    "pass": true
+  },
+  "content_repair": {
+    "repair_iterations": 2,
+    "repaired_question_ids": [
+      "GMP-FULL-B031-Q006",
+      "GMP-FULL-B031-Q007",
+      "GMP-FULL-B031-Q008",
+      "GMP-FULL-B031-Q012",
+      "GMP-FULL-B031-Q015",
+      "GMP-FULL-B031-Q016",
+      "GMP-FULL-B031-Q018",
+      "GMP-FULL-B031-Q019"
+    ],
+    "repair_details": {
+      "duplicate_repair": [
+        "GMP-FULL-B031-Q008"
+      ],
+      "content_ambiguity_or_naturalness_repair": [
+        "GMP-FULL-B031-Q006",
+        "GMP-FULL-B031-Q007",
+        "GMP-FULL-B031-Q012",
+        "GMP-FULL-B031-Q015",
+        "GMP-FULL-B031-Q016",
+        "GMP-FULL-B031-Q018",
+        "GMP-FULL-B031-Q019"
+      ]
+    },
+    "unresolved_failures": 0,
+    "repair_scope_policy": "Only the semantic near-duplicate and the items failing final plausibility/naturalness review were repaired; quota, difficulty, compatibility, and unaffected items were preserved."
+  },
+  "output_integrity": {
+    "csv_file": "question_bank_full_B031_L06_P04.csv",
+    "csv_sha256": "36303733a1cbc423020cafc43fbb4d5198c51c1dfa3b1bf5ff48fadd8eb96ce1",
+    "registry_file": "question_bank_global_registry.csv",
+    "registry_sha256": "e0c4a8787eaff8c97fc494c1712d1881b668a6942bc4262ecc893866ddb00378",
+    "registry_rows": 1348
+  },
+  "import_pipeline": {
+    "status": "STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT",
+    "authoring_blocked": false,
+    "static_validation_blocked": false,
+    "preview_executed": false,
+    "commit_executed": false,
+    "stage23_runtime_executed": false
+  },
+  "next_batch_started": false
+}
