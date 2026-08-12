@@ -1,0 +1,7 @@
+c2b75a6f6fea2e122aa55349bdff0e57393269bdb1908a1ea5a6999b663f8888  ./PACKAGE_README.md
+839d8762be7ce14532b16b8eebd1d9f11c77c062dc90827ec58c673000daf677  ./data/question_authoring/stage7/README_ORIGINAL_STAGE7_SOURCE.md
+b9b4d20e87bede531ccceb9860bb439e1c81b7e1c8bbcd4f49191412ab6bd446  ./frontend/src/app/[locale]/layout.tsx
+7ecc612cafed9952204994b1939cd4f8650ad3ff1189ed09cf0acdddb8d395c9  ./frontend/src/app/api/session/logout/route.ts
+1f6d64ab424609981252c728509e45b2e73f06c880fdf3d87c307161a2b3cef4  ./frontend/src/components/navigation/AppHeader.tsx
+887569f6620d07fd5d8b02b20e8a3ff232951f60115acfbc0fa6c118f44fcaaa  ./frontend/src/components/navigation/LogoutButton.tsx
+d40f85e636370787c85e9d7f49eee1d8835dfcb1ccfda6bfa5d192f85cb4a4a6  ./frontend/src/proxy.ts

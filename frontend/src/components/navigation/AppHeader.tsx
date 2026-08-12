@@ -1,8 +1,9 @@
 import Link from "next/link";
-import type { Locale } from "@/lib/i18n";
-import { t } from "@/lib/i18n";
+import {LogoutButton} from "@/components/navigation/LogoutButton";
+import type {Locale} from "@/lib/i18n";
+import {t} from "@/lib/i18n";
 
-export function AppHeader({locale}: {locale: Locale}) {
+export function AppHeader({locale, authenticated}: {locale: Locale; authenticated: boolean}) {
   const labels = t(locale);
   const otherLocale = locale === "fa" ? "en" : "fa";
 
@@ -24,6 +25,13 @@ export function AppHeader({locale}: {locale: Locale}) {
         <Link className="locale-switch" href={`/${otherLocale}/dashboard`} hrefLang={otherLocale}>
           {otherLocale === "fa" ? "فارسی" : "English"}
         </Link>
+        {authenticated ? (
+          <LogoutButton locale={locale} label={labels.logout} />
+        ) : (
+          <Link className="button button-quiet" href={`/${locale}/login`}>
+            {labels.login}
+          </Link>
+        )}
       </div>
     </header>
   );
