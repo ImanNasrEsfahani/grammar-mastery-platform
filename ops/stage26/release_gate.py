@@ -41,7 +41,7 @@ def evaluate_evidence(evidence: dict[str, Any]) -> list[str]:
             errors.append(f"ci.{key} must be PASS")
 
     migrations = evidence.get("migrations", {})
-    if migrations.get("plan_version") != "stage26-postgres-sequence-v1.0.0":
+    if migrations.get("plan_version") != "stage26-postgres-sequence-v1.1.0":
         errors.append("migration plan version mismatch")
     if migrations.get("used_superseded_file") is not False:
         errors.append("superseded migration file must never be used")

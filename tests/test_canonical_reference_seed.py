@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import importlib.util
 from pathlib import Path
+import sys
 import unittest
 
 
@@ -10,6 +11,7 @@ MODULE_PATH = ROOT / "ops/stage12/seed_canonical_reference.py"
 SPEC = importlib.util.spec_from_file_location("canonical_reference_seed", MODULE_PATH)
 seed = importlib.util.module_from_spec(SPEC)
 assert SPEC.loader is not None
+sys.modules[SPEC.name] = seed
 SPEC.loader.exec_module(seed)
 
 

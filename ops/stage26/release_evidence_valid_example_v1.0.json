@@ -10,7 +10,7 @@
     "stage26": "PASS"
   },
   "migrations": {
-    "plan_version": "stage26-postgres-sequence-v1.0.0",
+    "plan_version": "stage26-postgres-sequence-v1.1.0",
     "staging_dry_run": "PASS",
     "applied": "PASS",
     "used_superseded_file": false

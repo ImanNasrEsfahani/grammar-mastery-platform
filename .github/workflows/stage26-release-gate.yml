@@ -52,7 +52,7 @@ jobs:
 
   postgres-migration-rehearsal:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     services:
       postgres:
         image: postgres:15
@@ -83,6 +83,9 @@ jobs:
       - run: sudo apt-get update && sudo apt-get install -y postgresql-client
       - run: python tools/validate_stage26.py
       - run: python ops/stage26/migration_runner.py --target staging --execute --confirm-release-id "ci-${GITHUB_SHA}"
+      - run: |
+          test "$(psql -X -A -t -v ON_ERROR_STOP=1 -c "SELECT count(*) FROM questions WHERE status='PUBLISHED'")" = "1806"
+          test "$(psql -X -A -t -v ON_ERROR_STOP=1 -c "SELECT count(*) FROM v_serving_questions")" = "1806"
       - run: GMP_STAGE24_POSTGRES_DSN="postgresql://stage26:stage26_ci_only@127.0.0.1:5432/grammar_mastery_stage26" python -m unittest discover -s tests -p 'test_stage24_postgres.py' -v
 
 # Provider deployment is deliberately not hard-coded here. After hosting/DNS/TLS,

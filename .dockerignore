@@ -32,12 +32,11 @@ backups/
 *.pdf
 *.zip
 
-# The backend image copies only explicit runtime directories, so these do not
-# need to be transferred in the Docker build context.
+# Large non-runtime artifacts do not need to be transferred in the Docker build context.
 artifacts/
 
-# Keep the general data tree out of the Docker build context, but allow the
-# eight pinned canonical CSV inputs required by the one-time Stage 12 seed.
+# Keep unrelated data out of the Docker build context, but allow the canonical
+# reference and Question Bank inputs required by the default migration pipeline.
 data/*
 !data/knowledge/
 !data/taxonomy/
@@ -56,6 +55,12 @@ data/taxonomy/*
 
 data/planning/*
 !data/planning/stage3_lesson_weights_v1.0.csv
+
+# Canonical Question Bank migration inputs.
+!data/question_authoring/
+!data/question_authoring/**
+!data/question_bank/
+!data/question_bank/**
 
 docs/stages/
 tests/

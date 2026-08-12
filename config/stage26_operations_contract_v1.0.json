@@ -33,7 +33,7 @@
     "production_data": "real user data only after privacy/security gates pass"
   },
   "migration_policy": {
-    "plan_version": "stage26-postgres-sequence-v1.0.0",
+    "plan_version": "stage26-postgres-sequence-v1.1.0",
     "staging_before_production": true,
     "manual_production_sql_forbidden": true,
     "on_error_stop_required": true,
@@ -48,8 +48,30 @@
       {"order": 4, "path": "database/postgres/004_stage17_spaced_repetition_v0.9.sql", "git_blob_sha": "5dd96dad390cd6cf9c5dcf5497035f0f5bd5fe3b"},
       {"order": 5, "path": "database/postgres/005_stage20_audit_log_migration_v1.0.sql", "git_blob_sha": "93f7a5b043894e2e270081b2b77ea11bbdcfae41"},
       {"order": 6, "path": "database/postgres/006_stage21_api_runtime_v1.0.sql", "git_blob_sha": "068edb0f5fea7165be88ae56b74e9069022c7aab"},
-      {"order": 7, "path": "database/postgres/007_stage23_import_pipeline_v1.1.sql", "git_blob_sha": "9b695350bb1192d39ddf8363635dacba86854cc1"}
+      {"order": 7, "path": "database/postgres/007_stage23_import_pipeline_v1.1.sql", "git_blob_sha": "9b695350bb1192d39ddf8363635dacba86854cc1"},
+      {"order": 8, "path": "database/postgres/008_stage27_calibration_v1.0.sql", "git_blob_sha": "e5dff19280615f9e8547d01dfad39c486e915aff"}
     ]
+  },
+  "canonical_data_bootstrap_policy": {
+    "plan_version": "stage26-canonical-data-bootstrap-v1.0.0",
+    "runs_by_default_after_schema": true,
+    "schema_only_opt_out": "--schema-only",
+    "sequence": [
+      {
+        "order": 1,
+        "path": "ops/stage12/seed_canonical_reference.py",
+        "postcondition": "52 lessons, 304 subtopics, 35 active tags"
+      },
+      {
+        "order": 2,
+        "path": "ops/question_bank/bootstrap.py",
+        "mode": "--publish-canonical-seed",
+        "postcondition": "all 1806 canonical Question Bank rows are PUBLISHED and serving"
+      }
+    ],
+    "canonical_publication_actor_type": "SYSTEM",
+    "human_review_claimed": false,
+    "source_csv_status_preserved": "DRAFT"
   },
   "release_gates": {
     "ci_green": true,
@@ -102,8 +124,9 @@
   },
   "upstream_runtime_constraints": {
     "deployable_django_http_surface": "NOT_EVIDENCED_IN_CURRENT_BASELINE",
-    "published_question_inventory": 0,
-    "published_inventory_effect": "does not block infrastructure deployment but blocks real learner test-generation E2E",
+    "published_question_inventory_after_default_migration": 1806,
+    "published_inventory_scope": "B001-B041 / L01-L09 canonical repository Question Bank",
+    "published_inventory_effect": "default migration enables learner test-generation for the seeded L01-L09 scope",
     "stage25_retention_approval": "PENDING_OWNER_APPROVAL"
   },
   "stage27_handoff": [

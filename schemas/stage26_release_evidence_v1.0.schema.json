@@ -24,7 +24,7 @@
       "type": "object", "additionalProperties": false,
       "required": ["plan_version", "staging_dry_run", "applied", "used_superseded_file"],
       "properties": {
-        "plan_version": {"const": "stage26-postgres-sequence-v1.0.0"},
+        "plan_version": {"const": "stage26-postgres-sequence-v1.1.0"},
         "staging_dry_run": {"enum": ["PASS", "FAIL", "NOT_APPLICABLE"]},
         "applied": {"enum": ["PASS", "FAIL", "NOT_RUN"]},
         "used_superseded_file": {"type": "boolean"}

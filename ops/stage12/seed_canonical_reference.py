@@ -60,6 +60,7 @@ class SeedError(RuntimeError):
 
 
 def git_blob_sha(data: bytes) -> str:
+    data = data.replace(b"\r\n", b"\n")
     header = f"blob {len(data)}\0".encode("ascii")
     return hashlib.sha1(header + data).hexdigest()
 
@@ -371,12 +372,12 @@ def load_seed_data(root: Path) -> SeedData:
 
 
 def _connection_kwargs() -> dict[str, Any]:
-    name = os.getenv("DJANGO_DB_NAME", os.getenv("POSTGRES_DB", "grammar_mastery"))
-    user = os.getenv("DJANGO_DB_USER", os.getenv("POSTGRES_USER", "grammar_mastery"))
-    password = os.getenv("DJANGO_DB_PASSWORD", os.getenv("POSTGRES_PASSWORD", ""))
-    host = os.getenv("DJANGO_DB_HOST", "postgres")
-    port = int(os.getenv("DJANGO_DB_PORT", "5432"))
-    sslmode = os.getenv("DJANGO_DB_SSLMODE", "prefer")
+    name = os.getenv("DJANGO_DB_NAME", os.getenv("PGDATABASE", os.getenv("POSTGRES_DB", "grammar_mastery")))
+    user = os.getenv("DJANGO_DB_USER", os.getenv("PGUSER", os.getenv("POSTGRES_USER", "grammar_mastery")))
+    password = os.getenv("DJANGO_DB_PASSWORD", os.getenv("PGPASSWORD", os.getenv("POSTGRES_PASSWORD", "")))
+    host = os.getenv("DJANGO_DB_HOST", os.getenv("PGHOST", "postgres"))
+    port = int(os.getenv("DJANGO_DB_PORT", os.getenv("PGPORT", "5432")))
+    sslmode = os.getenv("DJANGO_DB_SSLMODE", os.getenv("PGSSLMODE", "prefer"))
     if not password:
         raise SeedError("database password is not available in runtime environment")
     return {
@@ -528,10 +529,36 @@ def execute_seed(
                 )
                 existing_marker = cursor.fetchone()
                 if existing_marker is not None:
-                    raise SeedError(
-                        f"{SYSTEM_VERSION_COMPONENT} already exists with version "
-                        f"{existing_marker['version']}; refusing to reseed"
-                    )
+                    expected = {
+                        "grammar_categories": EXPECTED_COUNTS["categories"] + EXPECTED_COUNTS["subcategories"],
+                        "grammar_lessons": EXPECTED_COUNTS["lessons"],
+                        "grammar_subtopics": EXPECTED_COUNTS["subtopics"],
+                        "tags": EXPECTED_COUNTS["tags"],
+                        "lesson_tags": len(data.lesson_tags),
+                    }
+                    actual = _table_counts(cursor)
+                    if existing_marker["version"] != SEED_VERSION or actual != expected:
+                        raise SeedError(
+                            f"{SYSTEM_VERSION_COMPONENT} marker/data mismatch; "
+                            + json.dumps(
+                                {
+                                    "expected_version": SEED_VERSION,
+                                    "actual_version": existing_marker["version"],
+                                    "expected_counts": expected,
+                                    "actual_counts": actual,
+                                },
+                                sort_keys=True,
+                            )
+                        )
+                    return {
+                        "status": "PASS",
+                        "target": target,
+                        "seed_version": SEED_VERSION,
+                        "already_applied": True,
+                        "confirm_seed_id": confirm_seed_id or None,
+                        "backup_id": backup_id or None,
+                        "counts": data.counts,
+                    }
 
                 before = _ensure_empty_reference_tables(cursor)
 
@@ -617,6 +644,7 @@ def execute_seed(
         "status": "PASS",
         "target": target,
         "seed_version": SEED_VERSION,
+        "already_applied": False,
         "confirm_seed_id": confirm_seed_id or None,
         "backup_id": backup_id or None,
         "counts": data.counts,

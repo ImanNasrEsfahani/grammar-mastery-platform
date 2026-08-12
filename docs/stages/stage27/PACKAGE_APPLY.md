@@ -2,7 +2,7 @@
 
 Extract this archive at the repository root **after** current `main` and review the diff. This package contains Stage 27 files only; it intentionally does not rewrite README/STATUS or earlier stage artifacts.
 
-Required migration order remains the Stage26 canonical sequence ending in `database/postgres/007_stage23_import_pipeline_v1.1.sql`, then add `database/postgres/008_stage27_calibration_v1.0.sql` only after a real PostgreSQL target exists and the Stage26 migration/recovery gates are satisfied.
+The current default migration runner applies the Stage26 sequence through `database/postgres/007_stage23_import_pipeline_v1.1.sql`, then the additive `database/postgres/008_stage27_calibration_v1.0.sql`, after the migration/recovery gates are satisfied.
 
 Validation before any commit:
 ```bash

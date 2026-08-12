@@ -29,7 +29,7 @@ def complete_evidence(target="production"):
         "git_sha": "f5f281ed52c30667d02e7a8d40d0cbba6d537791",
         "target_environment": target,
         "ci": {"status": "PASS", "stage24": "PASS", "stage25": "PASS", "stage26": "PASS"},
-        "migrations": {"plan_version": "stage26-postgres-sequence-v1.0.0", "staging_dry_run": "PASS", "applied": "PASS", "used_superseded_file": False},
+        "migrations": {"plan_version": "stage26-postgres-sequence-v1.1.0", "staging_dry_run": "PASS", "applied": "PASS", "used_superseded_file": False},
         "backup": {"recovery_point_created": True, "recovery_point_id": "rp-001", "restore_drill_status": "PASS", "measured_rto_minutes": 42},
         "providers": {
             "compute": "example-compute",
@@ -114,19 +114,55 @@ class Stage26MigrationTests(unittest.TestCase):
             expected = hashlib.sha1(f"blob {len(data)}\0".encode() + data).hexdigest()
             self.assertEqual(expected, migration_runner.git_blob_sha(p))
 
+    def test_git_blob_sha_is_stable_across_windows_checkout_line_endings(self):
+        with tempfile.TemporaryDirectory() as td:
+            lf = Path(td) / "lf.sql"
+            crlf = Path(td) / "crlf.sql"
+            lf.write_bytes(b"SELECT 1;\nSELECT 2;\n")
+            crlf.write_bytes(b"SELECT 1;\r\nSELECT 2;\r\n")
+            self.assertEqual(
+                migration_runner.git_blob_sha(lf),
+                migration_runner.git_blob_sha(crlf),
+            )
+
     def test_contract_rejects_superseded_from_canonical_plan(self):
         contract = json.loads((ROOT / "config/stage26_operations_contract_v1.0.json").read_text())
         canonical = {x["path"] for x in contract["migration_policy"]["canonical_sequence"]}
         forbidden = set(contract["migration_policy"]["superseded_files_forbidden"])
         self.assertFalse(canonical & forbidden)
         self.assertIn("database/postgres/007_stage23_import_pipeline_v1.1.sql", canonical)
+        self.assertIn("database/postgres/008_stage27_calibration_v1.0.sql", canonical)
+
+    def test_default_migration_includes_published_question_bank_seed(self):
+        commands = migration_runner.canonical_data_commands(
+            ROOT,
+            target="staging",
+            release_id="release-test",
+            backup_id="",
+        )
+        self.assertEqual(
+            ["canonical_reference_seed", "published_question_bank_seed"],
+            [name for name, _ in commands],
+        )
+        self.assertIn("--publish-canonical-seed", commands[1][1])
+
+    def test_production_data_seed_receives_release_and_backup_evidence(self):
+        commands = migration_runner.canonical_data_commands(
+            ROOT,
+            target="production",
+            release_id="release-prod-1",
+            backup_id="backup-prod-1",
+        )
+        reference_command = commands[0][1]
+        self.assertIn("release-prod-1", reference_command)
+        self.assertIn("backup-prod-1", reference_command)
 
 
 class Stage26PackageTests(unittest.TestCase):
     def test_overlay_validator_passes(self):
         result = validator.validate(ROOT, overlay_only=True)
         self.assertEqual("PASS", result["status"], result)
-        self.assertEqual(7, result["migration_count"])
+        self.assertEqual(8, result["migration_count"])
 
 
 if __name__ == "__main__":

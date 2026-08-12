@@ -28,7 +28,7 @@ REQUIRED_STAGE26_FILES = [
 
 
 def git_blob_sha(path: Path) -> str:
-    data = path.read_bytes()
+    data = path.read_bytes().replace(b"\r\n", b"\n")
     return hashlib.sha1(f"blob {len(data)}\0".encode() + data).hexdigest()
 
 
@@ -60,6 +60,24 @@ def validate(root: Path, overlay_only: bool = False) -> dict:
     for forbidden in policy.get("superseded_files_forbidden", []):
         if forbidden in paths:
             errors.append(f"superseded migration included: {forbidden}")
+
+    data_policy = contract.get("canonical_data_bootstrap_policy", {})
+    data_sequence = data_policy.get("sequence", [])
+    expected_data_paths = [
+        "ops/stage12/seed_canonical_reference.py",
+        "ops/question_bank/bootstrap.py",
+    ]
+    if [r.get("order") for r in data_sequence] != [1, 2]:
+        errors.append("canonical data bootstrap order mismatch")
+    if [r.get("path") for r in data_sequence] != expected_data_paths:
+        errors.append("canonical data bootstrap paths mismatch")
+    if data_policy.get("runs_by_default_after_schema") is not True:
+        errors.append("canonical data bootstrap must run by default")
+    if data_policy.get("human_review_claimed") is not False:
+        errors.append("canonical SYSTEM publication must not claim human review")
+    for relative in expected_data_paths:
+        if not (root / relative).is_file():
+            errors.append(f"canonical data bootstrap missing: {relative}")
 
     if overlay_only:
         warnings.append("upstream migration file identity checks skipped in overlay-only mode")

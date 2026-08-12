@@ -22,7 +22,7 @@
   },
   "overlay_validator": {
     "status": "PASS",
-    "migration_count": 7,
+    "migration_count": 8,
     "note": "Full-repository migration file identity checks run after applying the overlay; overlay-only validation intentionally skips unavailable upstream files."
   },
   "valid_invalid_evidence": {
