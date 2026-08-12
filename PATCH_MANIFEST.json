@@ -1,0 +1,23 @@
+{
+  "package": "grammar_mastery_question_bank_bootstrap_v1.0",
+  "base_repository": "ImanNasrEsfahani/grammar-mastery-platform",
+  "base_branch": "main",
+  "base_commit": "d4f0d685ab7cea3ceb4e0aa5137ccf2bce57b1f3",
+  "github_writes_performed": false,
+  "stage23": "STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT",
+  "files": [
+    "ops/question_bank/__init__.py",
+    "ops/question_bank/bootstrap.py",
+    "ops/question_bank/README.md",
+    "docker/backend/Dockerfile"
+  ],
+  "design": {
+    "database_reset_on_deploy": false,
+    "uses_tmp_files": false,
+    "uses_docker_cp": false,
+    "uses_shell_psql_copy": false,
+    "transactional": true,
+    "idempotent": true,
+    "stage11_workflow_enforced": true
+  }
+}

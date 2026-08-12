@@ -1,0 +1,41 @@
+# Question Bank Bootstrap v1.0
+
+This package adds a repository-native, idempotent Question Bank bootstrap/publish command. It intentionally does **not** reset PostgreSQL and does **not** use Stage23 Import/Preview/Commit while `STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT` remains active.
+
+## What it reads
+
+- `data/question_authoring/stage6/stage6_question_type_catalogue_reference_v1.0.csv`
+- `data/question_authoring/stage6/stage6_lesson_type_compatibility_recovered_v1.0.csv`
+- `data/question_authoring/stage6/stage6_subtopic_type_compatibility_recovered_v1.0.csv`
+- `data/question_authoring/stage7/stage7_misconception_catalogue_v0.9.csv`
+- the single `data/question_bank/full/v1.0/master/question_bank_full_*.csv`
+- the matching consolidation validation JSON under `data/question_bank/full/v1.0/validation/`
+
+No `/tmp`, `docker cp`, or shell `COPY` is used. All CSVs are read by Python directly from the versioned repository data copied into the backend image.
+
+## Prerequisite
+
+The Stage12 relational schema and canonical Stage1/2/3 reference seed must already exist. This is deliberate: production database migrations remain under the official Stage26 controlled migration workflow, and persistent production data must never be erased on container restart.
+
+## Import / repair / machine-validation only
+
+```bash
+docker compose --env-file .env.docker exec -T backend \
+  python ops/question_bank/bootstrap.py
+```
+
+This reconciles Stage6 and historical Stage7 IDs, imports or repairs DRAFT Question Bank rows, checks the live database gate, and records machine-validation PASS. It does not claim human review and does not publish.
+
+## Publish after real independent human review
+
+```bash
+docker compose --env-file .env.docker exec -T backend \
+  python ops/question_bank/bootstrap.py \
+  --publish-reviewed \
+  --reviewer-external-id iman-reviewer-v1.0 \
+  --confirm-human-review
+```
+
+`--confirm-human-review` is an explicit operator attestation. The script then performs the schema-enforced workflow in order: `DRAFT -> READY_FOR_REVIEW -> APPROVED -> PUBLISHED`, creates/reuses an explicit publish batch, writes status events and an audit record, and reports serving count.
+
+The command is transactionally atomic. On any error the current run rolls back.
