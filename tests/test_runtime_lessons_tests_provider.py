@@ -177,6 +177,20 @@ class RuntimeLessonsTestsProviderTests(unittest.TestCase):
                 self.assertIs(result, expected)
                 handler.assert_called_once_with(request, **call_kwargs)
 
+    def test_review_collection_operation_is_bound(self):
+        request = SimpleNamespace(method="GET")
+        view = ContractEndpointView()
+        view.operations = {"GET": "listReviews"}
+        expected = SimpleNamespace(status_code=200)
+        with patch.object(
+            runtime_learning,
+            "list_reviews_request",
+            return_value=expected,
+        ) as handler:
+            result = view._dispatch_contract(request)
+        self.assertIs(result, expected)
+        handler.assert_called_once_with(request)
+
     def test_attempt_question_projection_never_leaks_answer_key(self):
         snapshot = {
             "question_revision_id": LESSON_ID,
@@ -225,6 +239,8 @@ class RuntimeLessonsTestsProviderTests(unittest.TestCase):
             "tests",
             "test_questions",
             "api_idempotency_records",
+            "error_review_items",
+            "review_queue",
         ):
             self.assertIn(table, source)
         self.assertNotIn("auth_user", source)

@@ -29,7 +29,11 @@ export function ReviewListClient({locale}: {locale: Locale}) {
         <li key={item.id}>
           <Link className="surface list-card" href={`/${locale}/review/${item.id}`}>
             <span className="lesson-number" aria-hidden="true">{item.kind === "MISTAKE" ? "!" : "↻"}</span>
-            <span><strong>{item.kind === "MISTAKE" ? (isFa ? "مرور خطا" : "Mistake review") : (isFa ? "مرور فاصله‌دار" : "Spaced review")}</strong><small>{item.due_at ? new Date(item.due_at).toLocaleString(isFa ? "fa-IR" : "en-CA") : item.status}</small></span>
+            <span className="review-card-copy">
+              <strong>{item.title}</strong>
+              <small>{item.kind === "MISTAKE" ? (isFa ? "مرور خطا" : "Mistake review") : (isFa ? "مرور فاصله‌دار" : "Spaced review")}</small>
+              <small>{item.due_at ? new Date(item.due_at).toLocaleString(isFa ? "fa-IR" : "en-CA") : item.status}</small>
+            </span>
           </Link>
         </li>
       ))}

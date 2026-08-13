@@ -426,6 +426,170 @@ def lesson_detail_request(request, lesson_id: Any) -> Response:
     return Response({"data": data, "meta": _meta(request)}, status=200)
 
 
+def _optional_boolean_query(request, name: str) -> bool | None:
+    raw = request.query_params.get(name)
+    if raw in (None, ""):
+        return None
+    normalized = str(raw).lower()
+    if normalized == "true":
+        return True
+    if normalized == "false":
+        return False
+    raise APIError(
+        400,
+        "QUERY_PARAMETER_INVALID",
+        "A query parameter is invalid.",
+        {name: ["Use true or false."]},
+    )
+
+
+def list_reviews_request(request) -> Response:
+    principal = _principal(request)
+    user_id = uuid.UUID(str(principal.user_id))
+    page_size = _parse_page_size(request)
+    cursor_value = request.query_params.get("page[after]")
+    kind = request.query_params.get("filter[kind]")
+    resolution = request.query_params.get("filter[resolution_status]")
+    marked = _optional_boolean_query(request, "filter[marked]")
+    due = _optional_boolean_query(request, "filter[due]")
+    sort = request.query_params.get("sort", "due_at")
+
+    if kind not in (None, "", "MISTAKE", "SPACED"):
+        raise APIError(400, "QUERY_PARAMETER_INVALID", "The review kind is invalid.")
+    if resolution not in (
+        None,
+        "",
+        "UNRESOLVED",
+        "CORRECTED",
+        "EXCLUDED_CONTENT_ISSUE",
+    ):
+        raise APIError(400, "QUERY_PARAMETER_INVALID", "The resolution status is invalid.")
+    order_sql = {
+        "due_at": "COALESCE(due_at, sort_at) ASC, id ASC",
+        "-due_at": "COALESCE(due_at, sort_at) DESC, id ASC",
+    }.get(sort)
+    if order_sql is None:
+        raise APIError(
+            400,
+            "QUERY_PARAMETER_INVALID",
+            "The sort parameter is invalid.",
+            {"sort": ["Use due_at or -due_at."]},
+        )
+
+    filters = {
+        "kind": kind or None,
+        "resolution_status": resolution or None,
+        "marked": marked,
+        "due": due,
+    }
+    fingerprint = query_fingerprint(filters, sort)
+    codec = _pagination_codec()
+    offset = codec.decode(cursor_value, fingerprint) if cursor_value else 0
+    where = ["TRUE"]
+    params: list[Any] = [user_id, user_id]
+    if kind:
+        where.append("kind = %s")
+        params.append(kind)
+    if resolution:
+        where.append("kind = 'MISTAKE' AND status = %s")
+        params.append(resolution)
+    if marked is not None:
+        where.append("marked = %s")
+        params.append(marked)
+    if due is True:
+        where.append("((kind = 'MISTAKE' AND status = 'UNRESOLVED') OR (due_at <= now() AND status <> 'SUSPENDED'))")
+    elif due is False:
+        where.append("kind = 'SPACED' AND due_at > now() AND status <> 'SUSPENDED'")
+
+    sql = f"""
+        WITH mistake_groups AS (
+            SELECT DISTINCT ON (eri.group_key)
+                eri.id,
+                'MISTAKE'::text AS kind,
+                eri.resolution_status::text AS status,
+                COALESCE(NULLIF(tq.question_snapshot->>'stem', ''), q.stem) AS title,
+                eri.group_key,
+                count(*) OVER (PARTITION BY eri.group_key)::int AS repeat_count,
+                NULL::timestamptz AS due_at,
+                eri.marked_for_review AS marked,
+                eri.wrong_at AS sort_at
+            FROM error_review_items AS eri
+            JOIN test_questions AS tq ON tq.id = eri.test_question_id
+            JOIN questions AS q ON q.id = eri.question_id
+            WHERE eri.user_id = %s
+            ORDER BY eri.group_key, eri.wrong_at DESC, eri.id DESC
+        ),
+        spaced_concepts AS (
+            SELECT
+                rq.id,
+                'SPACED'::text AS kind,
+                CASE
+                    WHEN rq.learning_state = 'SUSPENDED' THEN 'SUSPENDED'
+                    WHEN rq.due_at <= now() THEN 'DUE'
+                    ELSE 'SCHEDULED'
+                END AS status,
+                CASE
+                    WHEN u.locale = 'fa-IR' THEN COALESCE(NULLIF(gs.title_fa, ''), gs.title_fr)
+                    ELSE gs.title_fr
+                END AS title,
+                NULL::text AS group_key,
+                0::int AS repeat_count,
+                rq.due_at,
+                FALSE AS marked,
+                rq.updated_at AS sort_at
+            FROM review_queue AS rq
+            JOIN grammar_subtopics AS gs ON gs.id = rq.subtopic_id
+            JOIN users AS u ON u.id = rq.user_id
+            WHERE rq.user_id = %s
+              AND rq.target_type = 'SUBTOPIC'
+              AND rq.learning_state IS NOT NULL
+        ),
+        review_rows AS (
+            SELECT * FROM mistake_groups
+            UNION ALL
+            SELECT * FROM spaced_concepts
+        )
+        SELECT id, kind, status, title, group_key, repeat_count, due_at, marked
+        FROM review_rows
+        WHERE {" AND ".join(where)}
+        ORDER BY {order_sql}
+        LIMIT %s OFFSET %s
+    """
+    params.extend([page_size + 1, offset])
+    with connection.cursor() as cursor:
+        cursor.execute(sql, params)
+        rows = cursor.fetchall()
+
+    has_more = len(rows) > page_size
+    selected = rows[:page_size]
+    data = [
+        {
+            "id": str(row[0]),
+            "kind": str(row[1]),
+            "status": str(row[2]),
+            "title": str(row[3]),
+            "group_key": row[4],
+            "repeat_count": int(row[5] or 0),
+            "due_at": None if row[6] is None else _iso(row[6]),
+            "marked": bool(row[7]),
+        }
+        for row in selected
+    ]
+    next_offset = offset + len(selected)
+    return Response(
+        {
+            "data": data,
+            "page": {
+                "page_size": page_size,
+                "has_more": has_more,
+                "next_cursor": codec.encode(next_offset, fingerprint) if has_more else None,
+            },
+            "meta": _meta(request),
+        },
+        status=200,
+    )
+
+
 def _validate_test_payload(raw: Any) -> dict[str, Any]:
     if not isinstance(raw, Mapping):
         raise _validation({"non_field_errors": ["A JSON object is required."]})

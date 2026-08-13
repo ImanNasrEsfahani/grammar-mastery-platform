@@ -891,6 +891,7 @@ export interface components {
             /** @enum {string} */
             kind: "MISTAKE" | "SPACED";
             status: string;
+            title: string;
             group_key?: string | null;
             repeat_count?: number;
             /** Format: date-time */

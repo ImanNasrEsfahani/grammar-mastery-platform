@@ -1246,11 +1246,12 @@ components:
     ReviewSummary:
       type: object
       additionalProperties: false
-      required: [id, kind, status, marked]
+      required: [id, kind, status, title, marked]
       properties:
         id: {type: string, format: uuid}
         kind: {type: string, enum: [MISTAKE, SPACED]}
         status: {type: string}
+        title: {type: string, minLength: 1, maxLength: 2000}
         group_key: {type: [string, 'null']}
         repeat_count: {type: integer, minimum: 0}
         due_at: {type: [string, 'null'], format: date-time}

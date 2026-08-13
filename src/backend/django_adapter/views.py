@@ -60,6 +60,8 @@ class ContractEndpointView(APIView):
             return runtime_learning.attempt_result_request(
                 request, attempt_id=kwargs.get("attemptId")
             )
+        if operation_id == "listReviews":
+            return runtime_learning.list_reviews_request(request)
         if operation_id == "getDashboard":
             return runtime_dashboard.dashboard_request(request)
         if operation_id == "getCurrentNextAction":
