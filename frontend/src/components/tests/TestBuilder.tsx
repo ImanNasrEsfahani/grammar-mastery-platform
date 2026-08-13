@@ -26,6 +26,7 @@ export function TestBuilder({locale}: {locale: Locale}) {
       scope: {all_active_lessons: true},
       difficulty_mix_pct: {EASY: 20, MEDIUM: 40, HARD: 30, VERY_HARD: 10},
     };
+    let testCreated = false;
     try {
       const test = await apiRequest<TestEnvelope>("/api/backend/tests", {
         method: "POST",
@@ -33,6 +34,7 @@ export function TestBuilder({locale}: {locale: Locale}) {
         body: JSON.stringify(config),
       });
       if (!test) throw new ApiError({status: 502, code: "EMPTY_TEST", message: "Test creation returned no resource."});
+      testCreated = true;
       const attempt = await apiRequest<StartedAttemptEnvelope>(`/api/backend/tests/${test.data.id}/attempts`, {
         method: "POST",
         headers: {"Idempotency-Key": crypto.randomUUID()},
@@ -40,7 +42,18 @@ export function TestBuilder({locale}: {locale: Locale}) {
       if (!attempt) throw new ApiError({status: 502, code: "EMPTY_ATTEMPT", message: "Attempt creation returned no resource."});
       router.push(`/${locale}/attempts/${attempt.data.id}`);
     } catch (caught) {
-      setError(caught instanceof ApiError ? caught : new ApiError({status: 0, code: "NETWORK_ERROR", message: "Test creation failed."}));
+      if (testCreated && caught instanceof ApiError) {
+        setError(new ApiError({
+          status: caught.status,
+          code: caught.code,
+          message: isFa ? "آزمون ساخته شد، اما شروع اجرای آن ناموفق بود." : "The test was created, but its attempt could not be started.",
+          fields: caught.fields,
+          requestId: caught.requestId,
+          retryAfter: caught.retryAfter,
+        }));
+      } else {
+        setError(caught instanceof ApiError ? caught : new ApiError({status: 0, code: "NETWORK_ERROR", message: "Test creation failed."}));
+      }
     } finally {
       setBusy(false);
     }
@@ -60,8 +73,6 @@ export function TestBuilder({locale}: {locale: Locale}) {
             <option value="adaptive">{isFa ? "تطبیقی" : "Adaptive"}</option>
             <option value="tcf">TCF</option>
             <option value="custom">{isFa ? "سفارشی" : "Custom"}</option>
-            <option value="review">{isFa ? "مرور" : "Review"}</option>
-            <option value="mistakes">{isFa ? "خطاها" : "Mistakes"}</option>
           </select>
         </div>
         <div className="form-field">

@@ -11,7 +11,7 @@ class ContractEndpointView(APIView):
     """Route a frozen Stage 21 operation to a bound runtime provider.
 
     Runtime providers are bound incrementally. Auth, dashboard/next action,
-    lesson reads, and test creation are PostgreSQL-backed. Operations without a
+    lesson reads, test creation, and the complete attempt cycle are PostgreSQL-backed. Operations without a
     production provider continue to fail closed with the Stage 21 dependency
     error rather than falling through to Django's HTML 404 surface.
     """
@@ -40,6 +40,26 @@ class ContractEndpointView(APIView):
             )
         if operation_id == "createTest":
             return runtime_learning.create_test_request(request)
+        if operation_id == "startAttempt":
+            return runtime_learning.start_attempt_request(
+                request, test_id=kwargs.get("testId")
+            )
+        if operation_id == "getNextAttemptQuestion":
+            return runtime_learning.next_attempt_question_request(
+                request, attempt_id=kwargs.get("attemptId")
+            )
+        if operation_id == "submitAttemptAnswer":
+            return runtime_learning.submit_attempt_answer_request(
+                request, attempt_id=kwargs.get("attemptId")
+            )
+        if operation_id == "completeAttempt":
+            return runtime_learning.complete_attempt_request(
+                request, attempt_id=kwargs.get("attemptId")
+            )
+        if operation_id == "getAttemptResult":
+            return runtime_learning.attempt_result_request(
+                request, attempt_id=kwargs.get("attemptId")
+            )
         if operation_id == "getDashboard":
             return runtime_dashboard.dashboard_request(request)
         if operation_id == "getCurrentNextAction":

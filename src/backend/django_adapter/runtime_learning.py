@@ -20,6 +20,16 @@ from backend.errors import APIError, not_found
 from backend.idempotency import InMemoryIdempotencyRegistry, request_hash
 from backend.pagination import CursorCodec, query_fingerprint
 from backend.security import Principal
+from error_review.engine import materialize_error_items
+from mastery.engine import (
+    DEFAULT_CONFIG as MASTERY_CONFIG,
+    compute_subtopic_mastery,
+)
+from spaced_repetition.scheduler import (
+    DEFAULT_CONFIG as SRS_CONFIG,
+    queue_status,
+    transition,
+)
 from test_generator.generator import (
     CONFIG_SCHEMA_VERSION as STAGE13_CONFIG_SCHEMA_VERSION,
     GENERATOR_VERSION,
@@ -43,6 +53,11 @@ _ALLOWED_TEST_FIELDS = {
     "lesson_allocation",
     "type_allocation",
     "seed",
+}
+_ALLOWED_ANSWER_FIELDS = {
+    "test_question_id",
+    "selected_option_id",
+    "response_ms",
 }
 
 
@@ -102,6 +117,95 @@ def _validation(fields: Mapping[str, list[str] | str]) -> APIError:
         "The request contains invalid fields.",
         fields,
     )
+
+
+def _json_object(value: Any) -> dict[str, Any]:
+    if isinstance(value, Mapping):
+        return dict(value)
+    if isinstance(value, str):
+        decoded = json.loads(value)
+        if isinstance(decoded, Mapping):
+            return dict(decoded)
+    raise APIError(500, "INTERNAL_ERROR", "A stored question snapshot is invalid.")
+
+
+def _attempt_projection(row) -> dict[str, Any]:
+    attempt_id, test_id, status, started_at, completed_at, score_raw, score_pct = row
+    return {
+        "id": str(attempt_id),
+        "test_id": str(test_id),
+        "status": str(status),
+        "started_at": _iso(started_at),
+        "completed_at": None if completed_at is None else _iso(completed_at),
+        "score_raw": None if score_raw is None else _float(score_raw),
+        "score_pct": None if score_pct is None else _float(score_pct),
+    }
+
+
+def _public_attempt_question(
+    test_question_id: Any,
+    position: int,
+    question_snapshot: Any,
+    option_snapshot: Any,
+) -> dict[str, Any]:
+    snapshot = _json_object(question_snapshot)
+    stored_options = option_snapshot
+    if isinstance(stored_options, str):
+        stored_options = json.loads(stored_options)
+    if not isinstance(stored_options, list):
+        stored_options = snapshot.get("options")
+    if not isinstance(stored_options, list) or len(stored_options) != 4:
+        raise APIError(500, "INTERNAL_ERROR", "A stored option snapshot is invalid.")
+    options = []
+    for option in stored_options:
+        if not isinstance(option, Mapping):
+            raise APIError(500, "INTERNAL_ERROR", "A stored option snapshot is invalid.")
+        options.append(
+            {
+                "id": str(option["id"]),
+                "position": str(option["position"]),
+                "text": str(option["text"]),
+            }
+        )
+    return {
+        "test_question_id": str(test_question_id),
+        "question_revision_id": str(snapshot["question_revision_id"]),
+        "position": int(position),
+        "stem": str(snapshot["stem"]),
+        "stem_locale": str(snapshot["stem_locale"]),
+        "question_type": str(snapshot["question_type"]),
+        "difficulty": str(snapshot["difficulty"]),
+        "options": options,
+        "media": [],
+    }
+
+
+def _answer_feedback(snapshot: Mapping[str, Any], selected_option_id: str) -> dict[str, Any]:
+    options = snapshot.get("options")
+    if not isinstance(options, list):
+        raise APIError(500, "INTERNAL_ERROR", "A stored option snapshot is invalid.")
+    by_id = {
+        str(option.get("id")): option
+        for option in options
+        if isinstance(option, Mapping) and option.get("id") is not None
+    }
+    correct_option_id = str(snapshot.get("correct_option_id"))
+    selected = by_id.get(str(selected_option_id))
+    correct = by_id.get(correct_option_id)
+    if selected is None:
+        raise _validation(
+            {"selected_option_id": ["Use an option from this frozen question."]}
+        )
+    if correct is None:
+        raise APIError(500, "INTERNAL_ERROR", "The stored answer key is invalid.")
+    return {
+        "is_correct": str(selected_option_id) == correct_option_id,
+        "selected_option_id": str(selected_option_id),
+        "correct_option_id": correct_option_id,
+        "selected_option_explanation": selected.get("explanation"),
+        "correct_option_explanation": correct.get("explanation"),
+        "full_explanation": snapshot.get("full_explanation"),
+    }
 
 
 def _pagination_codec() -> CursorCodec:
@@ -1285,3 +1389,660 @@ def create_test_request(request) -> Response:
     response = Response(body, status=201)
     response["Idempotent-Replayed"] = "false"
     return response
+
+
+def _complete_idempotency(
+    cursor,
+    *,
+    record_id: Any,
+    status: int,
+    body: Mapping[str, Any],
+    resource_type: str,
+    resource_id: uuid.UUID,
+) -> None:
+    cursor.execute(
+        """
+        UPDATE api_idempotency_records
+        SET state = 'COMPLETED',
+            response_status = %s,
+            response_body = %s::jsonb,
+            resource_type = %s,
+            resource_id = %s,
+            completed_at = now()
+        WHERE id = %s
+          AND state = 'IN_PROGRESS'
+        """,
+        [
+            status,
+            json.dumps(body, ensure_ascii=False, separators=(",", ":")),
+            resource_type,
+            resource_id,
+            record_id,
+        ],
+    )
+    if cursor.rowcount != 1:
+        raise APIError(
+            409,
+            "IDEMPOTENCY_IN_PROGRESS",
+            "The idempotency record could not be completed safely.",
+        )
+
+
+def start_attempt_request(request, test_id: Any) -> Response:
+    principal = _principal(request)
+    user_id = uuid.UUID(str(principal.user_id))
+    parsed_test_id = _uuid(test_id, "testId")
+    key = request.headers.get("Idempotency-Key", "")
+    InMemoryIdempotencyRegistry.validate_key(key)
+    meta = _meta(request)
+
+    with transaction.atomic():
+        with connection.cursor() as cursor:
+            idem = _begin_idempotency(
+                cursor,
+                user_id=user_id,
+                operation_id="startAttempt",
+                key=key,
+                fingerprint=request_hash({"testId": str(parsed_test_id)}, {}),
+                request_id=meta["request_id"],
+            )
+            if idem.get("replayed"):
+                response = Response(idem["body"], status=idem["status"])
+                response["Idempotent-Replayed"] = "true"
+                return response
+
+            cursor.execute(
+                """
+                SELECT EXISTS (
+                    SELECT 1 FROM tests
+                    WHERE id = %s AND user_id = %s
+                ), count(tq.id)
+                FROM test_questions AS tq
+                WHERE tq.test_id = %s
+                """,
+                [parsed_test_id, user_id, parsed_test_id],
+            )
+            owned, question_count = cursor.fetchone()
+            if not owned:
+                raise not_found()
+            if int(question_count or 0) == 0:
+                raise APIError(409, "STATE_CONFLICT", "The test has no frozen questions.")
+
+            cursor.execute(
+                """
+                INSERT INTO test_attempts (
+                    test_id, user_id, status, started_at, client_metadata, created_at
+                )
+                VALUES (%s, %s, 'IN_PROGRESS', now(), '{}'::jsonb, now())
+                RETURNING id, test_id, status::text, started_at,
+                          completed_at, score_raw, score_pct
+                """,
+                [parsed_test_id, user_id],
+            )
+            data = _attempt_projection(cursor.fetchone())
+            body = {"data": data, "meta": meta}
+            _complete_idempotency(
+                cursor,
+                record_id=idem["record_id"],
+                status=201,
+                body=body,
+                resource_type="ATTEMPT",
+                resource_id=uuid.UUID(data["id"]),
+            )
+
+    response = Response(body, status=201)
+    response["Idempotent-Replayed"] = "false"
+    return response
+
+
+def next_attempt_question_request(request, attempt_id: Any) -> Response:
+    principal = _principal(request)
+    user_id = uuid.UUID(str(principal.user_id))
+    parsed_attempt_id = _uuid(attempt_id, "attemptId")
+    meta = _meta(request)
+    with connection.cursor() as cursor:
+        cursor.execute(
+            """
+            SELECT test_id, status::text
+            FROM test_attempts
+            WHERE id = %s AND user_id = %s
+            """,
+            [parsed_attempt_id, user_id],
+        )
+        attempt = cursor.fetchone()
+        if attempt is None:
+            raise not_found()
+        test_id, status = attempt
+        if status != "IN_PROGRESS":
+            raise APIError(409, "STATE_CONFLICT", "The attempt is not in progress.")
+
+        cursor.execute(
+            """
+            SELECT tq.id, tq.position, tq.question_snapshot, tq.option_snapshot
+            FROM test_questions AS tq
+            WHERE tq.test_id = %s
+              AND NOT EXISTS (
+                  SELECT 1
+                  FROM user_answers AS ua
+                  WHERE ua.attempt_id = %s
+                    AND ua.test_question_id = tq.id
+              )
+            ORDER BY tq.position
+            LIMIT 1
+            """,
+            [test_id, parsed_attempt_id],
+        )
+        row = cursor.fetchone()
+    if row is None:
+        return Response(status=204)
+    data = _public_attempt_question(row[0], row[1], row[2], row[3])
+    return Response({"data": data, "meta": meta}, status=200)
+
+
+def _validate_answer_payload(raw: Any) -> dict[str, Any]:
+    if not isinstance(raw, Mapping):
+        raise _validation({"body": ["Use a JSON object."]})
+    extra = sorted(set(raw) - _ALLOWED_ANSWER_FIELDS)
+    missing = sorted({"test_question_id", "selected_option_id"} - set(raw))
+    fields: dict[str, list[str]] = {}
+    if extra:
+        fields["body"] = [f"Unknown fields: {', '.join(extra)}."]
+    for field in missing:
+        fields[field] = ["This field is required."]
+    if fields:
+        raise _validation(fields)
+    response_ms = raw.get("response_ms")
+    if response_ms is not None:
+        if isinstance(response_ms, bool) or not isinstance(response_ms, int):
+            raise _validation({"response_ms": ["Use an integer or null."]})
+        if not 0 <= response_ms <= 86_400_000:
+            raise _validation({"response_ms": ["Use a value between 0 and 86400000."]})
+    return {
+        "test_question_id": _body_uuid(raw["test_question_id"], "test_question_id"),
+        "selected_option_id": _body_uuid(raw["selected_option_id"], "selected_option_id"),
+        "response_ms": response_ms,
+    }
+
+
+def _mastery_and_schedule(
+    cursor,
+    *,
+    user_id: uuid.UUID,
+    answer_id: uuid.UUID,
+    attempt_id: uuid.UUID,
+    test_question_id: uuid.UUID,
+    snapshot: Mapping[str, Any],
+    selected_option: Mapping[str, Any],
+    is_correct: bool,
+    response_ms: int | None,
+    answered_at,
+) -> tuple[dict[str, Any], str | None, dict[str, Any]]:
+    subtopic_id = uuid.UUID(str(snapshot["subtopic_id"]))
+    cursor.execute(
+        """
+        SELECT
+            ua.id, ua.attempt_id, ua.test_question_id, ua.answer_sequence,
+            ua.is_correct, ua.response_ms, ua.answered_at,
+            tq.question_snapshot->>'difficulty' AS difficulty_code,
+            qo.misconception_id
+        FROM user_answers AS ua
+        JOIN test_attempts AS ta ON ta.id = ua.attempt_id
+        JOIN test_questions AS tq ON tq.id = ua.test_question_id
+        LEFT JOIN question_options AS qo ON qo.id = ua.selected_option_id
+        WHERE ta.user_id = %s
+          AND tq.question_snapshot->>'subtopic_id' = %s
+        ORDER BY ua.answered_at, ua.id
+        """,
+        [user_id, str(subtopic_id)],
+    )
+    evidence = [
+        {
+            "answer_id": str(row[0]),
+            "attempt_id": str(row[1]),
+            "test_question_id": str(row[2]),
+            "answer_sequence": int(row[3]),
+            "is_correct": row[4],
+            "response_ms": row[5],
+            "answered_at": row[6],
+            "difficulty_code": str(row[7]),
+            "misconception_id": None if row[8] is None else str(row[8]),
+        }
+        for row in cursor.fetchall()
+    ]
+    mastery = compute_subtopic_mastery(evidence, answered_at)
+    cursor.execute(
+        """
+        INSERT INTO user_mastery (
+            user_id, scope_type, scope_id, mastery_score, confidence,
+            evidence_count, mastery_model_version, last_evidence_at, updated_at,
+            evidence_score, effective_evidence, stability, coverage_ratio, mastery_band
+        )
+        VALUES (%s, 'SUBTOPIC', %s, %s, %s, %s, %s, %s, now(), %s, %s, %s, %s, %s)
+        ON CONFLICT (user_id, scope_type, scope_id, mastery_model_version)
+        DO UPDATE SET
+            mastery_score = EXCLUDED.mastery_score,
+            confidence = EXCLUDED.confidence,
+            evidence_count = EXCLUDED.evidence_count,
+            last_evidence_at = EXCLUDED.last_evidence_at,
+            updated_at = EXCLUDED.updated_at,
+            evidence_score = EXCLUDED.evidence_score,
+            effective_evidence = EXCLUDED.effective_evidence,
+            stability = EXCLUDED.stability,
+            coverage_ratio = EXCLUDED.coverage_ratio,
+            mastery_band = EXCLUDED.mastery_band
+        """,
+        [
+            user_id, subtopic_id, mastery["mastery_score_pct"], mastery["confidence"],
+            mastery["evidence_count"], mastery["model_version"], answered_at,
+            mastery["evidence_score_pct"], mastery["effective_evidence"],
+            mastery["stability"], mastery["coverage_ratio"], mastery["mastery_band"],
+        ],
+    )
+    cursor.execute(
+        """
+        INSERT INTO mastery_snapshots (
+            user_id, scope_type, scope_id, mastery_score, confidence,
+            evidence_count, mastery_model_version, captured_at, source_event,
+            evidence_score, effective_evidence, stability, coverage_ratio, mastery_band
+        )
+        VALUES (%s, 'SUBTOPIC', %s, %s, %s, %s, %s, %s, 'ANSWER_ACCEPTED',
+                %s, %s, %s, %s, %s)
+        """,
+        [
+            user_id, subtopic_id, mastery["mastery_score_pct"], mastery["confidence"],
+            mastery["evidence_count"], mastery["model_version"], answered_at,
+            mastery["evidence_score_pct"], mastery["effective_evidence"],
+            mastery["stability"], mastery["coverage_ratio"], mastery["mastery_band"],
+        ],
+    )
+
+    review_item_id = None
+    if not is_correct:
+        materialized = materialize_error_items(
+            [{
+                "answer_id": str(answer_id), "attempt_id": str(attempt_id),
+                "test_question_id": str(test_question_id), "answer_sequence": 1,
+                "user_id": str(user_id), "question_id": str(snapshot["question_revision_id"]),
+                "lesson_id": str(snapshot["lesson_id"]), "subtopic_id": str(subtopic_id),
+                "misconception_id": selected_option.get("misconception_id"),
+                "difficulty_code": str(snapshot["difficulty"]), "is_correct": False,
+                "answered_at": answered_at, "question_status": snapshot.get("question_status", "PUBLISHED"),
+                "serving_enabled": bool(snapshot.get("serving_enabled", True)),
+                "content_issue_excluded": False,
+            }]
+        )[0]
+        cursor.execute(
+            """
+            INSERT INTO error_review_items (
+                user_id, source_answer_id, test_question_id, question_id,
+                lesson_id, subtopic_id, misconception_id, group_key, group_quality,
+                difficulty_code, wrong_at, resolution_status, reviewability,
+                marked_for_review, corrected_at, review_model_version, created_at, updated_at
+            )
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s::difficulty_code,
+                    %s, %s, %s, FALSE, NULL, %s, now(), now())
+            RETURNING id
+            """,
+            [
+                user_id, answer_id, test_question_id,
+                uuid.UUID(materialized["question_id"]), uuid.UUID(materialized["lesson_id"]),
+                subtopic_id,
+                None if materialized["misconception_id"] is None else uuid.UUID(materialized["misconception_id"]),
+                materialized["group_key"], materialized["group_quality"],
+                materialized["difficulty_code"], answered_at,
+                materialized["resolution_status"], materialized["reviewability"],
+                materialized["review_model_version"],
+            ],
+        )
+        review_item_id = str(cursor.fetchone()[0])
+
+    cursor.execute(
+        """
+        SELECT id, learning_state, interval_days, due_at, success_streak,
+               lapse_count, state_before_suspend, suspended_reason, last_answer_id
+        FROM review_queue
+        WHERE user_id = %s AND target_type = 'SUBTOPIC'
+          AND subtopic_id = %s AND learning_state IS NOT NULL
+        FOR UPDATE
+        """,
+        [user_id, subtopic_id],
+    )
+    previous_row = cursor.fetchone()
+    previous = None
+    queue_id = None
+    if previous_row is not None:
+        queue_id = previous_row[0]
+        previous = {
+            "learning_state": str(previous_row[1]), "interval_days": _float(previous_row[2]),
+            "due_at": None if previous_row[3] is None else _iso(previous_row[3]),
+            "success_streak": int(previous_row[4] or 0), "lapse_count": int(previous_row[5] or 0),
+            "state_before_suspend": previous_row[6], "suspended_reason": previous_row[7],
+            "last_answer_id": None if previous_row[8] is None else str(previous_row[8]),
+        }
+    schedule = transition(
+        previous,
+        {
+            "kind": "ANSWER", "event_at": answered_at, "is_correct": is_correct,
+            "answer_id": str(answer_id), "mastery_band": mastery["mastery_band"],
+            "mastery_confidence": mastery["confidence"],
+            "mastery_provider_contract_version": MASTERY_CONFIG["provider_contract_version"],
+        },
+    )
+    status = queue_status(schedule, answered_at)
+    if queue_id is None:
+        cursor.execute(
+            """
+            INSERT INTO review_queue (
+                user_id, target_type, subtopic_id, status, due_at, interval_days,
+                strength, lapse_count, scheduler_version, last_answer_id, updated_at,
+                learning_state, success_streak, state_before_suspend, suspended_reason,
+                last_scheduled_at, scheduler_metadata
+            )
+            VALUES (%s, 'SUBTOPIC', %s, %s::learning_review_status, %s, %s, %s, %s,
+                    %s, %s, now(), %s, %s, %s, %s, %s, %s::jsonb)
+            RETURNING id
+            """,
+            [
+                user_id, subtopic_id, status, schedule["due_at"], schedule["interval_days"],
+                mastery["mastery_score_pct"], schedule["lapse_count"],
+                schedule["scheduler_version"], answer_id, schedule["learning_state"],
+                schedule["success_streak"], schedule.get("state_before_suspend"),
+                schedule.get("suspended_reason"), answered_at,
+                json.dumps({"transition_reason": schedule.get("transition_reason")}),
+            ],
+        )
+        queue_id = cursor.fetchone()[0]
+    else:
+        cursor.execute(
+            """
+            UPDATE review_queue
+            SET status = %s::learning_review_status, due_at = %s, interval_days = %s,
+                strength = %s, lapse_count = %s, scheduler_version = %s,
+                last_answer_id = %s, updated_at = now(), learning_state = %s,
+                success_streak = %s, state_before_suspend = %s, suspended_reason = %s,
+                last_scheduled_at = %s, scheduler_metadata = %s::jsonb
+            WHERE id = %s
+            """,
+            [
+                status, schedule["due_at"], schedule["interval_days"],
+                mastery["mastery_score_pct"], schedule["lapse_count"],
+                schedule["scheduler_version"], answer_id, schedule["learning_state"],
+                schedule["success_streak"], schedule.get("state_before_suspend"),
+                schedule.get("suspended_reason"), answered_at,
+                json.dumps({"transition_reason": schedule.get("transition_reason")}), queue_id,
+            ],
+        )
+    cursor.execute(
+        """
+        INSERT INTO spaced_review_events (
+            review_queue_id, user_id, subtopic_id, source_answer_id, event_type,
+            from_state, to_state, interval_before_days, interval_after_days,
+            due_before, due_after, mastery_band, mastery_confidence,
+            mastery_model_version, scheduler_version, event_at, event_metadata
+        )
+        VALUES (%s, %s, %s, %s, 'ANSWER_SCHEDULED', %s, %s, %s, %s, %s, %s,
+                %s, %s, %s, %s, %s, %s::jsonb)
+        """,
+        [
+            queue_id, user_id, subtopic_id, answer_id,
+            None if previous is None else previous["learning_state"], schedule["learning_state"],
+            None if previous is None else previous["interval_days"], schedule["interval_days"],
+            None if previous is None else previous["due_at"], schedule["due_at"],
+            mastery["mastery_band"], mastery["confidence"], mastery["model_version"],
+            SRS_CONFIG["scheduler_version"], answered_at,
+            json.dumps({"transition_reason": schedule.get("transition_reason")}),
+        ],
+    )
+    mastery_public = {
+        "scope_type": "SUBTOPIC", "scope_id": str(subtopic_id),
+        "mastery_score_pct": mastery["mastery_score_pct"],
+        "confidence": mastery["confidence"], "coverage_ratio": mastery["coverage_ratio"],
+        "evidence_count": mastery["evidence_count"], "mastery_band": mastery["mastery_band"],
+        "model_version": mastery["model_version"],
+    }
+    schedule_public = {
+        "learning_state": schedule["learning_state"], "due_at": schedule["due_at"],
+        "interval_days": schedule["interval_days"], "status": status,
+        "scheduler_version": schedule["scheduler_version"],
+    }
+    return mastery_public, review_item_id, schedule_public
+
+
+def submit_attempt_answer_request(request, attempt_id: Any) -> Response:
+    principal = _principal(request)
+    user_id = uuid.UUID(str(principal.user_id))
+    parsed_attempt_id = _uuid(attempt_id, "attemptId")
+    payload = _validate_answer_payload(request.data)
+    test_question_id = uuid.UUID(payload["test_question_id"])
+    selected_option_id = uuid.UUID(payload["selected_option_id"])
+    key = request.headers.get("Idempotency-Key", "")
+    InMemoryIdempotencyRegistry.validate_key(key)
+    meta = _meta(request)
+
+    with transaction.atomic():
+        with connection.cursor() as cursor:
+            idem = _begin_idempotency(
+                cursor,
+                user_id=user_id,
+                operation_id="submitAttemptAnswer",
+                key=key,
+                fingerprint=request_hash({"attemptId": str(parsed_attempt_id)}, payload),
+                request_id=meta["request_id"],
+            )
+            if idem.get("replayed"):
+                response = Response(idem["body"], status=idem["status"])
+                response["Idempotent-Replayed"] = "true"
+                return response
+
+            cursor.execute(
+                """
+                SELECT test_id, status::text
+                FROM test_attempts
+                WHERE id = %s AND user_id = %s
+                FOR UPDATE
+                """,
+                [parsed_attempt_id, user_id],
+            )
+            attempt = cursor.fetchone()
+            if attempt is None:
+                raise not_found()
+            test_id, status = attempt
+            if status != "IN_PROGRESS":
+                raise APIError(409, "STATE_CONFLICT", "The attempt is not in progress.")
+            cursor.execute(
+                """
+                SELECT question_snapshot
+                FROM test_questions
+                WHERE id = %s AND test_id = %s
+                """,
+                [test_question_id, test_id],
+            )
+            frozen = cursor.fetchone()
+            if frozen is None:
+                raise _validation(
+                    {"test_question_id": ["Use a frozen question from this attempt."]}
+                )
+            snapshot = _json_object(frozen[0])
+            feedback = _answer_feedback(snapshot, str(selected_option_id))
+            selected_option = next(
+                option for option in snapshot["options"]
+                if str(option["id"]) == str(selected_option_id)
+            )
+            cursor.execute(
+                """
+                SELECT 1 FROM user_answers
+                WHERE attempt_id = %s AND test_question_id = %s
+                LIMIT 1
+                """,
+                [parsed_attempt_id, test_question_id],
+            )
+            if cursor.fetchone() is not None:
+                raise APIError(
+                    409, "ANSWER_ALREADY_SUBMITTED",
+                    "This question already has an accepted answer.",
+                )
+            cursor.execute(
+                """
+                INSERT INTO user_answers (
+                    attempt_id, test_question_id, selected_option_id, answer_sequence,
+                    is_correct, response_ms, answered_at, answer_metadata
+                )
+                VALUES (%s, %s, %s, 1, %s, %s, now(), '{}'::jsonb)
+                RETURNING id, answered_at
+                """,
+                [
+                    parsed_attempt_id, test_question_id, selected_option_id,
+                    feedback["is_correct"], payload["response_ms"],
+                ],
+            )
+            answer_id, answered_at = cursor.fetchone()
+            mastery, review_item_id, schedule = _mastery_and_schedule(
+                cursor,
+                user_id=user_id,
+                answer_id=answer_id,
+                attempt_id=parsed_attempt_id,
+                test_question_id=test_question_id,
+                snapshot=snapshot,
+                selected_option=selected_option,
+                is_correct=feedback["is_correct"],
+                response_ms=payload["response_ms"],
+                answered_at=answered_at,
+            )
+            data = {
+                "answer_id": str(answer_id), "attempt_id": str(parsed_attempt_id),
+                "test_question_id": str(test_question_id), "answered_at": _iso(answered_at),
+                "feedback": feedback, "mastery": mastery,
+                "review_item_id": review_item_id, "review_schedule": schedule,
+            }
+            body = {"data": data, "meta": meta}
+            _complete_idempotency(
+                cursor, record_id=idem["record_id"], status=200, body=body,
+                resource_type="ANSWER", resource_id=answer_id,
+            )
+    response = Response(body, status=200)
+    response["Idempotent-Replayed"] = "false"
+    return response
+
+
+def complete_attempt_request(request, attempt_id: Any) -> Response:
+    principal = _principal(request)
+    user_id = uuid.UUID(str(principal.user_id))
+    parsed_attempt_id = _uuid(attempt_id, "attemptId")
+    key = request.headers.get("Idempotency-Key", "")
+    InMemoryIdempotencyRegistry.validate_key(key)
+    meta = _meta(request)
+    with transaction.atomic():
+        with connection.cursor() as cursor:
+            idem = _begin_idempotency(
+                cursor, user_id=user_id, operation_id="completeAttempt", key=key,
+                fingerprint=request_hash({"attemptId": str(parsed_attempt_id)}, {}),
+                request_id=meta["request_id"],
+            )
+            if idem.get("replayed"):
+                response = Response(idem["body"], status=idem["status"])
+                response["Idempotent-Replayed"] = "true"
+                return response
+            cursor.execute(
+                """
+                SELECT id, test_id, status::text, started_at, completed_at, score_raw, score_pct
+                FROM test_attempts
+                WHERE id = %s AND user_id = %s
+                FOR UPDATE
+                """,
+                [parsed_attempt_id, user_id],
+            )
+            attempt = cursor.fetchone()
+            if attempt is None:
+                raise not_found()
+            if str(attempt[2]) == "IN_PROGRESS":
+                cursor.execute(
+                    """
+                    SELECT
+                        (SELECT count(*) FROM test_questions WHERE test_id = %s),
+                        count(*),
+                        count(*) FILTER (WHERE ua.is_correct)
+                    FROM user_answers AS ua
+                    WHERE ua.attempt_id = %s
+                    """,
+                    [attempt[1], parsed_attempt_id],
+                )
+                question_count, answer_count, correct_count = cursor.fetchone()
+                if int(question_count) != int(answer_count):
+                    raise APIError(
+                        409, "STATE_CONFLICT",
+                        "Every frozen question must be answered before completion.",
+                    )
+                score_pct = round(100.0 * int(correct_count) / int(question_count), 6)
+                cursor.execute(
+                    """
+                    UPDATE test_attempts
+                    SET status = 'COMPLETED', completed_at = now(), score_raw = %s,
+                        score_pct = %s, mastery_model_version = %s
+                    WHERE id = %s
+                    RETURNING id, test_id, status::text, started_at, completed_at,
+                              score_raw, score_pct
+                    """,
+                    [
+                        correct_count, score_pct, MASTERY_CONFIG["model_version"],
+                        parsed_attempt_id,
+                    ],
+                )
+                attempt = cursor.fetchone()
+            elif str(attempt[2]) != "COMPLETED":
+                raise APIError(409, "STATE_CONFLICT", "The attempt cannot be completed.")
+            data = _attempt_projection(attempt)
+            body = {"data": data, "meta": meta}
+            _complete_idempotency(
+                cursor, record_id=idem["record_id"], status=200, body=body,
+                resource_type="ATTEMPT", resource_id=parsed_attempt_id,
+            )
+    response = Response(body, status=200)
+    response["Idempotent-Replayed"] = "false"
+    return response
+
+
+def attempt_result_request(request, attempt_id: Any) -> Response:
+    principal = _principal(request)
+    user_id = uuid.UUID(str(principal.user_id))
+    parsed_attempt_id = _uuid(attempt_id, "attemptId")
+    meta = _meta(request)
+    with connection.cursor() as cursor:
+        cursor.execute(
+            """
+            SELECT test_id, status::text, completed_at, score_raw, score_pct
+            FROM test_attempts
+            WHERE id = %s AND user_id = %s
+            """,
+            [parsed_attempt_id, user_id],
+        )
+        attempt = cursor.fetchone()
+        if attempt is None:
+            raise not_found()
+        test_id, status, completed_at, score_raw, score_pct = attempt
+        if status != "COMPLETED":
+            raise APIError(409, "STATE_CONFLICT", "The result is available after completion.")
+        cursor.execute(
+            """
+            SELECT tq.id, tq.position, tq.question_snapshot, ua.id, ua.selected_option_id
+            FROM test_questions AS tq
+            JOIN user_answers AS ua
+              ON ua.test_question_id = tq.id AND ua.attempt_id = %s
+            WHERE tq.test_id = %s
+            ORDER BY tq.position
+            """,
+            [parsed_attempt_id, test_id],
+        )
+        breakdown = [
+            {
+                "test_question_id": str(row[0]), "position": int(row[1]),
+                "answer_id": str(row[3]),
+                "feedback": _answer_feedback(_json_object(row[2]), str(row[4])),
+            }
+            for row in cursor.fetchall()
+        ]
+    data = {
+        "attempt_id": str(parsed_attempt_id), "status": "COMPLETED",
+        "score_raw": _float(score_raw), "score_pct": _float(score_pct),
+        "completed_at": _iso(completed_at), "breakdown": breakdown,
+    }
+    return Response({"data": data, "meta": meta}, status=200)

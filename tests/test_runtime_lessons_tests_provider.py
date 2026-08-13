@@ -145,6 +145,44 @@ class RuntimeLessonsTestsProviderTests(unittest.TestCase):
         self.assertIs(result, expected)
         handler.assert_called_once_with(request)
 
+    def test_complete_attempt_cycle_operations_are_bound(self):
+        cases = (
+            ("POST", "startAttempt", "start_attempt_request", {"testId": LESSON_ID}, {"test_id": LESSON_ID}),
+            ("GET", "getNextAttemptQuestion", "next_attempt_question_request", {"attemptId": LESSON_ID}, {"attempt_id": LESSON_ID}),
+            ("POST", "submitAttemptAnswer", "submit_attempt_answer_request", {"attemptId": LESSON_ID}, {"attempt_id": LESSON_ID}),
+            ("POST", "completeAttempt", "complete_attempt_request", {"attemptId": LESSON_ID}, {"attempt_id": LESSON_ID}),
+            ("GET", "getAttemptResult", "attempt_result_request", {"attemptId": LESSON_ID}, {"attempt_id": LESSON_ID}),
+        )
+        for method, operation, provider, path_kwargs, call_kwargs in cases:
+            with self.subTest(operation=operation):
+                request = SimpleNamespace(method=method)
+                view = ContractEndpointView()
+                view.operations = {method: operation}
+                expected = SimpleNamespace(status_code=200)
+                with patch.object(runtime_learning, provider, return_value=expected) as handler:
+                    result = view._dispatch_contract(request, **path_kwargs)
+                self.assertIs(result, expected)
+                handler.assert_called_once_with(request, **call_kwargs)
+
+    def test_attempt_question_projection_never_leaks_answer_key(self):
+        snapshot = {
+            "question_revision_id": LESSON_ID,
+            "stem": "Choisissez la bonne réponse.",
+            "stem_locale": "fr-FR",
+            "question_type": "MCQ",
+            "difficulty": "EASY",
+            "correct_option_id": "33333333-3333-4333-8333-333333333333",
+            "full_explanation": "secret",
+        }
+        options = [
+            {"id": f"33333333-3333-4333-8333-33333333333{i}", "position": p, "text": p, "explanation": "secret"}
+            for i, p in enumerate(("A", "B", "C", "D"))
+        ]
+        public = runtime_learning._public_attempt_question(LESSON_ID, 1, snapshot, options)
+        serialized = str(public)
+        self.assertNotIn("correct_option_id", serialized)
+        self.assertNotIn("explanation", serialized)
+
     def test_other_runtime_operation_still_fails_closed(self):
         request = SimpleNamespace(method="GET")
         view = ContractEndpointView()
