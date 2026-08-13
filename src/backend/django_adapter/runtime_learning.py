@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import timedelta
+from datetime import timedelta, timezone as dt_timezone
 from decimal import Decimal
 from typing import Any, Mapping
 import hashlib
@@ -107,7 +107,7 @@ def _float(value: Any, default: float = 0.0) -> float:
 
 
 def _iso(value) -> str:
-    return value.astimezone(timezone.utc).isoformat().replace("+00:00", "Z")
+    return value.astimezone(dt_timezone.utc).isoformat().replace("+00:00", "Z")
 
 
 def _validation(fields: Mapping[str, list[str] | str]) -> APIError:

@@ -3,6 +3,7 @@ from __future__ import annotations
 import os
 import sys
 import unittest
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from types import SimpleNamespace
 from unittest.mock import patch
@@ -28,6 +29,18 @@ LESSON_ID = "22222222-2222-4222-8222-222222222222"
 
 
 class RuntimeLessonsTestsProviderTests(unittest.TestCase):
+    def test_iso_uses_standard_library_utc_on_django_52(self):
+        value = datetime(
+            2026,
+            8,
+            13,
+            1,
+            3,
+            45,
+            tzinfo=timezone(timedelta(hours=-7)),
+        )
+        self.assertEqual(runtime_learning._iso(value), "2026-08-13T08:03:45Z")
+
     def test_frontend_adaptive_payload_validates(self):
         payload = runtime_learning._validate_test_payload(
             {
