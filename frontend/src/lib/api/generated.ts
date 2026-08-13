@@ -707,6 +707,10 @@ export interface components {
             category_id: string;
             /** Format: uuid */
             subcategory_id: string;
+            category_title_fr?: string;
+            category_title_fa?: string | null;
+            subcategory_title_fr?: string;
+            subcategory_title_fa?: string | null;
             tcf_weight?: number;
             active: boolean;
         };
@@ -720,6 +724,10 @@ export interface components {
             category_id: string;
             /** Format: uuid */
             subcategory_id: string;
+            category_title_fr?: string;
+            category_title_fa?: string | null;
+            subcategory_title_fr?: string;
+            subcategory_title_fa?: string | null;
             tcf_weight?: number;
             active: boolean;
             subtopics: components["schemas"]["Subtopic"][];
@@ -940,6 +948,7 @@ export interface components {
             scope_type?: "SUBTOPIC" | "LESSON" | "CATEGORY" | "TAG";
             /** Format: uuid */
             scope_id?: string;
+            scope_title?: string;
             mastery_score_pct: number;
             confidence: number;
             coverage_ratio: number;

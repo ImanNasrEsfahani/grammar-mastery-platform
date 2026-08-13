@@ -6,7 +6,7 @@ export default async function NewTestPage({params}: {params: Promise<{locale: st
   const {locale} = await params;
   if (!isLocale(locale)) notFound();
   return (
-    <div className="runner-shell">
+    <div className="test-builder-page">
       <header className="page-heading">
         <p className="eyebrow">{locale === "fa" ? "تمرین متمرکز" : "Focused practice"}</p>
         <h1>{locale === "fa" ? "ساخت تمرین جدید" : "Create a new practice"}</h1>

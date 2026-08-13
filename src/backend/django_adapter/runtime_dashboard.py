@@ -227,33 +227,61 @@ def _select_next_action(snapshot: dict[str, Any]) -> NextAction:
     )
 
 
-def _load_mastery(cursor, user_id: uuid.UUID) -> list[dict[str, Any]]:
+def _load_mastery(
+    cursor,
+    user_id: uuid.UUID,
+    locale_prefix: str,
+) -> list[dict[str, Any]]:
     cursor.execute(
         """
         SELECT
-            scope_type,
-            scope_id,
-            mastery_score,
-            confidence,
-            coverage_ratio,
-            evidence_count,
-            mastery_band,
-            updated_at
-        FROM user_mastery
-        WHERE user_id = %s
+            um.scope_type,
+            um.scope_id,
+            CASE um.scope_type::text
+                WHEN 'SUBTOPIC' THEN CASE
+                    WHEN %s = 'fa' THEN COALESCE(gs.title_fa, gs.title_fr)
+                    ELSE gs.title_fr
+                END
+                WHEN 'LESSON' THEN gl.title_fr_official
+                WHEN 'CATEGORY' THEN CASE
+                    WHEN %s = 'fa' THEN COALESCE(gc.display_name_fa, gc.display_name_fr)
+                    ELSE gc.display_name_fr
+                END
+                WHEN 'TAG' THEN CASE
+                    WHEN %s = 'fa' THEN COALESCE(t.display_name_fa, t.display_name_fr)
+                    ELSE t.display_name_fr
+                END
+            END AS scope_title,
+            um.mastery_score,
+            um.confidence,
+            um.coverage_ratio,
+            um.evidence_count,
+            um.mastery_band,
+            um.updated_at
+        FROM user_mastery AS um
+        LEFT JOIN grammar_subtopics AS gs
+          ON um.scope_type::text = 'SUBTOPIC' AND gs.id = um.scope_id
+        LEFT JOIN grammar_lessons AS gl
+          ON um.scope_type::text = 'LESSON' AND gl.id = um.scope_id
+        LEFT JOIN grammar_categories AS gc
+          ON um.scope_type::text = 'CATEGORY' AND gc.id = um.scope_id
+        LEFT JOIN tags AS t
+          ON um.scope_type::text = 'TAG' AND t.id = um.scope_id
+        WHERE um.user_id = %s
         ORDER BY
-            confidence DESC,
-            coverage_ratio DESC NULLS LAST,
-            updated_at DESC,
-            scope_type,
-            scope_id
+            um.confidence DESC,
+            um.coverage_ratio DESC NULLS LAST,
+            um.updated_at DESC,
+            um.scope_type,
+            um.scope_id
         """,
-        [user_id],
+        [locale_prefix, locale_prefix, locale_prefix, user_id],
     )
     items: list[dict[str, Any]] = []
     for (
         scope_type,
         scope_id,
+        scope_title,
         mastery_score,
         confidence,
         coverage_ratio,
@@ -267,6 +295,7 @@ def _load_mastery(cursor, user_id: uuid.UUID) -> list[dict[str, Any]]:
             {
                 "scope_type": str(scope_type),
                 "scope_id": str(scope_id),
+                "scope_title": str(scope_title or scope_type),
                 "mastery_score_pct": _float(mastery_score),
                 "confidence": confidence_value,
                 "coverage_ratio": _float(coverage_ratio),
@@ -568,7 +597,7 @@ def _load_dashboard_snapshot(
                 )
 
             profile_locale = str(user_row[0])
-            mastery = _load_mastery(cursor, user_id)
+            mastery = _load_mastery(cursor, user_id, _locale_prefix(profile_locale))
             review_queue = _load_review_queue(cursor, user_id, timestamp)
             error_review = _load_error_review(cursor, user_id)
             recent_test = _load_recent_test(cursor, user_id)

@@ -253,6 +253,10 @@ def _lesson_projection(row) -> dict[str, Any]:
         short_title,
         category_id,
         subcategory_id,
+        category_title_fr,
+        category_title_fa,
+        subcategory_title_fr,
+        subcategory_title_fa,
         tcf_weight,
         active,
     ) = row
@@ -263,6 +267,10 @@ def _lesson_projection(row) -> dict[str, Any]:
         "short_title": str(short_title),
         "category_id": str(category_id),
         "subcategory_id": str(subcategory_id),
+        "category_title_fr": str(category_title_fr),
+        "category_title_fa": None if category_title_fa is None else str(category_title_fa),
+        "subcategory_title_fr": str(subcategory_title_fr),
+        "subcategory_title_fa": None if subcategory_title_fa is None else str(subcategory_title_fa),
         "tcf_weight": _float(tcf_weight),
         "active": bool(active),
     }
@@ -337,9 +345,15 @@ def list_lessons_request(request) -> Response:
             gl.system_short_title,
             gl.category_id,
             gl.subcategory_id,
+            gc.display_name_fr,
+            gc.display_name_fa,
+            gsc.display_name_fr,
+            gsc.display_name_fa,
             gl.tcf_weight,
             gl.active
         FROM grammar_lessons AS gl
+        JOIN grammar_categories AS gc ON gc.id = gl.category_id
+        JOIN grammar_categories AS gsc ON gsc.id = gl.subcategory_id
         WHERE {" AND ".join(where)}
         ORDER BY {sort_sql}
         LIMIT %s OFFSET %s
@@ -381,9 +395,15 @@ def lesson_detail_request(request, lesson_id: Any) -> Response:
                 gl.system_short_title,
                 gl.category_id,
                 gl.subcategory_id,
+                gc.display_name_fr,
+                gc.display_name_fa,
+                gsc.display_name_fr,
+                gsc.display_name_fa,
                 gl.tcf_weight,
                 gl.active
             FROM grammar_lessons AS gl
+            JOIN grammar_categories AS gc ON gc.id = gl.category_id
+            JOIN grammar_categories AS gsc ON gsc.id = gl.subcategory_id
             WHERE gl.id = %s
               AND gl.active = TRUE
             """,

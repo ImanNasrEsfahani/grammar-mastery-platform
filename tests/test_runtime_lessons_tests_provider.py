@@ -68,6 +68,34 @@ class RuntimeLessonsTestsProviderTests(unittest.TestCase):
         self.assertEqual(resolved["clauses"][0]["dimension"], "LESSON")
         self.assertEqual(resolved["clauses"][0]["ids"], [LESSON_ID])
 
+    def test_scope_selected_lessons_becomes_stable_uuid_clause(self):
+        second_lesson_id = "33333333-3333-4333-8333-333333333333"
+        resolved = runtime_learning._normalize_scope(
+            {"lesson_ids": [LESSON_ID, second_lesson_id]},
+            [LESSON_ID, second_lesson_id],
+        )
+        self.assertEqual(resolved["clauses"][0]["dimension"], "LESSON")
+        self.assertEqual(resolved["clauses"][0]["ids"], [LESSON_ID, second_lesson_id])
+
+    def test_lesson_projection_includes_related_group_titles(self):
+        projected = runtime_learning._lesson_projection(
+            (
+                LESSON_ID,
+                1,
+                "Les temps du passé",
+                "Temps du passé",
+                "33333333-3333-4333-8333-333333333333",
+                "44444444-4444-4444-8444-444444444444",
+                "Temps et modes",
+                "زمان‌ها و وجه‌ها",
+                "Temps du passé",
+                "زمان‌های گذشته",
+                1.0,
+                True,
+            )
+        )
+        self.assertEqual(projected["subcategory_title_fa"], "زمان‌های گذشته")
+
     def test_scope_matching_supports_tags(self):
         candidate = {
             "lesson_id": LESSON_ID,

@@ -1053,6 +1053,10 @@ components:
         short_title: {type: string}
         category_id: {type: string, format: uuid}
         subcategory_id: {type: string, format: uuid}
+        category_title_fr: {type: string}
+        category_title_fa: {type: [string, 'null']}
+        subcategory_title_fr: {type: string}
+        subcategory_title_fa: {type: [string, 'null']}
         tcf_weight: {type: number, minimum: 0}
         active: {type: boolean}
     LessonDetail:
@@ -1066,6 +1070,10 @@ components:
         short_title: {type: string}
         category_id: {type: string, format: uuid}
         subcategory_id: {type: string, format: uuid}
+        category_title_fr: {type: string}
+        category_title_fa: {type: [string, 'null']}
+        subcategory_title_fr: {type: string}
+        subcategory_title_fa: {type: [string, 'null']}
         tcf_weight: {type: number, minimum: 0}
         active: {type: boolean}
         subtopics: {type: array, items: {$ref: '#/components/schemas/Subtopic'}}
@@ -1311,6 +1319,7 @@ components:
       properties:
         scope_type: {type: string, enum: [SUBTOPIC, LESSON, CATEGORY, TAG]}
         scope_id: {type: string, format: uuid}
+        scope_title: {type: string}
         mastery_score_pct: {type: number, minimum: 0, maximum: 100}
         confidence: {type: number, minimum: 0, maximum: 1}
         coverage_ratio: {type: number, minimum: 0, maximum: 1}

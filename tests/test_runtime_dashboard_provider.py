@@ -3,6 +3,7 @@ from __future__ import annotations
 import os
 import sys
 import unittest
+import uuid
 from pathlib import Path
 from types import SimpleNamespace
 from unittest.mock import patch
@@ -54,6 +55,33 @@ def empty_snapshot():
 
 
 class RuntimeDashboardProviderTests(unittest.TestCase):
+    def test_mastery_projection_resolves_localized_scope_title(self):
+        class Cursor:
+            def execute(self, sql, params):
+                self.sql = sql
+                self.params = params
+
+            def fetchall(self):
+                return [
+                    (
+                        "SUBTOPIC",
+                        LESSON_ID,
+                        "زمان گذشته مرکب",
+                        54,
+                        0.23,
+                        1,
+                        3,
+                        "UNCERTAIN",
+                        None,
+                    )
+                ]
+
+        cursor = Cursor()
+        items = runtime_dashboard._load_mastery(cursor, uuid.UUID(USER_ID), "fa")
+        self.assertEqual(items[0]["scope_title"], "زمان گذشته مرکب")
+        self.assertIn("grammar_subtopics", cursor.sql)
+        self.assertEqual(cursor.params[:3], ["fa", "fa", "fa"])
+
     def test_new_user_selects_build_evidence_without_weakness_label(self):
         action = runtime_dashboard._select_next_action(empty_snapshot())
         self.assertEqual(action.code, "BUILD_EVIDENCE")

@@ -80,9 +80,13 @@ export function DashboardClient({locale}: {locale: Locale}) {
           <h2>{isFa ? "شواهد تسلط" : "Mastery evidence"}</h2>
           {masteryWithEvidence.length ? masteryWithEvidence.map((item) => (
             <div className="metric-row" key={`${item.scope_type}:${item.scope_id}`}>
-              <span>{item.scope_type}</span>
+              <span className="mastery-title">{item.scope_title || scopeTypeLabel(item.scope_type, isFa)}</span>
               <strong>{Math.round(item.mastery_score_pct)}%</strong>
-              <small>{isFa ? "اطمینان" : "confidence"}: {Math.round(item.confidence * 100)}% · {isFa ? "پوشش" : "coverage"}: {Math.round(item.coverage_ratio * 100)}%</small>
+              <small>
+                <span className="mastery-scope-badge">{scopeTypeLabel(item.scope_type, isFa)}</span>
+                {isFa ? "اطمینان" : "Confidence"} {Math.round(item.confidence * 100)}% · {isFa ? "پوشش" : "Coverage"} {Math.round(item.coverage_ratio * 100)}%
+                {typeof item.evidence_count === "number" ? ` · ${item.evidence_count} ${isFa ? "شاهد" : "evidence"}` : ""}
+              </small>
             </div>
           )) : <p className="muted">{isFa ? "برای برچسب‌گذاری نقاط ضعف هنوز شواهد کافی نیست." : "There is not enough evidence to label weaknesses yet."}</p>}
         </section>
@@ -105,4 +109,15 @@ export function DashboardClient({locale}: {locale: Locale}) {
 function readCount(value: Record<string, unknown>, key: string): number {
   const result = value[key];
   return typeof result === "number" && Number.isFinite(result) ? result : 0;
+}
+
+function scopeTypeLabel(scopeType: string | undefined, isFa: boolean): string {
+  const labels: Record<string, [string, string]> = {
+    SUBTOPIC: ["مبحث", "Subtopic"],
+    LESSON: ["درس", "Lesson"],
+    CATEGORY: ["دسته", "Category"],
+    TAG: ["برچسب", "Tag"],
+  };
+  const label = labels[scopeType ?? ""];
+  return label ? label[isFa ? 0 : 1] : (isFa ? "موضوع" : "Topic");
 }

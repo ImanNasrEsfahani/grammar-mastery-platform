@@ -144,6 +144,52 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .dashboard-grid h2 { margin: 0; font-size: 1.08rem; }
 .metric-row { display: grid; grid-template-columns: 1fr auto; gap: 0.15rem 0.7rem; padding-block: 0.65rem; border-block-end: 1px solid var(--line); }
 .metric-row small { grid-column: 1 / -1; color: var(--muted); }
+.mastery-title { min-inline-size: 0; font-weight: 750; unicode-bidi: plaintext; overflow-wrap: anywhere; }
+.mastery-scope-badge { display: inline-flex; margin-inline-end: 0.45rem; border-radius: 999px; padding: 0.05rem 0.45rem; background: #eef3ff; color: var(--primary-strong); font-size: 0.72rem; font-weight: 800; }
+.test-builder-page { width: min(100%, 980px); margin: 0 auto; }
+.test-builder-layout { display: grid; gap: 1rem; align-items: start; }
+.test-builder-main { min-inline-size: 0; }
+.test-builder-form { gap: 1.5rem; }
+.builder-section { min-inline-size: 0; margin: 0; padding: 0; border: 0; display: grid; gap: 0.8rem; }
+.builder-section legend { inline-size: 100%; margin-block-end: 0.65rem; font-weight: 850; font-size: 1.05rem; }
+.choice-grid { display: grid; gap: 0.65rem; }
+.choice-card { min-inline-size: 0; min-block-size: 92px; position: relative; display: flex; align-items: flex-start; gap: 0.65rem; border: 1.5px solid var(--line); border-radius: 15px; padding: 0.9rem; background: white; cursor: pointer; }
+.choice-card:hover { border-color: #9fb2df; background: #fafbff; }
+.choice-card-selected { border-color: var(--primary); background: #f2f6ff; box-shadow: inset 0 0 0 1px var(--primary); }
+.choice-card input, .scope-tab input, .related-group-card > input { margin-block-start: 0.3rem; accent-color: var(--primary); }
+.choice-card-copy { display: grid; gap: 0.2rem; min-inline-size: 0; }
+.choice-card-copy small, .related-group-card small, .related-group-card em { color: var(--muted); font-style: normal; line-height: 1.45; }
+.choice-badge { position: absolute; inset-block-start: 0.6rem; inset-inline-end: 0.6rem; border-radius: 999px; padding: 0.12rem 0.45rem; background: var(--primary); color: white; font-size: 0.68rem; font-weight: 800; }
+.scope-tabs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border: 1px solid var(--line); border-radius: 13px; padding: 0.25rem; background: var(--surface-soft); }
+.scope-tab { min-block-size: 44px; display: grid; place-items: center; border-radius: 10px; padding: 0.45rem; color: var(--muted); text-align: center; cursor: pointer; font-size: 0.88rem; font-weight: 750; }
+.scope-tab input { position: absolute; opacity: 0; pointer-events: none; }
+.scope-tab-selected { background: white; color: var(--primary-strong); box-shadow: 0 2px 8px rgba(34,53,90,0.12); }
+.builder-hint { margin: 0; color: var(--muted); font-size: 0.9rem; }
+.lesson-picker { border: 1px solid var(--line); border-radius: 15px; padding: 0.75rem; background: var(--surface-soft); }
+.lesson-picker-toolbar { display: grid; gap: 0.55rem; }
+.lesson-picker-toolbar input { min-block-size: 45px; inline-size: 100%; border: 1px solid #aeb8ca; border-radius: 11px; padding: 0.55rem 0.75rem; }
+.lesson-picker-toolbar span { color: var(--primary-strong); font-size: 0.85rem; font-weight: 800; }
+.lesson-option-list, .related-group-list { max-block-size: 330px; overflow-y: auto; display: grid; gap: 0.5rem; padding-inline-end: 0.2rem; }
+.lesson-option { display: grid; grid-template-columns: auto auto minmax(0, 1fr); align-items: center; gap: 0.65rem; border: 1px solid transparent; border-radius: 12px; padding: 0.55rem; background: white; cursor: pointer; }
+.lesson-option:has(input:checked) { border-color: #9fb2df; background: #eef3ff; }
+.lesson-option input { accent-color: var(--primary); }
+.lesson-option strong, .lesson-option small { display: block; unicode-bidi: plaintext; overflow-wrap: anywhere; }
+.lesson-option small { color: var(--muted); }
+.related-group-card { min-inline-size: 0; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0.7rem; border: 1.5px solid var(--line); border-radius: 14px; padding: 0.8rem; cursor: pointer; }
+.related-group-card > span { min-inline-size: 0; display: grid; gap: 0.2rem; }
+.related-group-card strong, .related-group-card em { unicode-bidi: plaintext; overflow-wrap: anywhere; }
+.related-group-selected { border-color: var(--primary); background: #f2f6ff; }
+.count-controls { display: flex; flex-wrap: wrap; align-items: end; gap: 0.55rem; }
+.count-chip { min-inline-size: 58px; min-block-size: 46px; border: 1px solid #aeb8ca; border-radius: 12px; background: white; color: var(--ink); cursor: pointer; font-weight: 800; }
+.count-chip-selected { border-color: var(--primary); background: #eef3ff; color: var(--primary-strong); box-shadow: inset 0 0 0 1px var(--primary); }
+.custom-count { display: grid; gap: 0.2rem; color: var(--muted); font-size: 0.78rem; font-weight: 750; }
+.custom-count input { inline-size: 90px; min-block-size: 46px; border: 1px solid #aeb8ca; border-radius: 12px; padding-inline: 0.65rem; }
+.builder-submit { inline-size: 100%; }
+.test-builder-summary h2 { margin: 0; }
+.test-builder-summary dl { margin: 0; display: grid; gap: 0.55rem; }
+.test-builder-summary dl div { display: flex; justify-content: space-between; gap: 1rem; padding-block-end: 0.5rem; border-block-end: 1px solid var(--line); }
+.test-builder-summary dt { color: var(--muted); }
+.test-builder-summary dd { margin: 0; text-align: end; font-weight: 800; }
 .metric-large, .result-score { margin: 0; color: var(--primary-strong); font-size: clamp(2rem, 10vw, 4rem); font-weight: 900; line-height: 1; }
 .result-list, .card-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.75rem; }
 .result-item, .list-card { display: flex; align-items: center; gap: 1rem; }
@@ -190,6 +236,13 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .desktop-header-actions { margin-inline-start: auto; display: flex; align-items: center; gap: 0.35rem; }
   .mobile-menu-toggle, .mobile-nav-panel { display: none; }
   .dashboard-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .choice-grid-modes { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .lesson-picker-toolbar { grid-template-columns: 1fr auto; align-items: center; }
+}
+
+@media (min-width: 960px) {
+  .test-builder-layout { grid-template-columns: minmax(0, 1fr) 270px; }
+  .test-builder-summary { position: sticky; inset-block-start: 90px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
