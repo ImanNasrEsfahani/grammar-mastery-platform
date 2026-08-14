@@ -1,0 +1,141 @@
+{
+  "validation_version": "question-bank-static-consolidation-validation-v1.0",
+  "status": "PASS_STATIC_CONSOLIDATION",
+  "scope": {
+    "base_existing": "B001-B041 / L01-L09 / 1806 rows",
+    "extension": "B042-B081 / L10-L18 P04/5 / 1834 rows",
+    "batch_start": "B001",
+    "batch_end": "B081",
+    "lesson_start": "L01",
+    "lesson_end": "L18",
+    "lesson_18_part_end": "P04/5",
+    "question_count": 3640,
+    "extension_question_count": 1834,
+    "excluded_next_batch": "B082 / L18 P05/5 / 18 questions",
+    "batches": "B001-B081",
+    "lessons": "L01-L18P04",
+    "expected_question_count": 3640
+  },
+  "schema": {
+    "schema_version": "Stage10 / question-bank-v1.0",
+    "expected_column_count": 46,
+    "actual_column_count": 46,
+    "master_header_matches": true,
+    "extension_header_matches": true,
+    "status_all_draft": true,
+    "four_distinct_options_each": true,
+    "exactly_one_correct_key_each": true,
+    "correct_option_misconception_blank": true,
+    "distractor_misconceptions_populated": true,
+    "media_type_all_none": true
+  },
+  "counts": {
+    "new_by_lesson": {
+      "L10": 207,
+      "L11": 244,
+      "L12": 167,
+      "L13": 173,
+      "L14": 199,
+      "L15": 183,
+      "L16": 262,
+      "L17": 199,
+      "L18": 200
+    },
+    "new_by_difficulty": {
+      "EASY": 422,
+      "HARD": 497,
+      "MEDIUM": 751,
+      "VERY_HARD": 164
+    },
+    "new_by_question_type": {
+      "CLOZE_CONTEXT": 369,
+      "CLOZE_SINGLE": 206,
+      "CONJUGATION": 33,
+      "CONTRAST_RULES": 195,
+      "CORRECT_SENTENCE": 141,
+      "DIALOGUE_COMPLETE": 186,
+      "ERROR_LOCATION": 119,
+      "FA_TO_FR": 95,
+      "FR_TO_FA": 128,
+      "INCORRECT_SENTENCE": 157,
+      "PREPOSITION_CHOICE": 71,
+      "PRONOUN_CHOICE": 14,
+      "REWRITE_EQUIV": 120
+    },
+    "new_correct_option_positions": {
+      "A": 461,
+      "B": 458,
+      "C": 457,
+      "D": 458
+    },
+    "import_chunks": {
+      "question_bank_full_L10_L14_import_003.csv": 990,
+      "question_bank_full_L15_L18P04_import_004.csv": 844
+    }
+  },
+  "duplicate_validation": {
+    "global_registry_rows": 3640,
+    "external_id_unique": true,
+    "normalized_stem_unique": true,
+    "structural_signature_sha256_unique": true,
+    "semantic_signature_sha256_unique": true,
+    "fingerprint_sha256_unique": true,
+    "semantic_near_duplicate_scan": {
+      "method": "independent TF-IDF char_wb ngrams 3-5 over normalized_stem + correct_text",
+      "threshold": 0.8,
+      "new_to_new_pairs_at_or_above_threshold": 0,
+      "new_to_new_max_similarity": 0.798711,
+      "old_to_new_pairs_at_or_above_threshold": 0,
+      "old_to_new_max_similarity": 0.729313,
+      "global_pairs_at_or_above_threshold": 2,
+      "global_pairs_note": "Both >=0.80 pairs are pre-existing within B001-B041 (B002 and B003); the B042-B081 extension introduces none."
+    }
+  },
+  "continuation_integrity": {
+    "final_checkpoint_last_completed": "B081",
+    "final_checkpoint_next": "B082",
+    "final_registry_row_count": 3640,
+    "final_registry_sha256": "39029154778091da1b1036e310f065d1e1efaf93063c7a2fda7b07997d17fb7c",
+    "direct_hash_chain_status": "PASS",
+    "source_warnings": [
+      {
+        "batch_id": "B060",
+        "issue": "B060_VALIDATION_METADATA_INCONSISTENCY_RECONCILED_BY_DIRECT_HASH_CHAIN",
+        "severity": "warning"
+      }
+    ]
+  },
+  "source_batch_validations": {
+    "batches_checked": 40,
+    "batch_range": "B042-B081",
+    "source_validation_files_preserved_unchanged": true,
+    "stage23_marker_checked": true,
+    "issues": [
+      {
+        "batch_id": "B060",
+        "issue": "B060_VALIDATION_METADATA_INCONSISTENCY_RECONCILED_BY_DIRECT_HASH_CHAIN",
+        "severity": "warning"
+      }
+    ]
+  },
+  "stage23": {
+    "status": "STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT",
+    "runtime_executed": false,
+    "note": "Stage23 Import/Preview/Commit was intentionally not executed; this does not block authoring/static consolidation."
+  },
+  "integration": {
+    "strategy": "repository-native seed catalog; existing B001-B041 canonical master plus B042-B081 extension shard are loaded by the existing Question Bank bootstrap during Stage26 fresh installation",
+    "migrations_modified": false,
+    "seeders_modified": false,
+    "github_writes_performed": false,
+    "runtime_bootstrap": "python ops/question_bank/bootstrap.py --publish-canonical-seed (invoked automatically by the existing Stage26 migration runner)",
+    "bootstrap_loader_extended": true,
+    "new_runtime_seeder": false
+  },
+  "source_snapshot": {
+    "github_main_commit": "5de0e0058cef28643cd8f079b465e25489f2b101",
+    "batch_plan_sha256": "59e4fbbad89446bb3370c1db9d4dce3b7275f557bed1ea4b197b967cf91d71d6",
+    "project_guide_sha256": "8a561160d698ffb811453d20b9c610fbb644c7593cca10b3bca6728c7969e6a7",
+    "reference_book_sha256": "b6162aacc084cd78ec46f43972fdc68f9330576ea909f4a51767c3333c7e74ca"
+  }
+}

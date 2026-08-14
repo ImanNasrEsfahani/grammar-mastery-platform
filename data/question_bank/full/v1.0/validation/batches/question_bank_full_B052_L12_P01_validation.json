@@ -1,0 +1,578 @@
+{
+  "validation_version": "question-bank-static-authoring-validation-v1.0",
+  "batch_id": "B052",
+  "status": "PASS_STATIC_AUTHORING",
+  "generated_at_local": "2026-08-13",
+  "stage23_import_status": "STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT",
+  "stage23_runtime_executed": false,
+  "repository": {
+    "repository": "ImanNasrEsfahani/grammar-mastery-platform",
+    "branch": "main",
+    "commit_sha": "5de0e0058cef28643cd8f079b465e25489f2b101",
+    "access_mode": "READ_ONLY",
+    "github_writes_performed": false,
+    "root_file_audit": {
+      "README.md": {
+        "status": "READ",
+        "sha": "3c9f9911cf4c7c427998a5fbaed0a62d937493e6"
+      },
+      "STATUS.md": {
+        "status": "READ",
+        "sha": "97312ecd4963dde9a77b679046d41f2e3582ba65"
+      },
+      "ROADMAP.md": "NOT_PRESENT_AT_ROOT__PROJECT_GUIDE_USED",
+      "AGENTS.md": "NOT_PRESENT_AT_ROOT",
+      "missing_root_files_authoring_blocker": false
+    }
+  },
+  "continuation_integrity": {
+    "previous_checkpoint_last_completed": "B051",
+    "previous_checkpoint_next": "B052",
+    "previous_checkpoint_sha256": "3d657e164e304f07feb0f3591c48751c8df8f11a5d635a74b712fafb4f76f9ab",
+    "previous_registry_expected_sha256": "cbe5bebf63408788d698e0790aec80d4dc1c60a82d0f94f9a2a4eb6eb0667d2b",
+    "previous_registry_actual_sha256": "cbe5bebf63408788d698e0790aec80d4dc1c60a82d0f94f9a2a4eb6eb0667d2b",
+    "previous_registry_row_count": 2257,
+    "pass": true
+  },
+  "plan": {
+    "plan_version": "question_bank_full_batch_plan_v1.0",
+    "plan_sha256": "59e4fbbad89446bb3370c1db9d4dce3b7275f557bed1ea4b197b967cf91d71d6",
+    "global_batch_no": 52,
+    "batch_name": "FULL-L12-P01",
+    "lesson_no": 12,
+    "lesson_id": "ec78c6b7-50f2-4fcf-8ecd-63c1a84e5e41",
+    "lesson_title_fr": "L’ADJECTIF (2)",
+    "category_code": "CAT06",
+    "subcategory_code": "SUB14",
+    "lesson_part": 1,
+    "lesson_parts_total": 4,
+    "question_ordinal_start": 1,
+    "question_ordinal_end": 50,
+    "batch_question_count": 50,
+    "difficulty_profile": "DISCRIMINATION",
+    "difficulty_counts": {
+      "EASY": 8,
+      "MEDIUM": 18,
+      "HARD": 17,
+      "VERY_HARD": 7
+    },
+    "external_id_prefix": "GMP-FULL-B052",
+    "output_csv": "question_bank_full_B052_L12_P01.csv",
+    "expected_zip": "question_bank_full_B052_L12_P01.zip",
+    "depends_on": null,
+    "next_batch": "B053",
+    "lesson_cumulative_after_batch": 50,
+    "lesson_remaining_after_batch": 117,
+    "global_cumulative_after_batch": 2307,
+    "global_remaining_after_batch": 8329
+  },
+  "source_provenance": {
+    "authoritative_book": {
+      "sha256": "b6162aacc084cd78ec46f43972fdc68f9330576ea909f4a51767c3333c7e74ca",
+      "scope": "Lesson 12 only",
+      "stage1_linked_printed_pages": [
+        "54",
+        "56"
+      ],
+      "rendered_pdf_pages": [
+        "56",
+        "57",
+        "58",
+        "59"
+      ],
+      "visual_review_performed": true,
+      "source_support_used": [
+        "general adjective position after noun",
+        "frequent short adjectives before noun; numbers before noun/adjectives",
+        "premier/dernier/prochain series vs dates",
+        "bel/vieil/nouvel before vowel or h muet",
+        "des -> de before preposed adjective",
+        "meaning shifts with adjective position",
+        "neuf vs nouveau"
+      ]
+    },
+    "project_guide": {
+      "sha256": "8a561160d698ffb811453d20b9c610fbb644c7593cca10b3bca6728c7969e6a7",
+      "version": "1.0",
+      "role": "ROADMAP/source basis for Stages 1-11 authoring and static QA"
+    },
+    "github_source_shas": {
+      "stage1_subtopics": "d1604a65b44f04654823bb9b2f0cc1a0218269d1",
+      "stage2_mapping": "090b0db74f705b13eebffe990b2467550033d3e6",
+      "stage2_tags": "67f9d08f9678fc01c6bc44c44790768454e91fab",
+      "stage4_targets": "24e38bff93970173c0cca177336485e96660a651",
+      "stage6_targets": "8f5edea191c6304b498b44fc4a3fcb9281a7abce",
+      "stage6_lesson_compatibility": "313fb2dc403372f1b0364d3790c722d87b150d45",
+      "stage6_subtopic_compatibility": "aaddf210bc5130b56d501338ef73b6054b2904e8",
+      "stage7_misconception_catalogue": "f29839f77cede96ca7f6a9aa3ecace645e10e2ed",
+      "stage7_distractor_rules": "add62b4906c4f3a7ae98ca556df3f478e50b94e5",
+      "stage8_policy": "a7102a0dbfbf6e969abf0b5cbe1aafe085895601",
+      "stage9_targets": "813ad10d560ee4fb175f9aeffdd5f789fa131055",
+      "stage10_contract": "f0bab66d66be7665c765094235f354e30ce5543b",
+      "stage11_workflow": "3396f06477da1f09efe03cedd72cb90be6dc592a"
+    },
+    "taxonomy": {
+      "category": "CAT06",
+      "subcategory": "SUB14",
+      "primary_tag": "TAG004",
+      "additional_lesson_tags_available": [
+        "TAG005",
+        "TAG009"
+      ],
+      "row_tag_policy": "primary lesson tag only",
+      "taxonomy_version": "taxonomy-v0.9.0"
+    },
+    "stage4_target_full": 167
+  },
+  "schema_validation": {
+    "expected_column_count": 46,
+    "actual_column_count": 46,
+    "exact_header_order_pass": true,
+    "row_count_expected": 50,
+    "row_count_actual": 50,
+    "row_count_pass": true,
+    "status_all_draft_pass": true,
+    "four_distinct_options_each_pass": true,
+    "exactly_one_correct_each_pass": true,
+    "correct_option_misconception_blank_pass": true,
+    "all_distractor_misconceptions_valid_pass": true
+  },
+  "question_type_allocation": {
+    "rule": "BR03 / REMAINING_HAMILTON_V1",
+    "lesson_full_targets": {
+      "CLOZE_SINGLE": 19,
+      "CLOZE_CONTEXT": 32,
+      "CORRECT_SENTENCE": 17,
+      "INCORRECT_SENTENCE": 14,
+      "ERROR_LOCATION": 10,
+      "CONJUGATION": 0,
+      "TENSE_CHOICE": 0,
+      "PRONOUN_CHOICE": 0,
+      "PREPOSITION_CHOICE": 0,
+      "REWRITE_EQUIV": 9,
+      "FR_TO_FA": 14,
+      "FA_TO_FR": 12,
+      "DIALOGUE_COMPLETE": 23,
+      "REGISTER_CHOICE": 0,
+      "CONTRAST_RULES": 17
+    },
+    "remaining_before_batch": {
+      "CLOZE_SINGLE": 19,
+      "CLOZE_CONTEXT": 32,
+      "CORRECT_SENTENCE": 17,
+      "INCORRECT_SENTENCE": 14,
+      "ERROR_LOCATION": 10,
+      "CONJUGATION": 0,
+      "TENSE_CHOICE": 0,
+      "PRONOUN_CHOICE": 0,
+      "PREPOSITION_CHOICE": 0,
+      "REWRITE_EQUIV": 9,
+      "FR_TO_FA": 14,
+      "FA_TO_FR": 12,
+      "DIALOGUE_COMPLETE": 23,
+      "REGISTER_CHOICE": 0,
+      "CONTRAST_RULES": 17
+    },
+    "expected_current_batch": {
+      "CLOZE_SINGLE": 6,
+      "CLOZE_CONTEXT": 9,
+      "CORRECT_SENTENCE": 5,
+      "INCORRECT_SENTENCE": 4,
+      "ERROR_LOCATION": 3,
+      "CONJUGATION": 0,
+      "TENSE_CHOICE": 0,
+      "PRONOUN_CHOICE": 0,
+      "PREPOSITION_CHOICE": 0,
+      "REWRITE_EQUIV": 3,
+      "FR_TO_FA": 4,
+      "FA_TO_FR": 4,
+      "DIALOGUE_COMPLETE": 7,
+      "REGISTER_CHOICE": 0,
+      "CONTRAST_RULES": 5
+    },
+    "actual_current_batch": {
+      "CLOZE_SINGLE": 6,
+      "CLOZE_CONTEXT": 9,
+      "CORRECT_SENTENCE": 5,
+      "INCORRECT_SENTENCE": 4,
+      "ERROR_LOCATION": 3,
+      "CONJUGATION": 0,
+      "TENSE_CHOICE": 0,
+      "PRONOUN_CHOICE": 0,
+      "PREPOSITION_CHOICE": 0,
+      "REWRITE_EQUIV": 3,
+      "FR_TO_FA": 4,
+      "FA_TO_FR": 4,
+      "DIALOGUE_COMPLETE": 7,
+      "REGISTER_CHOICE": 0,
+      "CONTRAST_RULES": 5
+    },
+    "remaining_after_batch": {
+      "CLOZE_SINGLE": 13,
+      "CLOZE_CONTEXT": 23,
+      "CORRECT_SENTENCE": 12,
+      "INCORRECT_SENTENCE": 10,
+      "ERROR_LOCATION": 7,
+      "CONJUGATION": 0,
+      "TENSE_CHOICE": 0,
+      "PRONOUN_CHOICE": 0,
+      "PREPOSITION_CHOICE": 0,
+      "REWRITE_EQUIV": 6,
+      "FR_TO_FA": 10,
+      "FA_TO_FR": 8,
+      "DIALOGUE_COMPLETE": 16,
+      "REGISTER_CHOICE": 0,
+      "CONTRAST_RULES": 12
+    },
+    "not_suitable_types_generated": [],
+    "pass": true
+  },
+  "difficulty_validation": {
+    "rule": "BR04 + BR05",
+    "profile": "DISCRIMINATION",
+    "stage9_full_targets": {
+      "EASY": 25,
+      "MEDIUM": 59,
+      "HARD": 58,
+      "VERY_HARD": 25
+    },
+    "remaining_before_batch": {
+      "EASY": 25,
+      "MEDIUM": 59,
+      "HARD": 58,
+      "VERY_HARD": 25
+    },
+    "expected_current_batch": {
+      "EASY": 8,
+      "MEDIUM": 18,
+      "HARD": 17,
+      "VERY_HARD": 7
+    },
+    "actual_current_batch": {
+      "EASY": 8,
+      "MEDIUM": 18,
+      "HARD": 17,
+      "VERY_HARD": 7
+    },
+    "type_by_difficulty_expected": {
+      "CLOZE_SINGLE": {
+        "EASY": 1,
+        "MEDIUM": 2,
+        "HARD": 2,
+        "VERY_HARD": 1
+      },
+      "CLOZE_CONTEXT": {
+        "EASY": 1,
+        "MEDIUM": 4,
+        "HARD": 3,
+        "VERY_HARD": 1
+      },
+      "CORRECT_SENTENCE": {
+        "EASY": 1,
+        "MEDIUM": 2,
+        "HARD": 2,
+        "VERY_HARD": 0
+      },
+      "INCORRECT_SENTENCE": {
+        "EASY": 1,
+        "MEDIUM": 1,
+        "HARD": 1,
+        "VERY_HARD": 1
+      },
+      "ERROR_LOCATION": {
+        "EASY": 0,
+        "MEDIUM": 1,
+        "HARD": 1,
+        "VERY_HARD": 1
+      },
+      "REWRITE_EQUIV": {
+        "EASY": 0,
+        "MEDIUM": 1,
+        "HARD": 2,
+        "VERY_HARD": 0
+      },
+      "FR_TO_FA": {
+        "EASY": 1,
+        "MEDIUM": 1,
+        "HARD": 1,
+        "VERY_HARD": 1
+      },
+      "FA_TO_FR": {
+        "EASY": 1,
+        "MEDIUM": 1,
+        "HARD": 1,
+        "VERY_HARD": 1
+      },
+      "DIALOGUE_COMPLETE": {
+        "EASY": 1,
+        "MEDIUM": 3,
+        "HARD": 2,
+        "VERY_HARD": 1
+      },
+      "CONTRAST_RULES": {
+        "EASY": 1,
+        "MEDIUM": 2,
+        "HARD": 2,
+        "VERY_HARD": 0
+      }
+    },
+    "type_by_difficulty_actual": {
+      "CLOZE_SINGLE": {
+        "EASY": 1,
+        "MEDIUM": 2,
+        "HARD": 2,
+        "VERY_HARD": 1
+      },
+      "CLOZE_CONTEXT": {
+        "EASY": 1,
+        "MEDIUM": 4,
+        "HARD": 3,
+        "VERY_HARD": 1
+      },
+      "CORRECT_SENTENCE": {
+        "EASY": 1,
+        "MEDIUM": 2,
+        "HARD": 2,
+        "VERY_HARD": 0
+      },
+      "INCORRECT_SENTENCE": {
+        "EASY": 1,
+        "MEDIUM": 1,
+        "HARD": 1,
+        "VERY_HARD": 1
+      },
+      "ERROR_LOCATION": {
+        "EASY": 0,
+        "MEDIUM": 1,
+        "HARD": 1,
+        "VERY_HARD": 1
+      },
+      "REWRITE_EQUIV": {
+        "EASY": 0,
+        "MEDIUM": 1,
+        "HARD": 2,
+        "VERY_HARD": 0
+      },
+      "FR_TO_FA": {
+        "EASY": 1,
+        "MEDIUM": 1,
+        "HARD": 1,
+        "VERY_HARD": 1
+      },
+      "FA_TO_FR": {
+        "EASY": 1,
+        "MEDIUM": 1,
+        "HARD": 1,
+        "VERY_HARD": 1
+      },
+      "DIALOGUE_COMPLETE": {
+        "EASY": 1,
+        "MEDIUM": 3,
+        "HARD": 2,
+        "VERY_HARD": 1
+      },
+      "CONTRAST_RULES": {
+        "EASY": 1,
+        "MEDIUM": 2,
+        "HARD": 2,
+        "VERY_HARD": 0
+      }
+    },
+    "remaining_after_batch": {
+      "EASY": 17,
+      "MEDIUM": 41,
+      "HARD": 41,
+      "VERY_HARD": 18
+    },
+    "stage8_scores_in_band_pass": true,
+    "very_hard_item_ids": [
+      "GMP-FULL-B052-Q005",
+      "GMP-FULL-B052-Q012",
+      "GMP-FULL-B052-Q023",
+      "GMP-FULL-B052-Q027",
+      "GMP-FULL-B052-Q034",
+      "GMP-FULL-B052-Q038",
+      "GMP-FULL-B052-Q045"
+    ],
+    "very_hard_source_support_note": "VERY_HARD items combine only explicit Lesson 12 contrasts: des/de+d’ before a preposed adjective, date-vs-series placement, adjective-position meaning, ordered number+adjective placement, and neuf/nouveau. No unsupported trick/exception was used.",
+    "hard_gate_blocked_not_scorable_count": 0,
+    "pass": true
+  },
+  "coverage_and_compatibility": {
+    "rule": "BR06 / COMPATIBILITY_BALANCED_V1",
+    "tier_order": [
+      "PREFERRED",
+      "ALLOWED",
+      "CONDITIONAL"
+    ],
+    "current_batch_subtopic_counts": {
+      "L12-S01": 6,
+      "L12-S02": 6,
+      "L12-S03": 6,
+      "L12-S04": 5,
+      "L12-S05": 5,
+      "L12-S06": 12,
+      "L12-S07": 10
+    },
+    "cumulative_subtopic_counts_before_batch": {
+      "L12-S01": 0,
+      "L12-S02": 0,
+      "L12-S03": 0,
+      "L12-S04": 0,
+      "L12-S05": 0,
+      "L12-S06": 0,
+      "L12-S07": 0
+    },
+    "cumulative_subtopic_counts_after_batch": {
+      "L12-S01": 6,
+      "L12-S02": 6,
+      "L12-S03": 6,
+      "L12-S04": 5,
+      "L12-S05": 5,
+      "L12-S06": 12,
+      "L12-S07": 10
+    },
+    "compatibility_summary": {
+      "PREFERRED": 23,
+      "ALLOWED": 27
+    },
+    "conditional_guardrail_applied_count": 0,
+    "not_suitable_count": 0,
+    "coverage_note": "No numeric subtopic quota was invented. DIALOGUE_COMPLETE is concentrated on L12-S06 because it is the sole ALLOWED subtopic while the other six are CONDITIONAL. CONTRAST_RULES uses PREFERRED support on L12-S07; other types use PREFERRED/ALLOWED eligible subtopics with least-used balancing.",
+    "pass": true
+  },
+  "distractor_and_misconception_validation": {
+    "catalogue_sha256": "f29839f77cede96ca7f6a9aa3ecace645e10e2ed",
+    "distractor_rules_sha256": "add62b4906c4f3a7ae98ca556df3f478e50b94e5",
+    "misconception_ids_used": [
+      "0df7fc38-5e70-5559-b946-3ced907a26d7",
+      "2d60df3a-7ca1-58a4-936d-199b0ba40864",
+      "35b6170d-c83a-5a32-87b5-9294d0e2b159",
+      "3ca45dfa-0975-53ee-8d15-7633cb60d057",
+      "452991e8-0551-50a5-986f-d76d02d9648c",
+      "47ced59b-5160-5de5-937d-9b52eeee60c0",
+      "564fd07b-8cef-530a-b62e-50213d11e6b7",
+      "5945297b-8f7c-5581-ae6b-f0801f889c8b",
+      "5f27e55c-2d3f-5a91-8815-06b65f9381d1",
+      "628c56c3-2b68-554c-ab8d-678d5bb0b0d4",
+      "766cae19-d7c6-5f34-8359-726398e39380",
+      "949861c4-29e1-5263-a006-615c1ce9e308",
+      "9968e588-5efa-5114-bbff-afd66db0a0b4",
+      "b8c9c2cc-3d6f-58e1-8473-be0095d9d780",
+      "c53d6bd1-a698-5e5e-bf11-f9458c5e8baf",
+      "d78f44d6-5a94-5b65-9775-09adaa7d90fb",
+      "ddcd50c0-c49a-5adf-a748-9b0c33682958",
+      "efcd4520-ba91-5dec-9635-8dc48adcaa5a",
+      "f083640e-af3a-5a70-b53e-443394812cf2",
+      "f1410e4c-4542-5168-802c-8bb79174276b",
+      "f1b4262e-563b-5951-80cc-62ccae17fd15"
+    ],
+    "correct_option_misconception_blank_pass": true,
+    "all_wrong_options_mapped_to_valid_current_l12_misconception_ids_pass": true,
+    "single_correct_answer_manual_content_review_pass": true,
+    "plausibility_parallelism_review_pass": true,
+    "no_typo_only_set_pass": true,
+    "source_rule_only_pass": true
+  },
+  "correct_position_audit": {
+    "sequence": "BCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABC",
+    "current_batch_counts": {
+      "A": 12,
+      "B": 13,
+      "C": 13,
+      "D": 12
+    },
+    "max_adjacent_streak_current_batch": 1,
+    "previous_batch_last_position": "A",
+    "current_batch_first_position": "B",
+    "boundary_repeat": false,
+    "pass": true
+  },
+  "duplicate_validation": {
+    "registry_signature_version": "question-bank-registry-signatures-v1.0",
+    "normalization": "Unicode NFC + casefold + NBSP-to-space + whitespace collapse",
+    "prior_registry_rows_compared": 2257,
+    "external_id_duplicate_cross": 0,
+    "normalized_stem_duplicate_cross": 0,
+    "structural_signature_duplicate_cross": 0,
+    "semantic_signature_duplicate_cross": 0,
+    "fingerprint_hash_collision_cross": 0,
+    "within_batch_external_id_duplicates": 0,
+    "within_batch_normalized_stem_duplicates": 0,
+    "within_batch_structural_signature_duplicates": 0,
+    "within_batch_semantic_signature_duplicates": 0,
+    "within_batch_fingerprint_duplicates": 0,
+    "semantic_method": "TF-IDF char_wb 3-5 grams on normalized stem + correct answer; cosine threshold 0.8",
+    "semantic_threshold": 0.8,
+    "semantic_near_duplicates_cross": 0,
+    "semantic_near_duplicates_within": 0,
+    "max_cross_batch_similarity": 0.5921274198027335,
+    "max_cross_batch_pair": [
+      "GMP-FULL-B052-Q041",
+      "GMP-FULL-B027-Q004"
+    ],
+    "max_within_batch_similarity": 0.6801089494076348,
+    "max_within_batch_pair": [
+      "GMP-FULL-B052-Q013",
+      "GMP-FULL-B052-Q040"
+    ],
+    "stage10_fingerprint_contract": "question-fingerprint-v0.9.0; SHA-256(normalized stem + stable links + type + correct text + sorted option texts), U+001F serialization.",
+    "pass": true
+  },
+  "content_repair": {
+    "pre_export_content_review_repaired_item_count": 24,
+    "pre_export_content_review_repaired_question_ids": [
+      "GMP-FULL-B052-Q003",
+      "GMP-FULL-B052-Q006",
+      "GMP-FULL-B052-Q007",
+      "GMP-FULL-B052-Q010",
+      "GMP-FULL-B052-Q013",
+      "GMP-FULL-B052-Q016",
+      "GMP-FULL-B052-Q017",
+      "GMP-FULL-B052-Q018",
+      "GMP-FULL-B052-Q019",
+      "GMP-FULL-B052-Q020",
+      "GMP-FULL-B052-Q022",
+      "GMP-FULL-B052-Q028",
+      "GMP-FULL-B052-Q029",
+      "GMP-FULL-B052-Q039",
+      "GMP-FULL-B052-Q040",
+      "GMP-FULL-B052-Q041",
+      "GMP-FULL-B052-Q042",
+      "GMP-FULL-B052-Q043",
+      "GMP-FULL-B052-Q044",
+      "GMP-FULL-B052-Q045",
+      "GMP-FULL-B052-Q046",
+      "GMP-FULL-B052-Q047",
+      "GMP-FULL-B052-Q048",
+      "GMP-FULL-B052-Q050"
+    ],
+    "repair_scope": "Only items with potential ambiguity, implausible distractors, multiple-error distractors, or insufficiently precise contextual cues were revised before final static validation.",
+    "static_validation_failure_count_after_repairs": 0,
+    "repair_iterations_after_static_failure": 0,
+    "final_unresolved_failures": 0
+  },
+  "lesson_progress": {
+    "lesson_no": 12,
+    "lesson_target": 167,
+    "completed_after_batch": 50,
+    "remaining_after_batch": 117,
+    "status": "IN_PROGRESS"
+  },
+  "import_pipeline": {
+    "status": "STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT",
+    "authoring_blocked": false,
+    "static_validation_blocked": false,
+    "preview_executed": false,
+    "commit_executed": false,
+    "stage23_runtime_executed": false
+  },
+  "next_batch_started": false,
+  "output_integrity": {
+    "csv_file": "question_bank_full_B052_L12_P01.csv",
+    "csv_sha256": "afe9ef88639b30c3369b5e7d90f9921bdea075e4593045f30df226f5fa362458",
+    "registry_file": "question_bank_global_registry.csv",
+    "registry_sha256": "9bcf534966977393117d6f2f9349ef35822349e318784ddc322fd6502e64847c",
+    "registry_rows": 2307
+  }
+}

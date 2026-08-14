@@ -1,0 +1,141 @@
+{
+  "batch_id": "B078",
+  "batch_name": "FULL-L18-P01",
+  "lesson_no": 18,
+  "lesson_id": "ec290ee6-f705-4b74-98db-7e4079c54d60",
+  "lesson_title": "L’ADVERBE",
+  "expected_count": 50,
+  "actual_count": 50,
+  "schema_columns": 46,
+  "status_required": "DRAFT",
+  "result": "PASS_STATIC_AUTHORING",
+  "stage23_status": "STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT",
+  "stage23_import_preview_commit_executed": false,
+  "source_snapshot": {
+    "github_main_commit": "5de0e0058cef28643cd8f079b465e25489f2b101",
+    "README.md_sha": "3c9f9911cf4c7c427998a5fbaed0a62d937493e6",
+    "STATUS.md_sha": "97312ecd4963dde9a77b679046d41f2e3582ba65",
+    "ROADMAP.md": "NOT_PRESENT_AT_ROOT__PROJECT_GUIDE_USED",
+    "AGENTS.md": "NOT_PRESENT_AT_ROOT",
+    "batch_plan_sha256": "59e4fbbad89446bb3370c1db9d4dce3b7275f557bed1ea4b197b967cf91d71d6",
+    "reference_book_sha256": "b6162aacc084cd78ec46f43972fdc68f9330576ea909f4a51767c3333c7e74ca",
+    "project_guide_sha256": "8a561160d698ffb811453d20b9c610fbb644c7593cca10b3bca6728c7969e6a7",
+    "stage6_question_type_targets_sha": "8f5edea191c6304b498b44fc4a3fcb9281a7abce",
+    "stage6_question_type_catalogue_sha": "834ba7d78109164247955c91930a1362ee6a2d0a",
+    "stage6_subtopic_compatibility_sha": "aaddf210bc5130b56d501338ef73b6054b2904e8",
+    "stage7_misconception_catalogue_sha": "f29839f77cede96ca7f6a9aa3ecace645e10e2ed",
+    "stage9_difficulty_targets_sha": "813ad10d560ee4fb175f9aeffdd5f789fa131055",
+    "stage10_schema_sha": "4ca25048d894d824849398d93019a1f4a6345fd3",
+    "stage11_workflow_sha": "3396f06477da1f09efe03cedd72cb90be6dc592a"
+  },
+  "quota": {
+    "question_type": {
+      "CLOZE_SINGLE": 6,
+      "CLOZE_CONTEXT": 10,
+      "CORRECT_SENTENCE": 3,
+      "INCORRECT_SENTENCE": 5,
+      "ERROR_LOCATION": 3,
+      "PREPOSITION_CHOICE": 4,
+      "REWRITE_EQUIV": 3,
+      "FR_TO_FA": 4,
+      "FA_TO_FR": 2,
+      "DIALOGUE_COMPLETE": 4,
+      "CONTRAST_RULES": 6
+    },
+    "difficulty": {
+      "EASY": 10,
+      "MEDIUM": 20,
+      "HARD": 15,
+      "VERY_HARD": 5
+    },
+    "subtopic": {
+      "L18-S01": 8,
+      "L18-S02": 8,
+      "L18-S03": 8,
+      "L18-S04": 8,
+      "L18-S05": 9,
+      "L18-S06": 9
+    }
+  },
+  "compatibility": {
+    "NOT_SUITABLE_used": 0,
+    "CONDITIONAL_used": 0,
+    "compatibility_balanced_rule": "COMPATIBILITY_BALANCED_V1"
+  },
+  "answer_and_schema_qa": {
+    "all_rows_have_46_columns": true,
+    "all_status_DRAFT": true,
+    "four_distinct_options_each": true,
+    "exactly_one_correct_option_each": true,
+    "correct_option_misconception_blank_each": true,
+    "three_wrong_option_misconceptions_nonblank_each": true,
+    "locale_contract_passed": true,
+    "media_type_NONE_for_all": true
+  },
+  "content_qa": {
+    "ambiguous_or_multiple_correct_count": 0,
+    "unsupported_trick_count": 0,
+    "open_translation_count": 0,
+    "source_scope": "Lesson 18; printed pp. 82 and 84 only, plus frozen Stage 1–11 rules"
+  },
+  "duplicate_validation": {
+    "initial_flagged_question_count": 0,
+    "initial_flagged_external_ids": [],
+    "repair_scope": "NO_REPAIR_REQUIRED",
+    "final_exact": 0,
+    "final_normalized": 0,
+    "final_structural": 0,
+    "final_semantic_hash": 0,
+    "final_fingerprint": 0,
+    "final_near_duplicate_threshold": 0.86,
+    "final_near_duplicate_count": 0,
+    "max_cross_similarity_after_repair": 0.4965,
+    "max_cross_similarity_pair": [
+      "GMP-FULL-B078-Q022",
+      "GMP-FULL-B050-Q026"
+    ],
+    "max_within_similarity_after_repair": 0.7454,
+    "max_within_similarity_pair": [
+      "GMP-FULL-B078-Q006",
+      "GMP-FULL-B078-Q043"
+    ]
+  },
+  "lesson_completion": {
+    "before": 0,
+    "added": 50,
+    "after": 50,
+    "target": 218,
+    "remaining": 168
+  },
+  "remaining_lesson_targets": {
+    "question_type": {
+      "CLOZE_SINGLE": 19,
+      "CLOZE_CONTEXT": 32,
+      "CORRECT_SENTENCE": 11,
+      "INCORRECT_SENTENCE": 15,
+      "ERROR_LOCATION": 11,
+      "CONJUGATION": 0,
+      "TENSE_CHOICE": 0,
+      "PRONOUN_CHOICE": 0,
+      "PREPOSITION_CHOICE": 15,
+      "REWRITE_EQUIV": 10,
+      "FR_TO_FA": 15,
+      "FA_TO_FR": 7,
+      "DIALOGUE_COMPLETE": 13,
+      "REGISTER_CHOICE": 0,
+      "CONTRAST_RULES": 20
+    },
+    "difficulty": {
+      "EASY": 34,
+      "MEDIUM": 67,
+      "HARD": 50,
+      "VERY_HARD": 17
+    }
+  },
+  "notes": [
+    "B078 is the first of five batches for Lesson 18.",
+    "Correct-option sequence continues from B077 (last=A) with B,C,D,A rotation.",
+    "Stage 23 Import/Preview/Commit was not executed.",
+    "Independent Stage 11 review is still required before APPROVED/PUBLISHED."
+  ]
+}

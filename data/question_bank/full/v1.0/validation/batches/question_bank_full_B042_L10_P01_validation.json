@@ -1,0 +1,611 @@
+{
+  "validation_version": "question-bank-static-authoring-validation-v1.0",
+  "batch_id": "B042",
+  "status": "PASS_STATIC_AUTHORING",
+  "generated_at_local": "2026-08-12",
+  "stage23_import_status": "STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT",
+  "stage23_runtime_executed": false,
+  "repository": {
+    "repository": "ImanNasrEsfahani/grammar-mastery-platform",
+    "branch": "main",
+    "commit_sha": "3195cb7ee6dd882092ddd6d6619cd3cd3a5d9384",
+    "access_mode": "READ_ONLY",
+    "github_writes_performed": false,
+    "root_file_audit": {
+      "README.md": "READ",
+      "STATUS.md": "READ",
+      "ROADMAP.md": "NOT_PRESENT_AT_ROOT__PROJECT_GUIDE_USED",
+      "AGENTS.md": "NOT_PRESENT_AT_ROOT",
+      "missing_root_files_authoring_blocker": false
+    }
+  },
+  "continuation_integrity": {
+    "previous_checkpoint_last_completed": "B041",
+    "previous_checkpoint_next": "B042",
+    "previous_checkpoint_sha256": "287633fa913f00f1b090f29c40825088e798602b6e867c15f0655831ac3f9f92",
+    "previous_registry_expected_sha256": "a9016aa20dd8c9ea3a25accbc2444d5a0d389def4acf3714e35067b37a2c0589",
+    "previous_registry_actual_sha256": "a9016aa20dd8c9ea3a25accbc2444d5a0d389def4acf3714e35067b37a2c0589",
+    "previous_registry_row_count": 1806,
+    "previous_batch_csv_expected_sha256": "904e5e378e44f2369d1e0101f4d161c8ef239168e1ad8ad4ff23718b36c16ebe",
+    "previous_batch_csv_actual_sha256": "904e5e378e44f2369d1e0101f4d161c8ef239168e1ad8ad4ff23718b36c16ebe",
+    "previous_batch_validation_expected_sha256": "1a89fba9a33941d8d9b299c1b15863edb1f838f2fb214431f83025a536d4c021",
+    "previous_batch_validation_actual_sha256": "1a89fba9a33941d8d9b299c1b15863edb1f838f2fb214431f83025a536d4c021",
+    "pass": true
+  },
+  "plan": {
+    "plan_sha256": "59e4fbbad89446bb3370c1db9d4dce3b7275f557bed1ea4b197b967cf91d71d6",
+    "global_batch_no": 42,
+    "batch_name": "FULL-L10-P01",
+    "lesson_no": 10,
+    "lesson_id": "988143e8-7e0e-46e1-94a0-f87f7a1267f5",
+    "lesson_title_fr": "LA SITUATION dans l’ESPACE (1)",
+    "category_code": "CAT08",
+    "subcategory_code": "SUB19",
+    "lesson_part": 1,
+    "lesson_parts_total": 5,
+    "question_ordinal_start": 1,
+    "question_ordinal_end": 50,
+    "batch_question_count": 50,
+    "difficulty_profile": "FOUNDATION",
+    "difficulty_counts": {
+      "EASY": 15,
+      "MEDIUM": 23,
+      "HARD": 10,
+      "VERY_HARD": 2
+    },
+    "external_id_prefix": "GMP-FULL-B042",
+    "output_csv": "question_bank_full_B042_L10_P01.csv",
+    "expected_zip": "question_bank_full_B042_L10_P01.zip",
+    "sequential_dependency": "B041",
+    "plan_depends_on": null,
+    "next_batch": "B043",
+    "lesson_cumulative_after_batch": 50,
+    "lesson_remaining_after_batch": 157,
+    "global_cumulative_after_batch": 1856,
+    "global_remaining_after_batch": 8780
+  },
+  "source_provenance": {
+    "authoritative_book": {
+      "sha256": "b6162aacc084cd78ec46f43972fdc68f9330576ea909f4a51767c3333c7e74ca",
+      "lesson_pages_printed": "44-47",
+      "lesson_pages_pdf": "46-49",
+      "authoring_scope": "Lesson 10 only: city/country/continent article patterns and geographic prepositions; dans/sur/sous and fixed location/media constructions; au-dessus de/au-dessous de vs adverbial forms; près de/loin de/à côté de."
+    },
+    "project_guide": {
+      "sha256": "8a561160d698ffb811453d20b9c610fbb644c7593cca10b3bca6728c7969e6a7",
+      "version": "1.0",
+      "relevant_scope": "Stages 1-11 authoring and static QA"
+    },
+    "github_source_shas": {
+      "stage1_subtopics": "d1604a65b44f04654823bb9b2f0cc1a0218269d1",
+      "stage2_mapping": "090b0db74f705b13eebffe990b2467550033d3e6",
+      "stage2_tags": "67f9d08f9678fc01c6bc44c44790768454e91fab",
+      "stage4_targets": "24e38bff93970173c0cca177336485e96660a651",
+      "stage6_targets": "8f5edea191c6304b498b44fc4a3fcb9281a7abce",
+      "stage6_compatibility": "aaddf210bc5130b56d501338ef73b6054b2904e8",
+      "stage7_misconception_catalogue": "f29839f77cede96ca7f6a9aa3ecace645e10e2ed",
+      "stage7_misconception_id_provenance": "75ae3bcaf0cd67bff476bd692078a6d3955f2132",
+      "stage7_distractor_rules": "add62b4906c4f3a7ae98ca556df3f478e50b94e5",
+      "stage8_policy": "a7102a0dbfbf6e969abf0b5cbe1aafe085895601",
+      "stage9_targets": "813ad10d560ee4fb175f9aeffdd5f789fa131055",
+      "stage10_schema": "4ca25048d894d824849398d93019a1f4a6345fd3",
+      "stage11_workflow": "3396f06477da1f09efe03cedd72cb90be6dc592a"
+    },
+    "stage1_subtopics": {
+      "L10-S01": {
+        "subtopic_id": "7f509143-7930-4646-bf90-37ce52cf935d",
+        "title": "Villes, pays et continents"
+      },
+      "L10-S02": {
+        "subtopic_id": "e92221b8-33aa-4278-a380-ba4c39503dbc",
+        "title": "Prépositions de lieu avec villes/pays"
+      },
+      "L10-S03": {
+        "subtopic_id": "5f70451b-f7fb-4f03-85f3-1c5ee59fbc3d",
+        "title": "« dans/sur/sous »"
+      },
+      "L10-S04": {
+        "subtopic_id": "9a0d317d-69fe-48cb-a587-46d053de2165",
+        "title": "Position verticale « au-dessus/au-dessous »"
+      },
+      "L10-S05": {
+        "subtopic_id": "7579d8b6-2928-4465-8cbd-6d0b4f7ca84a",
+        "title": "Proximité et distance"
+      }
+    },
+    "taxonomy_version": "taxonomy-v0.9.0",
+    "stage2_primary_tag": "TAG016",
+    "stage4_target_full": 207,
+    "schema_version": "question-import-schema-v0.9.0",
+    "difficulty_model_version": "initial-difficulty-model-v0.9.0",
+    "stage11_workflow_version": "question-qa-workflow-v0.9.0"
+  },
+  "schema_validation": {
+    "expected_column_count": 46,
+    "actual_column_count": 46,
+    "exact_header_order_pass": true,
+    "row_count_expected": 50,
+    "row_count_actual": 50,
+    "row_count_pass": true,
+    "status_all_draft_pass": true,
+    "four_distinct_options_each_pass": true,
+    "exactly_one_correct_each_pass": true,
+    "correct_option_misconception_blank_pass": true,
+    "distractor_misconceptions_valid_pass": true
+  },
+  "question_type_allocation": {
+    "rule": "BR03 / REMAINING_HAMILTON_V1",
+    "remaining_before_batch": {
+      "CLOZE_SINGLE": 23,
+      "CLOZE_CONTEXT": 41,
+      "CORRECT_SENTENCE": 13,
+      "INCORRECT_SENTENCE": 19,
+      "ERROR_LOCATION": 14,
+      "CONJUGATION": 0,
+      "TENSE_CHOICE": 0,
+      "PRONOUN_CHOICE": 0,
+      "PREPOSITION_CHOICE": 18,
+      "REWRITE_EQUIV": 12,
+      "FR_TO_FA": 18,
+      "FA_TO_FR": 8,
+      "DIALOGUE_COMPLETE": 16,
+      "REGISTER_CHOICE": 0,
+      "CONTRAST_RULES": 25
+    },
+    "expected_current_batch": {
+      "CLOZE_SINGLE": 6,
+      "CLOZE_CONTEXT": 10,
+      "CORRECT_SENTENCE": 3,
+      "INCORRECT_SENTENCE": 5,
+      "ERROR_LOCATION": 3,
+      "CONJUGATION": 0,
+      "TENSE_CHOICE": 0,
+      "PRONOUN_CHOICE": 0,
+      "PREPOSITION_CHOICE": 4,
+      "REWRITE_EQUIV": 3,
+      "FR_TO_FA": 4,
+      "FA_TO_FR": 2,
+      "DIALOGUE_COMPLETE": 4,
+      "REGISTER_CHOICE": 0,
+      "CONTRAST_RULES": 6
+    },
+    "actual_current_batch": {
+      "CLOZE_SINGLE": 6,
+      "CLOZE_CONTEXT": 10,
+      "CORRECT_SENTENCE": 3,
+      "INCORRECT_SENTENCE": 5,
+      "ERROR_LOCATION": 3,
+      "CONJUGATION": 0,
+      "TENSE_CHOICE": 0,
+      "PRONOUN_CHOICE": 0,
+      "PREPOSITION_CHOICE": 4,
+      "REWRITE_EQUIV": 3,
+      "FR_TO_FA": 4,
+      "FA_TO_FR": 2,
+      "DIALOGUE_COMPLETE": 4,
+      "REGISTER_CHOICE": 0,
+      "CONTRAST_RULES": 6
+    },
+    "remaining_after_batch": {
+      "CLOZE_SINGLE": 17,
+      "CLOZE_CONTEXT": 31,
+      "CORRECT_SENTENCE": 10,
+      "INCORRECT_SENTENCE": 14,
+      "ERROR_LOCATION": 11,
+      "CONJUGATION": 0,
+      "TENSE_CHOICE": 0,
+      "PRONOUN_CHOICE": 0,
+      "PREPOSITION_CHOICE": 14,
+      "REWRITE_EQUIV": 9,
+      "FR_TO_FA": 14,
+      "FA_TO_FR": 6,
+      "DIALOGUE_COMPLETE": 12,
+      "REGISTER_CHOICE": 0,
+      "CONTRAST_RULES": 19
+    },
+    "all_lesson_type_targets_closed_pass": false,
+    "pass": true
+  },
+  "difficulty_validation": {
+    "rule": "BR04 + BR05",
+    "profile": "FOUNDATION",
+    "stage9_full_targets": {
+      "EASY": 62,
+      "MEDIUM": 93,
+      "HARD": 42,
+      "VERY_HARD": 10
+    },
+    "remaining_before_batch": {
+      "EASY": 62,
+      "MEDIUM": 93,
+      "HARD": 42,
+      "VERY_HARD": 10
+    },
+    "expected_current_batch": {
+      "EASY": 15,
+      "MEDIUM": 23,
+      "HARD": 10,
+      "VERY_HARD": 2
+    },
+    "actual_current_batch": {
+      "EASY": 15,
+      "MEDIUM": 23,
+      "HARD": 10,
+      "VERY_HARD": 2
+    },
+    "type_by_difficulty_expected": {
+      "CLOZE_SINGLE": {
+        "EASY": 2,
+        "MEDIUM": 3,
+        "HARD": 1,
+        "VERY_HARD": 0
+      },
+      "CLOZE_CONTEXT": {
+        "EASY": 3,
+        "MEDIUM": 5,
+        "HARD": 2,
+        "VERY_HARD": 0
+      },
+      "CORRECT_SENTENCE": {
+        "EASY": 1,
+        "MEDIUM": 1,
+        "HARD": 1,
+        "VERY_HARD": 0
+      },
+      "INCORRECT_SENTENCE": {
+        "EASY": 1,
+        "MEDIUM": 2,
+        "HARD": 1,
+        "VERY_HARD": 1
+      },
+      "ERROR_LOCATION": {
+        "EASY": 1,
+        "MEDIUM": 1,
+        "HARD": 1,
+        "VERY_HARD": 0
+      },
+      "CONJUGATION": {
+        "EASY": 0,
+        "MEDIUM": 0,
+        "HARD": 0,
+        "VERY_HARD": 0
+      },
+      "TENSE_CHOICE": {
+        "EASY": 0,
+        "MEDIUM": 0,
+        "HARD": 0,
+        "VERY_HARD": 0
+      },
+      "PRONOUN_CHOICE": {
+        "EASY": 0,
+        "MEDIUM": 0,
+        "HARD": 0,
+        "VERY_HARD": 0
+      },
+      "PREPOSITION_CHOICE": {
+        "EASY": 1,
+        "MEDIUM": 2,
+        "HARD": 1,
+        "VERY_HARD": 0
+      },
+      "REWRITE_EQUIV": {
+        "EASY": 1,
+        "MEDIUM": 1,
+        "HARD": 0,
+        "VERY_HARD": 1
+      },
+      "FR_TO_FA": {
+        "EASY": 1,
+        "MEDIUM": 2,
+        "HARD": 1,
+        "VERY_HARD": 0
+      },
+      "FA_TO_FR": {
+        "EASY": 1,
+        "MEDIUM": 1,
+        "HARD": 0,
+        "VERY_HARD": 0
+      },
+      "DIALOGUE_COMPLETE": {
+        "EASY": 1,
+        "MEDIUM": 2,
+        "HARD": 1,
+        "VERY_HARD": 0
+      },
+      "REGISTER_CHOICE": {
+        "EASY": 0,
+        "MEDIUM": 0,
+        "HARD": 0,
+        "VERY_HARD": 0
+      },
+      "CONTRAST_RULES": {
+        "EASY": 2,
+        "MEDIUM": 3,
+        "HARD": 1,
+        "VERY_HARD": 0
+      }
+    },
+    "type_by_difficulty_actual": {
+      "CLOZE_SINGLE": {
+        "EASY": 2,
+        "MEDIUM": 3,
+        "HARD": 1,
+        "VERY_HARD": 0
+      },
+      "CLOZE_CONTEXT": {
+        "EASY": 3,
+        "MEDIUM": 5,
+        "HARD": 2,
+        "VERY_HARD": 0
+      },
+      "CORRECT_SENTENCE": {
+        "EASY": 1,
+        "MEDIUM": 1,
+        "HARD": 1,
+        "VERY_HARD": 0
+      },
+      "INCORRECT_SENTENCE": {
+        "EASY": 1,
+        "MEDIUM": 2,
+        "HARD": 1,
+        "VERY_HARD": 1
+      },
+      "ERROR_LOCATION": {
+        "EASY": 1,
+        "MEDIUM": 1,
+        "HARD": 1,
+        "VERY_HARD": 0
+      },
+      "CONJUGATION": {
+        "EASY": 0,
+        "MEDIUM": 0,
+        "HARD": 0,
+        "VERY_HARD": 0
+      },
+      "TENSE_CHOICE": {
+        "EASY": 0,
+        "MEDIUM": 0,
+        "HARD": 0,
+        "VERY_HARD": 0
+      },
+      "PRONOUN_CHOICE": {
+        "EASY": 0,
+        "MEDIUM": 0,
+        "HARD": 0,
+        "VERY_HARD": 0
+      },
+      "PREPOSITION_CHOICE": {
+        "EASY": 1,
+        "MEDIUM": 2,
+        "HARD": 1,
+        "VERY_HARD": 0
+      },
+      "REWRITE_EQUIV": {
+        "EASY": 1,
+        "MEDIUM": 1,
+        "HARD": 0,
+        "VERY_HARD": 1
+      },
+      "FR_TO_FA": {
+        "EASY": 1,
+        "MEDIUM": 2,
+        "HARD": 1,
+        "VERY_HARD": 0
+      },
+      "FA_TO_FR": {
+        "EASY": 1,
+        "MEDIUM": 1,
+        "HARD": 0,
+        "VERY_HARD": 0
+      },
+      "DIALOGUE_COMPLETE": {
+        "EASY": 1,
+        "MEDIUM": 2,
+        "HARD": 1,
+        "VERY_HARD": 0
+      },
+      "REGISTER_CHOICE": {
+        "EASY": 0,
+        "MEDIUM": 0,
+        "HARD": 0,
+        "VERY_HARD": 0
+      },
+      "CONTRAST_RULES": {
+        "EASY": 2,
+        "MEDIUM": 3,
+        "HARD": 1,
+        "VERY_HARD": 0
+      }
+    },
+    "remaining_after_batch": {
+      "EASY": 47,
+      "MEDIUM": 70,
+      "HARD": 32,
+      "VERY_HARD": 8
+    },
+    "all_lesson_difficulty_targets_closed_pass": false,
+    "stage8_scores_in_band_pass": true,
+    "very_hard_item_ids": [
+      "GMP-FULL-B042-Q024",
+      "GMP-FULL-B042-Q034"
+    ],
+    "hard_gate_blocked_not_scorable_count": 0,
+    "pass": true
+  },
+  "coverage_and_compatibility": {
+    "rule": "BR06 / COMPATIBILITY_BALANCED_V1",
+    "cumulative_subtopic_counts_before_batch": {
+      "L10-S01": 0,
+      "L10-S02": 0,
+      "L10-S03": 0,
+      "L10-S04": 0,
+      "L10-S05": 0
+    },
+    "expected_current_batch_subtopic_counts": {
+      "L10-S01": 10,
+      "L10-S02": 10,
+      "L10-S03": 10,
+      "L10-S04": 10,
+      "L10-S05": 10
+    },
+    "actual_current_batch_subtopic_counts": {
+      "L10-S01": 10,
+      "L10-S02": 10,
+      "L10-S03": 10,
+      "L10-S04": 10,
+      "L10-S05": 10
+    },
+    "cumulative_subtopic_counts_after_batch": {
+      "L10-S01": 10,
+      "L10-S02": 10,
+      "L10-S03": 10,
+      "L10-S04": 10,
+      "L10-S05": 10
+    },
+    "compatibility_summary": {
+      "PREFERRED_OR_ALLOWED": 45,
+      "CONDITIONAL": 5
+    },
+    "not_suitable_count": 0,
+    "conditional_count": 5,
+    "conditional_guardrails": [
+      {
+        "external_id": "GMP-FULL-B042-Q025",
+        "question_type": "ERROR_LOCATION",
+        "guardrail": "Only if the error is limited to one unique span.",
+        "evidence": "The stem explicitly limits the task to the unique erroneous span « Le » in « Le Paris ... ».",
+        "pass": true
+      },
+      {
+        "external_id": "GMP-FULL-B042-Q026",
+        "question_type": "ERROR_LOCATION",
+        "guardrail": "Only if the error is limited to one unique span.",
+        "evidence": "The sole targeted erroneous span is « au » before the vowel-initial country « Italie ».",
+        "pass": true
+      },
+      {
+        "external_id": "GMP-FULL-B042-Q027",
+        "question_type": "ERROR_LOCATION",
+        "guardrail": "Only if the error is limited to one unique span.",
+        "evidence": "The stem identifies one unique error; only the second « dans » is targeted in the fixed media expression with Internet.",
+        "pass": true
+      },
+      {
+        "external_id": "GMP-FULL-B042-Q039",
+        "question_type": "FA_TO_FR",
+        "guardrail": "Stem must restrict the answer to one unique structure; open translation is forbidden.",
+        "evidence": "The Persian stem explicitly requests a closed, unique four-option translation targeting « en France ».",
+        "pass": true
+      },
+      {
+        "external_id": "GMP-FULL-B042-Q040",
+        "question_type": "FA_TO_FR",
+        "guardrail": "Stem must restrict the answer to one unique structure; open translation is forbidden.",
+        "evidence": "The Persian stem explicitly constrains « near but not immediately next to », making « près de » the unique target among four options.",
+        "pass": true
+      }
+    ],
+    "not_suitable_types_generated": [],
+    "pass": true
+  },
+  "distractor_and_misconception_validation": {
+    "correct_option_misconception_blank_pass": true,
+    "all_wrong_options_mapped_to_valid_l10_misconceptions_pass": true,
+    "misconception_ids_used": [
+      "0538507f-9f74-5108-9a03-d227500544be",
+      "0657ea3a-7ab6-5ec2-b554-f47fd80b6e73",
+      "0a789afb-97df-5312-a22c-89213fe454c5",
+      "12cd4b7c-55e1-5eb0-a0af-5ac52889baf0",
+      "42ef4f6e-88f9-53ba-97d2-4a5a87feb773",
+      "467c5322-a2ba-50b8-9c2f-b595ada732ca",
+      "481bc2c0-9438-56ce-af53-ab21a1d912b0",
+      "56a45ed8-2e3c-5126-a25c-e98547106849",
+      "6d173468-fd63-538b-8ac5-39ce6e549762",
+      "83d38732-3517-5fee-baf6-e39e35e3e10f",
+      "972d52e9-842f-533b-83a9-7cf984d80baf",
+      "b858ea10-7591-56c2-82da-fff638df3c50",
+      "be01ed44-71bb-5318-9a8b-79d2884553ef",
+      "ce3f76fb-8c2a-5652-9d94-68ed9c9b1570",
+      "f9ab2a64-6ed7-5f34-a14b-b27502747ea3"
+    ],
+    "single_correct_answer_manual_content_review_pass": true,
+    "plausibility_and_parallelism_manual_content_review_pass": true
+  },
+  "correct_position_audit": {
+    "sequence": "CDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCD",
+    "current_batch_counts": {
+      "A": 12,
+      "B": 12,
+      "C": 13,
+      "D": 13
+    },
+    "max_adjacent_streak_current_batch": 1,
+    "previous_batch_last_position": "B",
+    "current_batch_first_position": "C",
+    "boundary_repeat": false,
+    "pass": true
+  },
+  "duplicate_validation": {
+    "registry_signature_version": "question-bank-registry-signatures-v1.0",
+    "normalization": "Unicode NFC + casefold + NBSP-to-space + whitespace collapse",
+    "semantic_method": "TF-IDF char_wb 3-5 grams on normalized stem + correct answer; cosine threshold 0.8",
+    "semantic_threshold": 0.8,
+    "prior_registry_rows_compared": 1806,
+    "external_id_duplicate_cross": 0,
+    "normalized_stem_duplicate_cross": 0,
+    "structural_signature_duplicate_cross": 0,
+    "semantic_signature_duplicate_cross": 0,
+    "registry_fingerprint_hash_collision_cross": 0,
+    "within_batch_normalized_stem_duplicates": 0,
+    "within_batch_structural_signature_duplicates": 0,
+    "within_batch_semantic_signature_duplicates": 0,
+    "within_batch_registry_fingerprint_duplicates": 0,
+    "semantic_near_duplicates_cross": 0,
+    "semantic_near_duplicates_within": 0,
+    "max_cross_batch_similarity": 0.5073319869623635,
+    "max_cross_batch_pair": {
+      "new": "GMP-FULL-B042-Q025",
+      "previous": "GMP-FULL-B041-Q020"
+    },
+    "max_within_batch_similarity": 0.60646675177346,
+    "max_within_batch_pair": {
+      "a": "GMP-FULL-B042-Q016",
+      "b": "GMP-FULL-B042-Q044"
+    },
+    "stage10_fingerprint_contract": "question-fingerprint-v0.9.0 inputs preserved; deterministic registry serialization uses U+001F between normalized fields.",
+    "pass": true
+  },
+  "content_repair": {
+    "pre_final_repair_iterations": 1,
+    "repaired_question_ids": [
+      "GMP-FULL-B042-Q024",
+      "GMP-FULL-B042-Q034"
+    ],
+    "repair_reason": "The two initial VERY_HARD drafts were strengthened to require multi-cue relation tracking and exact preservation of three spatial relations; Lesson 10 rules, subtopics, quotas and correct grammatical targets were unchanged.",
+    "repair_scope_policy": "Only the two items failing the difficulty-truthfulness review were repaired.",
+    "final_unresolved_failures": 0
+  },
+  "lesson_progress": {
+    "lesson_no": 10,
+    "lesson_target": 207,
+    "completed_after_batch": 50,
+    "remaining_after_batch": 157,
+    "status": "IN_PROGRESS"
+  },
+  "import_pipeline": {
+    "status": "STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT",
+    "authoring_blocked": false,
+    "static_validation_blocked": false,
+    "preview_executed": false,
+    "commit_executed": false,
+    "stage23_runtime_executed": false
+  },
+  "next_batch_started": false,
+  "output_integrity": {
+    "csv_file": "question_bank_full_B042_L10_P01.csv",
+    "csv_sha256": "3803377e1998541b81d20c0deb996cd84f2916475a43075ef46089185233ecca",
+    "registry_file": "question_bank_global_registry.csv",
+    "registry_sha256": "cd822f7f6a157bca5d0db5b6ebfb0ef589d556e4fd1ca3192f969ab30e802f8b",
+    "registry_rows": 1856
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "batch_id": "B077",
+  "batch_name": "FULL-L17-P04",
+  "lesson_no": 17,
+  "lesson_title": "LE TEMPS (2)",
+  "expected_count": 49,
+  "actual_count": 49,
+  "schema_columns": 46,
+  "status_required": "DRAFT",
+  "result": "PASS_STATIC_AUTHORING",
+  "stage23_status": "STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT",
+  "stage23_import_preview_commit_executed": false,
+  "quota": {
+    "question_type": {
+      "CLOZE_SINGLE": 5,
+      "CLOZE_CONTEXT": 9,
+      "CORRECT_SENTENCE": 4,
+      "INCORRECT_SENTENCE": 4,
+      "ERROR_LOCATION": 4,
+      "PREPOSITION_CHOICE": 4,
+      "REWRITE_EQUIV": 3,
+      "FR_TO_FA": 4,
+      "FA_TO_FR": 2,
+      "DIALOGUE_COMPLETE": 4,
+      "CONTRAST_RULES": 6
+    },
+    "difficulty": {
+      "MEDIUM": 19,
+      "HARD": 15,
+      "EASY": 10,
+      "VERY_HARD": 5
+    },
+    "subtopic": {
+      "L17-S03": 13,
+      "L17-S01": 12,
+      "L17-S02": 12,
+      "L17-S04": 12
+    }
+  },
+  "compatibility": {
+    "NOT_SUITABLE_used": 0,
+    "CONDITIONAL_used": 0
+  },
+  "duplicate_validation": {
+    "initial_flagged_question_count": 4,
+    "initial_flagged_external_ids": [
+      "GMP-FULL-B077-Q044",
+      "GMP-FULL-B077-Q045",
+      "GMP-FULL-B077-Q048",
+      "GMP-FULL-B077-Q049"
+    ],
+    "repair_scope": "ONLY_FLAGGED_QUESTIONS",
+    "final_exact": 0,
+    "final_normalized": 0,
+    "final_structural": 0,
+    "final_semantic_hash": 0,
+    "final_near_duplicate_threshold": 0.86,
+    "final_near_duplicate_count": 0,
+    "max_cross_similarity_after_repair": 0.5565,
+    "max_within_similarity_after_repair": 0.6732
+  },
+  "lesson_completion": {
+    "before": 150,
+    "added": 49,
+    "after": 199,
+    "target": 199,
+    "remaining": 0
+  },
+  "notes": [
+    "B077 is the final batch for Lesson 17.",
+    "Stage 23 Import/Preview/Commit was not executed."
+  ]
+}
