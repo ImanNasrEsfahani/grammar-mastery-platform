@@ -62,7 +62,7 @@ class Stage22FrontendContractTests(unittest.TestCase):
         self.assertNotIn("access_token", combined)
         login_route = self.frontend_sources["src/app/api/session/login/route.ts"]
         self.assertIn("httpOnly: true", login_route)
-        self.assertIn('cookieStore.set("gmp_access_token"', login_route)
+        self.assertIn('response.cookies.set("gmp_access_token"', login_route)
 
     def test_retry_store_excludes_sensitive_and_answer_key_fields(self):
         schema = json.loads((ROOT / "schemas/stage22_pending_answer_v1.0.json").read_text(encoding="utf-8"))

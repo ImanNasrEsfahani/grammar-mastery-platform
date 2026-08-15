@@ -22,6 +22,19 @@ CANONICAL_PUBLICATION_VERSION = "canonical-question-bank-publication-v1.0.0"
 CANONICAL_PUBLISHER_EXTERNAL_ID = "canonical-question-bank-publisher-v1.0"
 SYSTEM_VERSION_COMPONENT = "question_bank.canonical_seed"
 STAGE23_MARKER = "STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT"
+QB_COMPATIBILITY_CATALOGUE_VERSION = "question-bank-misconception-compatibility-v1.0.0"
+QB_COMPATIBILITY_FAMILY = "QUESTION_BANK_COMPATIBILITY"
+QB_COMPATIBILITY_RELATIVE_PATH = Path(
+    "data/question_bank/full/v1.0/compatibility/"
+    "question_bank_misconception_compatibility_B042_B081_v1.0.csv"
+)
+QB_COMPATIBILITY_HEADER = [
+    "catalogue_version", "misconception_id", "home_subtopic_id", "home_subtopic_code",
+    "question_bank_scope", "first_external_id", "use_count", "subtopic_codes_seen",
+    "family", "name_fa", "statement_fa", "diagnostic_interpretation_fa",
+    "distractor_authoring_hint_fa", "priority", "status", "empirical_commonness",
+    "evidence_examples", "source_ref",
+]
 EXPECTED_HEADER = [
     "schema_version", "external_id", "question_revision", "lesson_id", "lesson_code",
     "subtopic_id", "subtopic_code", "secondary_subtopic_ids", "question_type", "stem",
@@ -460,7 +473,221 @@ def seed_stage7_and_build_map(cur: psycopg.Cursor, root: Path) -> tuple[dict[str
         )
         mapping[old] = old_uuid
         inserted += 1
+
+    # Current canonical Question Bank authoring artifacts can reference the
+    # recovered Stage7 v1.0 deterministic UUIDs, while the database keeps the
+    # historical v0.9 misconception UUIDs as its canonical identity. Resolve
+    # recovered IDs as aliases to the already-seeded historical rows instead of
+    # creating duplicate misconception concepts.
+    recovered_path = root / "data/question_authoring/stage7/stage7_misconception_catalogue_recovered_v1.0.csv"
+    _, recovered_rows = read_csv(recovered_path)
+    for r in recovered_rows:
+        recovered = stage7_value(r, "id")
+        sid = stage7_value(r, "subtopic_id")
+        family = stage7_value(r, "family")
+        if not recovered or not sid or not family:
+            raise BootstrapError("Stage7 recovered catalogue row misses misconception_id/subtopic_id/family")
+        if recovered in mapping:
+            continue
+
+        name = stage7_value(r, "name") or None
+        statement = stage7_value(r, "statement")
+        cur.execute(
+            """
+            SELECT id,statement_fa FROM misconceptions
+            WHERE subtopic_id=%s AND family=%s AND name_fa IS NOT DISTINCT FROM %s
+            ORDER BY id
+            """,
+            (sid, family, name),
+        )
+        matches = cur.fetchall()
+        if len(matches) > 1 and statement:
+            exact_statement = [m for m in matches if (m["statement_fa"] or "").strip() == statement.strip()]
+            if len(exact_statement) == 1:
+                matches = exact_statement
+
+        # A recovered package can carry revised wording while preserving the
+        # original misconception concept. Prefer exact statement identity, then
+        # fall back to a unique subtopic+family concept. Never guess across
+        # multiple historical concepts.
+        if len(matches) == 0 and statement:
+            cur.execute(
+                """
+                SELECT id,statement_fa FROM misconceptions
+                WHERE subtopic_id=%s AND family=%s AND statement_fa=%s
+                ORDER BY id
+                """,
+                (sid, family, statement),
+            )
+            matches = cur.fetchall()
+        if len(matches) == 0:
+            cur.execute(
+                """
+                SELECT id,statement_fa FROM misconceptions
+                WHERE subtopic_id=%s AND family=%s
+                ORDER BY id
+                """,
+                (sid, family),
+            )
+            matches = cur.fetchall()
+
+        if len(matches) == 1:
+            mapping[recovered] = matches[0]["id"]
+        # Unused recovered rows do not block bootstrap. Any recovered ID that is
+        # actually referenced by a Question Bank row is still fail-closed later
+        # in upsert_questions if no unique historical concept was resolved.
+
     return mapping, inserted
+
+
+def load_qbank_compatibility_catalogue(root: Path) -> list[dict[str, str]]:
+    """Load the versioned compatibility bridge for legacy Question Bank IDs.
+
+    B042-B081 were statically authored with diagnostic UUIDs that are not part
+    of either the historical Stage7 v0.9 catalogue or its recovered v1.0 alias
+    namespace.  These rows preserve those already-reviewed option references
+    without pretending they are new canonical Stage7 taxonomy entries.
+    """
+    path = root / QB_COMPATIBILITY_RELATIVE_PATH
+    header, rows = read_csv(path)
+    if header != QB_COMPATIBILITY_HEADER:
+        raise BootstrapError("Question Bank misconception compatibility catalogue header/version drift")
+    if not rows:
+        raise BootstrapError("Question Bank misconception compatibility catalogue is empty")
+
+    ids: set[str] = set()
+    for n, row in enumerate(rows, start=2):
+        if row.get("catalogue_version", "").strip() != QB_COMPATIBILITY_CATALOGUE_VERSION:
+            raise BootstrapError(f"compatibility catalogue version mismatch at line {n}")
+        mid = row.get("misconception_id", "").strip()
+        sid = row.get("home_subtopic_id", "").strip()
+        code = row.get("home_subtopic_code", "").strip()
+        if not mid or not sid or not code:
+            raise BootstrapError(f"compatibility catalogue misses id/subtopic at line {n}")
+        try:
+            uuid.UUID(mid)
+            uuid.UUID(sid)
+        except ValueError as exc:
+            raise BootstrapError(f"invalid UUID in compatibility catalogue at line {n}") from exc
+        if mid in ids:
+            raise BootstrapError(f"duplicate compatibility misconception_id: {mid}")
+        ids.add(mid)
+        if row.get("family", "").strip() != QB_COMPATIBILITY_FAMILY:
+            raise BootstrapError(f"compatibility family drift at line {n}")
+        if row.get("question_bank_scope", "").strip() != "B042-B081":
+            raise BootstrapError(f"compatibility scope drift at line {n}")
+        if not row.get("statement_fa", "").strip():
+            raise BootstrapError(f"compatibility statement missing at line {n}")
+    return rows
+
+
+def seed_qbank_compatibility_misconceptions(
+    cur: psycopg.Cursor,
+    root: Path,
+    question_rows: list[dict[str, str]],
+    mapping: dict[str, uuid.UUID],
+) -> dict[str, int]:
+    """Resolve only the Question Bank diagnostic IDs still unknown after Stage7.
+
+    Canonical Stage7 identities always win.  This bridge is intentionally
+    compatibility-only: it is limited to IDs explicitly checked into the
+    versioned B042-B081 catalogue and fails closed on any new unknown ID.
+    """
+    catalogue_rows = load_qbank_compatibility_catalogue(root)
+    by_id = {row["misconception_id"].strip(): row for row in catalogue_rows}
+
+    use_rows: dict[str, list[tuple[str, str, str]]] = {}
+    for qrow in question_rows:
+        for letter in "abcd":
+            mid = qrow[f"misconception_{letter}_id"].strip()
+            if mid:
+                use_rows.setdefault(mid, []).append(
+                    (qrow["external_id"].strip(), qrow["subtopic_id"].strip(), qrow["subtopic_code"].strip())
+                )
+
+    unknown_used = sorted(set(use_rows) - set(mapping))
+    missing = sorted(set(unknown_used) - set(by_id))
+    if missing:
+        raise BootstrapError(
+            "Question Bank references diagnostic misconception IDs absent from Stage7 and the "
+            f"versioned compatibility catalogue: {missing[:10]}"
+        )
+
+    inserted = 0
+    already_present = 0
+    cross_subtopic_ids = 0
+    for mid in unknown_used:
+        row = by_id[mid]
+        observed = use_rows[mid]
+        first_external_id, first_sid, first_code = observed[0]
+        observed_codes = sorted({code for _, _, code in observed})
+        declared_codes = sorted(filter(None, row["subtopic_codes_seen"].split(";")))
+        if row["first_external_id"].strip() != first_external_id:
+            raise BootstrapError(f"compatibility first_external_id drift for {mid}")
+        if row["home_subtopic_id"].strip() != first_sid or row["home_subtopic_code"].strip() != first_code:
+            raise BootstrapError(f"compatibility home subtopic drift for {mid}")
+        if int(row["use_count"]) != len(observed):
+            raise BootstrapError(f"compatibility use_count drift for {mid}")
+        if declared_codes != observed_codes:
+            raise BootstrapError(f"compatibility subtopic usage drift for {mid}")
+        if len(observed_codes) > 1:
+            cross_subtopic_ids += 1
+
+        sid = row["home_subtopic_id"].strip()
+        cur.execute("SELECT id,subtopic_code FROM grammar_subtopics WHERE id=%s", (sid,))
+        subtopic = cur.fetchone()
+        if subtopic is None or str(subtopic["subtopic_code"]) != row["home_subtopic_code"].strip():
+            raise BootstrapError(f"compatibility catalogue references unknown/mismatched subtopic {sid}")
+
+        mid_uuid = uuid.UUID(mid)
+        cur.execute(
+            "SELECT id,subtopic_id,family,catalogue_version FROM misconceptions WHERE id=%s",
+            (mid_uuid,),
+        )
+        existing = cur.fetchone()
+        if existing is not None:
+            if (
+                str(existing["subtopic_id"]) != sid
+                or str(existing["family"]) != QB_COMPATIBILITY_FAMILY
+                or str(existing["catalogue_version"]) != QB_COMPATIBILITY_CATALOGUE_VERSION
+            ):
+                raise BootstrapError(f"compatibility misconception UUID collision for {mid}")
+            mapping[mid] = existing["id"]
+            already_present += 1
+            continue
+
+        cur.execute(
+            """
+            INSERT INTO misconceptions(
+              id,subtopic_id,family,name_fa,statement_fa,diagnostic_interpretation_fa,
+              distractor_authoring_hint_fa,priority,status,empirical_commonness,catalogue_version,source_ref
+            ) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+            """,
+            (
+                mid_uuid,
+                sid,
+                QB_COMPATIBILITY_FAMILY,
+                row["name_fa"].strip() or None,
+                row["statement_fa"].strip(),
+                row["diagnostic_interpretation_fa"].strip() or None,
+                row["distractor_authoring_hint_fa"].strip() or None,
+                row["priority"].strip() or None,
+                row["status"].strip() or "CANDIDATE_PREDEPLOY_CONTENT_REVIEW",
+                row["empirical_commonness"].strip() or None,
+                QB_COMPATIBILITY_CATALOGUE_VERSION,
+                row["source_ref"].strip() or None,
+            ),
+        )
+        mapping[mid] = mid_uuid
+        inserted += 1
+
+    return {
+        "catalogue_rows": len(catalogue_rows),
+        "unknown_used_resolved": len(unknown_used),
+        "inserted": inserted,
+        "already_present": already_present,
+        "cross_subtopic_ids_preserved": cross_subtopic_ids,
+    }
 
 
 def resolve_actor(cur: psycopg.Cursor, external_id: str, *, create_ai: bool = False) -> dict[str, Any]:
@@ -1009,6 +1236,10 @@ def main(argv: list[str] | None = None) -> int:
                     require_stage12_schema(cur)
                     stage6 = seed_stage6(cur, root)
                     stage7_map, stage7_inserted = seed_stage7_and_build_map(cur, root)
+                    stage7_map_count = len(stage7_map)
+                    qbank_compatibility = seed_qbank_compatibility_misconceptions(
+                        cur, root, rows, stage7_map
+                    )
                     target_ids, import_stats = upsert_questions(cur, rows, stage7_map)
                     verify_live_gate(cur, target_ids)
                     validation_rows = register_validation(cur, target_ids, validation, master_sha)
@@ -1041,8 +1272,9 @@ def main(argv: list[str] | None = None) -> int:
                         "master_sha256": master_sha,
                         "target_questions": len(target_ids),
                         "stage6": stage6,
-                        "stage7_historical_map_count": len(stage7_map),
+                        "stage7_historical_map_count": stage7_map_count,
                         "stage7_rows_inserted": stage7_inserted,
+                        "question_bank_misconception_compatibility": qbank_compatibility,
                         "question_import": import_stats,
                         "validation_pass_rows_inserted": validation_rows,
                         "publication": publication,
