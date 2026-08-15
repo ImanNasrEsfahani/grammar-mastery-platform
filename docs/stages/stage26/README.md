@@ -22,9 +22,11 @@ This Stage 26-only overlay implements the roadmap's deployment/operations contra
 
 The package has deterministic valid/invalid release-gate tests. It freezes the corrected PostgreSQL sequence through Stage23 v1.1 and explicitly rejects the superseded Stage23 v1.0 migration. It also rejects production release evidence without CI, staging rehearsal, a recovery point, HTTPS/security headers, health/smoke success, provider bindings, monitoring and a rollback path.
 
+The default Stage26 data sequence now has a repository-native canonical Question Bank seed. The current seed catalog covers B001-B081 / L01-L18P04 with 3,640 DRAFT source rows; the canonical fresh-database bootstrap publishes those validated seed rows through the explicit SYSTEM workflow. PostgreSQL rehearsal and CI compare published/serving inventory to the applied canonical seed metadata rather than a hard-coded count.
+
 ## What is not claimed
 
-No live production/staging environment, provider, DNS name, TLS edge, secret manager, malware scanner, monitoring service, PostgreSQL target, production backup or measured restore drill was supplied. The current baseline also does not evidence a deployable full Django HTTP surface, and real learner E2E remains constrained by zero `PUBLISHED` inventory. Therefore Stage 26 is **substantively complete as a reference operations package, but not production-ready/live-complete**.
+No live production/staging environment, provider, DNS name, TLS edge, secret manager, malware scanner, monitoring service, production backup or measured restore drill was supplied. The canonical seed is available for a fresh PostgreSQL bootstrap, but real learner E2E and production operations evidence still require the deployed Django/PostgreSQL/browser stack. Therefore Stage 26 is **substantively complete as a reference operations package, but not production-ready/live-complete**.
 
 See `needs_decision_v1.0.csv` for the exact inputs required to turn the reference package into measured deployment evidence.
 

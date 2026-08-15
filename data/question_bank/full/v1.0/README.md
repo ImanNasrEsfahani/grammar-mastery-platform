@@ -1,41 +1,50 @@
-# Full Question Bank — Lessons L01–L09 (B001–B041)
+# Full Question Bank — B001–B081 / Lessons L01–L18P04
 
 Status: **PASS_STATIC_CONSOLIDATION**  
-Questions: **1806**  
+Questions: **3,640**  
 Schema: **46 columns / question-import-schema-v0.9.0**  
-Question status: **DRAFT only**  
-Continuation: **last B041 / next B042**  
+Repository question status: **DRAFT only**  
+Continuation: **last B081 / next B082**  
+Lesson 18 progress: **200 / 218**; B082 is the final 18-question P05 batch and is intentionally not included.  
 Stage 23: **STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT** — Import/Preview/Commit was not executed.
+
+## Canonical repository seed layout
+
+The authoring inventory is stored as two versioned Stage10 source shards directly under `master/`:
+
+- `master/question_bank_full_B001_B041_L01_L09.csv` — existing 1,806-row baseline.
+- `master/question_bank_full_B042_B081_L10_L18P04.csv` — 1,834-row extension.
+- `master/question_bank_seed_catalog.json` — defines both files as one 3,640-row repository-native seed and points to the cumulative validation evidence.
+
+The flat `master/` layout is intentional; there is no required `master/extensions/` directory.
+
+During a fresh installation the existing Stage26 migration runner invokes `ops/question_bank/bootstrap.py --publish-canonical-seed`. The bootstrap reads the catalog, validates both DRAFT source shards as one canonical seed, records the applied count in `system_versions`, and publishes the validated seed through the explicit SYSTEM workflow. No new migration and no separate runtime seeder are introduced.
 
 ## Files
 
-- `master/question_bank_full_B001_B041_L01_L09.csv` — canonical consolidated authoring master, 1,806 rows.
-- `imports/question_bank_full_L01_L04_import_001.csv` — 961 rows; whole Lessons 1–4; within Stage 23 reference 1–1000 row limit.
-- `imports/question_bank_full_L05_L09_import_002.csv` — 845 rows; whole Lessons 5–9; within Stage 23 reference 1–1000 row limit.
-- `registry/question_bank_global_registry.csv` — exact cumulative B041 registry, 1,806 rows; use for B042 duplicate checking.
-- `state/question_bank_checkpoint.json` — exact B041 checkpoint; next batch B042.
-- `state/previous_batch/` — exact B041 CSV + validation required to continue B042 safely.
-- `validation/question_bank_full_B001_B041_L01_L09_validation.json` — global consolidation/static QA report.
-- `validation/batches/` — all 41 original batch validation reports.
-- `manifests/source_batch_manifest.json` — SHA-256 provenance of all 41 source ZIPs and batch CSV/validation files.
-- `manifests/repository_payload.sha256` — checksums for the repository payload.
+- `imports/question_bank_full_L01_L04_import_001.csv` — historical prepared Stage23 chunk for L01-L04.
+- `imports/question_bank_full_L05_L09_import_002.csv` — historical prepared Stage23 chunk for L05-L09.
+- `imports/question_bank_full_L10_L14_import_003.csv` — 990 prepared rows.
+- `imports/question_bank_full_L15_L18P04_import_004.csv` — 844 prepared rows.
+- `registry/question_bank_global_registry.csv` — cumulative B001-B081 registry, 3,640 rows; use for B082 duplicate checking.
+- `state/question_bank_checkpoint.json` — active checkpoint after B081; next batch B082.
+- `state/previous_batch/question_bank_full_B081_L18_P04.*` — active previous-batch authoring context for B082. Older previous-batch files may remain as historical evidence; the checkpoint is authoritative.
+- `validation/question_bank_full_B001_B081_L01_L18P04_validation.json` — cumulative consolidation/static QA report.
+- `validation/batches/` — original per-batch validation evidence. B042-B081 is added by this extension without rewriting the existing B001-B041 evidence.
+- `manifests/source_batch_manifest.json` — historical B001-B041 source provenance.
+- `manifests/source_batch_manifest_extension_B042_B081.json` — B042-B081 source provenance.
+- `manifests/repository_payload.sha256` — checksums for the current B001-B081 Question Bank repository payload after this integration.
 
-## Repository location
-
-Copy this `data/question_bank/full/v1.0/` directory into the repository at exactly:
-
-`grammar-mastery-platform/data/question_bank/full/v1.0/`
-
-This creates a new `data/question_bank/` area next to the existing `data/question_authoring/`, `data/planning/`, `data/knowledge/`, and `data/taxonomy/` directories. It keeps generated question inventory separate from Stage 6/7 authoring rules.
-
-Do **not** run Stage 23 Import/Preview/Commit while the recorded manifest-hash-drift blocker remains in force. The two `imports/*.csv` files are prepared for that future step only.
+The `imports/*.csv` files are retained only as prepared Stage23 inputs for a future unblocked pipeline. Do **not** run Stage23 Import/Preview/Commit while the recorded manifest-hash-drift blocker remains in force.
 
 ## Static consolidation results
 
-- B001–B041 present with no gaps.
-- Lesson totals: L01=252, L02=209, L03=248, L04=252, L05=218, L06=169, L07=100, L08=169, L09=189.
-- 1,806 unique `external_id` values.
-- 1,806 DRAFT questions.
-- Final B041 registry reconciles 1:1 with the master.
-- No final-registry collisions in normalized stem, structural signature, semantic signature, or fingerprint.
-- All 41 original batch validation reports are `PASS_STATIC_AUTHORING`.
+- B001-B081 present with no gaps in the cumulative registry.
+- 3,640 unique `external_id` values.
+- All 3,640 repository source rows remain `DRAFT`.
+- B042-B081 adds 1,834 questions across L10-L18P04.
+- New lesson totals: L10=207, L11=244, L12=167, L13=173, L14=199, L15=183, L16=262, L17=199, L18=200.
+- B042-B081 introduces no normalized-stem, structural-signature, semantic-signature or fingerprint collision in the final registry.
+- Independent semantic near-duplicate scan at threshold 0.80 found 0 new-to-new and 0 old-to-new pairs at or above the threshold. The two global pairs at or above 0.80 are pre-existing within B001-B041.
+- B060 contains a source validation metadata inconsistency that was reconciled by the direct registry/hash chain and is retained as warning `B060_VALIDATION_METADATA_INCONSISTENCY_RECONCILED_BY_DIRECT_HASH_CHAIN`.
+- Final checkpoint: B081 complete, B082 next.

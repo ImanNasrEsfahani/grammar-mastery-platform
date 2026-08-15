@@ -29,7 +29,7 @@
 
 ## Operational blockers (not design defects)
 
-- **Question inventory:** the repository contains 1,806 L01-L09 canonical rows. The default migration now imports them and leaves all 1,806 `PUBLISHED` and serving; live target execution is still evidence-pending.
+- **Question inventory:** the repository contains 3,640 canonical B001-B081 / L01-L18P04 rows across the seed catalog's two Stage10 source shards. The default Stage26 migration imports the catalog seed and leaves all 3,640 `PUBLISHED` and serving on a fresh database; live target execution is still evidence-pending.
 - **Independent review:** the owner-requested canonical migration publication is recorded as a SYSTEM seed release with `human_review_claimed=false`. New or non-seed real questions still require Stage 11 independent review (`reviewer != author/generator`) before `APPROVED/PUBLISHED`.
 - **PostgreSQL target execution:** the canonical PostgreSQL DDL still needs to be exercised on the eventual target environment.
 - **Empirical calibration:** observed difficulty, adaptive weights, distractor quality and mastery/SRS calibration remain Stage 27 responsibilities after live data exists.
@@ -47,7 +47,7 @@
 - **Stage 23 acceptance:** 20/20 dedicated Stage 23 behavior tests and the integrated 162/162 Python suite pass. Imported rows are Draft-only and still require Stage 11 independent review before publication; owner acceptance is not inferred automatically.
 - **Stage 24 local evidence:** the integrated run discovers 179 Python tests; 177 pass and 2 live-PostgreSQL tests skip without `GMP_STAGE24_POSTGRES_DSN`. The 8/8 frontend Vitest suite passes, including the full runner lifecycle; lint, strict TypeScript and production build are part of the Stage 24 CI gate.
 - **Stage 24 performance boundary:** the deterministic in-memory reference profile uses 10,636 candidate questions, 304 mastery scopes and 10,636 dashboard history points. Its local p95 guardrails pass, but this is not a production SLA or deployed-system measurement.
-- **Stage 24 live evidence:** PostgreSQL 15 CI service, deployed HTTP API E2E and real browser E2E cannot be claimed from this environment. The first has an executable checked-in CI profile with a 1,806-row publication assertion; the latter two depend on the Stage 26 deployed stack.
+- **Stage 24 live evidence:** PostgreSQL 15 CI service, deployed HTTP API E2E and real browser E2E cannot be claimed from this environment. The checked-in Stage26 PostgreSQL rehearsal validates published/serving inventory against the canonical seed count recorded in `system_versions` instead of a hard-coded row count; deployed HTTP/browser evidence still depends on the Stage26 deployed stack.
 - **Stage 24 acceptance:** roadmap outputs and local reference gates are reviewable, but formal Iman acceptance and live-stack evidence remain pending and are not inferred automatically.
 
 ## Governance

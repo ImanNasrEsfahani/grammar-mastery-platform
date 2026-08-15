@@ -1,15 +1,23 @@
 # Fresh database migration with published questions
 
-The default Stage26 migration is now a complete database bootstrap:
+The default Stage26 migration is a complete database bootstrap:
 
 1. apply the eight canonical PostgreSQL schema migrations (001-008);
 2. seed the canonical Stage1/2/3 reference data;
-3. import, machine-validate, audit, and publish the 1,806 repository Question Bank rows for L01-L09.
+3. load the repository-native Question Bank seed catalog, import and machine-validate all 3,640 canonical rows for B001-B081 / L01-L18P04, and publish them through the canonical SYSTEM workflow.
 
-The repository CSV remains `DRAFT`. Database rows are moved through the schema
+The repository CSV sources remain `DRAFT`. Database rows are moved through the schema
 gates and finish as `PUBLISHED`. Automatic migration publication uses the
 `canonical-question-bank-publisher-v1.0` SYSTEM actor and explicitly records
 `human_review_claimed=false`.
+
+The Question Bank seed is intentionally split into versioned Stage10 CSV sources under
+`data/question_bank/full/v1.0/master/`. `question_bank_seed_catalog.json` defines which
+sources belong to the canonical fresh-install seed. This avoids requiring one ever-growing
+CSV while keeping the normal Stage26 installation flow unchanged.
+
+Stage23 Import/Preview/Commit is **not** part of this seed path and remains blocked by
+`STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT`.
 
 ## Before changing the server database
 
@@ -44,8 +52,8 @@ git pull --ff-only origin main
 docker compose --env-file .env.docker build --pull backend frontend
 ```
 
-The backend image must be rebuilt because it now contains the versioned
-Question Bank migration inputs.
+The backend image must be rebuilt because it contains the versioned Question Bank
+seed inputs and bootstrap code.
 
 ## Rehearse on an isolated database first
 
@@ -79,7 +87,10 @@ docker compose --env-file .env.docker exec -T postgres sh -lc '
 '
 ```
 
-Expected counts are `PUBLISHED = 1806` and `serving_questions = 1806`.
+Expected current canonical seed counts are `PUBLISHED = 3640` and
+`serving_questions = 3640`. The Stage26 rehearsal gate and CI derive the expected
+count from `system_versions.metadata.question_count`, so later Question Bank seed
+extensions do not require another hard-coded count change.
 
 ## Recreate production and run the canonical bootstrap
 
@@ -122,9 +133,11 @@ docker compose --env-file .env.docker exec -T postgres sh -lc '
     -c "SELECT status,count(*) FROM questions GROUP BY status ORDER BY status;" \
     -c "SELECT count(*) AS serving_questions FROM v_serving_questions;" \
     -c "SELECT count(*) AS lessons FROM grammar_lessons;" \
-    -c "SELECT count(*) AS subtopics FROM grammar_subtopics;"
+    -c "SELECT count(*) AS subtopics FROM grammar_subtopics;" \
+    -c "SELECT component,version,status,metadata FROM system_versions WHERE component='"'"'question_bank.canonical_seed'"'"';"
 '
 ```
 
-Expected essentials: 52 lessons, 304 subtopics, 1,806 PUBLISHED questions, and
-1,806 serving questions.
+Expected current essentials: 52 lessons, 304 subtopics, 3,640 `PUBLISHED`
+questions, 3,640 serving questions, and canonical seed metadata with
+`question_count = 3640`.

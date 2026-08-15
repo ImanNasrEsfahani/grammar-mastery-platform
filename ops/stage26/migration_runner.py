@@ -154,8 +154,16 @@ def rehearsal_database_ok(database: str) -> bool:
           AND version='canonical-question-bank-publication-v1.0.0'
           AND status='APPLIED'
       )
-      AND (SELECT count(*) FROM public.questions WHERE status='PUBLISHED') = 1806
-      AND (SELECT count(*) FROM public.v_serving_questions) = 1806
+      AND (SELECT count(*) FROM public.questions WHERE status='PUBLISHED') =
+          (SELECT (metadata->>'question_count')::bigint FROM public.system_versions
+           WHERE component='question_bank.canonical_seed'
+             AND version='canonical-question-bank-publication-v1.0.0'
+             AND status='APPLIED' LIMIT 1)
+      AND (SELECT count(*) FROM public.v_serving_questions) =
+          (SELECT (metadata->>'question_count')::bigint FROM public.system_versions
+           WHERE component='question_bank.canonical_seed'
+             AND version='canonical-question-bank-publication-v1.0.0'
+             AND status='APPLIED' LIMIT 1)
     THEN 'PASS' ELSE 'FAIL' END;
     """
     return psql_scalar(sql, database=database) == "PASS"

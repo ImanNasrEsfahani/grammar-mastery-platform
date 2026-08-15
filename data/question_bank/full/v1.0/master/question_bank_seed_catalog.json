@@ -5,13 +5,14 @@
   "repository_source_status": "DRAFT",
   "sources": [
     "data/question_bank/full/v1.0/master/question_bank_full_B001_B041_L01_L09.csv",
-    "data/question_bank/full/v1.0/master/extensions/question_bank_full_B042_B081_L10_L18P04.csv"
+    "data/question_bank/full/v1.0/master/question_bank_full_B042_B081_L10_L18P04.csv"
   ],
   "validation": "data/question_bank/full/v1.0/validation/question_bank_full_B001_B081_L01_L18P04_validation.json",
   "stage23_status": "STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT",
   "notes": [
-    "The existing B001-B041 canonical master remains in place and is not duplicated by this package.",
-    "The B042-B081 extension is loaded as a repository-native seed shard by ops/question_bank/bootstrap.py.",
+    "The existing B001-B041 canonical master remains in place and is not duplicated.",
+    "The B042-B081 source is stored directly beside the prior master in master/ for a flat repository layout.",
+    "Both Stage10 CSV sources are loaded as one repository-native seed by ops/question_bank/bootstrap.py.",
     "Fresh Stage26 bootstrap publishes validated repository DRAFT rows through the canonical SYSTEM workflow."
   ]
 }

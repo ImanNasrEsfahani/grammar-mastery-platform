@@ -17,11 +17,12 @@ SPEC.loader.exec_module(bootstrap)
 
 class QuestionBankBootstrapTests(unittest.TestCase):
     def test_canonical_master_is_complete_and_remains_draft_at_source(self):
-        master = bootstrap.discover_master(ROOT, None)
-        rows, validation, _ = bootstrap.load_and_validate_master(master)
-        self.assertEqual(1806, len(rows))
+        source, rows, validation, _ = bootstrap.load_repository_seed(ROOT)
+        self.assertEqual(3640, len(rows))
         self.assertEqual({"DRAFT"}, {row["status"] for row in rows})
         self.assertEqual("PASS_STATIC_CONSOLIDATION", validation["status"])
+        self.assertEqual(3640, validation["scope"]["question_count"])
+        self.assertEqual("question_bank_seed_catalog.json", source.name)
 
     def test_migration_publication_is_explicitly_system_owned(self):
         self.assertEqual(

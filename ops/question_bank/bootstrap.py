@@ -164,6 +164,99 @@ def load_and_validate_master(master: Path) -> tuple[list[dict[str, str]], dict[s
     return rows, validation, sha256_file(master)
 
 
+def load_repository_seed(
+    root: Path,
+    explicit_master: str | None = None,
+) -> tuple[Path, list[dict[str, str]], dict[str, Any], str]:
+    """Load the versioned repository seed, optionally from a multi-file seed catalog.
+
+    Backward compatibility is preserved: when no catalog exists, the historical
+    single-master behavior is unchanged. ``--master`` also keeps selecting one
+    explicit CSV exactly as before.
+    """
+    if explicit_master:
+        master = discover_master(root, explicit_master)
+        rows, validation, master_sha = load_and_validate_master(master)
+        return master, rows, validation, master_sha
+
+    catalog_path = root / "data/question_bank/full/v1.0/master/question_bank_seed_catalog.json"
+    if not catalog_path.is_file():
+        master = discover_master(root, None)
+        rows, validation, master_sha = load_and_validate_master(master)
+        return master, rows, validation, master_sha
+
+    catalog = json.loads(catalog_path.read_text(encoding="utf-8"))
+    source_names = catalog.get("sources") or []
+    if not isinstance(source_names, list) or not source_names:
+        raise BootstrapError("Question Bank seed catalog has no sources")
+
+    rows: list[dict[str, str]] = []
+    source_hashes: list[tuple[str, str]] = []
+    for raw_name in source_names:
+        relative = Path(str(raw_name))
+        if relative.is_absolute() or ".." in relative.parts:
+            raise BootstrapError(f"unsafe Question Bank seed source path: {raw_name}")
+        source = root / relative
+        header, source_rows = read_csv(source)
+        if header != EXPECTED_HEADER:
+            raise BootstrapError(f"Question Bank seed source has non-Stage10 header: {relative}")
+        rows.extend(source_rows)
+        source_hashes.append((relative.as_posix(), sha256_file(source)))
+
+    if not rows:
+        raise BootstrapError("Question Bank repository seed is empty")
+    if len({r["external_id"] for r in rows}) != len(rows):
+        raise BootstrapError("duplicate external_id values across Question Bank seed sources")
+    if any(r["status"] != "DRAFT" for r in rows):
+        raise BootstrapError("repository Question Bank seed sources must remain DRAFT")
+    for n, row in enumerate(rows, start=1):
+        correct = row["correct_option"].strip().upper()
+        if correct not in {"A", "B", "C", "D"}:
+            raise BootstrapError(f"invalid correct_option in repository seed row {n}")
+        if row[f"misconception_{correct.lower()}_id"].strip():
+            raise BootstrapError(f"correct option has misconception in repository seed row {n}")
+        for letter in "ABCD":
+            if letter != correct and not row[f"misconception_{letter.lower()}_id"].strip():
+                raise BootstrapError(f"distractor lacks misconception in repository seed row {n}")
+        if row["media_type"] != "NONE":
+            raise BootstrapError(
+                f"{BOOTSTRAP_VERSION} currently accepts repository QB rows with media_type=NONE only; "
+                f"found {row['media_type']!r} in repository seed row {n}"
+            )
+
+    validation_name = str(catalog.get("validation") or "").strip()
+    if not validation_name:
+        raise BootstrapError("Question Bank seed catalog has no consolidation validation path")
+    validation_relative = Path(validation_name)
+    if validation_relative.is_absolute() or ".." in validation_relative.parts:
+        raise BootstrapError("unsafe Question Bank seed validation path")
+    validation_path = root / validation_relative
+    if not validation_path.is_file():
+        raise BootstrapError(f"consolidation validation missing: {validation_path}")
+    validation = json.loads(validation_path.read_text(encoding="utf-8"))
+    if validation.get("status") != "PASS_STATIC_CONSOLIDATION":
+        raise BootstrapError("repository consolidation validation is not PASS_STATIC_CONSOLIDATION")
+    scope = validation.get("scope") or {}
+    if int(scope.get("question_count", -1)) != len(rows):
+        raise BootstrapError("validation question_count does not match repository seed rows")
+    if int(catalog.get("question_count", -1)) != len(rows):
+        raise BootstrapError("seed catalog question_count does not match repository seed rows")
+    if str(catalog.get("repository_source_status") or "") != "DRAFT":
+        raise BootstrapError("seed catalog repository_source_status must be DRAFT")
+    if str(catalog.get("stage23_status") or "") != STAGE23_MARKER:
+        raise BootstrapError("seed catalog Stage23 blocker marker is absent or changed")
+    if ((validation.get("stage23") or {}).get("status")) != STAGE23_MARKER:
+        raise BootstrapError("Stage23 blocker marker is absent or changed in validation evidence")
+    schema = validation.get("schema") or {}
+    if schema.get("master_header_matches") is not True or int(schema.get("actual_column_count", 0)) != 46:
+        raise BootstrapError("validation does not confirm exact Stage10 schema")
+
+    digest = hashlib.sha256()
+    for relative, source_sha in source_hashes:
+        digest.update(f"{relative}\0{source_sha}\n".encode("utf-8"))
+    return catalog_path, rows, validation, digest.hexdigest()
+
+
 def table_exists(cur: psycopg.Cursor, name: str) -> bool:
     cur.execute("SELECT to_regclass(%s) IS NOT NULL AS ok", (f"public.{name}",))
     return bool(cur.fetchone()["ok"])
@@ -879,7 +972,7 @@ def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(
         description="Idempotent Stage6/Stage7/Question-Bank bootstrap and controlled Stage11 publish workflow."
     )
-    p.add_argument("--master", default=None, help="Repository-relative or absolute Stage10 master CSV. Default: the single full/v1.0 master CSV.")
+    p.add_argument("--master", default=None, help="Repository-relative or absolute Stage10 master CSV. Default: repository seed catalog when present; otherwise the single full/v1.0 master CSV.")
     p.add_argument("--publish-reviewed", action="store_true", help="Continue through READY_FOR_REVIEW -> APPROVED -> PUBLISHED.")
     p.add_argument(
         "--publish-canonical-seed",
@@ -909,8 +1002,7 @@ def main(argv: list[str] | None = None) -> int:
 
     root = repo_root()
     try:
-        master = discover_master(root, args.master)
-        rows, validation, master_sha = load_and_validate_master(master)
+        master, rows, validation, master_sha = load_repository_seed(root, args.master)
         with connect() as conn:
             with conn.transaction():
                 with conn.cursor() as cur:
