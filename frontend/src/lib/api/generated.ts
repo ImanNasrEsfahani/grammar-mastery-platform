@@ -713,6 +713,7 @@ export interface components {
             subcategory_title_fa?: string | null;
             tcf_weight?: number;
             active: boolean;
+            question_count: number;
         };
         LessonDetail: {
             /** Format: uuid */
@@ -730,6 +731,7 @@ export interface components {
             subcategory_title_fa?: string | null;
             tcf_weight?: number;
             active: boolean;
+            question_count: number;
             subtopics: components["schemas"]["Subtopic"][];
         };
         LessonCollectionEnvelope: {
@@ -999,6 +1001,18 @@ export interface components {
                 };
                 recent_test: {
                     [key: string]: unknown;
+                } | null;
+                in_progress_attempt: {
+                    /** Format: uuid */
+                    attempt_id: string;
+                    /** Format: uuid */
+                    test_id: string;
+                    mode: string;
+                    title?: string | null;
+                    /** Format: date-time */
+                    started_at: string;
+                    question_count: number;
+                    answered_count: number;
                 } | null;
                 trend: {
                     [key: string]: unknown;

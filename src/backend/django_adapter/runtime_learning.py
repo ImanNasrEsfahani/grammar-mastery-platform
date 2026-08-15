@@ -259,6 +259,7 @@ def _lesson_projection(row) -> dict[str, Any]:
         subcategory_title_fa,
         tcf_weight,
         active,
+        question_count,
     ) = row
     return {
         "id": str(lesson_id),
@@ -273,6 +274,7 @@ def _lesson_projection(row) -> dict[str, Any]:
         "subcategory_title_fa": None if subcategory_title_fa is None else str(subcategory_title_fa),
         "tcf_weight": _float(tcf_weight),
         "active": bool(active),
+        "question_count": int(question_count or 0),
     }
 
 
@@ -350,10 +352,25 @@ def list_lessons_request(request) -> Response:
             gsc.display_name_fr,
             gsc.display_name_fa,
             gl.tcf_weight,
-            gl.active
+            gl.active,
+            COALESCE(question_counts.question_count, 0)
         FROM grammar_lessons AS gl
         JOIN grammar_categories AS gc ON gc.id = gl.category_id
         JOIN grammar_categories AS gsc ON gsc.id = gl.subcategory_id
+        LEFT JOIN (
+            SELECT q.lesson_id, count(*) AS question_count
+            FROM questions AS q
+            WHERE q.status = 'PUBLISHED'
+              AND q.retired_at IS NULL
+              AND q.correct_option_id IS NOT NULL
+              AND (SELECT count(*) FROM question_options AS qo WHERE qo.question_id = q.id) = 4
+              AND NOT EXISTS (
+                  SELECT 1 FROM questions AS newer
+                  WHERE newer.question_uid = q.question_uid
+                    AND newer.revision > q.revision
+              )
+            GROUP BY q.lesson_id
+        ) AS question_counts ON question_counts.lesson_id = gl.id
         WHERE {" AND ".join(where)}
         ORDER BY {sort_sql}
         LIMIT %s OFFSET %s
@@ -400,10 +417,25 @@ def lesson_detail_request(request, lesson_id: Any) -> Response:
                 gsc.display_name_fr,
                 gsc.display_name_fa,
                 gl.tcf_weight,
-                gl.active
+                gl.active,
+                COALESCE(question_counts.question_count, 0)
             FROM grammar_lessons AS gl
             JOIN grammar_categories AS gc ON gc.id = gl.category_id
             JOIN grammar_categories AS gsc ON gsc.id = gl.subcategory_id
+            LEFT JOIN (
+                SELECT q.lesson_id, count(*) AS question_count
+                FROM questions AS q
+                WHERE q.status = 'PUBLISHED'
+                  AND q.retired_at IS NULL
+                  AND q.correct_option_id IS NOT NULL
+                  AND (SELECT count(*) FROM question_options AS qo WHERE qo.question_id = q.id) = 4
+                  AND NOT EXISTS (
+                      SELECT 1 FROM questions AS newer
+                      WHERE newer.question_uid = q.question_uid
+                        AND newer.revision > q.revision
+                  )
+                GROUP BY q.lesson_id
+            ) AS question_counts ON question_counts.lesson_id = gl.id
             WHERE gl.id = %s
               AND gl.active = TRUE
             """,

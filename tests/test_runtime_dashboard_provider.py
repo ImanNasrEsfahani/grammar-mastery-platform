@@ -4,6 +4,7 @@ import os
 import sys
 import unittest
 import uuid
+from datetime import datetime, timezone
 from pathlib import Path
 from types import SimpleNamespace
 from unittest.mock import patch
@@ -45,6 +46,7 @@ def empty_snapshot():
             "top_misconception_groups": [],
         },
         "recent_test": None,
+        "in_progress_attempt": None,
         "trend": {"points": [], "incomplete_data": False, "warning": None},
         "activity": {
             "questions_answered": 0,
@@ -55,6 +57,32 @@ def empty_snapshot():
 
 
 class RuntimeDashboardProviderTests(unittest.TestCase):
+    def test_in_progress_attempt_projection_preserves_resume_progress(self):
+        class Cursor:
+            def execute(self, sql, params):
+                self.sql = sql
+                self.params = params
+
+            def fetchone(self):
+                return (
+                    "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+                    "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                    "adaptive",
+                    None,
+                    datetime(2026, 8, 15, 10, 0, tzinfo=timezone.utc),
+                    20,
+                    7,
+                )
+
+        cursor = Cursor()
+        attempt = runtime_dashboard._load_in_progress_attempt(
+            cursor, uuid.UUID(USER_ID)
+        )
+        self.assertEqual(attempt["answered_count"], 7)
+        self.assertEqual(attempt["question_count"], 20)
+        self.assertIn("IN_PROGRESS", cursor.sql)
+        self.assertEqual(cursor.params, [uuid.UUID(USER_ID)])
+
     def test_mastery_projection_resolves_localized_scope_title(self):
         class Cursor:
             def execute(self, sql, params):

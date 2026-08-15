@@ -32,6 +32,16 @@ NOW = datetime(2026, 8, 9, 22, 30, tzinfo=timezone.utc)
 
 
 class RuntimeAuthProviderTests(unittest.TestCase):
+    @override_settings(
+        STAGE21_JWT_SIGNING_KEY="d" * 64,
+        STAGE21_JWT_ACCESS_TTL_SECONDS=24 * 60 * 60,
+        STAGE21_SESSION_TTL_SECONDS=30 * 24 * 60 * 60,
+    )
+    def test_runtime_accepts_one_day_access_tokens(self):
+        _, _, access_ttl, session_ttl = runtime_auth._jwt_config()
+        self.assertEqual(access_ttl, 24 * 60 * 60)
+        self.assertEqual(session_ttl, 30 * 24 * 60 * 60)
+
     def test_register_validation_blocks_role_injection(self):
         with self.assertRaises(APIError) as raised:
             runtime_auth._validate_register_payload(

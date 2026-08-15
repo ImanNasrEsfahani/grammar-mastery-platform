@@ -59,6 +59,7 @@ export function DashboardClient({locale}: {locale: Locale}) {
   const dashboard = data.dashboard.data;
   const action = data.nextAction.data;
   const masteryWithEvidence = dashboard.mastery.filter((item) => item.confidence > 0 && item.coverage_ratio > 0).slice(0, 3);
+  const inProgress = dashboard.in_progress_attempt;
 
   return (
     <div className="stack">
@@ -66,6 +67,14 @@ export function DashboardClient({locale}: {locale: Locale}) {
         <StatusPanel title={isFa ? "نمای ذخیره‌شده نمایش داده می‌شود" : "Showing the last safe snapshot"} tone="warning" requestId={error.requestId} action={{label: isFa ? "تلاش دوباره" : "Retry", onClick: load}}>
           <p>{new Date(data.savedAt).toLocaleString(locale === "fa" ? "fa-IR" : "en-CA")}</p>
         </StatusPanel>
+      ) : null}
+      {inProgress ? (
+        <section className="surface resume-attempt-card stack stack-small">
+          <p className="eyebrow">{isFa ? "آزمون نیمه‌تمام" : "Unfinished attempt"}</p>
+          <h2>{isFa ? "از همان‌جایی که ماندید ادامه دهید" : "Continue where you left off"}</h2>
+          <p>{isFa ? `${inProgress.answered_count} از ${inProgress.question_count} سؤال پاسخ داده شده است.` : `${inProgress.answered_count} of ${inProgress.question_count} questions answered.`}</p>
+          <Link className="button button-primary" href={`/${locale}/attempts/${inProgress.attempt_id}`}>{isFa ? "ادامه آزمون" : "Resume attempt"}</Link>
+        </section>
       ) : null}
       <section className="surface dashboard-hero">
         <div className="stack stack-small">

@@ -163,7 +163,7 @@ export function TestBuilder({locale}: {locale: Locale}) {
                   <span>{isFa ? `${selectedLessonIds.length} انتخاب` : `${selectedLessonIds.length} selected`}</span>
                 </div>
                 <div className="lesson-option-list">
-                  {filteredLessons.map((lesson) => <label className="lesson-option" key={lesson.id}><input type="checkbox" checked={selectedLessonIds.includes(lesson.id)} onChange={() => toggleLesson(lesson.id)} /><span className="lesson-number">{lesson.lesson_no}</span><span><strong>{lesson.short_title}</strong><small>{lesson.title_fr}</small></span></label>)}
+                  {filteredLessons.map((lesson) => <label className="lesson-option" key={lesson.id}><input type="checkbox" checked={selectedLessonIds.includes(lesson.id)} onChange={() => toggleLesson(lesson.id)} /><span className="lesson-number">{lesson.lesson_no}</span><span><strong>{lesson.short_title}</strong><small>{lesson.title_fr}</small><small className="lesson-question-count">{isFa ? `${lesson.question_count} سؤال` : `${lesson.question_count} questions`}</small></span></label>)}
                 </div>
                 {!loadingLessons && !filteredLessons.length ? <p className="muted">{isFa ? "درسی با این عبارت پیدا نشد." : "No lesson matched that search."}</p> : null}
               </div>

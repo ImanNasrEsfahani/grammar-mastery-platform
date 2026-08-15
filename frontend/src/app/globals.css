@@ -140,6 +140,9 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .dashboard-hero { background: linear-gradient(135deg, #ffffff, #eef3ff); }
 .dashboard-hero h2 { margin: 0; font-size: clamp(1.4rem, 4vw, 2rem); }
 .dashboard-hero .button { width: fit-content; }
+.resume-attempt-card { border-color: #9fb2df; background: #f7f9ff; }
+.resume-attempt-card h2 { margin: 0; font-size: clamp(1.2rem, 3vw, 1.55rem); }
+.resume-attempt-card .button { width: fit-content; }
 .dashboard-grid { display: grid; gap: 1rem; }
 .dashboard-grid h2 { margin: 0; font-size: 1.08rem; }
 .metric-row { display: grid; grid-template-columns: 1fr auto; gap: 0.15rem 0.7rem; padding-block: 0.65rem; border-block-end: 1px solid var(--line); }
@@ -175,6 +178,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .lesson-option input { accent-color: var(--primary); }
 .lesson-option strong, .lesson-option small { display: block; unicode-bidi: plaintext; overflow-wrap: anywhere; }
 .lesson-option small { color: var(--muted); }
+.lesson-option .lesson-question-count { margin-block-start: 0.15rem; color: var(--primary-strong); font-size: 0.76rem; font-weight: 800; }
 .related-group-card { min-inline-size: 0; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0.7rem; border: 1.5px solid var(--line); border-radius: 14px; padding: 0.8rem; cursor: pointer; }
 .related-group-card > span { min-inline-size: 0; display: grid; gap: 0.2rem; }
 .related-group-card strong, .related-group-card em { unicode-bidi: plaintext; overflow-wrap: anywhere; }

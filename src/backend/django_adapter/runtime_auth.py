@@ -31,7 +31,7 @@ from backend.security import ALLOWED_ROLES, PasswordHasher, Principal
 
 AUTH_RUNTIME_POLICY_VERSION = "stage25-runtime-auth-v1.0.0"
 API_VERSION = "v1"
-DEFAULT_ACCESS_TTL_SECONDS = 900
+DEFAULT_ACCESS_TTL_SECONDS = 24 * 60 * 60
 DEFAULT_SESSION_TTL_SECONDS = 30 * 24 * 60 * 60
 MAX_LOGIN_FAILURES = 5
 ACCOUNT_LOCK_SECONDS = 15 * 60
@@ -280,7 +280,7 @@ def _jwt_config() -> tuple[str, str, int, int]:
             DEFAULT_SESSION_TTL_SECONDS,
         )
     )
-    if access_ttl < 60 or access_ttl > 3600:
+    if access_ttl < 60 or access_ttl > 7 * 24 * 60 * 60:
         raise _dependency_unavailable()
     if session_ttl <= access_ttl or session_ttl > 90 * 24 * 60 * 60:
         raise _dependency_unavailable()

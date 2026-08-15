@@ -92,9 +92,11 @@ class RuntimeLessonsTestsProviderTests(unittest.TestCase):
                 "زمان‌های گذشته",
                 1.0,
                 True,
+                37,
             )
         )
         self.assertEqual(projected["subcategory_title_fa"], "زمان‌های گذشته")
+        self.assertEqual(projected["question_count"], 37)
 
     def test_scope_matching_supports_tags(self):
         candidate = {

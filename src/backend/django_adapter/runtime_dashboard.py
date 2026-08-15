@@ -465,6 +465,46 @@ def _load_recent_test(cursor, user_id: uuid.UUID) -> dict[str, Any] | None:
     }
 
 
+def _load_in_progress_attempt(cursor, user_id: uuid.UUID) -> dict[str, Any] | None:
+    cursor.execute(
+        """
+        SELECT
+            ta.id,
+            ta.test_id,
+            t.mode::text,
+            t.title,
+            ta.started_at,
+            count(DISTINCT tq.id) AS question_count,
+            count(DISTINCT ua.test_question_id) AS answered_count
+        FROM test_attempts AS ta
+        JOIN tests AS t ON t.id = ta.test_id
+        JOIN test_questions AS tq ON tq.test_id = ta.test_id
+        LEFT JOIN user_answers AS ua
+          ON ua.attempt_id = ta.id
+         AND ua.test_question_id = tq.id
+        WHERE ta.user_id = %s
+          AND ta.status = 'IN_PROGRESS'
+        GROUP BY ta.id, ta.test_id, t.mode, t.title, ta.started_at
+        ORDER BY ta.started_at DESC, ta.id DESC
+        LIMIT 1
+        """,
+        [user_id],
+    )
+    row = cursor.fetchone()
+    if row is None:
+        return None
+    attempt_id, test_id, mode, title, started_at, question_count, answered_count = row
+    return {
+        "attempt_id": str(attempt_id),
+        "test_id": str(test_id),
+        "mode": str(mode),
+        "title": title,
+        "started_at": _iso(started_at),
+        "question_count": int(question_count or 0),
+        "answered_count": int(answered_count or 0),
+    }
+
+
 def _load_trend(cursor, user_id: uuid.UUID) -> dict[str, Any]:
     cursor.execute(
         """
@@ -601,6 +641,7 @@ def _load_dashboard_snapshot(
             review_queue = _load_review_queue(cursor, user_id, timestamp)
             error_review = _load_error_review(cursor, user_id)
             recent_test = _load_recent_test(cursor, user_id)
+            in_progress_attempt = _load_in_progress_attempt(cursor, user_id)
             trend = _load_trend(cursor, user_id)
             activity = _load_activity(cursor, user_id)
 
@@ -611,6 +652,7 @@ def _load_dashboard_snapshot(
         "review_queue": review_queue,
         "error_review": error_review,
         "recent_test": recent_test,
+        "in_progress_attempt": in_progress_attempt,
         "trend": trend,
         "activity": activity,
     }
@@ -627,6 +669,7 @@ def _dashboard_projection(snapshot: dict[str, Any]) -> dict[str, Any]:
         "review_queue": snapshot["review_queue"],
         "error_review": snapshot["error_review"],
         "recent_test": snapshot["recent_test"],
+        "in_progress_attempt": snapshot["in_progress_attempt"],
         "trend": snapshot["trend"],
         "activity": snapshot["activity"],
     }

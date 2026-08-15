@@ -1045,7 +1045,7 @@ components:
     Lesson:
       type: object
       additionalProperties: false
-      required: [id, lesson_no, title_fr, short_title, category_id, subcategory_id, active]
+      required: [id, lesson_no, title_fr, short_title, category_id, subcategory_id, active, question_count]
       properties:
         id: {type: string, format: uuid}
         lesson_no: {type: integer, minimum: 1, maximum: 52}
@@ -1059,10 +1059,11 @@ components:
         subcategory_title_fa: {type: [string, 'null']}
         tcf_weight: {type: number, minimum: 0}
         active: {type: boolean}
+        question_count: {type: integer, minimum: 0}
     LessonDetail:
       type: object
       additionalProperties: false
-      required: [id, lesson_no, title_fr, short_title, category_id, subcategory_id, active, subtopics]
+      required: [id, lesson_no, title_fr, short_title, category_id, subcategory_id, active, question_count, subtopics]
       properties:
         id: {type: string, format: uuid}
         lesson_no: {type: integer, minimum: 1, maximum: 52}
@@ -1076,6 +1077,7 @@ components:
         subcategory_title_fa: {type: [string, 'null']}
         tcf_weight: {type: number, minimum: 0}
         active: {type: boolean}
+        question_count: {type: integer, minimum: 0}
         subtopics: {type: array, items: {$ref: '#/components/schemas/Subtopic'}}
     LessonCollectionEnvelope:
       type: object
@@ -1371,7 +1373,7 @@ components:
         data:
           type: object
           additionalProperties: false
-          required: [as_of, next_action, mastery, review_queue, error_review, recent_test, trend, activity]
+          required: [as_of, next_action, mastery, review_queue, error_review, recent_test, in_progress_attempt, trend, activity]
           properties:
             as_of: {type: string, format: date-time}
             next_action: {type: string, enum: [OVERDUE_REVIEW, DUE_REVIEW, CRITICAL_CONFIDENT_LESSON, WEAK_CONFIDENT_LESSON, DEVELOPING_LESSON, BUILD_EVIDENCE, REGULAR_PRACTICE]}
@@ -1379,6 +1381,18 @@ components:
             review_queue: {type: object, additionalProperties: true}
             error_review: {type: object, additionalProperties: true}
             recent_test: {type: [object, 'null'], additionalProperties: true}
+            in_progress_attempt:
+              type: [object, 'null']
+              additionalProperties: false
+              required: [attempt_id, test_id, mode, started_at, question_count, answered_count]
+              properties:
+                attempt_id: {type: string, format: uuid}
+                test_id: {type: string, format: uuid}
+                mode: {type: string}
+                title: {type: [string, 'null']}
+                started_at: {type: string, format: date-time}
+                question_count: {type: integer, minimum: 1}
+                answered_count: {type: integer, minimum: 0}
             trend: {type: object, additionalProperties: true}
             activity: {type: object, additionalProperties: true}
         meta: {$ref: '#/components/schemas/Meta'}
