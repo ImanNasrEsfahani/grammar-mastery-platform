@@ -1,0 +1,137 @@
+{
+  "project": "Grammar Mastery Platform",
+  "runner": "QUESTION BANK CHAT RUNNER v1.0",
+  "batch_id": "B174",
+  "batch_name": "FULL-L39-P01",
+  "validation_status": "PASS_STATIC_AUTHORING",
+  "errors": [],
+  "warnings": [],
+  "row_count": 50,
+  "schema": {
+    "schema_version": "Stage10 / question-bank-v1.0",
+    "columns": 46,
+    "header_exact": true,
+    "status_all_draft": true,
+    "four_distinct_options_each": true,
+    "exactly_one_correct_key_each": true,
+    "correct_option_misconception_blank": true,
+    "all_wrong_options_have_misconception": true,
+    "media_type_all_none": true
+  },
+  "plan": {
+    "lesson_no": 39,
+    "lesson_id": "2cc8ffec-0888-40b2-bb6b-23bb8ebcd4f0",
+    "lesson_title_fr": "LE FUTUR PROCHE",
+    "lesson_part": 1,
+    "lesson_parts_total": 4,
+    "question_ordinal_start": 1,
+    "question_ordinal_end": 50,
+    "batch_question_count": 50
+  },
+  "quotas": {
+    "question_types_actual": {
+      "CLOZE_CONTEXT": 6,
+      "CLOZE_SINGLE": 6,
+      "CONTRAST_RULES": 4,
+      "CORRECT_SENTENCE": 5,
+      "DIALOGUE_COMPLETE": 4,
+      "ERROR_LOCATION": 3,
+      "FA_TO_FR": 1,
+      "FR_TO_FA": 5,
+      "INCORRECT_SENTENCE": 4,
+      "PREPOSITION_CHOICE": 2,
+      "PRONOUN_CHOICE": 3,
+      "REWRITE_EQUIV": 4,
+      "TENSE_CHOICE": 3
+    },
+    "question_types_expected_from_source_validation": {
+      "CLOZE_SINGLE": 6,
+      "CLOZE_CONTEXT": 6,
+      "CORRECT_SENTENCE": 5,
+      "INCORRECT_SENTENCE": 4,
+      "ERROR_LOCATION": 3,
+      "CONJUGATION": 0,
+      "TENSE_CHOICE": 3,
+      "PRONOUN_CHOICE": 3,
+      "PREPOSITION_CHOICE": 2,
+      "REWRITE_EQUIV": 4,
+      "FR_TO_FA": 5,
+      "FA_TO_FR": 1,
+      "DIALOGUE_COMPLETE": 4,
+      "REGISTER_CHOICE": 0,
+      "CONTRAST_RULES": 4
+    },
+    "difficulty_actual": {
+      "EASY": 10,
+      "HARD": 15,
+      "MEDIUM": 20,
+      "VERY_HARD": 5
+    },
+    "difficulty_expected_from_source_validation": {
+      "EASY": 10,
+      "MEDIUM": 20,
+      "HARD": 15,
+      "VERY_HARD": 5
+    },
+    "source_quota_match": true
+  },
+  "coverage": {
+    "subtopic_counts": {
+      "L39-S01": 6,
+      "L39-S02": 7,
+      "L39-S03": 6,
+      "L39-S04": 6,
+      "L39-S05": 6,
+      "L39-S06": 6,
+      "L39-S07": 6,
+      "L39-S08": 7
+    }
+  },
+  "compatibility": {
+    "not_suitable_generated": 0,
+    "conditional_used": 0,
+    "conditional_guardrail_pass": true,
+    "guardrail_source_validation_preserved": false
+  },
+  "qa": {
+    "final_static_authoring_pass": true,
+    "stage7_distractor_misconceptions_resolved": true,
+    "source_validation_status": "PASS_STATIC_AUTHORING"
+  },
+  "repairs": {
+    "content_repair_external_ids": [],
+    "content_repair_question_count": 0,
+    "misconception_repair_external_ids": [],
+    "misconception_repair_question_count": 0,
+    "misconception_cells_repaired": 0
+  },
+  "deduplication": {
+    "global_exact_normalized_pass": true,
+    "global_structural_pass": true,
+    "global_semantic_threshold": 0.8,
+    "global_semantic_char_wb_3_5_pass": true,
+    "global_semantic_word_1_2_pass": true
+  },
+  "source_validation": {
+    "file_name": "question_bank_full_B174_L39_P01_validation.json",
+    "sha256": "9f6d5b7f5919a78805c99175288597bc42e33b211557e4bb3c588e3e4659353a",
+    "preserved_as_provenance_only": true
+  },
+  "repository": {
+    "repository": "ImanNasrEsfahani/grammar-mastery-platform",
+    "branch": "main",
+    "commit_sha": "c03b962519dd0487c709124aee4984debd8a490c",
+    "mode": "READ_ONLY",
+    "github_writes_performed": false,
+    "root_document_audit": {
+      "README.md": "READ_FULL",
+      "STATUS.md": "READ_FULL",
+      "ROADMAP.md": "NOT_PRESENT_AT_ROOT__UPLOADED_PROJECT_GUIDE_USED_AS_ROADMAP",
+      "AGENTS.md": "NOT_PRESENT_AT_ROOT",
+      "blocker_for_authoring": false
+    }
+  },
+  "stage23": "STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT",
+  "stage23_runtime_executed": false,
+  "import_preview_commit_executed": false
+}

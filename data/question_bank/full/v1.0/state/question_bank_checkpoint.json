@@ -1,58 +1,101 @@
 {
-  "checkpoint_version": "question-bank-checkpoint-v1.0",
-  "plan_version": "question_bank_full_batch_plan_v1.0",
-  "updated_after_batch": "B081",
-  "last_completed_batch": "B081",
-  "next_batch": "B082",
-  "global_questions_completed": 3640,
-  "global_questions_target": 10636,
-  "global_questions_remaining": 6996,
-  "lesson_progress": {
-    "lesson_no": 18,
-    "lesson_id": "ec290ee6-f705-4b74-98db-7e4079c54d60",
-    "target": 218,
-    "completed": 200,
-    "remaining": 18,
-    "next_lesson_part": "5/5",
-    "lesson_parts_total": 5,
-    "remaining_type_targets": {
-      "CLOZE_SINGLE": 2,
-      "CLOZE_CONTEXT": 3,
-      "CORRECT_SENTENCE": 1,
-      "INCORRECT_SENTENCE": 2,
-      "ERROR_LOCATION": 1,
+  "runner_version": "question-bank-chat-runner-v1.0",
+  "updated_after_batch": "B183",
+  "last_completed_batch": "B183",
+  "next_batch": "B184",
+  "next_batch_started": false,
+  "global": {
+    "target_questions": 10636,
+    "completed_questions": 8175,
+    "remaining_questions": 2461,
+    "registry_rows": 8175
+  },
+  "lesson": {
+    "lesson_number": 40,
+    "lesson_id": "a2303764-b3c6-4a78-a5eb-287adffcd970",
+    "lesson_code": "L40",
+    "title": "LE PASSÉ COMPOSÉ",
+    "target_questions": 260,
+    "completed_questions": 260,
+    "remaining_questions": 0,
+    "status": "COMPLETE",
+    "last_completed_part": 6,
+    "part_count": 6,
+    "next_part": null,
+    "next_batch": "B184",
+    "remaining_question_types": {
+      "CLOZE_SINGLE": 0,
+      "CLOZE_CONTEXT": 0,
+      "CORRECT_SENTENCE": 0,
+      "INCORRECT_SENTENCE": 0,
+      "ERROR_LOCATION": 0,
       "CONJUGATION": 0,
       "TENSE_CHOICE": 0,
       "PRONOUN_CHOICE": 0,
-      "PREPOSITION_CHOICE": 2,
-      "REWRITE_EQUIV": 1,
-      "FR_TO_FA": 2,
-      "FA_TO_FR": 1,
-      "DIALOGUE_COMPLETE": 1,
+      "PREPOSITION_CHOICE": 0,
+      "REWRITE_EQUIV": 0,
+      "FR_TO_FA": 0,
+      "FA_TO_FR": 0,
+      "DIALOGUE_COMPLETE": 0,
       "REGISTER_CHOICE": 0,
-      "CONTRAST_RULES": 2
+      "CONTRAST_RULES": 0
     },
-    "remaining_difficulty_targets": {
-      "EASY": 4,
-      "MEDIUM": 7,
-      "HARD": 5,
-      "VERY_HARD": 2
+    "remaining_difficulty": {
+      "EASY": 0,
+      "MEDIUM": 0,
+      "HARD": 0,
+      "VERY_HARD": 0
     },
-    "lesson_status": "IN_PROGRESS"
+    "subtopic_counts_after_batch": {
+      "L40-S01": 22,
+      "L40-S02": 22,
+      "L40-S03": 22,
+      "L40-S04": 22,
+      "L40-S05": 22,
+      "L40-S06": 22,
+      "L40-S07": 22,
+      "L40-S08": 21,
+      "L40-S09": 21,
+      "L40-S10": 21,
+      "L40-S11": 21,
+      "L40-S12": 22
+    }
   },
-  "registry": {
-    "file": "question_bank_global_registry.csv",
-    "row_count": 3640,
-    "sha256": "39029154778091da1b1036e310f065d1e1efaf93063c7a2fda7b07997d17fb7c",
-    "signature_version": "question-bank-registry-signatures-v1.0"
+  "next_batch_plan": {
+    "batch_id": "B184",
+    "batch_code": "FULL-L41-P01",
+    "lesson_number": 41,
+    "lesson_id": "61d3b6b5-dd58-4ca4-b78d-521013ae2461",
+    "lesson_title": "LE TEMPS (3)",
+    "part_index": 1,
+    "part_count": 5,
+    "question_start": 1,
+    "question_end": 50,
+    "question_count": 50,
+    "difficulty": {
+      "EASY": 10,
+      "MEDIUM": 20,
+      "HARD": 15,
+      "VERY_HARD": 5
+    },
+    "depends_on": null,
+    "output_csv": "question_bank_full_B184_L41_P01.csv",
+    "expected_zip": "question_bank_full_B184_L41_P01.zip"
   },
-  "batch_output": {
-    "csv": "question_bank_full_B081_L18_P04.csv",
-    "csv_sha256": "4a26e8e64deea3cc61e1b912360cfafbb14f6f796b5cd6ed60cacc7e28003303",
-    "validation": "question_bank_full_B081_L18_P04_validation.json",
-    "validation_sha256": "ee8c5e3523bc324754cfe1eac29afe003990d9254f7df08fd4fe410f469a99bc"
-  },
-  "validation_status": "PASS_STATIC_AUTHORING",
+  "validation_status": "PASS_STATIC_CONSOLIDATION",
   "import_status": "STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT",
-  "stage23_runtime_executed": false
+  "stage23_runtime_executed": false,
+  "integration_after_batch_chain": {
+    "scope": "B082-B183",
+    "content_repair_questions": 43,
+    "misconception_mapping_repair_questions": 265,
+    "misconception_cells_repaired": 795,
+    "global_registry_sha256": "b67f2c67a085e4c3deaaf7b177a2a003b2934ce559e69780c32cc868ac894d98",
+    "master_extension_sha256": "e3d3b26886025d830a668b211465ebd0035863ad195085f0b15521ff4d2e5f22",
+    "semantic_candidate_reviewed_distinct": [
+      "GMP-FULL-B096-Q032",
+      "GMP-FULL-B098-Q032"
+    ],
+    "github_main_commit_reviewed": "c03b962519dd0487c709124aee4984debd8a490c"
+  }
 }

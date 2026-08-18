@@ -1,0 +1,112 @@
+{
+  "project": "Grammar Mastery Platform",
+  "runner": "QUESTION BANK CHAT RUNNER v1.0",
+  "batch_id": "B099",
+  "batch_name": "FULL-L22-P04",
+  "validation_status": "PASS_STATIC_AUTHORING",
+  "errors": [],
+  "warnings": [],
+  "row_count": 31,
+  "schema": {
+    "schema_version": "Stage10 / question-bank-v1.0",
+    "columns": 46,
+    "header_exact": true,
+    "status_all_draft": true,
+    "four_distinct_options_each": true,
+    "exactly_one_correct_key_each": true,
+    "correct_option_misconception_blank": true,
+    "all_wrong_options_have_misconception": true,
+    "media_type_all_none": true
+  },
+  "plan": {
+    "lesson_no": 22,
+    "lesson_id": "526ffab9-fc9b-4221-997e-e57dfbf9694a",
+    "lesson_title_fr": "LE COMPARATIF et LE SUPERLATIF",
+    "lesson_part": 4,
+    "lesson_parts_total": 4,
+    "question_ordinal_start": 151,
+    "question_ordinal_end": 181,
+    "batch_question_count": 31
+  },
+  "quotas": {
+    "question_types_actual": {
+      "CLOZE_CONTEXT": 6,
+      "CLOZE_SINGLE": 3,
+      "CONTRAST_RULES": 5,
+      "CORRECT_SENTENCE": 3,
+      "DIALOGUE_COMPLETE": 5,
+      "ERROR_LOCATION": 1,
+      "FA_TO_FR": 1,
+      "FR_TO_FA": 3,
+      "INCORRECT_SENTENCE": 2,
+      "REWRITE_EQUIV": 2
+    },
+    "question_types_expected_from_source_validation": null,
+    "difficulty_actual": {
+      "EASY": 4,
+      "HARD": 11,
+      "MEDIUM": 11,
+      "VERY_HARD": 5
+    },
+    "difficulty_expected_from_source_validation": null,
+    "source_quota_match": true
+  },
+  "coverage": {
+    "subtopic_counts": {
+      "L22-S01": 7,
+      "L22-S02": 6,
+      "L22-S03": 6,
+      "L22-S04": 6,
+      "L22-S05": 6
+    }
+  },
+  "compatibility": {
+    "not_suitable_generated": 0,
+    "conditional_used": 2,
+    "conditional_guardrail_pass": true,
+    "guardrail_source_validation_preserved": true
+  },
+  "qa": {
+    "final_static_authoring_pass": true,
+    "stage7_distractor_misconceptions_resolved": true,
+    "source_validation_status": "PASS_STATIC_AUTHORING"
+  },
+  "repairs": {
+    "content_repair_external_ids": [
+      "GMP-FULL-B099-Q007"
+    ],
+    "content_repair_question_count": 1,
+    "misconception_repair_external_ids": [],
+    "misconception_repair_question_count": 0,
+    "misconception_cells_repaired": 0
+  },
+  "deduplication": {
+    "global_exact_normalized_pass": true,
+    "global_structural_pass": true,
+    "global_semantic_threshold": 0.8,
+    "global_semantic_char_wb_3_5_pass": true,
+    "global_semantic_word_1_2_pass": true
+  },
+  "source_validation": {
+    "file_name": "question_bank_full_B099_L22_P04_validation.json",
+    "sha256": "c226e128c9b2fa728b063b773ee2dcfb7704041f8b4d0875461928d81fe5bf1a",
+    "preserved_as_provenance_only": true
+  },
+  "repository": {
+    "repository": "ImanNasrEsfahani/grammar-mastery-platform",
+    "branch": "main",
+    "commit_sha": "c03b962519dd0487c709124aee4984debd8a490c",
+    "mode": "READ_ONLY",
+    "github_writes_performed": false,
+    "root_document_audit": {
+      "README.md": "READ_FULL",
+      "STATUS.md": "READ_FULL",
+      "ROADMAP.md": "NOT_PRESENT_AT_ROOT__UPLOADED_PROJECT_GUIDE_USED_AS_ROADMAP",
+      "AGENTS.md": "NOT_PRESENT_AT_ROOT",
+      "blocker_for_authoring": false
+    }
+  },
+  "stage23": "STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT",
+  "stage23_runtime_executed": false,
+  "import_preview_commit_executed": false
+}

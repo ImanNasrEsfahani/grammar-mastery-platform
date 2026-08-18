@@ -1,0 +1,109 @@
+{
+  "project": "Grammar Mastery Platform",
+  "runner": "QUESTION BANK CHAT RUNNER v1.0",
+  "batch_id": "B101",
+  "batch_name": "FULL-L23-P02",
+  "validation_status": "PASS_STATIC_AUTHORING",
+  "errors": [],
+  "warnings": [],
+  "row_count": 50,
+  "schema": {
+    "schema_version": "Stage10 / question-bank-v1.0",
+    "columns": 46,
+    "header_exact": true,
+    "status_all_draft": true,
+    "four_distinct_options_each": true,
+    "exactly_one_correct_key_each": true,
+    "correct_option_misconception_blank": true,
+    "all_wrong_options_have_misconception": true,
+    "media_type_all_none": true
+  },
+  "plan": {
+    "lesson_no": 23,
+    "lesson_id": "327c43bc-8757-4e51-aff0-9c04775c57cf",
+    "lesson_title_fr": "LE VERBE « ALLER »",
+    "lesson_part": 2,
+    "lesson_parts_total": 5,
+    "question_ordinal_start": 51,
+    "question_ordinal_end": 100,
+    "batch_question_count": 50
+  },
+  "quotas": {
+    "question_types_actual": {
+      "CLOZE_CONTEXT": 11,
+      "CLOZE_SINGLE": 6,
+      "CONJUGATION": 7,
+      "CORRECT_SENTENCE": 4,
+      "DIALOGUE_COMPLETE": 6,
+      "ERROR_LOCATION": 1,
+      "FA_TO_FR": 2,
+      "FR_TO_FA": 3,
+      "INCORRECT_SENTENCE": 3,
+      "PREPOSITION_CHOICE": 4,
+      "REWRITE_EQUIV": 3
+    },
+    "question_types_expected_from_source_validation": null,
+    "difficulty_actual": {
+      "EASY": 15,
+      "HARD": 10,
+      "MEDIUM": 23,
+      "VERY_HARD": 2
+    },
+    "difficulty_expected_from_source_validation": null,
+    "source_quota_match": true
+  },
+  "coverage": {
+    "subtopic_counts": {
+      "L23-S01": 13,
+      "L23-S02": 24,
+      "L23-S03": 13
+    }
+  },
+  "compatibility": {
+    "not_suitable_generated": 0,
+    "conditional_used": 0,
+    "conditional_guardrail_pass": true,
+    "guardrail_source_validation_preserved": false
+  },
+  "qa": {
+    "final_static_authoring_pass": true,
+    "stage7_distractor_misconceptions_resolved": true,
+    "source_validation_status": "PASS_STATIC_AUTHORING"
+  },
+  "repairs": {
+    "content_repair_external_ids": [],
+    "content_repair_question_count": 0,
+    "misconception_repair_external_ids": [],
+    "misconception_repair_question_count": 0,
+    "misconception_cells_repaired": 0
+  },
+  "deduplication": {
+    "global_exact_normalized_pass": true,
+    "global_structural_pass": true,
+    "global_semantic_threshold": 0.8,
+    "global_semantic_char_wb_3_5_pass": true,
+    "global_semantic_word_1_2_pass": true
+  },
+  "source_validation": {
+    "file_name": "question_bank_full_B101_L23_P02_validation.json",
+    "sha256": "388efb430e02ba09cd6676606d0771335d92d7948b6121ccc11a9e01b4641957",
+    "preserved_as_provenance_only": true
+  },
+  "repository": {
+    "repository": "ImanNasrEsfahani/grammar-mastery-platform",
+    "branch": "main",
+    "commit_sha": "c03b962519dd0487c709124aee4984debd8a490c",
+    "mode": "READ_ONLY",
+    "github_writes_performed": false,
+    "root_document_audit": {
+      "README.md": "READ_FULL",
+      "STATUS.md": "READ_FULL",
+      "ROADMAP.md": "NOT_PRESENT_AT_ROOT__UPLOADED_PROJECT_GUIDE_USED_AS_ROADMAP",
+      "AGENTS.md": "NOT_PRESENT_AT_ROOT",
+      "blocker_for_authoring": false
+    }
+  },
+  "stage23": "STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT",
+  "stage23_runtime_executed": false,
+  "import_preview_commit_executed": false
+}

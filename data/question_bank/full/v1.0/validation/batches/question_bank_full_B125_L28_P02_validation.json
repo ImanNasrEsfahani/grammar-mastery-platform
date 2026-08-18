@@ -1,0 +1,135 @@
+{
+  "project": "Grammar Mastery Platform",
+  "runner": "QUESTION BANK CHAT RUNNER v1.0",
+  "batch_id": "B125",
+  "batch_name": "FULL-L28-P02",
+  "validation_status": "PASS_STATIC_AUTHORING",
+  "errors": [],
+  "warnings": [],
+  "row_count": 50,
+  "schema": {
+    "schema_version": "Stage10 / question-bank-v1.0",
+    "columns": 46,
+    "header_exact": true,
+    "status_all_draft": true,
+    "four_distinct_options_each": true,
+    "exactly_one_correct_key_each": true,
+    "correct_option_misconception_blank": true,
+    "all_wrong_options_have_misconception": true,
+    "media_type_all_none": true
+  },
+  "plan": {
+    "lesson_no": 28,
+    "lesson_id": "2ad099b6-e9f4-4b96-8883-d88977fc94b4",
+    "lesson_title_fr": "LES PRONOMS COMPLÉMENTS",
+    "lesson_part": 2,
+    "lesson_parts_total": 5,
+    "question_ordinal_start": 51,
+    "question_ordinal_end": 100,
+    "batch_question_count": 50
+  },
+  "quotas": {
+    "question_types_actual": {
+      "CLOZE_CONTEXT": 8,
+      "CLOZE_SINGLE": 6,
+      "CONJUGATION": 2,
+      "CONTRAST_RULES": 5,
+      "CORRECT_SENTENCE": 5,
+      "DIALOGUE_COMPLETE": 3,
+      "ERROR_LOCATION": 2,
+      "FA_TO_FR": 2,
+      "FR_TO_FA": 2,
+      "INCORRECT_SENTENCE": 4,
+      "PREPOSITION_CHOICE": 3,
+      "PRONOUN_CHOICE": 4,
+      "REWRITE_EQUIV": 4
+    },
+    "question_types_expected_from_source_validation": {
+      "CLOZE_SINGLE": 6,
+      "CLOZE_CONTEXT": 8,
+      "CORRECT_SENTENCE": 5,
+      "INCORRECT_SENTENCE": 4,
+      "ERROR_LOCATION": 2,
+      "CONJUGATION": 2,
+      "TENSE_CHOICE": 0,
+      "PRONOUN_CHOICE": 4,
+      "PREPOSITION_CHOICE": 3,
+      "REWRITE_EQUIV": 4,
+      "FR_TO_FA": 2,
+      "FA_TO_FR": 2,
+      "DIALOGUE_COMPLETE": 3,
+      "REGISTER_CHOICE": 0,
+      "CONTRAST_RULES": 5
+    },
+    "difficulty_actual": {
+      "EASY": 15,
+      "HARD": 10,
+      "MEDIUM": 23,
+      "VERY_HARD": 2
+    },
+    "difficulty_expected_from_source_validation": {
+      "EASY": 15,
+      "MEDIUM": 23,
+      "HARD": 10,
+      "VERY_HARD": 2
+    },
+    "source_quota_match": true
+  },
+  "coverage": {
+    "subtopic_counts": {
+      "L28-S01": 5,
+      "L28-S02": 6,
+      "L28-S03": 10,
+      "L28-S04": 7,
+      "L28-S05": 10,
+      "L28-S06": 12
+    }
+  },
+  "compatibility": {
+    "not_suitable_generated": 0,
+    "conditional_used": 0,
+    "conditional_guardrail_pass": true,
+    "guardrail_source_validation_preserved": false
+  },
+  "qa": {
+    "final_static_authoring_pass": true,
+    "stage7_distractor_misconceptions_resolved": true,
+    "source_validation_status": "PASS_STATIC_AUTHORING"
+  },
+  "repairs": {
+    "content_repair_external_ids": [],
+    "content_repair_question_count": 0,
+    "misconception_repair_external_ids": [],
+    "misconception_repair_question_count": 0,
+    "misconception_cells_repaired": 0
+  },
+  "deduplication": {
+    "global_exact_normalized_pass": true,
+    "global_structural_pass": true,
+    "global_semantic_threshold": 0.8,
+    "global_semantic_char_wb_3_5_pass": true,
+    "global_semantic_word_1_2_pass": true
+  },
+  "source_validation": {
+    "file_name": "question_bank_full_B125_L28_P02_validation.json",
+    "sha256": "f94cb969d0129f83da83f71f79fee7418a2003c5579f2bae57032aef3de18795",
+    "preserved_as_provenance_only": true
+  },
+  "repository": {
+    "repository": "ImanNasrEsfahani/grammar-mastery-platform",
+    "branch": "main",
+    "commit_sha": "c03b962519dd0487c709124aee4984debd8a490c",
+    "mode": "READ_ONLY",
+    "github_writes_performed": false,
+    "root_document_audit": {
+      "README.md": "READ_FULL",
+      "STATUS.md": "READ_FULL",
+      "ROADMAP.md": "NOT_PRESENT_AT_ROOT__UPLOADED_PROJECT_GUIDE_USED_AS_ROADMAP",
+      "AGENTS.md": "NOT_PRESENT_AT_ROOT",
+      "blocker_for_authoring": false
+    }
+  },
+  "stage23": "STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT",
+  "stage23_runtime_executed": false,
+  "import_preview_commit_executed": false
+}

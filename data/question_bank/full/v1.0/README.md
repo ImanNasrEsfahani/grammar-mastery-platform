@@ -1,50 +1,47 @@
-# Full Question Bank — B001–B081 / Lessons L01–L18P04
+# Full Question Bank — B001–B183 / Lessons L01–L40
 
 Status: **PASS_STATIC_CONSOLIDATION**  
-Questions: **3,640**  
+Questions: **8,175** (**3,640 existing + 4,535 new**)  
 Schema: **46 columns / question-import-schema-v0.9.0**  
 Repository question status: **DRAFT only**  
-Continuation: **last B081 / next B082**  
-Lesson 18 progress: **200 / 218**; B082 is the final 18-question P05 batch and is intentionally not included.  
+Continuation: **last B183 / next B184 (L41)**  
 Stage 23: **STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT** — Import/Preview/Commit was not executed.
 
-## Canonical repository seed layout
+## Canonical repository seed layout after applying this overlay
 
-The authoring inventory is stored as two versioned Stage10 source shards directly under `master/`:
+The existing source shards remain in place:
 
-- `master/question_bank_full_B001_B041_L01_L09.csv` — existing 1,806-row baseline.
-- `master/question_bank_full_B042_B081_L10_L18P04.csv` — 1,834-row extension.
-- `master/question_bank_seed_catalog.json` — defines both files as one 3,640-row repository-native seed and points to the cumulative validation evidence.
+- `master/question_bank_full_B001_B041_L01_L09.csv` — 1,806 rows.
+- `master/question_bank_full_B042_B081_L10_L18P04.csv` — 1,834 rows.
 
-The flat `master/` layout is intentional; there is no required `master/extensions/` directory.
+This package adds:
 
-During a fresh installation the existing Stage26 migration runner invokes `ops/question_bank/bootstrap.py --publish-canonical-seed`. The bootstrap reads the catalog, validates both DRAFT source shards as one canonical seed, records the applied count in `system_versions`, and publishes the validated seed through the explicit SYSTEM workflow. No new migration and no separate runtime seeder are introduced.
+- `master/question_bank_full_B082_B183_L18P05_L40.csv` — 4,535 rows.
+- `master/question_bank_seed_catalog.json` — updated 8,175-row three-shard seed catalog.
 
-## Files
+The current Stage26 bootstrap already supports the multi-file seed catalog, so this extension does **not** add a migration, a separate runtime seeder, or a bootstrap code change. B082–B183 final distractor misconception mappings pass the Stage7 resolution QA; the existing legacy B042–B081 compatibility bridge remains unchanged and no new compatibility bridge is introduced.
 
-- `imports/question_bank_full_L01_L04_import_001.csv` — historical prepared Stage23 chunk for L01-L04.
-- `imports/question_bank_full_L05_L09_import_002.csv` — historical prepared Stage23 chunk for L05-L09.
-- `imports/question_bank_full_L10_L14_import_003.csv` — 990 prepared rows.
-- `imports/question_bank_full_L15_L18P04_import_004.csv` — 844 prepared rows.
-- `registry/question_bank_global_registry.csv` — cumulative B001-B081 registry, 3,640 rows; use for B082 duplicate checking.
-- `state/question_bank_checkpoint.json` — active checkpoint after B081; next batch B082.
-- `state/previous_batch/question_bank_full_B081_L18_P04.*` — active previous-batch authoring context for B082. Older previous-batch files may remain as historical evidence; the checkpoint is authoritative.
-- `validation/question_bank_full_B001_B081_L01_L18P04_validation.json` — cumulative consolidation/static QA report.
-- `validation/batches/` — original per-batch validation evidence. B042-B081 is added by this extension without rewriting the existing B001-B041 evidence.
-- `manifests/source_batch_manifest.json` — historical B001-B041 source provenance.
-- `manifests/source_batch_manifest_extension_B042_B081.json` — B042-B081 source provenance.
-- `manifests/repository_payload.sha256` — checksums for the current B001-B081 Question Bank repository payload after this integration.
+## Files in this overlay
 
-The `imports/*.csv` files are retained only as prepared Stage23 inputs for a future unblocked pipeline. Do **not** run Stage23 Import/Preview/Commit while the recorded manifest-hash-drift blocker remains in force.
+- `registry/question_bank_global_registry.csv` — cumulative B001–B183 registry, 8,175 rows.
+- `state/question_bank_checkpoint.json` — updated checkpoint after B183; B184 next.
+- `state/previous_batch/question_bank_full_B183_L40_P06.*` — active previous-batch authoring context for B184.
+- `validation/question_bank_full_B001_B183_L01_L40_validation.json` — cumulative static consolidation report.
+- `validation/semantic_candidate_review_B082_B183.json` — independent semantic-candidate evidence/adjudication.
+- `validation/batches/` — 102 final per-batch integration validations for B082–B183.
+- `imports/*_005.csv` through `*_009.csv` — prepared Stage23 inputs only. **Do not execute Stage23** while the blocker remains.
+- `manifests/source_batch_manifest_extension_B082_B183.json` — original source ZIP/CSV/validation/checkpoint/registry provenance plus integrated hashes.
+- `manifests/repository_payload_B082_B183.sha256` — SHA-256 checksums for this overlay.
 
-## Static consolidation results
+## Static QA summary
 
-- B001-B081 present with no gaps in the cumulative registry.
-- 3,640 unique `external_id` values.
-- All 3,640 repository source rows remain `DRAFT`.
-- B042-B081 adds 1,834 questions across L10-L18P04.
-- New lesson totals: L10=207, L11=244, L12=167, L13=173, L14=199, L15=183, L16=262, L17=199, L18=200.
-- B042-B081 introduces no normalized-stem, structural-signature, semantic-signature or fingerprint collision in the final registry.
-- Independent semantic near-duplicate scan at threshold 0.80 found 0 new-to-new and 0 old-to-new pairs at or above the threshold. The two global pairs at or above 0.80 are pre-existing within B001-B041.
-- B060 contains a source validation metadata inconsistency that was reconciled by the direct registry/hash chain and is retained as warning `B060_VALIDATION_METADATA_INCONSISTENCY_RECONCILED_BY_DIRECT_HASH_CHAIN`.
-- Final checkpoint: B081 complete, B082 next.
+- B082–B183 are contiguous and contain exactly 4,535 questions from the official Batch Plan.
+- All rows have the exact Stage10 46-column schema and `status=DRAFT`.
+- Batch difficulty quotas match the Batch Plan; Stage6 question-type quotas are preserved from the source authoring chain.
+- Four distinct options, exactly one correct key, blank misconception on the correct option, populated distractor misconception IDs, and complete explanations were revalidated.
+- `NOT_SUITABLE` generated: 0. `CONDITIONAL` items are retained only where their batch validation confirms the guardrail.
+- The final 8,175-row registry has no exact/normalized/structural/semantic-signature/fingerprint collisions.
+- One char-ngram TF-IDF candidate (B096-Q032 / B098-Q032) crosses 0.80 after cumulative re-fitting; word-ngram scan stays below 0.80 and manual semantic adjudication confirms distinct grammatical targets, so unresolved semantic near-duplicates = 0.
+- 43 content items and 265 misconception-mapping items were repaired; only affected rows were revised.
+
+Stage23 Import/Preview/Commit was **not** executed.

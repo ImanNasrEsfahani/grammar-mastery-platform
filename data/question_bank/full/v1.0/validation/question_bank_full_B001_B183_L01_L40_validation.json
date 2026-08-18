@@ -1,0 +1,211 @@
+{
+  "validation_version": "question-bank-static-consolidation-validation-v1.1",
+  "status": "PASS_STATIC_CONSOLIDATION",
+  "scope": {
+    "base_existing": "B001-B081 / L01-L18P04 / 3640 rows",
+    "extension": "B082-B183 / L18P05-L40 / 4535 rows",
+    "batch_start": "B001",
+    "batch_end": "B183",
+    "lesson_start": "L01",
+    "lesson_end": "L40",
+    "question_count": 8175,
+    "extension_question_count": 4535,
+    "new_batch_count": 102,
+    "batches": "B001-B183",
+    "next_batch": "B184",
+    "remaining_to_plan_target": 2461,
+    "plan_target_questions": 10636
+  },
+  "schema": {
+    "schema_version": "question-import-schema-v0.9.0",
+    "expected_column_count": 46,
+    "actual_column_count": 46,
+    "master_header_matches": true,
+    "extension_header_matches": true,
+    "status_all_draft": true,
+    "four_distinct_options_each": true,
+    "exactly_one_correct_key_each": true,
+    "correct_option_misconception_blank": true,
+    "distractor_misconceptions_populated": true,
+    "all_explanations_nonempty": true,
+    "media_type_all_none": true
+  },
+  "plan_and_quota_validation": {
+    "batch_plan_sha256": "59e4fbbad89446bb3370c1db9d4dce3b7275f557bed1ea4b197b967cf91d71d6",
+    "batches_checked": 102,
+    "batch_sequence_contiguous": true,
+    "batch_question_counts_exact": true,
+    "batch_difficulty_quotas_exact": true,
+    "question_type_quotas_preserved_from_source_authoring": true,
+    "question_type_quota_batches_passed": 102,
+    "coverage_subtopic_counts_match_final_batches": true,
+    "stage7_distractor_resolution_batches_passed": 102,
+    "not_suitable_generated": 0,
+    "conditional_questions_used": 12,
+    "conditional_guardrails_all_passed": true
+  },
+  "counts": {
+    "new_by_lesson": {
+      "L18": 18,
+      "L19": 204,
+      "L20": 215,
+      "L21": 150,
+      "L22": 181,
+      "L23": 223,
+      "L24": 190,
+      "L25": 174,
+      "L26": 264,
+      "L27": 215,
+      "L28": 243,
+      "L29": 186,
+      "L30": 162,
+      "L31": 205,
+      "L32": 233,
+      "L33": 227,
+      "L34": 222,
+      "L35": 186,
+      "L36": 170,
+      "L37": 233,
+      "L38": 185,
+      "L39": 189,
+      "L40": 260
+    },
+    "new_by_difficulty": {
+      "EASY": 932,
+      "HARD": 1362,
+      "MEDIUM": 1762,
+      "VERY_HARD": 479
+    },
+    "new_by_question_type": {
+      "CLOZE_CONTEXT": 855,
+      "CLOZE_SINGLE": 504,
+      "CONJUGATION": 81,
+      "CONTRAST_RULES": 439,
+      "CORRECT_SENTENCE": 405,
+      "DIALOGUE_COMPLETE": 527,
+      "ERROR_LOCATION": 219,
+      "FA_TO_FR": 165,
+      "FR_TO_FA": 339,
+      "INCORRECT_SENTENCE": 341,
+      "PREPOSITION_CHOICE": 135,
+      "PRONOUN_CHOICE": 131,
+      "REGISTER_CHOICE": 12,
+      "REWRITE_EQUIV": 346,
+      "TENSE_CHOICE": 36
+    },
+    "new_correct_option_positions": {
+      "A": 1203,
+      "B": 1204,
+      "C": 1074,
+      "D": 1054
+    },
+    "import_chunks_prepared_only": {
+      "question_bank_full_L18P05_L22_import_005.csv": 768,
+      "question_bank_full_L23_L27_import_006.csv": 1066,
+      "question_bank_full_L28_L32_import_007.csv": 1029,
+      "question_bank_full_L33_L36_import_008.csv": 805,
+      "question_bank_full_L37_L40_import_009.csv": 867
+    }
+  },
+  "repairs": {
+    "changed_question_rows": 308,
+    "content_repair_question_count": 43,
+    "misconception_mapping_repair_question_count": 265,
+    "misconception_cells_repaired": 795,
+    "repair_policy": "ONLY_FLAGGED_OR_INVALID_ROWS_REPAIRED; external_id preserved; question_revision incremented",
+    "repair_summary": "repair_summary_B082_B183.csv (package root)"
+  },
+  "duplicate_validation": {
+    "global_registry_rows": 8175,
+    "external_id_unique": true,
+    "normalized_stem_unique": true,
+    "structural_signature_sha256_unique": true,
+    "semantic_signature_sha256_unique": true,
+    "fingerprint_sha256_unique": true,
+    "semantic_near_duplicate_scan": {
+      "char_method": "independent TF-IDF char_wb ngrams 3-5 over normalized_stem + correct_text",
+      "word_method": "independent TF-IDF word ngrams 1-2 over normalized_stem + correct_text",
+      "threshold": 0.8,
+      "char_new_to_new_automated_candidates": 1,
+      "char_old_to_new_automated_candidates": 0,
+      "word_new_to_new_automated_candidates": 0,
+      "word_old_to_new_automated_candidates": 0,
+      "char_new_to_new_max_similarity": 0.806485,
+      "char_old_to_new_max_similarity": 0.749856,
+      "word_new_to_new_max_similarity": 0.798087,
+      "word_old_to_new_max_similarity": 0.586675,
+      "reviewed_candidate_count": 1,
+      "reviewed_candidate_result": "DISTINCT_SEMANTIC_TARGETS_RETAINED",
+      "unresolved_semantic_near_duplicate_count": 0,
+      "evidence": "validation/semantic_candidate_review_B082_B183.json"
+    }
+  },
+  "continuation_integrity": {
+    "final_checkpoint_last_completed": "B183",
+    "final_checkpoint_next": "B184",
+    "final_checkpoint_next_started": false,
+    "final_registry_row_count": 8175,
+    "final_registry_sha256": "b67f2c67a085e4c3deaaf7b177a2a003b2934ce559e69780c32cc868ac894d98",
+    "completed_questions": 8175,
+    "remaining_questions": 2461
+  },
+  "source_batch_validations": {
+    "batches_checked": 102,
+    "batch_range": "B082-B183",
+    "raw_source_validation_hashes_preserved_in_manifest": true,
+    "final_integration_batch_validations_in_overlay": true,
+    "stage23_marker_checked": true,
+    "source_fail_or_error_count": 0
+  },
+  "stage7_and_compatibility": {
+    "new_batches_stage7_resolution_passed": 102,
+    "new_batches_stage7_resolution_total": 102,
+    "new_legacy_question_bank_compatibility_bridge_required": false,
+    "existing_B042_B081_compatibility_bridge_unchanged": true,
+    "note": "B082-B183 final distractor mappings were repaired/validated against the recovered/canonical Stage7 resolution path. The legacy B042-B081 compatibility catalogue remains the only compatibility bridge required by the current repository bootstrap."
+  },
+  "stage23": {
+    "status": "STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT",
+    "runtime_executed": false,
+    "import_preview_commit_executed": false,
+    "note": "Stage23 Import/Preview/Commit was intentionally not executed; this does not block authoring/static consolidation."
+  },
+  "integration": {
+    "strategy": "repository-native seed catalog; retain B001-B081 source shards and add B082-B183 extension shard; existing Stage26 bootstrap consumes updated catalog",
+    "migrations_modified": false,
+    "seeders_modified": false,
+    "bootstrap_code_modified": false,
+    "github_writes_performed": false,
+    "prepared_import_files_executed": false
+  },
+  "repository_audit": {
+    "repository": "ImanNasrEsfahani/grammar-mastery-platform",
+    "branch": "main",
+    "commit_sha": "c03b962519dd0487c709124aee4984debd8a490c",
+    "mode": "READ_ONLY",
+    "root_README": "READ_FULL",
+    "root_STATUS": "READ_FULL",
+    "root_ROADMAP": "NOT_PRESENT_AT_ROOT__UPLOADED_PROJECT_GUIDE_USED_AS_ROADMAP",
+    "root_AGENTS": "NOT_PRESENT_AT_ROOT",
+    "question_bank_README": "READ_FULL",
+    "bootstrap_seed_catalog_support": "VERIFIED",
+    "github_writes_performed": false
+  },
+  "source_snapshot": {
+    "github_main_commit": "c03b962519dd0487c709124aee4984debd8a490c",
+    "batch_plan_sha256": "59e4fbbad89446bb3370c1db9d4dce3b7275f557bed1ea4b197b967cf91d71d6",
+    "project_guide_sha256": "8a561160d698ffb811453d20b9c610fbb644c7593cca10b3bca6728c7969e6a7",
+    "reference_book_sha256": "b6162aacc084cd78ec46f43972fdc68f9330576ea909f4a51767c3333c7e74ca"
+  },
+  "warnings": [
+    {
+      "code": "SEMANTIC_TFIDF_CANDIDATE_REVIEWED_DISTINCT",
+      "pair": [
+        "GMP-FULL-B096-Q032",
+        "GMP-FULL-B098-Q032"
+      ],
+      "char_wb_similarity": 0.806485,
+      "resolution": "DISTINCT_SEMANTIC_TARGETS_RETAINED"
+    }
+  ]
+}

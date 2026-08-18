@@ -1,0 +1,178 @@
+{
+  "project": "Grammar Mastery Platform",
+  "runner": "QUESTION BANK CHAT RUNNER v1.0",
+  "batch_id": "B122",
+  "batch_name": "FULL-L27-P04",
+  "validation_status": "PASS_STATIC_AUTHORING",
+  "errors": [],
+  "warnings": [],
+  "row_count": 50,
+  "schema": {
+    "schema_version": "Stage10 / question-bank-v1.0",
+    "columns": 46,
+    "header_exact": true,
+    "status_all_draft": true,
+    "four_distinct_options_each": true,
+    "exactly_one_correct_key_each": true,
+    "correct_option_misconception_blank": true,
+    "all_wrong_options_have_misconception": true,
+    "media_type_all_none": true
+  },
+  "plan": {
+    "lesson_no": 27,
+    "lesson_id": "e5bfdde7-6889-4829-ad65-06a572af5f97",
+    "lesson_title_fr": "LES VERBES PRONOMINAUX",
+    "lesson_part": 4,
+    "lesson_parts_total": 5,
+    "question_ordinal_start": 151,
+    "question_ordinal_end": 200,
+    "batch_question_count": 50
+  },
+  "quotas": {
+    "question_types_actual": {
+      "CLOZE_CONTEXT": 8,
+      "CLOZE_SINGLE": 5,
+      "CONTRAST_RULES": 5,
+      "CORRECT_SENTENCE": 5,
+      "DIALOGUE_COMPLETE": 6,
+      "ERROR_LOCATION": 2,
+      "FA_TO_FR": 1,
+      "FR_TO_FA": 5,
+      "INCORRECT_SENTENCE": 4,
+      "PRONOUN_CHOICE": 4,
+      "REWRITE_EQUIV": 5
+    },
+    "question_types_expected_from_source_validation": {
+      "CLOZE_SINGLE": 5,
+      "CLOZE_CONTEXT": 8,
+      "CORRECT_SENTENCE": 5,
+      "INCORRECT_SENTENCE": 4,
+      "ERROR_LOCATION": 2,
+      "PRONOUN_CHOICE": 4,
+      "REWRITE_EQUIV": 5,
+      "FR_TO_FA": 5,
+      "FA_TO_FR": 1,
+      "DIALOGUE_COMPLETE": 6,
+      "CONTRAST_RULES": 5
+    },
+    "difficulty_actual": {
+      "EASY": 10,
+      "HARD": 15,
+      "MEDIUM": 20,
+      "VERY_HARD": 5
+    },
+    "difficulty_expected_from_source_validation": {
+      "EASY": 10,
+      "MEDIUM": 20,
+      "HARD": 15,
+      "VERY_HARD": 5
+    },
+    "source_quota_match": true
+  },
+  "coverage": {
+    "subtopic_counts": {
+      "L27-S01": 10,
+      "L27-S02": 10,
+      "L27-S03": 18,
+      "L27-S04": 12
+    }
+  },
+  "compatibility": {
+    "not_suitable_generated": 0,
+    "conditional_used": 0,
+    "conditional_guardrail_pass": true,
+    "guardrail_source_validation_preserved": false
+  },
+  "qa": {
+    "final_static_authoring_pass": true,
+    "stage7_distractor_misconceptions_resolved": true,
+    "source_validation_status": "PASS_STATIC_AUTHORING"
+  },
+  "repairs": {
+    "content_repair_external_ids": [],
+    "content_repair_question_count": 0,
+    "misconception_repair_external_ids": [
+      "GMP-FULL-B122-Q001",
+      "GMP-FULL-B122-Q002",
+      "GMP-FULL-B122-Q003",
+      "GMP-FULL-B122-Q004",
+      "GMP-FULL-B122-Q005",
+      "GMP-FULL-B122-Q006",
+      "GMP-FULL-B122-Q007",
+      "GMP-FULL-B122-Q008",
+      "GMP-FULL-B122-Q009",
+      "GMP-FULL-B122-Q010",
+      "GMP-FULL-B122-Q011",
+      "GMP-FULL-B122-Q012",
+      "GMP-FULL-B122-Q013",
+      "GMP-FULL-B122-Q014",
+      "GMP-FULL-B122-Q015",
+      "GMP-FULL-B122-Q016",
+      "GMP-FULL-B122-Q017",
+      "GMP-FULL-B122-Q018",
+      "GMP-FULL-B122-Q019",
+      "GMP-FULL-B122-Q020",
+      "GMP-FULL-B122-Q021",
+      "GMP-FULL-B122-Q022",
+      "GMP-FULL-B122-Q023",
+      "GMP-FULL-B122-Q024",
+      "GMP-FULL-B122-Q025",
+      "GMP-FULL-B122-Q026",
+      "GMP-FULL-B122-Q027",
+      "GMP-FULL-B122-Q028",
+      "GMP-FULL-B122-Q029",
+      "GMP-FULL-B122-Q030",
+      "GMP-FULL-B122-Q031",
+      "GMP-FULL-B122-Q032",
+      "GMP-FULL-B122-Q033",
+      "GMP-FULL-B122-Q034",
+      "GMP-FULL-B122-Q035",
+      "GMP-FULL-B122-Q036",
+      "GMP-FULL-B122-Q037",
+      "GMP-FULL-B122-Q038",
+      "GMP-FULL-B122-Q039",
+      "GMP-FULL-B122-Q040",
+      "GMP-FULL-B122-Q041",
+      "GMP-FULL-B122-Q042",
+      "GMP-FULL-B122-Q043",
+      "GMP-FULL-B122-Q044",
+      "GMP-FULL-B122-Q045",
+      "GMP-FULL-B122-Q046",
+      "GMP-FULL-B122-Q047",
+      "GMP-FULL-B122-Q048",
+      "GMP-FULL-B122-Q049",
+      "GMP-FULL-B122-Q050"
+    ],
+    "misconception_repair_question_count": 50,
+    "misconception_cells_repaired": 150
+  },
+  "deduplication": {
+    "global_exact_normalized_pass": true,
+    "global_structural_pass": true,
+    "global_semantic_threshold": 0.8,
+    "global_semantic_char_wb_3_5_pass": true,
+    "global_semantic_word_1_2_pass": true
+  },
+  "source_validation": {
+    "file_name": "question_bank_full_B122_L27_P04_validation.json",
+    "sha256": "048799f0133e3b202ca5614338c42e696091df7f29676f6c1d5e7b14aa7f689a",
+    "preserved_as_provenance_only": true
+  },
+  "repository": {
+    "repository": "ImanNasrEsfahani/grammar-mastery-platform",
+    "branch": "main",
+    "commit_sha": "c03b962519dd0487c709124aee4984debd8a490c",
+    "mode": "READ_ONLY",
+    "github_writes_performed": false,
+    "root_document_audit": {
+      "README.md": "READ_FULL",
+      "STATUS.md": "READ_FULL",
+      "ROADMAP.md": "NOT_PRESENT_AT_ROOT__UPLOADED_PROJECT_GUIDE_USED_AS_ROADMAP",
+      "AGENTS.md": "NOT_PRESENT_AT_ROOT",
+      "blocker_for_authoring": false
+    }
+  },
+  "stage23": "STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT",
+  "stage23_runtime_executed": false,
+  "import_preview_commit_executed": false
+}

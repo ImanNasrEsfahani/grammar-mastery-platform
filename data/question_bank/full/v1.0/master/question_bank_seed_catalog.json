@@ -1,18 +1,20 @@
 {
   "catalog_version": "question-bank-repository-seed-catalog-v1.0",
-  "scope": "B001-B081 / L01-L18P04",
-  "question_count": 3640,
+  "scope": "B001-B183 / L01-L40",
+  "question_count": 8175,
   "repository_source_status": "DRAFT",
   "sources": [
     "data/question_bank/full/v1.0/master/question_bank_full_B001_B041_L01_L09.csv",
-    "data/question_bank/full/v1.0/master/question_bank_full_B042_B081_L10_L18P04.csv"
+    "data/question_bank/full/v1.0/master/question_bank_full_B042_B081_L10_L18P04.csv",
+    "data/question_bank/full/v1.0/master/question_bank_full_B082_B183_L18P05_L40.csv"
   ],
-  "validation": "data/question_bank/full/v1.0/validation/question_bank_full_B001_B081_L01_L18P04_validation.json",
+  "validation": "data/question_bank/full/v1.0/validation/question_bank_full_B001_B183_L01_L40_validation.json",
   "stage23_status": "STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT",
   "notes": [
-    "The existing B001-B041 canonical master remains in place and is not duplicated.",
-    "The B042-B081 source is stored directly beside the prior master in master/ for a flat repository layout.",
-    "Both Stage10 CSV sources are loaded as one repository-native seed by ops/question_bank/bootstrap.py.",
-    "Fresh Stage26 bootstrap publishes validated repository DRAFT rows through the canonical SYSTEM workflow."
+    "Existing B001-B081 canonical source shards remain in place and are not duplicated by this package.",
+    "B082-B183 adds one Stage10 source shard with 4,535 DRAFT questions and retains independent per-batch validation evidence.",
+    "All B082-B183 distractor misconception mappings pass the Stage7 resolution QA in the integration validations; no new legacy compatibility bridge is introduced.",
+    "The existing Stage26 seed-catalog workflow can consume the three source shards as one repository-native seed.",
+    "Stage23 Import/Preview/Commit remains blocked and was not executed."
   ]
 }
