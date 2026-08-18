@@ -1,5 +1,5 @@
 {
-  "validation_version": "question-bank-static-consolidation-validation-v1.3-deployment-lineage",
+  "validation_version": "question-bank-static-consolidation-validation-v1.4-b084-stage6-hotfix",
   "status": "PASS_STATIC_CONSOLIDATION",
   "scope": {
     "base_existing": "B001-B081 / 3640 rows",
@@ -26,43 +26,46 @@
   },
   "deployment_lineage": {
     "extension_never_persisted_before_this_deployment": true,
-    "bootstrap_parent_revision_requirement": true,
-    "revision_distribution_before_normalization": {
-      "1": 4219,
-      "2": 314,
-      "3": 2
-    },
     "revision_distribution_after_normalization": {
       "1": 4535
     },
-    "rows_normalized_to_revision_1": 316,
-    "semantic_content_changed_by_lineage_fix": false,
-    "external_ids_preserved": true,
     "result": "PASS_FIRST_PERSISTENCE_REVISION_CONTRACT"
   },
-  "bootstrap_compatibility": {
-    "bootstrap_version_checked": "question-bank-bootstrap-v1.0.0",
-    "tag_delimiter_required": "|",
-    "all_extension_rows_use_bootstrap_tag_delimiter": true,
-    "B083_stage6_hotfix_preserved": true,
-    "result": "PASS_BOOTSTRAP_STATIC_INPUT_COMPATIBILITY"
+  "stage6_hotfixes": {
+    "B083_preserved": true,
+    "B084_changed_questions": [
+      "GMP-FULL-B084-Q025",
+      "GMP-FULL-B084-Q028",
+      "GMP-FULL-B084-Q029",
+      "GMP-FULL-B084-Q031"
+    ],
+    "B084_question_type_quota_preserved": true,
+    "B084_question_type_counts": {
+      "CLOZE_CONTEXT": 11,
+      "CLOZE_SINGLE": 5,
+      "CONTRAST_RULES": 4,
+      "CORRECT_SENTENCE": 5,
+      "DIALOGUE_COMPLETE": 5,
+      "ERROR_LOCATION": 3,
+      "FA_TO_FR": 2,
+      "FR_TO_FA": 5,
+      "INCORRECT_SENTENCE": 3,
+      "PREPOSITION_CHOICE": 2,
+      "REWRITE_EQUIV": 5
+    },
+    "B084_invalid_pairs_repaired": [
+      "L19-S06/PREPOSITION_CHOICE",
+      "L19-S01/PREPOSITION_CHOICE"
+    ],
+    "replacement_compatible_pairs": [
+      "L19-S06/REWRITE_EQUIV",
+      "L19-S01/ERROR_LOCATION",
+      "L19-S03/PREPOSITION_CHOICE"
+    ]
   },
   "stage23": {
     "status": "STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT",
     "runtime_executed": false,
     "import_preview_commit_executed": false
-  },
-  "integration": {
-    "migrations_modified": false,
-    "seeders_modified": false,
-    "bootstrap_code_modified": false,
-    "github_writes_performed": false
-  },
-  "warnings": [
-    {
-      "code": "FIRST_PERSISTENCE_REVISION_NORMALIZATION",
-      "rows_normalized": 316,
-      "reason": "B082-B183 had never been persisted, while bootstrap requires parent revision rows for revision > 1."
-    }
-  ]
+  }
 }
