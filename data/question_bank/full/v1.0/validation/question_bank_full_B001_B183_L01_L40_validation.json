@@ -11,10 +11,18 @@
     "remaining_to_plan_target": 2461
   },
   "schema": {
+    "schema_version": "question-import-schema-v0.9.0",
     "expected_column_count": 46,
     "actual_column_count": 46,
-    "status_all_draft_for_extension": true,
-    "four_options_and_one_correct_key_contract_preserved": true
+    "master_header_matches": true,
+    "extension_header_matches": true,
+    "status_all_draft": true,
+    "four_distinct_options_each": true,
+    "exactly_one_correct_key_each": true,
+    "correct_option_misconception_blank": true,
+    "distractor_misconceptions_populated": true,
+    "all_explanations_nonempty": true,
+    "media_type_all_none": true
   },
   "deployment_lineage": {
     "extension_never_persisted_before_this_deployment": true,
@@ -33,9 +41,11 @@
     "result": "PASS_FIRST_PERSISTENCE_REVISION_CONTRACT"
   },
   "bootstrap_compatibility": {
+    "bootstrap_version_checked": "question-bank-bootstrap-v1.0.0",
     "tag_delimiter_required": "|",
     "all_extension_rows_use_bootstrap_tag_delimiter": true,
-    "B083_stage6_hotfix_preserved": true
+    "B083_stage6_hotfix_preserved": true,
+    "result": "PASS_BOOTSTRAP_STATIC_INPUT_COMPATIBILITY"
   },
   "stage23": {
     "status": "STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT",
@@ -46,6 +56,13 @@
     "migrations_modified": false,
     "seeders_modified": false,
     "bootstrap_code_modified": false,
-    "github_writes_performed_by_assistant": false
-  }
+    "github_writes_performed": false
+  },
+  "warnings": [
+    {
+      "code": "FIRST_PERSISTENCE_REVISION_NORMALIZATION",
+      "rows_normalized": 316,
+      "reason": "B082-B183 had never been persisted, while bootstrap requires parent revision rows for revision > 1."
+    }
+  ]
 }
