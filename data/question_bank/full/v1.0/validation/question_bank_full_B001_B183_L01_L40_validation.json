@@ -1,5 +1,5 @@
 {
-  "validation_version": "question-bank-static-consolidation-validation-v1.1",
+  "validation_version": "question-bank-static-consolidation-validation-v1.2",
   "status": "PASS_STATIC_CONSOLIDATION",
   "scope": {
     "base_existing": "B001-B081 / L01-L18P04 / 3640 rows",
@@ -206,6 +206,25 @@
       ],
       "char_wb_similarity": 0.806485,
       "resolution": "DISTINCT_SEMANTIC_TARGETS_RETAINED"
+    },
+    {
+      "code": "BOOTSTRAP_TAG_DELIMITER_NORMALIZED",
+      "affected_rows": 1179,
+      "from": ";",
+      "to": "|",
+      "reason": "ops/question_bank/bootstrap.py parses tags with split(\"|\")"
     }
-  ]
+  ],
+  "bootstrap_compatibility": {
+    "bootstrap_version_checked": "question-bank-bootstrap-v1.0.0",
+    "tag_delimiter_required": "|",
+    "tag_rows_normalized_from_semicolon": 1179,
+    "all_extension_tag_tokens_resolve_to_stage2_controlled_tags": true,
+    "controlled_tag_count_checked": 35,
+    "secondary_subtopic_delimiter_conflicts": 0,
+    "prepared_import_chunks_match_master_after_normalization": true,
+    "semantic_question_content_changed": false,
+    "question_revision_changed_for_serialization_fix": false,
+    "result": "PASS_BOOTSTRAP_STATIC_INPUT_COMPATIBILITY"
+  }
 }

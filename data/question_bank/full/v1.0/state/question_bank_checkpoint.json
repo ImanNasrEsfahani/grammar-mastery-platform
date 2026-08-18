@@ -91,11 +91,17 @@
     "misconception_mapping_repair_questions": 265,
     "misconception_cells_repaired": 795,
     "global_registry_sha256": "b67f2c67a085e4c3deaaf7b177a2a003b2934ce559e69780c32cc868ac894d98",
-    "master_extension_sha256": "e3d3b26886025d830a668b211465ebd0035863ad195085f0b15521ff4d2e5f22",
+    "master_extension_sha256": "75ce70243492367dfc9c46c31c9bcf9b028ee185356a0a8a3d62ae3a02856fd1",
     "semantic_candidate_reviewed_distinct": [
       "GMP-FULL-B096-Q032",
       "GMP-FULL-B098-Q032"
     ],
-    "github_main_commit_reviewed": "c03b962519dd0487c709124aee4984debd8a490c"
+    "github_main_commit_reviewed": "c03b962519dd0487c709124aee4984debd8a490c",
+    "bootstrap_tag_delimiter_normalization": {
+      "affected_rows": 1179,
+      "from": ";",
+      "to": "|",
+      "semantic_content_changed": false
+    }
   }
 }

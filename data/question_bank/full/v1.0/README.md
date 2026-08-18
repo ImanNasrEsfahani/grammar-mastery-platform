@@ -19,6 +19,8 @@ This package adds:
 - `master/question_bank_full_B082_B183_L18P05_L40.csv` — 4,535 rows.
 - `master/question_bank_seed_catalog.json` — updated 8,175-row three-shard seed catalog.
 
+The B082–B183 shard in this v1.2 package also canonicalizes multi-tag cells to the pipe-delimited form required by `ops/question_bank/bootstrap.py` (`TAG001|TAG002`, not semicolon-separated). 1,179 rows were serialization-normalized with no change to tag membership or semantic question content.
+
 The current Stage26 bootstrap already supports the multi-file seed catalog, so this extension does **not** add a migration, a separate runtime seeder, or a bootstrap code change. B082–B183 final distractor misconception mappings pass the Stage7 resolution QA; the existing legacy B042–B081 compatibility bridge remains unchanged and no new compatibility bridge is introduced.
 
 ## Files in this overlay
