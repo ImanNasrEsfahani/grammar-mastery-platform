@@ -1,5 +1,5 @@
 {
-  "validation_version": "question-bank-static-consolidation-validation-v1.4-b084-stage6-hotfix",
+  "validation_version": "question-bank-static-consolidation-validation-v1.5-b085-stage6-hotfix",
   "status": "PASS_STATIC_CONSOLIDATION",
   "scope": {
     "base_existing": "B001-B081 / 3640 rows",
@@ -33,35 +33,39 @@
   },
   "stage6_hotfixes": {
     "B083_preserved": true,
-    "B084_changed_questions": [
-      "GMP-FULL-B084-Q025",
-      "GMP-FULL-B084-Q028",
-      "GMP-FULL-B084-Q029",
-      "GMP-FULL-B084-Q031"
+    "B084_preserved": true,
+    "B085_changed_questions": [
+      "GMP-FULL-B085-Q023",
+      "GMP-FULL-B085-Q030",
+      "GMP-FULL-B085-Q031",
+      "GMP-FULL-B085-Q035"
     ],
-    "B084_question_type_quota_preserved": true,
-    "B084_question_type_counts": {
+    "B085_question_type_quota_preserved": true,
+    "B085_question_type_counts": {
       "CLOZE_CONTEXT": 11,
-      "CLOZE_SINGLE": 5,
+      "CLOZE_SINGLE": 6,
       "CONTRAST_RULES": 4,
       "CORRECT_SENTENCE": 5,
-      "DIALOGUE_COMPLETE": 5,
+      "DIALOGUE_COMPLETE": 4,
       "ERROR_LOCATION": 3,
-      "FA_TO_FR": 2,
-      "FR_TO_FA": 5,
+      "FA_TO_FR": 3,
+      "FR_TO_FA": 4,
       "INCORRECT_SENTENCE": 3,
-      "PREPOSITION_CHOICE": 2,
-      "REWRITE_EQUIV": 5
+      "PREPOSITION_CHOICE": 3,
+      "REWRITE_EQUIV": 4
     },
-    "B084_invalid_pairs_repaired": [
-      "L19-S06/PREPOSITION_CHOICE",
-      "L19-S01/PREPOSITION_CHOICE"
+    "B085_invalid_pairs_repaired": [
+      "L19-S04/PREPOSITION_CHOICE",
+      "L19-S05/PREPOSITION_CHOICE"
     ],
-    "replacement_compatible_pairs": [
-      "L19-S06/REWRITE_EQUIV",
-      "L19-S01/ERROR_LOCATION",
+    "replacement_pairs": [
+      "L19-S04/INCORRECT_SENTENCE",
+      "L19-S05/REWRITE_EQUIV",
       "L19-S03/PREPOSITION_CHOICE"
     ]
+  },
+  "duplicate_validation": {
+    "extension_normalized_stem_unique": true
   },
   "stage23": {
     "status": "STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT",
