@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import importlib.util
+import json
 from pathlib import Path
 import sys
 import unittest
@@ -18,11 +19,38 @@ SPEC.loader.exec_module(bootstrap)
 class QuestionBankBootstrapTests(unittest.TestCase):
     def test_canonical_master_is_complete_and_remains_draft_at_source(self):
         source, rows, validation, _ = bootstrap.load_repository_seed(ROOT)
-        self.assertEqual(3640, len(rows))
+
+        catalog_path = (
+            ROOT
+            / "data/question_bank/full/v1.0/master/question_bank_seed_catalog.json"
+        )
+        self.assertTrue(catalog_path.is_file())
+        catalog = json.loads(catalog_path.read_text(encoding="utf-8"))
+
+        # The canonical Question Bank grows over time. The seed catalog is the
+        # source of truth for both the expected row count and the ordered source
+        # shard list; this test must not freeze historical values such as 3,640.
+        expected_count = int(catalog["question_count"])
+        self.assertEqual(expected_count, len(rows))
         self.assertEqual({"DRAFT"}, {row["status"] for row in rows})
         self.assertEqual("PASS_STATIC_CONSOLIDATION", validation["status"])
-        self.assertEqual(3640, validation["scope"]["question_count"])
+        self.assertEqual(expected_count, int(validation["scope"]["question_count"]))
         self.assertEqual("question_bank_seed_catalog.json", source.name)
+        self.assertEqual(bootstrap.STAGE23_MARKER, catalog["stage23_status"])
+
+        # Verify that load_repository_seed() consumes exactly the catalog's
+        # ordered source shards, with no hidden or omitted Question Bank rows.
+        manual_rows: list[dict[str, str]] = []
+        for relative_path in catalog["sources"]:
+            header, source_rows = bootstrap.read_csv(ROOT / relative_path)
+            self.assertEqual(bootstrap.EXPECTED_HEADER, header)
+            manual_rows.extend(source_rows)
+
+        self.assertEqual(expected_count, len(manual_rows))
+        self.assertEqual(
+            [row["external_id"] for row in manual_rows],
+            [row["external_id"] for row in rows],
+        )
 
     def test_all_seed_misconceptions_are_resolvable_without_guessing_stage7_identity(self):
         _, rows, _, _ = bootstrap.load_repository_seed(ROOT)
@@ -49,7 +77,7 @@ class QuestionBankBootstrapTests(unittest.TestCase):
         self.assertFalse(used - known, f"unresolved misconception IDs: {sorted(used - known)[:10]}")
 
         # Recovered Stage7 identities must still resolve to exactly one historical
-        # concept.  Compatibility IDs are explicitly not guessed into Stage7.
+        # concept. Compatibility IDs are explicitly not guessed into Stage7.
         for misconception_id in sorted((used & set(recovered_by_id)) - original_ids):
             recovered = recovered_by_id[misconception_id]
             key = (
