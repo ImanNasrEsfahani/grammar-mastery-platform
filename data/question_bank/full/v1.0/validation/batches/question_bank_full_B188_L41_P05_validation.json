@@ -1,0 +1,146 @@
+{
+  "runner_version": "question-bank-chat-runner-v1.0",
+  "batch_id": "B188",
+  "batch_code": "FULL-L41-P05",
+  "lesson_number": 41,
+  "lesson_title": "LE TEMPS (3)",
+  "status": "PASS_STATIC_AUTHORING",
+  "github_read_only": {
+    "repository": "ImanNasrEsfahani/grammar-mastery-platform",
+    "branch": "main",
+    "commit": "c03b962519dd0487c709124aee4984debd8a490c",
+    "writes_performed": false,
+    "root_readme_read": true,
+    "root_status_read": true,
+    "root_roadmap": "NOT_PRESENT_404__PROJECT_GUIDE_USED",
+    "root_agents": "NOT_PRESENT_404"
+  },
+  "source_recovery": {
+    "stage6_targets_recovered": true,
+    "stage6_subtopic_compatibility_recovered": true,
+    "stage7_misconception_ids_recovered": true,
+    "stage6_target_sha": "8f5edea191c6304b498b44fc4a3fcb9281a7abce",
+    "stage6_subtopic_compatibility_sha": "aaddf210bc5130b56d501338ef73b6054b2904e8",
+    "stage7_misconception_catalogue_sha": "f29839f77cede96ca7f6a9aa3ecace645e10e2ed",
+    "stage7_distractor_rules_sha": "add62b4906c4f3a7ae98ca556df3f478e50b94e5"
+  },
+  "input_integrity": {
+    "checkpoint_before": "B187",
+    "registry_rows_before": 8375,
+    "plan_sha256": "59e4fbbad89446bb3370c1db9d4dce3b7275f557bed1ea4b197b967cf91d71d6",
+    "grammar_book_sha256": "b6162aacc084cd78ec46f43972fdc68f9330576ea909f4a51767c3333c7e74ca",
+    "project_guide_sha256": "8a561160d698ffb811453d20b9c610fbb644c7593cca10b3bca6728c7969e6a7"
+  },
+  "plan": {
+    "question_count": 2,
+    "ordinals": "201-202",
+    "part": "5/5",
+    "difficulty_target": {
+      "EASY": 0,
+      "MEDIUM": 1,
+      "HARD": 1,
+      "VERY_HARD": 0
+    },
+    "type_allocation_rule": "REMAINING_HAMILTON_V1",
+    "subtopic_rule": "COMPATIBILITY_BALANCED_V1"
+  },
+  "question_type_quota": {
+    "target": {
+      "CLOZE_SINGLE": 1,
+      "CLOZE_CONTEXT": 1
+    },
+    "actual": {
+      "CLOZE_SINGLE": 1,
+      "CLOZE_CONTEXT": 1
+    },
+    "pass": true,
+    "not_suitable_generated": 0,
+    "conditional_generated": 0
+  },
+  "compatibility": {
+    "assignments": [
+      {
+        "external_id": "GMP-FULL-B188-Q001",
+        "subtopic_code": "L41-S03",
+        "question_type": "CLOZE_SINGLE",
+        "status": "PREFERRED",
+        "guardrail_required": false
+      },
+      {
+        "external_id": "GMP-FULL-B188-Q002",
+        "subtopic_code": "L41-S07",
+        "question_type": "CLOZE_CONTEXT",
+        "status": "ALLOWED",
+        "guardrail_required": false
+      }
+    ],
+    "pass": true
+  },
+  "difficulty_quota": {
+    "target": {
+      "EASY": 0,
+      "MEDIUM": 1,
+      "HARD": 1,
+      "VERY_HARD": 0
+    },
+    "actual": {
+      "MEDIUM": 1,
+      "HARD": 1
+    },
+    "pass": true
+  },
+  "coverage": {
+    "batch_subtopic_counts": {
+      "L41-S03": 1,
+      "L41-S07": 1
+    },
+    "cumulative_after": {
+      "L41-S01": 29,
+      "L41-S02": 29,
+      "L41-S03": 29,
+      "L41-S04": 29,
+      "L41-S05": 29,
+      "L41-S06": 29,
+      "L41-S07": 28
+    },
+    "max_minus_min": 1,
+    "pass": true
+  },
+  "schema_qa": {
+    "column_count": 46,
+    "rows": 2,
+    "status_all_draft": true,
+    "four_distinct_options": true,
+    "exactly_one_correct": true,
+    "correct_misconception_blank": true,
+    "distractor_misconceptions_valid": true,
+    "pass": true
+  },
+  "dedup": {
+    "previous_registry_rows": 8375,
+    "updated_registry_rows": 8377,
+    "exact_collisions": 0,
+    "normalized_collisions": 0,
+    "structural_signature_collisions": 0,
+    "semantic_signature_collisions": 0,
+    "fingerprint_collisions": 0,
+    "semantic_threshold": 0.8,
+    "max_cross_previous_same_type_ratio": 0.514018691588785,
+    "max_cross_previous_pair": {
+      "new": "GMP-FULL-B188-Q001",
+      "previous": "GMP-FULL-B110-Q003"
+    },
+    "max_within_batch_same_type_ratio": 0.0,
+    "max_within_batch_pair": null,
+    "pass": true
+  },
+  "stage23": {
+    "runtime_executed": false,
+    "status": "STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT"
+  },
+  "final_status": "PASS_STATIC_AUTHORING",
+  "repair_summary": {
+    "repaired_rows": [],
+    "scope": "NO_FAILURES_REQUIRING_REPAIR"
+  }
+}

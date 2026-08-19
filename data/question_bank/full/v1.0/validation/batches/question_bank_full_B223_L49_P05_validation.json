@@ -1,0 +1,237 @@
+{
+  "project": "Grammar Mastery Platform",
+  "runner": "QUESTION BANK CHAT RUNNER v1.0",
+  "batch_id": "B223",
+  "batch_code": "FULL-L49-P05",
+  "lesson_number": 49,
+  "lesson_title": "LE CONDITIONNEL (2)",
+  "validation_status": "PASS_STATIC_AUTHORING",
+  "errors": [],
+  "repairs": [],
+  "generated_rows": 17,
+  "schema_columns": 46,
+  "status_value": "DRAFT",
+  "repository": {
+    "repository": "ImanNasrEsfahani/grammar-mastery-platform",
+    "branch": "main",
+    "commit_sha": "1d23edcf8399b313e7fa629267de44a28e4580da",
+    "commit_message": "fix 6",
+    "mode": "READ_ONLY",
+    "github_writes_performed": false,
+    "root_documents": {
+      "README.md": "READ_FULL",
+      "STATUS.md": "READ_FULL",
+      "ROADMAP.md": "NOT_PRESENT_AT_ROOT__PROJECT_GUIDE_AUTHORITY",
+      "AGENTS.md": "NOT_PRESENT_AT_ROOT"
+    }
+  },
+  "plan": {
+    "global_batch_no": 223,
+    "lesson_part": "5/5",
+    "question_ordinal_start": 201,
+    "question_ordinal_end": 217,
+    "batch_question_count": 17,
+    "difficulty_profile": "DISCRIMINATION",
+    "difficulty": {
+      "EASY": 2,
+      "MEDIUM": 6,
+      "HARD": 6,
+      "VERY_HARD": 3
+    },
+    "lesson_cumulative_after_batch": 217,
+    "lesson_remaining_after_batch": 0,
+    "depends_on": "B222",
+    "question_type_allocation_rule": "REMAINING_HAMILTON_V1",
+    "subtopic_assignment_rule": "COMPATIBILITY_BALANCED_V1"
+  },
+  "source_basis": {
+    "book_pages_visually_rechecked": [
+      "printed p. 230 / PDF p. 232",
+      "printed p. 231 / PDF p. 233"
+    ],
+    "lesson_reference_span": [
+      "printed pp. 230-231 / PDF pp. 232-233"
+    ],
+    "project_guide_relevant_stages": "Stages 1–11",
+    "category": "CAT03",
+    "subcategory": "SUB06",
+    "controlled_tags": [
+      "condition_hypothesis",
+      "past"
+    ]
+  },
+  "stage6_lesson_target_full": 217,
+  "question_type_quota_current": {
+    "CLOZE_SINGLE": 1,
+    "CLOZE_CONTEXT": 3,
+    "CORRECT_SENTENCE": 2,
+    "INCORRECT_SENTENCE": 1,
+    "ERROR_LOCATION": 1,
+    "CONJUGATION": 1,
+    "TENSE_CHOICE": 1,
+    "REWRITE_EQUIV": 2,
+    "FR_TO_FA": 1,
+    "DIALOGUE_COMPLETE": 2,
+    "CONTRAST_RULES": 2
+  },
+  "question_type_remaining_after": {
+    "CLOZE_SINGLE": 0,
+    "CLOZE_CONTEXT": 0,
+    "CORRECT_SENTENCE": 0,
+    "INCORRECT_SENTENCE": 0,
+    "ERROR_LOCATION": 0,
+    "CONJUGATION": 0,
+    "TENSE_CHOICE": 0,
+    "PRONOUN_CHOICE": 0,
+    "PREPOSITION_CHOICE": 0,
+    "REWRITE_EQUIV": 0,
+    "FR_TO_FA": 0,
+    "FA_TO_FR": 0,
+    "DIALOGUE_COMPLETE": 0,
+    "REGISTER_CHOICE": 0,
+    "CONTRAST_RULES": 0
+  },
+  "type_difficulty_matrix": {
+    "CLOZE_SINGLE": {
+      "EASY": 0,
+      "MEDIUM": 1,
+      "HARD": 0,
+      "VERY_HARD": 0
+    },
+    "CLOZE_CONTEXT": {
+      "EASY": 1,
+      "MEDIUM": 1,
+      "HARD": 1,
+      "VERY_HARD": 0
+    },
+    "CORRECT_SENTENCE": {
+      "EASY": 0,
+      "MEDIUM": 0,
+      "HARD": 1,
+      "VERY_HARD": 1
+    },
+    "INCORRECT_SENTENCE": {
+      "EASY": 0,
+      "MEDIUM": 1,
+      "HARD": 0,
+      "VERY_HARD": 0
+    },
+    "ERROR_LOCATION": {
+      "EASY": 1,
+      "MEDIUM": 0,
+      "HARD": 0,
+      "VERY_HARD": 0
+    },
+    "CONJUGATION": {
+      "EASY": 0,
+      "MEDIUM": 1,
+      "HARD": 0,
+      "VERY_HARD": 0
+    },
+    "TENSE_CHOICE": {
+      "EASY": 0,
+      "MEDIUM": 0,
+      "HARD": 1,
+      "VERY_HARD": 0
+    },
+    "REWRITE_EQUIV": {
+      "EASY": 0,
+      "MEDIUM": 1,
+      "HARD": 1,
+      "VERY_HARD": 0
+    },
+    "FR_TO_FA": {
+      "EASY": 0,
+      "MEDIUM": 0,
+      "HARD": 1,
+      "VERY_HARD": 0
+    },
+    "DIALOGUE_COMPLETE": {
+      "EASY": 0,
+      "MEDIUM": 1,
+      "HARD": 0,
+      "VERY_HARD": 1
+    },
+    "CONTRAST_RULES": {
+      "EASY": 0,
+      "MEDIUM": 0,
+      "HARD": 1,
+      "VERY_HARD": 1
+    }
+  },
+  "subtopic_batch_counts": {
+    "L49-S01": 4,
+    "L49-S02": 3,
+    "L49-S03": 3,
+    "L49-S04": 3,
+    "L49-S05": 2,
+    "L49-S06": 2
+  },
+  "subtopic_cumulative_after": {
+    "L49-S01": 37,
+    "L49-S02": 36,
+    "L49-S03": 36,
+    "L49-S04": 36,
+    "L49-S05": 36,
+    "L49-S06": 36
+  },
+  "compatibility_validation": {
+    "lesson_level_not_suitable_types": [
+      "PRONOUN_CHOICE",
+      "PREPOSITION_CHOICE",
+      "REGISTER_CHOICE"
+    ],
+    "not_suitable_generated": 0,
+    "conditional_used": 0,
+    "source_alignment": "All assignments use current Stage1 L49 subtopics and Stage6 PREFERRED/ALLOWED placements only."
+  },
+  "misconception_validation": {
+    "correct_option_misconception_blank": true,
+    "wrong_options_have_valid_stage7_ids": true,
+    "id_basis": "Current Stage7 recovered misconception IDs for the exact same L49 subtopic only; no IDs invented."
+  },
+  "answer_position_distribution": {
+    "B": 6,
+    "A": 5,
+    "C": 5,
+    "D": 1
+  },
+  "deduplication": {
+    "prior_registry_rows": 9911,
+    "exact_cross_collisions": 0,
+    "normalized_cross_collisions": 0,
+    "structural_signature_cross_collisions": 0,
+    "semantic_signature_cross_collisions": 0,
+    "fingerprint_cross_collisions": 0,
+    "within_batch_signature_collisions": 0,
+    "semantic_threshold": 0.8,
+    "semantic_method": "TF-IDF char_wb 3-5, normalized stem + correct answer, within question type",
+    "maximum_cross_batch_semantic_similarity": 0.544279,
+    "maximum_cross_batch_pair": [
+      "GMP-FULL-B223-Q209",
+      "GMP-FULL-B214-Q176"
+    ],
+    "maximum_within_batch_semantic_similarity": 0.156149,
+    "maximum_within_batch_pair": [
+      "GMP-FULL-B223-Q211",
+      "GMP-FULL-B223-Q212"
+    ],
+    "final_flags_at_or_above_threshold": 0
+  },
+  "stage11_static_qa": "PASS",
+  "independent_human_review": false,
+  "publication": false,
+  "stage23": {
+    "runtime_executed": false,
+    "import_preview_commit_executed": false,
+    "authoring_static_validation_blocked": false,
+    "status": "STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT"
+  },
+  "output": {
+    "csv": "question_bank_full_B223_L49_P05.csv",
+    "csv_sha256": "48e99caf72bd9527f759c9c385080a41f430fde5359a1dab7dcb54ad332452ec",
+    "registry": "question_bank_global_registry_B223.csv",
+    "registry_rows": 9928,
+    "registry_sha256": "217035e5d2eb11e5e84e08e3afed259d40fe4733d0f10e9e20dbc4ca0ab95844"
+  }
+}

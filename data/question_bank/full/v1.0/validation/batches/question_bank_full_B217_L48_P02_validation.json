@@ -1,0 +1,228 @@
+{
+  "project": "Grammar Mastery Platform",
+  "runner": "QUESTION BANK CHAT RUNNER v1.0",
+  "batch_id": "B217",
+  "batch_code": "FULL-L48-P02",
+  "lesson_number": 48,
+  "lesson_title": "LE FUTUR ANTÉRIEUR",
+  "validation_status": "PASS_STATIC_AUTHORING",
+  "errors": [],
+  "repairs": [],
+  "generated_rows": 50,
+  "schema_columns": 46,
+  "status_value": "DRAFT",
+  "repository": {
+    "repository": "ImanNasrEsfahani/grammar-mastery-platform",
+    "branch": "main",
+    "commit_sha": "1d23edcf8399b313e7fa629267de44a28e4580da",
+    "commit_message": "fix 6",
+    "mode": "READ_ONLY",
+    "github_writes_performed": false,
+    "root_documents": {
+      "README.md": "READ_FULL",
+      "STATUS.md": "READ_FULL",
+      "ROADMAP.md": "NOT_PRESENT_AT_ROOT__PROJECT_GUIDE_AUTHORITY",
+      "AGENTS.md": "NOT_PRESENT_AT_ROOT"
+    }
+  },
+  "plan": {
+    "global_batch_no": 217,
+    "lesson_part": "2/3",
+    "question_ordinal_start": 51,
+    "question_ordinal_end": 100,
+    "batch_question_count": 50,
+    "difficulty_profile": "DISCRIMINATION",
+    "difficulty": {
+      "EASY": 7,
+      "MEDIUM": 18,
+      "HARD": 18,
+      "VERY_HARD": 7
+    },
+    "lesson_cumulative_after_batch": 100,
+    "lesson_remaining_after_batch": 44,
+    "depends_on": "B216",
+    "question_type_allocation_rule": "REMAINING_HAMILTON_V1",
+    "question_type_tie_break": "ascending Question_Type_Order.display_order",
+    "subtopic_assignment_rule": "COMPATIBILITY_BALANCED_V1"
+  },
+  "source_basis": {
+    "book_pages_visually_rechecked": [
+      "printed p. 228 / PDF p. 230"
+    ],
+    "lesson_reference_span": [
+      "printed pp. 228-229 / PDF pp. 230-231"
+    ],
+    "project_guide_relevant_stages": "Stages 1–11",
+    "category": "CAT02",
+    "subcategory": "SUB05",
+    "controlled_tags": [
+      "future",
+      "temporal_reference"
+    ],
+    "stage1_subtopics": {
+      "L48-S01": "Antériorité dans le futur",
+      "L48-S02": "Formation du futur antérieur",
+      "L48-S03": "Résumé des temps de l’indicatif"
+    }
+  },
+  "question_type_quota_current": {
+    "CLOZE_SINGLE": 4,
+    "CLOZE_CONTEXT": 9,
+    "CORRECT_SENTENCE": 5,
+    "INCORRECT_SENTENCE": 2,
+    "ERROR_LOCATION": 2,
+    "CONJUGATION": 3,
+    "TENSE_CHOICE": 6,
+    "REWRITE_EQUIV": 5,
+    "FR_TO_FA": 3,
+    "FA_TO_FR": 1,
+    "DIALOGUE_COMPLETE": 4,
+    "CONTRAST_RULES": 6
+  },
+  "question_type_remaining_after": {
+    "CLOZE_SINGLE": 4,
+    "CLOZE_CONTEXT": 9,
+    "CORRECT_SENTENCE": 5,
+    "INCORRECT_SENTENCE": 2,
+    "ERROR_LOCATION": 1,
+    "CONJUGATION": 2,
+    "TENSE_CHOICE": 5,
+    "PRONOUN_CHOICE": 0,
+    "PREPOSITION_CHOICE": 0,
+    "REWRITE_EQUIV": 4,
+    "FR_TO_FA": 3,
+    "FA_TO_FR": 1,
+    "DIALOGUE_COMPLETE": 3,
+    "REGISTER_CHOICE": 0,
+    "CONTRAST_RULES": 5
+  },
+  "type_by_difficulty_matrix": {
+    "CLOZE_SINGLE": {
+      "EASY": 1,
+      "MEDIUM": 1,
+      "HARD": 1,
+      "VERY_HARD": 1
+    },
+    "CLOZE_CONTEXT": {
+      "EASY": 1,
+      "MEDIUM": 3,
+      "HARD": 4,
+      "VERY_HARD": 1
+    },
+    "CORRECT_SENTENCE": {
+      "EASY": 1,
+      "MEDIUM": 2,
+      "HARD": 2,
+      "VERY_HARD": 0
+    },
+    "INCORRECT_SENTENCE": {
+      "EASY": 0,
+      "MEDIUM": 1,
+      "HARD": 1,
+      "VERY_HARD": 0
+    },
+    "ERROR_LOCATION": {
+      "EASY": 0,
+      "MEDIUM": 1,
+      "HARD": 1,
+      "VERY_HARD": 0
+    },
+    "CONJUGATION": {
+      "EASY": 0,
+      "MEDIUM": 1,
+      "HARD": 1,
+      "VERY_HARD": 1
+    },
+    "TENSE_CHOICE": {
+      "EASY": 1,
+      "MEDIUM": 2,
+      "HARD": 2,
+      "VERY_HARD": 1
+    },
+    "REWRITE_EQUIV": {
+      "EASY": 1,
+      "MEDIUM": 2,
+      "HARD": 2,
+      "VERY_HARD": 0
+    },
+    "FR_TO_FA": {
+      "EASY": 0,
+      "MEDIUM": 1,
+      "HARD": 1,
+      "VERY_HARD": 1
+    },
+    "FA_TO_FR": {
+      "EASY": 0,
+      "MEDIUM": 1,
+      "HARD": 0,
+      "VERY_HARD": 0
+    },
+    "DIALOGUE_COMPLETE": {
+      "EASY": 1,
+      "MEDIUM": 1,
+      "HARD": 1,
+      "VERY_HARD": 1
+    },
+    "CONTRAST_RULES": {
+      "EASY": 1,
+      "MEDIUM": 2,
+      "HARD": 2,
+      "VERY_HARD": 1
+    }
+  },
+  "subtopic_batch_counts": {
+    "L48-S01": 16,
+    "L48-S02": 16,
+    "L48-S03": 18
+  },
+  "subtopic_cumulative_after": {
+    "L48-S01": 33,
+    "L48-S02": 33,
+    "L48-S03": 34
+  },
+  "compatibility_validation": {
+    "lesson_level_not_suitable_types": [
+      "PRONOUN_CHOICE",
+      "PREPOSITION_CHOICE",
+      "REGISTER_CHOICE"
+    ],
+    "not_suitable_generated": 0,
+    "conditional_used": 1,
+    "conditional_item": "GMP-FULL-B217-Q088",
+    "conditional_guardrail": "FA_TO_FR item is closed: fixed Persian meaning, fixed subject « nous », fixed verb « finir », fixed target tense futur antérieur.",
+    "source_alignment": "All generated subtopic assignments remain within L48 rules represented by the selected subtopic."
+  },
+  "misconception_validation": {
+    "correct_option_misconception_blank": true,
+    "wrong_options_have_stage7_catalogue_ids": true,
+    "id_basis": "Existing Stage7 IDs already validated in B216 were reused; no new misconception IDs were invented."
+  },
+  "deduplication": {
+    "exact_cross_collisions": 0,
+    "normalized_cross_collisions": 0,
+    "semantic_threshold": 0.8,
+    "semantic_method": "TF-IDF char_wb 3-5, normalized stem + correct answer, within question type",
+    "maximum_cross_batch_semantic_similarity": 0.796327,
+    "maximum_cross_batch_pair": [
+      "GMP-FULL-B217-Q097",
+      "GMP-FULL-B216-Q048"
+    ],
+    "maximum_within_batch_semantic_similarity": 0.379759,
+    "maximum_within_batch_pair": [
+      "GMP-FULL-B217-Q079",
+      "GMP-FULL-B217-Q081"
+    ]
+  },
+  "stage23": {
+    "runtime_executed": false,
+    "import_preview_commit_executed": false,
+    "status": "STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT"
+  },
+  "output": {
+    "csv": "question_bank_full_B217_L48_P02.csv",
+    "csv_sha256": "d7125a2de4004a798805094d5efa5b91ab1304893c14bf5a41d141c46dd0ca0e",
+    "registry": "question_bank_global_registry_B217.csv",
+    "registry_rows": 9667,
+    "registry_sha256": "b3a37c191af8d4ea957a0559fe77e9807fb0fd8da45f8d9339492937eeff2214"
+  }
+}

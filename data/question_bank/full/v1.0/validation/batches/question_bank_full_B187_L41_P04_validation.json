@@ -1,0 +1,162 @@
+{
+  "runner_version": "question-bank-chat-runner-v1.0",
+  "batch_id": "B187",
+  "batch_code": "FULL-L41-P04",
+  "lesson_number": 41,
+  "lesson_title": "LE TEMPS (3)",
+  "status": "PASS_STATIC_AUTHORING",
+  "github_read_only": {
+    "repository": "ImanNasrEsfahani/grammar-mastery-platform",
+    "branch": "main",
+    "commit": "c03b962519dd0487c709124aee4984debd8a490c",
+    "writes_performed": false,
+    "root_readme_read": true,
+    "root_status_read": true,
+    "root_roadmap": "NOT_PRESENT_404__PROJECT_GUIDE_USED",
+    "root_agents": "NOT_PRESENT_404"
+  },
+  "source_recovery": {
+    "stage6_targets_recovered": true,
+    "stage6_subtopic_compatibility_recovered": true,
+    "stage7_misconception_ids_recovered": true,
+    "stage6_target_sha": "8f5edea191c6304b498b44fc4a3fcb9281a7abce",
+    "stage6_subtopic_compatibility_sha": "aaddf210bc5130b56d501338ef73b6054b2904e8",
+    "stage7_misconception_catalogue_sha": "f29839f77cede96ca7f6a9aa3ecace645e10e2ed",
+    "stage7_distractor_rules_sha": "add62b4906c4f3a7ae98ca556df3f478e50b94e5"
+  },
+  "input_integrity": {
+    "checkpoint_before": "B186",
+    "registry_rows_before": 8325,
+    "plan_sha256": "59e4fbbad89446bb3370c1db9d4dce3b7275f557bed1ea4b197b967cf91d71d6",
+    "grammar_book_sha256": "b6162aacc084cd78ec46f43972fdc68f9330576ea909f4a51767c3333c7e74ca",
+    "project_guide_sha256": "8a561160d698ffb811453d20b9c610fbb644c7593cca10b3bca6728c7969e6a7"
+  },
+  "plan": {
+    "question_count": 50,
+    "ordinals": "151-200",
+    "part": "4/5",
+    "difficulty_target": {
+      "EASY": 10,
+      "MEDIUM": 20,
+      "HARD": 15,
+      "VERY_HARD": 5
+    },
+    "type_allocation_rule": "REMAINING_HAMILTON_V1",
+    "subtopic_rule": "COMPATIBILITY_BALANCED_V1"
+  },
+  "question_type_quota": {
+    "target": {
+      "CLOZE_SINGLE": 5,
+      "CLOZE_CONTEXT": 7,
+      "CORRECT_SENTENCE": 5,
+      "INCORRECT_SENTENCE": 3,
+      "ERROR_LOCATION": 2,
+      "TENSE_CHOICE": 5,
+      "PREPOSITION_CHOICE": 3,
+      "REWRITE_EQUIV": 5,
+      "FR_TO_FA": 5,
+      "FA_TO_FR": 1,
+      "DIALOGUE_COMPLETE": 4,
+      "CONTRAST_RULES": 5
+    },
+    "actual": {
+      "CLOZE_SINGLE": 5,
+      "CLOZE_CONTEXT": 7,
+      "CORRECT_SENTENCE": 5,
+      "INCORRECT_SENTENCE": 3,
+      "ERROR_LOCATION": 2,
+      "TENSE_CHOICE": 5,
+      "PREPOSITION_CHOICE": 3,
+      "REWRITE_EQUIV": 5,
+      "FR_TO_FA": 5,
+      "FA_TO_FR": 1,
+      "DIALOGUE_COMPLETE": 4,
+      "CONTRAST_RULES": 5
+    },
+    "pass": true,
+    "not_suitable_generated": 0,
+    "conditional_generated": 0
+  },
+  "difficulty_quota": {
+    "target": {
+      "EASY": 10,
+      "MEDIUM": 20,
+      "HARD": 15,
+      "VERY_HARD": 5
+    },
+    "actual": {
+      "VERY_HARD": 5,
+      "MEDIUM": 20,
+      "EASY": 10,
+      "HARD": 15
+    },
+    "pass": true
+  },
+  "coverage": {
+    "batch_subtopic_counts": {
+      "L41-S01": 7,
+      "L41-S02": 7,
+      "L41-S03": 7,
+      "L41-S06": 7,
+      "L41-S07": 6,
+      "L41-S04": 8,
+      "L41-S05": 8
+    },
+    "cumulative_after": {
+      "L41-S01": 29,
+      "L41-S02": 29,
+      "L41-S03": 28,
+      "L41-S04": 29,
+      "L41-S05": 29,
+      "L41-S06": 29,
+      "L41-S07": 27
+    },
+    "max_minus_min": 2,
+    "pass": true
+  },
+  "schema_qa": {
+    "column_count": 46,
+    "rows": 50,
+    "status_all_draft": true,
+    "four_distinct_options": true,
+    "exactly_one_correct": true,
+    "correct_misconception_blank": true,
+    "distractor_misconceptions_valid": true,
+    "pass": true
+  },
+  "dedup": {
+    "previous_registry_rows": 8325,
+    "updated_registry_rows": 8375,
+    "exact_collisions": 0,
+    "normalized_collisions": 0,
+    "structural_signature_collisions": 0,
+    "semantic_signature_collisions": 0,
+    "fingerprint_collisions": 0,
+    "semantic_threshold": 0.8,
+    "max_cross_previous_same_type_ratio": 0.765625,
+    "max_cross_previous_pair": {
+      "new": "GMP-FULL-B187-Q019",
+      "previous": "GMP-FULL-B158-Q024"
+    },
+    "max_within_batch_same_type_ratio": 0.7304347826086957,
+    "max_within_batch_pair": {
+      "a": "GMP-FULL-B187-Q046",
+      "b": "GMP-FULL-B187-Q049"
+    },
+    "pass": true
+  },
+  "stage23": {
+    "runtime_executed": false,
+    "status": "STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT"
+  },
+  "final_status": "PASS_STATIC_AUTHORING",
+  "repair_summary": {
+    "repaired_rows": [
+      "GMP-FULL-B187-Q014",
+      "GMP-FULL-B187-Q020",
+      "GMP-FULL-B187-Q037",
+      "GMP-FULL-B187-Q047"
+    ],
+    "scope": "ONLY_ROWS_TRIGGERING_EXACT_NORMALIZED_OR_SEMANTIC_NEAR_DUPLICATE_FAILURE"
+  }
+}

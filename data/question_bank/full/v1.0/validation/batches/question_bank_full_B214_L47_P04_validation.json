@@ -1,0 +1,271 @@
+{
+  "project": "Grammar Mastery Platform",
+  "runner": "QUESTION BANK CHAT RUNNER v1.0",
+  "batch_id": "B214",
+  "batch_code": "FULL-L47-P04",
+  "lesson_number": 47,
+  "lesson_title": "LE FUTUR SIMPLE",
+  "validation_status": "PASS_STATIC_AUTHORING",
+  "errors": [],
+  "repairs": [
+    {
+      "external_id": "GMP-FULL-B214-Q197",
+      "reason": "semantic_near_duplicate_after_initial_QA",
+      "action": "re-authored only the flagged stem and answer-analysis wording; lesson rule, type, subtopic, difficulty, and quota unchanged"
+    }
+  ],
+  "generated_rows": 50,
+  "schema_columns": 46,
+  "status_value": "DRAFT",
+  "repository": {
+    "repository": "ImanNasrEsfahani/grammar-mastery-platform",
+    "branch": "main",
+    "commit_sha": "1d23edcf8399b313e7fa629267de44a28e4580da",
+    "commit_message": "fix 6",
+    "mode": "READ_ONLY",
+    "github_writes_performed": false,
+    "root_documents": {
+      "README.md": "READ_FULL",
+      "STATUS.md": "READ_FULL",
+      "ROADMAP.md": "NOT_PRESENT_AT_ROOT__PROJECT_GUIDE_AUTHORITY",
+      "AGENTS.md": "NOT_PRESENT_AT_ROOT"
+    }
+  },
+  "plan": {
+    "global_batch_no": 214,
+    "lesson_part": "4/5",
+    "question_ordinal_start": 151,
+    "question_ordinal_end": 200,
+    "batch_question_count": 50,
+    "difficulty_profile": "DISCRIMINATION",
+    "difficulty": {
+      "EASY": 8,
+      "MEDIUM": 18,
+      "HARD": 17,
+      "VERY_HARD": 7
+    },
+    "lesson_cumulative_after_batch": 200,
+    "lesson_remaining_after_batch": 30,
+    "depends_on": "B213",
+    "question_type_allocation_rule": "REMAINING_HAMILTON_V1",
+    "question_type_tie_break": "ascending Question_Type_Order.display_order",
+    "subtopic_assignment_rule": "COMPATIBILITY_BALANCED_V1"
+  },
+  "source_basis": {
+    "book_pages_visually_rechecked": [
+      "printed p. 224 / PDF p. 226",
+      "printed p. 226 / PDF p. 228"
+    ],
+    "lesson_reference_span": [
+      "printed p. 224–227 / PDF pp. 226–229"
+    ],
+    "project_guide_relevant_stages": "Stages 1–11",
+    "category": "CAT02",
+    "subcategory": "SUB05",
+    "controlled_tags": [
+      "future",
+      "register_variation",
+      "temporal_reference",
+      "condition_hypothesis",
+      "subordination"
+    ]
+  },
+  "question_type_remaining_before": {
+    "CLOZE_SINGLE": 8,
+    "CLOZE_CONTEXT": 11,
+    "CORRECT_SENTENCE": 7,
+    "INCORRECT_SENTENCE": 6,
+    "ERROR_LOCATION": 4,
+    "CONJUGATION": 5,
+    "TENSE_CHOICE": 6,
+    "PRONOUN_CHOICE": 0,
+    "PREPOSITION_CHOICE": 5,
+    "REWRITE_EQUIV": 6,
+    "FR_TO_FA": 3,
+    "FA_TO_FR": 2,
+    "DIALOGUE_COMPLETE": 8,
+    "REGISTER_CHOICE": 2,
+    "CONTRAST_RULES": 7
+  },
+  "question_type_quota_current": {
+    "CLOZE_SINGLE": 5,
+    "CLOZE_CONTEXT": 7,
+    "CORRECT_SENTENCE": 4,
+    "INCORRECT_SENTENCE": 4,
+    "ERROR_LOCATION": 3,
+    "CONJUGATION": 3,
+    "TENSE_CHOICE": 4,
+    "PRONOUN_CHOICE": 0,
+    "PREPOSITION_CHOICE": 3,
+    "REWRITE_EQUIV": 4,
+    "FR_TO_FA": 2,
+    "FA_TO_FR": 1,
+    "DIALOGUE_COMPLETE": 5,
+    "REGISTER_CHOICE": 1,
+    "CONTRAST_RULES": 4
+  },
+  "question_type_remaining_after": {
+    "CLOZE_SINGLE": 3,
+    "CLOZE_CONTEXT": 4,
+    "CORRECT_SENTENCE": 3,
+    "INCORRECT_SENTENCE": 2,
+    "ERROR_LOCATION": 1,
+    "CONJUGATION": 2,
+    "TENSE_CHOICE": 2,
+    "PRONOUN_CHOICE": 0,
+    "PREPOSITION_CHOICE": 2,
+    "REWRITE_EQUIV": 2,
+    "FR_TO_FA": 1,
+    "FA_TO_FR": 1,
+    "DIALOGUE_COMPLETE": 3,
+    "REGISTER_CHOICE": 1,
+    "CONTRAST_RULES": 3
+  },
+  "difficulty_current": {
+    "EASY": 8,
+    "MEDIUM": 18,
+    "HARD": 17,
+    "VERY_HARD": 7
+  },
+  "difficulty_remaining_after": {
+    "EASY": 4,
+    "MEDIUM": 10,
+    "HARD": 11,
+    "VERY_HARD": 5
+  },
+  "subtopic_assignment": {
+    "prior_cumulative": {
+      "L47-S01": 22,
+      "L47-S02": 22,
+      "L47-S03": 22,
+      "L47-S04": 21,
+      "L47-S05": 21,
+      "L47-S06": 21,
+      "L47-S07": 21
+    },
+    "current_counts": {
+      "L47-S01": 7,
+      "L47-S02": 7,
+      "L47-S03": 7,
+      "L47-S04": 8,
+      "L47-S07": 7,
+      "L47-S05": 7,
+      "L47-S06": 7
+    },
+    "cumulative_after_B214": {
+      "L47-S01": 29,
+      "L47-S02": 29,
+      "L47-S03": 29,
+      "L47-S04": 29,
+      "L47-S05": 28,
+      "L47-S06": 28,
+      "L47-S07": 28
+    },
+    "coverage_balanced": true
+  },
+  "schema_and_option_qa": {
+    "exact_46_columns": true,
+    "all_status_DRAFT": true,
+    "four_distinct_options_each": true,
+    "exactly_one_keyed_correct_option_each": true,
+    "correct_option_misconception_blank": true,
+    "all_distractors_have_misconception_id": true,
+    "distractor_misconception_count": 150,
+    "answer_position_distribution": {
+      "A": 13,
+      "B": 13,
+      "C": 12,
+      "D": 12
+    }
+  },
+  "compatibility": {
+    "not_suitable_generated": 0,
+    "not_suitable_lesson_type": [
+      "PRONOUN_CHOICE"
+    ],
+    "conditional_rows": 0,
+    "placement_checks": {
+      "PREPOSITION_CHOICE": "L47-S06 only",
+      "REGISTER_CHOICE": "L47-S05 only",
+      "CONJUGATION": "L47-S02/L47-S03 only",
+      "TENSE_CHOICE": "L47-S01/L47-S04/L47-S07 only",
+      "DIALOGUE_COMPLETE": "No CONDITIONAL S02/S03 placements"
+    },
+    "FA_TO_FR_rows": 1,
+    "FA_TO_FR_guardrail": "Placed on L47-S02 where Stage6 is ALLOWED; stem is closed and fixes verb, subject, and target tense.",
+    "guardrail_pass": true
+  },
+  "difficulty_audit": {
+    "model_version": "initial-difficulty-model-v0.9.0",
+    "bands": {
+      "EASY": [
+        1.0,
+        1.74
+      ],
+      "MEDIUM": [
+        1.75,
+        2.49
+      ],
+      "HARD": [
+        2.5,
+        3.24
+      ],
+      "VERY_HARD": [
+        3.25,
+        4.0
+      ]
+    },
+    "scores_used": {
+      "EASY": 1.45,
+      "MEDIUM": 2.2,
+      "HARD": 2.85,
+      "VERY_HARD": 3.55
+    },
+    "outside_band_count": 0
+  },
+  "deduplication": {
+    "previous_registry_rows": 9487,
+    "new_rows": 50,
+    "updated_registry_rows": 9537,
+    "exact_normalized_cross_collisions": 0,
+    "exact_normalized_within_collisions": 0,
+    "structural_cross_collisions": 0,
+    "structural_within_collisions": 0,
+    "fingerprint_cross_collisions": 0,
+    "fingerprint_within_collisions": 0,
+    "semantic_threshold": 0.8,
+    "semantic_method": "TF-IDF char_wb 3-5, normalized stem + correct answer, within question type",
+    "maximum_cross_batch_semantic_similarity": 0.65234,
+    "maximum_cross_batch_pair": [
+      "GMP-FULL-B214-Q198",
+      "GMP-FULL-B212-Q098"
+    ],
+    "maximum_within_batch_semantic_similarity": 0.346703,
+    "maximum_within_batch_pair": [
+      "GMP-FULL-B214-Q176",
+      "GMP-FULL-B214-Q174"
+    ],
+    "flags_at_or_above_threshold": 0
+  },
+  "stage11_static_qa": {
+    "status": "PASS",
+    "ambiguous_or_multiple_correct_found": 0,
+    "unsupported_exception_or_trick_found": 0,
+    "independent_human_review_performed": false,
+    "publication_performed": false
+  },
+  "stage23": {
+    "status": "STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT",
+    "import_preview_commit_executed": false,
+    "authoring_static_validation_blocked": false
+  },
+  "artifacts": {
+    "csv": "question_bank_full_B214_L47_P04.csv",
+    "csv_sha256": "fa12b5d7ad13e67645025ce85ef98b0f3aa5ec14e5c360b75716e775575ade34",
+    "registry": "question_bank_global_registry_B214.csv",
+    "registry_rows": 9537,
+    "registry_sha256": "1e0bef92e5271d3b536db65ae3a2a49e89c139ac58c35fe0652ab263e3adf086"
+  },
+  "next_batch_started": false,
+  "next_batch": "B215"
+}

@@ -1,28 +1,28 @@
 {
-  "runner_version": "question-bank-chat-runner-v1.0",
-  "updated_after_batch": "B183",
-  "last_completed_batch": "B183",
-  "next_batch": "B184",
+  "checkpoint_version": "question-bank-checkpoint-v1.0",
+  "plan_version": "question_bank_full_batch_plan_v1.0",
+  "updated_after_batch": "B238",
+  "last_completed_batch": "B238",
+  "next_batch": null,
   "next_batch_started": false,
   "global": {
     "target_questions": 10636,
-    "completed_questions": 8175,
-    "remaining_questions": 2461,
-    "registry_rows": 8175
+    "completed_questions": 10636,
+    "remaining_questions": 0,
+    "registry_rows": 10636
   },
   "lesson": {
-    "lesson_number": 40,
-    "lesson_id": "a2303764-b3c6-4a78-a5eb-287adffcd970",
-    "lesson_code": "L40",
-    "title": "LE PASSÉ COMPOSÉ",
-    "target_questions": 260,
-    "completed_questions": 260,
+    "lesson_number": 52,
+    "lesson_id": "f0a5d28c-4b03-42c8-bd92-0708737ab3f1",
+    "lesson_code": "L52",
+    "title": "LES RELATIONS LOGIQUES",
+    "target_questions": 237,
+    "completed_questions": 237,
     "remaining_questions": 0,
     "status": "COMPLETE",
-    "last_completed_part": 6,
-    "part_count": 6,
+    "last_completed_part": 5,
+    "part_count": 5,
     "next_part": null,
-    "next_batch": "B184",
     "remaining_question_types": {
       "CLOZE_SINGLE": 0,
       "CLOZE_CONTEXT": 0,
@@ -46,62 +46,42 @@
       "HARD": 0,
       "VERY_HARD": 0
     },
-    "subtopic_counts_after_batch": {
-      "L40-S01": 22,
-      "L40-S02": 22,
-      "L40-S03": 22,
-      "L40-S04": 22,
-      "L40-S05": 22,
-      "L40-S06": 22,
-      "L40-S07": 22,
-      "L40-S08": 21,
-      "L40-S09": 21,
-      "L40-S10": 21,
-      "L40-S11": 21,
-      "L40-S12": 22
+    "cumulative_subtopic_counts": {
+      "L52-S01": 16,
+      "L52-S02": 11,
+      "L52-S03": 16,
+      "L52-S04": 8,
+      "L52-S05": 19,
+      "L52-S06": 15,
+      "L52-S07": 10,
+      "L52-S08": 15,
+      "L52-S09": 18,
+      "L52-S10": 18,
+      "L52-S11": 16,
+      "L52-S12": 13,
+      "L52-S13": 14,
+      "L52-S14": 18,
+      "L52-S15": 15,
+      "L52-S16": 15
     }
   },
-  "next_batch_plan": {
-    "batch_id": "B184",
-    "batch_code": "FULL-L41-P01",
-    "lesson_number": 41,
-    "lesson_id": "61d3b6b5-dd58-4ca4-b78d-521013ae2461",
-    "lesson_title": "LE TEMPS (3)",
-    "part_index": 1,
-    "part_count": 5,
-    "question_start": 1,
-    "question_end": 50,
-    "question_count": 50,
-    "difficulty": {
-      "EASY": 10,
-      "MEDIUM": 20,
-      "HARD": 15,
-      "VERY_HARD": 5
-    },
-    "depends_on": null,
-    "output_csv": "question_bank_full_B184_L41_P01.csv",
-    "expected_zip": "question_bank_full_B184_L41_P01.zip"
+  "completed_batch": {
+    "batch_id": "B238",
+    "batch_code": "FULL-L52-P05",
+    "question_start": 201,
+    "question_end": 237,
+    "question_count": 37,
+    "output_csv": "question_bank_full_B238_L52_P05.csv",
+    "csv_sha256": "5712c8d4e5bd80ac7c94679cc820e9ce61d6da322c0b6c4e0093c027dc121396",
+    "validation": "question_bank_full_B238_L52_P05_validation.json",
+    "registry": "question_bank_global_registry_B238.csv",
+    "registry_sha256": "d225f0a2e0c4eaf49ea129542b596a86708cbdc38d96ec6875fe2e92b5f9c198",
+    "validation_sha256": "7bb3b847524861ec0871a0c66e3e1ad046ed95675d883cd1e3b02758884c0339"
   },
-  "validation_status": "PASS_STATIC_CONSOLIDATION",
+  "next_batch_plan": null,
+  "validation_status": "PASS_STATIC_AUTHORING",
   "import_status": "STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT",
   "stage23_runtime_executed": false,
-  "integration_after_batch_chain": {
-    "scope": "B082-B183",
-    "content_repair_questions": 43,
-    "misconception_mapping_repair_questions": 265,
-    "misconception_cells_repaired": 795,
-    "global_registry_sha256": "b67f2c67a085e4c3deaaf7b177a2a003b2934ce559e69780c32cc868ac894d98",
-    "master_extension_sha256": "75ce70243492367dfc9c46c31c9bcf9b028ee185356a0a8a3d62ae3a02856fd1",
-    "semantic_candidate_reviewed_distinct": [
-      "GMP-FULL-B096-Q032",
-      "GMP-FULL-B098-Q032"
-    ],
-    "github_main_commit_reviewed": "c03b962519dd0487c709124aee4984debd8a490c",
-    "bootstrap_tag_delimiter_normalization": {
-      "affected_rows": 1179,
-      "from": ";",
-      "to": "|",
-      "semantic_content_changed": false
-    }
-  }
+  "repo_main_commit": "45b6272478a841f2747023a4369aea47448ecbeb",
+  "full_plan_status": "COMPLETE_B001_B238"
 }

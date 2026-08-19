@@ -1,0 +1,277 @@
+{
+  "project": "Grammar Mastery Platform",
+  "runner": "QUESTION BANK CHAT RUNNER v1.0",
+  "batch_id": "B224",
+  "batch_code": "FULL-L50-P01",
+  "lesson_number": 50,
+  "lesson_title": "LES HYPOTHÈSES",
+  "validation_status": "PASS_STATIC_AUTHORING",
+  "errors": [],
+  "repairs": [],
+  "generated_rows": 50,
+  "schema_columns": 46,
+  "status_value": "DRAFT",
+  "repository": {
+    "repository": "ImanNasrEsfahani/grammar-mastery-platform",
+    "branch": "main",
+    "commit_sha": "1d23edcf8399b313e7fa629267de44a28e4580da",
+    "commit_message": "fix 6",
+    "mode": "READ_ONLY",
+    "github_writes_performed": false,
+    "root_documents": {
+      "README.md": "READ_FULL",
+      "STATUS.md": "READ_FULL",
+      "ROADMAP.md": "NOT_PRESENT_AT_ROOT__PROJECT_GUIDE_AUTHORITY",
+      "AGENTS.md": "NOT_PRESENT_AT_ROOT"
+    }
+  },
+  "plan": {
+    "global_batch_no": 224,
+    "lesson_part": "1/5",
+    "question_ordinal_start": 1,
+    "question_ordinal_end": 50,
+    "batch_question_count": 50,
+    "difficulty_profile": "DISCRIMINATION",
+    "difficulty": {
+      "EASY": 8,
+      "MEDIUM": 18,
+      "HARD": 17,
+      "VERY_HARD": 7
+    },
+    "lesson_cumulative_after_batch": 50,
+    "lesson_remaining_after_batch": 183,
+    "depends_on": null,
+    "question_type_allocation_rule": "REMAINING_HAMILTON_V1",
+    "subtopic_assignment_rule": "COMPATIBILITY_BALANCED_V1"
+  },
+  "source_basis": {
+    "book_pages_visually_rechecked": [
+      "printed p. 232 / PDF p. 234",
+      "printed p. 233 / PDF p. 235",
+      "printed p. 234 / PDF p. 236",
+      "printed p. 235 / PDF p. 237",
+      "printed p. 236 / PDF p. 238",
+      "printed p. 237 / PDF p. 239"
+    ],
+    "lesson_reference_span": [
+      "printed pp. 232-237 / PDF pp. 234-239"
+    ],
+    "project_guide_relevant_stages": "Stages 1–11",
+    "category": "CAT11",
+    "subcategory": "SUB26",
+    "controlled_tags": [
+      "condition_hypothesis",
+      "future",
+      "past",
+      "interrogation",
+      "subordination"
+    ],
+    "stage1_subtopics": {
+      "L50-S01": "Hypothèse certaine: « quand + futur »",
+      "L50-S02": "Hypothèse sur le futur: « si + présent → futur »",
+      "L50-S03": "« si » interrogatif vs hypothétique",
+      "L50-S04": "Généralité: « si + présent/présent »",
+      "L50-S05": "Recommandation: « si + présent/impératif »",
+      "L50-S06": "Hypothèse sur le présent",
+      "L50-S07": "Suggestion avec « si + imparfait »",
+      "L50-S08": "Hypothèse sur le passé"
+    }
+  },
+  "stage6_lesson_target_full": 233,
+  "question_type_quota_current": {
+    "CLOZE_SINGLE": 4,
+    "CLOZE_CONTEXT": 8,
+    "CORRECT_SENTENCE": 6,
+    "INCORRECT_SENTENCE": 2,
+    "ERROR_LOCATION": 2,
+    "CONJUGATION": 3,
+    "TENSE_CHOICE": 5,
+    "PRONOUN_CHOICE": 0,
+    "PREPOSITION_CHOICE": 0,
+    "REWRITE_EQUIV": 5,
+    "FR_TO_FA": 3,
+    "FA_TO_FR": 1,
+    "DIALOGUE_COMPLETE": 6,
+    "REGISTER_CHOICE": 0,
+    "CONTRAST_RULES": 5
+  },
+  "question_type_remaining_after": {
+    "CLOZE_SINGLE": 16,
+    "CLOZE_CONTEXT": 31,
+    "CORRECT_SENTENCE": 20,
+    "INCORRECT_SENTENCE": 9,
+    "ERROR_LOCATION": 6,
+    "CONJUGATION": 9,
+    "TENSE_CHOICE": 16,
+    "PRONOUN_CHOICE": 0,
+    "PREPOSITION_CHOICE": 0,
+    "REWRITE_EQUIV": 18,
+    "FR_TO_FA": 12,
+    "FA_TO_FR": 3,
+    "DIALOGUE_COMPLETE": 23,
+    "REGISTER_CHOICE": 0,
+    "CONTRAST_RULES": 20
+  },
+  "type_difficulty_matrix": {
+    "CLOZE_SINGLE": {
+      "EASY": 1,
+      "MEDIUM": 1,
+      "HARD": 1,
+      "VERY_HARD": 1
+    },
+    "CLOZE_CONTEXT": {
+      "EASY": 1,
+      "MEDIUM": 3,
+      "HARD": 3,
+      "VERY_HARD": 1
+    },
+    "CORRECT_SENTENCE": {
+      "EASY": 1,
+      "MEDIUM": 2,
+      "HARD": 2,
+      "VERY_HARD": 1
+    },
+    "INCORRECT_SENTENCE": {
+      "EASY": 0,
+      "MEDIUM": 1,
+      "HARD": 1,
+      "VERY_HARD": 0
+    },
+    "ERROR_LOCATION": {
+      "EASY": 0,
+      "MEDIUM": 1,
+      "HARD": 0,
+      "VERY_HARD": 1
+    },
+    "CONJUGATION": {
+      "EASY": 1,
+      "MEDIUM": 1,
+      "HARD": 1,
+      "VERY_HARD": 0
+    },
+    "TENSE_CHOICE": {
+      "EASY": 1,
+      "MEDIUM": 2,
+      "HARD": 2,
+      "VERY_HARD": 0
+    },
+    "REWRITE_EQUIV": {
+      "EASY": 1,
+      "MEDIUM": 2,
+      "HARD": 2,
+      "VERY_HARD": 0
+    },
+    "FR_TO_FA": {
+      "EASY": 0,
+      "MEDIUM": 1,
+      "HARD": 1,
+      "VERY_HARD": 1
+    },
+    "FA_TO_FR": {
+      "EASY": 0,
+      "MEDIUM": 0,
+      "HARD": 0,
+      "VERY_HARD": 1
+    },
+    "DIALOGUE_COMPLETE": {
+      "EASY": 1,
+      "MEDIUM": 2,
+      "HARD": 2,
+      "VERY_HARD": 1
+    },
+    "CONTRAST_RULES": {
+      "EASY": 1,
+      "MEDIUM": 2,
+      "HARD": 2,
+      "VERY_HARD": 0
+    }
+  },
+  "subtopic_batch_counts": {
+    "L50-S01": 7,
+    "L50-S02": 6,
+    "L50-S03": 6,
+    "L50-S04": 6,
+    "L50-S05": 6,
+    "L50-S06": 6,
+    "L50-S07": 7,
+    "L50-S08": 6
+  },
+  "subtopic_cumulative_after": {
+    "L50-S01": 7,
+    "L50-S02": 6,
+    "L50-S03": 6,
+    "L50-S04": 6,
+    "L50-S05": 6,
+    "L50-S06": 6,
+    "L50-S07": 7,
+    "L50-S08": 6
+  },
+  "compatibility_validation": {
+    "lesson_level_not_suitable_types": [
+      "PRONOUN_CHOICE",
+      "PREPOSITION_CHOICE",
+      "REGISTER_CHOICE"
+    ],
+    "not_suitable_generated": 0,
+    "conditional_used": 1,
+    "conditional_items": [
+      {
+        "external_id": "GMP-FULL-B224-Q039",
+        "question_type": "FA_TO_FR",
+        "subtopic_code": "L50-S02",
+        "guardrail": "فقط اگر stem پاسخ را به یک ساختار یکتا محدود کند؛ ترجمه باز ممنوع است.",
+        "guardrail_satisfied": true
+      }
+    ],
+    "source_alignment": "All other assignments use PREFERRED/ALLOWED compatibility; CONJUGATION is confined to eligible L50-S05 and TENSE_CHOICE to PREFERRED L50-S07."
+  },
+  "misconception_validation": {
+    "correct_option_misconception_blank": true,
+    "wrong_options_have_valid_stage7_ids": true,
+    "id_basis": "Current Stage7 recovered misconception IDs for the same L50 subtopic only; no IDs invented."
+  },
+  "answer_position_distribution": {
+    "A": 14,
+    "B": 15,
+    "C": 12,
+    "D": 9
+  },
+  "deduplication": {
+    "prior_registry_rows": 9928,
+    "exact_cross_collisions": 0,
+    "normalized_cross_collisions": 0,
+    "structural_signature_cross_collisions": 0,
+    "semantic_signature_cross_collisions": 0,
+    "fingerprint_cross_collisions": 0,
+    "within_batch_signature_collisions": 0,
+    "semantic_threshold": 0.8,
+    "semantic_method": "TF-IDF char_wb 3-5, normalized stem + correct answer, within question type",
+    "maximum_cross_batch_semantic_similarity": 0.678073,
+    "maximum_cross_batch_pair": [
+      "GMP-FULL-B224-Q033",
+      "GMP-FULL-B211-Q036"
+    ],
+    "maximum_within_batch_semantic_similarity": 0.479372,
+    "maximum_within_batch_pair": [
+      "GMP-FULL-B224-Q014",
+      "GMP-FULL-B224-Q016"
+    ],
+    "final_flags_at_or_above_threshold": 0
+  },
+  "stage11_static_qa": "PASS",
+  "independent_human_review": false,
+  "publication": false,
+  "stage23": {
+    "runtime_executed": false,
+    "import_preview_commit_executed": false,
+    "authoring_static_validation_blocked": false,
+    "status": "STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT"
+  },
+  "output": {
+    "csv": "question_bank_full_B224_L50_P01.csv",
+    "csv_sha256": "01502e493928fb9c5996a9502cbce61c1aec7e81935d67ddc1afae3f01ada406",
+    "registry": "question_bank_global_registry_B224.csv",
+    "registry_rows": 9978,
+    "registry_sha256": "b8a7fbc9f195824af35a107261b1a11db4eb108e93a847e102205f6e769574aa"
+  }
+}

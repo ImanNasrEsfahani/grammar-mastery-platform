@@ -1,0 +1,137 @@
+{
+  "batch_id": "B191",
+  "batch_code": "FULL-L42-P03",
+  "lesson_number": 42,
+  "lesson_title": "LE PASSIF",
+  "status": "PASS_STATIC_AUTHORING",
+  "generated_rows": 50,
+  "schema_columns": 46,
+  "status_value": "DRAFT",
+  "repository": {
+    "mode": "READ_ONLY",
+    "main_sha": "c03b962519dd0487c709124aee4984debd8a490c",
+    "github_writes_performed": false,
+    "readme_checked": true,
+    "status_checked": true,
+    "roadmap_root_present": false,
+    "agents_root_present": false,
+    "project_guide_used_as_roadmap_substitute": true
+  },
+  "plan": {
+    "question_start": 101,
+    "question_end": 150,
+    "question_count": 50,
+    "part_index": 3,
+    "part_count": 4,
+    "depends_on": "B190",
+    "allocation_method": "REMAINING_HAMILTON_V1",
+    "assignment_method": "COMPATIBILITY_BALANCED_V1"
+  },
+  "source_basis": {
+    "lesson_source_ref": "Lesson 42; printed pp. 204-205; PDF pp. 206-207",
+    "stage1_subtopics": [
+      "L42-S01",
+      "L42-S02",
+      "L42-S03",
+      "L42-S04",
+      "L42-S05"
+    ],
+    "category": "CAT03",
+    "subcategory": "SUB07",
+    "tags": [
+      "TAG028",
+      "TAG004"
+    ]
+  },
+  "question_type_expected": {
+    "CLOZE_SINGLE": 5,
+    "CLOZE_CONTEXT": 7,
+    "CORRECT_SENTENCE": 4,
+    "INCORRECT_SENTENCE": 4,
+    "ERROR_LOCATION": 2,
+    "CONJUGATION": 0,
+    "TENSE_CHOICE": 0,
+    "PRONOUN_CHOICE": 4,
+    "PREPOSITION_CHOICE": 3,
+    "REWRITE_EQUIV": 4,
+    "FR_TO_FA": 4,
+    "FA_TO_FR": 2,
+    "DIALOGUE_COMPLETE": 6,
+    "REGISTER_CHOICE": 0,
+    "CONTRAST_RULES": 5
+  },
+  "question_type_actual": {
+    "CLOZE_SINGLE": 5,
+    "CLOZE_CONTEXT": 7,
+    "CORRECT_SENTENCE": 4,
+    "INCORRECT_SENTENCE": 4,
+    "REWRITE_EQUIV": 4,
+    "FR_TO_FA": 4,
+    "DIALOGUE_COMPLETE": 6,
+    "CONTRAST_RULES": 5,
+    "ERROR_LOCATION": 2,
+    "PRONOUN_CHOICE": 4,
+    "FA_TO_FR": 2,
+    "PREPOSITION_CHOICE": 3
+  },
+  "difficulty_expected": {
+    "EASY": 10,
+    "MEDIUM": 20,
+    "HARD": 15,
+    "VERY_HARD": 5
+  },
+  "difficulty_actual": {
+    "EASY": 10,
+    "MEDIUM": 20,
+    "HARD": 15,
+    "VERY_HARD": 5
+  },
+  "subtopic_batch_counts": {
+    "L42-S01": 10,
+    "L42-S02": 10,
+    "L42-S03": 10,
+    "L42-S04": 10,
+    "L42-S05": 10
+  },
+  "subtopic_cumulative_counts": {
+    "L42-S01": 30,
+    "L42-S02": 30,
+    "L42-S03": 30,
+    "L42-S04": 30,
+    "L42-S05": 30
+  },
+  "compatibility": {
+    "not_suitable_generated": 0,
+    "conditional_questions": [],
+    "all_generated_assignments_allowed_or_preferred": true
+  },
+  "option_checks": {
+    "exactly_four_distinct_options": true,
+    "exactly_one_correct_option": true,
+    "correct_option_misconception_blank": true,
+    "distractor_misconceptions_valid": true
+  },
+  "dedup": {
+    "previous_registry_rows": 8477,
+    "updated_registry_rows": 8527,
+    "exact_normalized_collisions": 0,
+    "structural_collisions": 0,
+    "semantic_threshold": 0.8,
+    "max_cross_previous_same_type_ratio": 0.7659574468085106,
+    "max_cross_new_external_id": "GMP-FULL-B191-Q049",
+    "max_cross_previous_external_id": "GMP-FULL-B110-Q046",
+    "max_within_batch_same_type_ratio": 0.5514018691588785,
+    "max_within_batch_external_ids": [
+      "GMP-FULL-B191-Q027",
+      "GMP-FULL-B191-Q018"
+    ],
+    "repairs_performed": 1
+  },
+  "stage23": {
+    "runtime_executed": false,
+    "import_preview_commit_executed": false,
+    "status": "STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT"
+  },
+  "next_batch_started": false,
+  "next_batch": "B192"
+}

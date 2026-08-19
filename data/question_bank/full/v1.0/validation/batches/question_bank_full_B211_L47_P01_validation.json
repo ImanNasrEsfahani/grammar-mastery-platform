@@ -1,0 +1,245 @@
+{
+  "project": "Grammar Mastery Platform",
+  "runner": "QUESTION BANK CHAT RUNNER v1.0",
+  "batch_id": "B211",
+  "batch_code": "FULL-L47-P01",
+  "lesson_number": 47,
+  "lesson_title": "LE FUTUR SIMPLE",
+  "validation_status": "PASS_STATIC_AUTHORING",
+  "errors": [],
+  "repairs": [],
+  "generated_rows": 50,
+  "schema_columns": 46,
+  "status_value": "DRAFT",
+  "repository": {
+    "repository": "ImanNasrEsfahani/grammar-mastery-platform",
+    "branch": "main",
+    "commit_sha": "1d23edcf8399b313e7fa629267de44a28e4580da",
+    "commit_message": "fix 6",
+    "mode": "READ_ONLY",
+    "github_writes_performed": false,
+    "root_documents": {
+      "README.md": "READ_FULL",
+      "STATUS.md": "READ_FULL",
+      "ROADMAP.md": "NOT_PRESENT_AT_ROOT__PROJECT_GUIDE_AUTHORITY",
+      "AGENTS.md": "NOT_PRESENT_AT_ROOT"
+    }
+  },
+  "plan": {
+    "global_batch_no": 211,
+    "lesson_part": "1/5",
+    "question_ordinal_start": 1,
+    "question_ordinal_end": 50,
+    "batch_question_count": 50,
+    "difficulty_profile": "DISCRIMINATION",
+    "lesson_cumulative_after_batch": 50,
+    "lesson_remaining_after_batch": 180,
+    "depends_on": null,
+    "question_type_allocation_rule": "REMAINING_HAMILTON_V1",
+    "question_type_tie_break": "ascending Question_Type_Order.display_order",
+    "subtopic_assignment_rule": "COMPATIBILITY_BALANCED_V1"
+  },
+  "source_basis": {
+    "book_pages_visually_verified": [
+      "printed p. 224 / PDF p. 226",
+      "printed p. 225 / PDF p. 227",
+      "printed p. 226 / PDF p. 228",
+      "printed p. 227 / PDF p. 229"
+    ],
+    "stage1_subtopics": [
+      "L47-S01 Usage du futur simple",
+      "L47-S02 Formation régulière",
+      "L47-S03 Radicaux irréguliers",
+      "L47-S04 Futur proche: changement vs futur simple: programmation",
+      "L47-S05 Oral vs écrit",
+      "L47-S06 Après « quand/pendant que/j’espère que »",
+      "L47-S07 Futur simple dans hypothèse future"
+    ],
+    "category": "CAT02",
+    "subcategory": "SUB05",
+    "controlled_tags": [
+      "future",
+      "register_variation",
+      "temporal_reference",
+      "condition_hypothesis",
+      "subordination"
+    ]
+  },
+  "question_type_targets_full": {
+    "CLOZE_SINGLE": 23,
+    "CLOZE_CONTEXT": 32,
+    "CORRECT_SENTENCE": 20,
+    "INCORRECT_SENTENCE": 16,
+    "ERROR_LOCATION": 11,
+    "CONJUGATION": 14,
+    "TENSE_CHOICE": 17,
+    "PRONOUN_CHOICE": 0,
+    "PREPOSITION_CHOICE": 14,
+    "REWRITE_EQUIV": 18,
+    "FR_TO_FA": 9,
+    "FA_TO_FR": 6,
+    "DIALOGUE_COMPLETE": 23,
+    "REGISTER_CHOICE": 7,
+    "CONTRAST_RULES": 20
+  },
+  "question_type_expected": {
+    "CLOZE_SINGLE": 5,
+    "CLOZE_CONTEXT": 7,
+    "CORRECT_SENTENCE": 4,
+    "INCORRECT_SENTENCE": 4,
+    "ERROR_LOCATION": 2,
+    "CONJUGATION": 3,
+    "TENSE_CHOICE": 4,
+    "PRONOUN_CHOICE": 0,
+    "PREPOSITION_CHOICE": 3,
+    "REWRITE_EQUIV": 4,
+    "FR_TO_FA": 2,
+    "FA_TO_FR": 1,
+    "DIALOGUE_COMPLETE": 5,
+    "REGISTER_CHOICE": 2,
+    "CONTRAST_RULES": 4
+  },
+  "question_type_actual": {
+    "CLOZE_SINGLE": 5,
+    "CLOZE_CONTEXT": 7,
+    "CORRECT_SENTENCE": 4,
+    "INCORRECT_SENTENCE": 4,
+    "ERROR_LOCATION": 2,
+    "CONJUGATION": 3,
+    "TENSE_CHOICE": 4,
+    "PREPOSITION_CHOICE": 3,
+    "REWRITE_EQUIV": 4,
+    "FR_TO_FA": 2,
+    "FA_TO_FR": 1,
+    "DIALOGUE_COMPLETE": 5,
+    "REGISTER_CHOICE": 2,
+    "CONTRAST_RULES": 4
+  },
+  "remaining_question_types_after_batch": {
+    "CLOZE_SINGLE": 18,
+    "CLOZE_CONTEXT": 25,
+    "CORRECT_SENTENCE": 16,
+    "INCORRECT_SENTENCE": 12,
+    "ERROR_LOCATION": 9,
+    "CONJUGATION": 11,
+    "TENSE_CHOICE": 13,
+    "PRONOUN_CHOICE": 0,
+    "PREPOSITION_CHOICE": 11,
+    "REWRITE_EQUIV": 14,
+    "FR_TO_FA": 7,
+    "FA_TO_FR": 5,
+    "DIALOGUE_COMPLETE": 18,
+    "REGISTER_CHOICE": 5,
+    "CONTRAST_RULES": 16
+  },
+  "difficulty_expected": {
+    "EASY": 8,
+    "MEDIUM": 18,
+    "HARD": 17,
+    "VERY_HARD": 7
+  },
+  "difficulty_actual": {
+    "EASY": 8,
+    "MEDIUM": 18,
+    "HARD": 17,
+    "VERY_HARD": 7
+  },
+  "remaining_difficulty_after_batch": {
+    "EASY": 27,
+    "MEDIUM": 63,
+    "HARD": 63,
+    "VERY_HARD": 27
+  },
+  "subtopic_expected": {
+    "L47-S01": 7,
+    "L47-S02": 7,
+    "L47-S03": 7,
+    "L47-S04": 7,
+    "L47-S05": 7,
+    "L47-S06": 7,
+    "L47-S07": 8
+  },
+  "subtopic_actual": {
+    "L47-S01": 7,
+    "L47-S02": 7,
+    "L47-S03": 7,
+    "L47-S04": 7,
+    "L47-S07": 8,
+    "L47-S05": 7,
+    "L47-S06": 7
+  },
+  "schema_and_option_qa": {
+    "exact_46_columns": true,
+    "all_status_DRAFT": true,
+    "four_distinct_options_each": true,
+    "exactly_one_keyed_correct_option_each": true,
+    "correct_option_misconception_blank": true,
+    "all_distractors_have_misconception_id": true,
+    "distractor_misconception_count": 150,
+    "difficulty_scores_inside_stage8_bands": true,
+    "answer_position_distribution": {
+      "A": 13,
+      "B": 13,
+      "C": 12,
+      "D": 12
+    }
+  },
+  "compatibility": {
+    "not_suitable_generated": 0,
+    "not_suitable_lesson_type": [
+      "PRONOUN_CHOICE"
+    ],
+    "placement_checks": {
+      "PREPOSITION_CHOICE": "L47-S06 only",
+      "REGISTER_CHOICE": "L47-S05 only",
+      "CONJUGATION": "L47-S02/L47-S03 only",
+      "TENSE_CHOICE": "L47-S01/L47-S04/L47-S05/L47-S07 only"
+    },
+    "conditional_rows": 0,
+    "FA_TO_FR_rows": 1,
+    "FA_TO_FR_guardrail": "Placed on L47-S02 where Stage6 is ALLOWED; stem is closed and fixes verb, subject and target tense.",
+    "dialogue_conditional_placements_avoided": [
+      "L47-S02",
+      "L47-S03"
+    ],
+    "guardrail_pass": true
+  },
+  "deduplication": {
+    "previous_registry_rows": 9337,
+    "new_rows": 50,
+    "updated_registry_rows": 9387,
+    "exact_normalized_cross_collisions": 0,
+    "exact_normalized_within_collisions": 0,
+    "structural_cross_collisions": 0,
+    "structural_within_collisions": 0,
+    "fingerprint_cross_collisions": 0,
+    "fingerprint_within_collisions": 0,
+    "semantic_threshold": 0.8,
+    "semantic_method": "TF-IDF char_wb 3-5, normalized stem + correct answer, within question type",
+    "maximum_cross_batch_semantic_similarity": 0.480966,
+    "maximum_cross_batch_pair": [
+      "GMP-FULL-B211-Q023",
+      "GMP-FULL-B068-Q033"
+    ],
+    "maximum_within_batch_semantic_similarity": 0.431049,
+    "maximum_within_batch_pair": [
+      "GMP-FULL-B211-Q049",
+      "GMP-FULL-B211-Q047"
+    ],
+    "flags_at_or_above_threshold": 0
+  },
+  "stage23": {
+    "status": "STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT",
+    "import_preview_commit_executed": false,
+    "authoring_static_validation_blocked": false
+  },
+  "artifacts": {
+    "csv": "question_bank_full_B211_L47_P01.csv",
+    "csv_sha256": "cedb0f8f7eb7e5c91b86ee9fa59ee2dc7b25489c05352c2d72bfdc5bd2e1a77d",
+    "registry": "question_bank_global_registry_B211.csv",
+    "registry_rows": 9387,
+    "registry_sha256": "22ae70828a54a2b15bcdeab467fa43f33beac1aea6d31e4e19ac512415c3c264"
+  },
+  "next_batch_started": false,
+  "next_batch": "B212"
+}

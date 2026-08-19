@@ -1,0 +1,141 @@
+{
+  "batch_id": "B189",
+  "batch_code": "FULL-L42-P01",
+  "lesson_number": 42,
+  "lesson_id": "79d5da54-9d06-473a-a60c-1c4cb74c38e1",
+  "lesson_title": "LE PASSIF",
+  "status": "PASS_STATIC_AUTHORING",
+  "repository": {
+    "mode": "READ_ONLY",
+    "main_sha": "c03b962519dd0487c709124aee4984debd8a490c",
+    "github_writes_performed": false,
+    "readme_read": true,
+    "status_read": true,
+    "roadmap_root": "ABSENT_404_PROJECT_GUIDE_USED",
+    "agents_root": "ABSENT_404"
+  },
+  "batch_plan": {
+    "question_count": 50,
+    "question_ordinals": [
+      1,
+      50
+    ],
+    "difficulty_target": {
+      "EASY": 10,
+      "MEDIUM": 20,
+      "HARD": 15,
+      "VERY_HARD": 5
+    },
+    "question_type_allocation_method": "REMAINING_HAMILTON_V1",
+    "subtopic_assignment_method": "COMPATIBILITY_BALANCED_V1"
+  },
+  "checks": {
+    "rows": 50,
+    "columns": 46,
+    "schema_exact": true,
+    "all_status_draft": true,
+    "four_distinct_options_each": true,
+    "exactly_one_correct_each": true,
+    "correct_option_misconception_blank": true,
+    "distractor_misconceptions_valid": true,
+    "not_suitable_generated": 0,
+    "conditional_questions": [],
+    "question_type_quota_pass": true,
+    "difficulty_quota_pass": true,
+    "coverage_pass": true,
+    "subtopic_counts": {
+      "L42-S01": 10,
+      "L42-S02": 10,
+      "L42-S03": 10,
+      "L42-S05": 10,
+      "L42-S04": 10
+    },
+    "answer_position_counts": {
+      "B": 14,
+      "A": 13,
+      "D": 12,
+      "C": 11
+    },
+    "exact_normalized_collisions": 0,
+    "structural_signature_collisions": 0,
+    "semantic_threshold": 0.8,
+    "semantic_max_cross_previous": {
+      "ratio": 0.782608695652174,
+      "new_external_id": "GMP-FULL-B189-Q050",
+      "previous_external_id": "GMP-FULL-B115-Q047"
+    },
+    "semantic_max_within_batch": {
+      "ratio": 0.7741935483870968,
+      "external_id_1": "GMP-FULL-B189-Q031",
+      "external_id_2": "GMP-FULL-B189-Q029"
+    },
+    "repairs_performed": 10,
+    "repair_log": [
+      {
+        "external_id": "GMP-FULL-B189-Q023",
+        "reason": "semantic_near_duplicate_cross_registry",
+        "prior_external_id": "GMP-FULL-B132-Q015",
+        "ratio_before": 0.8027210884353742
+      },
+      {
+        "external_id": "GMP-FULL-B189-Q004",
+        "reason": "semantic_near_duplicate_within_batch",
+        "prior_external_id": "GMP-FULL-B189-Q001",
+        "ratio_before": 0.8512820512820513
+      },
+      {
+        "external_id": "GMP-FULL-B189-Q005",
+        "reason": "semantic_near_duplicate_within_batch",
+        "prior_external_id": "GMP-FULL-B189-Q002",
+        "ratio_before": 0.8211920529801324
+      },
+      {
+        "external_id": "GMP-FULL-B189-Q006",
+        "reason": "semantic_near_duplicate_within_batch",
+        "prior_external_id": "GMP-FULL-B189-Q003",
+        "ratio_before": 0.8342857142857143
+      },
+      {
+        "external_id": "GMP-FULL-B189-Q010",
+        "reason": "semantic_near_duplicate_within_batch",
+        "prior_external_id": "GMP-FULL-B189-Q007",
+        "ratio_before": 0.8703703703703703
+      },
+      {
+        "external_id": "GMP-FULL-B189-Q011",
+        "reason": "semantic_near_duplicate_within_batch",
+        "prior_external_id": "GMP-FULL-B189-Q008",
+        "ratio_before": 0.8554216867469879
+      },
+      {
+        "external_id": "GMP-FULL-B189-Q012",
+        "reason": "semantic_near_duplicate_within_batch",
+        "prior_external_id": "GMP-FULL-B189-Q009",
+        "ratio_before": 0.8717948717948718
+      },
+      {
+        "external_id": "GMP-FULL-B189-Q027",
+        "reason": "semantic_near_duplicate_within_batch",
+        "prior_external_id": "GMP-FULL-B189-Q026",
+        "ratio_before": 0.9429657794676806
+      },
+      {
+        "external_id": "GMP-FULL-B189-Q028",
+        "reason": "semantic_near_duplicate_within_batch",
+        "prior_external_id": "GMP-FULL-B189-Q026",
+        "ratio_before": 0.9429657794676806
+      },
+      {
+        "external_id": "GMP-FULL-B189-Q030",
+        "reason": "semantic_near_duplicate_within_batch",
+        "prior_external_id": "GMP-FULL-B189-Q029",
+        "ratio_before": 0.8185654008438819
+      }
+    ]
+  },
+  "stage23": {
+    "executed": false,
+    "status": "STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT"
+  },
+  "next_batch_started": false
+}

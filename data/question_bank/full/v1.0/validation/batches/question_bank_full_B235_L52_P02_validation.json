@@ -1,0 +1,324 @@
+{
+  "batch_id": "B235",
+  "batch_code": "FULL-L52-P02",
+  "lesson_code": "L52",
+  "lesson_id": "f0a5d28c-4b03-42c8-bd92-0708737ab3f1",
+  "lesson_title": "LES RELATIONS LOGIQUES",
+  "result": "PASS_STATIC_AUTHORING",
+  "errors": [],
+  "repo": {
+    "main_commit": "45b6272478a841f2747023a4369aea47448ecbeb",
+    "branch": "main",
+    "read_only": true,
+    "github_writes_performed": false,
+    "root_documents": {
+      "README.md": "READ_FULL",
+      "STATUS.md": "READ_FULL",
+      "ROADMAP.md": "NOT_PRESENT_AT_ROOT__PROJECT_GUIDE_AUTHORITY",
+      "AGENTS.md": "NOT_PRESENT_AT_ROOT"
+    }
+  },
+  "plan": {
+    "global_batch_no": 235,
+    "lesson_part": "2/5",
+    "question_ordinal_start": 51,
+    "question_ordinal_end": 100,
+    "batch_question_count": 50,
+    "difficulty_profile": "COMPLEX",
+    "difficulty_expected": {
+      "EASY": 8,
+      "MEDIUM": 15,
+      "HARD": 20,
+      "VERY_HARD": 7
+    },
+    "lesson_cumulative_after_batch": 100,
+    "lesson_remaining_after_batch": 137,
+    "depends_on": "B234",
+    "question_type_allocation_rule": "REMAINING_HAMILTON_V1",
+    "subtopic_assignment_rule": "COMPATIBILITY_BALANCED_V1"
+  },
+  "source_basis": {
+    "book_pages_printed": "250-255",
+    "book_pages_pdf": "252-257",
+    "project_guide_relevant_stages": "Stages 1–11",
+    "category": "CAT11",
+    "subcategory": "SUB27",
+    "controlled_tags": [
+      "logical_relation",
+      "subordination",
+      "register_variation"
+    ],
+    "stage1_subtopics": [
+      "L52-S01",
+      "L52-S02",
+      "L52-S03",
+      "L52-S04",
+      "L52-S05",
+      "L52-S06",
+      "L52-S07",
+      "L52-S08",
+      "L52-S09",
+      "L52-S10",
+      "L52-S11",
+      "L52-S12",
+      "L52-S13",
+      "L52-S14",
+      "L52-S15",
+      "L52-S16"
+    ]
+  },
+  "stage6": {
+    "lesson_target_full": 237,
+    "question_type_targets_full": {
+      "CLOZE_SINGLE": 20,
+      "CLOZE_CONTEXT": 38,
+      "CORRECT_SENTENCE": 16,
+      "INCORRECT_SENTENCE": 12,
+      "ERROR_LOCATION": 4,
+      "CONJUGATION": 12,
+      "TENSE_CHOICE": 11,
+      "PRONOUN_CHOICE": 0,
+      "PREPOSITION_CHOICE": 10,
+      "REWRITE_EQUIV": 25,
+      "FR_TO_FA": 15,
+      "FA_TO_FR": 8,
+      "DIALOGUE_COMPLETE": 28,
+      "REGISTER_CHOICE": 10,
+      "CONTRAST_RULES": 28
+    },
+    "question_type_counts_before": {
+      "CLOZE_SINGLE": 4,
+      "CLOZE_CONTEXT": 8,
+      "CORRECT_SENTENCE": 3,
+      "INCORRECT_SENTENCE": 3,
+      "ERROR_LOCATION": 1,
+      "CONJUGATION": 3,
+      "TENSE_CHOICE": 2,
+      "PRONOUN_CHOICE": 0,
+      "PREPOSITION_CHOICE": 2,
+      "REWRITE_EQUIV": 5,
+      "FR_TO_FA": 3,
+      "FA_TO_FR": 2,
+      "DIALOGUE_COMPLETE": 6,
+      "REGISTER_CHOICE": 2,
+      "CONTRAST_RULES": 6
+    },
+    "question_type_quota_current": {
+      "CLOZE_SINGLE": 4,
+      "CLOZE_CONTEXT": 8,
+      "CORRECT_SENTENCE": 4,
+      "INCORRECT_SENTENCE": 3,
+      "ERROR_LOCATION": 1,
+      "CONJUGATION": 2,
+      "TENSE_CHOICE": 2,
+      "PRONOUN_CHOICE": 0,
+      "PREPOSITION_CHOICE": 2,
+      "REWRITE_EQUIV": 5,
+      "FR_TO_FA": 3,
+      "FA_TO_FR": 2,
+      "DIALOGUE_COMPLETE": 6,
+      "REGISTER_CHOICE": 2,
+      "CONTRAST_RULES": 6
+    },
+    "question_type_remaining_after": {
+      "CLOZE_SINGLE": 12,
+      "CLOZE_CONTEXT": 22,
+      "CORRECT_SENTENCE": 9,
+      "INCORRECT_SENTENCE": 6,
+      "ERROR_LOCATION": 2,
+      "CONJUGATION": 7,
+      "TENSE_CHOICE": 7,
+      "PRONOUN_CHOICE": 0,
+      "PREPOSITION_CHOICE": 6,
+      "REWRITE_EQUIV": 15,
+      "FR_TO_FA": 9,
+      "FA_TO_FR": 4,
+      "DIALOGUE_COMPLETE": 16,
+      "REGISTER_CHOICE": 6,
+      "CONTRAST_RULES": 16
+    },
+    "not_suitable_types": [
+      "PRONOUN_CHOICE"
+    ],
+    "not_suitable_generated": 0,
+    "conditional_used": [
+      {
+        "question_type": "ERROR_LOCATION",
+        "count": 1,
+        "subtopic": "L52-S14",
+        "guardrail": "error is explicitly segmented and localizable"
+      }
+    ],
+    "conditional_guardrail_pass": true
+  },
+  "stage9": {
+    "profile": "COMPLEX",
+    "full_difficulty_targets": {
+      "EASY": 36,
+      "MEDIUM": 71,
+      "HARD": 95,
+      "VERY_HARD": 35
+    },
+    "current_expected": {
+      "EASY": 8,
+      "MEDIUM": 15,
+      "HARD": 20,
+      "VERY_HARD": 7
+    },
+    "current_actual": {
+      "EASY": 8,
+      "MEDIUM": 15,
+      "HARD": 20,
+      "VERY_HARD": 7
+    },
+    "remaining_after": {
+      "EASY": 20,
+      "MEDIUM": 41,
+      "HARD": 55,
+      "VERY_HARD": 21
+    }
+  },
+  "schema_validation": {
+    "expected_column_count": 46,
+    "actual_column_count": 46,
+    "exact_header_order_pass": true,
+    "row_count_expected": 50,
+    "row_count_actual": 50,
+    "status_all_draft_pass": true,
+    "four_distinct_options_each_pass": true,
+    "exactly_one_correct_each_pass": true,
+    "correct_option_misconception_blank_pass": true,
+    "distractor_misconceptions_present_pass": true,
+    "distractor_misconception_resolution_basis": "IDs reused from predecessor validated Stage7-resolved registry; distractor semantic relevance is additionally explained option-by-option",
+    "external_ids_unique_pass": true
+  },
+  "quotas": {
+    "question_types_expected": {
+      "CLOZE_SINGLE": 4,
+      "CLOZE_CONTEXT": 8,
+      "CORRECT_SENTENCE": 4,
+      "INCORRECT_SENTENCE": 3,
+      "ERROR_LOCATION": 1,
+      "CONJUGATION": 2,
+      "TENSE_CHOICE": 2,
+      "PRONOUN_CHOICE": 0,
+      "PREPOSITION_CHOICE": 2,
+      "REWRITE_EQUIV": 5,
+      "FR_TO_FA": 3,
+      "FA_TO_FR": 2,
+      "DIALOGUE_COMPLETE": 6,
+      "REGISTER_CHOICE": 2,
+      "CONTRAST_RULES": 6
+    },
+    "question_types_actual": {
+      "CLOZE_SINGLE": 4,
+      "CLOZE_CONTEXT": 8,
+      "CORRECT_SENTENCE": 4,
+      "INCORRECT_SENTENCE": 3,
+      "ERROR_LOCATION": 1,
+      "CONJUGATION": 2,
+      "TENSE_CHOICE": 2,
+      "PREPOSITION_CHOICE": 2,
+      "REWRITE_EQUIV": 5,
+      "FR_TO_FA": 3,
+      "FA_TO_FR": 2,
+      "DIALOGUE_COMPLETE": 6,
+      "REGISTER_CHOICE": 2,
+      "CONTRAST_RULES": 6
+    },
+    "difficulty_expected": {
+      "EASY": 8,
+      "MEDIUM": 15,
+      "HARD": 20,
+      "VERY_HARD": 7
+    },
+    "difficulty_actual": {
+      "EASY": 8,
+      "MEDIUM": 15,
+      "HARD": 20,
+      "VERY_HARD": 7
+    },
+    "subtopic_actual": {
+      "L52-S06": 3,
+      "L52-S15": 3,
+      "L52-S01": 4,
+      "L52-S03": 4,
+      "L52-S02": 3,
+      "L52-S07": 3,
+      "L52-S16": 2,
+      "L52-S08": 2,
+      "L52-S12": 4,
+      "L52-S10": 4,
+      "L52-S05": 4,
+      "L52-S14": 2,
+      "L52-S09": 2,
+      "L52-S11": 5,
+      "L52-S13": 3,
+      "L52-S04": 2
+    }
+  },
+  "compatibility": {
+    "not_suitable_generated": 0,
+    "not_suitable_lesson_type": [
+      "PRONOUN_CHOICE"
+    ],
+    "preposition_choice_placements": [
+      "L52-S05"
+    ],
+    "conjugation_placements": [
+      "L52-S09",
+      "L52-S10"
+    ],
+    "error_location_guardrail": "L52-S14 only; localizable segmented verb-form error",
+    "fa_to_fr_guardrail": "closed four-option translation with a unique target structure",
+    "pass": true
+  },
+  "dedup": {
+    "previous_registry_rows": 10449,
+    "updated_registry_rows": 10499,
+    "exact_normalized_collisions": 0,
+    "structural_cross_registry_collisions": 0,
+    "fingerprint_collisions": 0,
+    "semantic_threshold": 0.8,
+    "semantic_near_duplicate_count": 0,
+    "max_cross_similarity_after_repair": 0.658491,
+    "max_cross_similarity_pair": [
+      "GMP-FULL-B235-Q095",
+      "GMP-FULL-B152-Q049"
+    ],
+    "max_within_similarity_after_repair": 0.441291,
+    "max_within_similarity_pair": [
+      "GMP-FULL-B235-Q064",
+      "GMP-FULL-B235-Q066"
+    ],
+    "repair_scope": "ONLY_FLAGGED_QUESTIONS",
+    "repair_iterations": 1,
+    "repaired_external_ids": [
+      "GMP-FULL-B235-Q067",
+      "GMP-FULL-B235-Q089",
+      "GMP-FULL-B235-Q097"
+    ],
+    "pass": true
+  },
+  "lesson_completion": {
+    "target": 237,
+    "completed": 100,
+    "remaining": 137,
+    "status": "IN_PROGRESS"
+  },
+  "global_registry": {
+    "prior_rows": 10449,
+    "added_rows": 50,
+    "final_rows": 10499,
+    "global_target": 10636,
+    "global_remaining": 137,
+    "predecessor_rows_preserved": true
+  },
+  "stage23": "STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT",
+  "stage23_runtime_executed": false,
+  "notes": [
+    "B235 is delivered independently and does not merge batch CSVs.",
+    "B236 was not started.",
+    "Stage23 Import/Preview/Commit was not executed."
+  ]
+}

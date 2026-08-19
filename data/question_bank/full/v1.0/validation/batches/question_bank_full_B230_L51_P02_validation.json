@@ -1,0 +1,345 @@
+{
+  "project": "Grammar Mastery Platform",
+  "runner": "QUESTION BANK CHAT RUNNER v1.0",
+  "batch_id": "B230",
+  "batch_code": "FULL-L51-P02",
+  "lesson_number": 51,
+  "lesson_title": "LE SUBJONCTIF",
+  "validation_status": "PASS_STATIC_AUTHORING",
+  "errors": [],
+  "repairs": [
+    {
+      "external_id": "GMP-FULL-B230-Q071",
+      "reason": "semantic_near_duplicate",
+      "old_stem": "Quelle phrase est incorrecte selon l'opposition indicatif/subjonctif ?",
+      "new_stem": "Dans un échange sur un constat et une volonté pour demain, quelle phrase contient un emploi fautif du mode ?"
+    },
+    {
+      "external_id": "GMP-FULL-B230-Q100",
+      "reason": "normalized+structural+semantic_near_duplicate",
+      "old_stem": "Quelle règle distingue correctement « avant que » et « après que » dans le cadre de la leçon ?",
+      "new_stem": "Un étudiant compare deux repères temporels : quelle formulation de la règle « avant que / après que » correspond au cadre présenté dans Lesson 51 ?"
+    },
+    {
+      "external_id": "GMP-FULL-B230-Q082",
+      "reason": "official_batch_plan_difficulty_quota_reconciliation_during_repository_integration",
+      "old_difficulty": "EASY",
+      "old_difficulty_score_initial": 1.45,
+      "new_difficulty": "VERY_HARD",
+      "new_difficulty_score_initial": 3.55,
+      "content_changed": false
+    }
+  ],
+  "generated_rows": 50,
+  "schema_columns": 46,
+  "status_value": "DRAFT",
+  "repository": {
+    "repository": "ImanNasrEsfahani/grammar-mastery-platform",
+    "branch": "main",
+    "commit_sha": "86e8630408edae737c4fb48bd2e9d90877b71d62",
+    "commit_message": "fix 6 and bootstrap logging",
+    "mode": "READ_ONLY",
+    "github_writes_performed": false,
+    "root_documents": {
+      "README.md": "READ_FULL",
+      "STATUS.md": "READ_FULL",
+      "ROADMAP.md": "NOT_PRESENT_AT_ROOT__PROJECT_GUIDE_AUTHORITY",
+      "AGENTS.md": "NOT_PRESENT_AT_ROOT"
+    }
+  },
+  "plan": {
+    "global_batch_no": 230,
+    "lesson_part": "2/5",
+    "question_ordinal_start": 51,
+    "question_ordinal_end": 100,
+    "batch_question_count": 50,
+    "difficulty_profile": "COMPLEX",
+    "difficulty": {
+      "EASY": 7,
+      "MEDIUM": 15,
+      "HARD": 20,
+      "VERY_HARD": 8
+    },
+    "lesson_cumulative_after_batch": 100,
+    "lesson_remaining_after_batch": 138,
+    "depends_on": "B229",
+    "question_type_allocation_rule": "REMAINING_HAMILTON_V1",
+    "subtopic_assignment_rule": "COMPATIBILITY_BALANCED_V1"
+  },
+  "source_basis": {
+    "book_pages": [
+      "printed p. 238",
+      "printed p. 240",
+      "printed p. 242",
+      "printed p. 246",
+      "printed p. 248"
+    ],
+    "project_guide_relevant_stages": "Stages 1–11",
+    "category": "CAT03",
+    "subcategory": "SUB06",
+    "controlled_tags": [
+      "subordination",
+      "negation",
+      "interrogation",
+      "register_variation",
+      "condition_hypothesis"
+    ]
+  },
+  "stage6": {
+    "lesson_target_full": 238,
+    "question_type_targets_full": {
+      "CLOZE_SINGLE": 21,
+      "CLOZE_CONTEXT": 45,
+      "CORRECT_SENTENCE": 21,
+      "INCORRECT_SENTENCE": 16,
+      "ERROR_LOCATION": 12,
+      "CONJUGATION": 12,
+      "TENSE_CHOICE": 13,
+      "PRONOUN_CHOICE": 0,
+      "PREPOSITION_CHOICE": 0,
+      "REWRITE_EQUIV": 18,
+      "FR_TO_FA": 15,
+      "FA_TO_FR": 4,
+      "DIALOGUE_COMPLETE": 33,
+      "REGISTER_CHOICE": 7,
+      "CONTRAST_RULES": 21
+    },
+    "question_type_counts_before": {
+      "CLOZE_SINGLE": 4,
+      "CLOZE_CONTEXT": 9,
+      "CORRECT_SENTENCE": 4,
+      "INCORRECT_SENTENCE": 3,
+      "ERROR_LOCATION": 3,
+      "CONJUGATION": 3,
+      "TENSE_CHOICE": 3,
+      "REWRITE_EQUIV": 4,
+      "FR_TO_FA": 3,
+      "FA_TO_FR": 1,
+      "DIALOGUE_COMPLETE": 7,
+      "REGISTER_CHOICE": 2,
+      "CONTRAST_RULES": 4
+    },
+    "question_type_quota_current": {
+      "CLOZE_SINGLE": 5,
+      "CLOZE_CONTEXT": 10,
+      "CORRECT_SENTENCE": 5,
+      "INCORRECT_SENTENCE": 3,
+      "ERROR_LOCATION": 2,
+      "CONJUGATION": 2,
+      "TENSE_CHOICE": 3,
+      "PRONOUN_CHOICE": 0,
+      "PREPOSITION_CHOICE": 0,
+      "REWRITE_EQUIV": 4,
+      "FR_TO_FA": 3,
+      "FA_TO_FR": 1,
+      "DIALOGUE_COMPLETE": 7,
+      "REGISTER_CHOICE": 1,
+      "CONTRAST_RULES": 4
+    },
+    "question_type_remaining_after": {
+      "CLOZE_SINGLE": 12,
+      "CLOZE_CONTEXT": 26,
+      "CORRECT_SENTENCE": 12,
+      "INCORRECT_SENTENCE": 10,
+      "ERROR_LOCATION": 7,
+      "CONJUGATION": 7,
+      "TENSE_CHOICE": 7,
+      "PRONOUN_CHOICE": 0,
+      "PREPOSITION_CHOICE": 0,
+      "REWRITE_EQUIV": 10,
+      "FR_TO_FA": 9,
+      "FA_TO_FR": 2,
+      "DIALOGUE_COMPLETE": 19,
+      "REGISTER_CHOICE": 4,
+      "CONTRAST_RULES": 13
+    },
+    "not_suitable_types": [
+      "PRONOUN_CHOICE",
+      "PREPOSITION_CHOICE"
+    ],
+    "not_suitable_generated": 0,
+    "conditional_used": {
+      "question_type": "FA_TO_FR",
+      "count": 1,
+      "guardrail_applied": true
+    },
+    "compatibility_source": "data/question_authoring/stage6/stage6_subtopic_type_compatibility_recovered_v1.0.csv",
+    "compatibility_basis_note": "Assignments use only L51 subtopic/type pairings already established in the preceding validated L51 batch; current main change is bootstrap logging only."
+  },
+  "type_difficulty_matrix": {
+    "CLOZE_SINGLE": {
+      "EASY": 2,
+      "MEDIUM": 1,
+      "HARD": 2,
+      "VERY_HARD": 0
+    },
+    "CLOZE_CONTEXT": {
+      "EASY": 1,
+      "MEDIUM": 3,
+      "HARD": 4,
+      "VERY_HARD": 2
+    },
+    "CORRECT_SENTENCE": {
+      "EASY": 2,
+      "MEDIUM": 1,
+      "HARD": 2,
+      "VERY_HARD": 0
+    },
+    "INCORRECT_SENTENCE": {
+      "EASY": 0,
+      "MEDIUM": 2,
+      "HARD": 1,
+      "VERY_HARD": 0
+    },
+    "ERROR_LOCATION": {
+      "EASY": 0,
+      "MEDIUM": 0,
+      "HARD": 2,
+      "VERY_HARD": 0
+    },
+    "CONJUGATION": {
+      "EASY": 0,
+      "MEDIUM": 0,
+      "HARD": 2,
+      "VERY_HARD": 0
+    },
+    "TENSE_CHOICE": {
+      "EASY": 0,
+      "MEDIUM": 2,
+      "HARD": 1,
+      "VERY_HARD": 0
+    },
+    "REWRITE_EQUIV": {
+      "EASY": 1,
+      "MEDIUM": 1,
+      "HARD": 1,
+      "VERY_HARD": 1
+    },
+    "FR_TO_FA": {
+      "EASY": 0,
+      "MEDIUM": 2,
+      "HARD": 1,
+      "VERY_HARD": 0
+    },
+    "FA_TO_FR": {
+      "EASY": 0,
+      "MEDIUM": 0,
+      "HARD": 0,
+      "VERY_HARD": 1
+    },
+    "DIALOGUE_COMPLETE": {
+      "EASY": 1,
+      "MEDIUM": 2,
+      "HARD": 2,
+      "VERY_HARD": 2
+    },
+    "REGISTER_CHOICE": {
+      "EASY": 0,
+      "MEDIUM": 0,
+      "HARD": 0,
+      "VERY_HARD": 1
+    },
+    "CONTRAST_RULES": {
+      "EASY": 0,
+      "MEDIUM": 1,
+      "HARD": 2,
+      "VERY_HARD": 1
+    }
+  },
+  "subtopic_counts_current": {
+    "L51-S01": 3,
+    "L51-S02": 2,
+    "L51-S03": 3,
+    "L51-S04": 5,
+    "L51-S05": 2,
+    "L51-S06": 2,
+    "L51-S07": 2,
+    "L51-S08": 2,
+    "L51-S09": 3,
+    "L51-S10": 1,
+    "L51-S11": 1,
+    "L51-S12": 2,
+    "L51-S13": 2,
+    "L51-S14": 3,
+    "L51-S15": 4,
+    "L51-S16": 2,
+    "L51-S17": 2,
+    "L51-S18": 4,
+    "L51-S19": 2,
+    "L51-S20": 3
+  },
+  "cumulative_subtopic_counts": {
+    "L51-S01": 6,
+    "L51-S02": 5,
+    "L51-S03": 6,
+    "L51-S04": 10,
+    "L51-S05": 4,
+    "L51-S06": 4,
+    "L51-S07": 4,
+    "L51-S08": 4,
+    "L51-S09": 6,
+    "L51-S10": 2,
+    "L51-S11": 3,
+    "L51-S12": 4,
+    "L51-S13": 4,
+    "L51-S14": 6,
+    "L51-S15": 8,
+    "L51-S16": 4,
+    "L51-S17": 4,
+    "L51-S18": 7,
+    "L51-S19": 4,
+    "L51-S20": 5
+  },
+  "qa": {
+    "four_options_all_rows": true,
+    "exactly_one_correct_all_rows": true,
+    "correct_misconception_blank_all_rows": true,
+    "wrong_options_misconception_populated_all_rows": true,
+    "status_all_draft": true,
+    "required_explanations_present": true,
+    "source_ref_present_all_rows": true
+  },
+  "deduplication": {
+    "exact_cross_registry": 0,
+    "normalized_cross_registry": 0,
+    "structural_cross_registry": 0,
+    "semantic_signature_cross_registry": 0,
+    "fingerprint_cross_registry": 0,
+    "semantic_near_duplicate_threshold": 0.8,
+    "semantic_flags": [],
+    "max_cross_semantic": {
+      "score": 0.761835,
+      "batch_question": "GMP-FULL-B230-Q099",
+      "registry_question": "GMP-FULL-B229-Q049"
+    },
+    "max_within_semantic": {
+      "score": 0.412721,
+      "question_a": "GMP-FULL-B230-Q076",
+      "question_b": "GMP-FULL-B230-Q077"
+    },
+    "within_semantic_flags": []
+  },
+  "stage23": {
+    "runtime_executed": false,
+    "status": "STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT"
+  },
+  "integration_plan_reconciliation": {
+    "source": "question_bank_full_batch_plan_v1.0.xlsx / Batch_Plan / B230",
+    "official_difficulty_profile": "COMPLEX",
+    "official_difficulty": {
+      "EASY": 7,
+      "MEDIUM": 15,
+      "HARD": 20,
+      "VERY_HARD": 8
+    },
+    "actual_after_repair": {
+      "EASY": 7,
+      "MEDIUM": 15,
+      "HARD": 20,
+      "VERY_HARD": 8
+    },
+    "repair_external_id": "GMP-FULL-B230-Q082",
+    "content_changed": false,
+    "status": "PASS"
+  }
+}

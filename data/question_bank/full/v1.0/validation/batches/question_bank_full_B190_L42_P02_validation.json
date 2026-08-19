@@ -1,0 +1,168 @@
+{
+  "batch_id": "B190",
+  "batch_code": "FULL-L42-P02",
+  "lesson_number": 42,
+  "lesson_title": "LE PASSIF",
+  "status": "PASS_STATIC_AUTHORING",
+  "generated_rows": 50,
+  "schema_columns": 46,
+  "status_value": "DRAFT",
+  "repository": {
+    "mode": "READ_ONLY",
+    "main_sha": "c03b962519dd0487c709124aee4984debd8a490c",
+    "github_writes_performed": false,
+    "readme_checked": true,
+    "status_checked": true,
+    "roadmap_root_present": false,
+    "agents_root_present": false,
+    "project_guide_used_as_roadmap_substitute": true
+  },
+  "plan": {
+    "question_start": 51,
+    "question_end": 100,
+    "question_count": 50,
+    "part_index": 2,
+    "part_count": 4,
+    "depends_on": "B189",
+    "allocation_method": "REMAINING_HAMILTON_V1",
+    "assignment_method": "COMPATIBILITY_BALANCED_V1"
+  },
+  "source_basis": {
+    "lesson_source_ref": "Lesson 42; printed pp. 204-205; PDF pp. 206-207",
+    "stage1_subtopics": [
+      "L42-S01",
+      "L42-S02",
+      "L42-S03",
+      "L42-S04",
+      "L42-S05"
+    ],
+    "category": "CAT03",
+    "subcategory": "SUB07",
+    "tags": [
+      "TAG028",
+      "TAG004"
+    ]
+  },
+  "question_type_expected": {
+    "CLOZE_SINGLE": 6,
+    "CLOZE_CONTEXT": 7,
+    "CORRECT_SENTENCE": 5,
+    "INCORRECT_SENTENCE": 4,
+    "ERROR_LOCATION": 3,
+    "CONJUGATION": 0,
+    "TENSE_CHOICE": 0,
+    "PRONOUN_CHOICE": 3,
+    "PREPOSITION_CHOICE": 3,
+    "REWRITE_EQUIV": 4,
+    "FR_TO_FA": 5,
+    "FA_TO_FR": 1,
+    "DIALOGUE_COMPLETE": 5,
+    "REGISTER_CHOICE": 0,
+    "CONTRAST_RULES": 4
+  },
+  "question_type_actual": {
+    "CLOZE_SINGLE": 6,
+    "CLOZE_CONTEXT": 7,
+    "CORRECT_SENTENCE": 5,
+    "INCORRECT_SENTENCE": 4,
+    "ERROR_LOCATION": 3,
+    "CONJUGATION": 0,
+    "TENSE_CHOICE": 0,
+    "PRONOUN_CHOICE": 3,
+    "PREPOSITION_CHOICE": 3,
+    "REWRITE_EQUIV": 4,
+    "FR_TO_FA": 5,
+    "FA_TO_FR": 1,
+    "DIALOGUE_COMPLETE": 5,
+    "REGISTER_CHOICE": 0,
+    "CONTRAST_RULES": 4
+  },
+  "difficulty_expected": {
+    "EASY": 10,
+    "MEDIUM": 20,
+    "HARD": 15,
+    "VERY_HARD": 5
+  },
+  "difficulty_actual": {
+    "EASY": 10,
+    "MEDIUM": 20,
+    "HARD": 15,
+    "VERY_HARD": 5
+  },
+  "stage9": {
+    "authoritative_lesson_target": {
+      "EASY": 37,
+      "MEDIUM": 73,
+      "HARD": 55,
+      "VERY_HARD": 18
+    },
+    "prior_checkpoint_difficulty_drift_detected": true,
+    "prior_b189_checkpoint_remaining_difficulty": {
+      "EASY": 17,
+      "MEDIUM": 35,
+      "HARD": 58,
+      "VERY_HARD": 23
+    },
+    "corrected_pre_b190_remaining_difficulty": {
+      "EASY": 27,
+      "MEDIUM": 53,
+      "HARD": 40,
+      "VERY_HARD": 13
+    },
+    "post_b190_remaining_difficulty": {
+      "EASY": 17,
+      "MEDIUM": 33,
+      "HARD": 25,
+      "VERY_HARD": 8
+    },
+    "prior_batch_files_modified": false
+  },
+  "subtopic_batch_counts": {
+    "L42-S01": 10,
+    "L42-S02": 10,
+    "L42-S03": 10,
+    "L42-S04": 10,
+    "L42-S05": 10
+  },
+  "subtopic_cumulative_counts": {
+    "L42-S01": 20,
+    "L42-S02": 20,
+    "L42-S03": 20,
+    "L42-S04": 20,
+    "L42-S05": 20
+  },
+  "compatibility": {
+    "not_suitable_generated": 0,
+    "conditional_questions": [],
+    "all_generated_assignments_allowed_or_preferred": true
+  },
+  "option_checks": {
+    "exactly_four_distinct_options": true,
+    "exactly_one_correct_option": true,
+    "correct_option_misconception_blank": true,
+    "distractor_misconceptions_valid": true
+  },
+  "dedup": {
+    "previous_registry_rows": 8427,
+    "updated_registry_rows": 8477,
+    "exact_normalized_collisions": 0,
+    "structural_collisions": 0,
+    "semantic_threshold": 0.8,
+    "max_cross_previous_same_type_ratio": 0.7288135593220338,
+    "max_cross_new_external_id": "GMP-FULL-B190-Q016",
+    "max_cross_previous_external_id": "GMP-FULL-B072-Q021",
+    "max_within_batch_same_type_ratio": 0.53125,
+    "max_within_batch_external_ids": [
+      "GMP-FULL-B190-Q047",
+      "GMP-FULL-B190-Q019"
+    ],
+    "repairs_performed": 1
+  },
+  "stage23": {
+    "runtime_executed": false,
+    "import_preview_commit_executed": false,
+    "status": "STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT"
+  },
+  "next_batch_started": false,
+  "next_batch": "B191"
+}

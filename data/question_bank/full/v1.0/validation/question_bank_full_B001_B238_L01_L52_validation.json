@@ -1,0 +1,141 @@
+{
+  "validation_version": "question-bank-static-consolidation-validation-v1.6-final",
+  "status": "PASS_STATIC_CONSOLIDATION",
+  "scope": {
+    "base_existing": "B001-B183 / 8175 rows",
+    "extension": "B184-B238 / 2461 rows",
+    "question_count": 10636,
+    "extension_question_count": 2461,
+    "next_batch": null,
+    "plan_target_questions": 10636,
+    "remaining_to_plan_target": 0,
+    "full_plan_status": "COMPLETE_B001_B238"
+  },
+  "repository": {
+    "github_main_commit_reviewed": "45b6272478a841f2747023a4369aea47448ecbeb",
+    "branch": "main",
+    "mode": "READ_ONLY",
+    "github_writes_performed": false,
+    "latest_repository_batch_before_overlay": "B183"
+  },
+  "schema": {
+    "schema_version": "question-import-schema-v0.9.0",
+    "expected_column_count": 46,
+    "actual_column_count": 46,
+    "master_header_matches": true,
+    "extension_header_matches": true,
+    "status_all_draft": true,
+    "four_distinct_options_each": true,
+    "exactly_one_correct_key_each": true,
+    "correct_option_misconception_blank": true,
+    "distractor_misconceptions_populated": true,
+    "all_explanations_nonempty": true,
+    "media_type_all_none": true
+  },
+  "extension_counts": {
+    "difficulty": {
+      "EASY": 399,
+      "HARD": 857,
+      "MEDIUM": 865,
+      "VERY_HARD": 340
+    },
+    "question_type": {
+      "CLOZE_CONTEXT": 421,
+      "CLOZE_SINGLE": 243,
+      "CONJUGATION": 91,
+      "CONTRAST_RULES": 247,
+      "CORRECT_SENTENCE": 237,
+      "DIALOGUE_COMPLETE": 251,
+      "ERROR_LOCATION": 103,
+      "FA_TO_FR": 63,
+      "FR_TO_FA": 158,
+      "INCORRECT_SENTENCE": 153,
+      "PREPOSITION_CHOICE": 79,
+      "PRONOUN_CHOICE": 12,
+      "REGISTER_CHOICE": 24,
+      "REWRITE_EQUIV": 219,
+      "TENSE_CHOICE": 160
+    },
+    "batch_count": 55
+  },
+  "registry": {
+    "rows": 10636,
+    "external_id_unique": true,
+    "normalized_stem_duplicate_groups": 0,
+    "fingerprint_duplicate_groups": 0,
+    "historical_signatures_source": "B238 cumulative registry",
+    "b229_historical_registry_rows": 50,
+    "b230_difficulty_reconciled_external_id": "GMP-FULL-B230-Q082",
+    "historical_dedupe_hashes_retained_after_b230_difficulty_metadata_repair": true
+  },
+  "b229_recovery": {
+    "status": "RECOVERED_FOR_INTEGRATION",
+    "original_drive_zip_found": false,
+    "row_count": 50,
+    "identity_fields_from_b238_registry": [
+      "external_id",
+      "lesson_id",
+      "lesson_code",
+      "subtopic_id",
+      "subtopic_code",
+      "question_type",
+      "difficulty",
+      "status",
+      "normalized_stem",
+      "correct_text",
+      "source_ref"
+    ],
+    "reconstructed_fields": [
+      "stem presentation capitalization",
+      "option_a..option_d",
+      "correct_option placement",
+      "explanations",
+      "misconception option mapping",
+      "standard Stage10 metadata"
+    ],
+    "original_byte_identity_claimed": false,
+    "validation": "validation/batches/question_bank_full_B229_L51_P01_validation.json"
+  },
+  "batch_validation": {
+    "batches_checked": 55,
+    "all_source_or_recovery_validations_pass_static": true,
+    "stage23_marker_present_in_all_batch_validation": true
+  },
+  "errors": [],
+  "stage23": {
+    "status": "STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT",
+    "runtime_executed": false,
+    "import_preview_commit_executed": false
+  },
+  "plan_conformance": {
+    "source": "question_bank_full_batch_plan_v1.0.xlsx",
+    "batches_checked": 55,
+    "question_count_target_B184_B238": 2461,
+    "question_count_actual_B184_B238": 2461,
+    "batch_question_counts_all_match": true,
+    "batch_difficulty_quotas_all_match_after_targeted_repair": true,
+    "repairs": [
+      {
+        "batch_id": "B230",
+        "external_id": "GMP-FULL-B230-Q082",
+        "field": "difficulty",
+        "from": "EASY",
+        "to": "VERY_HARD",
+        "difficulty_score_initial_from": 1.45,
+        "difficulty_score_initial_to": 3.55,
+        "reason": "B230 source validation/artifact used 8E/15M/20H/7VH but official Batch Plan requires 7E/15M/20H/8VH.",
+        "content_changed": false
+      }
+    ],
+    "external_id_policy": "Preserved authored external IDs exactly; no renumbering was performed. Some earlier source batches use batch-local Q001.. suffixes, while later source batches use lesson-ordinal suffixes; batch prefixes keep IDs globally unique.",
+    "status": "PASS"
+  },
+  "integration_repairs": [
+    {
+      "batch_id": "B230",
+      "external_id": "GMP-FULL-B230-Q082",
+      "repair_type": "difficulty_metadata_only",
+      "content_changed": false
+    }
+  ]
+}

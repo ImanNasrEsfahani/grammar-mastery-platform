@@ -1,0 +1,258 @@
+{
+  "project": "Grammar Mastery Platform",
+  "runner": "QUESTION BANK CHAT RUNNER v1.0",
+  "batch_id": "B216",
+  "batch_code": "FULL-L48-P01",
+  "lesson_number": 48,
+  "lesson_title": "LE FUTUR ANTÉRIEUR",
+  "validation_status": "PASS_STATIC_AUTHORING",
+  "errors": [],
+  "repairs": [
+    {
+      "external_id": "GMP-FULL-B216-Q016",
+      "reason": "exact normalized-stem collision with prior registry",
+      "action": "stem specialized to futur antérieur context"
+    },
+    {
+      "external_id": "GMP-FULL-B216-Q047",
+      "reason": "exact normalized-stem collision with prior registry",
+      "action": "stem specialized to futur antérieur formation"
+    }
+  ],
+  "generated_rows": 50,
+  "schema_columns": 46,
+  "status_value": "DRAFT",
+  "repository": {
+    "repository": "ImanNasrEsfahani/grammar-mastery-platform",
+    "branch": "main",
+    "commit_sha": "1d23edcf8399b313e7fa629267de44a28e4580da",
+    "commit_message": "fix 6",
+    "mode": "READ_ONLY",
+    "github_writes_performed": false,
+    "root_documents": {
+      "README.md": "READ_FULL",
+      "STATUS.md": "READ_FULL",
+      "ROADMAP.md": "NOT_PRESENT_AT_ROOT__PROJECT_GUIDE_AUTHORITY",
+      "AGENTS.md": "NOT_PRESENT_AT_ROOT"
+    }
+  },
+  "plan": {
+    "global_batch_no": 216,
+    "lesson_part": "1/3",
+    "question_ordinal_start": 1,
+    "question_ordinal_end": 50,
+    "batch_question_count": 50,
+    "difficulty_profile": "DISCRIMINATION",
+    "difficulty": {
+      "EASY": 8,
+      "MEDIUM": 17,
+      "HARD": 17,
+      "VERY_HARD": 8
+    },
+    "lesson_cumulative_after_batch": 50,
+    "lesson_remaining_after_batch": 94,
+    "depends_on": null,
+    "question_type_allocation_rule": "REMAINING_HAMILTON_V1",
+    "question_type_tie_break": "ascending Question_Type_Order.display_order",
+    "subtopic_assignment_rule": "COMPATIBILITY_BALANCED_V1"
+  },
+  "source_basis": {
+    "book_pages_visually_rechecked": [
+      "printed p. 228 / PDF p. 230"
+    ],
+    "lesson_reference_span": [
+      "printed pp. 228-229 / PDF pp. 230-231"
+    ],
+    "project_guide_relevant_stages": "Stages 1–11",
+    "category": "CAT02",
+    "subcategory": "SUB05",
+    "controlled_tags": [
+      "future",
+      "temporal_reference"
+    ],
+    "stage1_subtopics": {
+      "L48-S01": "Antériorité dans le futur",
+      "L48-S02": "Formation du futur antérieur",
+      "L48-S03": "Résumé des temps de l’indicatif"
+    }
+  },
+  "question_type_targets_full": {
+    "CLOZE_SINGLE": 12,
+    "CLOZE_CONTEXT": 28,
+    "CORRECT_SENTENCE": 16,
+    "INCORRECT_SENTENCE": 6,
+    "ERROR_LOCATION": 5,
+    "CONJUGATION": 8,
+    "TENSE_CHOICE": 16,
+    "PRONOUN_CHOICE": 0,
+    "PREPOSITION_CHOICE": 0,
+    "REWRITE_EQUIV": 14,
+    "FR_TO_FA": 9,
+    "FA_TO_FR": 3,
+    "DIALOGUE_COMPLETE": 11,
+    "REGISTER_CHOICE": 0,
+    "CONTRAST_RULES": 16
+  },
+  "question_type_quota_current": {
+    "CLOZE_SINGLE": 4,
+    "CLOZE_CONTEXT": 10,
+    "CORRECT_SENTENCE": 6,
+    "INCORRECT_SENTENCE": 2,
+    "ERROR_LOCATION": 2,
+    "CONJUGATION": 3,
+    "TENSE_CHOICE": 5,
+    "REWRITE_EQUIV": 5,
+    "FR_TO_FA": 3,
+    "FA_TO_FR": 1,
+    "DIALOGUE_COMPLETE": 4,
+    "CONTRAST_RULES": 5
+  },
+  "question_type_remaining_after": {
+    "CLOZE_SINGLE": 8,
+    "CLOZE_CONTEXT": 18,
+    "CORRECT_SENTENCE": 10,
+    "INCORRECT_SENTENCE": 4,
+    "ERROR_LOCATION": 3,
+    "CONJUGATION": 5,
+    "TENSE_CHOICE": 11,
+    "PRONOUN_CHOICE": 0,
+    "PREPOSITION_CHOICE": 0,
+    "REWRITE_EQUIV": 9,
+    "FR_TO_FA": 6,
+    "FA_TO_FR": 2,
+    "DIALOGUE_COMPLETE": 7,
+    "REGISTER_CHOICE": 0,
+    "CONTRAST_RULES": 11
+  },
+  "type_by_difficulty_matrix": {
+    "CLOZE_SINGLE": {
+      "EASY": 1,
+      "MEDIUM": 1,
+      "HARD": 1,
+      "VERY_HARD": 1
+    },
+    "CLOZE_CONTEXT": {
+      "EASY": 2,
+      "MEDIUM": 3,
+      "HARD": 3,
+      "VERY_HARD": 2
+    },
+    "CORRECT_SENTENCE": {
+      "EASY": 1,
+      "MEDIUM": 2,
+      "HARD": 2,
+      "VERY_HARD": 1
+    },
+    "INCORRECT_SENTENCE": {
+      "EASY": 0,
+      "MEDIUM": 1,
+      "HARD": 1,
+      "VERY_HARD": 0
+    },
+    "ERROR_LOCATION": {
+      "EASY": 0,
+      "MEDIUM": 1,
+      "HARD": 1,
+      "VERY_HARD": 0
+    },
+    "CONJUGATION": {
+      "EASY": 0,
+      "MEDIUM": 1,
+      "HARD": 2,
+      "VERY_HARD": 0
+    },
+    "TENSE_CHOICE": {
+      "EASY": 1,
+      "MEDIUM": 2,
+      "HARD": 1,
+      "VERY_HARD": 1
+    },
+    "REWRITE_EQUIV": {
+      "EASY": 1,
+      "MEDIUM": 2,
+      "HARD": 1,
+      "VERY_HARD": 1
+    },
+    "FR_TO_FA": {
+      "EASY": 0,
+      "MEDIUM": 1,
+      "HARD": 2,
+      "VERY_HARD": 0
+    },
+    "FA_TO_FR": {
+      "EASY": 0,
+      "MEDIUM": 0,
+      "HARD": 1,
+      "VERY_HARD": 0
+    },
+    "DIALOGUE_COMPLETE": {
+      "EASY": 1,
+      "MEDIUM": 1,
+      "HARD": 1,
+      "VERY_HARD": 1
+    },
+    "CONTRAST_RULES": {
+      "EASY": 1,
+      "MEDIUM": 2,
+      "HARD": 1,
+      "VERY_HARD": 1
+    }
+  },
+  "subtopic_batch_counts": {
+    "L48-S01": 17,
+    "L48-S02": 17,
+    "L48-S03": 16
+  },
+  "compatibility_validation": {
+    "lesson_level_not_suitable_types": [
+      "PRONOUN_CHOICE",
+      "PREPOSITION_CHOICE",
+      "REGISTER_CHOICE"
+    ],
+    "not_suitable_generated": 0,
+    "conditional_used": 1,
+    "conditional_item": "GMP-FULL-B216-Q041",
+    "conditional_guardrail": "FA_TO_FR item is closed: fixed Persian meaning, fixed subject « nous », fixed verb « finir », fixed target tense futur antérieur.",
+    "source_alignment": "All generated subtopic assignments were restricted to the rule naturally represented by the selected L48 subtopic."
+  },
+  "misconception_validation": {
+    "correct_option_misconception_blank": true,
+    "wrong_options_have_stage7_catalogue_ids": true,
+    "id_basis": "Validated Stage7 misconception IDs from the immediately adjacent future-tense Lesson 47 were reused at family level for tense/form/sequence distractors; all referenced IDs are existing Stage7 IDs.",
+    "note": "No L48-specific misconception catalogue IDs were invented."
+  },
+  "deduplication": {
+    "exact_cross_collisions": 0,
+    "normalized_cross_collisions": 0,
+    "structural_cross_collisions": 0,
+    "structural_within_collisions": 0,
+    "semantic_signature_cross_collisions": 0,
+    "semantic_signature_within_collisions": 0,
+    "fingerprint_cross_collisions": 0,
+    "fingerprint_within_collisions": 0,
+    "semantic_threshold": 0.8,
+    "semantic_method": "TF-IDF char_wb 3-5, normalized stem + correct answer, within question type",
+    "maximum_cross_batch_semantic_similarity": 0.531103,
+    "maximum_cross_batch_pair": [
+      "GMP-FULL-B216-Q046",
+      "GMP-FULL-B211-Q047"
+    ],
+    "maximum_within_batch_semantic_similarity": 0.42601,
+    "maximum_within_batch_pair": [
+      "GMP-FULL-B216-Q046",
+      "GMP-FULL-B216-Q047"
+    ]
+  },
+  "stage23": {
+    "runtime_executed": false,
+    "import_preview_commit_executed": false,
+    "status": "STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT"
+  },
+  "output": {
+    "csv": "question_bank_full_B216_L48_P01.csv",
+    "csv_sha256": "e70f4309cd7c1c662d9f03328c7303af17c6c71418d6100a9706b2a6712591aa",
+    "registry": "question_bank_global_registry_B216.csv",
+    "registry_rows": 9617,
+    "registry_sha256": "402809580e002a39530515c62de58240aa44803114e39e8f8f15522a2ef8a4d2"
+  }
+}

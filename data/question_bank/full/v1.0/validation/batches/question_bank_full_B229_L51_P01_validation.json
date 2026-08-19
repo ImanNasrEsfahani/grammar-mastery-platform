@@ -1,0 +1,50 @@
+{
+  "project": "Grammar Mastery Platform",
+  "runner": "QUESTION BANK CHAT RUNNER v1.0",
+  "batch_id": "B229",
+  "batch_code": "FULL-L51-P01",
+  "lesson_number": 51,
+  "lesson_title": "LE SUBJONCTIF",
+  "validation_status": "PASS_STATIC_RECOVERED_FROM_CUMULATIVE_REGISTRY",
+  "errors": [],
+  "recovery": {
+    "original_batch_zip_present_in_google_drive": false,
+    "basis": "B238 cumulative registry preserves all 50 B229 external IDs, subtopic IDs/codes, question types, difficulties, normalized stems, correct texts and source refs; missing option/explanation fields were reconstructed against Lesson51 patterns and valid Stage7 misconception IDs observed in B230-B233.",
+    "original_row_byte_identity_claimed": false,
+    "historical_registry_signatures_retained_in_final_registry": true
+  },
+  "generated_rows": 50,
+  "schema_columns": 46,
+  "status_value": "DRAFT",
+  "csv_sha256": "3b3c26af31b970ccaca5ba4fe29148802241bb920b652a85d6b173a2ee44df38",
+  "plan": {
+    "global_batch_no": 229,
+    "lesson_part": "1/5",
+    "question_ordinal_start": 1,
+    "question_ordinal_end": 50,
+    "batch_question_count": 50,
+    "difficulty": {
+      "EASY": 8,
+      "MEDIUM": 15,
+      "HARD": 20,
+      "VERY_HARD": 7
+    },
+    "lesson_cumulative_after_batch": 50,
+    "lesson_remaining_after_batch": 188,
+    "question_type_allocation_rule": "REMAINING_HAMILTON_V1",
+    "subtopic_assignment_rule": "COMPATIBILITY_BALANCED_V1"
+  },
+  "qa": {
+    "four_options_all_rows": true,
+    "exactly_one_correct_all_rows": true,
+    "correct_misconception_blank_all_rows": true,
+    "wrong_options_misconception_populated_all_rows": true,
+    "status_all_draft": true,
+    "required_explanations_present": true,
+    "source_ref_present_all_rows": true
+  },
+  "stage23": {
+    "runtime_executed": false,
+    "status": "STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT"
+  }
+}

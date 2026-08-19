@@ -1,0 +1,216 @@
+{
+  "project": "Grammar Mastery Platform",
+  "runner": "QUESTION BANK CHAT RUNNER v1.0",
+  "batch_id": "B210",
+  "batch_code": "FULL-L46-P04",
+  "lesson_number": 46,
+  "lesson_title": "« VENIR de », « ÊTRE en TRAIN de », « ÊTRE sur le POINT de »",
+  "validation_status": "PASS_STATIC_AUTHORING",
+  "errors": [],
+  "repairs": [],
+  "generated_rows": 6,
+  "schema_columns": 46,
+  "status_value": "DRAFT",
+  "repository": {
+    "repository": "ImanNasrEsfahani/grammar-mastery-platform",
+    "branch": "main",
+    "commit_sha": "1d23edcf8399b313e7fa629267de44a28e4580da",
+    "commit_message": "fix 6",
+    "mode": "READ_ONLY",
+    "github_writes_performed": false,
+    "root_documents": {
+      "README.md": "READ_FULL",
+      "STATUS.md": "READ_FULL",
+      "ROADMAP.md": "NOT_PRESENT_AT_ROOT__PROJECT_GUIDE_AUTHORITY",
+      "AGENTS.md": "NOT_PRESENT_AT_ROOT"
+    }
+  },
+  "plan": {
+    "global_batch_no": 210,
+    "lesson_part": "4/4",
+    "question_ordinal_start": 151,
+    "question_ordinal_end": 156,
+    "batch_question_count": 6,
+    "difficulty_profile": "BASELINE",
+    "lesson_cumulative_after_batch": 156,
+    "lesson_remaining_after_batch": 0,
+    "depends_on": "B209",
+    "question_type_allocation_rule": "REMAINING_HAMILTON_V1",
+    "question_type_tie_break": "ascending Question_Type_Order.display_order",
+    "subtopic_assignment_rule": "COMPATIBILITY_BALANCED_V1"
+  },
+  "source_basis": {
+    "book_pages_visually_verified": [
+      "printed p. 222 / PDF p. 224",
+      "printed p. 223 / PDF p. 225"
+    ],
+    "stage1_subtopics": [
+      "L46-S01 « venir de + infinitif »",
+      "L46-S02 « être en train de + infinitif »",
+      "L46-S03 « être sur le point de + infinitif »"
+    ],
+    "rules": [
+      "venir de + infinitif = passé récent; « juste » may emphasize recency; exact time precision such as « il y a 5 minutes » is excluded in the lesson",
+      "être en train de + infinitif = action en cours; may be used in the past",
+      "être sur le point de + infinitif = action imminente"
+    ],
+    "category": "CAT03",
+    "subcategory": "SUB07",
+    "controlled_tags": [
+      "aspect",
+      "nonfinite_form",
+      "temporal_reference"
+    ]
+  },
+  "question_type_remaining_before": {
+    "CLOZE_SINGLE": 1,
+    "CLOZE_CONTEXT": 1,
+    "CORRECT_SENTENCE": 0,
+    "INCORRECT_SENTENCE": 0,
+    "ERROR_LOCATION": 0,
+    "CONJUGATION": 0,
+    "TENSE_CHOICE": 0,
+    "PRONOUN_CHOICE": 0,
+    "PREPOSITION_CHOICE": 0,
+    "REWRITE_EQUIV": 1,
+    "FR_TO_FA": 1,
+    "FA_TO_FR": 0,
+    "DIALOGUE_COMPLETE": 1,
+    "REGISTER_CHOICE": 0,
+    "CONTRAST_RULES": 1
+  },
+  "question_type_expected": {
+    "CLOZE_SINGLE": 1,
+    "CLOZE_CONTEXT": 1,
+    "CORRECT_SENTENCE": 0,
+    "INCORRECT_SENTENCE": 0,
+    "ERROR_LOCATION": 0,
+    "CONJUGATION": 0,
+    "TENSE_CHOICE": 0,
+    "PRONOUN_CHOICE": 0,
+    "PREPOSITION_CHOICE": 0,
+    "REWRITE_EQUIV": 1,
+    "FR_TO_FA": 1,
+    "FA_TO_FR": 0,
+    "DIALOGUE_COMPLETE": 1,
+    "REGISTER_CHOICE": 0,
+    "CONTRAST_RULES": 1
+  },
+  "question_type_actual": {
+    "CLOZE_SINGLE": 1,
+    "CLOZE_CONTEXT": 1,
+    "REWRITE_EQUIV": 1,
+    "FR_TO_FA": 1,
+    "DIALOGUE_COMPLETE": 1,
+    "CONTRAST_RULES": 1
+  },
+  "remaining_question_types_after_batch": {
+    "CLOZE_SINGLE": 0,
+    "CLOZE_CONTEXT": 0,
+    "CORRECT_SENTENCE": 0,
+    "INCORRECT_SENTENCE": 0,
+    "ERROR_LOCATION": 0,
+    "CONJUGATION": 0,
+    "TENSE_CHOICE": 0,
+    "PRONOUN_CHOICE": 0,
+    "PREPOSITION_CHOICE": 0,
+    "REWRITE_EQUIV": 0,
+    "FR_TO_FA": 0,
+    "FA_TO_FR": 0,
+    "DIALOGUE_COMPLETE": 0,
+    "REGISTER_CHOICE": 0,
+    "CONTRAST_RULES": 0
+  },
+  "difficulty_expected": {
+    "EASY": 1,
+    "MEDIUM": 2,
+    "HARD": 2,
+    "VERY_HARD": 1
+  },
+  "difficulty_actual": {
+    "EASY": 1,
+    "MEDIUM": 2,
+    "HARD": 2,
+    "VERY_HARD": 1
+  },
+  "subtopic_expected": {
+    "L46-S01": 2,
+    "L46-S02": 2,
+    "L46-S03": 2
+  },
+  "subtopic_actual": {
+    "L46-S01": 2,
+    "L46-S02": 2,
+    "L46-S03": 2
+  },
+  "schema_and_option_qa": {
+    "exact_46_columns": true,
+    "all_status_DRAFT": true,
+    "four_distinct_options_each": true,
+    "exactly_one_keyed_correct_option_each": true,
+    "correct_option_misconception_blank": true,
+    "all_distractors_have_misconception_id": true,
+    "distractor_misconception_count": 18,
+    "difficulty_scores_inside_stage8_bands": true,
+    "answer_position_distribution": {
+      "A": 2,
+      "B": 2,
+      "C": 1,
+      "D": 1
+    }
+  },
+  "compatibility": {
+    "not_suitable_generated": 0,
+    "conditional_rows": 0,
+    "guardrail_pass": true
+  },
+  "deduplication": {
+    "previous_registry_rows": 9331,
+    "new_rows": 6,
+    "updated_registry_rows": 9337,
+    "exact_normalized_cross_collisions": 0,
+    "exact_normalized_within_collisions": 0,
+    "structural_cross_collisions": 0,
+    "structural_within_collisions": 0,
+    "fingerprint_cross_collisions": 0,
+    "fingerprint_within_collisions": 0,
+    "semantic_threshold": 0.8,
+    "semantic_method": "TF-IDF char_wb 3-5, normalized stem + correct answer, within question type",
+    "maximum_cross_batch_semantic_similarity": 0.669094,
+    "maximum_cross_batch_pair": [
+      "GMP-FULL-B210-Q006",
+      "GMP-FULL-B208-Q050"
+    ],
+    "maximum_within_batch_semantic_similarity": 0,
+    "maximum_within_batch_pair": [
+      null,
+      null
+    ],
+    "flags_at_or_above_threshold": 0
+  },
+  "lesson_completion": {
+    "lesson_target": 156,
+    "lesson_completed": 156,
+    "lesson_remaining": 0,
+    "lesson_status": "COMPLETE",
+    "final_subtopic_counts": {
+      "L46-S01": 52,
+      "L46-S02": 52,
+      "L46-S03": 52
+    }
+  },
+  "stage23": {
+    "status": "STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT",
+    "import_preview_commit_executed": false,
+    "authoring_static_validation_blocked": false
+  },
+  "artifacts": {
+    "csv": "question_bank_full_B210_L46_P04.csv",
+    "csv_sha256": "9023ffeea6953a4074e5056a8757b70cfff1f9fb206aeac9ad4dac6acd134a14",
+    "registry": "question_bank_global_registry_B210.csv",
+    "registry_rows": 9337,
+    "registry_sha256": "39395404744121fdd363609422d7205b9ca4b4da1da15d7ed726f7cee9f0f6b7"
+  },
+  "next_batch_started": false,
+  "next_batch": "B211"
+}

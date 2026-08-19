@@ -1,0 +1,220 @@
+{
+  "project": "Grammar Mastery Platform",
+  "runner": "QUESTION BANK CHAT RUNNER v1.0",
+  "batch_id": "B206",
+  "batch_code": "FULL-L45-P04",
+  "lesson_number": 45,
+  "lesson_title": "LE DISCOURS INDIRECT au PASSÉ",
+  "validation_status": "PASS_STATIC_AUTHORING",
+  "errors": [],
+  "repairs": [
+    {
+      "external_id": "GMP-FULL-B206-Q007",
+      "reason": "initial_exact_structural_or_semantic_duplicate_QA",
+      "action": "re-authored only defective stem"
+    }
+  ],
+  "generated_rows": 17,
+  "schema_columns": 46,
+  "status_value": "DRAFT",
+  "repository": {
+    "repository": "ImanNasrEsfahani/grammar-mastery-platform",
+    "branch": "main",
+    "commit_sha": "1d23edcf8399b313e7fa629267de44a28e4580da",
+    "mode": "READ_ONLY",
+    "github_writes_performed": false,
+    "root_documents": {
+      "README.md": "READ_FULL",
+      "STATUS.md": "READ_FULL",
+      "ROADMAP.md": "NOT_PRESENT_AT_ROOT__PROJECT_GUIDE_AUTHORITY",
+      "AGENTS.md": "NOT_PRESENT_AT_ROOT"
+    }
+  },
+  "plan": {
+    "global_batch_no": 206,
+    "lesson_part": "4/4",
+    "question_ordinal_start": 151,
+    "question_ordinal_end": 167,
+    "batch_question_count": 17,
+    "difficulty_profile": "DISCRIMINATION",
+    "lesson_cumulative_after_batch": 167,
+    "lesson_remaining_after_batch": 0,
+    "depends_on": "B205",
+    "question_type_allocation_rule": "REMAINING_HAMILTON_V1",
+    "question_type_tie_break": "ascending Question_Type_Order.display_order",
+    "subtopic_assignment_rule": "COMPATIBILITY_BALANCED_V1"
+  },
+  "source_basis": {
+    "book_page_visually_verified": "printed p. 216 / PDF p. 218",
+    "stage1_subtopics": [
+      "L45-S01 Concordance des temps",
+      "L45-S02 Imparfait de concordance",
+      "L45-S03 Verbe principal « dire » vs « croire/penser »",
+      "L45-S04 Non-application possible de la concordance"
+    ],
+    "category": "CAT10",
+    "subcategory": "SUB25",
+    "controlled_tags": [
+      "reported_speech",
+      "past",
+      "subordination"
+    ]
+  },
+  "question_type_expected": {
+    "CLOZE_SINGLE": 2,
+    "CLOZE_CONTEXT": 4,
+    "CORRECT_SENTENCE": 2,
+    "INCORRECT_SENTENCE": 1,
+    "ERROR_LOCATION": 0,
+    "CONJUGATION": 0,
+    "TENSE_CHOICE": 1,
+    "PRONOUN_CHOICE": 0,
+    "PREPOSITION_CHOICE": 0,
+    "REWRITE_EQUIV": 2,
+    "FR_TO_FA": 1,
+    "FA_TO_FR": 0,
+    "DIALOGUE_COMPLETE": 2,
+    "REGISTER_CHOICE": 0,
+    "CONTRAST_RULES": 2
+  },
+  "question_type_actual": {
+    "CLOZE_SINGLE": 2,
+    "CLOZE_CONTEXT": 4,
+    "CORRECT_SENTENCE": 2,
+    "INCORRECT_SENTENCE": 1,
+    "ERROR_LOCATION": 0,
+    "CONJUGATION": 0,
+    "TENSE_CHOICE": 1,
+    "PRONOUN_CHOICE": 0,
+    "PREPOSITION_CHOICE": 0,
+    "REWRITE_EQUIV": 2,
+    "FR_TO_FA": 1,
+    "FA_TO_FR": 0,
+    "DIALOGUE_COMPLETE": 2,
+    "REGISTER_CHOICE": 0,
+    "CONTRAST_RULES": 2
+  },
+  "difficulty_expected": {
+    "EASY": 2,
+    "MEDIUM": 6,
+    "HARD": 6,
+    "VERY_HARD": 3
+  },
+  "difficulty_actual": {
+    "EASY": 2,
+    "HARD": 6,
+    "MEDIUM": 6,
+    "VERY_HARD": 3
+  },
+  "subtopic_expected": {
+    "L45-S01": 4,
+    "L45-S02": 4,
+    "L45-S03": 5,
+    "L45-S04": 4
+  },
+  "subtopic_actual": {
+    "L45-S01": 4,
+    "L45-S02": 4,
+    "L45-S03": 5,
+    "L45-S04": 4
+  },
+  "remaining_question_types_after_batch": {
+    "CLOZE_SINGLE": 0,
+    "CLOZE_CONTEXT": 0,
+    "CORRECT_SENTENCE": 0,
+    "INCORRECT_SENTENCE": 0,
+    "ERROR_LOCATION": 0,
+    "CONJUGATION": 0,
+    "TENSE_CHOICE": 0,
+    "PRONOUN_CHOICE": 0,
+    "PREPOSITION_CHOICE": 0,
+    "REWRITE_EQUIV": 0,
+    "FR_TO_FA": 0,
+    "FA_TO_FR": 0,
+    "DIALOGUE_COMPLETE": 0,
+    "REGISTER_CHOICE": 0,
+    "CONTRAST_RULES": 0
+  },
+  "schema_and_option_qa": {
+    "exact_46_columns": true,
+    "all_status_DRAFT": true,
+    "four_distinct_options_each": true,
+    "exactly_one_keyed_correct_option_each": true,
+    "correct_option_misconception_blank": true,
+    "all_distractors_have_misconception_id": true,
+    "distractor_misconception_count": 51,
+    "difficulty_scores_inside_stage8_bands": true,
+    "answer_position_distribution": {
+      "A": 5,
+      "B": 4,
+      "C": 4,
+      "D": 4
+    },
+    "option_specific_distractor_explanations": true
+  },
+  "compatibility": {
+    "not_suitable_generated": 0,
+    "not_suitable_types_zeroed": [
+      "CONJUGATION",
+      "PRONOUN_CHOICE",
+      "PREPOSITION_CHOICE",
+      "REGISTER_CHOICE"
+    ],
+    "conditional_types_remaining_in_final_batch": {
+      "ERROR_LOCATION": 0,
+      "FA_TO_FR": 0
+    },
+    "conditional_guardrail_required_rows": 0,
+    "guardrail_pass": true
+  },
+  "deduplication": {
+    "previous_registry_rows": 9164,
+    "new_rows": 17,
+    "updated_registry_rows": 9181,
+    "exact_normalized_cross_collisions": 0,
+    "exact_normalized_within_collisions": 0,
+    "structural_cross_collisions": 0,
+    "structural_within_collisions": 0,
+    "fingerprint_cross_collisions": 0,
+    "fingerprint_within_collisions": 0,
+    "semantic_threshold": 0.8,
+    "semantic_method": "TF-IDF char_wb 3-5, normalized stem + correct answer, within question type",
+    "maximum_cross_batch_semantic_similarity": 0.726608,
+    "maximum_cross_batch_pair": [
+      "GMP-FULL-B206-Q016",
+      "GMP-FULL-B204-Q047"
+    ],
+    "maximum_within_batch_semantic_similarity": 0.259207,
+    "maximum_within_batch_pair": [
+      "GMP-FULL-B206-Q017",
+      "GMP-FULL-B206-Q016"
+    ],
+    "flags_at_or_above_threshold": 0
+  },
+  "lesson_completion": {
+    "lesson_target": 167,
+    "lesson_completed": 167,
+    "lesson_remaining": 0,
+    "lesson_status": "COMPLETE",
+    "final_subtopic_counts": {
+      "L45-S01": 42,
+      "L45-S02": 42,
+      "L45-S03": 42,
+      "L45-S04": 41
+    }
+  },
+  "stage23": {
+    "status": "STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT",
+    "import_preview_commit_executed": false,
+    "authoring_static_validation_blocked": false
+  },
+  "artifacts": {
+    "csv": "question_bank_full_B206_L45_P04.csv",
+    "csv_sha256": "8e6253c5137e47a80ddeb4c123fe0a032473d2ffa9efec8ff6a72f116f690c2b",
+    "registry": "question_bank_global_registry_B206.csv",
+    "registry_rows": 9181,
+    "registry_sha256": "3d8cd44cc82d187639681347376776baecfaebb6ccc98a55e42ffadc9b696723"
+  },
+  "next_batch_started": false,
+  "next_batch": "B207"
+}

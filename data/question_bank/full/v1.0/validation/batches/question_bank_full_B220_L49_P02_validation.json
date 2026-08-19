@@ -1,0 +1,252 @@
+{
+  "project": "Grammar Mastery Platform",
+  "runner": "QUESTION BANK CHAT RUNNER v1.0",
+  "batch_id": "B220",
+  "batch_code": "FULL-L49-P02",
+  "lesson_number": 49,
+  "lesson_title": "LE CONDITIONNEL (2)",
+  "validation_status": "PASS_STATIC_AUTHORING",
+  "errors": [],
+  "repairs": [],
+  "generated_rows": 50,
+  "schema_columns": 46,
+  "status_value": "DRAFT",
+  "repository": {
+    "repository": "ImanNasrEsfahani/grammar-mastery-platform",
+    "branch": "main",
+    "commit_sha": "1d23edcf8399b313e7fa629267de44a28e4580da",
+    "commit_message": "fix 6",
+    "mode": "READ_ONLY",
+    "github_writes_performed": false,
+    "root_documents": {
+      "README.md": "READ_FULL",
+      "STATUS.md": "READ_FULL",
+      "ROADMAP.md": "NOT_PRESENT_AT_ROOT__PROJECT_GUIDE_AUTHORITY",
+      "AGENTS.md": "NOT_PRESENT_AT_ROOT"
+    }
+  },
+  "plan": {
+    "global_batch_no": 220,
+    "lesson_part": "2/5",
+    "question_ordinal_start": 51,
+    "question_ordinal_end": 100,
+    "batch_question_count": 50,
+    "difficulty_profile": "DISCRIMINATION",
+    "difficulty": {
+      "EASY": 8,
+      "MEDIUM": 17,
+      "HARD": 18,
+      "VERY_HARD": 7
+    },
+    "lesson_cumulative_after_batch": 100,
+    "lesson_remaining_after_batch": 117,
+    "depends_on": "B219",
+    "question_type_allocation_rule": "REMAINING_HAMILTON_V1",
+    "subtopic_assignment_rule": "COMPATIBILITY_BALANCED_V1"
+  },
+  "source_basis": {
+    "book_pages_visually_rechecked": [
+      "printed p. 230 / PDF p. 232",
+      "printed p. 231 / PDF p. 233"
+    ],
+    "lesson_reference_span": [
+      "printed pp. 230-231 / PDF pp. 232-233"
+    ],
+    "project_guide_relevant_stages": "Stages 1–11",
+    "category": "CAT03",
+    "subcategory": "SUB06",
+    "controlled_tags": [
+      "condition_hypothesis",
+      "past"
+    ],
+    "stage1_subtopics": {
+      "L49-S01": "Conditionnel présent: imaginaire",
+      "L49-S02": "« au cas où » + conditionnel",
+      "L49-S03": "Information non confirmée",
+      "L49-S04": "Regret au conditionnel passé",
+      "L49-S05": "Formation du conditionnel présent",
+      "L49-S06": "Formation du conditionnel passé"
+    }
+  },
+  "stage6_lesson_target_full": 217,
+  "question_type_quota_current": {
+    "CLOZE_SINGLE": 5,
+    "CLOZE_CONTEXT": 9,
+    "CORRECT_SENTENCE": 5,
+    "INCORRECT_SENTENCE": 3,
+    "ERROR_LOCATION": 3,
+    "CONJUGATION": 3,
+    "TENSE_CHOICE": 3,
+    "REWRITE_EQUIV": 4,
+    "FR_TO_FA": 2,
+    "FA_TO_FR": 2,
+    "DIALOGUE_COMPLETE": 6,
+    "CONTRAST_RULES": 5
+  },
+  "question_type_remaining_after": {
+    "CLOZE_SINGLE": 11,
+    "CLOZE_CONTEXT": 21,
+    "CORRECT_SENTENCE": 11,
+    "INCORRECT_SENTENCE": 9,
+    "ERROR_LOCATION": 6,
+    "CONJUGATION": 7,
+    "TENSE_CHOICE": 6,
+    "PRONOUN_CHOICE": 0,
+    "PREPOSITION_CHOICE": 0,
+    "REWRITE_EQUIV": 10,
+    "FR_TO_FA": 5,
+    "FA_TO_FR": 4,
+    "DIALOGUE_COMPLETE": 16,
+    "REGISTER_CHOICE": 0,
+    "CONTRAST_RULES": 11
+  },
+  "type_difficulty_matrix": {
+    "CLOZE_SINGLE": {
+      "EASY": 3,
+      "MEDIUM": 1,
+      "HARD": 1,
+      "VERY_HARD": 0
+    },
+    "CLOZE_CONTEXT": {
+      "EASY": 1,
+      "MEDIUM": 4,
+      "HARD": 3,
+      "VERY_HARD": 1
+    },
+    "CORRECT_SENTENCE": {
+      "EASY": 2,
+      "MEDIUM": 1,
+      "HARD": 2,
+      "VERY_HARD": 0
+    },
+    "INCORRECT_SENTENCE": {
+      "EASY": 0,
+      "MEDIUM": 1,
+      "HARD": 1,
+      "VERY_HARD": 1
+    },
+    "ERROR_LOCATION": {
+      "EASY": 0,
+      "MEDIUM": 1,
+      "HARD": 1,
+      "VERY_HARD": 1
+    },
+    "CONJUGATION": {
+      "EASY": 0,
+      "MEDIUM": 1,
+      "HARD": 1,
+      "VERY_HARD": 1
+    },
+    "TENSE_CHOICE": {
+      "EASY": 0,
+      "MEDIUM": 1,
+      "HARD": 1,
+      "VERY_HARD": 1
+    },
+    "REWRITE_EQUIV": {
+      "EASY": 0,
+      "MEDIUM": 1,
+      "HARD": 1,
+      "VERY_HARD": 2
+    },
+    "FR_TO_FA": {
+      "EASY": 0,
+      "MEDIUM": 1,
+      "HARD": 1,
+      "VERY_HARD": 0
+    },
+    "FA_TO_FR": {
+      "EASY": 0,
+      "MEDIUM": 2,
+      "HARD": 0,
+      "VERY_HARD": 0
+    },
+    "DIALOGUE_COMPLETE": {
+      "EASY": 2,
+      "MEDIUM": 2,
+      "HARD": 2,
+      "VERY_HARD": 0
+    },
+    "CONTRAST_RULES": {
+      "EASY": 0,
+      "MEDIUM": 1,
+      "HARD": 4,
+      "VERY_HARD": 0
+    }
+  },
+  "subtopic_batch_counts": {
+    "L49-S01": 8,
+    "L49-S02": 8,
+    "L49-S03": 9,
+    "L49-S04": 9,
+    "L49-S05": 8,
+    "L49-S06": 8
+  },
+  "subtopic_cumulative_after": {
+    "L49-S01": 17,
+    "L49-S02": 17,
+    "L49-S03": 17,
+    "L49-S04": 17,
+    "L49-S05": 16,
+    "L49-S06": 16
+  },
+  "compatibility_validation": {
+    "lesson_level_not_suitable_types": [
+      "PRONOUN_CHOICE",
+      "PREPOSITION_CHOICE",
+      "REGISTER_CHOICE"
+    ],
+    "not_suitable_generated": 0,
+    "conditional_used": 0,
+    "source_alignment": "All assignments use current Stage1 L49 subtopics and Stage6 PREFERRED/ALLOWED compatibility only."
+  },
+  "misconception_validation": {
+    "correct_option_misconception_blank": true,
+    "wrong_options_have_valid_stage7_ids": true,
+    "id_basis": "Current Stage7 recovered misconception catalogue, same L49 subtopic only; no new misconception IDs invented."
+  },
+  "answer_position_distribution": {
+    "A": 14,
+    "B": 12,
+    "C": 12,
+    "D": 12
+  },
+  "deduplication": {
+    "prior_registry_rows": 9761,
+    "exact_cross_collisions": 0,
+    "normalized_cross_collisions": 0,
+    "structural_signature_cross_collisions": 0,
+    "semantic_signature_cross_collisions": 0,
+    "fingerprint_cross_collisions": 0,
+    "within_batch_signature_collisions": 0,
+    "semantic_threshold": 0.8,
+    "semantic_method": "TF-IDF char_wb 3-5, normalized stem + correct answer, within question type",
+    "maximum_cross_batch_semantic_similarity": 0.709167,
+    "maximum_cross_batch_pair": [
+      "GMP-FULL-B220-Q047",
+      "GMP-FULL-B219-Q049"
+    ],
+    "maximum_within_batch_semantic_similarity": 0.411004,
+    "maximum_within_batch_pair": [
+      "GMP-FULL-B220-Q001",
+      "GMP-FULL-B220-Q003"
+    ],
+    "final_flags_at_or_above_threshold": 0
+  },
+  "stage11_static_qa": "PASS",
+  "independent_human_review": false,
+  "publication": false,
+  "stage23": {
+    "runtime_executed": false,
+    "import_preview_commit_executed": false,
+    "authoring_static_validation_blocked": false,
+    "status": "STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT"
+  },
+  "output": {
+    "csv": "question_bank_full_B220_L49_P02.csv",
+    "csv_sha256": "8b611aff9581ce51ac505e384f1810d1b007eec4c0746c327723a8b6bc5946ff",
+    "registry": "question_bank_global_registry_B220.csv",
+    "registry_rows": 9811,
+    "registry_sha256": "a670e40425b17e81a200d05c9243ca6e199aa55b29b360061740fc97bc5f6c4a"
+  }
+}

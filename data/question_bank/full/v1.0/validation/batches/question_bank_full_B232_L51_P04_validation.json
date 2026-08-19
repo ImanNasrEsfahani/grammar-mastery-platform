@@ -1,0 +1,315 @@
+{
+  "project": "Grammar Mastery Platform",
+  "runner": "QUESTION BANK CHAT RUNNER v1.0",
+  "batch_id": "B232",
+  "batch_code": "FULL-L51-P04",
+  "lesson_number": 51,
+  "lesson_title": "LE SUBJONCTIF",
+  "validation_status": "PASS_STATIC_AUTHORING",
+  "errors": [],
+  "repairs": [
+    {
+      "external_id": "GMP-FULL-B232-Q167",
+      "reason": "semantic_near_duplicate",
+      "old_stem": "Quelle phrase est correctement construite avec « de peur que » ?",
+      "new_stem": "Un parent baisse la voix pour éviter de réveiller un bébé : quelle formulation grammaticale traduit correctement cette crainte ?"
+    }
+  ],
+  "generated_rows": 50,
+  "schema_columns": 46,
+  "status_value": "DRAFT",
+  "repository": {
+    "repository": "ImanNasrEsfahani/grammar-mastery-platform",
+    "branch": "main",
+    "commit_sha": "86e8630408edae737c4fb48bd2e9d90877b71d62",
+    "commit_message": "fix 6 and bootstrap logging",
+    "mode": "READ_ONLY",
+    "github_writes_performed": false,
+    "root_documents": {
+      "README.md": "READ_FULL",
+      "STATUS.md": "READ_FULL",
+      "ROADMAP.md": "NOT_PRESENT_AT_ROOT__PROJECT_GUIDE_AUTHORITY",
+      "AGENTS.md": "NOT_PRESENT_AT_ROOT"
+    }
+  },
+  "plan": {
+    "global_batch_no": 232,
+    "lesson_part": "4/5",
+    "question_ordinal_start": 151,
+    "question_ordinal_end": 200,
+    "batch_question_count": 50,
+    "difficulty_profile": "COMPLEX",
+    "difficulty": {
+      "EASY": 7,
+      "MEDIUM": 15,
+      "HARD": 20,
+      "VERY_HARD": 8
+    },
+    "lesson_cumulative_after_batch": 200,
+    "lesson_remaining_after_batch": 38,
+    "depends_on": "B231",
+    "question_type_allocation_rule": "REMAINING_HAMILTON_V1",
+    "subtopic_assignment_rule": "COMPATIBILITY_BALANCED_V1"
+  },
+  "source_basis": {
+    "book_pages": [
+      "printed p. 238",
+      "printed p. 240",
+      "printed p. 242",
+      "printed p. 246",
+      "printed p. 248"
+    ],
+    "project_guide_relevant_stages": "Stages 1–11",
+    "category": "CAT03",
+    "subcategory": "SUB06",
+    "controlled_tags": [
+      "subordination",
+      "negation",
+      "interrogation",
+      "register_variation",
+      "condition_hypothesis"
+    ]
+  },
+  "stage6": {
+    "lesson_target_full": 238,
+    "question_type_targets_full": {
+      "CLOZE_SINGLE": 21,
+      "CLOZE_CONTEXT": 45,
+      "CORRECT_SENTENCE": 21,
+      "INCORRECT_SENTENCE": 16,
+      "ERROR_LOCATION": 12,
+      "CONJUGATION": 12,
+      "TENSE_CHOICE": 13,
+      "PRONOUN_CHOICE": 0,
+      "PREPOSITION_CHOICE": 0,
+      "REWRITE_EQUIV": 18,
+      "FR_TO_FA": 15,
+      "FA_TO_FR": 4,
+      "DIALOGUE_COMPLETE": 33,
+      "REGISTER_CHOICE": 7,
+      "CONTRAST_RULES": 21
+    },
+    "question_type_remaining_before": {
+      "CLOZE_SINGLE": 8,
+      "CLOZE_CONTEXT": 17,
+      "CORRECT_SENTENCE": 8,
+      "INCORRECT_SENTENCE": 6,
+      "ERROR_LOCATION": 4,
+      "CONJUGATION": 4,
+      "TENSE_CHOICE": 5,
+      "PRONOUN_CHOICE": 0,
+      "PREPOSITION_CHOICE": 0,
+      "REWRITE_EQUIV": 6,
+      "FR_TO_FA": 6,
+      "FA_TO_FR": 1,
+      "DIALOGUE_COMPLETE": 12,
+      "REGISTER_CHOICE": 3,
+      "CONTRAST_RULES": 8
+    },
+    "question_type_quota_current": {
+      "CLOZE_SINGLE": 5,
+      "CLOZE_CONTEXT": 10,
+      "CORRECT_SENTENCE": 5,
+      "INCORRECT_SENTENCE": 3,
+      "ERROR_LOCATION": 2,
+      "CONJUGATION": 2,
+      "TENSE_CHOICE": 3,
+      "REWRITE_EQUIV": 3,
+      "FR_TO_FA": 3,
+      "FA_TO_FR": 1,
+      "DIALOGUE_COMPLETE": 7,
+      "REGISTER_CHOICE": 2,
+      "CONTRAST_RULES": 4
+    },
+    "question_type_remaining_after": {
+      "CLOZE_SINGLE": 3,
+      "CLOZE_CONTEXT": 7,
+      "CORRECT_SENTENCE": 3,
+      "INCORRECT_SENTENCE": 3,
+      "ERROR_LOCATION": 2,
+      "CONJUGATION": 2,
+      "TENSE_CHOICE": 2,
+      "PRONOUN_CHOICE": 0,
+      "PREPOSITION_CHOICE": 0,
+      "REWRITE_EQUIV": 3,
+      "FR_TO_FA": 3,
+      "FA_TO_FR": 0,
+      "DIALOGUE_COMPLETE": 5,
+      "REGISTER_CHOICE": 1,
+      "CONTRAST_RULES": 4
+    },
+    "not_suitable_types": [
+      "PRONOUN_CHOICE",
+      "PREPOSITION_CHOICE"
+    ],
+    "not_suitable_generated": 0,
+    "conditional_used": {
+      "question_type": "FA_TO_FR",
+      "count": 1,
+      "guardrail_applied": true,
+      "guardrail": "closed translation stem with exactly one defensible French rendering among controlled options"
+    },
+    "compatibility_source": "data/question_authoring/stage6/stage6_subtopic_type_compatibility_recovered_v1.0.csv",
+    "compatibility_basis_note": "Only L51 subtopic/type pairings already established in preceding validated L51 batches and/or Stage6 package were used; NOT_SUITABLE types were excluded."
+  },
+  "type_difficulty_matrix": {
+    "CLOZE_SINGLE": {
+      "EASY": 0,
+      "MEDIUM": 1,
+      "HARD": 2,
+      "VERY_HARD": 2
+    },
+    "CLOZE_CONTEXT": {
+      "EASY": 2,
+      "MEDIUM": 3,
+      "HARD": 4,
+      "VERY_HARD": 1
+    },
+    "CORRECT_SENTENCE": {
+      "EASY": 0,
+      "MEDIUM": 1,
+      "HARD": 2,
+      "VERY_HARD": 2
+    },
+    "INCORRECT_SENTENCE": {
+      "EASY": 0,
+      "MEDIUM": 2,
+      "HARD": 1,
+      "VERY_HARD": 0
+    },
+    "ERROR_LOCATION": {
+      "EASY": 0,
+      "MEDIUM": 0,
+      "HARD": 2,
+      "VERY_HARD": 0
+    },
+    "CONJUGATION": {
+      "EASY": 0,
+      "MEDIUM": 0,
+      "HARD": 2,
+      "VERY_HARD": 0
+    },
+    "TENSE_CHOICE": {
+      "EASY": 0,
+      "MEDIUM": 2,
+      "HARD": 1,
+      "VERY_HARD": 0
+    },
+    "REWRITE_EQUIV": {
+      "EASY": 0,
+      "MEDIUM": 2,
+      "HARD": 1,
+      "VERY_HARD": 0
+    },
+    "FR_TO_FA": {
+      "EASY": 1,
+      "MEDIUM": 1,
+      "HARD": 1,
+      "VERY_HARD": 0
+    },
+    "FA_TO_FR": {
+      "EASY": 1,
+      "MEDIUM": 0,
+      "HARD": 0,
+      "VERY_HARD": 0
+    },
+    "DIALOGUE_COMPLETE": {
+      "EASY": 2,
+      "MEDIUM": 2,
+      "HARD": 2,
+      "VERY_HARD": 1
+    },
+    "REGISTER_CHOICE": {
+      "EASY": 1,
+      "MEDIUM": 0,
+      "HARD": 1,
+      "VERY_HARD": 0
+    },
+    "CONTRAST_RULES": {
+      "EASY": 0,
+      "MEDIUM": 1,
+      "HARD": 1,
+      "VERY_HARD": 2
+    }
+  },
+  "subtopic_counts_current": {
+    "L51-S01": 1,
+    "L51-S02": 3,
+    "L51-S03": 3,
+    "L51-S04": 2,
+    "L51-S05": 2,
+    "L51-S06": 2,
+    "L51-S07": 4,
+    "L51-S08": 1,
+    "L51-S09": 1,
+    "L51-S10": 4,
+    "L51-S11": 4,
+    "L51-S12": 3,
+    "L51-S13": 3,
+    "L51-S14": 2,
+    "L51-S15": 4,
+    "L51-S16": 2,
+    "L51-S17": 3,
+    "L51-S18": 2,
+    "L51-S19": 3,
+    "L51-S20": 1
+  },
+  "cumulative_subtopic_counts": {
+    "L51-S01": 13,
+    "L51-S02": 11,
+    "L51-S03": 11,
+    "L51-S04": 17,
+    "L51-S05": 9,
+    "L51-S06": 9,
+    "L51-S07": 10,
+    "L51-S08": 8,
+    "L51-S09": 9,
+    "L51-S10": 7,
+    "L51-S11": 8,
+    "L51-S12": 9,
+    "L51-S13": 9,
+    "L51-S14": 11,
+    "L51-S15": 14,
+    "L51-S16": 8,
+    "L51-S17": 9,
+    "L51-S18": 10,
+    "L51-S19": 9,
+    "L51-S20": 9
+  },
+  "qa": {
+    "four_options_all_rows": true,
+    "exactly_one_correct_all_rows": true,
+    "correct_misconception_blank_all_rows": true,
+    "wrong_options_misconception_populated_all_rows": true,
+    "status_all_draft": true,
+    "required_explanations_present": true,
+    "source_ref_present_all_rows": true,
+    "type_quota_exact": true,
+    "difficulty_quota_exact": true
+  },
+  "deduplication": {
+    "exact_cross_registry": 0,
+    "normalized_cross_registry": 0,
+    "structural_cross_registry": 0,
+    "semantic_signature_cross_registry": 0,
+    "fingerprint_cross_registry": 0,
+    "semantic_near_duplicate_threshold": 0.8,
+    "semantic_flags": [],
+    "max_cross_semantic": {
+      "score": 0.688657,
+      "batch_question": "GMP-FULL-B232-Q194",
+      "registry_question": "GMP-FULL-B231-Q111"
+    },
+    "max_within_semantic": {
+      "score": 0.400209,
+      "question_a": "GMP-FULL-B232-Q176",
+      "question_b": "GMP-FULL-B232-Q177"
+    },
+    "within_semantic_flags": [],
+    "method": "Unicode normalization + structural/fingerprint hashes + TF-IDF character n-gram cosine screening; threshold 0.80. The flagged item was repaired, then the full batch was rechecked."
+  },
+  "stage23": {
+    "runtime_executed": false,
+    "status": "STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT"
+  }
+}
