@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+from contextlib import contextmanager
 from datetime import datetime, timezone
 import hashlib
 import json
@@ -9,6 +10,8 @@ import os
 from pathlib import Path
 import re
 import sys
+import time
+import traceback
 import unicodedata
 import uuid
 from typing import Any
@@ -52,6 +55,364 @@ QUESTION_UID_NAMESPACE = uuid.UUID("930e8ba5-40ff-59be-95d2-28092c4ab5c9")
 
 class BootstrapError(RuntimeError):
     pass
+
+
+class BootstrapProgress:
+    """Stage-by-stage terminal progress and structured failure diagnostics.
+
+    Human-readable progress is written to stderr so the successful JSON emitted
+    on stdout remains machine-readable.  No third-party logging dependency is
+    required.
+
+    Environment controls:
+      GMP_BOOTSTRAP_COLOR=always|auto|never
+      GMP_BOOTSTRAP_PROGRESS=0      disable stage progress lines
+      GMP_BOOTSTRAP_TRACEBACK=0     omit traceback from failure JSON
+      NO_COLOR=1                    standard ANSI color opt-out
+    """
+
+    GREEN = "\033[92m"
+    RED = "\033[91m"
+    YELLOW = "\033[93m"
+    CYAN = "\033[96m"
+    DIM = "\033[2m"
+    RESET = "\033[0m"
+
+    def __init__(self, stream: Any = None) -> None:
+        self.stream = stream if stream is not None else sys.stderr
+        progress_env = os.getenv("GMP_BOOTSTRAP_PROGRESS", "1").strip().lower()
+        self.enabled = progress_env not in {"0", "false", "no", "off"}
+
+        color_mode = os.getenv("GMP_BOOTSTRAP_COLOR", "auto").strip().lower()
+        if os.getenv("NO_COLOR"):
+            color_mode = "never"
+        if color_mode in {"always", "1", "true", "yes", "on"}:
+            self.use_color = True
+        elif color_mode in {"never", "0", "false", "no", "off"}:
+            self.use_color = False
+        else:
+            isatty = getattr(self.stream, "isatty", None)
+            self.use_color = bool(isatty and isatty())
+
+        self.current: dict[str, Any] | None = None
+        self.completed: list[dict[str, Any]] = []
+        self.skipped: list[dict[str, str]] = []
+        self.failed: dict[str, Any] | None = None
+
+    def _emit(
+        self,
+        color: str,
+        code: str,
+        status: str,
+        name: str,
+        detail: str = "",
+    ) -> None:
+        if not self.enabled:
+            return
+        timestamp = datetime.now().astimezone().strftime("%H:%M:%S")
+        line = f"[{timestamp}] [QB-BOOTSTRAP][{code}][{status}] {name}"
+        if detail:
+            line += f" | {detail}"
+        if self.use_color:
+            line = f"{color}{line}{self.RESET}"
+        print(line, file=self.stream, flush=True)
+
+    def start(self, code: str, name: str) -> None:
+        if self.current is not None:
+            raise RuntimeError(
+                f"bootstrap progress stages overlap: {self.current['code']} -> {code}"
+            )
+        self.current = {
+            "code": code,
+            "name": name,
+            "started": time.perf_counter(),
+        }
+        self._emit(self.CYAN, code, "RUNNING", name, "started")
+
+    def finish_current(self, detail: str = "") -> None:
+        if self.current is None:
+            raise RuntimeError("bootstrap progress has no running stage to finish")
+        elapsed = time.perf_counter() - float(self.current["started"])
+        record = {
+            "code": str(self.current["code"]),
+            "name": str(self.current["name"]),
+            "duration_seconds": round(elapsed, 3),
+        }
+        self.completed.append(record)
+        suffix = f"SUCCESS; {detail + '; ' if detail else ''}{elapsed:.2f}s"
+        self._emit(self.GREEN, record["code"], "FINISHED", record["name"], suffix)
+        self.current = None
+
+    def fail_current(self, exc: BaseException) -> None:
+        if self.current is None:
+            if self.failed is None:
+                self.failed = {
+                    "code": "UNTRACKED",
+                    "name": "Untracked bootstrap operation",
+                    "error_type": type(exc).__name__,
+                    "error": str(exc),
+                    "duration_seconds": None,
+                }
+                self._emit(
+                    self.RED,
+                    "UNTRACKED",
+                    "FAILED",
+                    "Untracked bootstrap operation",
+                    f"{type(exc).__name__}: {exc}",
+                )
+            return
+
+        elapsed = time.perf_counter() - float(self.current["started"])
+        code = str(self.current["code"])
+        name = str(self.current["name"])
+        self.failed = {
+            "code": code,
+            "name": name,
+            "error_type": type(exc).__name__,
+            "error": str(exc),
+            "duration_seconds": round(elapsed, 3),
+        }
+        self._emit(
+            self.RED,
+            code,
+            "FAILED",
+            name,
+            f"{type(exc).__name__}: {exc}; failed after {elapsed:.2f}s",
+        )
+        self.current = None
+
+    @contextmanager
+    def stage(self, code: str, name: str):
+        self.start(code, name)
+        stage_info: dict[str, str] = {"detail": ""}
+        try:
+            yield stage_info
+        except Exception as exc:
+            self.fail_current(exc)
+            raise
+        else:
+            self.finish_current(stage_info.get("detail", ""))
+
+    def skip(self, code: str, name: str, detail: str) -> None:
+        self.skipped.append({"code": code, "name": name, "detail": detail})
+        self._emit(self.YELLOW, code, "SKIPPED", name, detail)
+
+    def has_completed(self, code: str) -> bool:
+        return any(row["code"] == code for row in self.completed)
+
+    def snapshot(self) -> dict[str, Any]:
+        last_completed = self.completed[-1]["code"] if self.completed else None
+        return {
+            "completed_stages": [row["code"] for row in self.completed],
+            "completed_stage_details": self.completed,
+            "skipped_stages": self.skipped,
+            "last_completed_stage": last_completed,
+            "failed_stage": self.failed,
+            "database_commit_completed": self.has_completed("S12"),
+        }
+
+    def diagnostic(self, label: str, value: str, *, warning: bool = False) -> None:
+        color = self.YELLOW if warning else self.RED
+        self._emit(color, "DIAG", "DETAIL", label, value)
+
+    def stopped(self, rollback_note: str = "") -> None:
+        failed = self.failed or {
+            "code": "UNTRACKED",
+            "name": "Untracked bootstrap operation",
+            "error": "unknown failure",
+        }
+        last_completed = self.completed[-1]["code"] if self.completed else "none"
+        detail = (
+            f"failed_stage={failed['code']} ({failed['name']}); "
+            f"last_completed_stage={last_completed}"
+        )
+        if rollback_note:
+            detail += f"; {rollback_note}"
+        self._emit(self.RED, "STOP", "STOPPED", "Bootstrap halted", detail)
+
+    def complete(self, target_count: int) -> None:
+        self._emit(
+            self.GREEN,
+            "DONE",
+            "FINISHED",
+            "Question Bank bootstrap",
+            f"SUCCESS; target_questions={target_count}; committed=yes",
+        )
+
+
+def _safe_database_environment() -> dict[str, str]:
+    """Return non-secret libpq settings useful when diagnosing connection issues."""
+    result: dict[str, str] = {}
+    for key in ("PGHOST", "PGPORT", "PGDATABASE", "PGUSER", "PGSSLMODE"):
+        value = os.getenv(key)
+        if value:
+            result[key] = value
+    return result
+
+
+def _postgres_exception_details(exc: BaseException) -> dict[str, str]:
+    """Extract psycopg diagnostics without exposing credentials or query parameters."""
+    if not isinstance(exc, psycopg.Error):
+        return {}
+
+    details: dict[str, str] = {}
+    sqlstate = getattr(exc, "sqlstate", None)
+    if sqlstate:
+        details["sqlstate"] = str(sqlstate)
+
+    diag = getattr(exc, "diag", None)
+    if diag is None:
+        return details
+
+    fields = {
+        "severity": "severity_nonlocalized",
+        "message_primary": "message_primary",
+        "message_detail": "message_detail",
+        "message_hint": "message_hint",
+        "schema_name": "schema_name",
+        "table_name": "table_name",
+        "column_name": "column_name",
+        "constraint_name": "constraint_name",
+        "context": "context",
+    }
+    for output_name, attr_name in fields.items():
+        try:
+            value = getattr(diag, attr_name, None)
+        except Exception:
+            value = None
+        if value:
+            details[output_name] = str(value)
+    return details
+
+
+def _exception_chain(exc: BaseException) -> list[dict[str, str]]:
+    chain: list[dict[str, str]] = []
+    seen: set[int] = set()
+    current: BaseException | None = exc
+    while current is not None and id(current) not in seen and len(chain) < 8:
+        seen.add(id(current))
+        chain.append({"type": type(current).__name__, "message": str(current)})
+        current = current.__cause__ or current.__context__
+    return chain
+
+
+def _failure_hints(stage_code: str, exc: BaseException) -> list[str]:
+    hints_by_stage = {
+        "S00": [
+            "Review publication flags. --publish-reviewed and --publish-canonical-seed are mutually exclusive.",
+            "Human-review publication requires both --confirm-human-review and --reviewer-external-id.",
+        ],
+        "S01": [
+            "Check the seed catalog/master CSV paths and the consolidation validation JSON referenced by them.",
+            "Confirm the exact Stage10 46-column header, DRAFT source status, unique external_id values, and the Stage23 marker.",
+        ],
+        "S02": [
+            "Verify the PostgreSQL container/service is healthy and reachable from the process running bootstrap.py.",
+            "Check PGHOST, PGPORT, PGDATABASE and PGUSER inside the backend container; credentials are intentionally not printed.",
+        ],
+        "S03": [
+            "Verify the official Stage26 migrations have installed the Stage12 tables before running this bootstrap.",
+            "Verify the canonical Stage12 reference seed contains at least 52 lessons, 304 subtopics and 35 tags.",
+        ],
+        "S04": [
+            "Check the three Stage6 catalogue/compatibility CSV files for missing files, unknown IDs or version drift.",
+            "Do not bypass NOT_SUITABLE or CONDITIONAL guardrails to make the bootstrap pass.",
+        ],
+        "S05": [
+            "Check Stage7 historical and recovered misconception catalogues for UUID, subtopic, family or semantic-mapping ambiguity.",
+            "If more than one historical misconception matches a recovered concept, fix the source mapping instead of guessing.",
+        ],
+        "S06": [
+            "Check the versioned Question Bank misconception compatibility catalogue and its B042-B081 scope metadata.",
+            "Unknown diagnostic UUIDs must be present in Stage7 or in the checked-in compatibility bridge; new IDs fail closed.",
+        ],
+        "S07": [
+            "Use the failing external_id/message to inspect question_type, subtopic, tags and misconception references in the repository source.",
+            "Verify every distractor has a resolvable misconception, the correct option has none, and all referenced tags/subtopics exist.",
+        ],
+        "S08": [
+            "Inspect the failing questions for exactly four options, one valid correct option, distractor misconception mappings and Stage6 compatibility.",
+            "CONDITIONAL questions must have guardrail_satisfied=true; NOT_SUITABLE questions are never accepted.",
+        ],
+        "S09": [
+            "Check question_validation_runs schema/constraints and confirm the target questions still exist in the same transaction.",
+        ],
+        "S10": [
+            "For reviewed publication, the reviewer must be an active REVIEWER/ADMIN and must not be the question author.",
+            "For canonical seed publication, do not reuse an in-progress human review workflow.",
+        ],
+        "S11": [
+            "Compare PUBLISHED and SERVING counts with target_questions and inspect v_serving_questions if they differ.",
+            "Do not treat the Stage23 manifest-hash blocker as a reason to bypass Question Bank static/live validation.",
+        ],
+        "S12": [
+            "The database commit failed. Check PostgreSQL connectivity, locks, disk/WAL capacity and server logs before retrying.",
+            "Because S12 did not finish, treat all bootstrap database changes from this run as uncommitted.",
+        ],
+    }
+    hints = list(hints_by_stage.get(stage_code, []))
+    if isinstance(exc, psycopg.OperationalError):
+        hints.append("psycopg reported an operational error; prioritize network/service health, credentials and server availability checks.")
+    elif isinstance(exc, psycopg.IntegrityError):
+        hints.append("psycopg reported an integrity error; inspect the reported table/constraint and the referenced canonical IDs.")
+    elif isinstance(exc, BootstrapError):
+        hints.append("This is a fail-closed bootstrap validation error; fix the cited source/schema condition rather than suppressing the check.")
+    if not hints:
+        hints.append("Use the traceback and exception chain below to identify the first project function that raised the error.")
+    return hints
+
+
+def _build_failure_diagnostics(
+    exc: BaseException,
+    progress: BootstrapProgress,
+    rollback: dict[str, Any],
+) -> dict[str, Any]:
+    failed = progress.failed or {}
+    stage_code = str(failed.get("code") or "UNTRACKED")
+    traceback_env = os.getenv("GMP_BOOTSTRAP_TRACEBACK", "1").strip().lower()
+    include_traceback = traceback_env not in {"0", "false", "no", "off"}
+    return {
+        "exception_type": type(exc).__name__,
+        "message": str(exc),
+        "exception_chain": _exception_chain(exc),
+        "postgres": _postgres_exception_details(exc),
+        "database_environment": _safe_database_environment(),
+        "rollback": rollback,
+        "suggested_checks": _failure_hints(stage_code, exc),
+        "traceback": traceback.format_exc() if include_traceback else "disabled by GMP_BOOTSTRAP_TRACEBACK",
+    }
+
+
+def _print_failure_diagnostics(
+    progress: BootstrapProgress,
+    diagnostics: dict[str, Any],
+) -> None:
+    failed = progress.failed or {}
+    progress.diagnostic(
+        "Failure location",
+        f"{failed.get('code', 'UNTRACKED')} - {failed.get('name', 'Untracked bootstrap operation')}",
+    )
+    progress.diagnostic(
+        "Exception",
+        f"{diagnostics['exception_type']}: {diagnostics['message']}",
+    )
+    last_completed = progress.snapshot().get("last_completed_stage") or "none"
+    progress.diagnostic("Last successful stage", str(last_completed))
+
+    rollback = diagnostics.get("rollback") or {}
+    if rollback.get("attempted"):
+        rollback_text = "succeeded" if rollback.get("succeeded") else f"FAILED: {rollback.get('error') or 'unknown rollback error'}"
+    else:
+        rollback_text = str(rollback.get("reason") or "not required")
+    progress.diagnostic("Database rollback", rollback_text, warning=not bool(rollback.get("succeeded", True)))
+
+    postgres = diagnostics.get("postgres") or {}
+    if postgres:
+        concise = "; ".join(f"{k}={v}" for k, v in postgres.items() if k != "context")
+        progress.diagnostic("PostgreSQL diagnostics", concise or "available in failure JSON")
+
+    for index, hint in enumerate(diagnostics.get("suggested_checks") or [], start=1):
+        progress.diagnostic(f"Suggested check {index}", str(hint), warning=True)
 
 
 def repo_root() -> Path:
@@ -1217,77 +1578,237 @@ def build_parser() -> argparse.ArgumentParser:
 
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
-    if args.publish_reviewed and args.publish_canonical_seed:
-        print(json.dumps({"status": "FAIL", "error": "choose only one publication mode"}, ensure_ascii=False), file=sys.stderr)
-        return 2
-    if args.publish_reviewed and (not args.confirm_human_review or not args.reviewer_external_id):
-        print(json.dumps({"status": "FAIL", "error": "--publish-reviewed requires both --confirm-human-review and --reviewer-external-id"}, ensure_ascii=False), file=sys.stderr)
-        return 2
-    if args.confirm_human_review and not args.publish_reviewed:
-        print(json.dumps({"status": "FAIL", "error": "--confirm-human-review is only valid with --publish-reviewed"}, ensure_ascii=False), file=sys.stderr)
-        return 2
+    progress = BootstrapProgress()
 
-    root = repo_root()
-    try:
-        master, rows, validation, master_sha = load_repository_seed(root, args.master)
-        with connect() as conn:
-            with conn.transaction():
-                with conn.cursor() as cur:
-                    require_stage12_schema(cur)
-                    stage6 = seed_stage6(cur, root)
-                    stage7_map, stage7_inserted = seed_stage7_and_build_map(cur, root)
-                    stage7_map_count = len(stage7_map)
-                    qbank_compatibility = seed_qbank_compatibility_misconceptions(
-                        cur, root, rows, stage7_map
-                    )
-                    target_ids, import_stats = upsert_questions(cur, rows, stage7_map)
-                    verify_live_gate(cur, target_ids)
-                    validation_rows = register_validation(cur, target_ids, validation, master_sha)
-                    publication = {"ready": 0, "approved": 0, "published": 0}
-                    batch_code = None
-                    if args.publish_reviewed:
-                        batch_code = args.publish_batch_code or default_batch_code(validation)
-                        publication = publish_reviewed(cur, target_ids, args.reviewer_external_id, batch_code)
-                    elif args.publish_canonical_seed:
-                        batch_code = args.publish_batch_code or default_batch_code(validation)
-                        publication = publish_reviewed(
-                            cur,
-                            target_ids,
-                            CANONICAL_PUBLISHER_EXTERNAL_ID,
-                            batch_code,
-                            canonical_seed=True,
-                        )
-                    counts = summary_counts(cur, target_ids)
-                    if args.publish_canonical_seed and (
-                        counts.get("PUBLISHED") != len(target_ids)
-                        or counts.get("SERVING") != len(target_ids)
-                    ):
-                        raise BootstrapError(
-                            "canonical migration did not leave every target question PUBLISHED and serving"
-                        )
-                    result = {
-                        "status": "PASS",
-                        "bootstrap_version": BOOTSTRAP_VERSION,
-                        "master": str(master.relative_to(root)),
-                        "master_sha256": master_sha,
-                        "target_questions": len(target_ids),
-                        "stage6": stage6,
-                        "stage7_historical_map_count": stage7_map_count,
-                        "stage7_rows_inserted": stage7_inserted,
-                        "question_bank_misconception_compatibility": qbank_compatibility,
-                        "question_import": import_stats,
-                        "validation_pass_rows_inserted": validation_rows,
-                        "publication": publication,
-                        "publish_batch_code": batch_code,
-                        "database_status_counts": counts,
-                        "stage23": STAGE23_MARKER,
-                    }
-            print(json.dumps(result, ensure_ascii=False, indent=2, sort_keys=True))
-        return 0
-    except Exception as exc:
+    progress.start("S00", "Validate command-line publication arguments")
+    usage_error = ""
+    if args.publish_reviewed and args.publish_canonical_seed:
+        usage_error = "choose only one publication mode"
+    elif args.publish_reviewed and (not args.confirm_human_review or not args.reviewer_external_id):
+        usage_error = "--publish-reviewed requires both --confirm-human-review and --reviewer-external-id"
+    elif args.confirm_human_review and not args.publish_reviewed:
+        usage_error = "--confirm-human-review is only valid with --publish-reviewed"
+
+    if usage_error:
+        exc = BootstrapError(usage_error)
+        progress.fail_current(exc)
+        rollback = {
+            "attempted": False,
+            "succeeded": True,
+            "reason": "database connection was not opened",
+            "error": None,
+        }
+        diagnostics = _build_failure_diagnostics(exc, progress, rollback)
+        _print_failure_diagnostics(progress, diagnostics)
+        progress.stopped("database was not touched")
         print(
             json.dumps(
-                {"status": "FAIL", "bootstrap_version": BOOTSTRAP_VERSION, "error": str(exc), "stage23": STAGE23_MARKER},
+                {
+                    "status": "FAIL",
+                    "bootstrap_version": BOOTSTRAP_VERSION,
+                    "error": usage_error,
+                    "stage23": STAGE23_MARKER,
+                    "progress": progress.snapshot(),
+                    "diagnostics": diagnostics,
+                },
+                ensure_ascii=False,
+                indent=2,
+                sort_keys=True,
+            ),
+            file=sys.stderr,
+        )
+        return 2
+
+    publication_mode = (
+        "reviewed" if args.publish_reviewed
+        else "canonical_seed" if args.publish_canonical_seed
+        else "draft_only"
+    )
+    progress.finish_current(f"publication_mode={publication_mode}")
+
+    root = repo_root()
+    conn: psycopg.Connection | None = None
+    cur: psycopg.Cursor | None = None
+    result: dict[str, Any] | None = None
+
+    try:
+        with progress.stage("S01", "Load and validate canonical Question Bank source") as step:
+            master, rows, validation, master_sha = load_repository_seed(root, args.master)
+            try:
+                source_label = str(master.relative_to(root))
+            except ValueError:
+                source_label = str(master)
+            step["detail"] = f"rows={len(rows)}; source={source_label}"
+
+        with progress.stage("S02", "Connect to PostgreSQL") as step:
+            conn = connect()
+            db_env = _safe_database_environment()
+            endpoint = ":".join(filter(None, [db_env.get("PGHOST", ""), db_env.get("PGPORT", "")]))
+            step["detail"] = f"connection established{'; endpoint=' + endpoint if endpoint else ''}"
+
+        with progress.stage("S03", "Verify Stage12 schema and canonical reference seed"):
+            cur = conn.cursor()
+            require_stage12_schema(cur)
+
+        with progress.stage("S04", "Seed Stage6 question types and compatibility") as step:
+            stage6 = seed_stage6(cur, root)
+            step["detail"] = (
+                f"question_types={stage6['question_types']}; "
+                f"lesson_rules={stage6['lesson_compatibility']}; "
+                f"subtopic_rules={stage6['subtopic_compatibility']}"
+            )
+
+        with progress.stage("S05", "Seed Stage7 misconceptions and build identity map") as step:
+            stage7_map, stage7_inserted = seed_stage7_and_build_map(cur, root)
+            stage7_map_count = len(stage7_map)
+            step["detail"] = f"mapped={stage7_map_count}; inserted={stage7_inserted}"
+
+        with progress.stage("S06", "Resolve Question Bank misconception compatibility bridge") as step:
+            qbank_compatibility = seed_qbank_compatibility_misconceptions(
+                cur, root, rows, stage7_map
+            )
+            step["detail"] = (
+                f"resolved={qbank_compatibility['unknown_used_resolved']}; "
+                f"inserted={qbank_compatibility['inserted']}; "
+                f"already_present={qbank_compatibility['already_present']}"
+            )
+
+        with progress.stage("S07", "Upsert questions, options, tags and subtopics") as step:
+            target_ids, import_stats = upsert_questions(cur, rows, stage7_map)
+            step["detail"] = (
+                f"targets={len(target_ids)}; "
+                f"inserted={import_stats['inserted_questions']}; "
+                f"repaired_drafts={import_stats['repaired_drafts']}; "
+                f"already_published={import_stats['already_published']}"
+            )
+
+        with progress.stage("S08", "Run live Stage11 machine validation gate") as step:
+            verify_live_gate(cur, target_ids)
+            step["detail"] = f"validated={len(target_ids)}"
+
+        with progress.stage("S09", "Register validation PASS evidence") as step:
+            validation_rows = register_validation(cur, target_ids, validation, master_sha)
+            step["detail"] = f"validation_rows_inserted={validation_rows}"
+
+        publication = {"ready": 0, "approved": 0, "published": 0}
+        batch_code = None
+        if args.publish_reviewed:
+            with progress.stage("S10", "Publish independently reviewed questions") as step:
+                batch_code = args.publish_batch_code or default_batch_code(validation)
+                publication = publish_reviewed(
+                    cur, target_ids, args.reviewer_external_id, batch_code
+                )
+                step["detail"] = (
+                    f"batch={batch_code}; ready={publication['ready']}; "
+                    f"approved={publication['approved']}; published={publication['published']}"
+                )
+        elif args.publish_canonical_seed:
+            with progress.stage("S10", "Publish canonical repository seed") as step:
+                batch_code = args.publish_batch_code or default_batch_code(validation)
+                publication = publish_reviewed(
+                    cur,
+                    target_ids,
+                    CANONICAL_PUBLISHER_EXTERNAL_ID,
+                    batch_code,
+                    canonical_seed=True,
+                )
+                step["detail"] = (
+                    f"batch={batch_code}; ready={publication['ready']}; "
+                    f"approved={publication['approved']}; published={publication['published']}"
+                )
+        else:
+            progress.skip(
+                "S10",
+                "Publication workflow",
+                "no publication flag supplied; questions remain in their current workflow status",
+            )
+
+        with progress.stage("S11", "Verify final database status and serving postcondition") as step:
+            counts = summary_counts(cur, target_ids)
+            if args.publish_canonical_seed and (
+                counts.get("PUBLISHED") != len(target_ids)
+                or counts.get("SERVING") != len(target_ids)
+            ):
+                raise BootstrapError(
+                    "canonical migration did not leave every target question PUBLISHED and serving"
+                )
+            step["detail"] = (
+                f"targets={len(target_ids)}; published={counts.get('PUBLISHED', 0)}; "
+                f"serving={counts.get('SERVING', 0)}"
+            )
+
+        result = {
+            "status": "PASS",
+            "bootstrap_version": BOOTSTRAP_VERSION,
+            "master": str(master.relative_to(root)),
+            "master_sha256": master_sha,
+            "target_questions": len(target_ids),
+            "stage6": stage6,
+            "stage7_historical_map_count": stage7_map_count,
+            "stage7_rows_inserted": stage7_inserted,
+            "question_bank_misconception_compatibility": qbank_compatibility,
+            "question_import": import_stats,
+            "validation_pass_rows_inserted": validation_rows,
+            "publication": publication,
+            "publish_batch_code": batch_code,
+            "database_status_counts": counts,
+            "stage23": STAGE23_MARKER,
+        }
+
+        if cur is not None:
+            cur.close()
+            cur = None
+
+        with progress.stage("S12", "Commit PostgreSQL transaction") as step:
+            conn.commit()
+            step["detail"] = "transaction committed; database changes persisted"
+
+        progress.complete(len(target_ids))
+        print(json.dumps(result, ensure_ascii=False, indent=2, sort_keys=True))
+        return 0
+
+    except Exception as exc:
+        progress.fail_current(exc)
+
+        rollback: dict[str, Any] = {
+            "attempted": False,
+            "succeeded": True,
+            "reason": "database commit already completed" if progress.has_completed("S12") else "no database connection",
+            "error": None,
+        }
+        if conn is not None and not progress.has_completed("S12"):
+            rollback["attempted"] = True
+            rollback["reason"] = "failure occurred before database commit"
+            try:
+                conn.rollback()
+                rollback["succeeded"] = True
+            except Exception as rollback_exc:
+                rollback["succeeded"] = False
+                rollback["error"] = f"{type(rollback_exc).__name__}: {rollback_exc}"
+
+        diagnostics = _build_failure_diagnostics(exc, progress, rollback)
+        _print_failure_diagnostics(progress, diagnostics)
+
+        if progress.has_completed("S12"):
+            rollback_note = "database commit had already completed before this failure"
+        elif rollback["attempted"] and rollback["succeeded"]:
+            rollback_note = "database transaction was not committed; transactional changes were rolled back"
+        elif rollback["attempted"]:
+            rollback_note = "database transaction was not committed; rollback itself failed — inspect PostgreSQL state"
+        else:
+            rollback_note = "database transaction was not committed"
+        progress.stopped(rollback_note)
+
+        print(
+            json.dumps(
+                {
+                    "status": "FAIL",
+                    "bootstrap_version": BOOTSTRAP_VERSION,
+                    "error": str(exc),
+                    "stage23": STAGE23_MARKER,
+                    "progress": progress.snapshot(),
+                    "diagnostics": diagnostics,
+                },
                 ensure_ascii=False,
                 indent=2,
                 sort_keys=True,
@@ -1295,6 +1816,18 @@ def main(argv: list[str] | None = None) -> int:
             file=sys.stderr,
         )
         return 1
+
+    finally:
+        if cur is not None:
+            try:
+                cur.close()
+            except Exception:
+                pass
+        if conn is not None:
+            try:
+                conn.close()
+            except Exception:
+                pass
 
 
 if __name__ == "__main__":
