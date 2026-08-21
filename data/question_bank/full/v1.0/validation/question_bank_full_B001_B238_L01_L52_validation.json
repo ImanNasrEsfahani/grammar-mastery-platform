@@ -1,5 +1,5 @@
 {
-  "validation_version": "question-bank-static-consolidation-validation-v1.7-tag-normalization",
+  "validation_version": "question-bank-static-consolidation-validation-v1.8-l43-compatibility-version-repair",
   "status": "PASS_STATIC_CONSOLIDATION",
   "scope": {
     "base_existing": "B001-B183 / 8175 rows",
@@ -119,5 +119,25 @@
     "status": "STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT",
     "runtime_executed": false,
     "import_preview_commit_executed": false
+  },
+  "compatibility_version_repair": {
+    "status": "PASS_STATIC_METADATA_REPAIR",
+    "scope": [
+      "L43"
+    ],
+    "affected_questions": 206,
+    "field_changed": "compatibility_version",
+    "old_value": "question-type-compatibility-v1.0",
+    "new_value": "question-type-compatibility-v0.9.0",
+    "reason": "Repository Question Bank L43 contained a local compatibility-version drift not represented by the canonical Stage6 recovered compatibility catalogue consumed by bootstrap.",
+    "content_columns_changed": false,
+    "question_text_options_answers_explanations_changed": false,
+    "tags_changed_by_this_repair": false,
+    "rows_added_or_deleted": 0,
+    "external_id_changes": 0,
+    "status_changes": 0,
+    "remaining_question_type_compatibility_v1_0_in_L43": 0,
+    "stage23": "STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT",
+    "stage23_runtime_executed": false
   }
 }
