@@ -1,0 +1,59 @@
+{
+  "manifest_version": "question-bank-lesson-source-batch-manifest-v1.0",
+  "scope": "L35 / B157-B160",
+  "lesson_no": 35,
+  "lesson_code": "L35",
+  "batch_count": 4,
+  "question_count": 186,
+  "batch_range": {
+    "first": "B157",
+    "last": "B160"
+  },
+  "canonical_source": {
+    "path": "data/question_bank/full/v1.0/master/question_bank_full_L35.csv",
+    "sha256": "d078ffe7942f5a6cf1755ed96a4f831c47fa449c16bd09b79d0ff4f41735c1e5",
+    "rows": 186,
+    "schema_columns": 46
+  },
+  "legacy_source_manifests": [
+    {
+      "path": "data/question_bank/full/v1.0/manifests/source_batch_manifest_extension_B082_B183.json",
+      "manifest_version": "source-batch-manifest-extension-v1.2",
+      "legacy_scope": "B082-B183",
+      "sha256": "76272f8db28453a1ea128d75449d708d6b24f5a25496dc4f3f0cf55732bd9d8c",
+      "historical_commit": "5875eb9fe2cfdbd68e54dcfbddf1b427b3b0082f",
+      "batch_ids_from_this_source": [
+        "B157",
+        "B158",
+        "B159",
+        "B160"
+      ],
+      "status_note": "Recovered from the commit immediately before accidental deletion."
+    }
+  ],
+  "batches": [
+    {
+      "batch_id": "B157",
+      "lesson_part": 1,
+      "question_count": 50
+    },
+    {
+      "batch_id": "B158",
+      "lesson_part": 2,
+      "question_count": 50
+    },
+    {
+      "batch_id": "B159",
+      "lesson_part": 3,
+      "question_count": 50
+    },
+    {
+      "batch_id": "B160",
+      "lesson_part": 4,
+      "question_count": 36
+    }
+  ],
+  "stage23_status": "STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT",
+  "stage23_runtime_executed": false,
+  "provenance_note": "Lesson-native manifest created for the 52-file canonical architecture. Batch ownership and row counts are derived from canonical external_id values. Historical per-batch source artifact hashes remain anchored by the referenced legacy manifest path, SHA-256, and historical commit; they are not silently rewritten."
+}

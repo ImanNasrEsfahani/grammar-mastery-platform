@@ -1,0 +1,71 @@
+{
+  "manifest_version": "question-bank-lesson-source-batch-manifest-v1.0",
+  "scope": "L16 / B068-B073",
+  "lesson_no": 16,
+  "lesson_code": "L16",
+  "batch_count": 6,
+  "question_count": 262,
+  "batch_range": {
+    "first": "B068",
+    "last": "B073"
+  },
+  "canonical_source": {
+    "path": "data/question_bank/full/v1.0/master/question_bank_full_L16.csv",
+    "sha256": "70b95f1cfd3f6213f23ae0e8a60da25f9d58b2c4947a0543606f7a5cf03f70d6",
+    "rows": 262,
+    "schema_columns": 46
+  },
+  "legacy_source_manifests": [
+    {
+      "path": "data/question_bank/full/v1.0/manifests/source_batch_manifest_extension_B042_B081.json",
+      "manifest_version": "question-bank-source-batch-manifest-extension-v1.0",
+      "legacy_scope": "B042-B081",
+      "sha256": "cf86f08f3caa10f39e85603673ea750cf1d92a3322e21d984184427b0bdcca85",
+      "historical_commit": "5875eb9fe2cfdbd68e54dcfbddf1b427b3b0082f",
+      "batch_ids_from_this_source": [
+        "B068",
+        "B069",
+        "B070",
+        "B071",
+        "B072",
+        "B073"
+      ],
+      "status_note": "Legacy provenance source for B042-B081."
+    }
+  ],
+  "batches": [
+    {
+      "batch_id": "B068",
+      "lesson_part": 1,
+      "question_count": 50
+    },
+    {
+      "batch_id": "B069",
+      "lesson_part": 2,
+      "question_count": 50
+    },
+    {
+      "batch_id": "B070",
+      "lesson_part": 3,
+      "question_count": 50
+    },
+    {
+      "batch_id": "B071",
+      "lesson_part": 4,
+      "question_count": 50
+    },
+    {
+      "batch_id": "B072",
+      "lesson_part": 5,
+      "question_count": 50
+    },
+    {
+      "batch_id": "B073",
+      "lesson_part": 6,
+      "question_count": 12
+    }
+  ],
+  "stage23_status": "STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT",
+  "stage23_runtime_executed": false,
+  "provenance_note": "Lesson-native manifest created for the 52-file canonical architecture. Batch ownership and row counts are derived from canonical external_id values. Historical per-batch source artifact hashes remain anchored by the referenced legacy manifest path, SHA-256, and historical commit; they are not silently rewritten."
+}

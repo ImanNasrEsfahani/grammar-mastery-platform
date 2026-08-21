@@ -1,0 +1,65 @@
+{
+  "manifest_version": "question-bank-lesson-source-batch-manifest-v1.0",
+  "scope": "L32 / B142-B146",
+  "lesson_no": 32,
+  "lesson_code": "L32",
+  "batch_count": 5,
+  "question_count": 233,
+  "batch_range": {
+    "first": "B142",
+    "last": "B146"
+  },
+  "canonical_source": {
+    "path": "data/question_bank/full/v1.0/master/question_bank_full_L32.csv",
+    "sha256": "1f5574644c1b28e027877cba9b6428f5281ced595f753b9b07df16e3dbf99e5a",
+    "rows": 233,
+    "schema_columns": 46
+  },
+  "legacy_source_manifests": [
+    {
+      "path": "data/question_bank/full/v1.0/manifests/source_batch_manifest_extension_B082_B183.json",
+      "manifest_version": "source-batch-manifest-extension-v1.2",
+      "legacy_scope": "B082-B183",
+      "sha256": "76272f8db28453a1ea128d75449d708d6b24f5a25496dc4f3f0cf55732bd9d8c",
+      "historical_commit": "5875eb9fe2cfdbd68e54dcfbddf1b427b3b0082f",
+      "batch_ids_from_this_source": [
+        "B142",
+        "B143",
+        "B144",
+        "B145",
+        "B146"
+      ],
+      "status_note": "Recovered from the commit immediately before accidental deletion."
+    }
+  ],
+  "batches": [
+    {
+      "batch_id": "B142",
+      "lesson_part": 1,
+      "question_count": 50
+    },
+    {
+      "batch_id": "B143",
+      "lesson_part": 2,
+      "question_count": 50
+    },
+    {
+      "batch_id": "B144",
+      "lesson_part": 3,
+      "question_count": 50
+    },
+    {
+      "batch_id": "B145",
+      "lesson_part": 4,
+      "question_count": 50
+    },
+    {
+      "batch_id": "B146",
+      "lesson_part": 5,
+      "question_count": 33
+    }
+  ],
+  "stage23_status": "STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT",
+  "stage23_runtime_executed": false,
+  "provenance_note": "Lesson-native manifest created for the 52-file canonical architecture. Batch ownership and row counts are derived from canonical external_id values. Historical per-batch source artifact hashes remain anchored by the referenced legacy manifest path, SHA-256, and historical commit; they are not silently rewritten."
+}

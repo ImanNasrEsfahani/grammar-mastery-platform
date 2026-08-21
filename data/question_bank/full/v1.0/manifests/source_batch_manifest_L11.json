@@ -1,0 +1,65 @@
+{
+  "manifest_version": "question-bank-lesson-source-batch-manifest-v1.0",
+  "scope": "L11 / B047-B051",
+  "lesson_no": 11,
+  "lesson_code": "L11",
+  "batch_count": 5,
+  "question_count": 244,
+  "batch_range": {
+    "first": "B047",
+    "last": "B051"
+  },
+  "canonical_source": {
+    "path": "data/question_bank/full/v1.0/master/question_bank_full_L11.csv",
+    "sha256": "0fd0097e9253965f0b10702ad7b2ab5f2fdd553b480526be4dfcf79a5eea526c",
+    "rows": 244,
+    "schema_columns": 46
+  },
+  "legacy_source_manifests": [
+    {
+      "path": "data/question_bank/full/v1.0/manifests/source_batch_manifest_extension_B042_B081.json",
+      "manifest_version": "question-bank-source-batch-manifest-extension-v1.0",
+      "legacy_scope": "B042-B081",
+      "sha256": "cf86f08f3caa10f39e85603673ea750cf1d92a3322e21d984184427b0bdcca85",
+      "historical_commit": "5875eb9fe2cfdbd68e54dcfbddf1b427b3b0082f",
+      "batch_ids_from_this_source": [
+        "B047",
+        "B048",
+        "B049",
+        "B050",
+        "B051"
+      ],
+      "status_note": "Legacy provenance source for B042-B081."
+    }
+  ],
+  "batches": [
+    {
+      "batch_id": "B047",
+      "lesson_part": 1,
+      "question_count": 50
+    },
+    {
+      "batch_id": "B048",
+      "lesson_part": 2,
+      "question_count": 50
+    },
+    {
+      "batch_id": "B049",
+      "lesson_part": 3,
+      "question_count": 50
+    },
+    {
+      "batch_id": "B050",
+      "lesson_part": 4,
+      "question_count": 50
+    },
+    {
+      "batch_id": "B051",
+      "lesson_part": 5,
+      "question_count": 44
+    }
+  ],
+  "stage23_status": "STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT",
+  "stage23_runtime_executed": false,
+  "provenance_note": "Lesson-native manifest created for the 52-file canonical architecture. Batch ownership and row counts are derived from canonical external_id values. Historical per-batch source artifact hashes remain anchored by the referenced legacy manifest path, SHA-256, and historical commit; they are not silently rewritten."
+}

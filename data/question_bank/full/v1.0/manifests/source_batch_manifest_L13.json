@@ -1,0 +1,59 @@
+{
+  "manifest_version": "question-bank-lesson-source-batch-manifest-v1.0",
+  "scope": "L13 / B056-B059",
+  "lesson_no": 13,
+  "lesson_code": "L13",
+  "batch_count": 4,
+  "question_count": 173,
+  "batch_range": {
+    "first": "B056",
+    "last": "B059"
+  },
+  "canonical_source": {
+    "path": "data/question_bank/full/v1.0/master/question_bank_full_L13.csv",
+    "sha256": "1a3e8d5de88bf1083b1beea9dc39a1b41b4198552eea280c96cdb75431936704",
+    "rows": 173,
+    "schema_columns": 46
+  },
+  "legacy_source_manifests": [
+    {
+      "path": "data/question_bank/full/v1.0/manifests/source_batch_manifest_extension_B042_B081.json",
+      "manifest_version": "question-bank-source-batch-manifest-extension-v1.0",
+      "legacy_scope": "B042-B081",
+      "sha256": "cf86f08f3caa10f39e85603673ea750cf1d92a3322e21d984184427b0bdcca85",
+      "historical_commit": "5875eb9fe2cfdbd68e54dcfbddf1b427b3b0082f",
+      "batch_ids_from_this_source": [
+        "B056",
+        "B057",
+        "B058",
+        "B059"
+      ],
+      "status_note": "Legacy provenance source for B042-B081."
+    }
+  ],
+  "batches": [
+    {
+      "batch_id": "B056",
+      "lesson_part": 1,
+      "question_count": 50
+    },
+    {
+      "batch_id": "B057",
+      "lesson_part": 2,
+      "question_count": 50
+    },
+    {
+      "batch_id": "B058",
+      "lesson_part": 3,
+      "question_count": 50
+    },
+    {
+      "batch_id": "B059",
+      "lesson_part": 4,
+      "question_count": 23
+    }
+  ],
+  "stage23_status": "STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT",
+  "stage23_runtime_executed": false,
+  "provenance_note": "Lesson-native manifest created for the 52-file canonical architecture. Batch ownership and row counts are derived from canonical external_id values. Historical per-batch source artifact hashes remain anchored by the referenced legacy manifest path, SHA-256, and historical commit; they are not silently rewritten."
+}
