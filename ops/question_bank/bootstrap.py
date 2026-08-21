@@ -19,7 +19,7 @@ from typing import Any
 import psycopg
 from psycopg.rows import dict_row
 
-BOOTSTRAP_VERSION = "question-bank-bootstrap-v1.0.0"
+BOOTSTRAP_VERSION = "question-bank-bootstrap-v1.0.3"
 WORKFLOW_VERSION = "question-qa-workflow-v0.9.0"
 CANONICAL_PUBLICATION_VERSION = "canonical-question-bank-publication-v1.0.0"
 CANONICAL_PUBLISHER_EXTERNAL_ID = "canonical-question-bank-publisher-v1.0"
@@ -27,13 +27,20 @@ SYSTEM_VERSION_COMPONENT = "question_bank.canonical_seed"
 STAGE23_MARKER = "STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT"
 QB_COMPATIBILITY_CATALOGUE_VERSION = "question-bank-misconception-compatibility-v1.0.0"
 QB_COMPATIBILITY_FAMILY = "QUESTION_BANK_COMPATIBILITY"
-QB_COMPATIBILITY_DIRECTORY = Path("data/question_bank/full/v1.0/compatibility")
-QB_COMPATIBILITY_FILE_PATTERN = (
+QB_COMPATIBILITY_RELATIVE_DIR = Path(
+    "data/question_bank/full/v1.0/compatibility"
+)
+QB_COMPATIBILITY_GLOB = (
     "question_bank_misconception_compatibility_L??_B???-B???_v1.0.csv"
 )
 QB_COMPATIBILITY_FILENAME_RE = re.compile(
-    r"^question_bank_misconception_compatibility_"
-    r"(L\d{2})_(B\d{3})-(B\d{3})_v1\.0\.csv$"
+    r"question_bank_misconception_compatibility_L(?P<lesson>\d{2})_"
+    r"B(?P<start>\d{3})-B(?P<end>\d{3})_v1\.0\.csv"
+)
+QB_COMPATIBILITY_EXPECTED_LESSONS = set(range(1, 53))
+QB_COMPATIBILITY_EXPECTED_BATCHES = set(range(1, 239))
+QB_COMPATIBILITY_SCOPED_UID_NAMESPACE = uuid.UUID(
+    "4ccbe0b5-a7e9-5f8c-a345-4a50a5098ee7"
 )
 QB_COMPATIBILITY_HEADER = [
     "catalogue_version", "misconception_id", "home_subtopic_id", "home_subtopic_code",
@@ -327,7 +334,7 @@ def _failure_hints(stage_code: str, exc: BaseException) -> list[str]:
             "If more than one historical misconception matches a recovered concept, fix the source mapping instead of guessing.",
         ],
         "S06": [
-            "Check the 52 lesson-scoped Question Bank misconception compatibility catalogues and each filename/question_bank_scope pair.",
+            "Check the 52 lesson-scoped Question Bank misconception compatibility catalogues, their filename/lesson/subtopic consistency, and exact L01-L52 / B001-B238 coverage.",
             "Unknown diagnostic UUIDs must be present in Stage7 or in the checked-in compatibility bridge; new IDs fail closed.",
         ],
         "S07": [
@@ -574,12 +581,12 @@ def load_repository_seed(
         relative = Path(str(raw_name))
         if relative.is_absolute() or ".." in relative.parts:
             raise BootstrapError(f"unsafe Question Bank seed source path: {raw_name}")
-        source_path = root / relative
-        header, source_rows = read_csv(source_path)
+        source = root / relative
+        header, source_rows = read_csv(source)
         if header != EXPECTED_HEADER:
             raise BootstrapError(f"Question Bank seed source has non-Stage10 header: {relative}")
         rows.extend(source_rows)
-        source_hashes.append((relative.as_posix(), sha256_file(source_path)))
+        source_hashes.append((relative.as_posix(), sha256_file(source)))
 
     if not rows:
         raise BootstrapError("Question Bank repository seed is empty")
@@ -839,6 +846,11 @@ def seed_stage7_and_build_map(cur: psycopg.Cursor, root: Path) -> tuple[dict[str
         mapping[old] = old_uuid
         inserted += 1
 
+    # Current canonical Question Bank authoring artifacts can reference the
+    # recovered Stage7 v1.0 deterministic UUIDs, while the database keeps the
+    # historical v0.9 misconception UUIDs as its canonical identity. Resolve
+    # recovered IDs as aliases to the already-seeded historical rows instead of
+    # creating duplicate misconception concepts.
     recovered_path = root / "data/question_authoring/stage7/stage7_misconception_catalogue_recovered_v1.0.csv"
     _, recovered_rows = read_csv(recovered_path)
     for r in recovered_rows:
@@ -866,6 +878,10 @@ def seed_stage7_and_build_map(cur: psycopg.Cursor, root: Path) -> tuple[dict[str
             if len(exact_statement) == 1:
                 matches = exact_statement
 
+        # A recovered package can carry revised wording while preserving the
+        # original misconception concept. Prefer exact statement identity, then
+        # fall back to a unique subtopic+family concept. Never guess across
+        # multiple historical concepts.
         if len(matches) == 0 and statement:
             cur.execute(
                 """
@@ -897,128 +913,182 @@ def seed_stage7_and_build_map(cur: psycopg.Cursor, root: Path) -> tuple[dict[str
 
 
 def load_qbank_compatibility_catalogue(root: Path) -> list[dict[str, str]]:
-    """Load all lesson-scoped compatibility bridges for legacy Question Bank IDs.
+    """Load lesson-level compatibility bridges for legacy Question Bank IDs.
 
-    The repository stores one compatibility CSV per lesson (L01-L52). Each file
-    declares its own contiguous batch scope in the filename and in the
-    question_bank_scope column. Canonical Stage7 identities still win; these
+    The checked-in v1.0 compatibility source is lesson-oriented: exactly one
+    file for each L01-L52, with filename batch ranges covering B001-B238
+    without gaps or overlaps. Canonical Stage7 identities still win; these
     rows only preserve already-authored diagnostic UUID references.
     """
-    directory = root / QB_COMPATIBILITY_DIRECTORY
+    directory = root / QB_COMPATIBILITY_RELATIVE_DIR
     if not directory.is_dir():
         raise BootstrapError(
             f"Question Bank misconception compatibility directory missing: {directory}"
         )
 
-    paths = list(directory.glob(QB_COMPATIBILITY_FILE_PATTERN))
-    if not paths:
+    paths = sorted(directory.glob(QB_COMPATIBILITY_GLOB))
+    if len(paths) != len(QB_COMPATIBILITY_EXPECTED_LESSONS):
         raise BootstrapError(
-            f"no lesson-scoped Question Bank misconception compatibility files found: {directory}"
+            "Question Bank misconception compatibility catalogue file-count drift: "
+            f"expected={len(QB_COMPATIBILITY_EXPECTED_LESSONS)} actual={len(paths)}"
         )
 
-    parsed_paths: list[tuple[int, Path, str, str, str]] = []
+    lessons_seen: set[int] = set()
+    batches_seen: set[int] = set()
+    merged_rows: list[dict[str, str]] = []
+
     for path in paths:
         match = QB_COMPATIBILITY_FILENAME_RE.fullmatch(path.name)
         if match is None:
             raise BootstrapError(
-                f"invalid Question Bank misconception compatibility filename: {path.name}"
+                f"Question Bank misconception compatibility filename drift: {path.name}"
             )
-        lesson_code, batch_start, batch_end = match.groups()
-        parsed_paths.append(
-            (int(lesson_code[1:]), path, lesson_code, batch_start, batch_end)
-        )
 
-    parsed_paths.sort(key=lambda item: item[0])
+        lesson_no = int(match.group("lesson"))
+        batch_start = int(match.group("start"))
+        batch_end = int(match.group("end"))
+        if lesson_no in lessons_seen:
+            raise BootstrapError(
+                f"duplicate Question Bank compatibility lesson file: L{lesson_no:02d}"
+            )
+        lessons_seen.add(lesson_no)
 
-    lesson_numbers = [lesson_no for lesson_no, *_ in parsed_paths]
-    expected_lessons = list(range(1, 53))
-    if lesson_numbers != expected_lessons:
-        missing = sorted(set(expected_lessons) - set(lesson_numbers))
-        duplicate = sorted(
-            lesson_no
-            for lesson_no in set(lesson_numbers)
-            if lesson_numbers.count(lesson_no) > 1
-        )
-        extra = sorted(set(lesson_numbers) - set(expected_lessons))
-        raise BootstrapError(
-            "Question Bank misconception compatibility lesson coverage drift: "
-            f"expected L01-L52 exactly; missing={missing}; duplicate={duplicate}; extra={extra}"
-        )
+        if batch_start > batch_end:
+            raise BootstrapError(
+                f"invalid compatibility batch range in {path.name}: "
+                f"B{batch_start:03d}-B{batch_end:03d}"
+            )
+        file_batches = set(range(batch_start, batch_end + 1))
+        overlap = batches_seen & file_batches
+        if overlap:
+            first_overlap = min(overlap)
+            raise BootstrapError(
+                f"overlapping Question Bank compatibility batch B{first_overlap:03d} "
+                f"at {path.name}"
+            )
+        batches_seen.update(file_batches)
 
-    ids: set[str] = set()
-    all_rows: list[dict[str, str]] = []
-
-    for _, path, lesson_code, batch_start, batch_end in parsed_paths:
-        expected_scope = f"{batch_start}-{batch_end}"
-        header, rows = read_csv(path)
+        header, file_rows = read_csv(path)
         if header != QB_COMPATIBILITY_HEADER:
             raise BootstrapError(
-                "Question Bank misconception compatibility catalogue "
-                f"header/version drift: {path.name}"
+                f"Question Bank misconception compatibility catalogue header/version drift: "
+                f"{path.name}"
             )
-        if not rows:
+        if not file_rows:
             raise BootstrapError(
                 f"Question Bank misconception compatibility catalogue is empty: {path.name}"
             )
 
-        for n, row in enumerate(rows, start=2):
-            location = f"{path.name}:{n}"
-            if row.get("catalogue_version", "").strip() != QB_COMPATIBILITY_CATALOGUE_VERSION:
-                raise BootstrapError(
-                    f"compatibility catalogue version mismatch at {location}"
-                )
-
-            mid = row.get("misconception_id", "").strip()
-            sid = row.get("home_subtopic_id", "").strip()
-            code = row.get("home_subtopic_code", "").strip()
-            if not mid or not sid or not code:
-                raise BootstrapError(
-                    f"compatibility catalogue misses id/subtopic at {location}"
-                )
-
-            try:
-                uuid.UUID(mid)
-                uuid.UUID(sid)
-            except ValueError as exc:
-                raise BootstrapError(
-                    f"invalid UUID in compatibility catalogue at {location}"
-                ) from exc
-
-            if mid in ids:
-                raise BootstrapError(
-                    f"duplicate compatibility misconception_id across lesson catalogues: {mid}"
-                )
-            ids.add(mid)
-
-            if row.get("family", "").strip() != QB_COMPATIBILITY_FAMILY:
-                raise BootstrapError(f"compatibility family drift at {location}")
-
+        expected_scope = f"B{batch_start:03d}-B{batch_end:03d}"
+        expected_lesson_code = f"L{lesson_no:02d}"
+        for line_no, row in enumerate(file_rows, start=2):
+            location = f"{path.name}:{line_no}"
             actual_scope = row.get("question_bank_scope", "").strip()
             if actual_scope != expected_scope:
                 raise BootstrapError(
-                    f"compatibility scope drift at {location}: "
-                    f"filename declares {expected_scope}, row declares {actual_scope or '<empty>'}"
+                    "compatibility scope drift at "
+                    f"{location}; expected={expected_scope} actual={actual_scope!r}"
                 )
 
-            if not code.startswith(f"{lesson_code}-S"):
+            home_subtopic_code = row.get("home_subtopic_code", "").strip()
+            if not home_subtopic_code.startswith(f"{expected_lesson_code}-S"):
                 raise BootstrapError(
-                    f"compatibility home subtopic lesson drift at {location}: "
-                    f"filename lesson={lesson_code}, home_subtopic_code={code}"
+                    "compatibility home subtopic lesson drift at "
+                    f"{location}; filename_lesson={expected_lesson_code} "
+                    f"home_subtopic_code={home_subtopic_code!r}"
                 )
 
-            if not row.get("statement_fa", "").strip():
+            first_external_id = row.get("first_external_id", "").strip()
+            first_batch_match = re.search(
+                r"(?:^|-)B(?P<batch>\\d{3})(?:-|$)", first_external_id
+            )
+            if first_batch_match is None:
                 raise BootstrapError(
-                    f"compatibility statement missing at {location}"
+                    f"compatibility first_external_id format drift at {location}: "
+                    f"{first_external_id!r}"
+                )
+            first_batch = int(first_batch_match.group("batch"))
+            if not (batch_start <= first_batch <= batch_end):
+                raise BootstrapError(
+                    f"compatibility first_external_id scope drift at {location}: "
+                    f"{first_external_id!r} is outside {expected_scope}"
                 )
 
-            all_rows.append(row)
+            merged_rows.append(row)
 
-    if not all_rows:
+    if lessons_seen != QB_COMPATIBILITY_EXPECTED_LESSONS:
+        missing = sorted(QB_COMPATIBILITY_EXPECTED_LESSONS - lessons_seen)
+        extra = sorted(lessons_seen - QB_COMPATIBILITY_EXPECTED_LESSONS)
         raise BootstrapError(
-            "Question Bank misconception compatibility catalogues contain no rows"
+            f"Question Bank compatibility lesson coverage drift: missing={missing} extra={extra}"
         )
-    return all_rows
+    if batches_seen != QB_COMPATIBILITY_EXPECTED_BATCHES:
+        missing = sorted(QB_COMPATIBILITY_EXPECTED_BATCHES - batches_seen)
+        extra = sorted(batches_seen - QB_COMPATIBILITY_EXPECTED_BATCHES)
+        raise BootstrapError(
+            f"Question Bank compatibility batch coverage drift: missing={missing} extra={extra}"
+        )
+    if not merged_rows:
+        raise BootstrapError("Question Bank misconception compatibility catalogues are empty")
 
+    scoped_ids: set[tuple[str, str]] = set()
+    for n, row in enumerate(merged_rows, start=1):
+        if row.get("catalogue_version", "").strip() != QB_COMPATIBILITY_CATALOGUE_VERSION:
+            raise BootstrapError(
+                f"compatibility catalogue version mismatch at merged row {n}"
+            )
+        mid = row.get("misconception_id", "").strip()
+        sid = row.get("home_subtopic_id", "").strip()
+        code = row.get("home_subtopic_code", "").strip()
+        if not mid or not sid or not code:
+            raise BootstrapError(
+                f"compatibility identity fields missing at merged row {n}"
+            )
+        try:
+            uuid.UUID(mid)
+            uuid.UUID(sid)
+        except ValueError as exc:
+            raise BootstrapError(
+                f"invalid UUID in compatibility catalogue at merged row {n}"
+            ) from exc
+        if row.get("family", "").strip() != QB_COMPATIBILITY_FAMILY:
+            raise BootstrapError(f"compatibility family drift at merged row {n}")
+        scope = row.get("question_bank_scope", "").strip()
+        if re.fullmatch(r"B\d{3}-B\d{3}", scope) is None:
+            raise BootstrapError(f"compatibility scope format drift at merged row {n}")
+        scoped_key = (scope, mid)
+        if scoped_key in scoped_ids:
+            raise BootstrapError(
+                f"duplicate compatibility misconception_id within scope {scope}: {mid}"
+            )
+        scoped_ids.add(scoped_key)
+        if not row.get("statement_fa", "").strip():
+            raise BootstrapError(f"compatibility statement missing at merged row {n}")
+    return merged_rows
+
+
+def _compatibility_scope_bounds(scope: str) -> tuple[int, int]:
+    match = re.fullmatch(r"B(?P<start>\d{3})-B(?P<end>\d{3})", scope.strip())
+    if match is None:
+        raise BootstrapError(f"invalid compatibility scope: {scope!r}")
+    start = int(match.group("start"))
+    end = int(match.group("end"))
+    if start > end:
+        raise BootstrapError(f"invalid compatibility scope range: {scope!r}")
+    return start, end
+
+
+def _question_batch_number(external_id: str) -> int:
+    match = re.search(r"(?:^|-)B(?P<batch>\d{3})(?:-|$)", external_id.strip())
+    if match is None:
+        raise BootstrapError(
+            f"cannot resolve Question Bank batch from external_id: {external_id!r}"
+        )
+    return int(match.group("batch"))
+
+
+def _compatibility_batch_mapping_key(mid: str, batch: int) -> str:
+    return f"{mid}@B{batch:03d}"
 
 
 def seed_qbank_compatibility_misconceptions(
@@ -1027,104 +1097,193 @@ def seed_qbank_compatibility_misconceptions(
     question_rows: list[dict[str, str]],
     mapping: dict[str, uuid.UUID],
 ) -> dict[str, int]:
-    """Resolve only the Question Bank diagnostic IDs still unknown after Stage7.
+    """Resolve Question Bank-only diagnostic IDs after canonical Stage7 aliases.
 
-    Canonical Stage7 identities always win.  This bridge is intentionally
-    compatibility-only: it is limited to IDs explicitly checked into the
-    versioned lesson-scoped L01-L52 catalogues and fails closed on any new
-    unknown ID.
+    Lesson-level compatibility catalogues intentionally reuse some legacy UUIDs
+    across different lesson scopes. Those UUIDs are therefore not globally
+    canonical identities. When one legacy UUID appears in more than one scope,
+    this bootstrap deterministically namespaces its runtime database UUID by
+    ``question_bank_scope`` while keeping the repository source unchanged.
+
+    Canonical Stage7 identities always win. All catalogue evidence remains
+    fail-closed and is validated against the exact questions inside each scope.
     """
     catalogue_rows = load_qbank_compatibility_catalogue(root)
-    by_id = {row["misconception_id"].strip(): row for row in catalogue_rows}
 
-    use_rows: dict[str, list[tuple[str, str, str]]] = {}
+    catalogue_by_mid: dict[str, list[dict[str, str]]] = {}
+    for row in catalogue_rows:
+        catalogue_by_mid.setdefault(row["misconception_id"].strip(), []).append(row)
+
+    use_rows: dict[str, list[tuple[str, str, str, int]]] = {}
     for qrow in question_rows:
+        external_id = qrow["external_id"].strip()
+        batch = _question_batch_number(external_id)
         for letter in "abcd":
             mid = qrow[f"misconception_{letter}_id"].strip()
             if mid:
                 use_rows.setdefault(mid, []).append(
-                    (qrow["external_id"].strip(), qrow["subtopic_id"].strip(), qrow["subtopic_code"].strip())
+                    (
+                        external_id,
+                        qrow["subtopic_id"].strip(),
+                        qrow["subtopic_code"].strip(),
+                        batch,
+                    )
                 )
 
     unknown_used = sorted(set(use_rows) - set(mapping))
-    missing = sorted(set(unknown_used) - set(by_id))
+    missing = sorted(set(unknown_used) - set(catalogue_by_mid))
     if missing:
         raise BootstrapError(
             "Question Bank references diagnostic misconception IDs absent from Stage7 and the "
-            f"versioned compatibility catalogue: {missing[:10]}"
+            f"versioned compatibility catalogues: {missing[:10]}"
         )
 
     inserted = 0
     already_present = 0
     cross_subtopic_ids = 0
+    scoped_uuid_collisions_resolved = 0
+    scoped_rows_resolved = 0
+
     for mid in unknown_used:
-        row = by_id[mid]
-        observed = use_rows[mid]
-        first_external_id, first_sid, first_code = observed[0]
-        observed_codes = sorted({code for _, _, code in observed})
-        declared_codes = sorted(filter(None, row["subtopic_codes_seen"].split(";")))
-        if row["first_external_id"].strip() != first_external_id:
-            raise BootstrapError(f"compatibility first_external_id drift for {mid}")
-        if row["home_subtopic_id"].strip() != first_sid or row["home_subtopic_code"].strip() != first_code:
-            raise BootstrapError(f"compatibility home subtopic drift for {mid}")
-        if int(row["use_count"]) != len(observed):
-            raise BootstrapError(f"compatibility use_count drift for {mid}")
-        if declared_codes != observed_codes:
-            raise BootstrapError(f"compatibility subtopic usage drift for {mid}")
-        if len(observed_codes) > 1:
-            cross_subtopic_ids += 1
+        rows_for_mid = catalogue_by_mid[mid]
+        duplicated_across_scopes = len(rows_for_mid) > 1
+        if duplicated_across_scopes:
+            scoped_uuid_collisions_resolved += 1
 
-        sid = row["home_subtopic_id"].strip()
-        cur.execute("SELECT id,subtopic_code FROM grammar_subtopics WHERE id=%s", (sid,))
-        subtopic = cur.fetchone()
-        if subtopic is None or str(subtopic["subtopic_code"]) != row["home_subtopic_code"].strip():
-            raise BootstrapError(f"compatibility catalogue references unknown/mismatched subtopic {sid}")
+        observed_all = use_rows[mid]
+        observed_batches = {batch for _, _, _, batch in observed_all}
+        covered_batches: set[int] = set()
 
-        mid_uuid = uuid.UUID(mid)
-        cur.execute(
-            "SELECT id,subtopic_id,family,catalogue_version FROM misconceptions WHERE id=%s",
-            (mid_uuid,),
-        )
-        existing = cur.fetchone()
-        if existing is not None:
+        for row in sorted(rows_for_mid, key=lambda r: r["question_bank_scope"]):
+            scope = row["question_bank_scope"].strip()
+            batch_start, batch_end = _compatibility_scope_bounds(scope)
+            scope_batches = set(range(batch_start, batch_end + 1))
+            observed = [item for item in observed_all if item[3] in scope_batches]
+            if not observed:
+                raise BootstrapError(
+                    f"compatibility catalogue row has no matching Question Bank usage for {mid} in {scope}"
+                )
+            covered_batches.update(batch for _, _, _, batch in observed)
+
+            first_external_id, first_sid, first_code, _ = observed[0]
+            observed_codes = sorted({code for _, _, code, _ in observed})
+            declared_codes = sorted(filter(None, row["subtopic_codes_seen"].split(";")))
+            if row["first_external_id"].strip() != first_external_id:
+                raise BootstrapError(
+                    f"compatibility first_external_id drift for {mid} in {scope}"
+                )
             if (
-                str(existing["subtopic_id"]) != sid
-                or str(existing["family"]) != QB_COMPATIBILITY_FAMILY
-                or str(existing["catalogue_version"]) != QB_COMPATIBILITY_CATALOGUE_VERSION
+                row["home_subtopic_id"].strip() != first_sid
+                or row["home_subtopic_code"].strip() != first_code
             ):
-                raise BootstrapError(f"compatibility misconception UUID collision for {mid}")
-            mapping[mid] = existing["id"]
-            already_present += 1
-            continue
+                raise BootstrapError(
+                    f"compatibility home subtopic drift for {mid} in {scope}"
+                )
+            try:
+                declared_use_count = int(row["use_count"])
+            except ValueError as exc:
+                raise BootstrapError(
+                    f"invalid compatibility use_count for {mid} in {scope}"
+                ) from exc
+            if declared_use_count != len(observed):
+                raise BootstrapError(
+                    f"compatibility use_count drift for {mid} in {scope}: "
+                    f"declared={declared_use_count} observed={len(observed)}"
+                )
+            if declared_codes != observed_codes:
+                raise BootstrapError(
+                    f"compatibility subtopic usage drift for {mid} in {scope}"
+                )
+            if len(observed_codes) > 1:
+                cross_subtopic_ids += 1
 
-        cur.execute(
-            """
-            INSERT INTO misconceptions(
-              id,subtopic_id,family,name_fa,statement_fa,diagnostic_interpretation_fa,
-              distractor_authoring_hint_fa,priority,status,empirical_commonness,catalogue_version,source_ref
-            ) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
-            """,
-            (
-                mid_uuid,
-                sid,
-                QB_COMPATIBILITY_FAMILY,
-                row["name_fa"].strip() or None,
-                row["statement_fa"].strip(),
-                row["diagnostic_interpretation_fa"].strip() or None,
-                row["distractor_authoring_hint_fa"].strip() or None,
-                row["priority"].strip() or None,
-                row["status"].strip() or "CANDIDATE_PREDEPLOY_CONTENT_REVIEW",
-                row["empirical_commonness"].strip() or None,
-                QB_COMPATIBILITY_CATALOGUE_VERSION,
-                row["source_ref"].strip() or None,
-            ),
-        )
-        mapping[mid] = mid_uuid
-        inserted += 1
+            sid = row["home_subtopic_id"].strip()
+            cur.execute("SELECT id,subtopic_code FROM grammar_subtopics WHERE id=%s", (sid,))
+            subtopic = cur.fetchone()
+            if (
+                subtopic is None
+                or str(subtopic["subtopic_code"]) != row["home_subtopic_code"].strip()
+            ):
+                raise BootstrapError(
+                    f"compatibility catalogue references unknown/mismatched subtopic {sid}"
+                )
+
+            if duplicated_across_scopes:
+                runtime_uuid = uuid.uuid5(
+                    QB_COMPATIBILITY_SCOPED_UID_NAMESPACE,
+                    f"{scope}|{mid}",
+                )
+            else:
+                runtime_uuid = uuid.UUID(mid)
+
+            cur.execute(
+                "SELECT id,subtopic_id,family,catalogue_version FROM misconceptions WHERE id=%s",
+                (runtime_uuid,),
+            )
+            existing = cur.fetchone()
+            if existing is not None:
+                if (
+                    str(existing["subtopic_id"]) != sid
+                    or str(existing["family"]) != QB_COMPATIBILITY_FAMILY
+                    or str(existing["catalogue_version"]) != QB_COMPATIBILITY_CATALOGUE_VERSION
+                ):
+                    raise BootstrapError(
+                        f"compatibility misconception UUID collision for runtime id {runtime_uuid} "
+                        f"(source={mid}, scope={scope})"
+                    )
+                already_present += 1
+            else:
+                source_ref = row["source_ref"].strip()
+                if duplicated_across_scopes:
+                    trace = f"source_compatibility_id={mid}; scope={scope}"
+                    source_ref = f"{source_ref}; {trace}" if source_ref else trace
+                cur.execute(
+                    """
+                    INSERT INTO misconceptions(
+                      id,subtopic_id,family,name_fa,statement_fa,diagnostic_interpretation_fa,
+                      distractor_authoring_hint_fa,priority,status,empirical_commonness,catalogue_version,source_ref
+                    ) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+                    """,
+                    (
+                        runtime_uuid,
+                        sid,
+                        QB_COMPATIBILITY_FAMILY,
+                        row["name_fa"].strip() or None,
+                        row["statement_fa"].strip(),
+                        row["diagnostic_interpretation_fa"].strip() or None,
+                        row["distractor_authoring_hint_fa"].strip() or None,
+                        row["priority"].strip() or None,
+                        row["status"].strip() or "CANDIDATE_PREDEPLOY_CONTENT_REVIEW",
+                        row["empirical_commonness"].strip() or None,
+                        QB_COMPATIBILITY_CATALOGUE_VERSION,
+                        source_ref or None,
+                    ),
+                )
+                inserted += 1
+
+            for batch in scope_batches:
+                key = _compatibility_batch_mapping_key(mid, batch)
+                previous = mapping.get(key)
+                if previous is not None and previous != runtime_uuid:
+                    raise BootstrapError(
+                        f"conflicting compatibility runtime mapping for {mid} in B{batch:03d}"
+                    )
+                mapping[key] = runtime_uuid
+            scoped_rows_resolved += 1
+
+        if observed_batches - covered_batches:
+            uncovered = sorted(observed_batches - covered_batches)
+            raise BootstrapError(
+                f"compatibility usage for {mid} is outside declared scopes; "
+                f"first_uncovered_batch=B{uncovered[0]:03d}"
+            )
 
     return {
         "catalogue_rows": len(catalogue_rows),
+        "catalogue_unique_source_ids": len(catalogue_by_mid),
         "unknown_used_resolved": len(unknown_used),
+        "scoped_rows_resolved": scoped_rows_resolved,
+        "scoped_uuid_collisions_resolved": scoped_uuid_collisions_resolved,
         "inserted": inserted,
         "already_present": already_present,
         "cross_subtopic_ids_preserved": cross_subtopic_ids,
@@ -1202,6 +1361,8 @@ def compatibility_for(cur: psycopg.Cursor, row: dict[str, str], qtid: uuid.UUID)
     status = str(hit["compatibility_status"])
     if status == "NOT_SUITABLE":
         raise BootstrapError(f"NOT_SUITABLE question rejected: {row['external_id']}")
+    # Authoring contract says CONDITIONAL items are emitted only when the guardrail is satisfied.
+    # The repository consolidation validation is required to be PASS before we reach this point.
     guarded = status == "CONDITIONAL"
     return status, guarded
 
@@ -1318,7 +1479,13 @@ def upsert_questions(
             else:
                 mid = stage7_map.get(old_mid)
                 if mid is None:
-                    raise BootstrapError(f"unresolved historical misconception {old_mid} in {row['external_id']} option {letter}")
+                    batch = _question_batch_number(row["external_id"])
+                    mid = stage7_map.get(_compatibility_batch_mapping_key(old_mid, batch))
+                if mid is None:
+                    raise BootstrapError(
+                        f"unresolved historical misconception {old_mid} in "
+                        f"{row['external_id']} option {letter}"
+                    )
             cur.execute(
                 """
                 INSERT INTO question_options(question_id,position,option_text,locale,explanation,misconception_id)
@@ -1747,6 +1914,8 @@ def main(argv: list[str] | None = None) -> int:
             )
             step["detail"] = (
                 f"resolved={qbank_compatibility['unknown_used_resolved']}; "
+                f"scoped_rows={qbank_compatibility['scoped_rows_resolved']}; "
+                f"cross_scope_uuid_collisions={qbank_compatibility['scoped_uuid_collisions_resolved']}; "
                 f"inserted={qbank_compatibility['inserted']}; "
                 f"already_present={qbank_compatibility['already_present']}"
             )
