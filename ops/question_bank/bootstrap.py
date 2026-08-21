@@ -19,7 +19,7 @@ from typing import Any
 import psycopg
 from psycopg.rows import dict_row
 
-BOOTSTRAP_VERSION = "question-bank-bootstrap-v1.0.1"
+BOOTSTRAP_VERSION = "question-bank-bootstrap-v1.0.0"
 WORKFLOW_VERSION = "question-qa-workflow-v0.9.0"
 CANONICAL_PUBLICATION_VERSION = "canonical-question-bank-publication-v1.0.0"
 CANONICAL_PUBLISHER_EXTERNAL_ID = "canonical-question-bank-publisher-v1.0"
@@ -27,18 +27,14 @@ SYSTEM_VERSION_COMPONENT = "question_bank.canonical_seed"
 STAGE23_MARKER = "STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT"
 QB_COMPATIBILITY_CATALOGUE_VERSION = "question-bank-misconception-compatibility-v1.0.0"
 QB_COMPATIBILITY_FAMILY = "QUESTION_BANK_COMPATIBILITY"
-QB_COMPATIBILITY_RELATIVE_DIR = Path(
-    "data/question_bank/full/v1.0/compatibility"
-)
-QB_COMPATIBILITY_GLOB = (
+QB_COMPATIBILITY_DIRECTORY = Path("data/question_bank/full/v1.0/compatibility")
+QB_COMPATIBILITY_FILE_PATTERN = (
     "question_bank_misconception_compatibility_L??_B???-B???_v1.0.csv"
 )
 QB_COMPATIBILITY_FILENAME_RE = re.compile(
-    r"question_bank_misconception_compatibility_L(?P<lesson>\d{2})_"
-    r"B(?P<start>\d{3})-B(?P<end>\d{3})_v1\.0\.csv"
+    r"^question_bank_misconception_compatibility_"
+    r"(L\d{2})_(B\d{3})-(B\d{3})_v1\.0\.csv$"
 )
-QB_COMPATIBILITY_EXPECTED_LESSONS = set(range(1, 53))
-QB_COMPATIBILITY_EXPECTED_BATCHES = set(range(1, 239))
 QB_COMPATIBILITY_HEADER = [
     "catalogue_version", "misconception_id", "home_subtopic_id", "home_subtopic_code",
     "question_bank_scope", "first_external_id", "use_count", "subtopic_codes_seen",
@@ -331,7 +327,7 @@ def _failure_hints(stage_code: str, exc: BaseException) -> list[str]:
             "If more than one historical misconception matches a recovered concept, fix the source mapping instead of guessing.",
         ],
         "S06": [
-            "Check the 52 versioned lesson-level Question Bank misconception compatibility catalogues and their L01-L52 / B001-B238 scope metadata.",
+            "Check the 52 lesson-scoped Question Bank misconception compatibility catalogues and each filename/question_bank_scope pair.",
             "Unknown diagnostic UUIDs must be present in Stage7 or in the checked-in compatibility bridge; new IDs fail closed.",
         ],
         "S07": [
@@ -578,12 +574,12 @@ def load_repository_seed(
         relative = Path(str(raw_name))
         if relative.is_absolute() or ".." in relative.parts:
             raise BootstrapError(f"unsafe Question Bank seed source path: {raw_name}")
-        source = root / relative
-        header, source_rows = read_csv(source)
+        source_path = root / relative
+        header, source_rows = read_csv(source_path)
         if header != EXPECTED_HEADER:
             raise BootstrapError(f"Question Bank seed source has non-Stage10 header: {relative}")
         rows.extend(source_rows)
-        source_hashes.append((relative.as_posix(), sha256_file(source)))
+        source_hashes.append((relative.as_posix(), sha256_file(source_path)))
 
     if not rows:
         raise BootstrapError("Question Bank repository seed is empty")
@@ -843,11 +839,6 @@ def seed_stage7_and_build_map(cur: psycopg.Cursor, root: Path) -> tuple[dict[str
         mapping[old] = old_uuid
         inserted += 1
 
-    # Current canonical Question Bank authoring artifacts can reference the
-    # recovered Stage7 v1.0 deterministic UUIDs, while the database keeps the
-    # historical v0.9 misconception UUIDs as its canonical identity. Resolve
-    # recovered IDs as aliases to the already-seeded historical rows instead of
-    # creating duplicate misconception concepts.
     recovered_path = root / "data/question_authoring/stage7/stage7_misconception_catalogue_recovered_v1.0.csv"
     _, recovered_rows = read_csv(recovered_path)
     for r in recovered_rows:
@@ -875,10 +866,6 @@ def seed_stage7_and_build_map(cur: psycopg.Cursor, root: Path) -> tuple[dict[str
             if len(exact_statement) == 1:
                 matches = exact_statement
 
-        # A recovered package can carry revised wording while preserving the
-        # original misconception concept. Prefer exact statement identity, then
-        # fall back to a unique subtopic+family concept. Never guess across
-        # multiple historical concepts.
         if len(matches) == 0 and statement:
             cur.execute(
                 """
@@ -910,128 +897,128 @@ def seed_stage7_and_build_map(cur: psycopg.Cursor, root: Path) -> tuple[dict[str
 
 
 def load_qbank_compatibility_catalogue(root: Path) -> list[dict[str, str]]:
-    """Load lesson-level compatibility bridges for legacy Question Bank IDs.
+    """Load all lesson-scoped compatibility bridges for legacy Question Bank IDs.
 
-    The checked-in v1.0 compatibility source is lesson-oriented: exactly one
-    file for each L01-L52, with filename batch ranges covering B001-B238
-    without gaps or overlaps. Canonical Stage7 identities still win; these
+    The repository stores one compatibility CSV per lesson (L01-L52). Each file
+    declares its own contiguous batch scope in the filename and in the
+    question_bank_scope column. Canonical Stage7 identities still win; these
     rows only preserve already-authored diagnostic UUID references.
     """
-    directory = root / QB_COMPATIBILITY_RELATIVE_DIR
+    directory = root / QB_COMPATIBILITY_DIRECTORY
     if not directory.is_dir():
         raise BootstrapError(
             f"Question Bank misconception compatibility directory missing: {directory}"
         )
 
-    paths = sorted(directory.glob(QB_COMPATIBILITY_GLOB))
-    if len(paths) != len(QB_COMPATIBILITY_EXPECTED_LESSONS):
+    paths = list(directory.glob(QB_COMPATIBILITY_FILE_PATTERN))
+    if not paths:
         raise BootstrapError(
-            "Question Bank misconception compatibility catalogue file-count drift: "
-            f"expected={len(QB_COMPATIBILITY_EXPECTED_LESSONS)} actual={len(paths)}"
+            f"no lesson-scoped Question Bank misconception compatibility files found: {directory}"
         )
 
-    lessons_seen: set[int] = set()
-    batches_seen: set[int] = set()
-    merged_rows: list[dict[str, str]] = []
-
+    parsed_paths: list[tuple[int, Path, str, str, str]] = []
     for path in paths:
         match = QB_COMPATIBILITY_FILENAME_RE.fullmatch(path.name)
         if match is None:
             raise BootstrapError(
-                f"Question Bank misconception compatibility filename drift: {path.name}"
+                f"invalid Question Bank misconception compatibility filename: {path.name}"
             )
+        lesson_code, batch_start, batch_end = match.groups()
+        parsed_paths.append(
+            (int(lesson_code[1:]), path, lesson_code, batch_start, batch_end)
+        )
 
-        lesson_no = int(match.group("lesson"))
-        batch_start = int(match.group("start"))
-        batch_end = int(match.group("end"))
-        if lesson_no in lessons_seen:
-            raise BootstrapError(
-                f"duplicate Question Bank compatibility lesson file: L{lesson_no:02d}"
-            )
-        lessons_seen.add(lesson_no)
+    parsed_paths.sort(key=lambda item: item[0])
 
-        if batch_start > batch_end:
-            raise BootstrapError(
-                f"invalid compatibility batch range in {path.name}: "
-                f"B{batch_start:03d}-B{batch_end:03d}"
-            )
-        file_batches = set(range(batch_start, batch_end + 1))
-        overlap = batches_seen & file_batches
-        if overlap:
-            first_overlap = min(overlap)
-            raise BootstrapError(
-                f"overlapping Question Bank compatibility batch B{first_overlap:03d} "
-                f"at {path.name}"
-            )
-        batches_seen.update(file_batches)
+    lesson_numbers = [lesson_no for lesson_no, *_ in parsed_paths]
+    expected_lessons = list(range(1, 53))
+    if lesson_numbers != expected_lessons:
+        missing = sorted(set(expected_lessons) - set(lesson_numbers))
+        duplicate = sorted(
+            lesson_no
+            for lesson_no in set(lesson_numbers)
+            if lesson_numbers.count(lesson_no) > 1
+        )
+        extra = sorted(set(lesson_numbers) - set(expected_lessons))
+        raise BootstrapError(
+            "Question Bank misconception compatibility lesson coverage drift: "
+            f"expected L01-L52 exactly; missing={missing}; duplicate={duplicate}; extra={extra}"
+        )
 
-        header, file_rows = read_csv(path)
+    ids: set[str] = set()
+    all_rows: list[dict[str, str]] = []
+
+    for _, path, lesson_code, batch_start, batch_end in parsed_paths:
+        expected_scope = f"{batch_start}-{batch_end}"
+        header, rows = read_csv(path)
         if header != QB_COMPATIBILITY_HEADER:
             raise BootstrapError(
-                f"Question Bank misconception compatibility catalogue header/version drift: "
-                f"{path.name}"
+                "Question Bank misconception compatibility catalogue "
+                f"header/version drift: {path.name}"
             )
-        if not file_rows:
+        if not rows:
             raise BootstrapError(
                 f"Question Bank misconception compatibility catalogue is empty: {path.name}"
             )
 
-        expected_scope = f"B{batch_start:03d}-B{batch_end:03d}"
-        for line_no, row in enumerate(file_rows, start=2):
+        for n, row in enumerate(rows, start=2):
+            location = f"{path.name}:{n}"
+            if row.get("catalogue_version", "").strip() != QB_COMPATIBILITY_CATALOGUE_VERSION:
+                raise BootstrapError(
+                    f"compatibility catalogue version mismatch at {location}"
+                )
+
+            mid = row.get("misconception_id", "").strip()
+            sid = row.get("home_subtopic_id", "").strip()
+            code = row.get("home_subtopic_code", "").strip()
+            if not mid or not sid or not code:
+                raise BootstrapError(
+                    f"compatibility catalogue misses id/subtopic at {location}"
+                )
+
+            try:
+                uuid.UUID(mid)
+                uuid.UUID(sid)
+            except ValueError as exc:
+                raise BootstrapError(
+                    f"invalid UUID in compatibility catalogue at {location}"
+                ) from exc
+
+            if mid in ids:
+                raise BootstrapError(
+                    f"duplicate compatibility misconception_id across lesson catalogues: {mid}"
+                )
+            ids.add(mid)
+
+            if row.get("family", "").strip() != QB_COMPATIBILITY_FAMILY:
+                raise BootstrapError(f"compatibility family drift at {location}")
+
             actual_scope = row.get("question_bank_scope", "").strip()
             if actual_scope != expected_scope:
                 raise BootstrapError(
-                    "compatibility scope drift at "
-                    f"{path.name}:{line_no}; expected={expected_scope} actual={actual_scope!r}"
+                    f"compatibility scope drift at {location}: "
+                    f"filename declares {expected_scope}, row declares {actual_scope or '<empty>'}"
                 )
-            merged_rows.append(row)
 
-    if lessons_seen != QB_COMPATIBILITY_EXPECTED_LESSONS:
-        missing = sorted(QB_COMPATIBILITY_EXPECTED_LESSONS - lessons_seen)
-        extra = sorted(lessons_seen - QB_COMPATIBILITY_EXPECTED_LESSONS)
-        raise BootstrapError(
-            f"Question Bank compatibility lesson coverage drift: missing={missing} extra={extra}"
-        )
-    if batches_seen != QB_COMPATIBILITY_EXPECTED_BATCHES:
-        missing = sorted(QB_COMPATIBILITY_EXPECTED_BATCHES - batches_seen)
-        extra = sorted(batches_seen - QB_COMPATIBILITY_EXPECTED_BATCHES)
-        raise BootstrapError(
-            f"Question Bank compatibility batch coverage drift: missing={missing} extra={extra}"
-        )
-    if not merged_rows:
-        raise BootstrapError("Question Bank misconception compatibility catalogues are empty")
+            if not code.startswith(f"{lesson_code}-S"):
+                raise BootstrapError(
+                    f"compatibility home subtopic lesson drift at {location}: "
+                    f"filename lesson={lesson_code}, home_subtopic_code={code}"
+                )
 
-    ids: set[str] = set()
-    for n, row in enumerate(merged_rows, start=1):
-        if row.get("catalogue_version", "").strip() != QB_COMPATIBILITY_CATALOGUE_VERSION:
-            raise BootstrapError(
-                f"compatibility catalogue version mismatch at merged row {n}"
-            )
-        mid = row.get("misconception_id", "").strip()
-        sid = row.get("home_subtopic_id", "").strip()
-        code = row.get("home_subtopic_code", "").strip()
-        if not mid or not sid or not code:
-            raise BootstrapError(
-                f"compatibility identity fields missing at merged row {n}"
-            )
-        try:
-            uuid.UUID(mid)
-            uuid.UUID(sid)
-        except ValueError as exc:
-            raise BootstrapError(
-                f"invalid UUID in compatibility catalogue at merged row {n}"
-            ) from exc
-        if mid in ids:
-            raise BootstrapError(f"duplicate compatibility misconception_id: {mid}")
-        ids.add(mid)
-        if row.get("family", "").strip() != QB_COMPATIBILITY_FAMILY:
-            raise BootstrapError(f"compatibility family drift at merged row {n}")
-        scope = row.get("question_bank_scope", "").strip()
-        if re.fullmatch(r"B\d{3}-B\d{3}", scope) is None:
-            raise BootstrapError(f"compatibility scope format drift at merged row {n}")
-        if not row.get("statement_fa", "").strip():
-            raise BootstrapError(f"compatibility statement missing at merged row {n}")
-    return merged_rows
+            if not row.get("statement_fa", "").strip():
+                raise BootstrapError(
+                    f"compatibility statement missing at {location}"
+                )
+
+            all_rows.append(row)
+
+    if not all_rows:
+        raise BootstrapError(
+            "Question Bank misconception compatibility catalogues contain no rows"
+        )
+    return all_rows
+
 
 
 def seed_qbank_compatibility_misconceptions(
@@ -1044,7 +1031,8 @@ def seed_qbank_compatibility_misconceptions(
 
     Canonical Stage7 identities always win.  This bridge is intentionally
     compatibility-only: it is limited to IDs explicitly checked into the
-    versioned L01-L52 / B001-B238 catalogues and fails closed on any new unknown ID.
+    versioned lesson-scoped L01-L52 catalogues and fails closed on any new
+    unknown ID.
     """
     catalogue_rows = load_qbank_compatibility_catalogue(root)
     by_id = {row["misconception_id"].strip(): row for row in catalogue_rows}
@@ -1214,8 +1202,6 @@ def compatibility_for(cur: psycopg.Cursor, row: dict[str, str], qtid: uuid.UUID)
     status = str(hit["compatibility_status"])
     if status == "NOT_SUITABLE":
         raise BootstrapError(f"NOT_SUITABLE question rejected: {row['external_id']}")
-    # Authoring contract says CONDITIONAL items are emitted only when the guardrail is satisfied.
-    # The repository consolidation validation is required to be PASS before we reach this point.
     guarded = status == "CONDITIONAL"
     return status, guarded
 
