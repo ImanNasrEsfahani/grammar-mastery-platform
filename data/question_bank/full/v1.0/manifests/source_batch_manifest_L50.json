@@ -11,7 +11,7 @@
   },
   "canonical_source": {
     "path": "data/question_bank/full/v1.0/master/question_bank_full_L50.csv",
-    "sha256": "a207639325613eac6e49830bd394f115c139444eb40f281208e2b0ff84367595",
+    "sha256": "762cd7b9dba2d44329a8bc63c9a02a36592eb556d7473eba320c0a128906595a",
     "rows": 233,
     "schema_columns": 46
   },
@@ -61,5 +61,5 @@
   ],
   "stage23_status": "STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT",
   "stage23_runtime_executed": false,
-  "provenance_note": "Lesson-native manifest created for the 52-file canonical architecture. Batch ownership and row counts are derived from canonical external_id values. Historical per-batch source artifact hashes remain anchored by the referenced legacy manifest path, SHA-256, and historical commit; they are not silently rewritten."
+  "provenance_note": "Canonical source SHA-256 updated after tags-only normalization. Historical batch artifact hashes remain unchanged."
 }

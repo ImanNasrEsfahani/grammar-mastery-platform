@@ -1,5 +1,5 @@
 {
-  "validation_version": "question-bank-static-consolidation-validation-v1.6-final",
+  "validation_version": "question-bank-static-consolidation-validation-v1.7-tag-normalization",
   "status": "PASS_STATIC_CONSOLIDATION",
   "scope": {
     "base_existing": "B001-B183 / 8175 rows",
@@ -12,11 +12,10 @@
     "full_plan_status": "COMPLETE_B001_B238"
   },
   "repository": {
-    "github_main_commit_reviewed": "45b6272478a841f2747023a4369aea47448ecbeb",
+    "github_main_commit_reviewed": "a0ab66aaf6a921b8828dc24b5e8cc3e079cc89f7",
     "branch": "main",
     "mode": "READ_ONLY",
-    "github_writes_performed": false,
-    "latest_repository_batch_before_overlay": "B183"
+    "github_writes_performed": false
   },
   "schema": {
     "schema_version": "question-import-schema-v0.9.0",
@@ -32,110 +31,93 @@
     "all_explanations_nonempty": true,
     "media_type_all_none": true
   },
-  "extension_counts": {
-    "difficulty": {
-      "EASY": 399,
-      "HARD": 857,
-      "MEDIUM": 865,
-      "VERY_HARD": 340
-    },
-    "question_type": {
-      "CLOZE_CONTEXT": 421,
-      "CLOZE_SINGLE": 243,
-      "CONJUGATION": 91,
-      "CONTRAST_RULES": 247,
-      "CORRECT_SENTENCE": 237,
-      "DIALOGUE_COMPLETE": 251,
-      "ERROR_LOCATION": 103,
-      "FA_TO_FR": 63,
-      "FR_TO_FA": 158,
-      "INCORRECT_SENTENCE": 153,
-      "PREPOSITION_CHOICE": 79,
-      "PRONOUN_CHOICE": 12,
-      "REGISTER_CHOICE": 24,
-      "REWRITE_EQUIV": 219,
-      "TENSE_CHOICE": 160
-    },
-    "batch_count": 55
-  },
   "registry": {
     "rows": 10636,
     "external_id_unique": true,
     "normalized_stem_duplicate_groups": 0,
     "fingerprint_duplicate_groups": 0,
     "historical_signatures_source": "B238 cumulative registry",
-    "b229_historical_registry_rows": 50,
-    "b230_difficulty_reconciled_external_id": "GMP-FULL-B230-Q082",
-    "historical_dedupe_hashes_retained_after_b230_difficulty_metadata_repair": true
+    "historical_dedupe_hashes_retained_after_tag_metadata_repair": true
   },
-  "b229_recovery": {
-    "status": "RECOVERED_FOR_INTEGRATION",
-    "original_drive_zip_found": false,
-    "row_count": 50,
-    "identity_fields_from_b238_registry": [
-      "external_id",
-      "lesson_id",
-      "lesson_code",
-      "subtopic_id",
-      "subtopic_code",
-      "question_type",
-      "difficulty",
-      "status",
-      "normalized_stem",
-      "correct_text",
-      "source_ref"
+  "tag_normalization_repair": {
+    "status": "PASS",
+    "affected_questions": 1601,
+    "affected_lessons": [
+      "L43",
+      "L44",
+      "L45",
+      "L46",
+      "L47",
+      "L48",
+      "L49",
+      "L50"
     ],
-    "reconstructed_fields": [
-      "stem presentation capitalization",
-      "option_a..option_d",
-      "correct_option placement",
-      "explanations",
-      "misconception option mapping",
-      "standard Stage10 metadata"
+    "problematic_raw_token_count": 11,
+    "true_semantic_unknown_count": 0,
+    "mapping": {
+      "aspect": "TAG029",
+      "condition_hypothesis": "TAG025",
+      "duration": "TAG018",
+      "future": "TAG003",
+      "interrogation": "TAG007",
+      "nonfinite_form": "TAG030",
+      "past": "TAG002",
+      "register_variation": "TAG010",
+      "reported_speech": "TAG022",
+      "subordination": "TAG027",
+      "temporal_reference": "TAG017"
+    },
+    "allowed_changed_columns": [
+      "tags"
     ],
-    "original_byte_identity_claimed": false,
-    "validation": "validation/batches/question_bank_full_B229_L51_P01_validation.json"
+    "changed_columns_observed": [
+      "tags"
+    ],
+    "non_tags_changes": 0,
+    "row_count_changes": 0,
+    "external_id_changes": 0,
+    "schema_changes": 0,
+    "status_changes": 0,
+    "all_repaired_tags_controlled_TAG001_TAG035": true,
+    "noncanonical_slug_tokens_remaining_in_repaired_scope": 0,
+    "baseline_byte_identity_against_current_github_manifest_verified_for_all_affected_lessons": true,
+    "old_hashes": {
+      "L43": "39bc6e0478bd0c8ac0b7f87b1b9105d483cf91f28b256879a6f813717c5c3498",
+      "L44": "a5c65c7b2fcf7d9ce08dfc44d91468cf92982a61ca9dec70aaf581d1581f873d",
+      "L45": "a4acb8feaeebbd1f6d55ccb495b1fdca221bcf916da27dd43ef469d0f7191486",
+      "L46": "89b6ef92a2acd2e38387034872e56ee3d3475d0f093d767ecef8b83cdabe5e23",
+      "L47": "b488293cebce271d4a3d4b691b14aa294f74cb39b7728520ec7ed2386d07c0ba",
+      "L48": "273741b924a6a498f943220009f168745c043a2f782bb856da1551a5c0a1a68b",
+      "L49": "692909eee9ee6216f7b99268c1590b7a5e9f603e4895fe7592fe65c6d942973e",
+      "L50": "a207639325613eac6e49830bd394f115c139444eb40f281208e2b0ff84367595"
+    },
+    "new_hashes": {
+      "L43": "340389f98dcbe47c6e96c15c2f4f9a21da872986e9090f30429a5f9a983684f9",
+      "L44": "34b0bd563b1acb6f261b8524260737c4afefc499ccd87ddd0a26cdc6bfbc2509",
+      "L45": "2a584a3c0b4a63db74ff3ae07c2ee5651e9280c110e53cfc6711378c27469e66",
+      "L46": "70164f761d4518e3520a8e45c30a6299ec1478aa6bc6e11defd15c20c4fe4611",
+      "L47": "2e9afaa66f98e63406256a6eb99dd907cc77652e462bbb5663d51064c2689dff",
+      "L48": "62be3c59e0e0bd0e2fcd0b0a586d0c97c0a9dcfaba85280a0d01970cd4aac0d4",
+      "L49": "c8db825d8a6b52085ee0775c5ec3641fafb3e0687efe3faf0535ffb50ffaddda",
+      "L50": "762cd7b9dba2d44329a8bc63c9a02a36592eb556d7473eba320c0a128906595a"
+    }
   },
-  "batch_validation": {
-    "batches_checked": 55,
-    "all_source_or_recovery_validations_pass_static": true,
-    "stage23_marker_present_in_all_batch_validation": true
+  "prerequisite_reconciliation": {
+    "status": "REPAIRED_DURING_STAGE08",
+    "issue": "Stage05/Stage07 generated audit lists used lesson-ordinal Q suffixes for some batches instead of the authored external_id values preserved in canonical source rows.",
+    "repair": "Re-derived the exact affected external_id set from byte-identical current canonical baselines before applying the tags-only mapping.",
+    "question_content_changed_by_reconciliation": false
+  },
+  "plan_conformance": {
+    "source": "question_bank_full_batch_plan_v1.0.xlsx",
+    "question_count_target": 10636,
+    "question_count_actual": 10636,
+    "status": "PASS"
   },
   "errors": [],
   "stage23": {
     "status": "STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT",
     "runtime_executed": false,
     "import_preview_commit_executed": false
-  },
-  "plan_conformance": {
-    "source": "question_bank_full_batch_plan_v1.0.xlsx",
-    "batches_checked": 55,
-    "question_count_target_B184_B238": 2461,
-    "question_count_actual_B184_B238": 2461,
-    "batch_question_counts_all_match": true,
-    "batch_difficulty_quotas_all_match_after_targeted_repair": true,
-    "repairs": [
-      {
-        "batch_id": "B230",
-        "external_id": "GMP-FULL-B230-Q082",
-        "field": "difficulty",
-        "from": "EASY",
-        "to": "VERY_HARD",
-        "difficulty_score_initial_from": 1.45,
-        "difficulty_score_initial_to": 3.55,
-        "reason": "B230 source validation/artifact used 8E/15M/20H/7VH but official Batch Plan requires 7E/15M/20H/8VH.",
-        "content_changed": false
-      }
-    ],
-    "external_id_policy": "Preserved authored external IDs exactly; no renumbering was performed. Some earlier source batches use batch-local Q001.. suffixes, while later source batches use lesson-ordinal suffixes; batch prefixes keep IDs globally unique.",
-    "status": "PASS"
-  },
-  "integration_repairs": [
-    {
-      "batch_id": "B230",
-      "external_id": "GMP-FULL-B230-Q082",
-      "repair_type": "difficulty_metadata_only",
-      "content_changed": false
-    }
-  ]
+  }
 }

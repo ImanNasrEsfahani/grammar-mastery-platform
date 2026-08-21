@@ -1,6 +1,6 @@
 {
-  "manifest_version": "question-bank-seed-integrity-v1.1",
-  "generated_at_utc": "2026-08-20T23:56:52.200133+00:00",
+  "manifest_version": "question-bank-seed-integrity-v1.2-tag-normalization",
+  "generated_at_utc": "2026-08-21T02:54:40.335513+00:00",
   "catalog": {
     "path": "data/question_bank/full/v1.0/master/question_bank_seed_catalog.json",
     "catalog_version": "question-bank-repository-seed-catalog-v1.0",
@@ -223,42 +223,42 @@
     {
       "path": "data/question_bank/full/v1.0/master/question_bank_full_L43.csv",
       "rows": 256,
-      "sha256": "39bc6e0478bd0c8ac0b7f87b1b9105d483cf91f28b256879a6f813717c5c3498"
+      "sha256": "340389f98dcbe47c6e96c15c2f4f9a21da872986e9090f30429a5f9a983684f9"
     },
     {
       "path": "data/question_bank/full/v1.0/master/question_bank_full_L44.csv",
       "rows": 198,
-      "sha256": "a5c65c7b2fcf7d9ce08dfc44d91468cf92982a61ca9dec70aaf581d1581f873d"
+      "sha256": "34b0bd563b1acb6f261b8524260737c4afefc499ccd87ddd0a26cdc6bfbc2509"
     },
     {
       "path": "data/question_bank/full/v1.0/master/question_bank_full_L45.csv",
       "rows": 167,
-      "sha256": "a4acb8feaeebbd1f6d55ccb495b1fdca221bcf916da27dd43ef469d0f7191486"
+      "sha256": "2a584a3c0b4a63db74ff3ae07c2ee5651e9280c110e53cfc6711378c27469e66"
     },
     {
       "path": "data/question_bank/full/v1.0/master/question_bank_full_L46.csv",
       "rows": 156,
-      "sha256": "89b6ef92a2acd2e38387034872e56ee3d3475d0f093d767ecef8b83cdabe5e23"
+      "sha256": "70164f761d4518e3520a8e45c30a6299ec1478aa6bc6e11defd15c20c4fe4611"
     },
     {
       "path": "data/question_bank/full/v1.0/master/question_bank_full_L47.csv",
       "rows": 230,
-      "sha256": "b488293cebce271d4a3d4b691b14aa294f74cb39b7728520ec7ed2386d07c0ba"
+      "sha256": "2e9afaa66f98e63406256a6eb99dd907cc77652e462bbb5663d51064c2689dff"
     },
     {
       "path": "data/question_bank/full/v1.0/master/question_bank_full_L48.csv",
       "rows": 144,
-      "sha256": "273741b924a6a498f943220009f168745c043a2f782bb856da1551a5c0a1a68b"
+      "sha256": "62be3c59e0e0bd0e2fcd0b0a586d0c97c0a9dcfaba85280a0d01970cd4aac0d4"
     },
     {
       "path": "data/question_bank/full/v1.0/master/question_bank_full_L49.csv",
       "rows": 217,
-      "sha256": "692909eee9ee6216f7b99268c1590b7a5e9f603e4895fe7592fe65c6d942973e"
+      "sha256": "c8db825d8a6b52085ee0775c5ec3641fafb3e0687efe3faf0535ffb50ffaddda"
     },
     {
       "path": "data/question_bank/full/v1.0/master/question_bank_full_L50.csv",
       "rows": 233,
-      "sha256": "a207639325613eac6e49830bd394f115c139444eb40f281208e2b0ff84367595"
+      "sha256": "762cd7b9dba2d44329a8bc63c9a02a36592eb556d7473eba320c0a128906595a"
     },
     {
       "path": "data/question_bank/full/v1.0/master/question_bank_full_L51.csv",
@@ -272,12 +272,13 @@
     }
   ],
   "actual_total_rows": 10636,
-  "aggregate_digest": "e1743377ecf2a1dce683006e9b0805e46eddde4eb535e170e476dc85e27e5b7f",
+  "aggregate_digest": "2765bda5fb2e06c1b7289d4bb3d992f3c46226f76003db648fbd1d6a0f18aa95",
+  "aggregate_digest_algorithm": "sha256 of UTF-8 L01..L52 lines: path|rows|sha256 plus LF",
   "validation_artifact": {
     "path": "data/question_bank/full/v1.0/validation/question_bank_full_B001_B238_L01_L52_validation.json",
-    "sha256": "ff9ccbb8f0bca383bd7df8fd4a3b05410251cf20f2ad363ceb8510a3c92cdfaa"
+    "sha256": "d02dfc5189c3b276de895911ccf449cb491d75fbe97fbe53964d577584ca2b56"
   },
   "stage23": "STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT",
   "stage23_runtime_executed": false,
-  "note": "Generated after canonical assembly/repairs; no Stage23 Import/Preview/Commit executed."
+  "note": "Regenerated after tags-only normalization; no Stage23 Import/Preview/Commit executed."
 }
