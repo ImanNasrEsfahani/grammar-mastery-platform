@@ -19,7 +19,7 @@ from typing import Any
 import psycopg
 from psycopg.rows import dict_row
 
-BOOTSTRAP_VERSION = "question-bank-bootstrap-v1.0.4"
+BOOTSTRAP_VERSION = "question-bank-bootstrap-v1.0.5"
 WORKFLOW_VERSION = "question-qa-workflow-v0.9.0"
 CANONICAL_PUBLICATION_VERSION = "canonical-question-bank-publication-v1.0.0"
 CANONICAL_PUBLISHER_EXTERNAL_ID = "canonical-question-bank-publisher-v1.0"
@@ -1262,13 +1262,27 @@ def preflight_question_runtime_references(
                     f"{external_id}/{letter}: unresolved misconception={source_mid}"
                 )
 
-        if len(problems) >= 50:
-            break
-
     if problems:
+        problem_question_ids = sorted(
+            {
+                problem.split(":", 1)[0].split("/", 1)[0]
+                for problem in problems
+            }
+        )
+        question_lines = "\n".join(
+            f"  - {external_id}" for external_id in problem_question_ids
+        )
+        problem_lines = "\n".join(
+            f"  - {problem}" for problem in problems
+        )
         raise BootstrapError(
-            "Question Bank S07/S08 preflight found source/runtime reference problems; "
-            f"first={problems[:10]}; total_capped={len(problems)}"
+            "Question Bank S07/S08 preflight found source/runtime reference problems.\n"
+            f"problem_questions={len(problem_question_ids)}; "
+            f"problem_records={len(problems)}\n"
+            "All affected question IDs:\n"
+            f"{question_lines}\n"
+            "All detected problems:\n"
+            f"{problem_lines}"
         )
 
     return {
