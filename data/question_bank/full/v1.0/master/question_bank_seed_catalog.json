@@ -64,6 +64,7 @@
     "The partition preserves all 10,636 question rows and the original 46-column schema; no question content, options, answers, explanations, metadata, or IDs were changed by the split.",
     "Each lesson source contains rows for exactly one lesson_code, including L18 rows previously split across two range shards.",
     "Multi-tag cells retain their existing bootstrap-required pipe delimiter where present.",
+    "B086 Stage6 compatibility repairs for GMP-FULL-B086-Q028 and GMP-FULL-B086-Q029 are integrated directly into canonical master/question_bank_full_L19.csv; historical repair CSV artifacts are not active seed sources.",
     "B230 retains the existing metadata-only difficulty reconciliation (GMP-FULL-B230-Q082 EASY→VERY_HARD) so the integrated data matches the official B230 7/15/20/8 difficulty quota; question wording/options/answer were unchanged.",
     "B229 retains the previously reconstructed 50 rows recovered from the B238 cumulative registry where the original source ZIP was absent; original B229 byte identity is not claimed.",
     "The Stage26 seed-catalog workflow should consume the 52 lesson-native source files listed in sources as one repository-native seed.",

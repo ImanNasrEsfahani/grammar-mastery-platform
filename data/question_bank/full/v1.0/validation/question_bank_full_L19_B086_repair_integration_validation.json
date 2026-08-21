@@ -1,0 +1,155 @@
+{
+  "validation_version": "question-bank-B086-repair-integration-v1.1",
+  "status": "PASS_REPAIR_INTEGRATION",
+  "base_main_commit_reviewed": "5875eb9fe2cfdbd68e54dcfbddf1b427b3b0082f",
+  "scope": {
+    "lesson": "L19",
+    "batch": "B086",
+    "question_count_total": 10636,
+    "repair_count": 2
+  },
+  "canonical_target": "data/question_bank/full/v1.0/master/question_bank_full_L19.csv",
+  "repaired_external_ids": [
+    "GMP-FULL-B086-Q028",
+    "GMP-FULL-B086-Q029"
+  ],
+  "checks": {
+    "base_52_master_files_verified_against_github_git_blob_sha": true,
+    "schema_columns_46": true,
+    "only_expected_rows_changed": true,
+    "row_count_preserved": true,
+    "stage23_runtime_executed": false
+  },
+  "field_changes": {
+    "GMP-FULL-B086-Q028": {
+      "subtopic_id": {
+        "before": "0cefe77c-491e-4176-b539-4fc913604c14",
+        "after": "123a04f1-09f8-45d6-b6ab-34fcc0b7b778"
+      },
+      "subtopic_code": {
+        "before": "L19-S04",
+        "after": "L19-S03"
+      },
+      "stem": {
+        "before": "Choisissez la forme correcte sous « ne… plus » : « Il ne reste plus ___ eau dans la bouteille. »",
+        "after": "Sur l’étiquette, la quantité est précise : « cent grammes ___ sucre ». Quelle préposition faut-il employer ?"
+      },
+      "option_a": {
+        "before": "d’",
+        "after": "de"
+      },
+      "option_b": {
+        "before": "de l’",
+        "after": "du"
+      },
+      "option_c": {
+        "before": "du",
+        "after": "de la"
+      },
+      "full_explanation": {
+        "before": "La quantité est zéro : le partitif devient « de », élidé devant « eau » en « d’ ».",
+        "after": "Après une quantité précise comme « cent grammes », « de » remplace le partitif : « cent grammes de sucre »."
+      },
+      "explanation_a": {
+        "before": "La quantité est zéro : le partitif devient « de », élidé devant « eau » en « d’ ».",
+        "after": "Correct : une quantité exprimée est suivie de « de »."
+      },
+      "explanation_b": {
+        "before": "Cette option ne respecte pas la règle ciblée. La réponse attendue est « d’ ». La quantité est zéro : le partitif devient « de », élidé devant « eau » en « d’ ».",
+        "after": "Incorrect : « du » est un partitif ; il est remplacé par « de » après une quantité exprimée."
+      },
+      "explanation_c": {
+        "before": "Cette option ne respecte pas la règle ciblée. La réponse attendue est « d’ ». La quantité est zéro : le partitif devient « de », élidé devant « eau » en « d’ ».",
+        "after": "Incorrect : « de la » est un partitif ; la quantité « cent grammes » impose « de »."
+      },
+      "explanation_d": {
+        "before": "Cette option ne respecte pas la règle ciblée. La réponse attendue est « d’ ». La quantité est zéro : le partitif devient « de », élidé devant « eau » en « d’ ».",
+        "after": "Incorrect : « des » ne convient pas après cette expression de quantité ; on emploie « de »."
+      },
+      "misconception_b_id": {
+        "before": "bb1c3fdc-f8c2-5690-a859-c7ac0455164d",
+        "after": "15319091-1d23-56e9-8211-47e713b1d84d"
+      },
+      "misconception_c_id": {
+        "before": "191f6245-5c16-5268-b19f-c60b3e6b72e6",
+        "after": "65c96162-1db3-5193-b29a-17628f0fa59b"
+      },
+      "misconception_d_id": {
+        "before": "5c24b5ce-6f19-5d61-9f31-bf0b4ac29cb9",
+        "after": "0dcb8e0d-1df0-502e-b646-38b28b54a5d6"
+      },
+      "tags": {
+        "before": "TAG006|TAG014",
+        "after": "TAG014"
+      }
+    },
+    "GMP-FULL-B086-Q029": {
+      "subtopic_id": {
+        "before": "c3aa4aea-ddab-4b7d-bbb2-6dc965a6b246",
+        "after": "123a04f1-09f8-45d6-b6ab-34fcc0b7b778"
+      },
+      "subtopic_code": {
+        "before": "L19-S05",
+        "after": "L19-S03"
+      },
+      "stem": {
+        "before": "Quelle suite complète correctement la phrase « La chambre est disponible sans ___ petit déjeuner » ?",
+        "after": "Dans le groupe « un morceau ___ sucre », quelle préposition complète correctement la quantité-forme ?"
+      },
+      "option_b": {
+        "before": "aucun article",
+        "after": "de"
+      },
+      "option_c": {
+        "before": "de",
+        "after": "de la"
+      },
+      "option_d": {
+        "before": "le",
+        "after": "des"
+      },
+      "full_explanation": {
+        "before": "Après « sans » exprimant l’absence, aucun partitif n’est requis : « sans petit déjeuner ».",
+        "after": "Une quantité-forme comme « un morceau » est suivie de « de » : « un morceau de sucre »."
+      },
+      "explanation_a": {
+        "before": "Cette option ne respecte pas la règle ciblée. La réponse attendue est « aucun article ». Après « sans » exprimant l’absence, aucun partitif n’est requis : « sans petit déjeuner ».",
+        "after": "Incorrect : « du » exprimerait une quantité non déterminée ; après « un morceau », on emploie « de »."
+      },
+      "explanation_b": {
+        "before": "Après « sans » exprimant l’absence, aucun partitif n’est requis : « sans petit déjeuner ».",
+        "after": "Correct : « un morceau de sucre » suit la règle quantité exprimée + « de »."
+      },
+      "explanation_c": {
+        "before": "Cette option ne respecte pas la règle ciblée. La réponse attendue est « aucun article ». Après « sans » exprimant l’absence, aucun partitif n’est requis : « sans petit déjeuner ».",
+        "after": "Incorrect : « de la » est partitif et ne suit pas une quantité-forme comme « un morceau »."
+      },
+      "explanation_d": {
+        "before": "Cette option ne respecte pas la règle ciblée. La réponse attendue est « aucun article ». Après « sans » exprimant l’absence, aucun partitif n’est requis : « sans petit déjeuner ».",
+        "after": "Incorrect : « des » ne convient pas ici ; la construction attendue est « un morceau de sucre »."
+      },
+      "misconception_a_id": {
+        "before": "5adb9cce-79a6-53b5-9a87-5057be4d2149",
+        "after": "15319091-1d23-56e9-8211-47e713b1d84d"
+      },
+      "misconception_c_id": {
+        "before": "9c6f98ea-eedc-5b6b-b45d-fde43a69b09d",
+        "after": "65c96162-1db3-5193-b29a-17628f0fa59b"
+      },
+      "misconception_d_id": {
+        "before": "afbb277c-cc1d-56fa-9d1d-e9161e1592b2",
+        "after": "0dcb8e0d-1df0-502e-b646-38b28b54a5d6"
+      },
+      "source_ref": {
+        "before": "Lesson 19; printed p. 86",
+        "after": "Lesson 19; printed p. 88"
+      },
+      "tags": {
+        "before": "TAG005|TAG034",
+        "after": "TAG014"
+      }
+    }
+  },
+  "stage23": "STAGE23_IMPORT_BLOCKED_BY_MANIFEST_HASH_DRIFT",
+  "note": "Repair provenance retained after removal of historical repairs/ artifacts."
+}
