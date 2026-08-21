@@ -19,7 +19,7 @@ from typing import Any
 import psycopg
 from psycopg.rows import dict_row
 
-BOOTSTRAP_VERSION = "question-bank-bootstrap-v1.0.3"
+BOOTSTRAP_VERSION = "question-bank-bootstrap-v1.0.4"
 WORKFLOW_VERSION = "question-qa-workflow-v0.9.0"
 CANONICAL_PUBLICATION_VERSION = "canonical-question-bank-publication-v1.0.0"
 CANONICAL_PUBLISHER_EXTERNAL_ID = "canonical-question-bank-publisher-v1.0"
@@ -39,6 +39,9 @@ QB_COMPATIBILITY_FILENAME_RE = re.compile(
 )
 QB_COMPATIBILITY_EXPECTED_LESSONS = set(range(1, 53))
 QB_COMPATIBILITY_EXPECTED_BATCHES = set(range(1, 239))
+QB_EXTERNAL_ID_RE = re.compile(
+    r"^GMP-FULL-B(?P<batch>\d{3})-Q(?P<question>\d{3})$"
+)
 QB_COMPATIBILITY_SCOPED_UID_NAMESPACE = uuid.UUID(
     "4ccbe0b5-a7e9-5f8c-a345-4a50a5098ee7"
 )
@@ -338,7 +341,7 @@ def _failure_hints(stage_code: str, exc: BaseException) -> list[str]:
             "Unknown diagnostic UUIDs must be present in Stage7 or in the checked-in compatibility bridge; new IDs fail closed.",
         ],
         "S07": [
-            "Use the failing external_id/message to inspect question_type, subtopic, tags and misconception references in the repository source.",
+            "S07 now runs a bulk preflight for question types, subtopics, tags, Stage6 compatibility and misconception resolution before per-question writes.",
             "Verify every distractor has a resolvable misconception, the correct option has none, and all referenced tags/subtopics exist.",
         ],
         "S08": [
@@ -998,14 +1001,29 @@ def load_qbank_compatibility_catalogue(root: Path) -> list[dict[str, str]]:
                     f"home_subtopic_code={home_subtopic_code!r}"
                 )
 
+            declared_subtopic_codes = [
+                code.strip()
+                for code in row.get("subtopic_codes_seen", "").split(";")
+                if code.strip()
+            ]
+            foreign_codes = [
+                code
+                for code in declared_subtopic_codes
+                if not code.startswith(f"{expected_lesson_code}-S")
+            ]
+            if foreign_codes:
+                raise BootstrapError(
+                    "compatibility subtopic_codes_seen lesson drift at "
+                    f"{location}; filename_lesson={expected_lesson_code} "
+                    f"foreign_codes={foreign_codes[:5]}"
+                )
+
             first_external_id = row.get("first_external_id", "").strip()
-            first_batch_match = re.search(
-                r"(?:^|-)B(?P<batch>\\d{3})(?:-|$)", first_external_id
-            )
+            first_batch_match = QB_EXTERNAL_ID_RE.fullmatch(first_external_id)
             if first_batch_match is None:
                 raise BootstrapError(
                     f"compatibility first_external_id format drift at {location}: "
-                    f"{first_external_id!r}"
+                    f"{first_external_id!r}; expected GMP-FULL-B###-Q###"
                 )
             first_batch = int(first_batch_match.group("batch"))
             if not (batch_start <= first_batch <= batch_end):
@@ -1079,16 +1097,186 @@ def _compatibility_scope_bounds(scope: str) -> tuple[int, int]:
 
 
 def _question_batch_number(external_id: str) -> int:
-    match = re.search(r"(?:^|-)B(?P<batch>\d{3})(?:-|$)", external_id.strip())
+    match = QB_EXTERNAL_ID_RE.fullmatch(external_id.strip())
     if match is None:
         raise BootstrapError(
-            f"cannot resolve Question Bank batch from external_id: {external_id!r}"
+            f"invalid Question Bank external_id: {external_id!r}; "
+            "expected GMP-FULL-B###-Q###"
         )
     return int(match.group("batch"))
 
 
 def _compatibility_batch_mapping_key(mid: str, batch: int) -> str:
     return f"{mid}@B{batch:03d}"
+
+
+def validate_question_seed_identity_contract(
+    rows: list[dict[str, str]],
+    *,
+    require_full_batch_coverage: bool,
+) -> dict[str, int]:
+    """Validate Question Bank external IDs before any database mutation."""
+    batches_seen: set[int] = set()
+    per_batch_counts: dict[int, int] = {}
+    bad_examples: list[str] = []
+
+    for row in rows:
+        external_id = row.get("external_id", "").strip()
+        match = QB_EXTERNAL_ID_RE.fullmatch(external_id)
+        if match is None:
+            bad_examples.append(external_id or "<empty>")
+            if len(bad_examples) >= 10:
+                break
+            continue
+
+        batch = int(match.group("batch"))
+        question_no = int(match.group("question"))
+        if batch < 1 or batch > 238 or question_no < 1:
+            bad_examples.append(external_id)
+            if len(bad_examples) >= 10:
+                break
+            continue
+
+        batches_seen.add(batch)
+        per_batch_counts[batch] = per_batch_counts.get(batch, 0) + 1
+
+    if bad_examples:
+        raise BootstrapError(
+            "Question Bank external_id contract drift; expected "
+            "GMP-FULL-B###-Q### with B001-B238 and Q>=001; "
+            f"examples={bad_examples}"
+        )
+
+    if require_full_batch_coverage:
+        expected = set(range(1, 239))
+        if batches_seen != expected:
+            missing = sorted(expected - batches_seen)
+            extra = sorted(batches_seen - expected)
+            raise BootstrapError(
+                "Question Bank seed batch coverage drift: "
+                f"missing={missing[:20]} extra={extra[:20]}"
+            )
+
+    return {
+        "batches_seen": len(batches_seen),
+        "min_questions_per_batch": min(per_batch_counts.values()) if per_batch_counts else 0,
+        "max_questions_per_batch": max(per_batch_counts.values()) if per_batch_counts else 0,
+    }
+
+
+def preflight_question_runtime_references(
+    cur: psycopg.Cursor,
+    rows: list[dict[str, str]],
+    misconception_mapping: dict[str, uuid.UUID],
+) -> dict[str, int]:
+    """Fail once, early, with source/reference problems that would otherwise surface during S07/S08."""
+    cur.execute("SELECT code,id FROM question_types WHERE active=true")
+    qtypes = {str(r["code"]): r["id"] for r in cur.fetchall()}
+
+    cur.execute("SELECT id,subtopic_code FROM grammar_subtopics")
+    subtopics = {str(r["id"]): str(r["subtopic_code"]) for r in cur.fetchall()}
+
+    cur.execute("SELECT code,id FROM tags WHERE status='ACTIVE'")
+    tags = {str(r["code"]): r["id"] for r in cur.fetchall()}
+
+    cur.execute(
+        """
+        SELECT c.subtopic_id, qt.code AS question_type_code,
+               c.compatibility_version, c.compatibility_status
+        FROM subtopic_question_type_compatibility c
+        JOIN question_types qt ON qt.id=c.question_type_id
+        """
+    )
+    compatibility = {
+        (
+            str(r["subtopic_id"]),
+            str(r["question_type_code"]),
+            str(r["compatibility_version"]),
+        ): str(r["compatibility_status"])
+        for r in cur.fetchall()
+    }
+
+    problems: list[str] = []
+    referenced_tags: set[str] = set()
+    referenced_subtopics: set[str] = set()
+    conditional_count = 0
+
+    for row in rows:
+        external_id = row["external_id"].strip()
+        batch = _question_batch_number(external_id)
+        qtype = row["question_type"].strip()
+        sid = row["subtopic_id"].strip()
+        scode = row["subtopic_code"].strip()
+
+        if qtype not in qtypes:
+            problems.append(f"{external_id}: unknown question_type={qtype}")
+
+        actual_scode = subtopics.get(sid)
+        if actual_scode is None:
+            problems.append(f"{external_id}: unknown primary subtopic_id={sid}")
+        elif actual_scode != scode:
+            problems.append(
+                f"{external_id}: primary subtopic code mismatch "
+                f"source={scode} database={actual_scode}"
+            )
+        referenced_subtopics.add(sid)
+
+        for secondary_sid in [
+            x.strip() for x in row["secondary_subtopic_ids"].split("|") if x.strip()
+        ]:
+            referenced_subtopics.add(secondary_sid)
+            if secondary_sid not in subtopics:
+                problems.append(
+                    f"{external_id}: unknown secondary subtopic_id={secondary_sid}"
+                )
+
+        for tag_code in [x.strip() for x in row["tags"].split("|") if x.strip()]:
+            referenced_tags.add(tag_code)
+            if tag_code not in tags:
+                problems.append(f"{external_id}: unknown tag={tag_code}")
+
+        key = (sid, qtype, row["compatibility_version"].strip())
+        status = compatibility.get(key)
+        if status is None:
+            problems.append(
+                f"{external_id}: missing Stage6 compatibility "
+                f"{scode}/{qtype}/{row['compatibility_version'].strip()}"
+            )
+        elif status == "NOT_SUITABLE":
+            problems.append(f"{external_id}: NOT_SUITABLE")
+        elif status == "CONDITIONAL":
+            conditional_count += 1
+
+        correct = row["correct_option"].strip().upper()
+        for letter in "ABCD":
+            if letter == correct:
+                continue
+            source_mid = row[f"misconception_{letter.lower()}_id"].strip()
+            runtime_mid = misconception_mapping.get(source_mid)
+            if runtime_mid is None:
+                runtime_mid = misconception_mapping.get(
+                    _compatibility_batch_mapping_key(source_mid, batch)
+                )
+            if runtime_mid is None:
+                problems.append(
+                    f"{external_id}/{letter}: unresolved misconception={source_mid}"
+                )
+
+        if len(problems) >= 50:
+            break
+
+    if problems:
+        raise BootstrapError(
+            "Question Bank S07/S08 preflight found source/runtime reference problems; "
+            f"first={problems[:10]}; total_capped={len(problems)}"
+        )
+
+    return {
+        "question_types_referenced": len({r["question_type"].strip() for r in rows}),
+        "subtopics_referenced": len(referenced_subtopics),
+        "tags_referenced": len(referenced_tags),
+        "conditional_questions": conditional_count,
+    }
 
 
 def seed_qbank_compatibility_misconceptions(
@@ -1109,6 +1297,20 @@ def seed_qbank_compatibility_misconceptions(
     fail-closed and is validated against the exact questions inside each scope.
     """
     catalogue_rows = load_qbank_compatibility_catalogue(root)
+
+    question_external_ids = {row["external_id"].strip() for row in question_rows}
+    missing_first_external_ids = sorted(
+        {
+            row["first_external_id"].strip()
+            for row in catalogue_rows
+            if row["first_external_id"].strip() not in question_external_ids
+        }
+    )
+    if missing_first_external_ids:
+        raise BootstrapError(
+            "compatibility catalogue first_external_id values absent from Question Bank seed: "
+            f"{missing_first_external_ids[:10]}"
+        )
 
     catalogue_by_mid: dict[str, list[dict[str, str]]] = {}
     for row in catalogue_rows:
@@ -1167,7 +1369,7 @@ def seed_qbank_compatibility_misconceptions(
 
             first_external_id, first_sid, first_code, _ = observed[0]
             observed_codes = sorted({code for _, _, code, _ in observed})
-            declared_codes = sorted(filter(None, row["subtopic_codes_seen"].split(";")))
+            declared_codes = sorted(code.strip() for code in row["subtopic_codes_seen"].split(";") if code.strip())
             if row["first_external_id"].strip() != first_external_id:
                 raise BootstrapError(
                     f"compatibility first_external_id drift for {mid} in {scope}"
@@ -1879,11 +2081,18 @@ def main(argv: list[str] | None = None) -> int:
     try:
         with progress.stage("S01", "Load and validate canonical Question Bank source") as step:
             master, rows, validation, master_sha = load_repository_seed(root, args.master)
+            identity_preflight = validate_question_seed_identity_contract(
+                rows,
+                require_full_batch_coverage=args.master is None,
+            )
             try:
                 source_label = str(master.relative_to(root))
             except ValueError:
                 source_label = str(master)
-            step["detail"] = f"rows={len(rows)}; source={source_label}"
+            step["detail"] = (
+                f"rows={len(rows)}; batches={identity_preflight['batches_seen']}; "
+                f"source={source_label}"
+            )
 
         with progress.stage("S02", "Connect to PostgreSQL") as step:
             conn = connect()
@@ -1920,10 +2129,17 @@ def main(argv: list[str] | None = None) -> int:
                 f"already_present={qbank_compatibility['already_present']}"
             )
 
-        with progress.stage("S07", "Upsert questions, options, tags and subtopics") as step:
+        with progress.stage("S07", "Preflight references and upsert questions/options/tags/subtopics") as step:
+            runtime_preflight = preflight_question_runtime_references(
+                cur, rows, stage7_map
+            )
             target_ids, import_stats = upsert_questions(cur, rows, stage7_map)
             step["detail"] = (
                 f"targets={len(target_ids)}; "
+                f"qtypes={runtime_preflight['question_types_referenced']}; "
+                f"subtopics={runtime_preflight['subtopics_referenced']}; "
+                f"tags={runtime_preflight['tags_referenced']}; "
+                f"conditional={runtime_preflight['conditional_questions']}; "
                 f"inserted={import_stats['inserted_questions']}; "
                 f"repaired_drafts={import_stats['repaired_drafts']}; "
                 f"already_published={import_stats['already_published']}"
