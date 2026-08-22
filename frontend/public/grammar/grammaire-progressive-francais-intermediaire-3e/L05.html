@@ -1,0 +1,2317 @@
+<div class="french-grammar-wrapper fg-lesson-05" dir="rtl">
+
+  <style>
+    /* =========================================================
+       Grammar Mastery Platform — Lesson 05
+       Scoped / isolated styles
+       ========================================================= */
+
+    .fg-lesson-05 {
+      --fg-navy: #17365d;
+      --fg-blue: #245a9b;
+      --fg-blue-soft: #eef5fc;
+      --fg-blue-border: #c9def3;
+
+      --fg-green: #16794b;
+      --fg-green-soft: #edf9f3;
+      --fg-green-border: #b9e3ce;
+
+      --fg-red: #b42318;
+      --fg-red-soft: #fff1ef;
+      --fg-red-border: #f5c2bd;
+
+      --fg-orange: #ad5700;
+      --fg-orange-soft: #fff7e8;
+      --fg-orange-border: #f3d59d;
+
+      --fg-purple: #6941c6;
+      --fg-purple-soft: #f5f0ff;
+      --fg-purple-border: #dacdf7;
+
+      --fg-text: #253247;
+      --fg-muted: #667085;
+      --fg-border: #dde4ec;
+      --fg-bg: #f6f8fb;
+      --fg-white: #ffffff;
+
+      font-family:
+        Vazirmatn,
+        "IRANSansX",
+        "Segoe UI",
+        Tahoma,
+        Arial,
+        sans-serif;
+
+      direction: rtl;
+      text-align: right;
+      color: var(--fg-text);
+      line-height: 1.95;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    .fg-lesson-05 *,
+    .fg-lesson-05 *::before,
+    .fg-lesson-05 *::after {
+      box-sizing: border-box;
+    }
+
+    .fg-lesson-05 .fg-shell {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    .fg-lesson-05 .fg-hero {
+      position: relative;
+      overflow: hidden;
+      padding: 34px 34px 30px;
+      margin-bottom: 28px;
+      border: 1px solid #d6e3f3;
+      border-radius: 24px;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(36, 90, 155, .10), transparent 32%),
+        linear-gradient(135deg, #f8fbff 0%, #edf5ff 100%);
+      box-shadow: 0 10px 32px rgba(23, 54, 93, .08);
+    }
+
+    .fg-lesson-05 .fg-hero::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 7px;
+      height: 100%;
+      background: linear-gradient(
+        180deg,
+        var(--fg-navy),
+        var(--fg-blue)
+      );
+    }
+
+    .fg-lesson-05 .fg-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: #dcecff;
+      color: var(--fg-navy);
+      font-size: .85rem;
+      font-weight: 800;
+    }
+
+    .fg-lesson-05 h1,
+    .fg-lesson-05 h2,
+    .fg-lesson-05 h3,
+    .fg-lesson-05 h4 {
+      color: var(--fg-navy);
+      line-height: 1.55;
+    }
+
+    .fg-lesson-05 h1 {
+      margin: 0 0 6px;
+      font-size: clamp(1.65rem, 4vw, 2.55rem);
+    }
+
+    .fg-lesson-05 h2 {
+      margin: 0 0 18px;
+      font-size: clamp(1.3rem, 3vw, 1.85rem);
+    }
+
+    .fg-lesson-05 h3 {
+      margin: 0 0 12px;
+      font-size: 1.18rem;
+    }
+
+    .fg-lesson-05 h4 {
+      margin: 0 0 8px;
+      font-size: 1.03rem;
+    }
+
+    .fg-lesson-05 p {
+      margin: 0 0 12px;
+    }
+
+    .fg-lesson-05 .fg-fr-title,
+    .fg-lesson-05 .fg-fr {
+      direction: ltr;
+      unicode-bidi: isolate;
+      text-align: left;
+      display: inline-block;
+      font-family:
+        "Segoe UI",
+        Arial,
+        sans-serif;
+      letter-spacing: .01em;
+    }
+
+    .fg-lesson-05 .fg-fr-title {
+      font-weight: 800;
+    }
+
+    .fg-lesson-05 .fg-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 17px;
+    }
+
+    .fg-lesson-05 .fg-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 11px;
+      border: 1px solid var(--fg-blue-border);
+      border-radius: 999px;
+      background: rgba(255,255,255,.78);
+      color: #315577;
+      font-size: .83rem;
+      font-weight: 700;
+    }
+
+    .fg-lesson-05 .fg-section {
+      margin-bottom: 28px;
+      padding: 28px;
+      border: 1px solid var(--fg-border);
+      border-radius: 20px;
+      background: var(--fg-white);
+      box-shadow: 0 5px 18px rgba(16, 24, 40, .045);
+    }
+
+    .fg-lesson-05 .fg-section-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 13px;
+      border-bottom: 2px solid #eef2f6;
+    }
+
+    .fg-lesson-05 .fg-section-number {
+      width: 39px;
+      height: 39px;
+      flex: 0 0 39px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 11px;
+      background: var(--fg-navy);
+      color: white;
+      font-weight: 900;
+      direction: ltr;
+    }
+
+    .fg-lesson-05 .fg-card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .fg-lesson-05 .fg-card-grid.fg-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .fg-lesson-05 .fg-card {
+      padding: 20px;
+      border: 1px solid var(--fg-border);
+      border-radius: 16px;
+      background: #fbfcfe;
+    }
+
+    .fg-lesson-05 .fg-card-blue {
+      border-color: var(--fg-blue-border);
+      background: var(--fg-blue-soft);
+    }
+
+    .fg-lesson-05 .fg-card-green {
+      border-color: var(--fg-green-border);
+      background: var(--fg-green-soft);
+    }
+
+    .fg-lesson-05 .fg-card-orange {
+      border-color: var(--fg-orange-border);
+      background: var(--fg-orange-soft);
+    }
+
+    .fg-lesson-05 .fg-card-purple {
+      border-color: var(--fg-purple-border);
+      background: var(--fg-purple-soft);
+    }
+
+    .fg-lesson-05 .fg-callout {
+      margin: 18px 0;
+      padding: 17px 18px;
+      border: 1px solid;
+      border-right-width: 5px;
+      border-radius: 13px;
+    }
+
+    .fg-lesson-05 .fg-callout strong {
+      display: inline-block;
+      margin-bottom: 3px;
+    }
+
+    .fg-lesson-05 .fg-info {
+      background: var(--fg-blue-soft);
+      border-color: var(--fg-blue-border);
+      border-right-color: var(--fg-blue);
+    }
+
+    .fg-lesson-05 .fg-success {
+      background: var(--fg-green-soft);
+      border-color: var(--fg-green-border);
+      border-right-color: var(--fg-green);
+    }
+
+    .fg-lesson-05 .fg-warning {
+      background: var(--fg-orange-soft);
+      border-color: var(--fg-orange-border);
+      border-right-color: var(--fg-orange);
+    }
+
+    .fg-lesson-05 .fg-danger {
+      background: var(--fg-red-soft);
+      border-color: var(--fg-red-border);
+      border-right-color: var(--fg-red);
+    }
+
+    .fg-lesson-05 .fg-rule {
+      margin: 18px 0;
+      padding: 17px;
+      border-radius: 14px;
+      background: #172f50;
+      color: #fff;
+      direction: ltr;
+      unicode-bidi: isolate;
+      text-align: center;
+      font-family: "Segoe UI", Arial, sans-serif;
+      font-size: 1.04rem;
+      font-weight: 800;
+      line-height: 1.75;
+    }
+
+    .fg-lesson-05 .fg-example {
+      display: block;
+      width: 100%;
+      margin: 10px 0;
+      padding: 12px 15px;
+      border-right: 4px solid var(--fg-green);
+      border-radius: 9px;
+      background: #f5fbf7;
+    }
+
+    .fg-lesson-05 .fg-example .fg-fr {
+      display: block;
+      color: #145d3c;
+      font-weight: 700;
+    }
+
+    .fg-lesson-05 .fg-translation {
+      display: block;
+      margin-top: 3px;
+      color: #475467;
+      font-size: .92rem;
+    }
+
+    .fg-lesson-05 .fg-wrong,
+    .fg-lesson-05 .fg-right {
+      display: block;
+      margin: 7px 0;
+      padding: 9px 12px;
+      border-radius: 8px;
+    }
+
+    .fg-lesson-05 .fg-wrong {
+      background: #fff1f0;
+      color: #9f1c14;
+    }
+
+    .fg-lesson-05 .fg-right {
+      background: #edf9f3;
+      color: #146c43;
+    }
+
+    .fg-lesson-05 .fg-x,
+    .fg-lesson-05 .fg-check {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      margin-left: 5px;
+      font-size: .8rem;
+      font-weight: 900;
+      direction: ltr;
+    }
+
+    .fg-lesson-05 .fg-x {
+      background: #ffd9d5;
+      color: #a62318;
+    }
+
+    .fg-lesson-05 .fg-check {
+      background: #ccebdc;
+      color: #146c43;
+    }
+
+    .fg-lesson-05 .fg-table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      margin: 16px 0 22px;
+      border: 1px solid var(--fg-border);
+      border-radius: 14px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .fg-lesson-05 table {
+      width: 100%;
+      min-width: 650px;
+      border-collapse: collapse;
+      background: white;
+    }
+
+    .fg-lesson-05 th,
+    .fg-lesson-05 td {
+      padding: 13px 15px;
+      border: 1px solid #dce3eb;
+      vertical-align: top;
+    }
+
+    .fg-lesson-05 th {
+      background: var(--fg-navy);
+      color: #fff;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    .fg-lesson-05 tbody tr:nth-child(even) {
+      background: #f8fafc;
+    }
+
+    .fg-lesson-05 tbody tr:hover {
+      background: #f1f6fb;
+    }
+
+    .fg-lesson-05 .fg-table-fr td {
+      direction: ltr;
+      unicode-bidi: isolate;
+      text-align: left;
+    }
+
+    .fg-lesson-05 ul,
+    .fg-lesson-05 ol {
+      margin: 8px 0 15px;
+      padding-right: 24px;
+    }
+
+    .fg-lesson-05 li {
+      margin: 7px 0;
+    }
+
+    .fg-lesson-05 .fg-mini-title {
+      margin: 22px 0 10px;
+      color: var(--fg-blue);
+      font-weight: 900;
+      font-size: 1.03rem;
+    }
+
+    .fg-lesson-05 .fg-flow {
+      display: grid;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .fg-lesson-05 .fg-flow-item {
+      position: relative;
+      padding: 16px 18px;
+      border: 1px solid var(--fg-blue-border);
+      border-radius: 13px;
+      background: #f8fbff;
+    }
+
+    .fg-lesson-05 .fg-flow-item::after {
+      content: "↓";
+      display: block;
+      text-align: center;
+      margin-top: 10px;
+      color: #7e9fc2;
+      font-weight: 900;
+    }
+
+    .fg-lesson-05 .fg-flow-item:last-child::after {
+      display: none;
+    }
+
+    .fg-lesson-05 .fg-exercise {
+      margin-top: 22px;
+      padding: 21px;
+      border: 1px solid var(--fg-border);
+      border-radius: 16px;
+      background: #fcfdff;
+    }
+
+    .fg-lesson-05 .fg-exercise h3 {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .fg-lesson-05 .fg-answer {
+      margin-top: 13px;
+      padding: 14px 16px;
+      border-radius: 11px;
+      background: var(--fg-green-soft);
+      border: 1px solid var(--fg-green-border);
+    }
+
+    .fg-lesson-05 .fg-answer-label {
+      color: var(--fg-green);
+      font-weight: 900;
+      margin-bottom: 7px;
+    }
+
+    .fg-lesson-05 .fg-note {
+      color: var(--fg-muted);
+      font-size: .92rem;
+    }
+
+    .fg-lesson-05 .fg-divider {
+      height: 1px;
+      margin: 23px 0;
+      background: #edf0f4;
+    }
+
+    .fg-lesson-05 .fg-highlight {
+      padding: 1px 5px;
+      border-radius: 5px;
+      background: #fff1b9;
+      color: #604a00;
+      font-weight: 800;
+    }
+
+    .fg-lesson-05 .fg-compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      margin: 17px 0;
+    }
+
+    .fg-lesson-05 .fg-compare > div {
+      min-width: 0;
+    }
+
+    .fg-lesson-05 .fg-compare-title {
+      margin-bottom: 9px;
+      font-size: .92rem;
+      font-weight: 900;
+    }
+
+    .fg-lesson-05 .fg-compare .fg-left {
+      border-top: 4px solid var(--fg-blue);
+    }
+
+    .fg-lesson-05 .fg-compare .fg-right {
+      border-top: 4px solid var(--fg-green);
+    }
+
+    .fg-lesson-05 .fg-summary-box {
+      margin-top: 18px;
+      padding: 22px;
+      border-radius: 18px;
+      background:
+        linear-gradient(135deg, #17365d 0%, #254f7c 100%);
+      color: white;
+    }
+
+    .fg-lesson-05 .fg-summary-box h3 {
+      color: white;
+    }
+
+    .fg-lesson-05 .fg-summary-box .fg-fr {
+      color: #fff;
+    }
+
+    .fg-lesson-05 details {
+      margin: 12px 0;
+      overflow: hidden;
+      border: 1px solid var(--fg-border);
+      border-radius: 12px;
+      background: white;
+    }
+
+    .fg-lesson-05 summary {
+      cursor: pointer;
+      padding: 13px 16px;
+      color: var(--fg-navy);
+      font-weight: 800;
+      background: #f8fafc;
+    }
+
+    .fg-lesson-05 details > div {
+      padding: 15px 17px;
+    }
+
+    @media (max-width: 900px) {
+      .fg-lesson-05 .fg-card-grid,
+      .fg-lesson-05 .fg-card-grid.fg-3 {
+        grid-template-columns: 1fr;
+      }
+
+      .fg-lesson-05 .fg-compare {
+        grid-template-columns: 1fr;
+      }
+
+      .fg-lesson-05 .fg-section {
+        padding: 22px;
+      }
+
+      .fg-lesson-05 .fg-hero {
+        padding: 28px 24px 25px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .fg-lesson-05 {
+        line-height: 1.85;
+      }
+
+      .fg-lesson-05 .fg-section {
+        padding: 18px 15px;
+        border-radius: 15px;
+      }
+
+      .fg-lesson-05 .fg-hero {
+        padding: 25px 18px 22px;
+        border-radius: 17px;
+      }
+
+      .fg-lesson-05 .fg-section-head {
+        align-items: flex-start;
+      }
+
+      .fg-lesson-05 .fg-section-number {
+        width: 34px;
+        height: 34px;
+        flex-basis: 34px;
+      }
+
+      .fg-lesson-05 .fg-card,
+      .fg-lesson-05 .fg-exercise {
+        padding: 16px;
+      }
+
+      .fg-lesson-05 table {
+        min-width: 590px;
+        font-size: .93rem;
+      }
+
+      .fg-lesson-05 th,
+      .fg-lesson-05 td {
+        padding: 10px 11px;
+      }
+    }
+  </style>
+
+  <div class="fg-shell">
+
+    <!-- =======================================================
+         HERO
+         ======================================================= -->
+
+    <section class="fg-hero">
+
+      <span class="fg-kicker">درس ۵ · Grammaire Progressive</span>
+
+      <h1>
+        تفاوت
+        <span class="fg-fr-title">« C’est »</span>
+        و
+        <span class="fg-fr-title">« Il est »</span>
+      </h1>
+
+      <p>
+        در این درس یاد می‌گیریم چه زمانی برای
+        <strong>معرفی و شناسایی</strong>
+        از
+        <span class="fg-fr">c’est / ce sont</span>
+        و چه زمانی برای
+        <strong>توصیف، شغل، ملیت یا ویژگی</strong>
+        از
+        <span class="fg-fr">il est / elle est</span>
+        استفاده کنیم.
+      </p>
+
+      <div class="fg-meta">
+        <span class="fg-chip">درس ۵</span>
+        <span class="fg-chip">صفحات چاپی ۳۲ تا ۳۵</span>
+        <span class="fg-chip">PDF صفحات ۳۴ تا ۳۷</span>
+        <span class="fg-chip">موضوع: Présentation & Identification</span>
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         1. CORE DISTINCTION
+         ======================================================= -->
+
+    <section class="fg-section">
+
+      <div class="fg-section-head">
+        <span class="fg-section-number">1</span>
+        <h2>تفاوت بنیادی بین <span class="fg-fr">C’est</span> و <span class="fg-fr">Il est</span></h2>
+      </div>
+
+      <p>
+        مهم‌ترین ایدهٔ درس این است که
+        <strong>معرفی کردن</strong>
+        با
+        <span class="fg-fr">c’est</span>
+        و
+        <strong>توصیف کردن</strong>
+        معمولاً با
+        <span class="fg-fr">il est / elle est</span>
+        انجام می‌شود.
+      </p>
+
+      <div class="fg-compare">
+
+        <div class="fg-card fg-card-blue fg-left">
+          <div class="fg-compare-title">معرفی یا شناسایی</div>
+
+          <span class="fg-example">
+            <span class="fg-fr">C’est Paul Mazot.</span>
+            <span class="fg-translation">این پل مازو است.</span>
+          </span>
+
+          <p>
+            در اینجا داریم مشخص می‌کنیم
+            <strong>این شخص چه کسی است.</strong>
+          </p>
+        </div>
+
+        <div class="fg-card fg-card-green fg-right">
+          <div class="fg-compare-title">توصیف</div>
+
+          <span class="fg-example">
+            <span class="fg-fr">Il est sympathique.</span>
+            <span class="fg-translation">او خوش‌برخورد است.</span>
+          </span>
+
+          <p>
+            شخص قبلاً مشخص شده و اکنون داریم دربارهٔ
+            <strong>ویژگی او</strong>
+            صحبت می‌کنیم.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="fg-rule">
+        C’est / Ce sont + NOM
+        <br>
+        Il / Elle est + ADJECTIF
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         2. C'EST / CE SONT
+         ======================================================= -->
+
+    <section class="fg-section">
+
+      <div class="fg-section-head">
+        <span class="fg-section-number">2</span>
+        <h2>معرفی و شناسایی با <span class="fg-fr">C’est</span> و <span class="fg-fr">Ce sont</span></h2>
+      </div>
+
+      <h3>اسم مفرد</h3>
+
+      <p>
+        برای معرفی یک شخص یا چیز مفرد از
+        <span class="fg-fr">C’est</span>
+        استفاده می‌کنیم.
+      </p>
+
+      <div class="fg-rule">
+        C’est + nom singulier
+      </div>
+
+      <span class="fg-example">
+        <span class="fg-fr">C’est un fruit.</span>
+        <span class="fg-translation">این یک میوه است.</span>
+      </span>
+
+      <span class="fg-example">
+        <span class="fg-fr">C’est mon voisin.</span>
+        <span class="fg-translation">این همسایهٔ من است.</span>
+      </span>
+
+      <span class="fg-example">
+        <span class="fg-fr">C’est Anna.</span>
+        <span class="fg-translation">این آنا است.</span>
+      </span>
+
+      <p>
+        بعد از
+        <span class="fg-fr">C’est</span>
+        می‌توانیم اسم خاص یا یک گروه اسمی همراه با تعیین‌کننده داشته باشیم:
+      </p>
+
+      <ul>
+        <li><span class="fg-fr">C’est un professeur.</span></li>
+        <li><span class="fg-fr">C’est le professeur de Paul.</span></li>
+        <li><span class="fg-fr">C’est mon professeur.</span></li>
+        <li><span class="fg-fr">C’est Monsieur Dupont.</span></li>
+      </ul>
+
+
+      <div class="fg-divider"></div>
+
+
+      <h3>اسم جمع</h3>
+
+      <p>
+        در زبان معیار، برای معرفی چند شخص یا چیز از
+        <span class="fg-fr">Ce sont</span>
+        استفاده می‌شود.
+      </p>
+
+      <div class="fg-rule">
+        Ce sont + nom pluriel
+      </div>
+
+      <span class="fg-example">
+        <span class="fg-fr">Ce sont des fruits.</span>
+        <span class="fg-translation">این‌ها میوه هستند.</span>
+      </span>
+
+      <span class="fg-example">
+        <span class="fg-fr">Ce sont mes voisins.</span>
+        <span class="fg-translation">این‌ها همسایه‌های من هستند.</span>
+      </span>
+
+      <div class="fg-callout fg-warning">
+        <strong>نکتهٔ گفتاری</strong>
+        <p>
+          در زبان محاوره ممکن است بشنوید:
+          <span class="fg-fr">C’est mes amis.</span>
+          اما در نوشتار رسمی و آزمون بهتر است از
+          <span class="fg-fr">Ce sont mes amis.</span>
+          استفاده کنید.
+        </p>
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         3. QUESTIONS
+         ======================================================= -->
+
+    <section class="fg-section">
+
+      <div class="fg-section-head">
+        <span class="fg-section-number">3</span>
+        <h2>پرسیدن هویت اشخاص و اشیا</h2>
+      </div>
+
+      <div class="fg-card-grid">
+
+        <div class="fg-card fg-card-blue">
+
+          <h3>برای شخص</h3>
+
+          <div class="fg-rule">
+            Qui est-ce ?
+          </div>
+
+          <span class="fg-example">
+            <span class="fg-fr">— Qui est-ce ?</span>
+            <span class="fg-fr">— C’est mon cousin.</span>
+          </span>
+
+          <span class="fg-example">
+            <span class="fg-fr">— Qui est-ce ?</span>
+            <span class="fg-fr">— Ce sont mes cousins.</span>
+          </span>
+
+          <p>
+            حتی اگر پاسخ جمع باشد، سؤال معمولاً همان
+            <span class="fg-fr">Qui est-ce ?</span>
+            باقی می‌ماند.
+          </p>
+
+        </div>
+
+
+        <div class="fg-card fg-card-purple">
+
+          <h3>برای شیء</h3>
+
+          <div class="fg-rule">
+            Qu’est-ce que c’est ?
+          </div>
+
+          <span class="fg-example">
+            <span class="fg-fr">— Qu’est-ce que c’est ?</span>
+            <span class="fg-fr">— C’est un dessin.</span>
+          </span>
+
+          <span class="fg-example">
+            <span class="fg-fr">— Qu’est-ce que c’est ?</span>
+            <span class="fg-fr">— Ce sont des dessins.</span>
+          </span>
+
+        </div>
+
+      </div>
+
+      <div class="fg-callout fg-info">
+        <strong>قاعدهٔ ساده</strong>
+        <p>
+          انسان →
+          <span class="fg-fr">Qui est-ce ?</span>
+        </p>
+        <p>
+          شیء →
+          <span class="fg-fr">Qu’est-ce que c’est ?</span>
+        </p>
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         4. SELF IDENTIFICATION
+         ======================================================= -->
+
+    <section class="fg-section">
+
+      <div class="fg-section-head">
+        <span class="fg-section-number">4</span>
+        <h2>معرفی خود با <span class="fg-fr">C’est</span></h2>
+      </div>
+
+      <p>
+        برای معرفی خود، مثلاً پشت تلفن یا آیفون، از
+        <span class="fg-fr">C’est</span>
+        استفاده می‌شود.
+      </p>
+
+      <span class="fg-example">
+        <span class="fg-fr">— Qui est-ce ? — C’est moi.</span>
+      </span>
+
+      <span class="fg-example">
+        <span class="fg-fr">— Qui est-ce ? — C’est Anna.</span>
+      </span>
+
+      <span class="fg-example">
+        <span class="fg-fr">— Qui est-ce ? — C’est nous !</span>
+      </span>
+
+      <div class="fg-table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>ضمیر</th>
+              <th>ساخت</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>من</td>
+              <td><span class="fg-fr">C’est moi.</span></td>
+            </tr>
+            <tr>
+              <td>تو</td>
+              <td><span class="fg-fr">C’est toi.</span></td>
+            </tr>
+            <tr>
+              <td>او</td>
+              <td><span class="fg-fr">C’est lui. / C’est elle.</span></td>
+            </tr>
+            <tr>
+              <td>ما</td>
+              <td><span class="fg-fr">C’est nous.</span></td>
+            </tr>
+            <tr>
+              <td>شما</td>
+              <td><span class="fg-fr">C’est vous.</span></td>
+            </tr>
+            <tr>
+              <td>آن‌ها</td>
+              <td><span class="fg-fr">Ce sont eux. / Ce sont elles.</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         5. NEGATION
+         ======================================================= -->
+
+    <section class="fg-section">
+
+      <div class="fg-section-head">
+        <span class="fg-section-number">5</span>
+        <h2>منفی کردن <span class="fg-fr">C’est</span> و <span class="fg-fr">Ce sont</span></h2>
+      </div>
+
+      <div class="fg-card-grid">
+
+        <div class="fg-card">
+          <h3>مفرد</h3>
+
+          <div class="fg-rule">
+            Ce n’est pas ...
+          </div>
+
+          <span class="fg-example">
+            <span class="fg-fr">Ce n’est pas Max.</span>
+            <span class="fg-translation">این مکس نیست.</span>
+          </span>
+
+          <span class="fg-example">
+            <span class="fg-fr">Ce n’est pas mon livre.</span>
+          </span>
+        </div>
+
+        <div class="fg-card">
+          <h3>جمع</h3>
+
+          <div class="fg-rule">
+            Ce ne sont pas ...
+          </div>
+
+          <span class="fg-example">
+            <span class="fg-fr">Ce ne sont pas mes livres.</span>
+          </span>
+
+        </div>
+
+      </div>
+
+      <div class="fg-callout fg-warning">
+        <strong>نکته دربارهٔ article</strong>
+        <p>
+          بعد از فعل
+          <span class="fg-fr">être</span>
+          معمولاً article نامعین در منفی به
+          <span class="fg-fr">de</span>
+          تبدیل نمی‌شود:
+        </p>
+
+        <span class="fg-right">
+          <span class="fg-check">✓</span>
+          <span class="fg-fr">Ce n’est pas un problème.</span>
+        </span>
+
+        <span class="fg-right">
+          <span class="fg-check">✓</span>
+          <span class="fg-fr">Ce ne sont pas des erreurs.</span>
+        </span>
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         6. IL / ELLE EST + ADJECTIVE
+         ======================================================= -->
+
+    <section class="fg-section">
+
+      <div class="fg-section-head">
+        <span class="fg-section-number">6</span>
+        <h2>توصیف با <span class="fg-fr">Il est / Elle est</span></h2>
+      </div>
+
+      <p>
+        وقتی شخص یا شیء قبلاً مشخص شده است، برای بیان ویژگی آن از
+        <span class="fg-fr">il est</span>
+        یا
+        <span class="fg-fr">elle est</span>
+        استفاده می‌کنیم.
+      </p>
+
+      <span class="fg-example">
+        <span class="fg-fr">C’est mon livre. Il est bleu.</span>
+      </span>
+
+      <span class="fg-example">
+        <span class="fg-fr">C’est une rose. Elle est belle.</span>
+      </span>
+
+      <span class="fg-example">
+        <span class="fg-fr">C’est Peter. Il est blond.</span>
+      </span>
+
+      <span class="fg-example">
+        <span class="fg-fr">C’est Anna. Elle est brune.</span>
+      </span>
+
+      <h3 class="fg-mini-title">تطابق صفت</h3>
+
+      <p>
+        صفت باید با جنس و شمار شخص یا شیء تطابق داشته باشد.
+      </p>
+
+      <div class="fg-table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>فاعل</th>
+              <th>مثال</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td><span class="fg-fr">Il</span></td>
+              <td><span class="fg-fr">Il est blond.</span></td>
+            </tr>
+            <tr>
+              <td><span class="fg-fr">Elle</span></td>
+              <td><span class="fg-fr">Elle est blonde.</span></td>
+            </tr>
+            <tr>
+              <td><span class="fg-fr">Ils</span></td>
+              <td><span class="fg-fr">Ils sont blonds.</span></td>
+            </tr>
+            <tr>
+              <td><span class="fg-fr">Elles</span></td>
+              <td><span class="fg-fr">Elles sont blondes.</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         7. C'EST + ADJECTIVE
+         ======================================================= -->
+
+    <section class="fg-section">
+
+      <div class="fg-section-head">
+        <span class="fg-section-number">7</span>
+        <h2>اظهار نظر کلی با <span class="fg-fr">C’est + adjectif</span></h2>
+      </div>
+
+      <p>
+        اگر دربارهٔ یک موضوع، فعالیت یا وضعیت
+        <strong>نظر کلی</strong>
+        بدهیم، می‌توانیم از
+        <span class="fg-fr">C’est + adjectif</span>
+        استفاده کنیم.
+      </p>
+
+      <div class="fg-rule">
+        C’est + adjectif masculin singulier
+      </div>
+
+      <span class="fg-example">
+        <span class="fg-fr">C’est beau !</span>
+      </span>
+
+      <span class="fg-example">
+        <span class="fg-fr">C’est bon !</span>
+      </span>
+
+      <span class="fg-example">
+        <span class="fg-fr">C’est cher !</span>
+      </span>
+
+
+      <div class="fg-callout fg-warning">
+
+        <strong>نکتهٔ بسیار مهم دربارهٔ «مذکر مفرد»</strong>
+
+        <p>
+          این قانون فقط وقتی صدق می‌کند که
+          <strong>یک صفت به‌تنهایی بعد از <span class="fg-fr">c’est</span></strong>
+          برای ارزیابی کلی بیاید.
+        </p>
+
+        <span class="fg-right">
+          <span class="fg-check">✓</span>
+          <span class="fg-fr">La mer, c’est beau.</span>
+        </span>
+
+        <span class="fg-right">
+          <span class="fg-check">✓</span>
+          <span class="fg-fr">Les voyages, c’est intéressant.</span>
+        </span>
+
+      </div>
+
+
+      <h3 class="fg-mini-title">اما اگر بعد از <span class="fg-fr">C’est</span> اسم بیاید...</h3>
+
+      <p>
+        در این حالت دیگر قاعدهٔ «صفت مذکر مفرد» مطرح نیست.
+        اسم جنسیت و شمار خودش را دارد.
+      </p>
+
+      <span class="fg-example">
+        <span class="fg-fr">C’est un chanteur.</span>
+        <span class="fg-translation">او یک خوانندهٔ مرد است.</span>
+      </span>
+
+      <span class="fg-example">
+        <span class="fg-fr">C’est une chanteuse.</span>
+        <span class="fg-translation">او یک خوانندهٔ زن است.</span>
+      </span>
+
+      <span class="fg-example">
+        <span class="fg-fr">C’est une excellente chanteuse.</span>
+      </span>
+
+      <div class="fg-table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>ساخت</th>
+              <th>قاعده</th>
+              <th>مثال</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td><span class="fg-fr">C’est + adjectif</span></td>
+              <td>نظر کلی → صفت مذکر مفرد</td>
+              <td><span class="fg-fr">La musique, c’est intéressant.</span></td>
+            </tr>
+            <tr>
+              <td><span class="fg-fr">C’est + un/une + nom</span></td>
+              <td>اسم جنسیت طبیعی خود را دارد</td>
+              <td><span class="fg-fr">C’est une chanteuse.</span></td>
+            </tr>
+            <tr>
+              <td><span class="fg-fr">C’est + un/une + adjectif + nom</span></td>
+              <td>صفت با اسم هماهنگ می‌شود</td>
+              <td><span class="fg-fr">C’est une excellente chanteuse.</span></td>
+            </tr>
+            <tr>
+              <td><span class="fg-fr">Elle est + adjectif</span></td>
+              <td>صفت با شخص هماهنگ می‌شود</td>
+              <td><span class="fg-fr">Elle est canadienne.</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="fg-callout fg-success">
+        <strong>مثال کلیدی درس</strong>
+        <p>
+          <span class="fg-fr">Céline Dion ? — Oui, c’est une chanteuse. Elle est canadienne.</span>
+        </p>
+        <p>
+          <span class="fg-fr">une chanteuse</span>
+          یک گروه اسمی مؤنث است؛ اما
+          <span class="fg-fr">canadienne</span>
+          صفتی است که مستقیماً شخص را توصیف می‌کند.
+        </p>
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         8. GENERAL vs SPECIFIC DESCRIPTION
+         ======================================================= -->
+
+    <section class="fg-section">
+
+      <div class="fg-section-head">
+        <span class="fg-section-number">8</span>
+        <h2>تفاوت معنایی ظریف: توصیف مشخص یا نظر کلی؟</h2>
+      </div>
+
+      <div class="fg-compare">
+
+        <div class="fg-card fg-card-blue fg-left">
+          <h3>توصیف خودِ اسم</h3>
+
+          <span class="fg-example">
+            <span class="fg-fr">La mer est belle.</span>
+          </span>
+
+          <p>
+            <span class="fg-fr">belle</span>
+            مستقیماً با
+            <span class="fg-fr">la mer</span>
+            هماهنگ شده است.
+          </p>
+        </div>
+
+        <div class="fg-card fg-card-green fg-right">
+          <h3>قضاوت کلی</h3>
+
+          <span class="fg-example">
+            <span class="fg-fr">La mer, c’est beau.</span>
+          </span>
+
+          <p>
+            دربارهٔ «دریا به‌عنوان یک مفهوم یا تجربه» نظر می‌دهیم؛ بنابراین
+            <span class="fg-fr">beau</span>
+            مذکر مفرد است.
+          </p>
+        </div>
+
+      </div>
+
+      <span class="fg-example">
+        <span class="fg-fr">Cette chanson est belle.</span>
+        <span class="fg-translation">این آهنگ زیباست.</span>
+      </span>
+
+      <span class="fg-example">
+        <span class="fg-fr">Écouter de la musique, c’est agréable.</span>
+        <span class="fg-translation">گوش دادن به موسیقی لذت‌بخش است.</span>
+      </span>
+
+    </section>
+
+
+    <!-- =======================================================
+         9. C'EST BON / IL EST BON
+         ======================================================= -->
+
+    <section class="fg-section">
+
+      <div class="fg-section-head">
+        <span class="fg-section-number">9</span>
+        <h2>تفاوت <span class="fg-fr">Il est bon</span> و <span class="fg-fr">C’est bon</span></h2>
+      </div>
+
+      <span class="fg-example">
+        <span class="fg-fr">Le gâteau est bon. Il est bon.</span>
+        <span class="fg-translation">کیک خوشمزه است.</span>
+      </span>
+
+      <p>
+        در اینجا
+        <span class="fg-fr">il</span>
+        به خود کیک اشاره می‌کند.
+      </p>
+
+      <span class="fg-example">
+        <span class="fg-fr">Manger des légumes, c’est bon pour la santé.</span>
+        <span class="fg-translation">سبزی خوردن برای سلامتی خوب است.</span>
+      </span>
+
+      <p>
+        اینجا یک
+        <strong>عمل یا مفهوم کلی</strong>
+        ارزیابی می‌شود.
+      </p>
+
+      <div class="fg-callout fg-info">
+        <strong>توجه</strong>
+        <p>
+          عبارت
+          <span class="fg-fr">C’est bon !</span>
+          برحسب موقعیت می‌تواند معنی «خوب است»، «خوشمزه است» یا حتی «کافی است» بدهد.
+        </p>
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         10. PROFESSIONS
+         ======================================================= -->
+
+    <section class="fg-section">
+
+      <div class="fg-section-head">
+        <span class="fg-section-number">10</span>
+        <h2>شغل با <span class="fg-fr">Il est / Elle est</span></h2>
+      </div>
+
+      <p>
+        وقتی فقط شغل شخص را بیان می‌کنیم، معمولاً article نمی‌آوریم.
+      </p>
+
+      <div class="fg-rule">
+        Il / Elle est + profession
+      </div>
+
+      <span class="fg-example">
+        <span class="fg-fr">Je suis secrétaire.</span>
+      </span>
+
+      <span class="fg-example">
+        <span class="fg-fr">Tu es ingénieur.</span>
+      </span>
+
+      <span class="fg-example">
+        <span class="fg-fr">Paul est médecin.</span>
+      </span>
+
+      <span class="fg-example">
+        <span class="fg-fr">Marie est architecte.</span>
+      </span>
+
+      <span class="fg-wrong">
+        <span class="fg-x">✕</span>
+        <span class="fg-fr">Je suis un ingénieur.</span>
+        — برای معرفی سادهٔ شغل، الگوی اصلی درس این نیست.
+      </span>
+
+      <span class="fg-right">
+        <span class="fg-check">✓</span>
+        <span class="fg-fr">Je suis ingénieur.</span>
+      </span>
+
+      <h3 class="fg-mini-title">سؤال طبیعی دربارهٔ شغل</h3>
+
+      <span class="fg-example">
+        <span class="fg-fr">Quelle est votre profession ?</span>
+      </span>
+
+      <span class="fg-example">
+        <span class="fg-fr">Qu’est-ce que vous faites ?</span>
+      </span>
+
+      <span class="fg-example">
+        <span class="fg-fr">Je travaille comme ingénieur.</span>
+      </span>
+
+      <span class="fg-example">
+        <span class="fg-fr">Je travaille dans l’informatique.</span>
+      </span>
+
+    </section>
+
+
+    <!-- =======================================================
+         11. NATIONALITY / RELIGION / CIVIL STATUS
+         ======================================================= -->
+
+    <section class="fg-section">
+
+      <div class="fg-section-head">
+        <span class="fg-section-number">11</span>
+        <h2>ملیت، مذهب و وضعیت تأهل</h2>
+      </div>
+
+      <p>
+        این واژه‌ها در این کاربرد مانند صفت عمل می‌کنند و معمولاً بدون article می‌آیند.
+      </p>
+
+      <div class="fg-card-grid fg-3">
+
+        <div class="fg-card">
+          <h3>ملیت</h3>
+          <span class="fg-example">
+            <span class="fg-fr">Il est anglais.</span>
+          </span>
+          <span class="fg-example">
+            <span class="fg-fr">Elle est canadienne.</span>
+          </span>
+        </div>
+
+        <div class="fg-card">
+          <h3>مذهب</h3>
+          <span class="fg-example">
+            <span class="fg-fr">Il est protestant.</span>
+          </span>
+          <span class="fg-example">
+            <span class="fg-fr">Elle est musulmane.</span>
+          </span>
+        </div>
+
+        <div class="fg-card">
+          <h3>وضعیت شخصی</h3>
+          <span class="fg-example">
+            <span class="fg-fr">Il est marié.</span>
+          </span>
+          <span class="fg-example">
+            <span class="fg-fr">Elle est célibataire.</span>
+          </span>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         12. PROFESSION + QUALIFIER
+         ======================================================= -->
+
+    <section class="fg-section">
+
+      <div class="fg-section-head">
+        <span class="fg-section-number">12</span>
+        <h2>وقتی شغل همراه با توصیف می‌آید</h2>
+      </div>
+
+      <p>
+        اگر فقط شغل را بگوییم:
+      </p>
+
+      <span class="fg-example">
+        <span class="fg-fr">Paul est médecin.</span>
+      </span>
+
+      <p>
+        اما اگر آن شغل را به‌صورت یک گروه اسمی توصیف کنیم:
+      </p>
+
+      <span class="fg-example">
+        <span class="fg-fr">C’est un bon médecin.</span>
+      </span>
+
+      <span class="fg-example">
+        <span class="fg-fr">C’est un médecin exceptionnel.</span>
+      </span>
+
+      <div class="fg-rule">
+        Il est + profession
+        <br>
+        C’est + un / une + profession + description
+      </div>
+
+
+      <h3 class="fg-mini-title">تخصص حرفه‌ای</h3>
+
+      <p>
+        اگر عبارت دوم صرفاً «نوع تخصص یا دستهٔ حرفه‌ای» باشد، همچنان می‌تواند بدون article بیاید.
+      </p>
+
+      <span class="fg-example">
+        <span class="fg-fr">Paul est médecin généraliste.</span>
+      </span>
+
+      <span class="fg-example">
+        <span class="fg-fr">Elle est architecte d’intérieur.</span>
+      </span>
+
+      <span class="fg-example">
+        <span class="fg-fr">Il est ingénieur logiciel.</span>
+      </span>
+
+      <span class="fg-example">
+        <span class="fg-fr">Elle est professeure de français.</span>
+      </span>
+
+    </section>
+
+
+    <!-- =======================================================
+         13. DETERMINED NOUN
+         ======================================================= -->
+
+    <section class="fg-section">
+
+      <div class="fg-section-head">
+        <span class="fg-section-number">13</span>
+        <h2>اسم تعیین‌شده معمولاً با <span class="fg-fr">C’est</span></h2>
+      </div>
+
+      <p>
+        اگر قبل از اسم یک تعیین‌کننده وجود داشته باشد، الگوی اصلی
+        <span class="fg-fr">C’est</span>
+        است.
+      </p>
+
+      <div class="fg-table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>نوع تعیین‌کننده</th>
+              <th>مثال</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td><span class="fg-fr">un / une</span></td>
+              <td><span class="fg-fr">C’est un professeur.</span></td>
+            </tr>
+            <tr>
+              <td><span class="fg-fr">le / la</span></td>
+              <td><span class="fg-fr">C’est le directeur.</span></td>
+            </tr>
+            <tr>
+              <td>ملکی</td>
+              <td><span class="fg-fr">C’est mon voisin.</span></td>
+            </tr>
+            <tr>
+              <td>ملکی</td>
+              <td><span class="fg-fr">C’est notre architecte.</span></td>
+            </tr>
+            <tr>
+              <td>اسم همراه با صفت</td>
+              <td><span class="fg-fr">C’est une excellente chanteuse.</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <span class="fg-wrong">
+        <span class="fg-x">✕</span>
+        <span class="fg-fr">Il est mon voisin.</span>
+        — در معرفی عادی، انتخاب طبیعی کتاب نیست.
+      </span>
+
+      <span class="fg-right">
+        <span class="fg-check">✓</span>
+        <span class="fg-fr">C’est mon voisin.</span>
+      </span>
+
+    </section>
+
+
+    <!-- =======================================================
+         14. ADVANCED NUANCE
+         ======================================================= -->
+
+    <section class="fg-section">
+
+      <div class="fg-section-head">
+        <span class="fg-section-number">14</span>
+        <h2>چند نکتهٔ ظریف و پیشرفته</h2>
+      </div>
+
+      <details>
+        <summary>آیا <span class="fg-fr">Il est un...</span> همیشه غلط است؟</summary>
+
+        <div>
+          <p>
+            برای قاعدهٔ آموزشی این درس، هنگام معرفی معمولی بهتر است بگوییم:
+          </p>
+
+          <span class="fg-right">
+            <span class="fg-fr">C’est un excellent médecin.</span>
+          </span>
+
+          <p>
+            اما در زبان رسمی یا ساخت‌های خاص،
+            <span class="fg-fr">Il est un...</span>
+            می‌تواند وجود داشته باشد.
+          </p>
+
+          <span class="fg-example">
+            <span class="fg-fr">Il est un homme remarquable.</span>
+          </span>
+
+          <span class="fg-example">
+            <span class="fg-fr">Il est un des meilleurs médecins de la ville.</span>
+          </span>
+        </div>
+      </details>
+
+
+      <details>
+        <summary>آیا <span class="fg-fr">Il est mon voisin</span> مطلقاً غلط است؟</summary>
+
+        <div>
+          <p>
+            خیر. در معرفی عادی:
+          </p>
+
+          <span class="fg-example">
+            <span class="fg-fr">C’est mon voisin.</span>
+          </span>
+
+          <p>
+            طبیعی‌تر است. اما در یک بافت تقابلی، عبارت زیر ممکن است:
+          </p>
+
+          <span class="fg-example">
+            <span class="fg-fr">Il est mon voisin, pas mon collègue.</span>
+          </span>
+        </div>
+      </details>
+
+
+      <details>
+        <summary><span class="fg-fr">C’est + infinitif / proposition</span></summary>
+
+        <div>
+
+          <span class="fg-example">
+            <span class="fg-fr">C’est difficile de parler français.</span>
+          </span>
+
+          <span class="fg-example">
+            <span class="fg-fr">C’est important de pratiquer tous les jours.</span>
+          </span>
+
+          <p>
+            ساخت رسمی‌تر:
+          </p>
+
+          <span class="fg-example">
+            <span class="fg-fr">Il est important de pratiquer tous les jours.</span>
+          </span>
+
+        </div>
+      </details>
+
+
+      <details>
+        <summary>ساخت <span class="fg-fr">C’est moi qui...</span></summary>
+
+        <div>
+
+          <p>
+            فعل بعد از
+            <span class="fg-fr">qui</span>
+            با شخص واقعی هماهنگ می‌شود.
+          </p>
+
+          <span class="fg-right">
+            <span class="fg-fr">C’est moi qui suis responsable.</span>
+          </span>
+
+          <span class="fg-wrong">
+            <span class="fg-fr">C’est moi qui est responsable.</span>
+          </span>
+
+          <span class="fg-example">
+            <span class="fg-fr">C’est toi qui as appelé.</span>
+          </span>
+
+          <span class="fg-example">
+            <span class="fg-fr">C’est nous qui avons gagné.</span>
+          </span>
+
+        </div>
+      </details>
+
+    </section>
+
+
+    <!-- =======================================================
+         15. DECISION FLOW
+         ======================================================= -->
+
+    <section class="fg-section">
+
+      <div class="fg-section-head">
+        <span class="fg-section-number">15</span>
+        <h2>روش سریع انتخاب بین <span class="fg-fr">C’est</span> و <span class="fg-fr">Il est</span></h2>
+      </div>
+
+      <div class="fg-flow">
+
+        <div class="fg-flow-item">
+          <strong>۱. آیا بعد از فعل یک اسم همراه با تعیین‌کننده آمده است؟</strong>
+
+          <p>
+            <span class="fg-fr">
+              un, une, le, la, mon, ma, notre...
+            </span>
+          </p>
+
+          <span class="fg-right">
+            <span class="fg-fr">C’est un médecin.</span>
+          </span>
+
+          <span class="fg-right">
+            <span class="fg-fr">C’est mon voisin.</span>
+          </span>
+        </div>
+
+
+        <div class="fg-flow-item">
+          <strong>۲. آیا فقط یک صفت برای توصیف شخص یا چیز مشخص آمده است؟</strong>
+
+          <span class="fg-right">
+            <span class="fg-fr">Il est sympathique.</span>
+          </span>
+
+          <span class="fg-right">
+            <span class="fg-fr">Elle est belle.</span>
+          </span>
+        </div>
+
+
+        <div class="fg-flow-item">
+          <strong>۳. آیا شغل، ملیت، مذهب یا وضعیت تأهل بدون article آمده است؟</strong>
+
+          <span class="fg-right">
+            <span class="fg-fr">Il est ingénieur.</span>
+          </span>
+
+          <span class="fg-right">
+            <span class="fg-fr">Elle est canadienne.</span>
+          </span>
+        </div>
+
+
+        <div class="fg-flow-item">
+          <strong>۴. آیا دربارهٔ یک موضوع یا فعالیت به‌صورت کلی نظر می‌دهید؟</strong>
+
+          <span class="fg-right">
+            <span class="fg-fr">Le sport, c’est important.</span>
+          </span>
+
+          <span class="fg-right">
+            <span class="fg-fr">La mer, c’est beau.</span>
+          </span>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         EXERCISES
+         ======================================================= -->
+
+    <section class="fg-section">
+
+      <div class="fg-section-head">
+        <span class="fg-section-number">16</span>
+        <h2>تمرین‌ها و پاسخ‌های درس</h2>
+      </div>
+
+
+      <!-- Exercise 1 -->
+
+      <div class="fg-exercise">
+
+        <h3>تمرین ۱ — <span class="fg-fr">C’est</span> یا <span class="fg-fr">Ce sont</span>؟</h3>
+
+        <p>
+          براساس مفرد یا جمع بودن اسم، ساخت مناسب را انتخاب کنید.
+        </p>
+
+        <div class="fg-answer">
+          <div class="fg-answer-label">پاسخ‌ها</div>
+
+          <ol>
+            <li><span class="fg-fr">C’est un téléphone.</span></li>
+            <li><span class="fg-fr">Ce sont des livres.</span></li>
+            <li><span class="fg-fr">Ce sont des gants.</span></li>
+            <li><span class="fg-fr">C’est un sac.</span></li>
+            <li><span class="fg-fr">C’est une montre.</span></li>
+            <li><span class="fg-fr">C’est un parfum.</span></li>
+            <li><span class="fg-fr">Ce sont des DVD.</span></li>
+            <li><span class="fg-fr">Ce sont des rollers.</span></li>
+          </ol>
+        </div>
+
+        <div class="fg-callout fg-info">
+          <strong>نکته</strong>
+          <p>
+            <span class="fg-fr">un / une</span>
+            → معمولاً
+            <span class="fg-fr">C’est</span>
+          </p>
+
+          <p>
+            <span class="fg-fr">des</span>
+            → معمولاً
+            <span class="fg-fr">Ce sont</span>
+          </p>
+        </div>
+
+      </div>
+
+
+      <!-- Exercise 2 -->
+
+      <div class="fg-exercise">
+
+        <h3>تمرین ۲ — معرفی شیء و مالک آن</h3>
+
+        <div class="fg-answer">
+          <div class="fg-answer-label">پاسخ‌ها</div>
+
+          <p>
+            <span class="fg-fr">
+              1. C’est un livre de grammaire. Je crois que c’est le livre du professeur.
+            </span>
+          </p>
+
+          <p>
+            <span class="fg-fr">
+              2. C’est une casquette rouge. Je crois que c’est la casquette du petit garçon.
+            </span>
+          </p>
+
+          <p>
+            <span class="fg-fr">
+              3. Ce sont des rollers. Je crois que ce sont les rollers de l’étudiant.
+            </span>
+          </p>
+
+          <p>
+            <span class="fg-fr">
+              4. Ce sont des jeux vidéo. Je crois que ce sont les jeux vidéo des enfants.
+            </span>
+          </p>
+        </div>
+
+        <div class="fg-callout fg-warning">
+          <strong>مرور articleهای ادغام‌شده</strong>
+
+          <p>
+            <span class="fg-fr">de + le = du</span>
+          </p>
+
+          <p>
+            <span class="fg-fr">de + les = des</span>
+          </p>
+
+          <p>
+            پیش از واکه:
+            <span class="fg-fr">de l’étudiant</span>
+          </p>
+        </div>
+
+      </div>
+
+
+      <!-- Exercise 3 -->
+
+      <div class="fg-exercise">
+
+        <h3>تمرین ۳ — <span class="fg-fr">Qui est-ce ?</span> یا <span class="fg-fr">Qu’est-ce que c’est ?</span></h3>
+
+        <div class="fg-answer">
+          <div class="fg-answer-label">پاسخ‌ها</div>
+
+          <ol>
+            <li>
+              <span class="fg-fr">Qui est-ce ? — C’est ma grand-mère.</span>
+            </li>
+
+            <li>
+              <span class="fg-fr">
+                Qu’est-ce que c’est ? — C’est un éléphant, c’est une sculpture.
+              </span>
+            </li>
+
+            <li>
+              <span class="fg-fr">Qui est-ce ? — C’est ma cousine Juliette.</span>
+            </li>
+
+            <li>
+              <span class="fg-fr">Qui est-ce ? — C’est moi à 20 ans.</span>
+            </li>
+
+            <li>
+              <span class="fg-fr">
+                Qu’est-ce que c’est ? — C’est un ticket de train.
+              </span>
+            </li>
+
+            <li>
+              <span class="fg-fr">
+                Qui est-ce ? — Ce sont des copains.
+              </span>
+            </li>
+
+            <li>
+              <span class="fg-fr">
+                Qu’est-ce que c’est ? — C’est un coquillage.
+              </span>
+            </li>
+          </ol>
+        </div>
+
+      </div>
+
+
+      <!-- Exercise 4 -->
+
+      <div class="fg-exercise">
+
+        <h3>تمرین ۴ — بیان نظر کلی</h3>
+
+        <p>
+          این تمرین می‌تواند بیش از یک پاسخ درست داشته باشد.
+        </p>
+
+        <div class="fg-answer">
+          <div class="fg-answer-label">نمونه پاسخ</div>
+
+          <ol>
+            <li><span class="fg-fr">Les femmes, c’est compliqué.</span></li>
+            <li><span class="fg-fr">La mer, c’est beau.</span></li>
+            <li><span class="fg-fr">La gymnastique, c’est fatigant.</span></li>
+            <li><span class="fg-fr">Les exercices, c’est nécessaire.</span></li>
+            <li><span class="fg-fr">Le football, c’est passionnant.</span></li>
+            <li><span class="fg-fr">L’argent, c’est nécessaire.</span></li>
+            <li><span class="fg-fr">Les embouteillages, c’est stressant.</span></li>
+          </ol>
+        </div>
+
+        <div class="fg-callout fg-warning">
+          <strong>دام مهم امتحانی</strong>
+
+          <span class="fg-right">
+            <span class="fg-fr">La mer, c’est beau.</span>
+          </span>
+
+          <span class="fg-wrong">
+            <span class="fg-fr">La mer, c’est belle.</span>
+          </span>
+
+          <span class="fg-right">
+            <span class="fg-fr">Les embouteillages, c’est stressant.</span>
+          </span>
+
+          <span class="fg-wrong">
+            <span class="fg-fr">Les embouteillages, c’est stressants.</span>
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <!-- Exercise 5 -->
+
+      <div class="fg-exercise">
+
+        <h3>تمرین ۵ — نظر مثبت یا منفی</h3>
+
+        <div class="fg-answer">
+          <div class="fg-answer-label">نمونه پاسخ</div>
+
+          <ol>
+            <li><span class="fg-fr">Le bruit, ce n’est pas agréable.</span></li>
+            <li><span class="fg-fr">La grammaire, c’est passionnant.</span></li>
+            <li><span class="fg-fr">Le vin rouge, ce n’est pas bon.</span></li>
+            <li><span class="fg-fr">Les langues étrangères, c’est utile.</span></li>
+          </ol>
+        </div>
+
+      </div>
+
+
+      <!-- Exercise 6 professions -->
+
+      <div class="fg-exercise">
+
+        <h3>تمرین ۶ — شغل و توصیف حرفه‌ای</h3>
+
+        <div class="fg-answer">
+          <div class="fg-answer-label">پاسخ‌ها</div>
+
+          <p>
+            <span class="fg-fr">
+              Il est cuisinier. C’est un cuisinier renommé.
+            </span>
+          </p>
+
+          <p>
+            <span class="fg-fr">
+              Elle est styliste. C’est une styliste originale.
+            </span>
+          </p>
+
+          <p>
+            <span class="fg-fr">
+              Il est détective. C’est un détective perspicace.
+            </span>
+          </p>
+
+          <p>
+            <span class="fg-fr">
+              Il est explorateur. C’est un explorateur imprudent.
+            </span>
+          </p>
+
+          <p>
+            <span class="fg-fr">
+              Ils sont comptables. Ce sont des comptables précis.
+            </span>
+          </p>
+        </div>
+
+        <div class="fg-callout fg-info">
+          <strong>ساخت را مقایسه کنید</strong>
+
+          <p>
+            <span class="fg-fr">Il est cuisinier.</span>
+            → فقط حرفه
+          </p>
+
+          <p>
+            <span class="fg-fr">C’est un cuisinier renommé.</span>
+            → گروه اسمی همراه با توصیف
+          </p>
+        </div>
+
+      </div>
+
+
+      <!-- Exercise 7 -->
+
+      <div class="fg-exercise">
+
+        <h3>تمرین ۷ — انتخاب <span class="fg-fr">Il est / Elle est / C’est</span></h3>
+
+        <div class="fg-answer">
+          <div class="fg-answer-label">پاسخ‌ها</div>
+
+          <p>
+            <span class="fg-fr">
+              Robert Doisneau ? — Oui, il est photographe. C’est un très grand photographe.
+            </span>
+          </p>
+
+          <p>
+            <span class="fg-fr">
+              Marie Ravel ? — Oui, elle est architecte d’intérieur. C’est notre architecte.
+            </span>
+          </p>
+
+          <p>
+            <span class="fg-fr">
+              Céline Dion ? — Oui, c’est une chanteuse. Elle est canadienne.
+            </span>
+          </p>
+
+          <p>
+            <span class="fg-fr">
+              Monsieur Jones ? — Oui, c’est le chat du voisin. Il est adorable.
+            </span>
+          </p>
+
+        </div>
+
+        <div class="fg-callout fg-warning">
+          <strong>چرا <span class="fg-fr">C’est une chanteuse</span> مؤنث است؟</strong>
+
+          <p>
+            چون
+            <span class="fg-fr">une chanteuse</span>
+            یک
+            <strong>گروه اسمی</strong>
+            است، نه یک صفتِ تنها بعد از
+            <span class="fg-fr">C’est</span>.
+          </p>
+
+          <p>
+            قانون «مذکر مفرد» فقط دربارهٔ ساخت‌هایی مثل
+            <span class="fg-fr">C’est intéressant.</span>
+            صدق می‌کند.
+          </p>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         COMMON ERRORS
+         ======================================================= -->
+
+    <section class="fg-section">
+
+      <div class="fg-section-head">
+        <span class="fg-section-number">17</span>
+        <h2>اشتباهات رایج</h2>
+      </div>
+
+
+      <div class="fg-card-grid">
+
+        <div class="fg-card fg-card-orange">
+
+          <h3>اشتباه ۱</h3>
+
+          <span class="fg-wrong">
+            <span class="fg-x">✕</span>
+            <span class="fg-fr">Il est un médecin.</span>
+          </span>
+
+          <span class="fg-right">
+            <span class="fg-check">✓</span>
+            <span class="fg-fr">Il est médecin.</span>
+          </span>
+
+          <span class="fg-right">
+            <span class="fg-check">✓</span>
+            <span class="fg-fr">C’est un médecin.</span>
+          </span>
+
+        </div>
+
+
+        <div class="fg-card fg-card-orange">
+
+          <h3>اشتباه ۲</h3>
+
+          <span class="fg-wrong">
+            <span class="fg-x">✕</span>
+            <span class="fg-fr">C’est médecin.</span>
+          </span>
+
+          <span class="fg-right">
+            <span class="fg-check">✓</span>
+            <span class="fg-fr">Il est médecin.</span>
+          </span>
+
+          <span class="fg-right">
+            <span class="fg-check">✓</span>
+            <span class="fg-fr">C’est un médecin.</span>
+          </span>
+
+        </div>
+
+
+        <div class="fg-card fg-card-orange">
+
+          <h3>اشتباه ۳</h3>
+
+          <span class="fg-wrong">
+            <span class="fg-x">✕</span>
+            <span class="fg-fr">La mer, c’est belle.</span>
+          </span>
+
+          <span class="fg-right">
+            <span class="fg-check">✓</span>
+            <span class="fg-fr">La mer, c’est beau.</span>
+          </span>
+
+        </div>
+
+
+        <div class="fg-card fg-card-orange">
+
+          <h3>اشتباه ۴</h3>
+
+          <span class="fg-wrong">
+            <span class="fg-x">✕</span>
+            <span class="fg-fr">Ce sont mon ami.</span>
+          </span>
+
+          <span class="fg-right">
+            <span class="fg-check">✓</span>
+            <span class="fg-fr">C’est mon ami.</span>
+          </span>
+
+          <span class="fg-right">
+            <span class="fg-check">✓</span>
+            <span class="fg-fr">Ce sont mes amis.</span>
+          </span>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         PERSONALIZED EXAMPLES
+         ======================================================= -->
+
+    <section class="fg-section">
+
+      <div class="fg-section-head">
+        <span class="fg-section-number">18</span>
+        <h2>مثال‌های کاربردی</h2>
+      </div>
+
+      <span class="fg-example">
+        <span class="fg-fr">C’est Iman. Il est développeur.</span>
+        <span class="fg-translation">این ایمان است. او برنامه‌نویس است.</span>
+      </span>
+
+      <span class="fg-example">
+        <span class="fg-fr">Il est ingénieur logiciel.</span>
+        <span class="fg-translation">او مهندس نرم‌افزار است.</span>
+      </span>
+
+      <span class="fg-example">
+        <span class="fg-fr">C’est un développeur expérimenté.</span>
+        <span class="fg-translation">او یک برنامه‌نویس باتجربه است.</span>
+      </span>
+
+      <span class="fg-example">
+        <span class="fg-fr">C’est mon collègue. Il est très compétent.</span>
+      </span>
+
+      <span class="fg-example">
+        <span class="fg-fr">La programmation, c’est passionnant.</span>
+      </span>
+
+      <span class="fg-example">
+        <span class="fg-fr">Apprendre le français, c’est difficile, mais c’est très utile.</span>
+      </span>
+
+    </section>
+
+
+    <!-- =======================================================
+         FINAL SUMMARY
+         ======================================================= -->
+
+    <section class="fg-summary-box">
+
+      <h3>خلاصه‌ای که باید از درس ۵ به خاطر بسپارید</h3>
+
+      <p>
+        <strong>معرفی:</strong>
+        <span class="fg-fr">C’est Paul.</span>
+      </p>
+
+      <p>
+        <strong>اسم همراه article:</strong>
+        <span class="fg-fr">C’est un médecin.</span>
+      </p>
+
+      <p>
+        <strong>شغل بدون article:</strong>
+        <span class="fg-fr">Il est médecin.</span>
+      </p>
+
+      <p>
+        <strong>توصیف:</strong>
+        <span class="fg-fr">Il est sympathique.</span>
+      </p>
+
+      <p>
+        <strong>ملیت:</strong>
+        <span class="fg-fr">Elle est canadienne.</span>
+      </p>
+
+      <p>
+        <strong>نظر کلی:</strong>
+        <span class="fg-fr">La musique, c’est intéressant.</span>
+      </p>
+
+      <p>
+        <strong>اسم مؤنث بعد از C’est کاملاً درست است:</strong>
+        <span class="fg-fr">C’est une chanteuse.</span>
+      </p>
+
+      <p>
+        <strong>جمع در زبان معیار:</strong>
+        <span class="fg-fr">Ce sont mes amis.</span>
+      </p>
+
+    </section>
+
+  </div>
+</div>

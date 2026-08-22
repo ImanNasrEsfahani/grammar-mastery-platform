@@ -1,0 +1,2181 @@
+<div class="french-grammar-wrapper fg-lesson-11">
+
+  <style scoped>
+    /* =========================================================
+       French Grammar Lesson 11 — Scoped / Isolated Styles
+       Prefix: fg-
+       ========================================================= */
+
+    .french-grammar-wrapper.fg-lesson-11 {
+      --fg-primary: #123b6d;
+      --fg-primary-2: #1d5d99;
+      --fg-primary-soft: #edf5fc;
+
+      --fg-green: #157347;
+      --fg-green-soft: #ecf8f1;
+
+      --fg-red: #b42318;
+      --fg-red-soft: #fff1f0;
+
+      --fg-orange: #b45309;
+      --fg-orange-soft: #fff7e8;
+
+      --fg-purple: #6b4eff;
+      --fg-purple-soft: #f3f0ff;
+
+      --fg-gray-900: #1f2937;
+      --fg-gray-800: #374151;
+      --fg-gray-700: #4b5563;
+      --fg-gray-600: #6b7280;
+      --fg-gray-500: #9ca3af;
+      --fg-gray-300: #d1d5db;
+      --fg-gray-200: #e5e7eb;
+      --fg-gray-100: #f3f4f6;
+      --fg-gray-50: #f9fafb;
+      --fg-white: #ffffff;
+
+      --fg-shadow-sm: 0 2px 10px rgba(15, 23, 42, 0.05);
+      --fg-shadow-md: 0 8px 28px rgba(15, 23, 42, 0.08);
+
+      --fg-radius-sm: 8px;
+      --fg-radius-md: 14px;
+      --fg-radius-lg: 20px;
+
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px;
+      box-sizing: border-box;
+
+      direction: rtl;
+      text-align: right;
+
+      font-family:
+        Vazirmatn,
+        IRANSans,
+        "Segoe UI",
+        Tahoma,
+        Arial,
+        sans-serif;
+
+      font-size: 16px;
+      line-height: 1.9;
+      color: var(--fg-gray-900);
+      background: transparent;
+    }
+
+    .french-grammar-wrapper.fg-lesson-11 *,
+    .french-grammar-wrapper.fg-lesson-11 *::before,
+    .french-grammar-wrapper.fg-lesson-11 *::after {
+      box-sizing: border-box;
+    }
+
+    /* ---------- Typography ---------- */
+
+    .fg-lesson-11 h1,
+    .fg-lesson-11 h2,
+    .fg-lesson-11 h3,
+    .fg-lesson-11 h4,
+    .fg-lesson-11 p {
+      margin-top: 0;
+    }
+
+    .fg-lesson-11 h1 {
+      margin-bottom: 12px;
+      font-size: clamp(1.8rem, 4vw, 2.7rem);
+      line-height: 1.4;
+      color: var(--fg-primary);
+      font-weight: 800;
+    }
+
+    .fg-lesson-11 h2 {
+      margin: 0 0 20px;
+      padding-bottom: 10px;
+      border-bottom: 3px solid var(--fg-primary-soft);
+      font-size: clamp(1.35rem, 3vw, 1.8rem);
+      line-height: 1.5;
+      color: var(--fg-primary);
+      font-weight: 800;
+    }
+
+    .fg-lesson-11 h3 {
+      margin: 0 0 14px;
+      font-size: 1.15rem;
+      color: var(--fg-primary-2);
+      font-weight: 800;
+    }
+
+    .fg-lesson-11 p:last-child {
+      margin-bottom: 0;
+    }
+
+    .fg-fr,
+    .fg-french {
+      direction: ltr;
+      unicode-bidi: isolate;
+      text-align: left;
+      display: inline-block;
+      font-family:
+        "Segoe UI",
+        Arial,
+        Helvetica,
+        sans-serif;
+      letter-spacing: 0.01em;
+    }
+
+    .fg-block-fr {
+      direction: ltr;
+      unicode-bidi: isolate;
+      text-align: left;
+      display: block;
+      font-family:
+        "Segoe UI",
+        Arial,
+        Helvetica,
+        sans-serif;
+    }
+
+    .fg-muted {
+      color: var(--fg-gray-600);
+    }
+
+    .fg-em {
+      color: var(--fg-primary);
+      font-weight: 700;
+    }
+
+    /* ---------- Hero ---------- */
+
+    .fg-hero {
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 28px;
+      padding: 34px;
+      border: 1px solid #dbe8f5;
+      border-radius: var(--fg-radius-lg);
+      background:
+        linear-gradient(135deg, #f7fbff 0%, #eef6ff 65%, #f7fafc 100%);
+      box-shadow: var(--fg-shadow-md);
+    }
+
+    .fg-hero::before {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      left: -60px;
+      top: -70px;
+      border-radius: 50%;
+      background: rgba(29, 93, 153, 0.08);
+    }
+
+    .fg-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-bottom: 12px;
+      padding: 5px 11px;
+      border-radius: 999px;
+      color: var(--fg-primary-2);
+      background: var(--fg-white);
+      border: 1px solid #d8e7f5;
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+
+    .fg-hero-subtitle {
+      max-width: 850px;
+      margin-bottom: 18px;
+      color: var(--fg-gray-700);
+      font-size: 1.02rem;
+    }
+
+    .fg-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .fg-meta {
+      padding: 5px 10px;
+      border: 1px solid var(--fg-gray-200);
+      border-radius: 999px;
+      background: rgba(255,255,255,.85);
+      color: var(--fg-gray-700);
+      font-size: 0.85rem;
+    }
+
+    /* ---------- Sections & Cards ---------- */
+
+    .fg-section {
+      margin-bottom: 28px;
+      padding: 26px;
+      border: 1px solid var(--fg-gray-200);
+      border-radius: var(--fg-radius-lg);
+      background: var(--fg-white);
+      box-shadow: var(--fg-shadow-sm);
+    }
+
+    .fg-card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .fg-card {
+      padding: 20px;
+      border: 1px solid var(--fg-gray-200);
+      border-radius: var(--fg-radius-md);
+      background: var(--fg-gray-50);
+    }
+
+    .fg-card h3 {
+      margin-bottom: 10px;
+    }
+
+    /* ---------- Formula box ---------- */
+
+    .fg-formula {
+      margin: 16px 0;
+      padding: 16px 18px;
+      border: 1px solid #cddff0;
+      border-radius: var(--fg-radius-md);
+      background: var(--fg-primary-soft);
+      color: var(--fg-primary);
+      font-weight: 750;
+    }
+
+    .fg-formula .fg-block-fr {
+      margin-top: 6px;
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+
+    /* ---------- Callouts ---------- */
+
+    .fg-callout {
+      position: relative;
+      margin: 18px 0;
+      padding: 17px 18px;
+      border-radius: var(--fg-radius-md);
+      border-right: 5px solid;
+    }
+
+    .fg-callout strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .fg-callout-info {
+      border-color: var(--fg-primary-2);
+      background: var(--fg-primary-soft);
+    }
+
+    .fg-callout-success {
+      border-color: var(--fg-green);
+      background: var(--fg-green-soft);
+    }
+
+    .fg-callout-warning {
+      border-color: var(--fg-orange);
+      background: var(--fg-orange-soft);
+    }
+
+    .fg-callout-danger {
+      border-color: var(--fg-red);
+      background: var(--fg-red-soft);
+    }
+
+    .fg-callout-purple {
+      border-color: var(--fg-purple);
+      background: var(--fg-purple-soft);
+    }
+
+    /* ---------- Examples ---------- */
+
+    .fg-examples {
+      display: grid;
+      gap: 10px;
+      margin: 14px 0;
+    }
+
+    .fg-example {
+      padding: 13px 15px;
+      border-radius: var(--fg-radius-sm);
+      border: 1px solid var(--fg-gray-200);
+      background: var(--fg-white);
+    }
+
+    .fg-example-good {
+      border-right: 4px solid var(--fg-green);
+      background: var(--fg-green-soft);
+    }
+
+    .fg-example-bad {
+      border-right: 4px solid var(--fg-red);
+      background: var(--fg-red-soft);
+    }
+
+    .fg-example .fg-fr {
+      font-weight: 650;
+    }
+
+    .fg-translation {
+      display: block;
+      margin-top: 3px;
+      color: var(--fg-gray-700);
+      font-size: 0.92rem;
+    }
+
+    /* ---------- Tables ---------- */
+
+    .fg-table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      margin: 16px 0;
+      border: 1px solid var(--fg-gray-200);
+      border-radius: var(--fg-radius-md);
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .fg-table {
+      width: 100%;
+      min-width: 620px;
+      border-collapse: collapse;
+      background: var(--fg-white);
+      font-size: 0.95rem;
+    }
+
+    .fg-table th,
+    .fg-table td {
+      padding: 12px 14px;
+      border: 1px solid var(--fg-gray-200);
+      vertical-align: top;
+    }
+
+    .fg-table th {
+      color: var(--fg-white);
+      background: var(--fg-primary);
+      font-weight: 750;
+    }
+
+    .fg-table tbody tr:nth-child(even) {
+      background: #f7f9fc;
+    }
+
+    .fg-table tbody tr:hover {
+      background: #eef6ff;
+    }
+
+    .fg-table .fg-fr {
+      display: inline;
+      white-space: nowrap;
+    }
+
+    /* ---------- Lists ---------- */
+
+    .fg-list {
+      margin: 10px 0 0;
+      padding-right: 22px;
+    }
+
+    .fg-list li {
+      margin-bottom: 8px;
+    }
+
+    /* ---------- Comparison ---------- */
+
+    .fg-compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin: 16px 0;
+    }
+
+    .fg-compare-item {
+      padding: 16px;
+      border-radius: var(--fg-radius-md);
+      border: 1px solid var(--fg-gray-200);
+      background: var(--fg-gray-50);
+    }
+
+    /* ---------- Exercise ---------- */
+
+    .fg-exercise {
+      margin: 18px 0;
+      padding: 18px;
+      border: 1px solid #dce5ef;
+      border-radius: var(--fg-radius-md);
+      background: #fbfdff;
+    }
+
+    .fg-exercise-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 13px;
+      color: var(--fg-primary);
+      font-weight: 800;
+    }
+
+    .fg-answer {
+      margin-top: 12px;
+      padding: 13px 15px;
+      border-radius: var(--fg-radius-sm);
+      border-right: 4px solid var(--fg-green);
+      background: var(--fg-green-soft);
+    }
+
+    .fg-note {
+      margin-top: 10px;
+      padding: 10px 12px;
+      border-radius: var(--fg-radius-sm);
+      background: var(--fg-orange-soft);
+      color: #7a4107;
+      font-size: 0.94rem;
+    }
+
+    /* ---------- Mistake table ---------- */
+
+    .fg-wrong {
+      color: var(--fg-red);
+      font-weight: 700;
+    }
+
+    .fg-right {
+      color: var(--fg-green);
+      font-weight: 700;
+    }
+
+    /* ---------- Summary pills ---------- */
+
+    .fg-summary-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 12px;
+    }
+
+    .fg-summary-item {
+      padding: 15px;
+      border: 1px solid var(--fg-gray-200);
+      border-radius: var(--fg-radius-md);
+      background: var(--fg-gray-50);
+    }
+
+    .fg-summary-item strong {
+      color: var(--fg-primary);
+    }
+
+    /* ---------- Mobile ---------- */
+
+    @media (max-width: 800px) {
+      .french-grammar-wrapper.fg-lesson-11 {
+        padding: 12px;
+        font-size: 15px;
+      }
+
+      .fg-lesson-11 .fg-hero,
+      .fg-lesson-11 .fg-section {
+        padding: 19px;
+        border-radius: 14px;
+      }
+
+      .fg-lesson-11 .fg-card-grid,
+      .fg-lesson-11 .fg-compare,
+      .fg-lesson-11 .fg-summary-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .fg-lesson-11 .fg-table {
+        min-width: 560px;
+        font-size: 0.91rem;
+      }
+
+      .fg-lesson-11 .fg-table th,
+      .fg-lesson-11 .fg-table td {
+        padding: 10px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .french-grammar-wrapper.fg-lesson-11 {
+        padding: 8px;
+      }
+
+      .fg-lesson-11 h1 {
+        font-size: 1.65rem;
+      }
+
+      .fg-lesson-11 h2 {
+        font-size: 1.3rem;
+      }
+
+      .fg-lesson-11 .fg-hero,
+      .fg-lesson-11 .fg-section {
+        padding: 16px;
+      }
+
+      .fg-lesson-11 .fg-callout,
+      .fg-lesson-11 .fg-card,
+      .fg-lesson-11 .fg-exercise {
+        padding: 14px;
+      }
+    }
+  </style>
+
+
+  <!-- =========================================================
+       HERO
+       ========================================================= -->
+  <section class="fg-hero">
+    <div class="fg-kicker">
+      درس ۱۱ · Grammaire Progressive du Français
+    </div>
+
+    <h1>
+      فعل
+      <span class="fg-fr" lang="fr">« avoir »</span>
+    </h1>
+
+    <p class="fg-hero-subtitle">
+      در این درس با صرف فعل
+      <span class="fg-fr" lang="fr">avoir</span>،
+      بیان سن، احساسات و نیازها، توصیف ظاهری، عبارت‌های ثابت و
+      رفتار حروف تعریف در جملهٔ منفی آشنا می‌شویم.
+    </p>
+
+    <div class="fg-meta-row">
+      <span class="fg-meta">سطح: Intermédiaire</span>
+      <span class="fg-meta">موضوع: Verbes et conjugaison</span>
+      <span class="fg-meta">درس 11</span>
+      <span class="fg-meta">صفحات کتاب: 48–53</span>
+    </div>
+  </section>
+
+
+  <!-- =========================================================
+       1. CONJUGATION
+       ========================================================= -->
+  <section class="fg-section">
+    <h2>۱. صرف فعل <span class="fg-fr" lang="fr">avoir</span> در زمان حال</h2>
+
+    <p>
+      فعل
+      <span class="fg-fr" lang="fr">avoir</span>
+      یکی از بنیادی‌ترین افعال زبان فرانسه است و در زمان حال به شکل‌های زیر صرف می‌شود:
+    </p>
+
+    <div class="fg-table-wrap">
+      <table class="fg-table">
+        <thead>
+          <tr>
+            <th>ضمیر</th>
+            <th>صرف فعل</th>
+            <th>معنی</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="fg-fr">j’</span></td>
+            <td><span class="fg-fr">ai</span></td>
+            <td>دارم</td>
+          </tr>
+          <tr>
+            <td><span class="fg-fr">tu</span></td>
+            <td><span class="fg-fr">as</span></td>
+            <td>داری</td>
+          </tr>
+          <tr>
+            <td><span class="fg-fr">il / elle / on</span></td>
+            <td><span class="fg-fr">a</span></td>
+            <td>دارد</td>
+          </tr>
+          <tr>
+            <td><span class="fg-fr">nous</span></td>
+            <td><span class="fg-fr">avons</span></td>
+            <td>داریم</td>
+          </tr>
+          <tr>
+            <td><span class="fg-fr">vous</span></td>
+            <td><span class="fg-fr">avez</span></td>
+            <td>دارید</td>
+          </tr>
+          <tr>
+            <td><span class="fg-fr">ils / elles</span></td>
+            <td><span class="fg-fr">ont</span></td>
+            <td>دارند</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="fg-examples">
+      <div class="fg-example fg-example-good">
+        <span class="fg-fr">J’ai un passeport.</span>
+        <span class="fg-translation">من یک پاسپورت دارم.</span>
+      </div>
+
+      <div class="fg-example fg-example-good">
+        <span class="fg-fr">Nous avons deux enfants.</span>
+        <span class="fg-translation">ما دو فرزند داریم.</span>
+      </div>
+
+      <div class="fg-example fg-example-good">
+        <span class="fg-fr">Ils ont froid.</span>
+        <span class="fg-translation">آن‌ها سردشان است.</span>
+      </div>
+    </div>
+
+    <div class="fg-callout fg-callout-info">
+      <strong>نکتهٔ تلفظ و Liaison</strong>
+      <span class="fg-block-fr">
+        nous‿avons &nbsp; • &nbsp;
+        vous‿avez &nbsp; • &nbsp;
+        ils‿ont
+      </span>
+    </div>
+
+    <div class="fg-callout fg-callout-warning">
+      <strong>ضمیر <span class="fg-fr">on</span></strong>
+      <p>
+        همیشه فعل سوم‌شخص مفرد می‌گیرد:
+      </p>
+      <span class="fg-block-fr">On a une réunion.</span>
+      <span class="fg-block-fr fg-wrong">✗ On avons une réunion.</span>
+    </div>
+  </section>
+
+
+  <!-- =========================================================
+       2. NEGATIVE
+       ========================================================= -->
+  <section class="fg-section">
+    <h2>۲. شکل منفی <span class="fg-fr">avoir</span></h2>
+
+    <div class="fg-formula">
+      ساختار:
+      <span class="fg-block-fr">Sujet + ne / n’ + avoir + pas</span>
+    </div>
+
+    <div class="fg-table-wrap">
+      <table class="fg-table">
+        <thead>
+          <tr>
+            <th>مثبت</th>
+            <th>منفی</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="fg-fr">J’ai</span></td>
+            <td><span class="fg-fr">Je n’ai pas</span></td>
+          </tr>
+          <tr>
+            <td><span class="fg-fr">Tu as</span></td>
+            <td><span class="fg-fr">Tu n’as pas</span></td>
+          </tr>
+          <tr>
+            <td><span class="fg-fr">Il a</span></td>
+            <td><span class="fg-fr">Il n’a pas</span></td>
+          </tr>
+          <tr>
+            <td><span class="fg-fr">Nous avons</span></td>
+            <td><span class="fg-fr">Nous n’avons pas</span></td>
+          </tr>
+          <tr>
+            <td><span class="fg-fr">Vous avez</span></td>
+            <td><span class="fg-fr">Vous n’avez pas</span></td>
+          </tr>
+          <tr>
+            <td><span class="fg-fr">Ils ont</span></td>
+            <td><span class="fg-fr">Ils n’ont pas</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="fg-examples">
+      <div class="fg-example fg-example-good">
+        <span class="fg-fr">J’ai une voiture.</span>
+      </div>
+
+      <div class="fg-example fg-example-good">
+        <span class="fg-fr">Je n’ai pas de voiture.</span>
+      </div>
+    </div>
+
+    <div class="fg-callout fg-callout-warning">
+      <strong>زبان گفتاری</strong>
+      در گفتار روزمره
+      <span class="fg-fr">ne</span>
+      اغلب حذف می‌شود:
+      <span class="fg-block-fr">J’ai pas de voiture.</span>
+      اما در نوشتار رسمی بهتر است ساخت کامل
+      <span class="fg-fr">Je n’ai pas...</span>
+      را حفظ کنید.
+    </div>
+  </section>
+
+
+  <!-- =========================================================
+       3. AGE
+       ========================================================= -->
+  <section class="fg-section">
+    <h2>۳. بیان سن با <span class="fg-fr">avoir</span></h2>
+
+    <p>
+      در فرانسوی برای بیان سن از
+      <span class="fg-fr">avoir</span>
+      استفاده می‌کنیم، نه
+      <span class="fg-fr">être</span>.
+    </p>
+
+    <div class="fg-formula">
+      <span class="fg-block-fr">Sujet + avoir + nombre + an(s)</span>
+    </div>
+
+    <div class="fg-examples">
+      <div class="fg-example fg-example-good">
+        <span class="fg-fr">J’ai trente-six ans.</span>
+        <span class="fg-translation">من ۳۶ سال دارم.</span>
+      </div>
+
+      <div class="fg-example fg-example-good">
+        <span class="fg-fr">Mon fils a trois mois.</span>
+        <span class="fg-translation">پسرم سه ماهه است.</span>
+      </div>
+
+      <div class="fg-example fg-example-bad">
+        <span class="fg-fr">✗ Je suis trente-six ans.</span>
+      </div>
+    </div>
+
+    <div class="fg-compare">
+      <div class="fg-compare-item">
+        <h3><span class="fg-fr">avoir + âge</span></h3>
+        <span class="fg-block-fr">Il a vingt ans.</span>
+        <p>او بیست سال دارد.</p>
+      </div>
+
+      <div class="fg-compare-item">
+        <h3><span class="fg-fr">être + adjectif</span></h3>
+        <span class="fg-block-fr">Il est jeune.</span>
+        <p>او جوان است.</p>
+      </div>
+    </div>
+
+    <div class="fg-callout fg-callout-info">
+      <strong>مفرد و جمع</strong>
+      <span class="fg-block-fr">Il a un an.</span>
+      <span class="fg-block-fr">Il a deux ans.</span>
+    </div>
+  </section>
+
+
+  <!-- =========================================================
+       4. SENSATIONS
+       ========================================================= -->
+  <section class="fg-section">
+    <h2>۴. احساسات و حالت‌های جسمی با <span class="fg-fr">avoir</span></h2>
+
+    <p>
+      بسیاری از حالت‌هایی که در فارسی یا انگلیسی ممکن است با «بودن» بیان شوند،
+      در زبان فرانسه با فعل
+      <span class="fg-fr">avoir</span>
+      ساخته می‌شوند.
+    </p>
+
+    <div class="fg-table-wrap">
+      <table class="fg-table">
+        <thead>
+          <tr>
+            <th>ساخت فرانسوی</th>
+            <th>معنی</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="fg-fr">avoir chaud</span></td>
+            <td>گرمش بودن</td>
+          </tr>
+          <tr>
+            <td><span class="fg-fr">avoir froid</span></td>
+            <td>سردش بودن</td>
+          </tr>
+          <tr>
+            <td><span class="fg-fr">avoir faim</span></td>
+            <td>گرسنه بودن</td>
+          </tr>
+          <tr>
+            <td><span class="fg-fr">avoir soif</span></td>
+            <td>تشنه بودن</td>
+          </tr>
+          <tr>
+            <td><span class="fg-fr">avoir sommeil</span></td>
+            <td>خواب‌آلود بودن</td>
+          </tr>
+          <tr>
+            <td><span class="fg-fr">avoir peur de</span></td>
+            <td>ترسیدن از</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="fg-examples">
+      <div class="fg-example fg-example-good">
+        <span class="fg-fr">J’ai froid.</span>
+        <span class="fg-translation">سردم است.</span>
+      </div>
+
+      <div class="fg-example fg-example-good">
+        <span class="fg-fr">Nous avons faim.</span>
+        <span class="fg-translation">گرسنه‌ایم.</span>
+      </div>
+
+      <div class="fg-example fg-example-good">
+        <span class="fg-fr">Elle a sommeil.</span>
+        <span class="fg-translation">خوابش می‌آید.</span>
+      </div>
+    </div>
+
+    <div class="fg-callout fg-callout-danger">
+      <strong>دام مهم</strong>
+      <div class="fg-examples">
+        <div>
+          <span class="fg-fr fg-right">J’ai froid.</span>
+          = سردم است.
+        </div>
+        <div>
+          <span class="fg-fr">Je suis froid.</span>
+          = من فردی سرد / بی‌احساس هستم یا بدنم سرد است.
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =========================================================
+       5. INTENSITY
+       ========================================================= -->
+  <section class="fg-section">
+    <h2>۵. شدت احساس: <span class="fg-fr">très</span> یا <span class="fg-fr">beaucoup</span>؟</h2>
+
+    <div class="fg-callout fg-callout-success">
+      <strong>فرم طبیعی</strong>
+      <span class="fg-block-fr">J’ai très faim.</span>
+      <span class="fg-block-fr">J’ai très soif.</span>
+      <span class="fg-block-fr">J’ai très froid.</span>
+      <span class="fg-block-fr">J’ai très peur.</span>
+      <span class="fg-block-fr">J’ai très envie de partir.</span>
+    </div>
+
+    <div class="fg-callout fg-callout-danger">
+      <strong>فرم‌های نامناسب</strong>
+      <span class="fg-block-fr">✗ J’ai beaucoup faim.</span>
+      <span class="fg-block-fr">✗ J’ai beaucoup soif.</span>
+    </div>
+
+    <div class="fg-callout fg-callout-info">
+      <strong>اما با <span class="fg-fr">plus / moins</span></strong>
+      <span class="fg-block-fr">J’ai beaucoup moins faim qu’hier.</span>
+      <span class="fg-block-fr">J’ai beaucoup plus peur maintenant.</span>
+    </div>
+
+    <p>
+      دربارهٔ
+      <span class="fg-fr">besoin</span>
+      معمولاً ساخت‌هایی مانند
+      <span class="fg-fr">vraiment besoin</span>
+      یا
+      <span class="fg-fr">absolument besoin</span>
+      طبیعی‌تر هستند:
+    </p>
+
+    <div class="fg-examples">
+      <div class="fg-example fg-example-good">
+        <span class="fg-fr">J’ai vraiment besoin de repos.</span>
+      </div>
+      <div class="fg-example fg-example-good">
+        <span class="fg-fr">J’ai absolument besoin de votre aide.</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =========================================================
+       6. BESOIN / ENVIE
+       ========================================================= -->
+  <section class="fg-section">
+    <h2>۶. <span class="fg-fr">avoir besoin de</span> و <span class="fg-fr">avoir envie de</span></h2>
+
+    <div class="fg-card-grid">
+
+      <div class="fg-card">
+        <h3><span class="fg-fr">avoir besoin de</span></h3>
+        <p>به معنی «نیاز داشتن به» است.</p>
+
+        <div class="fg-formula">
+          <span class="fg-block-fr">
+            avoir besoin de + nom / infinitif
+          </span>
+        </div>
+
+        <div class="fg-examples">
+          <div class="fg-example fg-example-good">
+            <span class="fg-fr">J’ai besoin de repos.</span>
+          </div>
+          <div class="fg-example fg-example-good">
+            <span class="fg-fr">J’ai besoin d’un dictionnaire.</span>
+          </div>
+          <div class="fg-example fg-example-good">
+            <span class="fg-fr">J’ai besoin de travailler.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="fg-card">
+        <h3><span class="fg-fr">avoir envie de</span></h3>
+        <p>به معنی «میل داشتن / هوس داشتن» است.</p>
+
+        <div class="fg-formula">
+          <span class="fg-block-fr">
+            avoir envie de + nom / infinitif
+          </span>
+        </div>
+
+        <div class="fg-examples">
+          <div class="fg-example fg-example-good">
+            <span class="fg-fr">J’ai envie d’un café.</span>
+          </div>
+          <div class="fg-example fg-example-good">
+            <span class="fg-fr">J’ai envie de voyager.</span>
+          </div>
+          <div class="fg-example fg-example-good">
+            <span class="fg-fr">Elle a envie d’une glace.</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="fg-callout fg-callout-purple">
+      <strong>تفاوت معنایی مهم</strong>
+      <span class="fg-block-fr">J’ai besoin de manger.</span>
+      <p>نیاز دارم غذا بخورم؛ نوعی ضرورت وجود دارد.</p>
+
+      <span class="fg-block-fr">J’ai envie de manger.</span>
+      <p>دلم می‌خواهد غذا بخورم؛ میل و خواسته است.</p>
+    </div>
+  </section>
+
+
+  <!-- =========================================================
+       7. AVOIR MAL
+       ========================================================= -->
+  <section class="fg-section">
+    <h2>۷. بیان درد با <span class="fg-fr">avoir mal à</span></h2>
+
+    <div class="fg-formula">
+      <span class="fg-block-fr">
+        avoir mal à + article défini + partie du corps
+      </span>
+    </div>
+
+    <div class="fg-examples">
+      <div class="fg-example fg-example-good">
+        <span class="fg-fr">J’ai mal à la tête.</span>
+        <span class="fg-translation">سردرد دارم.</span>
+      </div>
+
+      <div class="fg-example fg-example-good">
+        <span class="fg-fr">Il a mal au dos.</span>
+        <span class="fg-translation">کمرش درد می‌کند.</span>
+      </div>
+
+      <div class="fg-example fg-example-good">
+        <span class="fg-fr">Elle a mal aux dents.</span>
+        <span class="fg-translation">دندان‌هایش درد می‌کند.</span>
+      </div>
+    </div>
+
+    <div class="fg-table-wrap">
+      <table class="fg-table">
+        <thead>
+          <tr>
+            <th>ترکیب</th>
+            <th>نتیجه</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="fg-fr">à + le</span></td>
+            <td><span class="fg-fr">au</span></td>
+          </tr>
+          <tr>
+            <td><span class="fg-fr">à + les</span></td>
+            <td><span class="fg-fr">aux</span></td>
+          </tr>
+          <tr>
+            <td><span class="fg-fr">à + la</span></td>
+            <td><span class="fg-fr">à la</span></td>
+          </tr>
+          <tr>
+            <td><span class="fg-fr">à + l’</span></td>
+            <td><span class="fg-fr">à l’</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="fg-callout fg-callout-warning">
+      <strong>
+        تفاوت
+        <span class="fg-fr">avoir mal à</span>
+        و
+        <span class="fg-fr">avoir du mal à</span>
+      </strong>
+
+      <span class="fg-block-fr">J’ai mal aux yeux.</span>
+      <p>چشم‌هایم درد می‌کند.</p>
+
+      <span class="fg-block-fr">J’ai du mal à lire.</span>
+      <p>در خواندن مشکل دارم.</p>
+    </div>
+  </section>
+
+
+  <!-- =========================================================
+       8. PEUR
+       ========================================================= -->
+  <section class="fg-section">
+    <h2>۸. <span class="fg-fr">avoir peur de</span></h2>
+
+    <div class="fg-examples">
+      <div class="fg-example fg-example-good">
+        <span class="fg-fr">J’ai peur du noir.</span>
+      </div>
+
+      <div class="fg-example fg-example-good">
+        <span class="fg-fr">Elle a peur des serpents.</span>
+      </div>
+
+      <div class="fg-example fg-example-good">
+        <span class="fg-fr">Nous avons peur de l’avenir.</span>
+      </div>
+    </div>
+
+    <div class="fg-table-wrap">
+      <table class="fg-table">
+        <thead>
+          <tr>
+            <th>ساخت</th>
+            <th>فرم ادغام‌شده</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="fg-fr">de + le</span></td>
+            <td><span class="fg-fr">du</span></td>
+          </tr>
+          <tr>
+            <td><span class="fg-fr">de + les</span></td>
+            <td><span class="fg-fr">des</span></td>
+          </tr>
+          <tr>
+            <td><span class="fg-fr">de + la</span></td>
+            <td><span class="fg-fr">de la</span></td>
+          </tr>
+          <tr>
+            <td><span class="fg-fr">de + l’</span></td>
+            <td><span class="fg-fr">de l’</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="fg-callout fg-callout-danger">
+      <strong>اشتباه رایج</strong>
+      <span class="fg-block-fr fg-wrong">✗ J’ai peur de les chiens.</span>
+      <span class="fg-block-fr fg-right">✓ J’ai peur des chiens.</span>
+    </div>
+  </section>
+
+
+  <!-- =========================================================
+       9. PHYSICAL DESCRIPTION
+       ========================================================= -->
+  <section class="fg-section">
+    <h2>۹. توصیف ظاهر با <span class="fg-fr">avoir</span></h2>
+
+    <p>
+      برای بسیاری از ویژگی‌های جسمانی از ساخت
+      <span class="fg-fr">avoir + article défini + nom + adjectif</span>
+      استفاده می‌شود.
+    </p>
+
+    <div class="fg-examples">
+      <div class="fg-example fg-example-good">
+        <span class="fg-fr">Elle a les yeux bleus.</span>
+      </div>
+      <div class="fg-example fg-example-good">
+        <span class="fg-fr">Elle a les cheveux bruns.</span>
+      </div>
+      <div class="fg-example fg-example-good">
+        <span class="fg-fr">Elle a la peau douce.</span>
+      </div>
+      <div class="fg-example fg-example-good">
+        <span class="fg-fr">Il a le visage rond.</span>
+      </div>
+    </div>
+
+    <div class="fg-callout fg-callout-info">
+      <strong>عضو بدن معمولاً با article défini می‌آید</strong>
+      <span class="fg-block-fr fg-right">✓ Elle a les yeux bleus.</span>
+      <span class="fg-block-fr fg-wrong">✗ Elle a ses yeux bleus.</span>
+    </div>
+
+    <h3>وقتی صفت قبل از اسم قرار می‌گیرد</h3>
+
+    <div class="fg-examples">
+      <div class="fg-example fg-example-good">
+        <span class="fg-fr">Elle a un petit nez.</span>
+      </div>
+      <div class="fg-example fg-example-good">
+        <span class="fg-fr">Elle a une jolie bouche.</span>
+      </div>
+      <div class="fg-example fg-example-good">
+        <span class="fg-fr">Il a un grand front.</span>
+      </div>
+      <div class="fg-example fg-example-good">
+        <span class="fg-fr">Il a une longue barbe.</span>
+      </div>
+    </div>
+
+    <div class="fg-callout fg-callout-warning">
+      <strong>نکته دربارهٔ <span class="fg-fr">cheveux</span></strong>
+      در توصیف مو معمولاً جمع استفاده می‌شود:
+      <span class="fg-block-fr">Elle a les cheveux longs.</span>
+      اما یک تار مو:
+      <span class="fg-block-fr">J’ai trouvé un cheveu blanc.</span>
+    </div>
+  </section>
+
+
+  <!-- =========================================================
+       10. AVOIR L'AIR
+       ========================================================= -->
+  <section class="fg-section">
+    <h2>۱۰. <span class="fg-fr">avoir l’air</span></h2>
+
+    <p>
+      این عبارت برای بیان «به نظر رسیدن» استفاده می‌شود.
+    </p>
+
+    <div class="fg-formula">
+      <span class="fg-block-fr">avoir l’air + adjectif</span>
+    </div>
+
+    <div class="fg-examples">
+      <div class="fg-example fg-example-good">
+        <span class="fg-fr">Elle a l’air sympathique.</span>
+      </div>
+
+      <div class="fg-example fg-example-good">
+        <span class="fg-fr">Tu as l’air fatigué.</span>
+      </div>
+
+      <div class="fg-example fg-example-good">
+        <span class="fg-fr">Elles ont l’air heureuses.</span>
+      </div>
+    </div>
+
+    <div class="fg-callout fg-callout-warning">
+      <strong>نکتهٔ ظریف</strong>
+      وقتی صفت واقعاً شخص را توصیف می‌کند، هماهنگی با جنس و شمار شخص بسیار رایج است:
+      <span class="fg-block-fr">Elle a l’air sérieuse.</span>
+    </div>
+  </section>
+
+
+  <!-- =========================================================
+       11. EXPRESSIONS
+       ========================================================= -->
+  <section class="fg-section">
+    <h2>۱۱. عبارت‌های ثابت با <span class="fg-fr">avoir</span></h2>
+
+    <div class="fg-table-wrap">
+      <table class="fg-table">
+        <thead>
+          <tr>
+            <th>عبارت</th>
+            <th>کاربرد / مثال</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="fg-fr">avoir le temps de</span></td>
+            <td><span class="fg-fr">J’ai le temps de lire.</span></td>
+          </tr>
+          <tr>
+            <td><span class="fg-fr">avoir l’habitude de</span></td>
+            <td><span class="fg-fr">J’ai l’habitude de voyager seul.</span></td>
+          </tr>
+          <tr>
+            <td><span class="fg-fr">avoir l’intention de</span></td>
+            <td><span class="fg-fr">J’ai l’intention de partir.</span></td>
+          </tr>
+          <tr>
+            <td><span class="fg-fr">avoir l’occasion de</span></td>
+            <td><span class="fg-fr">J’ai l’occasion de voyager.</span></td>
+          </tr>
+          <tr>
+            <td><span class="fg-fr">avoir du mal à</span></td>
+            <td><span class="fg-fr">J’ai du mal à comprendre.</span></td>
+          </tr>
+          <tr>
+            <td><span class="fg-fr">avoir de la chance</span></td>
+            <td><span class="fg-fr">Tu as de la chance.</span></td>
+          </tr>
+          <tr>
+            <td><span class="fg-fr">avoir raison</span></td>
+            <td><span class="fg-fr">Vous avez raison.</span></td>
+          </tr>
+          <tr>
+            <td><span class="fg-fr">avoir tort</span></td>
+            <td><span class="fg-fr">Il a tort.</span></td>
+          </tr>
+          <tr>
+            <td><span class="fg-fr">avoir bon caractère</span></td>
+            <td><span class="fg-fr">Elle a bon caractère.</span></td>
+          </tr>
+          <tr>
+            <td><span class="fg-fr">avoir lieu</span></td>
+            <td><span class="fg-fr">La réunion a lieu à dix heures.</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="fg-callout fg-callout-info">
+      <strong>حرف اضافه بخشی از ساخت ثابت است</strong>
+
+      <span class="fg-block-fr">
+        avoir l’habitude <b>de</b> + infinitif
+      </span>
+
+      <span class="fg-block-fr">
+        avoir du mal <b>à</b> + infinitif
+      </span>
+    </div>
+
+    <div class="fg-callout fg-callout-warning">
+      <strong><span class="fg-fr">avoir lieu</span></strong>
+      فاعل معمولاً خودِ رویداد است:
+      <span class="fg-block-fr fg-right">✓ La réunion a lieu demain.</span>
+      <span class="fg-block-fr fg-wrong">✗ Nous avons lieu une réunion.</span>
+    </div>
+  </section>
+
+
+  <!-- =========================================================
+       12. NEGATIVE ARTICLES
+       ========================================================= -->
+  <section class="fg-section">
+    <h2>۱۲. حروف تعریف در جملهٔ منفی</h2>
+
+    <p>
+      این بخش یکی از مهم‌ترین نکات درس است.
+    </p>
+
+    <h3>حروف تعریف نامعین و جزئی</h3>
+
+    <p>
+      در جملهٔ منفی،
+      <span class="fg-fr">un / une / des / du / de la</span>
+      معمولاً به
+      <span class="fg-fr">de / d’</span>
+      تبدیل می‌شوند.
+    </p>
+
+    <div class="fg-table-wrap">
+      <table class="fg-table">
+        <thead>
+          <tr>
+            <th>مثبت</th>
+            <th>منفی</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="fg-fr">J’ai un chien.</span></td>
+            <td><span class="fg-fr">Je n’ai pas de chien.</span></td>
+          </tr>
+          <tr>
+            <td><span class="fg-fr">J’ai une voiture.</span></td>
+            <td><span class="fg-fr">Je n’ai pas de voiture.</span></td>
+          </tr>
+          <tr>
+            <td><span class="fg-fr">J’ai des enfants.</span></td>
+            <td><span class="fg-fr">Je n’ai pas d’enfants.</span></td>
+          </tr>
+          <tr>
+            <td><span class="fg-fr">J’ai du temps.</span></td>
+            <td><span class="fg-fr">Je n’ai pas de temps.</span></td>
+          </tr>
+          <tr>
+            <td><span class="fg-fr">Elle a de la chance.</span></td>
+            <td><span class="fg-fr">Elle n’a pas de chance.</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Article défini تغییر نمی‌کند</h3>
+
+    <div class="fg-examples">
+      <div class="fg-example fg-example-good">
+        <span class="fg-fr">J’ai le permis.</span>
+        →
+        <span class="fg-fr">Je n’ai pas le permis.</span>
+      </div>
+
+      <div class="fg-example fg-example-good">
+        <span class="fg-fr">J’ai la télévision.</span>
+        →
+        <span class="fg-fr">Je n’ai pas la télévision.</span>
+      </div>
+
+      <div class="fg-example fg-example-good">
+        <span class="fg-fr">J’ai les clés.</span>
+        →
+        <span class="fg-fr">Je n’ai pas les clés.</span>
+      </div>
+    </div>
+
+    <div class="fg-callout fg-callout-success">
+      <strong>قاعدهٔ سریع</strong>
+      <span class="fg-block-fr">
+        un / une / des / du / de la → de / d’
+      </span>
+      <span class="fg-block-fr">
+        le / la / les → بدون تغییر
+      </span>
+    </div>
+
+
+    <h3>استثنا: تصحیح و تقابل</h3>
+
+    <p>
+      اگر هدف نفی کامل وجود اسم نباشد و فقط چیزی را با چیز دیگری تصحیح کنیم،
+      article نامعین می‌تواند باقی بماند.
+    </p>
+
+    <div class="fg-examples">
+      <div class="fg-example fg-example-good">
+        <span class="fg-fr">
+          Pas une moto, un scooter.
+        </span>
+      </div>
+
+      <div class="fg-example fg-example-good">
+        <span class="fg-fr">
+          Je ne veux pas une petite voiture, je veux une grande voiture.
+        </span>
+      </div>
+    </div>
+
+    <div class="fg-callout fg-callout-purple">
+      <strong>استثنای مهم با <span class="fg-fr">être</span></strong>
+      <span class="fg-block-fr">C’est une voiture.</span>
+      <span class="fg-block-fr">Ce n’est pas une voiture.</span>
+      <span class="fg-block-fr fg-wrong">✗ Ce n’est pas de voiture.</span>
+    </div>
+  </section>
+
+
+  <!-- =========================================================
+       SPECIAL FAQ: WHY NO "DE"?
+       ========================================================= -->
+  <section class="fg-section">
+    <h2>
+      نکتهٔ بسیار مهم:
+      چرا در
+      <span class="fg-fr">Vous n’avez pas faim ?</span>
+      از
+      <span class="fg-fr">de</span>
+      استفاده نمی‌کنیم؟
+    </h2>
+
+    <p>
+      چون قانون
+      <span class="fg-fr">de</span>
+      مربوط به خودِ فعل
+      <span class="fg-fr">avoir</span>
+      نیست.
+      این تغییر زمانی اتفاق می‌افتد که در جملهٔ مثبت یک article مانند
+      <span class="fg-fr">un, une, des, du, de la</span>
+      وجود داشته باشد.
+    </p>
+
+    <div class="fg-compare">
+      <div class="fg-compare-item">
+        <h3>اسم با Article</h3>
+
+        <span class="fg-block-fr">Vous avez une voiture ?</span>
+        <span class="fg-block-fr">Vous n’avez pas de voiture ?</span>
+
+        <p>
+          در اینجا
+          <span class="fg-fr">une</span>
+          به
+          <span class="fg-fr">de</span>
+          تبدیل شده است.
+        </p>
+      </div>
+
+      <div class="fg-compare-item">
+        <h3>عبارت ثابت بدون Article</h3>
+
+        <span class="fg-block-fr">Vous avez faim ?</span>
+        <span class="fg-block-fr">Vous n’avez pas faim ?</span>
+
+        <p>
+          از ابتدا هیچ article وجود نداشته است که به
+          <span class="fg-fr">de</span>
+          تبدیل شود.
+        </p>
+      </div>
+    </div>
+
+    <div class="fg-callout fg-callout-danger">
+      <strong>بنابراین این فرم‌ها غلط‌اند:</strong>
+      <span class="fg-block-fr">✗ Vous n’avez pas de faim ?</span>
+      <span class="fg-block-fr">✗ Vous n’avez pas de froid ?</span>
+      <span class="fg-block-fr">✗ Vous n’avez pas de sommeil ?</span>
+      <span class="fg-block-fr">✗ Vous n’avez pas de peur ?</span>
+    </div>
+
+    <div class="fg-callout fg-callout-info">
+      <strong>ساخت‌های ثابت بدون article</strong>
+      <span class="fg-block-fr">
+        avoir faim · avoir froid · avoir chaud · avoir soif · avoir sommeil · avoir peur
+      </span>
+    </div>
+
+    <div class="fg-callout fg-callout-warning">
+      <strong>
+        دربارهٔ
+        <span class="fg-fr">avoir peur de</span>
+      </strong>
+
+      <span class="fg-block-fr">J’ai peur des chiens.</span>
+      <span class="fg-block-fr">Je n’ai pas peur des chiens.</span>
+
+      <p>
+        در اینجا
+        <span class="fg-fr">des</span>
+        حاصل
+        <span class="fg-fr">de + les</span>
+        است و به ساخت
+        <span class="fg-fr">avoir peur de quelque chose</span>
+        مربوط می‌شود، نه به منفی بودن جمله.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- =========================================================
+       EXERCISES PAGE 49
+       ========================================================= -->
+  <section class="fg-section">
+    <h2>تمرین‌های صفحهٔ ۴۹</h2>
+
+    <div class="fg-exercise">
+      <div class="fg-exercise-title">تمرین ۱ — پاسخ با <span class="fg-fr">avoir</span></div>
+
+      <span class="fg-block-fr">1. Vous avez un appartement ou une maison ?</span>
+      <div class="fg-answer">
+        <span class="fg-block-fr">J’ai un appartement.</span>
+      </div>
+
+      <span class="fg-block-fr">2. Vous avez une, deux ou trois chambres ?</span>
+      <div class="fg-answer">
+        <span class="fg-block-fr">J’ai deux chambres.</span>
+      </div>
+
+      <span class="fg-block-fr">3. Vous avez des meubles anciens ou modernes ?</span>
+      <div class="fg-answer">
+        <span class="fg-block-fr">J’ai des meubles modernes.</span>
+      </div>
+
+      <span class="fg-block-fr">4. Vous avez un grand ou un petit salon ?</span>
+      <div class="fg-answer">
+        <span class="fg-block-fr">J’ai un petit salon.</span>
+      </div>
+
+      <span class="fg-block-fr">5. Vous avez un chauffage électrique ou au gaz ?</span>
+      <div class="fg-answer">
+        <span class="fg-block-fr">J’ai un chauffage électrique.</span>
+      </div>
+
+      <span class="fg-block-fr">6. Vous avez des voisins calmes ou bruyants ?</span>
+      <div class="fg-answer">
+        <span class="fg-block-fr">J’ai des voisins calmes.</span>
+      </div>
+    </div>
+
+
+    <div class="fg-exercise">
+      <div class="fg-exercise-title">تمرین ۲ — تکمیل با فعل، ضمیر و Article</div>
+
+      <div class="fg-answer">
+        <span class="fg-block-fr">
+          1. Vous avez un stylo bleu ? — Non, j’ai un stylo noir.
+        </span>
+
+        <span class="fg-block-fr">
+          2. Cathy a une moto ? — Oui, elle a une Yamaha.
+        </span>
+
+        <span class="fg-block-fr">
+          3. Les voisins ont un chien ? — Oui, ils ont un chien et deux chats.
+        </span>
+
+        <span class="fg-block-fr">
+          4. Paul et toi, vous avez des diplômes ? — Oui, tous les deux, nous avons une licence d’histoire.
+        </span>
+      </div>
+    </div>
+
+
+    <div class="fg-exercise">
+      <div class="fg-exercise-title">تمرین ۳ — احساسات و حالت‌ها</div>
+
+      <div class="fg-answer">
+        <span class="fg-block-fr">1. Il a sommeil.</span>
+        <span class="fg-block-fr">2. Nous avons faim.</span>
+        <span class="fg-block-fr">3. Il a peur des souris.</span>
+        <span class="fg-block-fr">4. Il a mal au dos.</span>
+      </div>
+
+      <div class="fg-note">
+        <span class="fg-fr">peur de + les souris → peur des souris</span>
+        <br>
+        <span class="fg-fr">mal à + le dos → mal au dos</span>
+      </div>
+    </div>
+
+
+    <div class="fg-exercise">
+      <div class="fg-exercise-title">تمرین ۴ — تکمیل گفت‌وگوها</div>
+
+      <div class="fg-answer">
+        <span class="fg-block-fr">
+          Oui, j’ai besoin d’un café ! Pas vous ?
+        </span>
+        <span class="fg-block-fr">
+          Oui, j’ai envie d’une glace ! Pas vous ?
+        </span>
+        <span class="fg-block-fr">
+          Oui, j’ai peur des serpents ! Pas vous ?
+        </span>
+      </div>
+
+      <div class="fg-note">
+        منفی:
+        <span class="fg-block-fr">Je n’ai pas envie de glace.</span>
+        در اینجا
+        <span class="fg-fr">une glace</span>
+        در حالت نفی به
+        <span class="fg-fr">de glace</span>
+        تبدیل می‌شود.
+      </div>
+    </div>
+
+
+    <div class="fg-exercise">
+      <div class="fg-exercise-title">تمرین ۵ — <span class="fg-fr">avoir besoin de</span></div>
+
+      <div class="fg-answer">
+        <span class="fg-block-fr">
+          Pour voyager en Europe, vous avez besoin d’un visa ?
+        </span>
+
+        <span class="fg-block-fr">
+          Pour écrire en français, vous avez besoin d’un dictionnaire ?
+        </span>
+
+        <span class="fg-block-fr">
+          Pour rester en forme, vous avez besoin de faire du sport ?
+        </span>
+
+        <span class="fg-block-fr">
+          Pour travailler en France, vous avez besoin de parler français ?
+        </span>
+      </div>
+    </div>
+
+
+    <div class="fg-exercise">
+      <div class="fg-exercise-title">تمرین ۶ — <span class="fg-fr">avoir envie de</span></div>
+
+      <div class="fg-answer">
+        <span class="fg-block-fr">J’ai envie d’un thé.</span>
+        <span class="fg-block-fr">Mon mari a envie d’un café.</span>
+        <span class="fg-block-fr">Les enfants ont envie d’une glace.</span>
+        <span class="fg-block-fr">Nous avons envie de manger au restaurant.</span>
+        <span class="fg-block-fr">Tu as envie de lire.</span>
+        <span class="fg-block-fr">Vous avez envie de dormir.</span>
+        <span class="fg-block-fr">On a envie de sortir.</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =========================================================
+       EXERCISES PAGE 51
+       ========================================================= -->
+  <section class="fg-section">
+    <h2>تمرین‌های صفحهٔ ۵۱</h2>
+
+    <div class="fg-exercise">
+      <div class="fg-exercise-title">تمرین ۱ — توصیف شخصیت</div>
+
+      <div class="fg-answer">
+        <span class="fg-block-fr">Il a quarante-cinq ans.</span>
+        <span class="fg-block-fr">Il a les cheveux châtains.</span>
+        <span class="fg-block-fr">Il a les yeux bleus.</span>
+        <span class="fg-block-fr">Il a le visage carré.</span>
+        <span class="fg-block-fr">Il a un gros nez.</span>
+        <span class="fg-block-fr">Il a une longue barbe.</span>
+        <span class="fg-block-fr">Il a un grand front.</span>
+      </div>
+    </div>
+
+
+    <div class="fg-exercise">
+      <div class="fg-exercise-title">تمرین ۲ — پاسخ مثبت یا منفی</div>
+
+      <div class="fg-answer">
+        <span class="fg-block-fr">
+          Oui, j’ai l’intention de partir.
+        </span>
+
+        <span class="fg-block-fr">
+          Non, je n’ai pas l’intention de partir en charter.
+        </span>
+
+        <span class="fg-block-fr">
+          Oui, j’ai l’habitude de voyager seul.
+        </span>
+
+        <span class="fg-block-fr">
+          Non, je n’ai pas le temps de lire des guides.
+        </span>
+
+        <span class="fg-block-fr">
+          Oui, j’ai souvent l’occasion de voyager.
+        </span>
+      </div>
+
+      <div class="fg-note">
+        حروف تعریف معین در این عبارت‌های ثابت باقی می‌مانند:
+        <span class="fg-fr">
+          l’intention, l’habitude, le temps, l’occasion
+        </span>.
+      </div>
+    </div>
+
+
+    <div class="fg-exercise">
+      <div class="fg-exercise-title">تمرین ۳ — Article در منفی</div>
+
+      <div class="fg-answer">
+        <span class="fg-block-fr">J’ai un chien.</span>
+        <span class="fg-block-fr">Je n’ai pas d’enfants.</span>
+        <span class="fg-block-fr">Je n’ai pas de piscine.</span>
+        <span class="fg-block-fr">Je n’ai pas de garage.</span>
+        <span class="fg-block-fr">J’ai la télé.</span>
+        <span class="fg-block-fr">Je n’ai pas le satellite.</span>
+      </div>
+    </div>
+
+
+    <div class="fg-exercise">
+      <div class="fg-exercise-title">تمرین ۴ — سؤال‌های منفی</div>
+
+      <div class="fg-answer">
+        <span class="fg-block-fr">Vous n’avez pas froid ?</span>
+        <span class="fg-block-fr">Vous n’avez pas faim ?</span>
+        <span class="fg-block-fr">Vous n’avez pas soif ?</span>
+        <span class="fg-block-fr">Vous n’avez pas sommeil ?</span>
+        <span class="fg-block-fr">Vous n’avez pas peur ?</span>
+        <span class="fg-block-fr">Vous n’avez pas chaud ?</span>
+      </div>
+
+      <div class="fg-note">
+        این عبارت‌ها بدون article هستند؛ بنابراین
+        <span class="fg-fr">de</span>
+        وارد جمله نمی‌شود.
+      </div>
+    </div>
+
+
+    <div class="fg-exercise">
+      <div class="fg-exercise-title">
+        تمرین ۵ —
+        <span class="fg-fr">Il y a / Il n’y a pas de...</span>
+      </div>
+
+      <div class="fg-answer">
+        <span class="fg-block-fr">Il n’y a pas de rideaux.</span>
+        <span class="fg-block-fr">Il y a des chaises.</span>
+        <span class="fg-block-fr">Il n’y a pas de canapé.</span>
+        <span class="fg-block-fr">Il y a une télévision.</span>
+        <span class="fg-block-fr">Il n’y a pas de miroir.</span>
+        <span class="fg-block-fr">Il y a des placards.</span>
+        <span class="fg-block-fr">Il n’y a pas de plantes vertes.</span>
+        <span class="fg-block-fr">Il y a des posters.</span>
+        <span class="fg-block-fr">Il n’y a pas d’ordinateur.</span>
+        <span class="fg-block-fr">Il n’y a pas de fauteuil.</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =========================================================
+       EXERCISES PAGE 52
+       ========================================================= -->
+  <section class="fg-section">
+    <h2>تمرین‌های صفحهٔ ۵۲</h2>
+
+    <div class="fg-exercise">
+      <div class="fg-exercise-title">تمرین ۱ — تکمیل متن با <span class="fg-fr">avoir</span></div>
+
+      <div class="fg-answer fg-block-fr">
+        Franck et Brigitte sont mes voisins. Ils ont deux enfants :
+        Lou et Marcus. Marcus a huit ans, comme mon fils Antoine.
+        Il a les yeux bleus et les cheveux noirs, comme lui.
+        Lou a trois ans. Elle a aussi les yeux bleus,
+        mais elle a les cheveux blonds.
+        Brigitte et moi, nous avons la même baby-sitter, Jouba.
+        Elle a seulement dix-neuf ans, mais elle a beaucoup d’expérience,
+        car elle a cinq frères et sœurs.
+        Mon fils a un petit chien, Bill.
+        Les enfants de Brigitte ont un chat, un singe et un perroquet.
+        Ça fait beaucoup de monde, mais Jouba a beaucoup de patience
+        et elle a bon caractère.
+      </div>
+
+      <div class="fg-callout fg-callout-info">
+        <strong>بعد از <span class="fg-fr">beaucoup</span></strong>
+        <span class="fg-block-fr">
+          beaucoup d’expérience
+        </span>
+        <span class="fg-block-fr">
+          beaucoup de patience
+        </span>
+        <span class="fg-block-fr">
+          beaucoup de monde
+        </span>
+      </div>
+    </div>
+
+
+    <div class="fg-exercise">
+      <div class="fg-exercise-title">تمرین ۲ — <span class="fg-fr">être</span> یا <span class="fg-fr">avoir</span>؟</div>
+
+      <div class="fg-answer">
+        <span class="fg-block-fr">
+          Quand j’ai un rendez-vous, je suis généralement à l’heure.
+        </span>
+
+        <span class="fg-block-fr">
+          Quand je suis en retard, je n’ai pas toujours une bonne excuse.
+        </span>
+
+        <span class="fg-block-fr">
+          Quand je suis fatigué, je ne suis pas forcément de mauvaise humeur.
+        </span>
+
+        <span class="fg-block-fr">
+          Quand je suis enrhumé, je n’ai pas toujours de température.
+        </span>
+      </div>
+    </div>
+
+
+    <div class="fg-exercise">
+      <div class="fg-exercise-title">تمرین ۳ — تکمیل با <span class="fg-fr">être / avoir</span></div>
+
+      <div class="fg-answer">
+        <span class="fg-block-fr">
+          Je suis marié, j’ai trente ans et j’ai deux enfants.
+        </span>
+
+        <span class="fg-block-fr">
+          Mon fils et ma fille sont à la maison : ils ont la grippe.
+        </span>
+
+        <span class="fg-block-fr">
+          Eva est très riche ; elle a une Rolls et un chauffeur.
+        </span>
+
+        <span class="fg-block-fr">
+          Je suis pressé : j’ai rendez-vous à dix heures chez le dentiste.
+        </span>
+
+        <span class="fg-block-fr">
+          Il est minuit, je suis fatigué et j’ai sommeil.
+        </span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =========================================================
+       EXERCISES PAGE 53
+       ========================================================= -->
+  <section class="fg-section">
+    <h2>تمرین‌های صفحهٔ ۵۳</h2>
+
+    <div class="fg-exercise">
+      <div class="fg-exercise-title">تمرین ۱ — مثبت و سپس منفی</div>
+
+      <div class="fg-answer">
+        <span class="fg-block-fr">
+          Franck a un petit studio.
+          Il n’a pas de maison de campagne.
+        </span>
+
+        <span class="fg-block-fr">
+          Il a une vieille voiture.
+          Il n’a pas de garage.
+        </span>
+
+        <span class="fg-block-fr">
+          Il a des jeans.
+          Il n’a pas de costume.
+        </span>
+
+        <span class="fg-block-fr">
+          Il a des écharpes.
+          Il n’a pas de cravate.
+        </span>
+
+        <span class="fg-block-fr">
+          Il a des meubles en pin.
+          Il n’a pas de meubles en acajou.
+        </span>
+
+        <span class="fg-block-fr">
+          Il a le temps de lire.
+          Il n’a pas le temps de répondre à ses mails.
+        </span>
+
+        <span class="fg-block-fr">
+          Il a envie de voyager.
+          Il n’a pas envie de travailler dans un bureau.
+        </span>
+
+        <span class="fg-block-fr">
+          Il a besoin de faire du sport.
+          Il n’a pas besoin de maigrir.
+        </span>
+      </div>
+    </div>
+
+
+    <div class="fg-exercise">
+      <div class="fg-exercise-title">تمرین ۲ — آگهی‌های استخدام</div>
+
+      <div class="fg-card-grid">
+
+        <div class="fg-card">
+          <h3>Secrétaire commerciale</h3>
+          <span class="fg-block-fr">
+            Vous êtes secrétaire commerciale et vous êtes bilingue.
+            Vous avez environ trente ans et vous avez au minimum
+            cinq ans d’expérience en entreprise.
+            Vous êtes organisée, autonome et disponible.
+            Vous avez le sens des responsabilités.
+          </span>
+        </div>
+
+        <div class="fg-card">
+          <h3>Directeur des ventes</h3>
+          <span class="fg-block-fr">
+            Vous êtes directeur des ventes.
+            Vous avez environ quarante ans et vous avez une expérience
+            internationale dans le domaine de la vente.
+            Vous êtes dynamique et vous avez le goût des relations humaines.
+          </span>
+        </div>
+
+        <div class="fg-card">
+          <h3>Comédien</h3>
+          <span class="fg-block-fr">
+            Vous êtes comédien et vous avez environ vingt-cinq ans.
+            Vous êtes petit, brun et athlétique.
+            Vous avez les yeux clairs et les cheveux longs.
+          </span>
+        </div>
+
+      </div>
+    </div>
+
+
+    <div class="fg-exercise">
+      <div class="fg-exercise-title">تمرین ۳ — ساخت سؤال با <span class="fg-fr">comme</span></div>
+
+      <div class="fg-answer">
+        <span class="fg-block-fr">
+          Qu’est-ce que vous avez comme stylo ?
+        </span>
+
+        <span class="fg-block-fr">
+          Qu’est-ce que vous avez comme chien ?
+        </span>
+
+        <span class="fg-block-fr">
+          Qu’est-ce que vous avez comme ordinateur ?
+        </span>
+
+        <span class="fg-block-fr">
+          Qu’est-ce que vous avez comme voiture ?
+        </span>
+      </div>
+
+      <div class="fg-note">
+        در گفتار:
+        <span class="fg-block-fr">
+          Vous avez quoi comme voiture ?
+        </span>
+      </div>
+    </div>
+
+
+    <div class="fg-exercise">
+      <div class="fg-exercise-title">تمرین ۴ — نمونهٔ آگهی شغلی</div>
+
+      <div class="fg-answer fg-block-fr">
+        Vous êtes développeur web full-stack et vous êtes bilingue
+        français-anglais. Vous avez plusieurs années d’expérience
+        en développement logiciel. Vous avez de solides compétences
+        en PHP, JavaScript, React et dans les bases de données.
+        Vous êtes organisé, autonome et dynamique.
+        Vous avez un bon esprit d’équipe et vous avez le sens
+        des responsabilités.
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =========================================================
+       COMMON MISTAKES
+       ========================================================= -->
+  <section class="fg-section">
+    <h2>اشتباهات بسیار رایج درس ۱۱</h2>
+
+    <div class="fg-table-wrap">
+      <table class="fg-table">
+        <thead>
+          <tr>
+            <th>اشتباه</th>
+            <th>شکل صحیح</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr>
+            <td class="fg-wrong">
+              <span class="fg-fr">Je suis 36 ans.</span>
+            </td>
+            <td class="fg-right">
+              <span class="fg-fr">J’ai 36 ans.</span>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="fg-wrong">
+              <span class="fg-fr">Je suis faim.</span>
+            </td>
+            <td class="fg-right">
+              <span class="fg-fr">J’ai faim.</span>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="fg-wrong">
+              <span class="fg-fr">J’ai beaucoup faim.</span>
+            </td>
+            <td class="fg-right">
+              <span class="fg-fr">J’ai très faim.</span>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="fg-wrong">
+              <span class="fg-fr">J’ai mal de la tête.</span>
+            </td>
+            <td class="fg-right">
+              <span class="fg-fr">J’ai mal à la tête.</span>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="fg-wrong">
+              <span class="fg-fr">J’ai peur de les chiens.</span>
+            </td>
+            <td class="fg-right">
+              <span class="fg-fr">J’ai peur des chiens.</span>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="fg-wrong">
+              <span class="fg-fr">Je n’ai pas une voiture.</span>
+            </td>
+            <td class="fg-right">
+              <span class="fg-fr">Je n’ai pas de voiture.</span>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="fg-wrong">
+              <span class="fg-fr">J’ai une besoin de repos.</span>
+            </td>
+            <td class="fg-right">
+              <span class="fg-fr">J’ai besoin de repos.</span>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="fg-wrong">
+              <span class="fg-fr">J’ai du mal au comprendre.</span>
+            </td>
+            <td class="fg-right">
+              <span class="fg-fr">J’ai du mal à comprendre.</span>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="fg-wrong">
+              <span class="fg-fr">La réunion est lieu demain.</span>
+            </td>
+            <td class="fg-right">
+              <span class="fg-fr">La réunion a lieu demain.</span>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+
+  <!-- =========================================================
+       FINAL SUMMARY
+       ========================================================= -->
+  <section class="fg-section">
+    <h2>خلاصهٔ نهایی درس</h2>
+
+    <div class="fg-summary-grid">
+
+      <div class="fg-summary-item">
+        <strong>سن</strong>
+        <span class="fg-block-fr">avoir + nombre + ans</span>
+      </div>
+
+      <div class="fg-summary-item">
+        <strong>احساسات</strong>
+        <span class="fg-block-fr">
+          avoir faim / froid / chaud / soif / sommeil / peur
+        </span>
+      </div>
+
+      <div class="fg-summary-item">
+        <strong>درد</strong>
+        <span class="fg-block-fr">
+          avoir mal à + partie du corps
+        </span>
+      </div>
+
+      <div class="fg-summary-item">
+        <strong>نیاز</strong>
+        <span class="fg-block-fr">
+          avoir besoin de
+        </span>
+      </div>
+
+      <div class="fg-summary-item">
+        <strong>تمایل</strong>
+        <span class="fg-block-fr">
+          avoir envie de
+        </span>
+      </div>
+
+      <div class="fg-summary-item">
+        <strong>مشکل در انجام کار</strong>
+        <span class="fg-block-fr">
+          avoir du mal à + infinitif
+        </span>
+      </div>
+
+      <div class="fg-summary-item">
+        <strong>توصیف ظاهر</strong>
+        <span class="fg-block-fr">
+          avoir les yeux / les cheveux / le visage...
+        </span>
+      </div>
+
+      <div class="fg-summary-item">
+        <strong>به نظر رسیدن</strong>
+        <span class="fg-block-fr">
+          avoir l’air + adjectif
+        </span>
+      </div>
+
+      <div class="fg-summary-item">
+        <strong>نفی Article نامعین</strong>
+        <span class="fg-block-fr">
+          un / une / des → de / d’
+        </span>
+      </div>
+
+      <div class="fg-summary-item">
+        <strong>Article معین</strong>
+        <span class="fg-block-fr">
+          le / la / les → بدون تغییر در نفی
+        </span>
+      </div>
+
+      <div class="fg-summary-item">
+        <strong>درست / اشتباه بودن</strong>
+        <span class="fg-block-fr">
+          avoir raison / avoir tort
+        </span>
+      </div>
+
+      <div class="fg-summary-item">
+        <strong>برگزار شدن</strong>
+        <span class="fg-block-fr">
+          avoir lieu
+        </span>
+      </div>
+
+    </div>
+
+    <div class="fg-callout fg-callout-success">
+      <strong>قاعدهٔ طلایی درس ۱۱</strong>
+      فعل
+      <span class="fg-fr">avoir</span>
+      در زبان فرانسه فقط «داشتن» نیست؛
+      تعداد زیادی از مفاهیمی که در فارسی با «بودن»، «شدن»، «احساس کردن»
+      یا «داشتن» بیان می‌شوند، با ساخت‌های ثابت
+      <span class="fg-fr">avoir</span>
+      ساخته می‌شوند.
+    </div>
+  </section>
+
+</div>

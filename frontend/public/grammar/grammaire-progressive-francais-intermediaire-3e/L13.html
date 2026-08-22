@@ -1,0 +1,2832 @@
+<div class="french-grammar-wrapper" dir="rtl">
+
+  <style>
+    .french-grammar-wrapper {
+      --fg-primary: #173f73;
+      --fg-primary-dark: #102d52;
+      --fg-primary-light: #eaf2fb;
+      --fg-secondary: #315f92;
+      --fg-green: #17834f;
+      --fg-green-bg: #edf9f2;
+      --fg-red: #c63d3d;
+      --fg-red-bg: #fff0f0;
+      --fg-orange: #d97706;
+      --fg-orange-bg: #fff7e8;
+      --fg-purple: #7353ba;
+      --fg-purple-bg: #f5f1ff;
+      --fg-cyan-bg: #edf9fc;
+      --fg-border: #d9e2ec;
+      --fg-text: #263648;
+      --fg-muted: #66788a;
+      --fg-white: #ffffff;
+      --fg-bg: #f7f9fc;
+      --fg-code-bg: #f1f5f9;
+      --fg-radius: 16px;
+      --fg-shadow: 0 5px 22px rgba(29, 58, 92, 0.08);
+
+      width: 100%;
+      box-sizing: border-box;
+      direction: rtl;
+      text-align: right;
+      color: var(--fg-text);
+      font-family:
+        Vazirmatn,
+        IRANSans,
+        "Segoe UI",
+        Tahoma,
+        Arial,
+        sans-serif;
+      line-height: 1.95;
+      font-size: 16px;
+    }
+
+    .french-grammar-wrapper *,
+    .french-grammar-wrapper *::before,
+    .french-grammar-wrapper *::after {
+      box-sizing: border-box;
+    }
+
+    .french-grammar-wrapper .fg-container {
+      width: 100%;
+      max-width: 1150px;
+      margin: 0 auto;
+    }
+
+    .french-grammar-wrapper .fg-fr,
+    .french-grammar-wrapper [lang="fr"] {
+      direction: ltr;
+      unicode-bidi: isolate;
+      text-align: left;
+      display: inline-block;
+      font-family:
+        "Segoe UI",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+    }
+
+    .french-grammar-wrapper .fg-fr-block {
+      display: block;
+      direction: ltr;
+      unicode-bidi: isolate;
+      text-align: left;
+      font-family:
+        "Segoe UI",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+    }
+
+    .french-grammar-wrapper .fg-hero {
+      position: relative;
+      overflow: hidden;
+      padding: 32px;
+      margin-bottom: 24px;
+      border-radius: 22px;
+      background:
+        radial-gradient(circle at 10% 20%, rgba(255,255,255,.12), transparent 25%),
+        linear-gradient(135deg, #102d52 0%, #194d83 55%, #2872ac 100%);
+      color: #fff;
+      box-shadow: var(--fg-shadow);
+    }
+
+    .french-grammar-wrapper .fg-hero::after {
+      content: "13";
+      position: absolute;
+      left: 24px;
+      bottom: -35px;
+      font-size: 150px;
+      line-height: 1;
+      font-weight: 800;
+      color: rgba(255,255,255,.07);
+      direction: ltr;
+    }
+
+    .french-grammar-wrapper .fg-kicker {
+      margin-bottom: 7px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .03em;
+      color: #badcff;
+    }
+
+    .french-grammar-wrapper .fg-hero h1 {
+      margin: 0 0 8px;
+      font-size: clamp(26px, 4vw, 42px);
+      line-height: 1.35;
+      color: #fff;
+    }
+
+    .french-grammar-wrapper .fg-hero-subtitle {
+      margin: 0;
+      max-width: 780px;
+      color: #e1effc;
+      font-size: 17px;
+    }
+
+    .french-grammar-wrapper .fg-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .french-grammar-wrapper .fg-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 7px 12px;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 999px;
+      background: rgba(255,255,255,.1);
+      color: #fff;
+      font-size: 13px;
+    }
+
+    .french-grammar-wrapper .fg-toc {
+      margin: 24px 0;
+      padding: 22px;
+      border: 1px solid var(--fg-border);
+      border-radius: var(--fg-radius);
+      background: var(--fg-white);
+      box-shadow: var(--fg-shadow);
+    }
+
+    .french-grammar-wrapper .fg-toc h2 {
+      margin: 0 0 14px;
+      color: var(--fg-primary);
+      font-size: 21px;
+    }
+
+    .french-grammar-wrapper .fg-toc-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 9px;
+    }
+
+    .french-grammar-wrapper .fg-toc a {
+      display: block;
+      padding: 9px 11px;
+      border-radius: 9px;
+      background: var(--fg-bg);
+      color: var(--fg-primary);
+      text-decoration: none;
+      font-size: 14px;
+      transition: .2s ease;
+    }
+
+    .french-grammar-wrapper .fg-toc a:hover {
+      background: var(--fg-primary-light);
+      transform: translateY(-1px);
+    }
+
+    .french-grammar-wrapper .fg-section {
+      scroll-margin-top: 30px;
+      margin: 28px 0;
+    }
+
+    .french-grammar-wrapper .fg-section-title {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      margin: 0 0 16px;
+      color: var(--fg-primary-dark);
+      font-size: clamp(21px, 2.7vw, 29px);
+      line-height: 1.5;
+    }
+
+    .french-grammar-wrapper .fg-section-number {
+      flex: 0 0 auto;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 11px;
+      background: var(--fg-primary);
+      color: #fff;
+      font-size: 16px;
+      line-height: 1;
+    }
+
+    .french-grammar-wrapper .fg-card {
+      margin: 14px 0;
+      padding: 22px;
+      border: 1px solid var(--fg-border);
+      border-radius: var(--fg-radius);
+      background: var(--fg-white);
+      box-shadow: var(--fg-shadow);
+    }
+
+    .french-grammar-wrapper .fg-card h3 {
+      margin: 0 0 13px;
+      color: var(--fg-primary);
+      font-size: 20px;
+    }
+
+    .french-grammar-wrapper .fg-card h4 {
+      margin: 19px 0 9px;
+      color: var(--fg-secondary);
+      font-size: 17px;
+    }
+
+    .french-grammar-wrapper .fg-card p {
+      margin: 8px 0;
+    }
+
+    .french-grammar-wrapper .fg-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 15px;
+    }
+
+    .french-grammar-wrapper .fg-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 15px;
+    }
+
+    .french-grammar-wrapper .fg-callout {
+      position: relative;
+      margin: 15px 0;
+      padding: 17px 18px;
+      border-radius: 12px;
+      border-right: 5px solid var(--fg-primary);
+      background: var(--fg-primary-light);
+    }
+
+    .french-grammar-wrapper .fg-callout strong:first-child {
+      color: var(--fg-primary-dark);
+    }
+
+    .french-grammar-wrapper .fg-callout.fg-success {
+      border-right-color: var(--fg-green);
+      background: var(--fg-green-bg);
+    }
+
+    .french-grammar-wrapper .fg-callout.fg-warning {
+      border-right-color: var(--fg-orange);
+      background: var(--fg-orange-bg);
+    }
+
+    .french-grammar-wrapper .fg-callout.fg-danger {
+      border-right-color: var(--fg-red);
+      background: var(--fg-red-bg);
+    }
+
+    .french-grammar-wrapper .fg-callout.fg-purple {
+      border-right-color: var(--fg-purple);
+      background: var(--fg-purple-bg);
+    }
+
+    .french-grammar-wrapper .fg-example {
+      margin: 10px 0;
+      padding: 12px 15px;
+      border-radius: 10px;
+      border-left: 4px solid var(--fg-green);
+      background: var(--fg-green-bg);
+      direction: ltr;
+      text-align: left;
+      font-family:
+        "Segoe UI",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+    }
+
+    .french-grammar-wrapper .fg-wrong {
+      margin: 8px 0;
+      padding: 10px 13px;
+      border-radius: 9px;
+      border-left: 4px solid var(--fg-red);
+      background: var(--fg-red-bg);
+      direction: ltr;
+      text-align: left;
+    }
+
+    .french-grammar-wrapper .fg-table-wrap {
+      width: 100%;
+      margin: 14px 0;
+      overflow-x: auto;
+      border: 1px solid var(--fg-border);
+      border-radius: 12px;
+      background: var(--fg-white);
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .french-grammar-wrapper table.fg-table {
+      width: 100%;
+      min-width: 640px;
+      border-collapse: collapse;
+      direction: rtl;
+      text-align: right;
+      background: #fff;
+    }
+
+    .french-grammar-wrapper .fg-table th,
+    .french-grammar-wrapper .fg-table td {
+      padding: 12px 14px;
+      border: 1px solid var(--fg-border);
+      vertical-align: top;
+    }
+
+    .french-grammar-wrapper .fg-table th {
+      background: var(--fg-primary);
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .french-grammar-wrapper .fg-table tbody tr:nth-child(even) td {
+      background: #f8fafc;
+    }
+
+    .french-grammar-wrapper .fg-table tbody tr:hover td {
+      background: #eef5fb;
+    }
+
+    .french-grammar-wrapper .fg-number-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0,1fr));
+      gap: 9px;
+      margin-top: 13px;
+    }
+
+    .french-grammar-wrapper .fg-number-item {
+      padding: 11px;
+      border: 1px solid var(--fg-border);
+      border-radius: 10px;
+      background: var(--fg-bg);
+      text-align: center;
+      direction: ltr;
+    }
+
+    .french-grammar-wrapper .fg-number-item b {
+      display: block;
+      margin-bottom: 3px;
+      color: var(--fg-primary);
+      font-size: 18px;
+    }
+
+    .french-grammar-wrapper .fg-rule {
+      display: flex;
+      align-items: flex-start;
+      gap: 11px;
+      margin: 10px 0;
+    }
+
+    .french-grammar-wrapper .fg-rule-icon {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 27px;
+      height: 27px;
+      margin-top: 2px;
+      border-radius: 50%;
+      background: var(--fg-primary-light);
+      color: var(--fg-primary);
+      font-weight: 800;
+    }
+
+    .french-grammar-wrapper .fg-code {
+      display: inline-block;
+      padding: 2px 7px;
+      border-radius: 6px;
+      background: var(--fg-code-bg);
+      color: #15395e;
+      font-family: Consolas, Monaco, monospace;
+      direction: ltr;
+      unicode-bidi: isolate;
+    }
+
+    .french-grammar-wrapper .fg-compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .french-grammar-wrapper .fg-compare-box {
+      padding: 17px;
+      border: 1px solid var(--fg-border);
+      border-radius: 12px;
+      background: #fff;
+    }
+
+    .french-grammar-wrapper .fg-compare-box h4 {
+      margin-top: 0;
+    }
+
+    .french-grammar-wrapper .fg-exercises {
+      margin-top: 35px;
+      padding-top: 10px;
+      border-top: 3px solid var(--fg-primary-light);
+    }
+
+    .french-grammar-wrapper details.fg-exercise {
+      margin: 13px 0;
+      border: 1px solid var(--fg-border);
+      border-radius: 13px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 3px 14px rgba(29,58,92,.05);
+    }
+
+    .french-grammar-wrapper details.fg-exercise summary {
+      padding: 15px 18px;
+      cursor: pointer;
+      background: #f7faff;
+      color: var(--fg-primary-dark);
+      font-weight: 700;
+      list-style: none;
+    }
+
+    .french-grammar-wrapper details.fg-exercise summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .french-grammar-wrapper details.fg-exercise summary::before {
+      content: "＋";
+      display: inline-block;
+      margin-left: 8px;
+      color: var(--fg-primary);
+      font-weight: 800;
+    }
+
+    .french-grammar-wrapper details.fg-exercise[open] summary::before {
+      content: "−";
+    }
+
+    .french-grammar-wrapper .fg-exercise-body {
+      padding: 18px;
+    }
+
+    .french-grammar-wrapper .fg-question {
+      margin: 0 0 14px;
+      padding: 12px 15px;
+      border-radius: 10px;
+      background: var(--fg-cyan-bg);
+      color: #16455b;
+    }
+
+    .french-grammar-wrapper .fg-answer {
+      margin: 8px 0;
+      padding: 11px 14px;
+      border-radius: 9px;
+      background: var(--fg-green-bg);
+      border-right: 4px solid var(--fg-green);
+    }
+
+    .french-grammar-wrapper .fg-mini-title {
+      margin: 18px 0 8px;
+      color: var(--fg-primary);
+      font-size: 17px;
+      font-weight: 800;
+    }
+
+    .french-grammar-wrapper .fg-divider {
+      height: 1px;
+      margin: 25px 0;
+      border: 0;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        var(--fg-border),
+        transparent
+      );
+    }
+
+    .french-grammar-wrapper ul,
+    .french-grammar-wrapper ol {
+      margin: 9px 0;
+      padding-right: 23px;
+    }
+
+    .french-grammar-wrapper li {
+      margin: 5px 0;
+    }
+
+    .french-grammar-wrapper .fg-check {
+      color: var(--fg-green);
+      font-weight: 700;
+    }
+
+    .french-grammar-wrapper .fg-cross {
+      color: var(--fg-red);
+      font-weight: 700;
+    }
+
+    .french-grammar-wrapper .fg-note-small {
+      color: var(--fg-muted);
+      font-size: 13px;
+    }
+
+    .french-grammar-wrapper .fg-footer-summary {
+      margin-top: 30px;
+      padding: 25px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #eef5fc, #f9fbfd);
+      border: 1px solid #d5e3f1;
+    }
+
+    @media (max-width: 900px) {
+      .french-grammar-wrapper .fg-toc-grid,
+      .french-grammar-wrapper .fg-grid-3 {
+        grid-template-columns: repeat(2, minmax(0,1fr));
+      }
+
+      .french-grammar-wrapper .fg-number-grid {
+        grid-template-columns: repeat(4, minmax(0,1fr));
+      }
+    }
+
+    @media (max-width: 680px) {
+      .french-grammar-wrapper {
+        font-size: 15px;
+        line-height: 1.9;
+      }
+
+      .french-grammar-wrapper .fg-hero {
+        padding: 23px 18px;
+        border-radius: 15px;
+      }
+
+      .french-grammar-wrapper .fg-card {
+        padding: 17px 14px;
+      }
+
+      .french-grammar-wrapper .fg-toc-grid,
+      .french-grammar-wrapper .fg-grid-2,
+      .french-grammar-wrapper .fg-grid-3,
+      .french-grammar-wrapper .fg-compare {
+        grid-template-columns: 1fr;
+      }
+
+      .french-grammar-wrapper .fg-number-grid {
+        grid-template-columns: repeat(2, minmax(0,1fr));
+      }
+
+      .french-grammar-wrapper .fg-section-title {
+        align-items: flex-start;
+      }
+
+      .french-grammar-wrapper .fg-table th,
+      .french-grammar-wrapper .fg-table td {
+        padding: 10px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .french-grammar-wrapper .fg-number-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .french-grammar-wrapper .fg-badges {
+        gap: 5px;
+      }
+
+      .french-grammar-wrapper .fg-badge {
+        font-size: 12px;
+      }
+    }
+  </style>
+
+  <div class="fg-container">
+
+    <!-- =========================
+         HERO
+    ========================== -->
+    <section class="fg-hero">
+      <div class="fg-kicker">GRAMMAIRE PROGRESSIVE DU FRANÇAIS — NIVEAU INTERMÉDIAIRE</div>
+
+      <h1>
+        درس ۱۳:
+        <span class="fg-fr" lang="fr">Les nombres</span>
+      </h1>
+
+      <p class="fg-hero-subtitle">
+        آموزش کامل اعداد در زبان فرانسه: اعداد اصلی و ترتیبی، املای اعداد،
+        تلفظ، <span class="fg-fr">vingt / cent / mille</span>،
+        کسر و درصد، تفاوت
+        <span class="fg-fr">nombre / numéro</span>
+        و
+        <span class="fg-fr">an / année</span>
+        همراه با تمرین‌های حل‌شده.
+      </p>
+
+      <div class="fg-badges">
+        <span class="fg-badge">درس ۱۳</span>
+        <span class="fg-badge">Quantité et nombres</span>
+        <span class="fg-badge">Orthographe</span>
+        <span class="fg-badge">Prononciation</span>
+        <span class="fg-badge">سطح متوسط</span>
+      </div>
+    </section>
+
+
+    <!-- =========================
+         TABLE OF CONTENT
+    ========================== -->
+    <nav class="fg-toc" aria-label="فهرست درس">
+      <h2>فهرست درس</h2>
+
+      <div class="fg-toc-grid">
+        <a href="#fg-cardinaux">۱. اعداد اصلی</a>
+        <a href="#fg-et">۲. کاربرد et</a>
+        <a href="#fg-7090">۳. اعداد ۷۰ تا ۹۹</a>
+        <a href="#fg-vingt-cent">۴. vingt و cent</a>
+        <a href="#fg-mille">۵. mille / million / milliard</a>
+        <a href="#fg-hyphen">۶. خط تیره در اعداد</a>
+        <a href="#fg-pronunciation">۷. تلفظ اعداد</a>
+        <a href="#fg-phone">۸. شماره تلفن</a>
+        <a href="#fg-math">۹. عملیات ریاضی</a>
+        <a href="#fg-ordinaux">۱۰. اعداد ترتیبی</a>
+        <a href="#fg-fractions">۱۱. کسر و درصد</a>
+        <a href="#fg-nombre-numero">۱۲. nombre / numéro</a>
+        <a href="#fg-an-annee">۱۳. an / année</a>
+        <a href="#fg-exercises">۱۴. تمرین‌های حل‌شده</a>
+        <a href="#fg-errors">۱۵. اشتباهات رایج</a>
+      </div>
+    </nav>
+
+
+    <!-- =========================
+         1 CARDINAL NUMBERS
+    ========================== -->
+    <section class="fg-section" id="fg-cardinaux">
+      <h2 class="fg-section-title">
+        <span class="fg-section-number">۱</span>
+        اعداد اصلی —
+        <span class="fg-fr">Les nombres cardinaux</span>
+      </h2>
+
+      <div class="fg-card">
+        <p>
+          اعداد اصلی برای بیان <strong>تعداد، سن، قیمت، سال، ساعت،
+          اندازه و شماره‌ها</strong> به کار می‌روند.
+        </p>
+
+        <div class="fg-number-grid">
+          <div class="fg-number-item"><b>0</b>zéro</div>
+          <div class="fg-number-item"><b>1</b>un / une</div>
+          <div class="fg-number-item"><b>2</b>deux</div>
+          <div class="fg-number-item"><b>3</b>trois</div>
+          <div class="fg-number-item"><b>4</b>quatre</div>
+          <div class="fg-number-item"><b>5</b>cinq</div>
+          <div class="fg-number-item"><b>6</b>six</div>
+          <div class="fg-number-item"><b>7</b>sept</div>
+          <div class="fg-number-item"><b>8</b>huit</div>
+          <div class="fg-number-item"><b>9</b>neuf</div>
+          <div class="fg-number-item"><b>10</b>dix</div>
+          <div class="fg-number-item"><b>11</b>onze</div>
+          <div class="fg-number-item"><b>12</b>douze</div>
+          <div class="fg-number-item"><b>13</b>treize</div>
+          <div class="fg-number-item"><b>14</b>quatorze</div>
+          <div class="fg-number-item"><b>15</b>quinze</div>
+          <div class="fg-number-item"><b>16</b>seize</div>
+          <div class="fg-number-item"><b>17</b>dix-sept</div>
+          <div class="fg-number-item"><b>18</b>dix-huit</div>
+          <div class="fg-number-item"><b>19</b>dix-neuf</div>
+        </div>
+
+        <h3 style="margin-top:24px;">دهگان‌ها</h3>
+
+        <div class="fg-table-wrap">
+          <table class="fg-table">
+            <thead>
+              <tr>
+                <th>عدد</th>
+                <th>فرانسه</th>
+                <th>عدد</th>
+                <th>فرانسه</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>20</td>
+                <td><span class="fg-fr">vingt</span></td>
+                <td>60</td>
+                <td><span class="fg-fr">soixante</span></td>
+              </tr>
+              <tr>
+                <td>30</td>
+                <td><span class="fg-fr">trente</span></td>
+                <td>70</td>
+                <td><span class="fg-fr">soixante-dix</span></td>
+              </tr>
+              <tr>
+                <td>40</td>
+                <td><span class="fg-fr">quarante</span></td>
+                <td>80</td>
+                <td><span class="fg-fr">quatre-vingts</span></td>
+              </tr>
+              <tr>
+                <td>50</td>
+                <td><span class="fg-fr">cinquante</span></td>
+                <td>90</td>
+                <td><span class="fg-fr">quatre-vingt-dix</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =========================
+         2 ET
+    ========================== -->
+    <section class="fg-section" id="fg-et">
+      <h2 class="fg-section-title">
+        <span class="fg-section-number">۲</span>
+        کاربرد
+        <span class="fg-fr">et</span>
+        در اعداد
+      </h2>
+
+      <div class="fg-card">
+
+        <div class="fg-grid-2">
+          <div>
+            <h3>اعداد دارای <span class="fg-fr">et</span></h3>
+
+            <div class="fg-example">21 → vingt et un</div>
+            <div class="fg-example">31 → trente et un</div>
+            <div class="fg-example">41 → quarante et un</div>
+            <div class="fg-example">51 → cinquante et un</div>
+            <div class="fg-example">61 → soixante et un</div>
+            <div class="fg-example">71 → soixante et onze</div>
+          </div>
+
+          <div>
+            <h3>اعداد بدون <span class="fg-fr">et</span></h3>
+
+            <div class="fg-example">81 → quatre-vingt-un</div>
+            <div class="fg-example">91 → quatre-vingt-onze</div>
+
+            <div class="fg-wrong">✗ quatre-vingt-et-un</div>
+            <div class="fg-wrong">✗ quatre-vingt-et-onze</div>
+          </div>
+        </div>
+
+        <div class="fg-callout fg-warning">
+          <strong>نکته مهم درباره جنسیت:</strong>
+          وقتی عدد مستقیماً قبل از یک اسم مؤنث قرار بگیرد،
+          <span class="fg-fr">un</span>
+          می‌تواند به
+          <span class="fg-fr">une</span>
+          تبدیل شود.
+        </div>
+
+        <div class="fg-example">vingt et un garçons</div>
+        <div class="fg-example">vingt et une filles</div>
+        <div class="fg-example">quatre-vingt-une pages</div>
+
+        <div class="fg-callout fg-purple">
+          در عدد ترتیبی این تغییر اتفاق نمی‌افتد:
+          <div class="fg-example">la vingt et unième page</div>
+          نه
+          <div class="fg-wrong">✗ la vingt et uneième page</div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =========================
+         3 70-99
+    ========================== -->
+    <section class="fg-section" id="fg-7090">
+      <h2 class="fg-section-title">
+        <span class="fg-section-number">۳</span>
+        ساختار خاص ۷۰، ۸۰ و ۹۰
+      </h2>
+
+      <div class="fg-grid-3">
+
+        <div class="fg-card">
+          <h3>۷۰ تا ۷۹</h3>
+          <p>
+            ساختار این گروه عملاً بر پایه
+            <span class="fg-fr">60 + ...</span>
+            است.
+          </p>
+
+          <div class="fg-example">70 → soixante-dix</div>
+          <div class="fg-example">71 → soixante et onze</div>
+          <div class="fg-example">72 → soixante-douze</div>
+          <div class="fg-example">79 → soixante-dix-neuf</div>
+        </div>
+
+        <div class="fg-card">
+          <h3>۸۰ تا ۸۹</h3>
+          <p>
+            عدد ۸۰ از ساخت
+            <span class="fg-fr">4 × 20</span>
+            تشکیل شده است.
+          </p>
+
+          <div class="fg-example">80 → quatre-vingts</div>
+          <div class="fg-example">81 → quatre-vingt-un</div>
+          <div class="fg-example">82 → quatre-vingt-deux</div>
+          <div class="fg-example">89 → quatre-vingt-neuf</div>
+        </div>
+
+        <div class="fg-card">
+          <h3>۹۰ تا ۹۹</h3>
+          <p>
+            این گروه بر پایه
+            <span class="fg-fr">80 + ...</span>
+            ساخته می‌شود.
+          </p>
+
+          <div class="fg-example">90 → quatre-vingt-dix</div>
+          <div class="fg-example">91 → quatre-vingt-onze</div>
+          <div class="fg-example">92 → quatre-vingt-douze</div>
+          <div class="fg-example">99 → quatre-vingt-dix-neuf</div>
+        </div>
+
+      </div>
+
+      <div class="fg-card">
+        <h3>تفاوت منطقه‌ای</h3>
+
+        <p>
+          در بلژیک و بخش‌هایی از سوئیس ممکن است شکل‌های ساده‌تر زیر شنیده شوند:
+        </p>
+
+        <div class="fg-table-wrap">
+          <table class="fg-table">
+            <thead>
+              <tr>
+                <th>عدد</th>
+                <th>فرانسه معیار</th>
+                <th>برخی مناطق بلژیک / سوئیس</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>70</td>
+                <td><span class="fg-fr">soixante-dix</span></td>
+                <td><span class="fg-fr">septante</span></td>
+              </tr>
+              <tr>
+                <td>80</td>
+                <td><span class="fg-fr">quatre-vingts</span></td>
+                <td><span class="fg-fr">huitante</span> در بخش‌هایی از سوئیس</td>
+              </tr>
+              <tr>
+                <td>90</td>
+                <td><span class="fg-fr">quatre-vingt-dix</span></td>
+                <td><span class="fg-fr">nonante</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =========================
+         4 VINGT / CENT
+    ========================== -->
+    <section class="fg-section" id="fg-vingt-cent">
+      <h2 class="fg-section-title">
+        <span class="fg-section-number">۴</span>
+        قواعد مهم
+        <span class="fg-fr">vingt</span>
+        و
+        <span class="fg-fr">cent</span>
+      </h2>
+
+      <div class="fg-grid-2">
+
+        <div class="fg-card">
+          <h3><span class="fg-fr">vingt</span></h3>
+
+          <p>
+            وقتی
+            <span class="fg-fr">vingt</span>
+            در یک مضرب کامل از ۸۰ قرار داشته باشد و چیزی از جنس عدد بعد از آن نیاید،
+            <strong>s</strong> می‌گیرد.
+          </p>
+
+          <div class="fg-example">80 → quatre-vingts</div>
+          <div class="fg-example">quatre-vingts euros</div>
+          <div class="fg-example">quatre-vingts personnes</div>
+
+          <h4>اگر عدد دیگری پس از آن باشد:</h4>
+
+          <div class="fg-example">81 → quatre-vingt-un</div>
+          <div class="fg-example">82 → quatre-vingt-deux</div>
+          <div class="fg-example">90 → quatre-vingt-dix</div>
+
+          <div class="fg-callout fg-warning">
+            پیش از
+            <span class="fg-fr">mille</span>
+            نیز بدون
+            <span class="fg-fr">s</span>
+            است:
+            <div class="fg-example">quatre-vingt mille personnes</div>
+          </div>
+
+          <div class="fg-callout">
+            پیش از
+            <span class="fg-fr">million</span>
+            و
+            <span class="fg-fr">milliard</span>
+            امکان جمع وجود دارد، چون این دو اسم‌اند:
+            <div class="fg-example">quatre-vingts millions d’euros</div>
+          </div>
+        </div>
+
+        <div class="fg-card">
+          <h3><span class="fg-fr">cent</span></h3>
+
+          <p>
+            اگر
+            <span class="fg-fr">cent</span>
+            ضرب شده باشد و عدد دیگری پس از آن نیاید،
+            <strong>s</strong>
+            می‌گیرد.
+          </p>
+
+          <div class="fg-example">200 → deux cents</div>
+          <div class="fg-example">300 → trois cents</div>
+          <div class="fg-example">huit cents euros</div>
+
+          <h4>اگر عدد دیگری پس از آن باشد:</h4>
+
+          <div class="fg-example">201 → deux cent un</div>
+          <div class="fg-example">250 → deux cent cinquante</div>
+          <div class="fg-example">389 → trois cent quatre-vingt-neuf</div>
+
+          <div class="fg-callout fg-warning">
+            پیش از
+            <span class="fg-fr">mille</span>:
+            <div class="fg-example">300 000 → trois cent mille</div>
+          </div>
+
+          <div class="fg-callout">
+            پیش از
+            <span class="fg-fr">million / milliard</span>:
+            <div class="fg-example">deux cents millions</div>
+            <div class="fg-example">trois cents milliards</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="fg-callout fg-purple">
+        <strong>وقتی عدد نقش شماره یا رتبه دارد:</strong>
+        معمولاً
+        <span class="fg-fr">vingt</span>
+        و
+        <span class="fg-fr">cent</span>
+        در پایان
+        <span class="fg-fr">s</span>
+        نمی‌گیرند.
+
+        <div class="fg-example">la page quatre-vingt</div>
+        <div class="fg-example">la page deux cent</div>
+        <div class="fg-example">les années quatre-vingt</div>
+      </div>
+    </section>
+
+
+    <!-- =========================
+         5 MILLE
+    ========================== -->
+    <section class="fg-section" id="fg-mille">
+      <h2 class="fg-section-title">
+        <span class="fg-section-number">۵</span>
+        <span class="fg-fr">mille, million, milliard</span>
+      </h2>
+
+      <div class="fg-card">
+        <h3><span class="fg-fr">mille</span></h3>
+
+        <p>
+          <span class="fg-fr">mille</span>
+          در کاربرد عددی <strong>ثابت</strong> است و
+          <span class="fg-fr">s</span>
+          نمی‌گیرد.
+        </p>
+
+        <div class="fg-example">1 000 → mille</div>
+        <div class="fg-example">2 000 → deux mille</div>
+        <div class="fg-example">10 000 → dix mille</div>
+        <div class="fg-example">200 000 → deux cent mille</div>
+
+        <div class="fg-wrong">✗ un mille</div>
+        <div class="fg-wrong">✗ deux milles</div>
+
+        <div class="fg-callout">
+          اما
+          <span class="fg-fr">millier</span>
+          یک اسم است:
+          <div class="fg-example">un millier de personnes</div>
+          <div class="fg-example">des milliers de personnes</div>
+        </div>
+      </div>
+
+      <div class="fg-card">
+        <h3>
+          <span class="fg-fr">million</span>
+          و
+          <span class="fg-fr">milliard</span>
+        </h3>
+
+        <p>
+          این دو کلمه برخلاف
+          <span class="fg-fr">mille</span>
+          <strong>اسم هستند</strong> و جمع بسته می‌شوند.
+        </p>
+
+        <div class="fg-example">un million</div>
+        <div class="fg-example">deux millions</div>
+        <div class="fg-example">un milliard</div>
+        <div class="fg-example">dix milliards</div>
+
+        <h4>وقتی مستقیماً قبل از اسم قرار می‌گیرند:</h4>
+
+        <div class="fg-example">un million d’euros</div>
+        <div class="fg-example">deux millions de personnes</div>
+        <div class="fg-example">un milliard d’habitants</div>
+
+        <div class="fg-callout fg-warning">
+          اگر خود عدد ادامه داشته باشد، میان اجزای عدد
+          <span class="fg-fr">de</span>
+          نمی‌آید:
+          <div class="fg-example">deux millions trois cent mille habitants</div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =========================
+         6 HYPHEN
+    ========================== -->
+    <section class="fg-section" id="fg-hyphen">
+      <h2 class="fg-section-title">
+        <span class="fg-section-number">۶</span>
+        خط تیره در اعداد
+      </h2>
+
+      <div class="fg-card">
+        <p>
+          در شیوه سنتی نوشتن اعداد، همان الگویی که در کتاب دیده می‌شود،
+          تنها برخی اجزا با خط تیره متصل می‌شوند:
+        </p>
+
+        <div class="fg-example">vingt et un</div>
+        <div class="fg-example">trente-deux</div>
+        <div class="fg-example">trois cent cinquante</div>
+        <div class="fg-example">mille huit cent quatre-vingt-neuf</div>
+
+        <div class="fg-callout">
+          در املای اصلاح‌شده فرانسه، اتصال گسترده‌تر اجزای عدد با خط تیره نیز دیده می‌شود:
+          <div class="fg-example">vingt-et-un</div>
+          <div class="fg-example">trois-cent-cinquante</div>
+          <div class="fg-example">mille-huit-cent-quatre-vingt-neuf</div>
+        </div>
+
+        <p class="fg-note-small">
+          برای هماهنگی با تمرین‌های این درس، بهتر است هنگام حل تمرین‌ها
+          همان شکل نوشتاری کتاب را حفظ کنید.
+        </p>
+      </div>
+    </section>
+
+
+    <!-- =========================
+         7 PRONUNCIATION
+    ========================== -->
+    <section class="fg-section" id="fg-pronunciation">
+      <h2 class="fg-section-title">
+        <span class="fg-section-number">۷</span>
+        نکات ظریف تلفظ اعداد
+      </h2>
+
+      <div class="fg-card">
+        <h3><span class="fg-fr">cinq</span></h3>
+
+        <p>معمولاً صدای پایانی آن شنیده می‌شود.</p>
+
+        <div class="fg-example">cinq</div>
+        <div class="fg-example">cinq ans</div>
+        <div class="fg-example">cinq minutes</div>
+      </div>
+
+      <div class="fg-card">
+        <h3>
+          <span class="fg-fr">six</span>
+          و
+          <span class="fg-fr">dix</span>
+        </h3>
+
+        <div class="fg-table-wrap">
+          <table class="fg-table">
+            <thead>
+              <tr>
+                <th>موقعیت</th>
+                <th>six</th>
+                <th>dix</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>تنها یا پایان گروه</td>
+                <td><span class="fg-fr">/sis/</span></td>
+                <td><span class="fg-fr">/dis/</span></td>
+              </tr>
+              <tr>
+                <td>قبل از صامت</td>
+                <td><span class="fg-fr">six personnes → /si/</span></td>
+                <td><span class="fg-fr">dix personnes → /di/</span></td>
+              </tr>
+              <tr>
+                <td>قبل از مصوت یا h بی‌صدا</td>
+                <td><span class="fg-fr">six amis → /siz‿ami/</span></td>
+                <td><span class="fg-fr">dix ans → /diz‿ɑ̃/</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="fg-example">dix heures → /diz‿œʁ/</div>
+      </div>
+
+      <div class="fg-card">
+        <h3><span class="fg-fr">huit</span></h3>
+
+        <p>
+          در پایان یا پیش از مصوت،
+          <span class="fg-fr">t</span>
+          معمولاً شنیده می‌شود.
+        </p>
+
+        <div class="fg-example">huit</div>
+        <div class="fg-example">huit ans</div>
+
+        <p>
+          پیش از صامت، صدای
+          <span class="fg-fr">t</span>
+          غالباً شنیده نمی‌شود.
+        </p>
+
+        <div class="fg-example">huit jours</div>
+      </div>
+
+      <div class="fg-card">
+        <h3><span class="fg-fr">neuf</span></h3>
+
+        <p>
+          صدای پایانی
+          <span class="fg-fr">f</span>
+          معمولاً حفظ می‌شود.
+        </p>
+
+        <div class="fg-example">neuf personnes</div>
+        <div class="fg-example">le neuf août</div>
+
+        <div class="fg-callout fg-warning">
+          در دو ترکیب مهم زیر، صدای
+          <span class="fg-fr">f</span>
+          به
+          <span class="fg-fr">v</span>
+          نزدیک می‌شود:
+          <div class="fg-example">neuf ans → /nœv‿ɑ̃/</div>
+          <div class="fg-example">neuf heures → /nœv‿œʁ/</div>
+        </div>
+
+        <div class="fg-example">neuf enfants → صدای f حفظ می‌شود</div>
+      </div>
+
+      <div class="fg-card">
+        <h3><span class="fg-fr">vingt</span></h3>
+
+        <div class="fg-example">vingt personnes → t تلفظ نمی‌شود</div>
+        <div class="fg-example">vingt ans → t در liaison شنیده می‌شود</div>
+
+        <p>
+          در اعداد
+          <span class="fg-fr">22–29</span>
+          صدای
+          <span class="fg-fr">t</span>
+          شنیده می‌شود:
+        </p>
+
+        <div class="fg-example">vingt-deux</div>
+        <div class="fg-example">vingt-trois</div>
+        <div class="fg-example">vingt-quatre</div>
+
+        <div class="fg-callout fg-warning">
+          اما در
+          <span class="fg-fr">quatre-vingt...</span>
+          این
+          <span class="fg-fr">t</span>
+          معمولاً شنیده نمی‌شود:
+          <div class="fg-example">quatre-vingt-deux</div>
+          <div class="fg-example">quatre-vingt-onze</div>
+        </div>
+      </div>
+
+      <div class="fg-card">
+        <h3><span class="fg-fr">cent</span></h3>
+
+        <div class="fg-example">cent personnes → t شنیده نمی‌شود</div>
+        <div class="fg-example">cent ans → liaison با t</div>
+        <div class="fg-example">trois cents heures → liaison با z</div>
+      </div>
+    </section>
+
+
+    <!-- =========================
+         8 PHONE
+    ========================== -->
+    <section class="fg-section" id="fg-phone">
+      <h2 class="fg-section-title">
+        <span class="fg-section-number">۸</span>
+        خواندن شماره تلفن
+      </h2>
+
+      <div class="fg-card">
+        <p>
+          در فرانسه، شماره تلفن‌های معمولی غالباً
+          <strong>دو رقم دو رقم</strong>
+          خوانده می‌شوند.
+        </p>
+
+        <div class="fg-callout">
+          <strong>نمونه:</strong>
+
+          <div class="fg-example">
+            01 70 36 39 50
+          </div>
+
+          <div class="fg-example">
+            zéro un, soixante-dix, trente-six, trente-neuf, cinquante
+          </div>
+        </div>
+
+        <p>برای کد کشور:</p>
+
+        <div class="fg-example">+33 → plus trente-trois</div>
+
+        <p>
+          در الگوی شماره‌گیری بین‌المللی قدیمی‌تر نیز ممکن است:
+        </p>
+
+        <div class="fg-example">00 33 → zéro zéro trente-trois</div>
+      </div>
+    </section>
+
+
+    <!-- =========================
+         9 MATH
+    ========================== -->
+    <section class="fg-section" id="fg-math">
+      <h2 class="fg-section-title">
+        <span class="fg-section-number">۹</span>
+        عملیات ریاضی
+      </h2>
+
+      <div class="fg-card">
+
+        <div class="fg-table-wrap">
+          <table class="fg-table">
+            <thead>
+              <tr>
+                <th>عبارت</th>
+                <th>فرانسه</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>به علاوه</td>
+                <td><span class="fg-fr">plus</span></td>
+              </tr>
+              <tr>
+                <td>منهای</td>
+                <td><span class="fg-fr">moins</span></td>
+              </tr>
+              <tr>
+                <td>ضرب در</td>
+                <td><span class="fg-fr">multiplié par</span></td>
+              </tr>
+              <tr>
+                <td>چند برابر / بار</td>
+                <td><span class="fg-fr">fois</span></td>
+              </tr>
+              <tr>
+                <td>تقسیم بر</td>
+                <td><span class="fg-fr">divisé par</span></td>
+              </tr>
+              <tr>
+                <td>برابر است با</td>
+                <td><span class="fg-fr">égale</span></td>
+              </tr>
+              <tr>
+                <td>می‌شود</td>
+                <td><span class="fg-fr">ça fait</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="fg-example">
+          Six plus vingt-cinq égale trente et un.
+        </div>
+
+        <div class="fg-example">
+          Deux fois trois font six.
+        </div>
+
+        <div class="fg-example">
+          Deux et deux font quatre.
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =========================
+         10 ORDINALS
+    ========================== -->
+    <section class="fg-section" id="fg-ordinaux">
+      <h2 class="fg-section-title">
+        <span class="fg-section-number">۱۰</span>
+        اعداد ترتیبی —
+        <span class="fg-fr">Les nombres ordinaux</span>
+      </h2>
+
+      <div class="fg-card">
+        <p>
+          اعداد ترتیبی برای بیان
+          <strong>اول، دوم، سوم، بیستم، سی‌ودوم و...</strong>
+          استفاده می‌شوند.
+        </p>
+
+        <h3>قاعده عمومی</h3>
+
+        <div class="fg-callout">
+          عدد اصلی +
+          <span class="fg-code">-ième</span>
+        </div>
+
+        <div class="fg-grid-2">
+          <div>
+            <div class="fg-example">trois → troisième</div>
+            <div class="fg-example">quatre → quatrième</div>
+            <div class="fg-example">dix → dixième</div>
+          </div>
+          <div>
+            <div class="fg-example">onze → onzième</div>
+            <div class="fg-example">vingt → vingtième</div>
+            <div class="fg-example">trente → trentième</div>
+          </div>
+        </div>
+
+        <h3 style="margin-top:24px;">موارد مهم و بی‌قاعده</h3>
+
+        <div class="fg-table-wrap">
+          <table class="fg-table">
+            <thead>
+              <tr>
+                <th>عدد</th>
+                <th>عدد ترتیبی</th>
+                <th>نکته</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td><span class="fg-fr">premier / première</span></td>
+                <td>صورت ویژه و دارای تطابق جنسیتی</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td><span class="fg-fr">deuxième / second(e)</span></td>
+                <td>هر دو امکان‌پذیرند</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td><span class="fg-fr">cinquième</span></td>
+                <td>اضافه‌شدن u</td>
+              </tr>
+              <tr>
+                <td>9</td>
+                <td><span class="fg-fr">neuvième</span></td>
+                <td>f → v</td>
+              </tr>
+              <tr>
+                <td>1000</td>
+                <td><span class="fg-fr">millième</span></td>
+                <td>شکل ترتیبی mille</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>در اعداد مرکب</h3>
+
+        <p>
+          معمولاً فقط آخرین جزء عدد به صورت ترتیبی درمی‌آید.
+        </p>
+
+        <div class="fg-example">21e → vingt et unième</div>
+        <div class="fg-example">32e → trente-deuxième</div>
+        <div class="fg-example">71e → soixante et onzième</div>
+        <div class="fg-example">80e → quatre-vingtième</div>
+        <div class="fg-example">91e → quatre-vingt-onzième</div>
+
+        <div class="fg-callout fg-warning">
+          توجه کنید:
+          <span class="fg-fr">quatre-vingtième</span>
+          بدون
+          <span class="fg-fr">s</span>
+          نوشته می‌شود.
+        </div>
+      </div>
+
+      <div class="fg-card">
+        <h3>
+          تفاوت
+          <span class="fg-fr">deuxième</span>
+          و
+          <span class="fg-fr">second</span>
+        </h3>
+
+        <p>
+          در قاعده سنتی،
+          <span class="fg-fr">second</span>
+          بیشتر زمانی استفاده می‌شود که مجموعه فقط دو عضو داشته باشد؛
+          ولی
+          <span class="fg-fr">deuxième</span>
+          کاربرد عمومی‌تری دارد.
+        </p>
+
+        <div class="fg-example">
+          le deuxième chapitre
+        </div>
+
+        <div class="fg-example">
+          le second chapitre
+        </div>
+
+        <div class="fg-callout">
+          در زبان امروزی
+          <span class="fg-fr">deuxième</span>
+          بسیار رایج است و الزام عملی شدیدی برای این تمایز وجود ندارد.
+        </div>
+      </div>
+
+      <div class="fg-card">
+        <h3>تطابق جنسیتی</h3>
+
+        <div class="fg-example">le premier jour</div>
+        <div class="fg-example">la première fois</div>
+
+        <p>
+          بیشتر اعداد ترتیبی دیگر برای مذکر و مؤنث یک شکل دارند:
+        </p>
+
+        <div class="fg-example">le deuxième jour</div>
+        <div class="fg-example">la deuxième page</div>
+      </div>
+    </section>
+
+
+    <!-- =========================
+         11 FRACTIONS
+    ========================== -->
+    <section class="fg-section" id="fg-fractions">
+      <h2 class="fg-section-title">
+        <span class="fg-section-number">۱۱</span>
+        حدود تعداد، کسرها و درصد
+      </h2>
+
+      <div class="fg-grid-2">
+
+        <div class="fg-card">
+          <h3>تعداد تقریبی یا گروهی</h3>
+
+          <div class="fg-example">une dizaine → حدود ده عدد</div>
+          <div class="fg-example">une douzaine → دوازده عدد / حدود دوازده</div>
+          <div class="fg-example">une vingtaine → حدود بیست</div>
+          <div class="fg-example">une centaine → حدود صد</div>
+          <div class="fg-example">un millier → حدود هزار</div>
+        </div>
+
+        <div class="fg-card">
+          <h3>کسرها</h3>
+
+          <div class="fg-example">1/2 → un demi</div>
+          <div class="fg-example">1/3 → un tiers</div>
+          <div class="fg-example">1/4 → un quart</div>
+          <div class="fg-example">1/5 → un cinquième</div>
+          <div class="fg-example">2/3 → deux tiers</div>
+          <div class="fg-example">3/4 → trois quarts</div>
+        </div>
+
+      </div>
+
+      <div class="fg-card">
+        <h3>قاعده مهم <span class="fg-fr">demi</span></h3>
+
+        <h4>قبل از اسم</h4>
+
+        <p>
+          ثابت است و با خط تیره به اسم متصل می‌شود:
+        </p>
+
+        <div class="fg-example">une demi-heure</div>
+        <div class="fg-example">deux demi-heures</div>
+
+        <h4>بعد از اسم</h4>
+
+        <p>
+          از نظر جنسیت می‌تواند تطابق پیدا کند، اما جمع نمی‌شود:
+        </p>
+
+        <div class="fg-example">une heure et demie</div>
+        <div class="fg-example">deux heures et demie</div>
+        <div class="fg-example">deux millions et demi</div>
+      </div>
+
+      <div class="fg-card">
+        <h3>درصد</h3>
+
+        <div class="fg-example">10 % → dix pour cent</div>
+        <div class="fg-example">50 % → cinquante pour cent</div>
+
+        <div class="fg-callout fg-danger">
+          <span class="fg-cross">✗</span>
+          <span class="fg-fr">dix pour cents</span>
+          <br>
+          <span class="fg-check">✓</span>
+          <span class="fg-fr">dix pour cent</span>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =========================
+         12 NOMBRE / NUMERO
+    ========================== -->
+    <section class="fg-section" id="fg-nombre-numero">
+      <h2 class="fg-section-title">
+        <span class="fg-section-number">۱۲</span>
+        تفاوت
+        <span class="fg-fr">nombre</span>
+        و
+        <span class="fg-fr">numéro</span>
+      </h2>
+
+      <div class="fg-compare">
+
+        <div class="fg-compare-box">
+          <h4><span class="fg-fr">nombre</span></h4>
+
+          <p>
+            یعنی <strong>تعداد یا مقدار قابل‌شمارش</strong>.
+          </p>
+
+          <div class="fg-example">
+            Quel est le nombre de personnes ?
+          </div>
+
+          <div class="fg-example">
+            Le nombre de naissances diminue.
+          </div>
+
+          <div class="fg-example">
+            Un grand nombre d’étudiants.
+          </div>
+        </div>
+
+        <div class="fg-compare-box">
+          <h4><span class="fg-fr">numéro</span></h4>
+
+          <p>
+            یعنی <strong>شماره، شناسه یا جایگاه</strong>.
+          </p>
+
+          <div class="fg-example">
+            Quel est votre numéro de téléphone ?
+          </div>
+
+          <div class="fg-example">
+            Le numéro de votre passeport.
+          </div>
+
+          <div class="fg-example">
+            J’habite au numéro 46.
+          </div>
+        </div>
+
+      </div>
+
+      <div class="fg-callout fg-success">
+        <strong>ترفند حفظ کردن:</strong>
+        <br>
+        «چند تا؟» → <span class="fg-fr">nombre</span>
+        <br>
+        «کدام شماره؟» → <span class="fg-fr">numéro</span>
+      </div>
+    </section>
+
+
+    <!-- =========================
+         13 AN / ANNEE
+    ========================== -->
+    <section class="fg-section" id="fg-an-annee">
+      <h2 class="fg-section-title">
+        <span class="fg-section-number">۱۳</span>
+        تفاوت
+        <span class="fg-fr">an</span>
+        و
+        <span class="fg-fr">année</span>
+      </h2>
+
+      <div class="fg-compare">
+
+        <div class="fg-compare-box">
+          <h4><span class="fg-fr">an</span></h4>
+
+          <p>
+            سال را بیشتر به‌عنوان یک
+            <strong>واحد قابل شمارش زمان</strong>
+            بیان می‌کند.
+          </p>
+
+          <div class="fg-example">J’ai vingt ans.</div>
+          <div class="fg-example">Il habite ici depuis trois ans.</div>
+          <div class="fg-example">Cette église a deux cents ans.</div>
+          <div class="fg-example">deux fois par an</div>
+        </div>
+
+        <div class="fg-compare-box">
+          <h4><span class="fg-fr">année</span></h4>
+
+          <p>
+            بیشتر بر <strong>خود دوره، کیفیت یا تجربه سال</strong>
+            تأکید دارد.
+          </p>
+
+          <div class="fg-example">une bonne année</div>
+          <div class="fg-example">cette année</div>
+          <div class="fg-example">toute l’année</div>
+          <div class="fg-example">la deuxième année</div>
+          <div class="fg-example">plusieurs années</div>
+        </div>
+
+      </div>
+
+      <div class="fg-card">
+        <h3>مقایسه معنایی</h3>
+
+        <div class="fg-example">
+          J’ai travaillé ici pendant trois ans.
+        </div>
+
+        <p>
+          سه سال به‌عنوان یک واحد زمانی شمرده شده است.
+        </p>
+
+        <div class="fg-example">
+          J’ai passé trois longues années ici.
+        </div>
+
+        <p>
+          در اینجا کیفیت و تجربه آن دوره مهم است؛
+          <span class="fg-fr">longues</span>
+          سال‌ها را توصیف می‌کند.
+        </p>
+      </div>
+
+      <div class="fg-card">
+        <h3>زوج‌های مشابه</h3>
+
+        <div class="fg-table-wrap">
+          <table class="fg-table">
+            <thead>
+              <tr>
+                <th>واحد زمانی</th>
+                <th>دوره / تجربه</th>
+                <th>نمونه</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="fg-fr">jour</span></td>
+                <td><span class="fg-fr">journée</span></td>
+                <td><span class="fg-fr">trois jours / toute la journée</span></td>
+              </tr>
+              <tr>
+                <td><span class="fg-fr">soir</span></td>
+                <td><span class="fg-fr">soirée</span></td>
+                <td><span class="fg-fr">ce soir / dans la soirée</span></td>
+              </tr>
+              <tr>
+                <td><span class="fg-fr">matin</span></td>
+                <td><span class="fg-fr">matinée</span></td>
+                <td><span class="fg-fr">ce matin / toute la matinée</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =========================
+         EXERCISES
+    ========================== -->
+    <section class="fg-section fg-exercises" id="fg-exercises">
+      <h2 class="fg-section-title">
+        <span class="fg-section-number">۱۴</span>
+        تمرین‌های درس و پاسخ تشریحی
+      </h2>
+
+      <div class="fg-callout">
+        برای جلوگیری از شلوغ شدن صفحه، هر تمرین به‌صورت بازشونده طراحی شده است.
+        روی عنوان تمرین کلیک کنید.
+      </div>
+
+
+      <!-- PAGE 59 -->
+      <div class="fg-card">
+        <h3>صفحه ۵۹ کتاب</h3>
+
+        <details class="fg-exercise">
+          <summary>تمرین ۱ — خواندن شماره‌ها</summary>
+
+          <div class="fg-exercise-body">
+            <div class="fg-question">
+              <span class="fg-fr">Répondez, à l’oral, selon le modèle.</span>
+            </div>
+
+            <div class="fg-answer">
+              <span class="fg-fr">
+                Aéroports de Paris : 01 70 36 39 50
+                <br>
+                C’est le zéro un, soixante-dix, trente-six,
+                trente-neuf, cinquante.
+              </span>
+            </div>
+
+            <div class="fg-answer">
+              <span class="fg-fr">
+                Pharmacies de garde : 3237
+                <br>
+                C’est le trente-deux, trente-sept.
+              </span>
+            </div>
+
+            <div class="fg-answer">
+              <span class="fg-fr">
+                Police : 17
+                <br>
+                C’est le dix-sept.
+              </span>
+            </div>
+
+            <div class="fg-answer">
+              <span class="fg-fr">
+                Pompiers : 18
+                <br>
+                C’est le dix-huit.
+              </span>
+            </div>
+
+            <div class="fg-answer">
+              <span class="fg-fr">
+                SAMU : 15
+                <br>
+                C’est le quinze.
+              </span>
+            </div>
+
+            <div class="fg-callout fg-warning">
+              در شماره تلفن، معمولاً ارقام را در گروه‌های رایج شماره می‌خوانیم،
+              نه لزوماً به‌عنوان یک عدد ریاضی واحد.
+            </div>
+          </div>
+        </details>
+
+
+        <details class="fg-exercise">
+          <summary>تمرین ۲ — نوشتن عددها با رقم</summary>
+
+          <div class="fg-exercise-body">
+
+            <div class="fg-question">
+              <span class="fg-fr">
+                Transcrivez en chiffres les résultats du jeu de cartes.
+                Qui a gagné ?
+              </span>
+            </div>
+
+            <div class="fg-table-wrap">
+              <table class="fg-table">
+                <thead>
+                  <tr>
+                    <th>شخص</th>
+                    <th>عدد به حروف</th>
+                    <th>عدد</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Paul</td>
+                    <td><span class="fg-fr">trois cent cinquante-neuf</span></td>
+                    <td>359</td>
+                  </tr>
+                  <tr>
+                    <td>Max</td>
+                    <td><span class="fg-fr">cent quatre-vingt-treize</span></td>
+                    <td>193</td>
+                  </tr>
+                  <tr>
+                    <td>Jules</td>
+                    <td><span class="fg-fr">mille cent dix-huit</span></td>
+                    <td>1 118</td>
+                  </tr>
+                  <tr>
+                    <td>Pierre</td>
+                    <td><span class="fg-fr">sept cent cinquante-cinq</span></td>
+                    <td>755</td>
+                  </tr>
+                  <tr>
+                    <td>Ivan</td>
+                    <td><span class="fg-fr">quatre-vingt-quinze</span></td>
+                    <td>95</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="fg-answer">
+              <span class="fg-fr">
+                Jules a gagné avec mille cent dix-huit points.
+              </span>
+            </div>
+
+            <div class="fg-callout fg-warning">
+              در
+              <span class="fg-fr">cent quatre-vingt-treize</span>
+              نه
+              <span class="fg-fr">cent</span>
+              و نه
+              <span class="fg-fr">vingt</span>
+              دارای
+              <span class="fg-fr">s</span>
+              نیستند، چون عدد بعد از آن‌ها ادامه دارد.
+            </div>
+          </div>
+        </details>
+
+
+        <details class="fg-exercise">
+          <summary>تمرین ۳ — واحدهای زمان</summary>
+
+          <div class="fg-exercise-body">
+
+            <div class="fg-question">
+              <span class="fg-fr">
+                Complétez les phrases selon le modèle.
+              </span>
+            </div>
+
+            <div class="fg-answer">
+              <span class="fg-fr">
+                1. Dans une année, il y a douze mois.
+              </span>
+            </div>
+
+            <div class="fg-answer">
+              <span class="fg-fr">
+                2. Dans un mois, il y a trente ou trente et un jours.
+              </span>
+            </div>
+
+            <div class="fg-answer">
+              <span class="fg-fr">
+                3. Dans une semaine, il y a sept jours.
+              </span>
+            </div>
+
+            <div class="fg-answer">
+              <span class="fg-fr">
+                4. Dans une journée, il y a vingt-quatre heures.
+              </span>
+            </div>
+
+            <div class="fg-answer">
+              <span class="fg-fr">
+                5. Dans une heure, il y a soixante minutes.
+              </span>
+            </div>
+
+            <div class="fg-answer">
+              <span class="fg-fr">
+                6. Dans une minute, il y a soixante secondes.
+              </span>
+            </div>
+
+            <div class="fg-callout">
+              فوریه:
+              <div class="fg-example">
+                En février, il y a vingt-huit ou vingt-neuf jours.
+              </div>
+            </div>
+          </div>
+        </details>
+
+
+        <details class="fg-exercise">
+          <summary>تمرین ۴ — کد تلفنی کشورها</summary>
+
+          <div class="fg-exercise-body">
+
+            <div class="fg-answer">
+              <span class="fg-fr">
+                France : +33 → zéro zéro trente-trois
+              </span>
+            </div>
+
+            <div class="fg-answer">
+              <span class="fg-fr">
+                Suisse : +41 → zéro zéro quarante et un
+              </span>
+            </div>
+
+            <div class="fg-answer">
+              <span class="fg-fr">
+                Cameroun : +237 → zéro zéro deux cent trente-sept
+              </span>
+            </div>
+
+            <div class="fg-answer">
+              <span class="fg-fr">
+                Luxembourg : +352 → zéro zéro trois cent cinquante-deux
+              </span>
+            </div>
+
+            <div class="fg-answer">
+              <span class="fg-fr">
+                Belgique : +32 → zéro zéro trente-deux
+              </span>
+            </div>
+
+            <div class="fg-answer">
+              <span class="fg-fr">
+                Danemark : +45 → zéro zéro quarante-cinq
+              </span>
+            </div>
+
+            <div class="fg-callout">
+              در گفتار امروزی، برای
+              <span class="fg-fr">+33</span>
+              می‌توان گفت:
+              <div class="fg-example">plus trente-trois</div>
+            </div>
+          </div>
+        </details>
+
+
+        <details class="fg-exercise">
+          <summary>تمرین ۵ — عملیات ریاضی</summary>
+
+          <div class="fg-exercise-body">
+
+            <div class="fg-answer">
+              <span class="fg-fr">
+                6 + 25 = 31
+                <br>
+                Six plus vingt-cinq égale trente et un.
+              </span>
+            </div>
+
+            <div class="fg-answer">
+              <span class="fg-fr">
+                125 + 51 = 176
+                <br>
+                Cent vingt-cinq plus cinquante et un
+                égale cent soixante-seize.
+              </span>
+            </div>
+
+            <div class="fg-answer">
+              <span class="fg-fr">
+                75 × 2 = 150
+                <br>
+                Soixante-quinze multiplié par deux
+                égale cent cinquante.
+              </span>
+            </div>
+
+            <div class="fg-answer">
+              <span class="fg-fr">
+                26 × 3 = 78
+                <br>
+                Vingt-six multiplié par trois
+                égale soixante-dix-huit.
+              </span>
+            </div>
+
+            <div class="fg-answer">
+              <span class="fg-fr">
+                45 − 15 = 30
+                <br>
+                Quarante-cinq moins quinze égale trente.
+              </span>
+            </div>
+
+            <div class="fg-answer">
+              <span class="fg-fr">
+                69 − 18 = 51
+                <br>
+                Soixante-neuf moins dix-huit
+                égale cinquante et un.
+              </span>
+            </div>
+
+            <div class="fg-answer">
+              <span class="fg-fr">
+                44 ÷ 4 = 11
+                <br>
+                Quarante-quatre divisé par quatre égale onze.
+              </span>
+            </div>
+
+            <div class="fg-answer">
+              <span class="fg-fr">
+                72 ÷ 6 = 12
+                <br>
+                Soixante-douze divisé par six égale douze.
+              </span>
+            </div>
+          </div>
+        </details>
+
+
+        <details class="fg-exercise">
+          <summary>تمرین ۶ — شماره تلفن شخصی</summary>
+
+          <div class="fg-exercise-body">
+
+            <div class="fg-question">
+              <span class="fg-fr">
+                Donnez vos numéros de téléphone et
+                l’indicatif téléphonique de votre pays.
+              </span>
+            </div>
+
+            <p>
+              این تمرین پاسخ ثابت ندارد. نمونه با شماره فرضی:
+            </p>
+
+            <div class="fg-example">
+              Mon numéro de portable est le six zéro quatre,
+              cinq cinq cinq, douze, trente-quatre.
+            </div>
+
+            <div class="fg-example">
+              L’indicatif téléphonique du Canada est le plus un.
+            </div>
+          </div>
+        </details>
+      </div>
+
+
+      <!-- PAGE 61 -->
+      <div class="fg-card">
+        <h3>صفحه ۶۱ کتاب</h3>
+
+        <details class="fg-exercise">
+          <summary>تمرین ۱ — نوشتن مبالغ به حروف</summary>
+
+          <div class="fg-exercise-body">
+
+            <div class="fg-answer">
+              1 800 € →
+              <span class="fg-fr">mille huit cents euros</span>
+            </div>
+
+            <div class="fg-table-wrap">
+              <table class="fg-table">
+                <thead>
+                  <tr>
+                    <th>کالا</th>
+                    <th>مبلغ</th>
+                    <th>به حروف</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Gants</td>
+                    <td>21 €</td>
+                    <td><span class="fg-fr">vingt et un euros</span></td>
+                  </tr>
+                  <tr>
+                    <td>Chaussures</td>
+                    <td>50 €</td>
+                    <td><span class="fg-fr">cinquante euros</span></td>
+                  </tr>
+                  <tr>
+                    <td>Pull</td>
+                    <td>41 €</td>
+                    <td><span class="fg-fr">quarante et un euros</span></td>
+                  </tr>
+                  <tr>
+                    <td>Manteau</td>
+                    <td>200 €</td>
+                    <td><span class="fg-fr">deux cents euros</span></td>
+                  </tr>
+                  <tr>
+                    <td>Robe</td>
+                    <td>100 €</td>
+                    <td><span class="fg-fr">cent euros</span></td>
+                  </tr>
+                  <tr>
+                    <td>Veste</td>
+                    <td>170 €</td>
+                    <td><span class="fg-fr">cent soixante-dix euros</span></td>
+                  </tr>
+                  <tr>
+                    <td>Ordinateur</td>
+                    <td>2 000 €</td>
+                    <td><span class="fg-fr">deux mille euros</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="fg-callout fg-warning">
+              <span class="fg-fr">deux cents</span>
+              دارای
+              <span class="fg-fr">s</span>
+              است چون عدد دیگری پس از
+              <span class="fg-fr">cent</span>
+              نیامده است.
+            </div>
+          </div>
+        </details>
+
+
+        <details class="fg-exercise">
+          <summary>تمرین ۲ — عنوان آثار با عدد</summary>
+
+          <div class="fg-exercise-body">
+
+            <div class="fg-answer">
+              400 →
+              <span class="fg-fr">Les Quatre Cents Coups</span>
+            </div>
+
+            <div class="fg-answer">
+              24 →
+              <span class="fg-fr">Les Vingt-quatre Heures du Mans</span>
+            </div>
+
+            <div class="fg-answer">
+              4 →
+              <span class="fg-fr">Les Quatre Saisons</span>
+            </div>
+
+            <div class="fg-answer">
+              101 →
+              <span class="fg-fr">Les Cent Un Dalmatiens</span>
+            </div>
+
+            <div class="fg-answer">
+              24 000 →
+              <span class="fg-fr">Vingt-quatre mille Baisers</span>
+            </div>
+
+            <div class="fg-answer">
+              7 →
+              <span class="fg-fr">Les Sept Mercenaires</span>
+            </div>
+
+            <div class="fg-callout">
+              مقایسه کنید:
+              <div class="fg-example">quatre cents</div>
+              <div class="fg-example">cent un</div>
+              <div class="fg-example">vingt-quatre mille</div>
+            </div>
+          </div>
+        </details>
+
+
+        <details class="fg-exercise">
+          <summary>تمرین ۳ — اعداد مربوط به برج ایفل</summary>
+
+          <div class="fg-exercise-body">
+
+            <div class="fg-answer">
+              <span class="fg-fr-block">
+                La tour Eiffel mesure trois cents mètres de haut
+                et elle pèse plus de sept mille tonnes.
+                Elle se compose de deux millions et demi de rivets
+                que trois cents monteurs-acrobates ont assemblés
+                de mille huit cent quatre-vingt-sept
+                à mille huit cent quatre-vingt-neuf.
+              </span>
+            </div>
+
+            <div class="fg-callout fg-warning">
+              <ul>
+                <li><span class="fg-fr">trois cents</span>: cent جمع است.</li>
+                <li><span class="fg-fr">sept mille</span>: mille ثابت است.</li>
+                <li><span class="fg-fr">deux millions</span>: million جمع بسته می‌شود.</li>
+                <li><span class="fg-fr">deux millions et demi</span>: demi جمع نمی‌شود.</li>
+              </ul>
+            </div>
+          </div>
+        </details>
+
+
+        <details class="fg-exercise">
+          <summary>تمرین ۴ — نوشتن آمار فرانسه با حروف</summary>
+
+          <div class="fg-exercise-body">
+
+            <div class="fg-answer">
+              <span class="fg-fr">
+                En France, il y a environ soixante-cinq millions
+                de Français.
+              </span>
+            </div>
+
+            <div class="fg-answer">
+              <span class="fg-fr">
+                En moyenne, les Français partent à la retraite
+                à soixante-deux ans.
+              </span>
+            </div>
+
+            <div class="fg-answer">
+              <span class="fg-fr">
+                Le salaire minimum est de mille deux cent
+                quarante-quatre euros.
+              </span>
+            </div>
+
+            <div class="fg-answer">
+              <span class="fg-fr">
+                Il y a trois cent quatre-vingt-neuf cinémas à Paris.
+              </span>
+            </div>
+
+            <div class="fg-answer">
+              <span class="fg-fr">
+                Le billet coûte environ sept euros.
+              </span>
+            </div>
+
+            <div class="fg-answer">
+              <span class="fg-fr">
+                Un bon repas dans un restaurant parisien
+                coûte autour de quarante euros.
+              </span>
+            </div>
+
+            <div class="fg-answer">
+              <span class="fg-fr">
+                L’Équipe compte deux millions trois cent mille lecteurs.
+              </span>
+            </div>
+
+            <div class="fg-callout">
+              اعداد این تمرین مربوط به محتوای زمان انتشار کتاب‌اند؛
+              هدف اصلی این بخش تمرین نوشتن اعداد است.
+            </div>
+          </div>
+        </details>
+
+
+        <details class="fg-exercise">
+          <summary>تمرین ۵ — تمرین تلفظ</summary>
+
+          <div class="fg-exercise-body">
+
+            <div class="fg-mini-title">۱</div>
+            <div class="fg-example">
+              Le cinq et le neuf sont mes numéros fétiches.
+            </div>
+
+            <p>
+              در
+              <span class="fg-fr">cinq</span>
+              صدای پایانی /k/ و در
+              <span class="fg-fr">neuf</span>
+              صدای /f/ شنیده می‌شود.
+            </p>
+
+            <div class="fg-mini-title">۲</div>
+            <div class="fg-example">
+              Dix personnes attendent depuis dix heures.
+            </div>
+
+            <p>
+              <span class="fg-fr">dix personnes</span>:
+              صدای پایانی حذف می‌شود؛
+              <span class="fg-fr">dix heures</span>:
+              liaison با /z/.
+            </p>
+
+            <div class="fg-mini-title">۳</div>
+            <div class="fg-example">
+              Le vingt-trois, pour mes vingt et un ans,
+              je reçois quatre-vingt-deux personnes à vingt-deux heures.
+            </div>
+
+            <ul>
+              <li><span class="fg-fr">vingt-trois</span>: t شنیده می‌شود.</li>
+              <li><span class="fg-fr">vingt et un ans</span>: liaison.</li>
+              <li><span class="fg-fr">quatre-vingt-deux</span>: t شنیده نمی‌شود.</li>
+              <li><span class="fg-fr">vingt-deux</span>: t شنیده می‌شود.</li>
+            </ul>
+
+            <div class="fg-mini-title">۴</div>
+            <div class="fg-example">
+              J’ai invité neuf enfants de neuf ans,
+              le neuf août à neuf heures.
+            </div>
+
+            <ul>
+              <li><span class="fg-fr">neuf enfants</span>: f</li>
+              <li><span class="fg-fr">neuf ans</span>: v</li>
+              <li><span class="fg-fr">le neuf août</span>: f</li>
+              <li><span class="fg-fr">neuf heures</span>: v</li>
+            </ul>
+
+            <div class="fg-mini-title">۵</div>
+            <div class="fg-example">
+              Il y a six erreurs à la page six et sept à la page dix.
+            </div>
+
+            <ul>
+              <li><span class="fg-fr">six erreurs</span>: liaison با z</li>
+              <li><span class="fg-fr">page six</span>: /sis/</li>
+              <li><span class="fg-fr">sept</span>: t شنیده می‌شود</li>
+              <li><span class="fg-fr">page dix</span>: /dis/</li>
+            </ul>
+
+            <div class="fg-mini-title">۶</div>
+            <div class="fg-example">
+              J’ai dix neveux de dix-neuf ans
+              et six oncles de quatre-vingt-huit ans.
+            </div>
+          </div>
+        </details>
+      </div>
+
+
+      <!-- PAGE 63 -->
+      <div class="fg-card">
+        <h3>صفحه ۶۳ کتاب</h3>
+
+        <details class="fg-exercise">
+          <summary>تمرین ۱ — اعداد ترتیبی</summary>
+
+          <div class="fg-exercise-body">
+
+            <div class="fg-answer">
+              <span class="fg-fr">
+                La concierge est au 1er étage ?
+                <br>
+                Oui, elle est au premier.
+              </span>
+            </div>
+
+            <div class="fg-answer">
+              <span class="fg-fr">
+                Le docteur est au 2e étage ?
+                <br>
+                Oui, il est au deuxième.
+              </span>
+            </div>
+
+            <div class="fg-answer">
+              <span class="fg-fr">
+                Les bureaux sont au 32e étage ?
+                <br>
+                Oui, ils sont au trente-deuxième.
+              </span>
+            </div>
+
+            <div class="fg-answer">
+              <span class="fg-fr">
+                Le directeur est au 41e étage ?
+                <br>
+                Oui, il est au quarante et unième.
+              </span>
+            </div>
+
+            <div class="fg-callout fg-warning">
+              می‌گوییم:
+              <div class="fg-example">la quarante et unième page</div>
+              نه:
+              <div class="fg-wrong">✗ la quarante et uneième page</div>
+            </div>
+          </div>
+        </details>
+
+
+        <details class="fg-exercise">
+          <summary>تمرین ۲ — تصحیح ترتیب</summary>
+
+          <div class="fg-exercise-body">
+
+            <div class="fg-answer">
+              <span class="fg-fr">
+                Jeudi est le 3e jour de la semaine ?
+                <br>
+                Non, c’est le quatrième.
+              </span>
+            </div>
+
+            <div class="fg-answer">
+              <span class="fg-fr">
+                Novembre est le 12e mois de l’année ?
+                <br>
+                Non, c’est le onzième.
+              </span>
+            </div>
+
+            <div class="fg-answer">
+              <span class="fg-fr">
+                C’est la 20e page du livre ?
+                <br>
+                Non, c’est la soixante-troisième.
+              </span>
+            </div>
+
+            <div class="fg-answer">
+              <span class="fg-fr">
+                C’est le premier exercice ?
+                <br>
+                Non, c’est le deuxième.
+              </span>
+            </div>
+          </div>
+        </details>
+
+
+        <details class="fg-exercise">
+          <summary>تمرین ۳ — nombre یا numéro؟</summary>
+
+          <div class="fg-exercise-body">
+
+            <div class="fg-answer">
+              <span class="fg-fr">1. J’habite au numéro 46 de la rue Henri-Barbusse.</span>
+            </div>
+
+            <div class="fg-answer">
+              <span class="fg-fr">2. Quel est le nombre de personnes prévu pour le dîner ?</span>
+            </div>
+
+            <div class="fg-answer">
+              <span class="fg-fr">3. Un grand nombre d’animaux sauvages est en voie d’extinction.</span>
+            </div>
+
+            <div class="fg-answer">
+              <span class="fg-fr">4. Quel est le numéro de votre passeport ?</span>
+            </div>
+
+            <div class="fg-answer">
+              <span class="fg-fr">5. Le nombre de naissances diminue en Europe.</span>
+            </div>
+
+            <div class="fg-answer">
+              <span class="fg-fr">6. C’est fou le nombre de choses qu’il faut emporter en vacances.</span>
+            </div>
+
+            <div class="fg-answer">
+              <span class="fg-fr">7. Le numéro gagnant est le 23 !</span>
+            </div>
+
+            <div class="fg-answer">
+              <span class="fg-fr">8. Nous avons les places numéros 12 et 13 en deuxième classe.</span>
+            </div>
+          </div>
+        </details>
+
+
+        <details class="fg-exercise">
+          <summary>تمرین ۴ — an یا année؟</summary>
+
+          <div class="fg-exercise-body">
+
+            <div class="fg-answer">
+              <span class="fg-fr">
+                1. Je vais en Grèce chaque année, depuis dix ans.
+              </span>
+            </div>
+
+            <div class="fg-answer">
+              <span class="fg-fr">
+                2. Je connais Paul depuis plusieurs années.
+              </span>
+            </div>
+
+            <div class="fg-answer">
+              <span class="fg-fr">
+                3. C’est notre dixième année de mariage.
+              </span>
+            </div>
+
+            <div class="fg-answer">
+              <span class="fg-fr">
+                4. J’ai quarante ans cette année.
+              </span>
+            </div>
+
+            <div class="fg-callout">
+              <ul>
+                <li><span class="fg-fr">dix ans</span>: واحد شمارش.</li>
+                <li><span class="fg-fr">plusieurs années</span>: مقدار نامعین.</li>
+                <li><span class="fg-fr">dixième année</span>: عدد ترتیبی.</li>
+                <li><span class="fg-fr">cette année</span>: سال به‌عنوان دوره.</li>
+              </ul>
+            </div>
+          </div>
+        </details>
+
+
+        <details class="fg-exercise">
+          <summary>تمرین ۵ — jour/journée و موارد مشابه</summary>
+
+          <div class="fg-exercise-body">
+
+            <div class="fg-answer">
+              <span class="fg-fr">
+                1. Au mois de mai, il y a trente jours.
+              </span>
+            </div>
+
+            <div class="fg-answer">
+              <span class="fg-fr">
+                2. Passez me voir dans la soirée.
+              </span>
+            </div>
+
+            <div class="fg-answer">
+              <span class="fg-fr">
+                3. Il pleut depuis trois jours.
+              </span>
+            </div>
+
+            <div class="fg-answer">
+              <span class="fg-fr">
+                4. Tu as vécu combien d’années au Chili ?
+              </span>
+            </div>
+          </div>
+        </details>
+
+
+        <details class="fg-exercise">
+          <summary>تمرین ۶ — جمع‌بندی چند نکته درس</summary>
+
+          <div class="fg-exercise-body">
+
+            <div class="fg-answer">
+              <span class="fg-fr-block">
+                Notre magazine a vingt ans cette année.
+                Dans le numéro 1 000 du 6 septembre,
+                il y a un supplément de 20 pages :
+                c’est notre album souvenir qui commence
+                par la rencontre de trois vieux amis,
+                un 14 juillet, au milieu d’un grand nombre d’inconnus.
+                C’est cette année-là que notre magazine est né.
+              </span>
+            </div>
+
+            <div class="fg-callout fg-warning">
+              <ul>
+                <li><span class="fg-fr">vingt ans</span> → سن</li>
+                <li><span class="fg-fr">cette année</span> → دوره زمانی مشخص</li>
+                <li><span class="fg-fr">numéro 1 000</span> → شماره مجله</li>
+                <li><span class="fg-fr">il y a</span> → وجود</li>
+                <li><span class="fg-fr">c’est</span> → معرفی / شناسایی</li>
+                <li><span class="fg-fr">un grand nombre</span> → تعداد زیاد</li>
+              </ul>
+            </div>
+          </div>
+        </details>
+      </div>
+    </section>
+
+
+    <!-- =========================
+         COMMON ERRORS
+    ========================== -->
+    <section class="fg-section" id="fg-errors">
+      <h2 class="fg-section-title">
+        <span class="fg-section-number">۱۵</span>
+        اشتباهات رایج و دام‌های امتحانی
+      </h2>
+
+      <div class="fg-card">
+
+        <div class="fg-table-wrap">
+          <table class="fg-table">
+            <thead>
+              <tr>
+                <th>اشتباه</th>
+                <th>شکل درست</th>
+                <th>دلیل</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="fg-fr fg-cross">quatre-vingt euros</span></td>
+                <td><span class="fg-fr fg-check">quatre-vingts euros</span></td>
+                <td>۸۰ کامل است.</td>
+              </tr>
+
+              <tr>
+                <td><span class="fg-fr fg-cross">quatre-vingts-deux</span></td>
+                <td><span class="fg-fr fg-check">quatre-vingt-deux</span></td>
+                <td>عدد بعد از vingt ادامه دارد.</td>
+              </tr>
+
+              <tr>
+                <td><span class="fg-fr fg-cross">deux cents cinquante</span></td>
+                <td><span class="fg-fr fg-check">deux cent cinquante</span></td>
+                <td>بعد از cent عدد دیگری آمده است.</td>
+              </tr>
+
+              <tr>
+                <td><span class="fg-fr fg-cross">deux milles</span></td>
+                <td><span class="fg-fr fg-check">deux mille</span></td>
+                <td>mille در کاربرد عددی ثابت است.</td>
+              </tr>
+
+              <tr>
+                <td><span class="fg-fr fg-cross">deux million</span></td>
+                <td><span class="fg-fr fg-check">deux millions</span></td>
+                <td>million اسم است و جمع می‌شود.</td>
+              </tr>
+
+              <tr>
+                <td><span class="fg-fr fg-cross">deux millions euros</span></td>
+                <td><span class="fg-fr fg-check">deux millions d’euros</span></td>
+                <td>بعد از million و قبل از اسم de می‌آید.</td>
+              </tr>
+
+              <tr>
+                <td><span class="fg-fr fg-cross">quatre-vingt-et-un</span></td>
+                <td><span class="fg-fr fg-check">quatre-vingt-un</span></td>
+                <td>در ۸۱ et نداریم.</td>
+              </tr>
+
+              <tr>
+                <td><span class="fg-fr fg-cross">soixante-onze</span></td>
+                <td><span class="fg-fr fg-check">soixante et onze</span></td>
+                <td>۷۱ با et ساخته می‌شود.</td>
+              </tr>
+
+              <tr>
+                <td><span class="fg-fr fg-cross">numéro de personnes</span></td>
+                <td><span class="fg-fr fg-check">nombre de personnes</span></td>
+                <td>منظور تعداد است.</td>
+              </tr>
+
+              <tr>
+                <td><span class="fg-fr fg-cross">mon nombre de téléphone</span></td>
+                <td><span class="fg-fr fg-check">mon numéro de téléphone</span></td>
+                <td>شماره یک شناسه است.</td>
+              </tr>
+
+              <tr>
+                <td><span class="fg-fr fg-cross">j’ai vingt années</span></td>
+                <td><span class="fg-fr fg-check">j’ai vingt ans</span></td>
+                <td>سن با an بیان می‌شود.</td>
+              </tr>
+
+              <tr>
+                <td><span class="fg-fr fg-cross">la vingt et uneième page</span></td>
+                <td><span class="fg-fr fg-check">la vingt et unième page</span></td>
+                <td>عدد ترتیبی از unième ساخته می‌شود.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =========================
+         FINAL SUMMARY
+    ========================== -->
+    <section class="fg-footer-summary">
+      <h2 class="fg-section-title" style="margin-top:0;">
+        جمع‌بندی سریع درس ۱۳
+      </h2>
+
+      <div class="fg-rule">
+        <span class="fg-rule-icon">۱</span>
+        <div>
+          در
+          <span class="fg-fr">80</span>
+          می‌نویسیم
+          <span class="fg-fr">quatre-vingts</span>،
+          اما در
+          <span class="fg-fr">81</span>
+          حرف
+          <span class="fg-fr">s</span>
+          حذف می‌شود.
+        </div>
+      </div>
+
+      <div class="fg-rule">
+        <span class="fg-rule-icon">۲</span>
+        <div>
+          <span class="fg-fr">cent</span>
+          فقط وقتی ضرب شده و عدد دیگری بعد از آن نیست
+          <span class="fg-fr">s</span>
+          می‌گیرد.
+        </div>
+      </div>
+
+      <div class="fg-rule">
+        <span class="fg-rule-icon">۳</span>
+        <div>
+          <span class="fg-fr">mille</span>
+          ثابت است؛
+          <span class="fg-fr">million</span>
+          و
+          <span class="fg-fr">milliard</span>
+          اسم‌اند و جمع می‌شوند.
+        </div>
+      </div>
+
+      <div class="fg-rule">
+        <span class="fg-rule-icon">۴</span>
+        <div>
+          ۲۱، ۳۱، ۴۱، ۵۱ و ۶۱ با
+          <span class="fg-fr">et un</span>
+          ساخته می‌شوند؛
+          ۷۱ با
+          <span class="fg-fr">et onze</span>.
+        </div>
+      </div>
+
+      <div class="fg-rule">
+        <span class="fg-rule-icon">۵</span>
+        <div>
+          در ۸۱ و ۹۱ از
+          <span class="fg-fr">et</span>
+          استفاده نمی‌شود.
+        </div>
+      </div>
+
+      <div class="fg-rule">
+        <span class="fg-rule-icon">۶</span>
+        <div>
+          <span class="fg-fr">nombre</span>
+          یعنی «تعداد»؛
+          <span class="fg-fr">numéro</span>
+          یعنی «شماره / شناسه».
+        </div>
+      </div>
+
+      <div class="fg-rule">
+        <span class="fg-rule-icon">۷</span>
+        <div>
+          برای سن و شمارش سال‌ها معمولاً
+          <span class="fg-fr">an</span>؛
+          برای دوره یا کیفیت سال معمولاً
+          <span class="fg-fr">année</span>.
+        </div>
+      </div>
+
+      <div class="fg-rule">
+        <span class="fg-rule-icon">۸</span>
+        <div>
+          در اعداد ترتیبی معمولاً فقط آخرین جزء به
+          <span class="fg-fr">-ième</span>
+          تبدیل می‌شود.
+        </div>
+      </div>
+
+      <div class="fg-callout fg-success" style="margin-bottom:0;">
+        <strong>هدف تسلط:</strong>
+        اگر بتوانید بدون مکث اعدادی مانند
+        <span class="fg-fr">71, 80, 81, 91, 200, 201, 2 000, 2 000 000</span>
+        را هم بنویسید و هم تلفظ کنید و تفاوت
+        <span class="fg-fr">nombre/numéro</span>
+        و
+        <span class="fg-fr">an/année</span>
+        را تشخیص دهید، هسته اصلی این درس را فرا گرفته‌اید.
+      </div>
+    </section>
+
+  </div>
+</div>

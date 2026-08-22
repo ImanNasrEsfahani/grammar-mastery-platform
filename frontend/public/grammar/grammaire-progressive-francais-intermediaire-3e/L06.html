@@ -1,0 +1,1941 @@
+<div class="french-grammar-wrapper fg-lesson-06">
+  <style scoped>
+    .fg-lesson-06 {
+      --fg-navy: #12355b;
+      --fg-blue: #1f5f9f;
+      --fg-blue-soft: #edf6ff;
+      --fg-blue-border: #c7def4;
+      --fg-green: #18794e;
+      --fg-green-soft: #eefaf4;
+      --fg-red: #b42318;
+      --fg-red-soft: #fff2f0;
+      --fg-orange: #b54708;
+      --fg-orange-soft: #fff7ed;
+      --fg-purple: #6941c6;
+      --fg-purple-soft: #f5f3ff;
+      --fg-gray-900: #182230;
+      --fg-gray-700: #344054;
+      --fg-gray-600: #475467;
+      --fg-gray-500: #667085;
+      --fg-gray-300: #d0d5dd;
+      --fg-gray-200: #eaecf0;
+      --fg-gray-100: #f2f4f7;
+      --fg-gray-50: #f9fafb;
+      --fg-white: #ffffff;
+      --fg-radius: 18px;
+      --fg-radius-sm: 12px;
+      --fg-shadow: 0 8px 30px rgba(16, 24, 40, 0.07);
+
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      box-sizing: border-box;
+      color: var(--fg-gray-900);
+      font-family: Tahoma, "Segoe UI", Arial, sans-serif;
+      line-height: 1.9;
+      direction: rtl;
+      text-align: right;
+    }
+
+    .fg-lesson-06 *,
+    .fg-lesson-06 *::before,
+    .fg-lesson-06 *::after {
+      box-sizing: border-box;
+    }
+
+    .fg-lesson-06 .fg-fr {
+      direction: ltr;
+      unicode-bidi: isolate;
+      text-align: left;
+      display: inline-block;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    .fg-lesson-06 .fg-fr-block {
+      direction: ltr;
+      unicode-bidi: isolate;
+      text-align: left;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    .fg-lesson-06 .fg-shell {
+      background:
+        radial-gradient(circle at top right, rgba(31, 95, 159, 0.08), transparent 34%),
+        linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
+      border: 1px solid var(--fg-gray-200);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: var(--fg-shadow);
+    }
+
+    .fg-lesson-06 .fg-hero {
+      padding: 40px 36px;
+      color: #fff;
+      background:
+        radial-gradient(circle at 15% 15%, rgba(255,255,255,.15), transparent 25%),
+        linear-gradient(135deg, #0f3155 0%, #174f83 55%, #2172b7 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .fg-lesson-06 .fg-hero::after {
+      content: "06";
+      position: absolute;
+      left: 28px;
+      bottom: -38px;
+      font-size: 150px;
+      font-weight: 800;
+      line-height: 1;
+      color: rgba(255,255,255,.07);
+      direction: ltr;
+    }
+
+    .fg-lesson-06 .fg-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 13px;
+      border: 1px solid rgba(255,255,255,.22);
+      background: rgba(255,255,255,.1);
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .fg-lesson-06 .fg-hero h1 {
+      margin: 0;
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.35;
+      font-weight: 800;
+    }
+
+    .fg-lesson-06 .fg-hero-subtitle {
+      margin-top: 10px;
+      font-size: 17px;
+      color: rgba(255,255,255,.87);
+    }
+
+    .fg-lesson-06 .fg-meta {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 22px;
+    }
+
+    .fg-lesson-06 .fg-meta span {
+      padding: 7px 11px;
+      border-radius: 10px;
+      background: rgba(255,255,255,.10);
+      border: 1px solid rgba(255,255,255,.15);
+      font-size: 13px;
+    }
+
+    .fg-lesson-06 .fg-content {
+      padding: 32px;
+    }
+
+    .fg-lesson-06 .fg-section {
+      margin: 0 0 34px;
+    }
+
+    .fg-lesson-06 .fg-section:last-child {
+      margin-bottom: 0;
+    }
+
+    .fg-lesson-06 .fg-section-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 18px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--fg-blue-border);
+      color: var(--fg-navy);
+      font-size: 25px;
+      font-weight: 800;
+      line-height: 1.5;
+    }
+
+    .fg-lesson-06 .fg-section-title .fg-num {
+      min-width: 40px;
+      height: 40px;
+      padding: 0 10px;
+      border-radius: 12px;
+      background: var(--fg-navy);
+      color: #fff;
+      direction: ltr;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 15px;
+    }
+
+    .fg-lesson-06 .fg-card {
+      background: var(--fg-white);
+      border: 1px solid var(--fg-gray-200);
+      border-radius: var(--fg-radius);
+      padding: 24px;
+      margin: 18px 0;
+      box-shadow: 0 4px 16px rgba(16,24,40,.035);
+    }
+
+    .fg-lesson-06 .fg-card h3,
+    .fg-lesson-06 .fg-card h4 {
+      color: var(--fg-navy);
+      margin-top: 0;
+      line-height: 1.6;
+    }
+
+    .fg-lesson-06 .fg-card h3 {
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+
+    .fg-lesson-06 .fg-card h4 {
+      font-size: 17px;
+      margin-bottom: 8px;
+    }
+
+    .fg-lesson-06 p {
+      margin: 9px 0;
+      color: var(--fg-gray-700);
+    }
+
+    .fg-lesson-06 strong {
+      color: var(--fg-gray-900);
+    }
+
+    .fg-lesson-06 .fg-lead {
+      font-size: 17px;
+      color: var(--fg-gray-700);
+      line-height: 2;
+    }
+
+    .fg-lesson-06 .fg-callout {
+      position: relative;
+      border-radius: var(--fg-radius-sm);
+      padding: 18px 20px;
+      margin: 18px 0;
+      border-right: 5px solid;
+    }
+
+    .fg-lesson-06 .fg-callout strong:first-child {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .fg-lesson-06 .fg-info {
+      background: var(--fg-blue-soft);
+      border-color: var(--fg-blue);
+    }
+
+    .fg-lesson-06 .fg-success {
+      background: var(--fg-green-soft);
+      border-color: var(--fg-green);
+    }
+
+    .fg-lesson-06 .fg-warning {
+      background: var(--fg-orange-soft);
+      border-color: var(--fg-orange);
+    }
+
+    .fg-lesson-06 .fg-danger {
+      background: var(--fg-red-soft);
+      border-color: var(--fg-red);
+    }
+
+    .fg-lesson-06 .fg-purple {
+      background: var(--fg-purple-soft);
+      border-color: var(--fg-purple);
+    }
+
+    .fg-lesson-06 .fg-example {
+      background: var(--fg-gray-50);
+      border: 1px solid var(--fg-gray-200);
+      border-radius: var(--fg-radius-sm);
+      padding: 15px 17px;
+      margin: 10px 0;
+    }
+
+    .fg-lesson-06 .fg-example .fg-fr-block {
+      font-size: 16px;
+      color: var(--fg-navy);
+      font-weight: 650;
+      line-height: 1.9;
+    }
+
+    .fg-lesson-06 .fg-translation {
+      color: var(--fg-gray-600);
+      margin-top: 4px;
+      font-size: 14px;
+    }
+
+    .fg-lesson-06 .fg-good {
+      color: var(--fg-green);
+      font-weight: 700;
+    }
+
+    .fg-lesson-06 .fg-bad {
+      color: var(--fg-red);
+      font-weight: 700;
+    }
+
+    .fg-lesson-06 .fg-table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      margin: 18px 0;
+      border: 1px solid var(--fg-gray-200);
+      border-radius: 14px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .fg-lesson-06 table {
+      width: 100%;
+      min-width: 650px;
+      border-collapse: collapse;
+      background: #fff;
+      margin: 0;
+    }
+
+    .fg-lesson-06 th,
+    .fg-lesson-06 td {
+      border-left: 1px solid var(--fg-gray-200);
+      border-bottom: 1px solid var(--fg-gray-200);
+      padding: 12px 14px;
+      vertical-align: middle;
+    }
+
+    .fg-lesson-06 th:last-child,
+    .fg-lesson-06 td:last-child {
+      border-left: 0;
+    }
+
+    .fg-lesson-06 tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .fg-lesson-06 thead th {
+      background: var(--fg-navy);
+      color: #fff;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .fg-lesson-06 tbody tr:nth-child(even) {
+      background: #f8fbff;
+    }
+
+    .fg-lesson-06 tbody tr:hover {
+      background: #f2f7fc;
+    }
+
+    .fg-lesson-06 td {
+      color: var(--fg-gray-700);
+    }
+
+    .fg-lesson-06 .fg-center {
+      text-align: center;
+    }
+
+    .fg-lesson-06 .fg-grid-2,
+    .fg-lesson-06 .fg-grid-3 {
+      display: grid;
+      gap: 16px;
+      margin: 16px 0;
+    }
+
+    .fg-lesson-06 .fg-grid-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .fg-lesson-06 .fg-grid-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .fg-lesson-06 .fg-mini-card {
+      border: 1px solid var(--fg-gray-200);
+      border-radius: 14px;
+      background: #fff;
+      padding: 17px;
+    }
+
+    .fg-lesson-06 .fg-mini-card strong {
+      color: var(--fg-navy);
+    }
+
+    .fg-lesson-06 .fg-rule-flow {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 12px;
+      margin: 18px 0;
+    }
+
+    .fg-lesson-06 .fg-step {
+      border: 1px solid var(--fg-blue-border);
+      background: var(--fg-blue-soft);
+      border-radius: 14px;
+      padding: 16px;
+      position: relative;
+    }
+
+    .fg-lesson-06 .fg-step-number {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--fg-blue);
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      direction: ltr;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .fg-lesson-06 ul,
+    .fg-lesson-06 ol {
+      margin: 8px 0;
+      padding-right: 23px;
+    }
+
+    .fg-lesson-06 li {
+      margin: 7px 0;
+      color: var(--fg-gray-700);
+    }
+
+    .fg-lesson-06 .fg-code {
+      direction: ltr;
+      unicode-bidi: isolate;
+      display: inline-block;
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      color: #12355b;
+      border-radius: 7px;
+      padding: 1px 7px;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: .95em;
+    }
+
+    .fg-lesson-06 .fg-exercise {
+      border: 1px solid var(--fg-gray-200);
+      border-radius: var(--fg-radius);
+      overflow: hidden;
+      margin: 22px 0;
+      background: #fff;
+    }
+
+    .fg-lesson-06 .fg-exercise-head {
+      padding: 15px 20px;
+      background: linear-gradient(90deg, #12355b, #1c639f);
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .fg-lesson-06 .fg-exercise-head h3 {
+      margin: 0;
+      color: #fff;
+      font-size: 18px;
+    }
+
+    .fg-lesson-06 .fg-exercise-body {
+      padding: 20px;
+    }
+
+    .fg-lesson-06 .fg-answer {
+      background: var(--fg-green-soft);
+      border: 1px solid #b7e4cd;
+      border-radius: 12px;
+      padding: 16px;
+      margin: 14px 0;
+    }
+
+    .fg-lesson-06 .fg-answer-title {
+      color: var(--fg-green);
+      font-weight: 800;
+      margin-bottom: 7px;
+    }
+
+    .fg-lesson-06 .fg-tip {
+      border-right: 4px solid var(--fg-orange);
+      padding: 12px 15px;
+      background: var(--fg-orange-soft);
+      border-radius: 9px;
+      margin-top: 12px;
+      color: var(--fg-gray-700);
+    }
+
+    .fg-lesson-06 .fg-summary-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      counter-reset: fg-summary;
+    }
+
+    .fg-lesson-06 .fg-summary-item {
+      counter-increment: fg-summary;
+      border: 1px solid var(--fg-gray-200);
+      background: #fff;
+      border-radius: 13px;
+      padding: 16px 17px;
+      position: relative;
+      padding-right: 54px;
+    }
+
+    .fg-lesson-06 .fg-summary-item::before {
+      content: counter(fg-summary);
+      position: absolute;
+      right: 15px;
+      top: 15px;
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      color: #fff;
+      background: var(--fg-blue);
+      font-size: 13px;
+      font-weight: 800;
+      direction: ltr;
+    }
+
+    .fg-lesson-06 .fg-source {
+      margin-top: 28px;
+      padding: 16px 18px;
+      border-top: 1px dashed var(--fg-gray-300);
+      color: var(--fg-gray-500);
+      font-size: 13px;
+    }
+
+    @media (max-width: 900px) {
+      .fg-lesson-06 .fg-content {
+        padding: 24px;
+      }
+
+      .fg-lesson-06 .fg-grid-3,
+      .fg-lesson-06 .fg-rule-flow {
+        grid-template-columns: 1fr;
+      }
+
+      .fg-lesson-06 .fg-grid-2,
+      .fg-lesson-06 .fg-summary-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .fg-lesson-06 {
+        line-height: 1.85;
+      }
+
+      .fg-lesson-06 .fg-shell {
+        border-radius: 16px;
+      }
+
+      .fg-lesson-06 .fg-hero {
+        padding: 28px 20px;
+      }
+
+      .fg-lesson-06 .fg-content {
+        padding: 18px 14px;
+      }
+
+      .fg-lesson-06 .fg-card,
+      .fg-lesson-06 .fg-exercise-body {
+        padding: 17px;
+      }
+
+      .fg-lesson-06 .fg-section-title {
+        font-size: 21px;
+        align-items: flex-start;
+      }
+
+      .fg-lesson-06 .fg-section-title .fg-num {
+        min-width: 35px;
+        height: 35px;
+      }
+
+      .fg-lesson-06 table {
+        min-width: 600px;
+      }
+
+      .fg-lesson-06 th,
+      .fg-lesson-06 td {
+        padding: 10px;
+        font-size: 14px;
+      }
+
+      .fg-lesson-06 .fg-hero::after {
+        font-size: 100px;
+      }
+    }
+  </style>
+
+  <div class="fg-shell">
+
+    <!-- HERO -->
+    <section class="fg-hero">
+      <div class="fg-kicker">درس ششم • Grammaire Progressive du Français</div>
+
+      <h1>
+        <span class="fg-fr">LES POSSESSIFS</span>
+        <br>
+        مالکیت در زبان فرانسه
+      </h1>
+
+      <div class="fg-hero-subtitle">
+        صفات ملکی، ضمایر ملکی، استثناهای آوایی، اعضای بدن و نکات مهم کاربردی
+      </div>
+
+      <div class="fg-meta">
+        <span>صفحه چاپی: 36–37</span>
+        <span>صفحه PDF: 38–39</span>
+        <span>موضوع: Groupe nominal et déterminants</span>
+        <span>زیرموضوع: Possessifs</span>
+      </div>
+    </section>
+
+    <main class="fg-content">
+
+      <!-- INTRO -->
+      <section class="fg-section">
+        <div class="fg-callout fg-info">
+          <strong>نقشه درس</strong>
+          این درس دو ساختار اصلی را آموزش می‌دهد:
+          <span class="fg-fr">l’adjectif possessif</span>
+          مانند
+          <span class="fg-code">mon livre</span>
+          و
+          <span class="fg-fr">le pronom possessif</span>
+          مانند
+          <span class="fg-code">le mien</span>.
+          مهم‌ترین نکته این است که فرم ملکی در فرانسه بر اساس «چیزی که متعلق به کسی است» انتخاب می‌شود، نه جنسیت صاحب آن.
+        </div>
+      </section>
+
+      <!-- 1 -->
+      <section class="fg-section">
+        <h2 class="fg-section-title">
+          <span class="fg-num">1</span>
+          <span>صفت ملکی — <span class="fg-fr">L’adjectif possessif</span></span>
+        </h2>
+
+        <div class="fg-card">
+          <p class="fg-lead">
+            صفت ملکی قبل از اسم می‌آید و نشان می‌دهد آن اسم به چه کسی تعلق دارد.
+            در دستور جدید فرانسه به آن
+            <span class="fg-fr">déterminant possessif</span>
+            نیز گفته می‌شود.
+          </p>
+
+          <div class="fg-grid-3">
+            <div class="fg-mini-card">
+              <strong class="fg-fr">mon sac</strong>
+              <p>کیف من</p>
+            </div>
+            <div class="fg-mini-card">
+              <strong class="fg-fr">ta voiture</strong>
+              <p>ماشین تو</p>
+            </div>
+            <div class="fg-mini-card">
+              <strong class="fg-fr">leurs enfants</strong>
+              <p>فرزندان آن‌ها</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="fg-card">
+          <h3>جدول کامل صفات ملکی</h3>
+
+          <div class="fg-table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>صاحب</th>
+                  <th>مذکر مفرد</th>
+                  <th>مؤنث مفرد</th>
+                  <th>جمع</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="fg-center"><span class="fg-fr">je</span></td>
+                  <td class="fg-center"><span class="fg-fr">mon</span></td>
+                  <td class="fg-center"><span class="fg-fr">ma</span></td>
+                  <td class="fg-center"><span class="fg-fr">mes</span></td>
+                </tr>
+                <tr>
+                  <td class="fg-center"><span class="fg-fr">tu</span></td>
+                  <td class="fg-center"><span class="fg-fr">ton</span></td>
+                  <td class="fg-center"><span class="fg-fr">ta</span></td>
+                  <td class="fg-center"><span class="fg-fr">tes</span></td>
+                </tr>
+                <tr>
+                  <td class="fg-center"><span class="fg-fr">il / elle / on</span></td>
+                  <td class="fg-center"><span class="fg-fr">son</span></td>
+                  <td class="fg-center"><span class="fg-fr">sa</span></td>
+                  <td class="fg-center"><span class="fg-fr">ses</span></td>
+                </tr>
+                <tr>
+                  <td class="fg-center"><span class="fg-fr">nous</span></td>
+                  <td class="fg-center"><span class="fg-fr">notre</span></td>
+                  <td class="fg-center"><span class="fg-fr">notre</span></td>
+                  <td class="fg-center"><span class="fg-fr">nos</span></td>
+                </tr>
+                <tr>
+                  <td class="fg-center"><span class="fg-fr">vous</span></td>
+                  <td class="fg-center"><span class="fg-fr">votre</span></td>
+                  <td class="fg-center"><span class="fg-fr">votre</span></td>
+                  <td class="fg-center"><span class="fg-fr">vos</span></td>
+                </tr>
+                <tr>
+                  <td class="fg-center"><span class="fg-fr">ils / elles</span></td>
+                  <td class="fg-center"><span class="fg-fr">leur</span></td>
+                  <td class="fg-center"><span class="fg-fr">leur</span></td>
+                  <td class="fg-center"><span class="fg-fr">leurs</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="fg-card">
+          <h3>چطور فرم درست را انتخاب کنیم؟</h3>
+
+          <div class="fg-rule-flow">
+            <div class="fg-step">
+              <span class="fg-step-number">1</span>
+              <strong>صاحب را پیدا کن</strong>
+              <p>من؟ تو؟ او؟ ما؟ شما؟ آن‌ها؟</p>
+            </div>
+
+            <div class="fg-step">
+              <span class="fg-step-number">2</span>
+              <strong>اسمِ مملوک را بررسی کن</strong>
+              <p>مذکر است، مؤنث است یا جمع؟</p>
+            </div>
+
+            <div class="fg-step">
+              <span class="fg-step-number">3</span>
+              <strong>فرم نهایی را انتخاب کن</strong>
+              <p>جنس و تعداد «شیء متعلق» شکل نهایی را تعیین می‌کند.</p>
+            </div>
+          </div>
+
+          <div class="fg-example">
+            <div class="fg-fr-block">Marie cherche <strong>son frère</strong>.</div>
+            <div class="fg-translation">
+              ماری دنبال برادرش می‌گردد. چون
+              <span class="fg-fr">frère</span>
+              مذکر مفرد است، از
+              <span class="fg-fr">son</span>
+              استفاده می‌کنیم.
+            </div>
+          </div>
+
+          <div class="fg-example">
+            <div class="fg-fr-block">Paul cherche <strong>sa sœur</strong>.</div>
+            <div class="fg-translation">
+              پل دنبال خواهرش می‌گردد. چون
+              <span class="fg-fr">sœur</span>
+              مؤنث مفرد است، از
+              <span class="fg-fr">sa</span>
+              استفاده می‌کنیم.
+            </div>
+          </div>
+
+          <div class="fg-example">
+            <div class="fg-fr-block">Marie cherche <strong>ses clés</strong>.</div>
+            <div class="fg-translation">
+              چون
+              <span class="fg-fr">clés</span>
+              جمع است، از
+              <span class="fg-fr">ses</span>
+              استفاده می‌شود.
+            </div>
+          </div>
+        </div>
+
+        <div class="fg-callout fg-warning">
+          <strong>نکته بسیار مهم</strong>
+          صفت ملکی با جنسیت صاحب هماهنگ نمی‌شود؛ با جنسیت و تعداد چیزی که متعلق به صاحب است هماهنگ می‌شود.
+        </div>
+
+        <div class="fg-grid-2">
+          <div class="fg-example">
+            <div class="fg-fr-block">Paul aime <strong>sa femme</strong>.</div>
+            <div class="fg-translation">پل همسرش را دوست دارد.</div>
+          </div>
+
+          <div class="fg-example">
+            <div class="fg-fr-block">Marie aime <strong>sa mère</strong>.</div>
+            <div class="fg-translation">ماری مادرش را دوست دارد.</div>
+          </div>
+        </div>
+
+        <div class="fg-callout fg-info">
+          فرانسه در
+          <span class="fg-fr">son / sa / ses</span>
+          مانند انگلیسی میان
+          <span class="fg-fr">his</span>
+          و
+          <span class="fg-fr">her</span>
+          تمایز مستقیمی ایجاد نمی‌کند.
+        </div>
+      </section>
+
+      <!-- 2 -->
+      <section class="fg-section">
+        <h2 class="fg-section-title">
+          <span class="fg-num">2</span>
+          <span>استثنای مهم پیش از مصوت و <span class="fg-fr">h muet</span></span>
+        </h2>
+
+        <div class="fg-card">
+          <p>
+            در حالت عادی برای اسم مؤنث مفرد از
+            <span class="fg-fr">ma / ta / sa</span>
+            استفاده می‌کنیم:
+          </p>
+
+          <div class="fg-example">
+            <div class="fg-fr-block">ma sœur • ta voiture • sa maison</div>
+          </div>
+
+          <p>
+            اما اگر اسم مؤنث با مصوت یا
+            <span class="fg-fr">h muet</span>
+            آغاز شود، برای روان‌تر شدن تلفظ از
+            <span class="fg-fr">mon / ton / son</span>
+            استفاده می‌کنیم.
+          </p>
+
+          <div class="fg-grid-3">
+            <div class="fg-mini-card">
+              <span class="fg-fr"><strong>mon amie</strong></span>
+              <p>دوست مؤنث من</p>
+            </div>
+
+            <div class="fg-mini-card">
+              <span class="fg-fr"><strong>ton école</strong></span>
+              <p>مدرسه تو</p>
+            </div>
+
+            <div class="fg-mini-card">
+              <span class="fg-fr"><strong>son histoire</strong></span>
+              <p>داستان او</p>
+            </div>
+          </div>
+
+          <div class="fg-example">
+            <div class="fg-fr-block">Mon amie est française.</div>
+            <div class="fg-translation">
+              وجود
+              <span class="fg-fr">mon</span>
+              به معنی مذکر شدن
+              <span class="fg-fr">amie</span>
+              نیست؛ صفت
+              <span class="fg-fr">française</span>
+              نشان می‌دهد که اسم همچنان مؤنث است.
+            </div>
+          </div>
+        </div>
+
+        <div class="fg-card">
+          <h3>اگر بین صفت ملکی و اسم، صفت دیگری قرار گیرد</h3>
+
+          <div class="fg-table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>ساخت</th>
+                  <th>دلیل</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="fg-fr">ma meilleure amie</span></td>
+                  <td>
+                    کلمه بلافاصله بعد از صفت ملکی
+                    <span class="fg-fr">meilleure</span>
+                    است و با صامت شروع می‌شود.
+                  </td>
+                </tr>
+                <tr>
+                  <td><span class="fg-fr">mon ancienne amie</span></td>
+                  <td>
+                    <span class="fg-fr">ancienne</span>
+                    با مصوت شروع می‌شود.
+                  </td>
+                </tr>
+                <tr>
+                  <td><span class="fg-fr">ma chère amie</span></td>
+                  <td>
+                    <span class="fg-fr">chère</span>
+                    با صامت آغاز می‌شود.
+                  </td>
+                </tr>
+                <tr>
+                  <td><span class="fg-fr">mon excellente collègue</span></td>
+                  <td>
+                    <span class="fg-fr">excellente</span>
+                    با مصوت آغاز می‌شود.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="fg-card">
+          <h3>
+            تفاوت
+            <span class="fg-fr">h muet</span>
+            و
+            <span class="fg-fr">h aspiré</span>
+          </h3>
+
+          <div class="fg-grid-2">
+            <div class="fg-callout fg-success">
+              <strong><span class="fg-fr">h muet</span></strong>
+              مانند مصوت رفتار می‌کند.
+              <div class="fg-fr-block">
+                mon histoire<br>
+                son habitude<br>
+                son hésitation
+              </div>
+            </div>
+
+            <div class="fg-callout fg-danger">
+              <strong><span class="fg-fr">h aspiré</span></strong>
+              مانند صامت رفتار می‌کند.
+              <div class="fg-fr-block">
+                ma honte<br>
+                ta hache<br>
+                sa haie
+              </div>
+            </div>
+          </div>
+
+          <div class="fg-callout fg-warning">
+            <strong>نمونه مهم کتاب</strong>
+            <span class="fg-fr">mes héros préférés</span>
+            بدون
+            <span class="fg-fr">liaison</span>
+            تلفظ می‌شود، چون
+            <span class="fg-fr">héros</span>
+            با
+            <span class="fg-fr">h aspiré</span>
+            آغاز می‌شود.
+          </div>
+        </div>
+      </section>
+
+      <!-- 3 -->
+      <section class="fg-section">
+        <h2 class="fg-section-title">
+          <span class="fg-num">3</span>
+          <span>تلفظ و <span class="fg-fr">Liaison</span></span>
+        </h2>
+
+        <div class="fg-card">
+          <p>
+            وقتی کلمه بعدی با مصوت یا
+            <span class="fg-fr">h muet</span>
+            شروع شود، در بسیاری از این ترکیب‌ها
+            <span class="fg-fr">liaison</span>
+            انجام می‌شود.
+          </p>
+
+          <div class="fg-grid-2">
+            <div class="fg-example">
+              <div class="fg-fr-block">mon ami</div>
+              <div class="fg-translation">تقریباً: <span class="fg-fr">mon-nami</span></div>
+            </div>
+
+            <div class="fg-example">
+              <div class="fg-fr-block">mes idées</div>
+              <div class="fg-translation">تقریباً: <span class="fg-fr">mé-z-idées</span></div>
+            </div>
+
+            <div class="fg-example">
+              <div class="fg-fr-block">tes amis</div>
+            </div>
+
+            <div class="fg-example">
+              <div class="fg-fr-block">ses enfants</div>
+            </div>
+          </div>
+
+          <div class="fg-callout fg-danger">
+            با
+            <span class="fg-fr">h aspiré</span>
+            liaison انجام نمی‌شود:
+            <span class="fg-fr">mes héros</span>،
+            <span class="fg-fr">tes haches</span>.
+          </div>
+        </div>
+      </section>
+
+      <!-- 4 -->
+      <section class="fg-section">
+        <h2 class="fg-section-title">
+          <span class="fg-num">4</span>
+          <span>تفاوت <span class="fg-fr">leur</span> و <span class="fg-fr">leurs</span></span>
+        </h2>
+
+        <div class="fg-card">
+          <p>
+            هر دو فرم برای صاحب جمع یعنی
+            <span class="fg-fr">ils / elles</span>
+            هستند. تفاوت آن‌ها به تعداد اسم مملوک مربوط است.
+          </p>
+
+          <div class="fg-grid-2">
+            <div class="fg-callout fg-info">
+              <strong><span class="fg-fr">leur + nom singulier</span></strong>
+              <div class="fg-fr-block">
+                Ils vendent <strong>leur maison</strong>.
+              </div>
+            </div>
+
+            <div class="fg-callout fg-info">
+              <strong><span class="fg-fr">leurs + nom pluriel</span></strong>
+              <div class="fg-fr-block">
+                Ils vendent <strong>leurs maisons</strong>.
+              </div>
+            </div>
+          </div>
+
+          <div class="fg-callout fg-warning">
+            <strong>نکته ظریف</strong>
+            <span class="fg-fr">leur</span>
+            الزاماً به معنی «یک چیز مشترک» نیست.
+            در جمله
+            <span class="fg-fr">Les étudiants ouvrent leur livre.</span>
+            ممکن است هر دانشجو کتاب خودش را باز کند.
+          </div>
+        </div>
+
+        <div class="fg-card">
+          <h3>
+            مراقب
+            <span class="fg-fr">leur</span>
+            به‌عنوان ضمیر مفعولی باشید
+          </h3>
+
+          <div class="fg-example">
+            <div class="fg-fr-block">Je <strong>leur</strong> parle.</div>
+            <div class="fg-translation">
+              اینجا
+              <span class="fg-fr">leur</span>
+              ضمیر مفعولی غیرمستقیم است و هرگز
+              <span class="fg-fr">s</span>
+              نمی‌گیرد.
+            </div>
+          </div>
+
+          <div class="fg-example">
+            <div class="fg-fr-block">Je vois <strong>leurs enfants</strong>.</div>
+            <div class="fg-translation">
+              اینجا
+              <span class="fg-fr">leurs</span>
+              صفت ملکی است.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5 -->
+      <section class="fg-section">
+        <h2 class="fg-section-title">
+          <span class="fg-num">5</span>
+          <span>مالکیت با <span class="fg-fr">on</span></span>
+        </h2>
+
+        <div class="fg-card">
+          <p>
+            انتخاب فرم ملکی با
+            <span class="fg-fr">on</span>
+            به معنی
+            <span class="fg-fr">on</span>
+            در جمله بستگی دارد.
+          </p>
+
+          <div class="fg-grid-2">
+            <div class="fg-callout fg-success">
+              <strong>وقتی <span class="fg-fr">on = nous</span></strong>
+              <div class="fg-fr-block">
+                On est chez <strong>notre</strong> grand-mère.<br>
+                On a oublié <strong>nos</strong> clés.
+              </div>
+            </div>
+
+            <div class="fg-callout fg-purple">
+              <strong>وقتی <span class="fg-fr">on</span> معنای عمومی دارد</strong>
+              <div class="fg-fr-block">
+                Quand on est vieux, on parle de <strong>son</strong> passé.<br>
+                Quand on voyage, on prend <strong>son</strong> passeport.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6 -->
+      <section class="fg-section">
+        <h2 class="fg-section-title">
+          <span class="fg-num">6</span>
+          <span>مالکیت اعضای بدن</span>
+        </h2>
+
+        <div class="fg-card">
+          <p>
+            در زبان فرانسه، وقتی صاحب عضو بدن از جمله مشخص است، معمولاً به‌جای صفت ملکی از
+            <strong>حرف تعریف معین</strong>
+            استفاده می‌شود:
+            <span class="fg-fr">le / la / les</span>.
+          </p>
+
+          <div class="fg-grid-2">
+            <div class="fg-example">
+              <div class="fg-fr-block fg-good">J’ai mal à la tête.</div>
+              <div class="fg-translation">سردرد دارم.</div>
+            </div>
+
+            <div class="fg-example">
+              <div class="fg-fr-block fg-bad">✗ J’ai mal à ma tête.</div>
+              <div class="fg-translation">در این کاربرد طبیعی نیست.</div>
+            </div>
+          </div>
+
+          <div class="fg-table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>فرانسوی</th>
+                  <th>معنی</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="fg-fr">Je me lave les mains.</span></td>
+                  <td>دست‌هایم را می‌شویم.</td>
+                </tr>
+                <tr>
+                  <td><span class="fg-fr">Elle se brosse les dents.</span></td>
+                  <td>دندان‌هایش را مسواک می‌زند.</td>
+                </tr>
+                <tr>
+                  <td><span class="fg-fr">Il ferme les yeux.</span></td>
+                  <td>چشمانش را می‌بندد.</td>
+                </tr>
+                <tr>
+                  <td><span class="fg-fr">Il s’est cassé le bras.</span></td>
+                  <td>دستش شکسته است.</td>
+                </tr>
+                <tr>
+                  <td><span class="fg-fr">Marc lui prend la main.</span></td>
+                  <td>مارک دست او را می‌گیرد.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>ساخت‌های مهم با <span class="fg-fr">avoir mal</span></h3>
+
+          <div class="fg-example">
+            <div class="fg-fr-block">
+              avoir mal à la tête<br>
+              avoir mal au dos<br>
+              avoir mal au ventre<br>
+              avoir mal aux yeux<br>
+              avoir mal à l’estomac
+            </div>
+          </div>
+        </div>
+
+        <div class="fg-callout fg-warning">
+          <strong>چه زمانی صفت ملکی می‌آید؟</strong>
+          وقتی خود عضو بدن فاعل جمله باشد، مالکیت مورد تأکید باشد یا بدون فرم ملکی صاحب آن روشن نباشد.
+        </div>
+
+        <div class="fg-grid-2">
+          <div class="fg-example">
+            <div class="fg-fr-block">Ma tête est brûlante.</div>
+          </div>
+          <div class="fg-example">
+            <div class="fg-fr-block">Ses cheveux sont trop longs.</div>
+          </div>
+          <div class="fg-example">
+            <div class="fg-fr-block">Mes mains sont froides.</div>
+          </div>
+          <div class="fg-example">
+            <div class="fg-fr-block">Sa jambe droite est blessée.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7 -->
+      <section class="fg-section">
+        <h2 class="fg-section-title">
+          <span class="fg-num">7</span>
+          <span>صفت ملکی جای حرف تعریف را می‌گیرد</span>
+        </h2>
+
+        <div class="fg-card">
+          <div class="fg-grid-2">
+            <div class="fg-callout fg-success">
+              <strong>درست</strong>
+              <div class="fg-fr-block">
+                ✓ mon livre<br>
+                ✓ sa voiture
+              </div>
+            </div>
+
+            <div class="fg-callout fg-danger">
+              <strong>غلط</strong>
+              <div class="fg-fr-block">
+                ✗ le mon livre<br>
+                ✗ la sa voiture
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8 -->
+      <section class="fg-section">
+        <h2 class="fg-section-title">
+          <span class="fg-num">8</span>
+          <span>ضمیر ملکی — <span class="fg-fr">Le pronom possessif</span></span>
+        </h2>
+
+        <div class="fg-card">
+          <p>
+            ضمیر ملکی جای
+            <strong>صفت ملکی + اسم</strong>
+            را می‌گیرد و از تکرار اسم جلوگیری می‌کند.
+          </p>
+
+          <div class="fg-example">
+            <div class="fg-fr-block">
+              C’est <strong>mon sac</strong>.<br>
+              C’est <strong>le mien</strong>.
+            </div>
+          </div>
+
+          <div class="fg-example">
+            <div class="fg-fr-block">
+              Ce sont <strong>mes livres</strong>.<br>
+              Ce sont <strong>les miens</strong>.
+            </div>
+          </div>
+        </div>
+
+        <div class="fg-card">
+          <h3>جدول کامل ضمایر ملکی</h3>
+
+          <div class="fg-table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>صاحب</th>
+                  <th>مذکر مفرد</th>
+                  <th>مؤنث مفرد</th>
+                  <th>مذکر جمع</th>
+                  <th>مؤنث جمع</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>من</td>
+                  <td><span class="fg-fr">le mien</span></td>
+                  <td><span class="fg-fr">la mienne</span></td>
+                  <td><span class="fg-fr">les miens</span></td>
+                  <td><span class="fg-fr">les miennes</span></td>
+                </tr>
+                <tr>
+                  <td>تو</td>
+                  <td><span class="fg-fr">le tien</span></td>
+                  <td><span class="fg-fr">la tienne</span></td>
+                  <td><span class="fg-fr">les tiens</span></td>
+                  <td><span class="fg-fr">les tiennes</span></td>
+                </tr>
+                <tr>
+                  <td>او</td>
+                  <td><span class="fg-fr">le sien</span></td>
+                  <td><span class="fg-fr">la sienne</span></td>
+                  <td><span class="fg-fr">les siens</span></td>
+                  <td><span class="fg-fr">les siennes</span></td>
+                </tr>
+                <tr>
+                  <td>ما</td>
+                  <td><span class="fg-fr">le nôtre</span></td>
+                  <td><span class="fg-fr">la nôtre</span></td>
+                  <td><span class="fg-fr">les nôtres</span></td>
+                  <td><span class="fg-fr">les nôtres</span></td>
+                </tr>
+                <tr>
+                  <td>شما</td>
+                  <td><span class="fg-fr">le vôtre</span></td>
+                  <td><span class="fg-fr">la vôtre</span></td>
+                  <td><span class="fg-fr">les vôtres</span></td>
+                  <td><span class="fg-fr">les vôtres</span></td>
+                </tr>
+                <tr>
+                  <td>آن‌ها</td>
+                  <td><span class="fg-fr">le leur</span></td>
+                  <td><span class="fg-fr">la leur</span></td>
+                  <td><span class="fg-fr">les leurs</span></td>
+                  <td><span class="fg-fr">les leurs</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="fg-card">
+          <h3>ضمیر ملکی با اسم حذف‌شده هماهنگ می‌شود</h3>
+
+          <div class="fg-example">
+            <div class="fg-fr-block">Mon sac est noir, <strong>le tien</strong> est bleu.</div>
+            <div class="fg-translation">
+              چون
+              <span class="fg-fr">sac</span>
+              مذکر مفرد است:
+              <span class="fg-fr">le tien</span>.
+            </div>
+          </div>
+
+          <div class="fg-example">
+            <div class="fg-fr-block">Ma voiture est neuve, <strong>la sienne</strong> est ancienne.</div>
+          </div>
+
+          <div class="fg-example">
+            <div class="fg-fr-block">Mes livres sont ici, <strong>les tiens</strong> sont là.</div>
+          </div>
+
+          <div class="fg-example">
+            <div class="fg-fr-block">Mes clés sont ici, <strong>les tiennes</strong> sont là.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 9 -->
+      <section class="fg-section">
+        <h2 class="fg-section-title">
+          <span class="fg-num">9</span>
+          <span>تفاوت <span class="fg-fr">notre</span> و <span class="fg-fr">le nôtre</span></span>
+        </h2>
+
+        <div class="fg-card">
+          <div class="fg-table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>نوع</th>
+                  <th>مثال</th>
+                  <th>ویژگی</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>صفت ملکی</td>
+                  <td><span class="fg-fr">notre voiture</span></td>
+                  <td>قبل از اسم می‌آید؛ بدون accent circonflexe</td>
+                </tr>
+                <tr>
+                  <td>ضمیر ملکی</td>
+                  <td><span class="fg-fr">la nôtre</span></td>
+                  <td>جای اسم را می‌گیرد؛ دارای <span class="fg-fr">ô</span></td>
+                </tr>
+                <tr>
+                  <td>صفت ملکی</td>
+                  <td><span class="fg-fr">votre maison</span></td>
+                  <td>قبل از اسم می‌آید</td>
+                </tr>
+                <tr>
+                  <td>ضمیر ملکی</td>
+                  <td><span class="fg-fr">la vôtre</span></td>
+                  <td>جای اسم را می‌گیرد</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="fg-example">
+            <div class="fg-fr-block">
+              C’est <strong>notre voiture</strong>.<br>
+              C’est <strong>la nôtre</strong>.
+            </div>
+          </div>
+        </div>
+
+        <div class="fg-callout fg-warning">
+          در نوشتار باید تفاوت
+          <span class="fg-fr">notre / nôtre</span>
+          و
+          <span class="fg-fr">votre / vôtre</span>
+          را دقیق رعایت کنید.
+        </div>
+      </section>
+
+      <!-- 10 -->
+      <section class="fg-section">
+        <h2 class="fg-section-title">
+          <span class="fg-num">10</span>
+          <span>چند نکته ظریف درباره ضمایر ملکی</span>
+        </h2>
+
+        <div class="fg-card">
+          <h3>ضمیر ملکی معمولاً همراه حرف تعریف می‌آید</h3>
+
+          <div class="fg-grid-2">
+            <div class="fg-callout fg-success">
+              <span class="fg-fr">✓ C’est le mien.</span>
+            </div>
+            <div class="fg-callout fg-danger">
+              <span class="fg-fr">✗ C’est mien.</span>
+            </div>
+          </div>
+
+          <p>
+            ساخت‌هایی مانند
+            <span class="fg-fr">un ami mien</span>
+            ادبی یا قدیمی‌اند و برای کاربرد روزمره مناسب نیستند.
+          </p>
+        </div>
+
+        <div class="fg-card">
+          <h3>
+            تفاوت
+            <span class="fg-fr">à moi</span>
+            و
+            <span class="fg-fr">le mien</span>
+          </h3>
+
+          <div class="fg-example">
+            <div class="fg-fr-block">Ce sac est <strong>à moi</strong>.</div>
+          </div>
+
+          <div class="fg-example">
+            <div class="fg-fr-block">Ce sac est <strong>le mien</strong>.</div>
+          </div>
+
+          <p>
+            هر دو مالکیت را نشان می‌دهند، اما ضمیر ملکی با اسم حذف‌شده از نظر جنس و شمار هماهنگ می‌شود.
+          </p>
+        </div>
+
+        <div class="fg-card">
+          <h3>ترکیب با <span class="fg-fr">à</span> و <span class="fg-fr">de</span></h3>
+
+          <div class="fg-table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>ترکیب اولیه</th>
+                  <th>فرم نهایی</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="fg-fr">à + le mien</span></td>
+                  <td><span class="fg-fr">au mien</span></td>
+                </tr>
+                <tr>
+                  <td><span class="fg-fr">de + le vôtre</span></td>
+                  <td><span class="fg-fr">du vôtre</span></td>
+                </tr>
+                <tr>
+                  <td><span class="fg-fr">à + les leurs</span></td>
+                  <td><span class="fg-fr">aux leurs</span></td>
+                </tr>
+                <tr>
+                  <td><span class="fg-fr">de + les nôtres</span></td>
+                  <td><span class="fg-fr">des nôtres</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="fg-example">
+            <div class="fg-fr-block">Je compare mon résultat <strong>au tien</strong>.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 11 -->
+      <section class="fg-section">
+        <h2 class="fg-section-title">
+          <span class="fg-num">11</span>
+          <span>ابهام در <span class="fg-fr">son / sa / ses</span></span>
+        </h2>
+
+        <div class="fg-card">
+          <div class="fg-callout fg-warning">
+            <span class="fg-fr">Paul parle à Marc de sa voiture.</span>
+            می‌تواند از نظر مالکیت مبهم باشد؛
+            <span class="fg-fr">sa voiture</span>
+            ممکن است به خودرو پل یا خودرو مارک اشاره کند.
+          </div>
+
+          <h3>روش‌های رفع ابهام</h3>
+
+          <div class="fg-example">
+            <div class="fg-fr-block">Paul parle à Marc de <strong>sa propre voiture</strong>.</div>
+            <div class="fg-translation">پل درباره ماشین خودش صحبت می‌کند.</div>
+          </div>
+
+          <div class="fg-example">
+            <div class="fg-fr-block">Paul parle à Marc de <strong>la voiture de Marc</strong>.</div>
+            <div class="fg-translation">پل درباره ماشین مارک صحبت می‌کند.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- EXERCISES -->
+      <section class="fg-section">
+        <h2 class="fg-section-title">
+          <span class="fg-num">12</span>
+          <span>تمرین‌های درس ششم با پاسخ و تحلیل</span>
+        </h2>
+
+        <!-- EX 1 -->
+        <article class="fg-exercise">
+          <div class="fg-exercise-head">
+            <h3>تمرین ۱ — <span class="fg-fr">mon / ma / mes</span></h3>
+            <span>انتخاب صفت ملکی</span>
+          </div>
+
+          <div class="fg-exercise-body">
+            <p>
+              جمله را با فرم مناسب کامل کنید.
+            </p>
+
+            <div class="fg-example">
+              <div class="fg-fr-block">
+                J’ai trouvé un sac, un stylo, des clés, des lunettes et une écharpe !
+              </div>
+            </div>
+
+            <div class="fg-answer">
+              <div class="fg-answer-title">پاسخ</div>
+              <div class="fg-fr-block">
+                — Oh ! C’est <strong>mon sac</strong> !<br>
+                C’est <strong>mon stylo</strong> !<br>
+                Ce sont <strong>mes clés</strong> !<br>
+                Ce sont <strong>mes lunettes</strong> !<br>
+                C’est <strong>mon écharpe</strong> !
+              </div>
+            </div>
+
+            <div class="fg-tip">
+              <strong>نکته:</strong>
+              <span class="fg-fr">écharpe</span>
+              مؤنث است، اما چون با مصوت شروع می‌شود می‌گوییم
+              <span class="fg-fr">mon écharpe</span>.
+              همچنین در نوشتار استاندارد برای جمع
+              <span class="fg-fr">Ce sont mes clés</span>
+              مناسب‌تر از
+              <span class="fg-fr">C’est mes clés</span>
+              است.
+            </div>
+          </div>
+        </article>
+
+        <!-- EX 2 -->
+        <article class="fg-exercise">
+          <div class="fg-exercise-head">
+            <h3>تمرین ۲ — <span class="fg-fr">mon / ma / mes</span></h3>
+            <span>جنس، شمار و مصوت</span>
+          </div>
+
+          <div class="fg-exercise-body">
+            <div class="fg-answer">
+              <div class="fg-answer-title">پاسخ‌ها</div>
+              <ol>
+                <li><span class="fg-fr">Ma mère est à Paris.</span></li>
+                <li><span class="fg-fr">Mon frère est aux Bahamas.</span></li>
+                <li><span class="fg-fr">Ma sœur est dentiste.</span></li>
+                <li><span class="fg-fr">Mes enfants sont à la plage.</span></li>
+                <li><span class="fg-fr">Mon école est fermée.</span></li>
+                <li><span class="fg-fr">Mon ami Pierre est en voyage.</span></li>
+                <li><span class="fg-fr">Mon amie Lola est malade.</span></li>
+              </ol>
+            </div>
+
+            <div class="fg-tip">
+              <span class="fg-fr">école</span>
+              و
+              <span class="fg-fr">amie</span>
+              مؤنث هستند اما به دلیل شروع با مصوت
+              <span class="fg-fr">mon</span>
+              می‌گیرند.
+            </div>
+          </div>
+        </article>
+
+        <!-- EX 3 -->
+        <article class="fg-exercise">
+          <div class="fg-exercise-head">
+            <h3>تمرین ۳ — <span class="fg-fr">son / sa / ses</span></h3>
+            <span>جنس اسم مملوک</span>
+          </div>
+
+          <div class="fg-exercise-body">
+            <div class="fg-answer">
+              <div class="fg-answer-title">پاسخ‌ها</div>
+
+              <div class="fg-fr-block">
+                1. La Joconde est célèbre pour <strong>son sourire</strong>.<br>
+                2. Apollon est célèbre pour <strong>sa beauté</strong>.<br>
+                3. Woody Allen est célèbre pour <strong>son humour</strong>.<br>
+                4. Mozart est célèbre pour <strong>sa musique</strong>.<br>
+                5. Balzac est célèbre pour <strong>ses romans</strong>.
+              </div>
+            </div>
+
+            <div class="fg-tip">
+              صاحب مهم نیست زن باشد یا مرد؛
+              <span class="fg-fr">sourire / humour</span>
+              مذکر،
+              <span class="fg-fr">beauté / musique</span>
+              مؤنث و
+              <span class="fg-fr">romans</span>
+              جمع هستند.
+            </div>
+          </div>
+        </article>
+
+        <!-- EX 4 -->
+        <article class="fg-exercise">
+          <div class="fg-exercise-head">
+            <h3>تمرین ۴ — <span class="fg-fr">votre / vos</span></h3>
+            <span>مفرد و جمع</span>
+          </div>
+
+          <div class="fg-exercise-body">
+            <div class="fg-answer">
+              <div class="fg-answer-title">پاسخ‌ها</div>
+              <div class="fg-fr-block">
+                1. Je garde <strong>vos enfants</strong>.<br>
+                2. J’arrose <strong>vos plantes</strong>.<br>
+                3. Je repasse <strong>votre linge</strong>.<br>
+                4. Je promène <strong>votre chien</strong>.<br>
+                5. Je range <strong>vos papiers</strong>.
+              </div>
+            </div>
+
+            <div class="fg-tip">
+              <span class="fg-fr">linge</span>
+              در این کاربرد یک اسم کلی و مفرد است، بنابراین
+              <span class="fg-fr">votre linge</span>.
+            </div>
+          </div>
+        </article>
+
+        <!-- EX 5 -->
+        <article class="fg-exercise">
+          <div class="fg-exercise-head">
+            <h3>تمرین ۵ — <span class="fg-fr">Voyage de noces</span></h3>
+            <span>تمرین ترکیبی</span>
+          </div>
+
+          <div class="fg-exercise-body">
+            <div class="fg-answer">
+              <div class="fg-answer-title">متن کامل‌شده</div>
+
+              <div class="fg-fr-block">
+                Marc et Sylvie sont prêts à partir en voyage de noces :
+                <strong>leurs places</strong> d’avion sont réservées,
+                <strong>leurs valises</strong> sont faites.
+                <strong>Leur arrivée</strong> à Venise est prévue pour le 15 février.
+                <br><br>
+                Sylvie est nerveuse parce que <strong>ses cheveux</strong> sont trop longs
+                (<strong>son coiffeur</strong> est malade),
+                <strong>ses habits</strong> sont trop grands depuis <strong>son régime</strong>
+                et <strong>son amie Nathalie</strong> n’est pas à Paris.
+                <br><br>
+                Elle a mal à <strong>la tête</strong> et à <strong>l’estomac</strong>,
+                et <strong>son anxiété</strong> est terrible.
+                Marc lui prend <strong>la main</strong>.
+                Il trouve <strong>son attitude</strong> un peu enfantine, mais si charmante…
+              </div>
+            </div>
+
+            <div class="fg-table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>مورد</th>
+                    <th>پاسخ</th>
+                    <th>دلیل</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="fg-fr">places</span></td>
+                    <td><span class="fg-fr">leurs places</span></td>
+                    <td>صاحب جمع + اسم جمع</td>
+                  </tr>
+                  <tr>
+                    <td><span class="fg-fr">valises</span></td>
+                    <td><span class="fg-fr">leurs valises</span></td>
+                    <td>اسم جمع</td>
+                  </tr>
+                  <tr>
+                    <td><span class="fg-fr">arrivée</span></td>
+                    <td><span class="fg-fr">leur arrivée</span></td>
+                    <td>یک رویداد مفرد</td>
+                  </tr>
+                  <tr>
+                    <td><span class="fg-fr">cheveux</span></td>
+                    <td><span class="fg-fr">ses cheveux</span></td>
+                    <td>جمع</td>
+                  </tr>
+                  <tr>
+                    <td><span class="fg-fr">coiffeur</span></td>
+                    <td><span class="fg-fr">son coiffeur</span></td>
+                    <td>مذکر مفرد</td>
+                  </tr>
+                  <tr>
+                    <td><span class="fg-fr">habits</span></td>
+                    <td><span class="fg-fr">ses habits</span></td>
+                    <td>جمع</td>
+                  </tr>
+                  <tr>
+                    <td><span class="fg-fr">régime</span></td>
+                    <td><span class="fg-fr">son régime</span></td>
+                    <td>مذکر مفرد</td>
+                  </tr>
+                  <tr>
+                    <td><span class="fg-fr">amie</span></td>
+                    <td><span class="fg-fr">son amie</span></td>
+                    <td>اسم مؤنث با مصوت</td>
+                  </tr>
+                  <tr>
+                    <td><span class="fg-fr">tête</span></td>
+                    <td><span class="fg-fr">la tête</span></td>
+                    <td>عضو بدن با <span class="fg-fr">avoir mal</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="fg-fr">estomac</span></td>
+                    <td><span class="fg-fr">l’estomac</span></td>
+                    <td>عضو بدن + elision</td>
+                  </tr>
+                  <tr>
+                    <td><span class="fg-fr">anxiété</span></td>
+                    <td><span class="fg-fr">son anxiété</span></td>
+                    <td>مؤنث با مصوت</td>
+                  </tr>
+                  <tr>
+                    <td><span class="fg-fr">main</span></td>
+                    <td><span class="fg-fr">la main</span></td>
+                    <td>صاحب با <span class="fg-fr">lui</span> مشخص است</td>
+                  </tr>
+                  <tr>
+                    <td><span class="fg-fr">attitude</span></td>
+                    <td><span class="fg-fr">son attitude</span></td>
+                    <td>مؤنث با مصوت</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="fg-tip">
+              سه اسم
+              <span class="fg-fr">amie</span>،
+              <span class="fg-fr">anxiété</span>
+              و
+              <span class="fg-fr">attitude</span>
+              همگی مؤنث‌اند، اما چون با مصوت شروع می‌شوند
+              <span class="fg-fr">son</span>
+              می‌گیرند.
+            </div>
+          </div>
+        </article>
+
+        <!-- EX 6 -->
+        <article class="fg-exercise">
+          <div class="fg-exercise-head">
+            <h3>تمرین ۶ — ضمیر ملکی</h3>
+            <span><span class="fg-fr">le mien / la mienne / les miennes</span></span>
+          </div>
+
+          <div class="fg-exercise-body">
+            <div class="fg-example">
+              <div class="fg-fr-block">
+                Prête-moi <strong>ton stylo</strong>, <strong>le mien</strong> est cassé.
+              </div>
+            </div>
+
+            <div class="fg-answer">
+              <div class="fg-answer-title">پاسخ‌ها</div>
+              <div class="fg-fr-block">
+                1. Prête-moi <strong>ta moto</strong>, <strong>la mienne</strong> est en panne.<br>
+                2. Prête-moi <strong>ton briquet</strong>, <strong>le mien</strong> est vide.<br>
+                3. Prête-moi <strong>ton portable</strong>, j’ai oublié <strong>le mien</strong>.<br>
+                4. Prête-moi <strong>ta veste</strong>, <strong>la mienne</strong> est au pressing.<br>
+                5. Prête-moi <strong>tes notes</strong>, je ne trouve plus <strong>les miennes</strong>.<br>
+                6. Prête-moi <strong>ton chargeur</strong>, <strong>le mien</strong> ne fonctionne plus.
+              </div>
+            </div>
+
+            <div class="fg-tip">
+              بعد از ضمیر ملکی اسم تکرار نمی‌شود:
+              <span class="fg-good fg-fr">✓ la mienne</span>
+              در برابر
+              <span class="fg-bad fg-fr">✗ la mienne moto</span>.
+            </div>
+          </div>
+        </article>
+
+        <!-- EX 7 -->
+        <article class="fg-exercise">
+          <div class="fg-exercise-head">
+            <h3>تمرین ۷ — <span class="fg-fr">Au café</span></h3>
+            <span>انتخاب ضمیر بر اساس اسم حذف‌شده</span>
+          </div>
+
+          <div class="fg-exercise-body">
+            <div class="fg-answer">
+              <div class="fg-answer-title">سؤال‌های کامل‌شده</div>
+
+              <div class="fg-fr-block">
+                C’est ton verre ou c’est <strong>le mien</strong> ?<br>
+                C’est ma serviette ou <strong>la tienne</strong> ?<br>
+                C’est ton couteau ou <strong>le mien</strong> ?<br>
+                C’est mon portable ou <strong>le tien</strong> ?<br>
+                Ce sont mes lunettes ou <strong>les tiennes</strong> ?
+              </div>
+            </div>
+
+            <div class="fg-table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>اسم حذف‌شده</th>
+                    <th>جنس / تعداد</th>
+                    <th>ضمیر ملکی</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="fg-fr">verre</span></td>
+                    <td>مذکر مفرد</td>
+                    <td><span class="fg-fr">le mien</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="fg-fr">serviette</span></td>
+                    <td>مؤنث مفرد</td>
+                    <td><span class="fg-fr">la tienne</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="fg-fr">couteau</span></td>
+                    <td>مذکر مفرد</td>
+                    <td><span class="fg-fr">le mien</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="fg-fr">portable</span></td>
+                    <td>مذکر مفرد</td>
+                    <td><span class="fg-fr">le tien</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="fg-fr">lunettes</span></td>
+                    <td>مؤنث جمع</td>
+                    <td><span class="fg-fr">les tiennes</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="fg-tip">
+              همیشه ضمیر ملکی را با جنس و تعداد
+              <strong>اسم حذف‌شده</strong>
+              هماهنگ کنید.
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- FINAL SUMMARY -->
+      <section class="fg-section">
+        <h2 class="fg-section-title">
+          <span class="fg-num">13</span>
+          <span>خلاصه نکات امتحانی و نقاط خطاپذیر</span>
+        </h2>
+
+        <div class="fg-summary-grid">
+          <div class="fg-summary-item">
+            <span class="fg-fr">mon / ma / mes</span>
+            قبل از اسم می‌آیند؛
+            <span class="fg-fr">le mien / la mienne</span>
+            جای اسم را می‌گیرند.
+          </div>
+
+          <div class="fg-summary-item">
+            ملکی با جنس و شمار «چیز متعلق» هماهنگ می‌شود، نه جنسیت صاحب.
+          </div>
+
+          <div class="fg-summary-item">
+            پیش از اسم مؤنثی که با مصوت یا
+            <span class="fg-fr">h muet</span>
+            آغاز شود:
+            <span class="fg-fr">mon amie, ton école, son histoire</span>.
+          </div>
+
+          <div class="fg-summary-item">
+            با
+            <span class="fg-fr">h aspiré</span>
+            قانون تغییر و liaison اعمال نمی‌شود:
+            <span class="fg-fr">ma honte, mes héros</span>.
+          </div>
+
+          <div class="fg-summary-item">
+            <span class="fg-fr">leur</span>
+            برای اسم مفرد و
+            <span class="fg-fr">leurs</span>
+            برای اسم جمع است.
+          </div>
+
+          <div class="fg-summary-item">
+            برای اعضای بدن وقتی صاحب روشن است معمولاً article معین می‌آید:
+            <span class="fg-fr">se laver les mains</span>.
+          </div>
+
+          <div class="fg-summary-item">
+            تفاوت نوشتاری را حفظ کنید:
+            <span class="fg-fr">notre voiture / la nôtre</span>
+            و
+            <span class="fg-fr">votre maison / la vôtre</span>.
+          </div>
+
+          <div class="fg-summary-item">
+            در زبان استاندارد برای جمع:
+            <span class="fg-fr">Ce sont les miens.</span>
+            از
+            <span class="fg-fr">C’est les miens.</span>
+            رسمی‌تر و مناسب‌تر است.
+          </div>
+        </div>
+      </section>
+
+      <!-- SOURCE -->
+      <div class="fg-source">
+        محتوای اصلی درس بر اساس
+        <span class="fg-fr">Grammaire Progressive du Français — Niveau intermédiaire, 3e édition</span>
+        و ساختار پروژه Grammar Mastery Platform تنظیم شده است.
+        درس ۶ در نقشه دانش پروژه با عنوان
+        <span class="fg-fr">LES POSSESSIFS</span>
+        و صفحات چاپی 36–37 / صفحات PDF 38–39 ثبت شده است.
+      </div>
+
+    </main>
+  </div>
+</div>

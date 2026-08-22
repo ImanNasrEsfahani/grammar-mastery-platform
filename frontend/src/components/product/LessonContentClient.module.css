@@ -1,0 +1,128 @@
+.shell {
+  display: grid;
+  gap: 18px;
+}
+
+.toolbar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 18px 20px;
+  border: 1px solid var(--border, #dbe3ec);
+  border-radius: 18px;
+  background: var(--surface, #ffffff);
+  box-shadow: 0 8px 28px rgb(15 23 42 / 7%);
+}
+
+.heading {
+  min-width: 0;
+}
+
+.eyebrow {
+  margin: 0 0 5px;
+  color: var(--muted, #64748b);
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(1.35rem, 2.5vw, 2rem);
+  line-height: 1.35;
+}
+
+.frTitle {
+  display: block;
+  margin-top: 4px;
+  direction: ltr;
+  unicode-bidi: isolate;
+  text-align: start;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--muted, #64748b);
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 10px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 4px 9px;
+  border: 1px solid var(--border, #dbe3ec);
+  border-radius: 999px;
+  background: var(--surface-muted, #f8fafc);
+  color: var(--muted, #475569);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.back {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 8px 12px;
+  border: 1px solid var(--border, #dbe3ec);
+  border-radius: 11px;
+  color: inherit;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.back:hover {
+  background: var(--surface-muted, #f8fafc);
+}
+
+.frameWrap {
+  overflow: hidden;
+  border: 1px solid var(--border, #dbe3ec);
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 10px 34px rgb(15 23 42 / 8%);
+}
+
+.frame {
+  display: block;
+  width: 100%;
+  height: clamp(640px, 78vh, 980px);
+  border: 0;
+  background: #ffffff;
+}
+
+.path {
+  display: block;
+  margin-top: 12px;
+  padding: 10px 12px;
+  overflow-wrap: anywhere;
+  border: 1px dashed var(--border, #cbd5e1);
+  border-radius: 10px;
+  background: var(--surface-muted, #f8fafc);
+  direction: ltr;
+  unicode-bidi: isolate;
+  text-align: left;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.82rem;
+}
+
+@media (max-width: 720px) {
+  .toolbar {
+    flex-direction: column;
+    padding: 15px;
+  }
+
+  .back {
+    order: -1;
+  }
+
+  .frame {
+    height: 76vh;
+    min-height: 560px;
+  }
+}

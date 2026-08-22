@@ -1,0 +1,1959 @@
+<div class="french-grammar-wrapper">
+<style>
+/* =========================================================
+   French Grammar Lesson — Fully Scoped Styles
+   All selectors are isolated inside .french-grammar-wrapper
+   ========================================================= */
+
+.french-grammar-wrapper {
+    --fg-navy: #173b6c;
+    --fg-blue: #225ea8;
+    --fg-blue-light: #eaf3ff;
+    --fg-blue-soft: #f6f9fd;
+    --fg-green: #147a55;
+    --fg-green-bg: #edf9f3;
+    --fg-red: #b42318;
+    --fg-red-bg: #fff1f0;
+    --fg-orange: #b45309;
+    --fg-orange-bg: #fff7e8;
+    --fg-purple: #6941c6;
+    --fg-purple-bg: #f5f3ff;
+    --fg-border: #d8e1ec;
+    --fg-text: #26364a;
+    --fg-muted: #65758b;
+    --fg-white: #ffffff;
+    --fg-shadow: 0 8px 28px rgba(23, 59, 108, 0.08);
+
+    direction: rtl;
+    text-align: right;
+    color: var(--fg-text);
+    line-height: 2;
+    font-family:
+        Vazirmatn,
+        "IRANSansX",
+        "Tahoma",
+        Arial,
+        sans-serif;
+    box-sizing: border-box;
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 18px 0 40px;
+}
+
+.french-grammar-wrapper *,
+.french-grammar-wrapper *::before,
+.french-grammar-wrapper *::after {
+    box-sizing: border-box;
+}
+
+.french-grammar-wrapper .fg-fr,
+.french-grammar-wrapper .fg-fr-block {
+    direction: ltr;
+    unicode-bidi: isolate;
+    text-align: left;
+    font-family:
+        "Segoe UI",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+}
+
+.french-grammar-wrapper .fg-fr {
+    display: inline-block;
+}
+
+.french-grammar-wrapper .fg-fr-block {
+    display: block;
+}
+
+.french-grammar-wrapper .fg-hero {
+    position: relative;
+    overflow: hidden;
+    padding: 34px;
+    margin-bottom: 28px;
+    color: #fff;
+    border-radius: 24px;
+    background:
+        radial-gradient(circle at 12% 20%, rgba(255,255,255,.12), transparent 30%),
+        linear-gradient(135deg, #102d55 0%, #1d5797 100%);
+    box-shadow: var(--fg-shadow);
+}
+
+.french-grammar-wrapper .fg-hero::after {
+    content: "FR";
+    position: absolute;
+    left: 24px;
+    bottom: -38px;
+    opacity: .07;
+    font-size: 150px;
+    line-height: 1;
+    font-weight: 900;
+    direction: ltr;
+}
+
+.french-grammar-wrapper .fg-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 12px;
+    margin-bottom: 12px;
+    border: 1px solid rgba(255,255,255,.25);
+    border-radius: 999px;
+    background: rgba(255,255,255,.09);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.french-grammar-wrapper .fg-hero h2 {
+    margin: 0 0 8px;
+    color: #fff;
+    font-size: clamp(27px, 4vw, 44px);
+    line-height: 1.4;
+}
+
+.french-grammar-wrapper .fg-hero p {
+    margin: 0;
+    max-width: 840px;
+    color: rgba(255,255,255,.9);
+    font-size: 16px;
+}
+
+.french-grammar-wrapper .fg-map {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 22px;
+}
+
+.french-grammar-wrapper .fg-map-item {
+    padding: 14px 16px;
+    border-radius: 14px;
+    background: rgba(255,255,255,.11);
+    border: 1px solid rgba(255,255,255,.14);
+}
+
+.french-grammar-wrapper .fg-map-item strong {
+    display: block;
+    color: #fff;
+}
+
+.french-grammar-wrapper .fg-map-item span {
+    color: rgba(255,255,255,.82);
+    font-size: 13px;
+}
+
+.french-grammar-wrapper .fg-section {
+    margin: 28px 0;
+}
+
+.french-grammar-wrapper .fg-section-title {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    margin: 0 0 16px;
+    color: var(--fg-navy);
+    font-size: 25px;
+    line-height: 1.6;
+}
+
+.french-grammar-wrapper .fg-section-title::before {
+    content: "";
+    flex: 0 0 6px;
+    width: 6px;
+    height: 30px;
+    border-radius: 10px;
+    background: linear-gradient(var(--fg-blue), #4e91d7);
+}
+
+.french-grammar-wrapper .fg-card {
+    margin: 16px 0;
+    padding: 22px;
+    background: var(--fg-white);
+    border: 1px solid var(--fg-border);
+    border-radius: 18px;
+    box-shadow: 0 5px 18px rgba(26, 55, 90, .055);
+}
+
+.french-grammar-wrapper .fg-card h3 {
+    margin: 0 0 12px;
+    color: var(--fg-navy);
+    font-size: 20px;
+}
+
+.french-grammar-wrapper .fg-card h4 {
+    margin: 20px 0 8px;
+    color: var(--fg-blue);
+    font-size: 17px;
+}
+
+.french-grammar-wrapper p {
+    margin: 8px 0 13px;
+}
+
+.french-grammar-wrapper .fg-rule {
+    display: flex;
+    align-items: stretch;
+    gap: 12px;
+    margin: 14px 0;
+    padding: 16px 18px;
+    border-right: 5px solid var(--fg-blue);
+    border-radius: 12px;
+    background: var(--fg-blue-light);
+}
+
+.french-grammar-wrapper .fg-rule strong {
+    color: var(--fg-navy);
+}
+
+.french-grammar-wrapper .fg-example {
+    margin: 12px 0;
+    padding: 15px 18px;
+    border-right: 4px solid var(--fg-green);
+    border-radius: 12px;
+    background: var(--fg-green-bg);
+}
+
+.french-grammar-wrapper .fg-example .fg-fr-block,
+.french-grammar-wrapper .fg-example .fg-fr {
+    color: #125d44;
+    font-weight: 650;
+}
+
+.french-grammar-wrapper .fg-example .fg-translation {
+    display: block;
+    margin-top: 5px;
+    color: #536b62;
+    font-size: 14px;
+}
+
+.french-grammar-wrapper .fg-warning {
+    margin: 14px 0;
+    padding: 16px 18px;
+    border-right: 5px solid var(--fg-orange);
+    border-radius: 12px;
+    background: var(--fg-orange-bg);
+}
+
+.french-grammar-wrapper .fg-warning strong {
+    color: #8d4605;
+}
+
+.french-grammar-wrapper .fg-error {
+    margin: 13px 0;
+    padding: 16px 18px;
+    border-right: 5px solid var(--fg-red);
+    border-radius: 12px;
+    background: var(--fg-red-bg);
+}
+
+.french-grammar-wrapper .fg-error strong {
+    color: var(--fg-red);
+}
+
+.french-grammar-wrapper .fg-tip {
+    margin: 14px 0;
+    padding: 16px 18px;
+    border-right: 5px solid var(--fg-purple);
+    border-radius: 12px;
+    background: var(--fg-purple-bg);
+}
+
+.french-grammar-wrapper .fg-tip strong {
+    color: var(--fg-purple);
+}
+
+.french-grammar-wrapper .fg-label {
+    display: inline-block;
+    padding: 2px 9px;
+    margin: 0 2px;
+    border-radius: 7px;
+    color: var(--fg-blue);
+    background: #edf4fb;
+    font-size: .9em;
+    font-weight: 700;
+}
+
+.french-grammar-wrapper .fg-table-wrap {
+    width: 100%;
+    margin: 16px 0;
+    overflow-x: auto;
+    border: 1px solid var(--fg-border);
+    border-radius: 14px;
+    -webkit-overflow-scrolling: touch;
+}
+
+.french-grammar-wrapper table {
+    width: 100%;
+    min-width: 620px;
+    margin: 0;
+    border-collapse: collapse;
+    background: #fff;
+    line-height: 1.75;
+}
+
+.french-grammar-wrapper th,
+.french-grammar-wrapper td {
+    padding: 13px 15px;
+    vertical-align: top;
+    border-bottom: 1px solid var(--fg-border);
+    border-left: 1px solid var(--fg-border);
+}
+
+.french-grammar-wrapper th:last-child,
+.french-grammar-wrapper td:last-child {
+    border-left: 0;
+}
+
+.french-grammar-wrapper th {
+    color: #fff;
+    background: var(--fg-navy);
+    font-weight: 750;
+}
+
+.french-grammar-wrapper tbody tr:nth-child(even) {
+    background: #f7f9fc;
+}
+
+.french-grammar-wrapper tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.french-grammar-wrapper .fg-good {
+    color: var(--fg-green);
+    font-weight: 700;
+}
+
+.french-grammar-wrapper .fg-bad {
+    color: var(--fg-red);
+    font-weight: 700;
+    text-decoration: line-through;
+    text-decoration-thickness: 1.5px;
+}
+
+.french-grammar-wrapper .fg-flow {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 18px 0;
+}
+
+.french-grammar-wrapper .fg-flow-step {
+    position: relative;
+    padding: 18px;
+    text-align: center;
+    border: 1px solid var(--fg-border);
+    border-radius: 16px;
+    background: #fff;
+}
+
+.french-grammar-wrapper .fg-flow-number {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 34px;
+    height: 34px;
+    margin-bottom: 8px;
+    color: #fff;
+    background: var(--fg-blue);
+    border-radius: 50%;
+    font-weight: 800;
+}
+
+.french-grammar-wrapper .fg-flow-step strong {
+    display: block;
+    color: var(--fg-navy);
+}
+
+.french-grammar-wrapper .fg-compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 16px 0;
+}
+
+.french-grammar-wrapper .fg-compare-box {
+    padding: 19px;
+    border: 1px solid var(--fg-border);
+    border-radius: 15px;
+    background: #fff;
+}
+
+.french-grammar-wrapper .fg-compare-box h4 {
+    margin-top: 0;
+}
+
+.french-grammar-wrapper .fg-list {
+    margin: 8px 0;
+    padding-right: 22px;
+}
+
+.french-grammar-wrapper .fg-list li {
+    margin: 6px 0;
+}
+
+.french-grammar-wrapper .fg-formula {
+    margin: 16px 0;
+    padding: 16px;
+    border: 1px dashed #8fb3d9;
+    border-radius: 14px;
+    background: #f7fbff;
+    text-align: center;
+}
+
+.french-grammar-wrapper .fg-formula .fg-fr-block {
+    text-align: center;
+    color: var(--fg-navy);
+    font-size: 19px;
+    font-weight: 800;
+}
+
+.french-grammar-wrapper .fg-exercise {
+    overflow: hidden;
+    margin: 18px 0;
+    border: 1px solid var(--fg-border);
+    border-radius: 18px;
+    background: #fff;
+}
+
+.french-grammar-wrapper .fg-exercise-head {
+    padding: 15px 19px;
+    color: #fff;
+    background: linear-gradient(135deg, #244f84, #2f73ba);
+}
+
+.french-grammar-wrapper .fg-exercise-head h3 {
+    margin: 0;
+    color: #fff;
+    font-size: 19px;
+}
+
+.french-grammar-wrapper .fg-exercise-body {
+    padding: 20px;
+}
+
+.french-grammar-wrapper .fg-answer {
+    margin: 12px 0 18px;
+    padding: 14px 17px;
+    border: 1px solid #b9e2cf;
+    border-radius: 12px;
+    background: var(--fg-green-bg);
+}
+
+.french-grammar-wrapper .fg-answer-title {
+    color: var(--fg-green);
+    font-weight: 800;
+}
+
+.french-grammar-wrapper .fg-divider {
+    height: 1px;
+    margin: 20px 0;
+    background: linear-gradient(to left, transparent, var(--fg-border), transparent);
+}
+
+.french-grammar-wrapper .fg-summary {
+    padding: 24px;
+    color: #fff;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #14345c, #235f9e);
+}
+
+.french-grammar-wrapper .fg-summary h3 {
+    margin-top: 0;
+    color: #fff;
+}
+
+.french-grammar-wrapper .fg-summary-row {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,.13);
+}
+
+.french-grammar-wrapper .fg-summary-row:last-child {
+    border-bottom: 0;
+}
+
+.french-grammar-wrapper .fg-summary-row strong {
+    color: #dcecff;
+}
+
+.french-grammar-wrapper .fg-note-small {
+    color: var(--fg-muted);
+    font-size: 13px;
+}
+
+.french-grammar-wrapper .fg-code {
+    display: inline-block;
+    direction: ltr;
+    unicode-bidi: isolate;
+    padding: 1px 7px;
+    color: #164d83;
+    background: #eef5fb;
+    border-radius: 6px;
+    font-family: Consolas, Monaco, monospace;
+    font-size: .94em;
+}
+
+@media (max-width: 820px) {
+    .french-grammar-wrapper {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .french-grammar-wrapper .fg-map,
+    .french-grammar-wrapper .fg-flow {
+        grid-template-columns: 1fr;
+    }
+
+    .french-grammar-wrapper .fg-compare {
+        grid-template-columns: 1fr;
+    }
+
+    .french-grammar-wrapper .fg-hero {
+        padding: 25px 20px;
+        border-radius: 18px;
+    }
+
+    .french-grammar-wrapper .fg-card {
+        padding: 18px;
+    }
+
+    .french-grammar-wrapper .fg-section-title {
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 560px) {
+    .french-grammar-wrapper {
+        line-height: 1.9;
+    }
+
+    .french-grammar-wrapper .fg-hero h2 {
+        font-size: 27px;
+    }
+
+    .french-grammar-wrapper .fg-card,
+    .french-grammar-wrapper .fg-exercise-body {
+        padding: 15px;
+    }
+
+    .french-grammar-wrapper .fg-summary-row {
+        grid-template-columns: 1fr;
+        gap: 3px;
+    }
+
+    .french-grammar-wrapper th,
+    .french-grammar-wrapper td {
+        padding: 11px 10px;
+        font-size: 14px;
+    }
+}
+</style>
+
+
+<!-- ========================= HERO ========================= -->
+
+<section class="fg-hero">
+    <div class="fg-eyebrow">درس ۹ • Grammaire Progressive du Français</div>
+
+    <h2>
+        <span class="fg-fr">« IL Y A » et « C’EST »</span>
+    </h2>
+
+    <p>
+        در این درس یاد می‌گیریم چگونه ابتدا <strong>وجود یا حضور</strong> یک شخص یا شیء را
+        بیان کنیم و سپس آن را <strong>معرفی، شناسایی یا توصیف</strong> کنیم.
+    </p>
+
+    <div class="fg-map">
+        <div class="fg-map-item">
+            <strong class="fg-fr">Il y a</strong>
+            <span>وجود و حضور</span>
+        </div>
+
+        <div class="fg-map-item">
+            <strong class="fg-fr">C’est / Ce sont</strong>
+            <span>معرفی و شناسایی</span>
+        </div>
+
+        <div class="fg-map-item">
+            <strong class="fg-fr">Il / Elle est</strong>
+            <span>توصیف مرجع مشخص</span>
+        </div>
+    </div>
+</section>
+
+
+<!-- ========================= INTRO ========================= -->
+
+<section class="fg-section">
+    <h2 class="fg-section-title">ایدهٔ اصلی درس</h2>
+
+    <div class="fg-card">
+        <div class="fg-example">
+            <span class="fg-fr-block">
+                Dans la rue, <strong>il y a</strong> une voiture verte.
+                <strong>C’est</strong> une Jaguar.
+            </span>
+            <span class="fg-translation">
+                در خیابان یک ماشین سبز وجود دارد. آن یک جگوار است.
+            </span>
+        </div>
+
+        <p>
+            در جملهٔ اول، خودرو برای اولین بار وارد گفت‌وگو می‌شود؛ بنابراین از
+            <span class="fg-fr">il y a</span>
+            استفاده می‌کنیم.
+        </p>
+
+        <p>
+            در جملهٔ دوم، همان خودرو را شناسایی می‌کنیم؛ بنابراین
+            <span class="fg-fr">c’est</span>
+            می‌آید.
+        </p>
+
+        <div class="fg-flow">
+            <div class="fg-flow-step">
+                <span class="fg-flow-number">۱</span>
+                <strong>اعلام وجود</strong>
+                <span class="fg-fr-block">Il y a une voiture.</span>
+            </div>
+
+            <div class="fg-flow-step">
+                <span class="fg-flow-number">۲</span>
+                <strong>شناسایی</strong>
+                <span class="fg-fr-block">C’est une Jaguar.</span>
+            </div>
+
+            <div class="fg-flow-step">
+                <span class="fg-flow-number">۳</span>
+                <strong>توصیف</strong>
+                <span class="fg-fr-block">Elle est très belle.</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ========================= IL Y A ========================= -->
+
+<section class="fg-section">
+    <h2 class="fg-section-title">
+        ۱. ساختار <span class="fg-fr">il y a</span>
+    </h2>
+
+    <div class="fg-card">
+        <h3>معنای اصلی</h3>
+
+        <p>
+            <span class="fg-fr">Il y a</span>
+            برای بیان <strong>وجود، حضور یا قرار داشتن</strong> شخص یا چیزی استفاده می‌شود.
+            در فارسی معمولاً می‌توان آن را «هست»، «وجود دارد» یا «قرار دارد» ترجمه کرد.
+        </p>
+
+        <div class="fg-example">
+            <span class="fg-fr-block">Dans la rue, il y a une voiture.</span>
+            <span class="fg-translation">در خیابان یک ماشین هست.</span>
+        </div>
+
+        <div class="fg-example">
+            <span class="fg-fr-block">Dans le jardin, il y a des arbres.</span>
+            <span class="fg-translation">در باغ درخت‌هایی وجود دارند.</span>
+        </div>
+
+        <div class="fg-example">
+            <span class="fg-fr-block">Sur la table, il y a trois livres.</span>
+            <span class="fg-translation">روی میز سه کتاب هست.</span>
+        </div>
+    </div>
+
+    <div class="fg-card">
+        <h3>
+            نکتهٔ مهم: <span class="fg-fr">il y a</span> با جمع تغییر نمی‌کند
+        </h3>
+
+        <p>
+            این یک ساخت <strong>غیرشخصی</strong>
+            (<span class="fg-fr">construction impersonnelle</span>)
+            است و حتی اگر اسم بعد از آن جمع باشد، ساخت فعل تغییر نمی‌کند.
+        </p>
+
+        <div class="fg-table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>وضعیت</th>
+                        <th>مثال</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>مفرد</td>
+                        <td class="fg-fr">Il y a un homme.</td>
+                    </tr>
+                    <tr>
+                        <td>جمع</td>
+                        <td class="fg-fr">Il y a dix hommes.</td>
+                    </tr>
+                    <tr>
+                        <td>مقدار</td>
+                        <td class="fg-fr">Il y a beaucoup de personnes.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="fg-error">
+            <strong>اشتباه رایج:</strong><br>
+            <span class="fg-fr fg-bad">Il y ont dix hommes.</span><br>
+            <span class="fg-fr fg-good">Il y a dix hommes.</span>
+        </div>
+
+        <div class="fg-tip">
+            <strong>چرا؟</strong>
+            ضمیر <span class="fg-fr">il</span> در اینجا به یک مرد یا شیء مذکر اشاره نمی‌کند.
+            این یک فاعل دستوری و غیرشخصی است؛ مشابه:
+            <span class="fg-fr">Il pleut</span> و
+            <span class="fg-fr">Il faut travailler</span>.
+        </div>
+    </div>
+</section>
+
+
+<!-- ========================= LOCATION ========================= -->
+
+<section class="fg-section">
+    <h2 class="fg-section-title">۲. نقش مکان در جمله</h2>
+
+    <div class="fg-card">
+        <p>
+            در این درس، <span class="fg-fr">il y a</span> اغلب وجود چیزی را
+            <strong>در یک مکان</strong> اعلام می‌کند.
+        </p>
+
+        <div class="fg-example">
+            <span class="fg-fr-block">Dans la rue, il y a une voiture.</span>
+        </div>
+
+        <div class="fg-example">
+            <span class="fg-fr-block">Sur la place, il y a des arbres.</span>
+        </div>
+
+        <div class="fg-example">
+            <span class="fg-fr-block">Dans mon jardin, il y a des fleurs.</span>
+        </div>
+
+        <h4>جای عبارت مکانی</h4>
+
+        <p>هر دو ساخت زیر صحیح‌اند:</p>
+
+        <div class="fg-example">
+            <span class="fg-fr-block">Dans le jardin, il y a un chat.</span>
+        </div>
+
+        <div class="fg-example">
+            <span class="fg-fr-block">Il y a un chat dans le jardin.</span>
+        </div>
+
+        <div class="fg-rule">
+            <div>
+                اگر موضوع اصلی گفت‌وگو <strong>مکان</strong> باشد، آوردن مکان در ابتدای جمله
+                معمولاً طبیعی‌تر است.
+            </div>
+        </div>
+
+        <h4>مکان همیشه ضروری نیست</h4>
+
+        <div class="fg-example">
+            <span class="fg-fr-block">À huit heures, il y a un match de football.</span>
+            <span class="fg-translation">ساعت هشت یک مسابقه فوتبال هست.</span>
+        </div>
+
+        <div class="fg-example">
+            <span class="fg-fr-block">Demain, il y a une réunion.</span>
+            <span class="fg-translation">فردا جلسه‌ای هست.</span>
+        </div>
+
+        <div class="fg-example">
+            <span class="fg-fr-block">Ce soir, il y a un bon film.</span>
+            <span class="fg-translation">امشب یک فیلم خوب پخش می‌شود.</span>
+        </div>
+    </div>
+</section>
+
+
+<!-- ========================= NOUN AFTER IL Y A ========================= -->
+
+<section class="fg-section">
+    <h2 class="fg-section-title">
+        ۳. چه چیزی بعد از <span class="fg-fr">il y a</span> می‌آید؟
+    </h2>
+
+    <div class="fg-card">
+        <p>
+            چون این ساخت اغلب یک شخص یا شیء را برای اولین بار وارد گفت‌وگو می‌کند،
+            استفاده از اسم نامعین بسیار رایج است.
+        </p>
+
+        <div class="fg-table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>نوع</th>
+                        <th>مثال</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>اسم نامعین</td>
+                        <td class="fg-fr">Il y a un restaurant.</td>
+                    </tr>
+                    <tr>
+                        <td>اسم مؤنث</td>
+                        <td class="fg-fr">Il y a une exposition.</td>
+                    </tr>
+                    <tr>
+                        <td>جمع</td>
+                        <td class="fg-fr">Il y a des touristes.</td>
+                    </tr>
+                    <tr>
+                        <td>عدد</td>
+                        <td class="fg-fr">Il y a trois personnes.</td>
+                    </tr>
+                    <tr>
+                        <td>مقدار</td>
+                        <td class="fg-fr">Il y a beaucoup de monde.</td>
+                    </tr>
+                    <tr>
+                        <td>ضمیر نامعین</td>
+                        <td class="fg-fr">Il y a quelqu’un à la porte.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="fg-warning">
+            <strong>اما این یک قانون مطلق نیست.</strong>
+            اگر شخص یا چیز مورد نظر مشخص باشد، اسم معین یا اسم خاص نیز می‌تواند
+            پس از <span class="fg-fr">il y a</span> بیاید.
+        </div>
+
+        <div class="fg-example">
+            <span class="fg-fr-block">Il y a le facteur à la porte.</span>
+            <span class="fg-translation">پستچی پشت در است.</span>
+        </div>
+
+        <div class="fg-example">
+            <span class="fg-fr-block">Il y a Marie qui t’attend.</span>
+            <span class="fg-translation">ماری منتظر توست.</span>
+        </div>
+
+        <div class="fg-example">
+            <span class="fg-fr-block">Il y a ton frère au téléphone.</span>
+            <span class="fg-translation">برادرت پشت تلفن است.</span>
+        </div>
+    </div>
+</section>
+
+
+<!-- ========================= C'EST / CE SONT ========================= -->
+
+<section class="fg-section">
+    <h2 class="fg-section-title">
+        ۴. کاربرد <span class="fg-fr">c’est</span> و
+        <span class="fg-fr">ce sont</span>
+    </h2>
+
+    <div class="fg-card">
+        <p>
+            پس از آنکه شخص یا چیزی را وارد گفت‌وگو کردیم،
+            <span class="fg-fr">c’est / ce sont</span>
+            می‌تواند هویت آن را مشخص کند.
+        </p>
+
+        <h4>مفرد</h4>
+
+        <div class="fg-example">
+            <span class="fg-fr-block">
+                Il y a une voiture verte. <strong>C’est une Jaguar.</strong>
+            </span>
+        </div>
+
+        <div class="fg-example">
+            <span class="fg-fr-block">
+                Dans mon quartier, il y a un restaurant.
+                <strong>C’est un restaurant russe.</strong>
+            </span>
+        </div>
+
+        <h4>جمع</h4>
+
+        <div class="fg-example">
+            <span class="fg-fr-block">
+                Il y a deux enfants.
+                <strong>Ce sont les enfants de la concierge.</strong>
+            </span>
+        </div>
+
+        <div class="fg-example">
+            <span class="fg-fr-block">
+                Sur la table, il y a des fleurs.
+                <strong>Ce sont des roses.</strong>
+            </span>
+        </div>
+
+        <div class="fg-table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>مرجع</th>
+                        <th>ساخت معیار</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>مفرد</td>
+                        <td class="fg-fr"><strong>C’est</strong></td>
+                    </tr>
+                    <tr>
+                        <td>جمع</td>
+                        <td class="fg-fr"><strong>Ce sont</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+
+<!-- ========================= IL Y A VS C'EST ========================= -->
+
+<section class="fg-section">
+    <h2 class="fg-section-title">
+        ۵. تفاوت کلیدی <span class="fg-fr">il y a</span> و
+        <span class="fg-fr">c’est</span>
+    </h2>
+
+    <div class="fg-compare">
+        <div class="fg-compare-box">
+            <h4 class="fg-fr">Il y a</h4>
+            <p>برای اعلام <strong>وجود یا حضور</strong>.</p>
+
+            <div class="fg-example">
+                <span class="fg-fr-block">Dans cette rue, il y a un hôtel.</span>
+                <span class="fg-translation">در این خیابان یک هتل هست.</span>
+            </div>
+        </div>
+
+        <div class="fg-compare-box">
+            <h4 class="fg-fr">C’est</h4>
+            <p>برای <strong>معرفی یا تعیین هویت</strong>.</p>
+
+            <div class="fg-example">
+                <span class="fg-fr-block">C’est un petit hôtel familial.</span>
+                <span class="fg-translation">آن یک هتل کوچک خانوادگی است.</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="fg-error">
+        <strong>اشتباه:</strong><br>
+        <span class="fg-fr fg-bad">Dans la rue, c’est un hôtel.</span>
+    </div>
+
+    <div class="fg-example">
+        <strong>صحیح برای اعلام وجود:</strong><br>
+        <span class="fg-fr-block">Dans la rue, il y a un hôtel.</span>
+    </div>
+
+    <div class="fg-tip">
+        اما اگر چیزی را نشان دهیم و بخواهیم هویت آن را بگوییم،
+        <span class="fg-fr">c’est</span> کاملاً درست است:
+        <div class="fg-example">
+            <span class="fg-fr-block">Regarde ce bâtiment. C’est un hôtel.</span>
+        </div>
+    </div>
+</section>
+
+
+<!-- ========================= C'EST VS IL EST ========================= -->
+
+<section class="fg-section">
+    <h2 class="fg-section-title">
+        ۶. تفاوت <span class="fg-fr">c’est</span> و
+        <span class="fg-fr">il est / elle est</span>
+    </h2>
+
+    <div class="fg-card">
+        <h3>
+            <span class="fg-fr">C’est + groupe nominal</span>
+        </h3>
+
+        <p>
+            معمولاً برای گفتن اینکه کسی یا چیزی <strong>چیست یا چه کسی است</strong>.
+        </p>
+
+        <div class="fg-example">
+            <span class="fg-fr-block">C’est un hôtel.</span>
+        </div>
+
+        <div class="fg-example">
+            <span class="fg-fr-block">C’est la propriétaire.</span>
+        </div>
+
+        <div class="fg-example">
+            <span class="fg-fr-block">C’est mon professeur.</span>
+        </div>
+
+        <div class="fg-example">
+            <span class="fg-fr-block">Ce sont mes amis.</span>
+        </div>
+
+        <h3>
+            <span class="fg-fr">Il / Elle est + adjectif</span>
+        </h3>
+
+        <p>
+            برای <strong>توصیف</strong> شخص یا شیئی که قبلاً مشخص شده است.
+        </p>
+
+        <div class="fg-example">
+            <span class="fg-fr-block">
+                L’hôtel est petit. <strong>Il est charmant.</strong>
+            </span>
+        </div>
+
+        <div class="fg-example">
+            <span class="fg-fr-block">
+                La propriétaire est âgée. <strong>Elle est gentille.</strong>
+            </span>
+        </div>
+
+        <div class="fg-rule">
+            <div>
+                <strong>الگوی بسیار مهم:</strong>
+                <br>
+                <span class="fg-fr">Il y a un hôtel.</span>
+                ← وجود
+                <br>
+                <span class="fg-fr">C’est un petit hôtel.</span>
+                ← معرفی
+                <br>
+                <span class="fg-fr">Il est charmant.</span>
+                ← توصیف
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ========================= C'EST INTERESSANT ========================= -->
+
+<section class="fg-section">
+    <h2 class="fg-section-title">
+        ۷. <span class="fg-fr">C’est intéressant</span> یا
+        <span class="fg-fr">Il est intéressant</span>؟
+    </h2>
+
+    <div class="fg-compare">
+        <div class="fg-compare-box">
+            <h4 class="fg-fr">C’est intéressant.</h4>
+            <p>
+                برای قضاوت دربارهٔ یک <strong>موضوع، وضعیت، ایده یا عمل کلی</strong>.
+            </p>
+
+            <div class="fg-example">
+                <span class="fg-fr-block">Apprendre le français, c’est intéressant.</span>
+            </div>
+
+            <div class="fg-example">
+                <span class="fg-fr-block">Ce que tu dis, c’est intéressant.</span>
+            </div>
+        </div>
+
+        <div class="fg-compare-box">
+            <h4 class="fg-fr">Il est intéressant.</h4>
+            <p>
+                برای توصیف یک <strong>اسم مذکر مشخص</strong>.
+            </p>
+
+            <div class="fg-example">
+                <span class="fg-fr-block">Ce livre est intéressant. Il est intéressant.</span>
+            </div>
+
+            <div class="fg-example">
+                <span class="fg-fr-block">
+                    Cette exposition est intéressante. Elle est intéressante.
+                </span>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ========================= PROFESSIONS ========================= -->
+
+<section class="fg-section">
+    <h2 class="fg-section-title">۸. حرفه و ملیت</h2>
+
+    <div class="fg-card">
+        <p>
+            در معرفی حرفه، بین
+            <span class="fg-fr">c’est + nom</span>
+            و
+            <span class="fg-fr">il/elle est + profession</span>
+            تفاوت ساختاری مهمی وجود دارد.
+        </p>
+
+        <div class="fg-table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>کاربرد</th>
+                        <th>مثال</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>معرفی با اسم و article</td>
+                        <td class="fg-fr">C’est un médecin.</td>
+                    </tr>
+                    <tr>
+                        <td>بیان حرفه بدون article</td>
+                        <td class="fg-fr">Il est médecin.</td>
+                    </tr>
+                    <tr>
+                        <td>ملیت به شکل صفت</td>
+                        <td class="fg-fr">Elle est française.</td>
+                    </tr>
+                    <tr>
+                        <td>اسم دارای توصیف</td>
+                        <td class="fg-fr">C’est un excellent médecin.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="fg-example">
+            <span class="fg-fr-block">Qui est cet homme ? — C’est un médecin.</span>
+        </div>
+
+        <div class="fg-example">
+            <span class="fg-fr-block">
+                Quelle est sa profession ? — Il est médecin.
+            </span>
+        </div>
+    </div>
+</section>
+
+
+<!-- ========================= ORAL / FORMAL ========================= -->
+
+<section class="fg-section">
+    <h2 class="fg-section-title">
+        ۹. <span class="fg-fr">C’est</span> و
+        <span class="fg-fr">Ce sont</span> در گفتار
+    </h2>
+
+    <div class="fg-card">
+        <p>
+            در زبان معیار، برای اسم جمع از
+            <span class="fg-fr">ce sont</span>
+            استفاده می‌کنیم.
+        </p>
+
+        <div class="fg-example">
+            <span class="fg-fr-block">Ce sont des touristes.</span>
+            <span class="fg-fr-block">Ce sont mes amis.</span>
+        </div>
+
+        <div class="fg-warning">
+            در مکالمهٔ روزمره، ساخت‌هایی مانند
+            <span class="fg-fr">C’est des touristes</span>
+            زیاد شنیده می‌شوند؛ اما برای نوشتار رسمی و آزمون بهتر است
+            <span class="fg-fr">ce sont</span>
+            را حفظ کنید.
+        </div>
+
+        <div class="fg-table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ساخت</th>
+                        <th>نکته</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="fg-fr">C’est nous.</td>
+                        <td>ساخت رایج و معیار</td>
+                    </tr>
+                    <tr>
+                        <td class="fg-fr">C’est vous.</td>
+                        <td>ساخت رایج و معیار</td>
+                    </tr>
+                    <tr>
+                        <td class="fg-fr">Ce sont eux.</td>
+                        <td>شکل معیار</td>
+                    </tr>
+                    <tr>
+                        <td class="fg-fr">Ce sont elles.</td>
+                        <td>شکل معیار</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+
+<!-- ========================= NEGATION ========================= -->
+
+<section class="fg-section">
+    <h2 class="fg-section-title">
+        ۱۰. منفی کردن <span class="fg-fr">il y a</span>
+    </h2>
+
+    <div class="fg-formula">
+        <span class="fg-fr-block">Il n’y a pas de + nom</span>
+    </div>
+
+    <div class="fg-card">
+        <div class="fg-example">
+            <span class="fg-fr-block">Il y a un restaurant.</span>
+            <span class="fg-fr-block"><strong>Il n’y a pas de restaurant.</strong></span>
+        </div>
+
+        <div class="fg-example">
+            <span class="fg-fr-block">Il y a des fleurs.</span>
+            <span class="fg-fr-block"><strong>Il n’y a pas de fleurs.</strong></span>
+        </div>
+
+        <div class="fg-table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>مثبت</th>
+                        <th>منفی</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="fg-fr">Il y a un balcon.</td>
+                        <td class="fg-fr">Il n’y a pas de balcon.</td>
+                    </tr>
+                    <tr>
+                        <td class="fg-fr">Il y a une erreur.</td>
+                        <td class="fg-fr">Il n’y a pas d’erreur.</td>
+                    </tr>
+                    <tr>
+                        <td class="fg-fr">Il y a des touristes.</td>
+                        <td class="fg-fr">Il n’y a pas de touristes.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="fg-rule">
+            <div>
+                پس از <span class="fg-fr">pas</span>،
+                <span class="fg-fr">un / une / des</span>
+                معمولاً به <span class="fg-fr">de / d’</span> تبدیل می‌شود.
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ========================= QUESTIONS ========================= -->
+
+<section class="fg-section">
+    <h2 class="fg-section-title">
+        ۱۱. سؤالی کردن <span class="fg-fr">il y a</span>
+    </h2>
+
+    <div class="fg-card">
+        <div class="fg-table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>سبک</th>
+                        <th>ساخت</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>گفتاری</td>
+                        <td class="fg-fr">Il y a un problème ?</td>
+                    </tr>
+                    <tr>
+                        <td>خنثی و بسیار رایج</td>
+                        <td class="fg-fr">Est-ce qu’il y a un problème ?</td>
+                    </tr>
+                    <tr>
+                        <td>رسمی‌تر</td>
+                        <td class="fg-fr">Y a-t-il un problème ?</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="fg-tip">
+            حرف <span class="fg-fr">-t-</span> در
+            <span class="fg-fr">Y a-t-il</span>
+            برای اتصال آوایی میان دو واکه اضافه می‌شود.
+        </div>
+
+        <div class="fg-example">
+            <span class="fg-fr-block">Y a-t-il une pharmacie près d’ici ?</span>
+            <span class="fg-translation">آیا نزدیک اینجا داروخانه‌ای هست؟</span>
+        </div>
+    </div>
+</section>
+
+
+<!-- ========================= OTHER TENSES ========================= -->
+
+<section class="fg-section">
+    <h2 class="fg-section-title">
+        ۱۲. <span class="fg-fr">il y a</span> در زمان‌های دیگر
+    </h2>
+
+    <div class="fg-table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>زمان / ساخت</th>
+                    <th>مثال</th>
+                    <th>معنی</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="fg-fr">Présent</td>
+                    <td class="fg-fr">Il y a un problème.</td>
+                    <td>مشکلی هست.</td>
+                </tr>
+                <tr>
+                    <td class="fg-fr">Imparfait</td>
+                    <td class="fg-fr">Il y avait un problème.</td>
+                    <td>مشکلی وجود داشت.</td>
+                </tr>
+                <tr>
+                    <td class="fg-fr">Passé composé</td>
+                    <td class="fg-fr">Il y a eu un problème.</td>
+                    <td>مشکلی پیش آمد.</td>
+                </tr>
+                <tr>
+                    <td class="fg-fr">Futur simple</td>
+                    <td class="fg-fr">Il y aura un problème.</td>
+                    <td>مشکلی پیش خواهد آمد.</td>
+                </tr>
+                <tr>
+                    <td class="fg-fr">Conditionnel</td>
+                    <td class="fg-fr">Il y aurait un problème.</td>
+                    <td>احتمالاً / ظاهراً مشکلی وجود دارد.</td>
+                </tr>
+                <tr>
+                    <td>پس از فعل modal</td>
+                    <td class="fg-fr">Il peut y avoir un problème.</td>
+                    <td>ممکن است مشکلی وجود داشته باشد.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="fg-error">
+        <strong>ترتیب اجزا را جابه‌جا نکنید:</strong><br>
+        <span class="fg-fr fg-good">Il y a eu un problème.</span><br>
+        <span class="fg-fr fg-bad">Il a y eu un problème.</span>
+    </div>
+</section>
+
+
+<!-- ========================= TIME AGO ========================= -->
+
+<section class="fg-section">
+    <h2 class="fg-section-title">
+        ۱۳. معنای زمانی <span class="fg-fr">il y a</span>
+    </h2>
+
+    <div class="fg-card">
+        <p>
+            <span class="fg-fr">Il y a + durée</span>
+            می‌تواند معنای <strong>«... پیش»</strong> داشته باشد.
+        </p>
+
+        <div class="fg-example">
+            <span class="fg-fr-block">
+                Je suis arrivé au Canada <strong>il y a deux ans</strong>.
+            </span>
+            <span class="fg-translation">دو سال پیش به کانادا رسیدم.</span>
+        </div>
+
+        <div class="fg-compare">
+            <div class="fg-compare-box">
+                <h4 class="fg-fr">Il y a deux ans</h4>
+                <p>نقطه‌ای در گذشته.</p>
+                <span class="fg-fr-block">
+                    Il y a deux ans, j’ai commencé le français.
+                </span>
+            </div>
+
+            <div class="fg-compare-box">
+                <h4 class="fg-fr">Depuis deux ans</h4>
+                <p>کاری که از گذشته آغاز شده و هنوز ادامه دارد.</p>
+                <span class="fg-fr-block">
+                    J’étudie le français depuis deux ans.
+                </span>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ========================= EN ========================= -->
+
+<section class="fg-section">
+    <h2 class="fg-section-title">
+        ۱۴. ضمیر <span class="fg-fr">en</span> با
+        <span class="fg-fr">il y a</span>
+    </h2>
+
+    <div class="fg-card">
+        <p>
+            وقتی نمی‌خواهیم اسم را دوباره تکرار کنیم، می‌توانیم از
+            <span class="fg-fr">en</span> استفاده کنیم.
+        </p>
+
+        <div class="fg-example">
+            <span class="fg-fr-block">
+                Est-ce qu’il y a des restaurants ici ?
+            </span>
+            <span class="fg-fr-block">
+                Oui, <strong>il y en a</strong> beaucoup.
+            </span>
+        </div>
+
+        <div class="fg-example">
+            <span class="fg-fr-block">Il y en a trois.</span>
+            <span class="fg-translation">سه تا وجود دارد.</span>
+        </div>
+
+        <div class="fg-example">
+            <span class="fg-fr-block">Il n’y en a pas.</span>
+            <span class="fg-translation">هیچ‌کدام وجود ندارد.</span>
+        </div>
+
+        <div class="fg-formula">
+            <span class="fg-fr-block">il + y + en + a</span>
+        </div>
+    </div>
+</section>
+
+
+<!-- ========================= MASTER TABLE ========================= -->
+
+<section class="fg-section">
+    <h2 class="fg-section-title">۱۵. جدول تشخیص سریع</h2>
+
+    <div class="fg-table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>هدف</th>
+                    <th>ساخت</th>
+                    <th>مثال</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>اعلام وجود</td>
+                    <td class="fg-fr">il y a</td>
+                    <td class="fg-fr">Il y a un hôtel.</td>
+                </tr>
+                <tr>
+                    <td>معرفی مفرد</td>
+                    <td class="fg-fr">c’est</td>
+                    <td class="fg-fr">C’est un petit hôtel.</td>
+                </tr>
+                <tr>
+                    <td>معرفی جمع</td>
+                    <td class="fg-fr">ce sont</td>
+                    <td class="fg-fr">Ce sont des touristes.</td>
+                </tr>
+                <tr>
+                    <td>توصیف مذکر</td>
+                    <td class="fg-fr">il est</td>
+                    <td class="fg-fr">Il est charmant.</td>
+                </tr>
+                <tr>
+                    <td>توصیف مؤنث</td>
+                    <td class="fg-fr">elle est</td>
+                    <td class="fg-fr">Elle est gentille.</td>
+                </tr>
+                <tr>
+                    <td>توصیف جمع</td>
+                    <td class="fg-fr">ils / elles sont</td>
+                    <td class="fg-fr">Ils sont italiens.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+
+<!-- ========================= COMMON MISTAKES ========================= -->
+
+<section class="fg-section">
+    <h2 class="fg-section-title">۱۶. اشتباهات رایج</h2>
+
+    <div class="fg-error">
+        <strong>۱. استفاده از c’est برای اعلام وجود</strong>
+        <br>
+        <span class="fg-fr fg-bad">Dans ma rue, c’est un restaurant.</span>
+        <br>
+        <span class="fg-fr fg-good">Dans ma rue, il y a un restaurant.</span>
+    </div>
+
+    <div class="fg-error">
+        <strong>۲. جمع بستن فعل در il y a</strong>
+        <br>
+        <span class="fg-fr fg-bad">Il y ont trois personnes.</span>
+        <br>
+        <span class="fg-fr fg-good">Il y a trois personnes.</span>
+    </div>
+
+    <div class="fg-warning">
+        <strong>۳. استفاده از c’est پیش از اسم جمع در نوشتار رسمی</strong>
+        <br>
+        گفتاری:
+        <span class="fg-fr">C’est des touristes.</span>
+        <br>
+        معیار:
+        <span class="fg-fr fg-good">Ce sont des touristes.</span>
+    </div>
+
+    <div class="fg-error">
+        <strong>۴. استفاده از il est پیش از اسم دارای article</strong>
+        <br>
+        <span class="fg-fr fg-bad">Il est un hôtel.</span>
+        <br>
+        <span class="fg-fr fg-good">C’est un hôtel.</span>
+        <br>
+        ولی:
+        <span class="fg-fr fg-good">Il est charmant.</span>
+    </div>
+
+    <div class="fg-error">
+        <strong>۵. استفاده از c’est برای صفتی که مستقیماً یک شخص مشخص را توصیف می‌کند</strong>
+        <br>
+        <span class="fg-fr fg-bad">La propriétaire ? C’est gentille.</span>
+        <br>
+        <span class="fg-fr fg-good">La propriétaire ? Elle est gentille.</span>
+    </div>
+
+    <div class="fg-tip">
+        در مقابل، برای قضاوت دربارهٔ یک عمل یا وضعیت:
+        <div class="fg-example">
+            <span class="fg-fr-block">C’est gentil de m’aider.</span>
+            <span class="fg-translation">اینکه به من کمک می‌کنی لطف است.</span>
+        </div>
+    </div>
+</section>
+
+
+<!-- ========================= EXERCISES ========================= -->
+
+<section class="fg-section">
+    <h2 class="fg-section-title">تمرین‌های درس با پاسخ و تحلیل</h2>
+
+    <!-- EX 1 -->
+    <article class="fg-exercise">
+        <div class="fg-exercise-head">
+            <h3>تمرین ۱ — انتخاب بین il y a / c’est / ce sont</h3>
+        </div>
+
+        <div class="fg-exercise-body">
+            <p>
+                ساخت مناسب را بر اساس مفهوم «وجود» یا «شناسایی» انتخاب کنید.
+            </p>
+
+            <div class="fg-example">
+                <strong>مدل:</strong>
+                <span class="fg-fr-block">
+                    Dans le journal, <strong>il y a</strong> la photo d’une très belle femme :
+                    <strong>c’est</strong> une actrice américaine.
+                </span>
+            </div>
+
+            <p>
+                <strong>۱.</strong>
+                <span class="fg-fr">
+                    Dans la cour, ___ deux enfants, ___ les enfants de la concierge.
+                </span>
+            </p>
+
+            <div class="fg-answer">
+                <span class="fg-answer-title">پاسخ</span>
+                <span class="fg-fr-block">
+                    Dans la cour, <strong>il y a</strong> deux enfants,
+                    <strong>ce sont</strong> les enfants de la concierge.
+                </span>
+                <p>
+                    ابتدا وجود دو کودک اعلام می‌شود؛ سپس هویت آن‌ها مشخص می‌شود.
+                    چون مرجع جمع است، <span class="fg-fr">ce sont</span> می‌آید.
+                </p>
+            </div>
+
+            <p>
+                <strong>۲.</strong>
+                <span class="fg-fr">
+                    Dans mon quartier, ___ un restaurant très connu :
+                    ___ un restaurant russe.
+                </span>
+            </p>
+
+            <div class="fg-answer">
+                <span class="fg-fr-block">
+                    Dans mon quartier, <strong>il y a</strong> un restaurant très connu :
+                    <strong>c’est</strong> un restaurant russe.
+                </span>
+            </div>
+
+            <p>
+                <strong>۳.</strong>
+                <span class="fg-fr">
+                    Au musée d’Art moderne, ___ une très belle exposition :
+                    ___ une exposition sur les impressionnistes allemands.
+                </span>
+            </p>
+
+            <div class="fg-answer">
+                <span class="fg-fr-block">
+                    Au musée d’Art moderne, <strong>il y a</strong> une très belle exposition :
+                    <strong>c’est</strong> une exposition sur les impressionnistes allemands.
+                </span>
+
+                <p>
+                    مؤنث بودن
+                    <span class="fg-fr">une exposition</span>
+                    باعث تغییر <span class="fg-fr">c’est</span> نمی‌شود.
+                </p>
+            </div>
+
+            <p>
+                <strong>۴.</strong>
+                <span class="fg-fr">
+                    Devant l’hôtel, ___ une dizaine de personnes :
+                    ___ des touristes italiens.
+                </span>
+            </p>
+
+            <div class="fg-answer">
+                <span class="fg-fr-block">
+                    Devant l’hôtel, <strong>il y a</strong> une dizaine de personnes :
+                    <strong>ce sont</strong> des touristes italiens.
+                </span>
+
+                <p>
+                    اگرچه <span class="fg-fr">une dizaine</span> از نظر شکلی مفرد است،
+                    افراد مورد شناسایی جمع هستند؛ بنابراین
+                    <span class="fg-fr">ce sont</span> می‌آید.
+                </p>
+            </div>
+        </div>
+    </article>
+
+
+    <!-- EX 2 -->
+    <article class="fg-exercise">
+        <div class="fg-exercise-head">
+            <h3>تمرین ۲ — ساخت جمله</h3>
+        </div>
+
+        <div class="fg-exercise-body">
+            <div class="fg-example">
+                <span class="fg-fr-block">
+                    Dans mon portefeuille, il y a une photo :
+                    c’est la photo de ma fille.
+                </span>
+                <span class="fg-fr-block">
+                    Il y a des photos :
+                    ce sont les photos de mes enfants.
+                </span>
+            </div>
+
+            <h4>نمونه: روی میز کار</h4>
+
+            <div class="fg-answer">
+                <span class="fg-fr-block">
+                    Sur mon bureau, <strong>il y a un ordinateur</strong> :
+                    <strong>c’est mon ordinateur de travail</strong>.
+                </span>
+                <span class="fg-fr-block">
+                    Il y a des dossiers :
+                    <strong>ce sont les dossiers de mes clients</strong>.
+                </span>
+            </div>
+
+            <h4>نمونه: در اتاق</h4>
+
+            <div class="fg-answer">
+                <span class="fg-fr-block">
+                    Dans ma chambre, il y a un lit :
+                    c’est un lit double.
+                </span>
+                <span class="fg-fr-block">
+                    Il y a des photos :
+                    ce sont les photos de ma famille.
+                </span>
+            </div>
+
+            <div class="fg-rule">
+                <div>
+                    بخش اول اطلاعات جدید را معرفی می‌کند:
+                    <span class="fg-fr">il y a...</span>
+                    <br>
+                    بخش دوم آن را شناسایی می‌کند:
+                    <span class="fg-fr">c’est / ce sont...</span>
+                </div>
+            </div>
+        </div>
+    </article>
+
+
+    <!-- EX 3 -->
+    <article class="fg-exercise">
+        <div class="fg-exercise-head">
+            <h3>تمرین ۳ — اطلاعات جغرافیایی</h3>
+        </div>
+
+        <div class="fg-exercise-body">
+
+            <div class="fg-answer">
+                <span class="fg-fr-block">
+                    À New York, <strong>il y a</strong> un musée important :
+                    <strong>c’est</strong> le musée Guggenheim.
+                </span>
+            </div>
+
+            <div class="fg-answer">
+                <span class="fg-fr-block">
+                    En Grèce, <strong>il y a</strong> des trésors archéologiques :
+                    <strong>ce sont</strong> des monuments de l’époque classique.
+                </span>
+            </div>
+
+            <div class="fg-answer">
+                <span class="fg-fr-block">
+                    En Suisse, <strong>il y a</strong> beaucoup de stations de ski :
+                    <strong>ce sont</strong> des stations très animées en hiver.
+                </span>
+            </div>
+
+            <div class="fg-answer">
+                <span class="fg-fr-block">
+                    Sur la Seine, <strong>il y a</strong> des bateaux pour les touristes :
+                    <strong>ce sont</strong> les bateaux-mouches.
+                </span>
+            </div>
+
+            <div class="fg-answer">
+                <span class="fg-fr-block">
+                    Près de Paris, à Marne-la-Vallée,
+                    <strong>il y a</strong> un grand parc d’attractions :
+                    <strong>c’est</strong> Euro-Disney.
+                </span>
+            </div>
+
+            <div class="fg-tip">
+                <span class="fg-fr">C’est</span>
+                می‌تواند پیش از اسم خاص نیز بیاید:
+                <span class="fg-fr">C’est Marie.</span>،
+                <span class="fg-fr">C’est Paris.</span>
+            </div>
+        </div>
+    </article>
+
+
+    <!-- EX 4 -->
+    <article class="fg-exercise">
+        <div class="fg-exercise-head">
+            <h3>تمرین ۴ — ترکیب il y a / c’est / il est / elle est</h3>
+        </div>
+
+        <div class="fg-exercise-body">
+
+            <div class="fg-answer">
+                <span class="fg-fr-block">
+                    Dans ma rue, <strong>il y a</strong> un hôtel.
+                    <strong>C’est</strong> un petit hôtel.
+                    Il n’est pas très moderne, mais
+                    <strong>il est</strong> vraiment charmant.
+                    Dans certaines chambres,
+                    <strong>il y a</strong> un balcon,
+                    et sur la table
+                    <strong>il y a</strong> toujours des fleurs,
+                    <strong>ce sont</strong> en général des roses.
+                    L’hôtel est souvent complet, car
+                    <strong>il est</strong> très connu et
+                    <strong>il y a</strong> toujours beaucoup d’étudiants français et étrangers.
+                    La propriétaire est une vieille dame,
+                    <strong>elle est</strong> un peu bavarde,
+                    mais <strong>elle est</strong> très gentille.
+                </span>
+            </div>
+
+            <div class="fg-table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>پاسخ</th>
+                            <th>دلیل</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>۱</td>
+                            <td class="fg-fr">il y a</td>
+                            <td>اعلام وجود هتل</td>
+                        </tr>
+                        <tr>
+                            <td>۲</td>
+                            <td class="fg-fr">c’est</td>
+                            <td>معرفی با گروه اسمی</td>
+                        </tr>
+                        <tr>
+                            <td>۳</td>
+                            <td class="fg-fr">il est</td>
+                            <td>توصیف هتل با صفت</td>
+                        </tr>
+                        <tr>
+                            <td>۴</td>
+                            <td class="fg-fr">il y a</td>
+                            <td>وجود بالکن</td>
+                        </tr>
+                        <tr>
+                            <td>۵</td>
+                            <td class="fg-fr">il y a</td>
+                            <td>وجود گل‌ها</td>
+                        </tr>
+                        <tr>
+                            <td>۶</td>
+                            <td class="fg-fr">ce sont</td>
+                            <td>شناسایی اسم جمع</td>
+                        </tr>
+                        <tr>
+                            <td>۷</td>
+                            <td class="fg-fr">il est</td>
+                            <td>توصیف هتل</td>
+                        </tr>
+                        <tr>
+                            <td>۸</td>
+                            <td class="fg-fr">il y a</td>
+                            <td>اعلام حضور دانشجویان</td>
+                        </tr>
+                        <tr>
+                            <td>۹</td>
+                            <td class="fg-fr">elle est</td>
+                            <td>توصیف مالک</td>
+                        </tr>
+                        <tr>
+                            <td>۱۰</td>
+                            <td class="fg-fr">elle est</td>
+                            <td>توصیف مالک</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="fg-rule">
+                <div>
+                    <span class="fg-fr">C’est un petit hôtel.</span>
+                    = معرفی
+                    <br>
+                    <span class="fg-fr">Il est charmant.</span>
+                    = توصیف
+                </div>
+            </div>
+        </div>
+    </article>
+
+
+    <!-- EX 5 -->
+    <article class="fg-exercise">
+        <div class="fg-exercise-head">
+            <h3>تمرین ۵ — تولید آزاد</h3>
+        </div>
+
+        <div class="fg-exercise-body">
+            <p>
+                هدف این تمرین استفادهٔ آزاد از ساخت‌های درس برای توصیف شهر،
+                منطقه یا کشور است.
+            </p>
+
+            <div class="fg-answer">
+                <span class="fg-fr-block">
+                    À Vancouver, <strong>il y a</strong> beaucoup de parcs et d’espaces verts.
+                </span>
+
+                <span class="fg-fr-block">
+                    Près du centre-ville, <strong>il y a</strong> un très grand parc :
+                    <strong>c’est</strong> Stanley Park.
+                </span>
+
+                <span class="fg-fr-block">
+                    La ville est moderne et <strong>elle est</strong> très multiculturelle.
+                </span>
+
+                <span class="fg-fr-block">
+                    En Colombie-Britannique, <strong>il y a</strong> de nombreuses montagnes.
+                </span>
+
+                <span class="fg-fr-block">
+                    Au Canada, <strong>il y a</strong> deux langues officielles :
+                    <strong>ce sont</strong> l’anglais et le français.
+                </span>
+            </div>
+        </div>
+    </article>
+</section>
+
+
+<!-- ========================= FINAL SUMMARY ========================= -->
+
+<section class="fg-section">
+    <div class="fg-summary">
+        <h3>جمع‌بندی نهایی درس</h3>
+
+        <div class="fg-summary-row">
+            <strong>وجود</strong>
+            <span class="fg-fr">Dans ma rue, il y a un hôtel.</span>
+        </div>
+
+        <div class="fg-summary-row">
+            <strong>معرفی</strong>
+            <span class="fg-fr">C’est un petit hôtel.</span>
+        </div>
+
+        <div class="fg-summary-row">
+            <strong>توصیف</strong>
+            <span class="fg-fr">Il est très charmant.</span>
+        </div>
+
+        <div class="fg-summary-row">
+            <strong>وجود جمع</strong>
+            <span class="fg-fr">Dans l’hôtel, il y a des étudiants.</span>
+        </div>
+
+        <div class="fg-summary-row">
+            <strong>شناسایی جمع</strong>
+            <span class="fg-fr">Ce sont des étudiants étrangers.</span>
+        </div>
+    </div>
+</section>
+
+</div>

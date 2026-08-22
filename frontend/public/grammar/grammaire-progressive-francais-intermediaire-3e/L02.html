@@ -1,0 +1,1934 @@
+<div class="fg-french-grammar-wrapper" dir="rtl">
+
+  <style>
+    /* =========================================================
+       Grammar Mastery Platform — Lesson 02
+       Scoped / Isolated styles
+       All selectors are prefixed with .fg-
+       ========================================================= */
+
+    .fg-french-grammar-wrapper {
+      --fg-primary: #123b69;
+      --fg-primary-dark: #0b294b;
+      --fg-primary-light: #edf5ff;
+      --fg-secondary: #2767a5;
+
+      --fg-green: #18794e;
+      --fg-green-bg: #edf9f2;
+
+      --fg-orange: #b45309;
+      --fg-orange-bg: #fff7ed;
+
+      --fg-red: #b42318;
+      --fg-red-bg: #fff1f0;
+
+      --fg-purple: #6941c6;
+      --fg-purple-bg: #f4f0ff;
+
+      --fg-gray-50: #f8fafc;
+      --fg-gray-100: #f1f5f9;
+      --fg-gray-200: #e2e8f0;
+      --fg-gray-300: #cbd5e1;
+      --fg-gray-500: #64748b;
+      --fg-gray-700: #334155;
+      --fg-gray-900: #0f172a;
+
+      --fg-radius-sm: 8px;
+      --fg-radius: 14px;
+      --fg-radius-lg: 20px;
+
+      --fg-shadow: 0 4px 18px rgba(15, 23, 42, 0.07);
+      --fg-shadow-hover: 0 8px 28px rgba(15, 23, 42, 0.11);
+
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px;
+      box-sizing: border-box;
+      color: var(--fg-gray-900);
+      font-family:
+        Tahoma,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+      font-size: 16px;
+      line-height: 1.9;
+      direction: rtl;
+      text-align: right;
+    }
+
+    .fg-french-grammar-wrapper *,
+    .fg-french-grammar-wrapper *::before,
+    .fg-french-grammar-wrapper *::after {
+      box-sizing: border-box;
+    }
+
+    /* ---------- Typography ---------- */
+
+    .fg-french-grammar-wrapper .fg-title {
+      margin: 0;
+      color: #fff;
+      font-size: clamp(1.7rem, 4vw, 2.6rem);
+      line-height: 1.35;
+      font-weight: 800;
+    }
+
+    .fg-french-grammar-wrapper .fg-subtitle {
+      margin: 10px 0 0;
+      color: #dbeafe;
+      font-size: 1rem;
+      line-height: 1.9;
+    }
+
+    .fg-french-grammar-wrapper .fg-section-title {
+      position: relative;
+      margin: 0 0 22px;
+      padding: 0 16px 0 0;
+      color: var(--fg-primary-dark);
+      font-size: clamp(1.25rem, 2.5vw, 1.65rem);
+      font-weight: 800;
+      line-height: 1.5;
+    }
+
+    .fg-french-grammar-wrapper .fg-section-title::before {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: 7px;
+      bottom: 7px;
+      width: 5px;
+      border-radius: 10px;
+      background: var(--fg-secondary);
+    }
+
+    .fg-french-grammar-wrapper .fg-subheading {
+      margin: 28px 0 12px;
+      color: var(--fg-primary);
+      font-size: 1.1rem;
+      font-weight: 800;
+    }
+
+    .fg-french-grammar-wrapper p {
+      margin: 10px 0;
+    }
+
+    .fg-french-grammar-wrapper strong {
+      color: var(--fg-gray-900);
+    }
+
+    /* ---------- French / LTR ---------- */
+
+    .fg-french-grammar-wrapper .fg-fr {
+      direction: ltr;
+      unicode-bidi: isolate;
+      text-align: left;
+      display: inline-block;
+      font-family:
+        "Segoe UI",
+        Arial,
+        sans-serif;
+    }
+
+    .fg-french-grammar-wrapper .fg-fr-block {
+      direction: ltr;
+      unicode-bidi: isolate;
+      text-align: left;
+      display: block;
+      width: 100%;
+      font-family:
+        "Segoe UI",
+        Arial,
+        sans-serif;
+    }
+
+    .fg-french-grammar-wrapper .fg-code {
+      direction: ltr;
+      unicode-bidi: isolate;
+      display: inline-block;
+      padding: 1px 7px;
+      border: 1px solid #d7e4f4;
+      border-radius: 6px;
+      background: #f3f7fc;
+      color: #174a7c;
+      font-family: Consolas, Monaco, monospace;
+      font-size: 0.94em;
+      white-space: nowrap;
+    }
+
+    /* ---------- Hero ---------- */
+
+    .fg-french-grammar-wrapper .fg-hero {
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 24px;
+      padding: clamp(24px, 5vw, 42px);
+      border-radius: var(--fg-radius-lg);
+      background:
+        radial-gradient(
+          circle at 15% 15%,
+          rgba(255,255,255,.12),
+          transparent 30%
+        ),
+        linear-gradient(
+          135deg,
+          var(--fg-primary-dark),
+          var(--fg-primary),
+          #255f96
+        );
+      box-shadow: var(--fg-shadow);
+    }
+
+    .fg-french-grammar-wrapper .fg-hero::after {
+      content: "FR";
+      position: absolute;
+      left: 20px;
+      bottom: -28px;
+      color: rgba(255,255,255,.06);
+      font-size: 9rem;
+      font-weight: 900;
+      line-height: 1;
+      direction: ltr;
+    }
+
+    .fg-french-grammar-wrapper .fg-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .fg-french-grammar-wrapper .fg-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 10px;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 999px;
+      background: rgba(255,255,255,.1);
+      color: #fff;
+      font-size: .82rem;
+      line-height: 1.4;
+    }
+
+    /* ---------- Navigation ---------- */
+
+    .fg-french-grammar-wrapper .fg-nav {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin: 22px 0;
+    }
+
+    .fg-french-grammar-wrapper .fg-nav a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 10px 12px;
+      border: 1px solid var(--fg-gray-200);
+      border-radius: 10px;
+      background: #fff;
+      color: var(--fg-primary);
+      text-decoration: none;
+      font-size: .92rem;
+      font-weight: 700;
+      text-align: center;
+      transition: .2s ease;
+    }
+
+    .fg-french-grammar-wrapper .fg-nav a:hover {
+      border-color: #9fc4e9;
+      background: var(--fg-primary-light);
+      transform: translateY(-1px);
+    }
+
+    /* ---------- Sections / Cards ---------- */
+
+    .fg-french-grammar-wrapper .fg-section {
+      margin: 24px 0;
+      padding: clamp(18px, 4vw, 30px);
+      border: 1px solid var(--fg-gray-200);
+      border-radius: var(--fg-radius-lg);
+      background: #fff;
+      box-shadow: var(--fg-shadow);
+    }
+
+    .fg-french-grammar-wrapper .fg-card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin: 18px 0;
+    }
+
+    .fg-french-grammar-wrapper .fg-card {
+      padding: 18px;
+      border: 1px solid var(--fg-gray-200);
+      border-radius: var(--fg-radius);
+      background: var(--fg-gray-50);
+    }
+
+    .fg-french-grammar-wrapper .fg-card h4 {
+      margin: 0 0 9px;
+      color: var(--fg-primary);
+      font-size: 1rem;
+    }
+
+    /* ---------- Callout boxes ---------- */
+
+    .fg-french-grammar-wrapper .fg-callout {
+      position: relative;
+      margin: 18px 0;
+      padding: 16px 18px;
+      border-radius: 12px;
+      border-right: 5px solid;
+    }
+
+    .fg-french-grammar-wrapper .fg-callout-title {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 800;
+    }
+
+    .fg-french-grammar-wrapper .fg-callout-info {
+      border-color: var(--fg-secondary);
+      background: var(--fg-primary-light);
+      color: #183b5b;
+    }
+
+    .fg-french-grammar-wrapper .fg-callout-success {
+      border-color: var(--fg-green);
+      background: var(--fg-green-bg);
+      color: #155c3d;
+    }
+
+    .fg-french-grammar-wrapper .fg-callout-warning {
+      border-color: var(--fg-orange);
+      background: var(--fg-orange-bg);
+      color: #7a3e00;
+    }
+
+    .fg-french-grammar-wrapper .fg-callout-danger {
+      border-color: var(--fg-red);
+      background: var(--fg-red-bg);
+      color: #861d16;
+    }
+
+    .fg-french-grammar-wrapper .fg-callout-purple {
+      border-color: var(--fg-purple);
+      background: var(--fg-purple-bg);
+      color: #4d2b95;
+    }
+
+    /* ---------- Examples ---------- */
+
+    .fg-french-grammar-wrapper .fg-example {
+      margin: 14px 0;
+      padding: 15px 17px;
+      border: 1px solid #bde3ce;
+      border-radius: 10px;
+      background: var(--fg-green-bg);
+    }
+
+    .fg-french-grammar-wrapper .fg-example-label {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--fg-green);
+      font-size: .84rem;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .fg-french-grammar-wrapper .fg-wrong {
+      margin: 8px 0;
+      padding: 11px 14px;
+      border-radius: 8px;
+      background: var(--fg-red-bg);
+      color: var(--fg-red);
+    }
+
+    .fg-french-grammar-wrapper .fg-correct {
+      margin: 8px 0;
+      padding: 11px 14px;
+      border-radius: 8px;
+      background: var(--fg-green-bg);
+      color: var(--fg-green);
+    }
+
+    /* ---------- Tables ---------- */
+
+    .fg-french-grammar-wrapper .fg-table-wrap {
+      width: 100%;
+      margin: 16px 0 22px;
+      overflow-x: auto;
+      border: 1px solid var(--fg-gray-200);
+      border-radius: 12px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .fg-french-grammar-wrapper .fg-table {
+      width: 100%;
+      min-width: 570px;
+      border-collapse: collapse;
+      border-spacing: 0;
+      background: #fff;
+      direction: rtl;
+    }
+
+    .fg-french-grammar-wrapper .fg-table th,
+    .fg-french-grammar-wrapper .fg-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--fg-gray-200);
+      border-left: 1px solid var(--fg-gray-200);
+      vertical-align: middle;
+    }
+
+    .fg-french-grammar-wrapper .fg-table th:last-child,
+    .fg-french-grammar-wrapper .fg-table td:last-child {
+      border-left: 0;
+    }
+
+    .fg-french-grammar-wrapper .fg-table thead th {
+      background: var(--fg-primary);
+      color: #fff;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .fg-french-grammar-wrapper .fg-table tbody tr:nth-child(even) {
+      background: var(--fg-gray-50);
+    }
+
+    .fg-french-grammar-wrapper .fg-table tbody tr:hover {
+      background: #eef6ff;
+    }
+
+    .fg-french-grammar-wrapper .fg-table tbody tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .fg-french-grammar-wrapper .fg-table .fg-ltr-cell {
+      direction: ltr;
+      unicode-bidi: isolate;
+      text-align: left;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    /* ---------- Pattern formula ---------- */
+
+    .fg-french-grammar-wrapper .fg-formula {
+      margin: 18px 0;
+      padding: 18px;
+      border: 1px dashed #91b9df;
+      border-radius: 12px;
+      background: #f4f9ff;
+      text-align: center;
+    }
+
+    .fg-french-grammar-wrapper .fg-formula-main {
+      direction: ltr;
+      unicode-bidi: isolate;
+      display: block;
+      color: var(--fg-primary-dark);
+      font-size: clamp(1.05rem, 3vw, 1.35rem);
+      font-weight: 800;
+      text-align: center;
+    }
+
+    /* ---------- Lists ---------- */
+
+    .fg-french-grammar-wrapper .fg-list {
+      margin: 12px 0;
+      padding: 0 22px 0 0;
+    }
+
+    .fg-french-grammar-wrapper .fg-list li {
+      margin: 7px 0;
+    }
+
+    .fg-french-grammar-wrapper .fg-number-list {
+      counter-reset: fg-counter;
+      list-style: none;
+      margin: 16px 0;
+      padding: 0;
+    }
+
+    .fg-french-grammar-wrapper .fg-number-list li {
+      position: relative;
+      margin: 10px 0;
+      padding: 12px 48px 12px 14px;
+      border: 1px solid var(--fg-gray-200);
+      border-radius: 10px;
+      background: var(--fg-gray-50);
+    }
+
+    .fg-french-grammar-wrapper .fg-number-list li::before {
+      counter-increment: fg-counter;
+      content: counter(fg-counter);
+      position: absolute;
+      right: 12px;
+      top: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--fg-primary);
+      color: #fff;
+      font-size: .8rem;
+      font-weight: 800;
+    }
+
+    /* ---------- Rule chip ---------- */
+
+    .fg-french-grammar-wrapper .fg-rule-chip {
+      display: inline-flex;
+      direction: ltr;
+      unicode-bidi: isolate;
+      align-items: center;
+      margin: 3px;
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: #e9f2fb;
+      color: #154979;
+      font-family: "Segoe UI", Arial, sans-serif;
+      font-size: .88rem;
+      font-weight: 700;
+    }
+
+    /* ---------- Summary ---------- */
+
+    .fg-french-grammar-wrapper .fg-summary {
+      padding: clamp(20px, 4vw, 30px);
+      border-radius: var(--fg-radius-lg);
+      background:
+        linear-gradient(135deg, #102f50, #184f7e);
+      color: #fff;
+    }
+
+    .fg-french-grammar-wrapper .fg-summary h2 {
+      margin: 0 0 16px;
+      color: #fff;
+      font-size: 1.45rem;
+    }
+
+    .fg-french-grammar-wrapper .fg-summary strong {
+      color: #fff;
+    }
+
+    .fg-french-grammar-wrapper .fg-summary .fg-table-wrap {
+      border-color: rgba(255,255,255,.2);
+    }
+
+    .fg-french-grammar-wrapper .fg-summary .fg-table {
+      color: var(--fg-gray-900);
+    }
+
+    /* ---------- Responsive ---------- */
+
+    @media (max-width: 800px) {
+      .fg-french-grammar-wrapper {
+        padding: 14px;
+      }
+
+      .fg-french-grammar-wrapper .fg-nav {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .fg-french-grammar-wrapper .fg-card-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .fg-french-grammar-wrapper .fg-section {
+        padding: 20px 16px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .fg-french-grammar-wrapper {
+        padding: 8px;
+        font-size: 15px;
+      }
+
+      .fg-french-grammar-wrapper .fg-hero {
+        border-radius: 14px;
+        padding: 22px 17px;
+      }
+
+      .fg-french-grammar-wrapper .fg-nav {
+        grid-template-columns: 1fr;
+      }
+
+      .fg-french-grammar-wrapper .fg-section {
+        margin: 14px 0;
+        border-radius: 14px;
+      }
+
+      .fg-french-grammar-wrapper .fg-table th,
+      .fg-french-grammar-wrapper .fg-table td {
+        padding: 10px;
+      }
+
+      .fg-french-grammar-wrapper .fg-table {
+        min-width: 520px;
+      }
+    }
+  </style>
+
+
+  <!-- =========================================================
+       HERO
+       ========================================================= -->
+
+  <section class="fg-hero">
+    <div class="fg-badges">
+      <span class="fg-badge">درس ۲</span>
+      <span class="fg-badge">
+        <span class="fg-fr">L’ADJECTIF (1)</span>
+      </span>
+      <span class="fg-badge">تطابق صفت</span>
+    </div>
+
+    <h1 class="fg-title">
+      صفت در زبان فرانسه
+      <span class="fg-fr">— L’ADJECTIF (1)</span>
+    </h1>
+
+    <p class="fg-subtitle">
+      مذکر و مؤنث، مفرد و جمع، صفات رنگ و تطابق صفت با ضمایر فاعلی
+    </p>
+  </section>
+
+
+  <!-- =========================================================
+       QUICK NAV
+       ========================================================= -->
+
+  <nav class="fg-nav" aria-label="فهرست درس">
+    <a href="#fg-general">مفهوم اصلی</a>
+    <a href="#fg-feminine">مؤنث صفت</a>
+    <a href="#fg-plural">جمع صفت</a>
+    <a href="#fg-colors">صفات رنگ</a>
+    <a href="#fg-mixed">گروه مختلط</a>
+    <a href="#fg-pronouns">ضمیرهای فاعلی</a>
+    <a href="#fg-on">کاربرد on</a>
+    <a href="#fg-summary">خلاصه نهایی</a>
+  </nav>
+
+
+  <!-- =========================================================
+       1. GENERAL CONCEPT
+       ========================================================= -->
+
+  <section class="fg-section" id="fg-general">
+    <h2 class="fg-section-title">
+      ۱. مفهوم اصلی: صفت باید «تطابق» داشته باشد
+    </h2>
+
+    <p>
+      در زبان فرانسه، صفت
+      <strong>با اسم یا شخصی که آن را توصیف می‌کند</strong>
+      از نظر جنس و شمار هماهنگ می‌شود.
+    </p>
+
+    <div class="fg-formula">
+      <span class="fg-formula-main">
+        adjectif = genre + nombre
+      </span>
+      <div>
+        جنس:
+        <span class="fg-fr">masculin / féminin</span>
+        &nbsp;—&nbsp;
+        شمار:
+        <span class="fg-fr">singulier / pluriel</span>
+      </div>
+    </div>
+
+    <div class="fg-table-wrap">
+      <table class="fg-table">
+        <thead>
+          <tr>
+            <th>حالت</th>
+            <th>نمونه فرانسوی</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>مذکر مفرد</td>
+            <td class="fg-ltr-cell">un homme grand</td>
+          </tr>
+          <tr>
+            <td>مؤنث مفرد</td>
+            <td class="fg-ltr-cell">une femme grande</td>
+          </tr>
+          <tr>
+            <td>مذکر جمع</td>
+            <td class="fg-ltr-cell">des hommes grands</td>
+          </tr>
+          <tr>
+            <td>مؤنث جمع</td>
+            <td class="fg-ltr-cell">des femmes grandes</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="fg-callout fg-callout-info">
+      <span class="fg-callout-title">قاعده طلایی</span>
+      صفت با <strong>مرجع واقعی خود</strong> هماهنگ می‌شود؛
+      نه صرفاً با نزدیک‌ترین کلمه در جمله.
+    </div>
+
+    <div class="fg-example">
+      <span class="fg-example-label">مثال</span>
+      <span class="fg-fr-block">
+        Paul et Marie sont intelligents.
+      </span>
+      <p>
+        چون گروه شامل یک مرد و یک زن است، صفت به شکل
+        <strong>مذکر جمع</strong>
+        می‌آید:
+        <span class="fg-fr">intelligents</span>.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- =========================================================
+       2. FEMININE
+       ========================================================= -->
+
+  <section class="fg-section" id="fg-feminine">
+    <h2 class="fg-section-title">
+      ۲. ساخت مؤنث صفت
+      <span class="fg-fr">— Le féminin</span>
+    </h2>
+
+    <h3 class="fg-subheading">
+      قاعده عمومی: افزودن
+      <span class="fg-code">-e</span>
+    </h3>
+
+    <p>
+      در بسیاری از صفت‌ها، برای ساخت مؤنث کافی است به شکل مذکر
+      حرف
+      <span class="fg-code">e</span>
+      اضافه کنیم.
+    </p>
+
+    <div class="fg-table-wrap">
+      <table class="fg-table">
+        <thead>
+          <tr>
+            <th>مذکر</th>
+            <th>مؤنث</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="fg-ltr-cell">grand</td>
+            <td class="fg-ltr-cell">grande</td>
+          </tr>
+          <tr>
+            <td class="fg-ltr-cell">blond</td>
+            <td class="fg-ltr-cell">blonde</td>
+          </tr>
+          <tr>
+            <td class="fg-ltr-cell">original</td>
+            <td class="fg-ltr-cell">originale</td>
+          </tr>
+          <tr>
+            <td class="fg-ltr-cell">marié</td>
+            <td class="fg-ltr-cell">mariée</td>
+          </tr>
+          <tr>
+            <td class="fg-ltr-cell">content</td>
+            <td class="fg-ltr-cell">contente</td>
+          </tr>
+          <tr>
+            <td class="fg-ltr-cell">intelligent</td>
+            <td class="fg-ltr-cell">intelligente</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="fg-example">
+      <span class="fg-example-label">مثال</span>
+      <span class="fg-fr-block">Paul est grand.</span>
+      <span class="fg-fr-block">Anne est grande.</span>
+    </div>
+
+
+    <!-- Pronunciation -->
+
+    <h3 class="fg-subheading">نکته مهم تلفظی</h3>
+
+    <p>
+      در بسیاری از صفت‌ها، صامت پایانی در حالت مذکر شنیده نمی‌شود،
+      اما با اضافه شدن
+      <span class="fg-code">-e</span>
+      در مؤنث تلفظ می‌شود.
+    </p>
+
+    <div class="fg-card-grid">
+      <div class="fg-card">
+        <h4>
+          <span class="fg-fr">grand → grande</span>
+        </h4>
+        <p>
+          در
+          <span class="fg-fr">grand</span>
+          صدای پایانی
+          <span class="fg-fr">d</span>
+          معمولاً شنیده نمی‌شود؛
+          در
+          <span class="fg-fr">grande</span>
+          شنیده می‌شود.
+        </p>
+      </div>
+
+      <div class="fg-card">
+        <h4>
+          <span class="fg-fr">intelligent → intelligente</span>
+        </h4>
+        <p>
+          در حالت مؤنث، صدای
+          <span class="fg-fr">t</span>
+          پایانی آشکار می‌شود.
+        </p>
+      </div>
+    </div>
+
+
+    <!-- Already ending in e -->
+
+    <h3 class="fg-subheading">
+      صفت‌هایی که از قبل به
+      <span class="fg-code">-e</span>
+      ختم می‌شوند
+    </h3>
+
+    <p>
+      اگر شکل مذکر از قبل به
+      <span class="fg-code">e</span>
+      ختم شود، شکل مؤنث معمولاً تغییری نمی‌کند.
+    </p>
+
+    <div class="fg-table-wrap">
+      <table class="fg-table">
+        <thead>
+          <tr>
+            <th>مذکر</th>
+            <th>مؤنث</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="fg-ltr-cell">sympathique</td>
+            <td class="fg-ltr-cell">sympathique</td>
+          </tr>
+          <tr>
+            <td class="fg-ltr-cell">jeune</td>
+            <td class="fg-ltr-cell">jeune</td>
+          </tr>
+          <tr>
+            <td class="fg-ltr-cell">timide</td>
+            <td class="fg-ltr-cell">timide</td>
+          </tr>
+          <tr>
+            <td class="fg-ltr-cell">calme</td>
+            <td class="fg-ltr-cell">calme</td>
+          </tr>
+          <tr>
+            <td class="fg-ltr-cell">agréable</td>
+            <td class="fg-ltr-cell">agréable</td>
+          </tr>
+          <tr>
+            <td class="fg-ltr-cell">stupide</td>
+            <td class="fg-ltr-cell">stupide</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="fg-example">
+      <span class="fg-example-label">مثال</span>
+      <span class="fg-fr-block">Il est sympathique.</span>
+      <span class="fg-fr-block">Elle est sympathique.</span>
+    </div>
+
+    <div class="fg-callout fg-callout-warning">
+      <span class="fg-callout-title">نکته ظریف</span>
+      از روی شکل صفت
+      <span class="fg-fr">stupide</span>
+      یا
+      <span class="fg-fr">sympathique</span>
+      نمی‌توان جنس فاعل را تشخیص داد؛
+      باید اسم یا ضمیر جمله را بررسی کرد.
+    </div>
+
+
+    <!-- Double consonants -->
+
+    <h3 class="fg-subheading">دو برابر شدن صامت پایانی</h3>
+
+    <div class="fg-table-wrap">
+      <table class="fg-table">
+        <thead>
+          <tr>
+            <th>الگو</th>
+            <th>مذکر</th>
+            <th>مؤنث</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="fg-ltr-cell">-en → -enne</td>
+            <td class="fg-ltr-cell">italien</td>
+            <td class="fg-ltr-cell">italienne</td>
+          </tr>
+          <tr>
+            <td class="fg-ltr-cell">-en → -enne</td>
+            <td class="fg-ltr-cell">ancien</td>
+            <td class="fg-ltr-cell">ancienne</td>
+          </tr>
+          <tr>
+            <td class="fg-ltr-cell">-on → -onne</td>
+            <td class="fg-ltr-cell">mignon</td>
+            <td class="fg-ltr-cell">mignonne</td>
+          </tr>
+          <tr>
+            <td class="fg-ltr-cell">-on → -onne</td>
+            <td class="fg-ltr-cell">bon</td>
+            <td class="fg-ltr-cell">bonne</td>
+          </tr>
+          <tr>
+            <td class="fg-ltr-cell">-el → -elle</td>
+            <td class="fg-ltr-cell">ponctuel</td>
+            <td class="fg-ltr-cell">ponctuelle</td>
+          </tr>
+          <tr>
+            <td class="fg-ltr-cell">-el → -elle</td>
+            <td class="fg-ltr-cell">cruel</td>
+            <td class="fg-ltr-cell">cruelle</td>
+          </tr>
+          <tr>
+            <td class="fg-ltr-cell">-et → -ette</td>
+            <td class="fg-ltr-cell">coquet</td>
+            <td class="fg-ltr-cell">coquette</td>
+          </tr>
+          <tr>
+            <td class="fg-ltr-cell">-et → -ette</td>
+            <td class="fg-ltr-cell">muet</td>
+            <td class="fg-ltr-cell">muette</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+    <!-- -et exception -->
+
+    <div class="fg-callout fg-callout-warning">
+      <span class="fg-callout-title">
+        استثنای مهم برای
+        <span class="fg-fr">-et</span>
+      </span>
+
+      همه صفت‌های پایان‌یافته به
+      <span class="fg-fr">-et</span>
+      از الگوی
+      <span class="fg-fr">-ette</span>
+      پیروی نمی‌کنند.
+
+      <div style="margin-top:10px;">
+        <span class="fg-rule-chip">complet → complète</span>
+        <span class="fg-rule-chip">discret → discrète</span>
+        <span class="fg-rule-chip">secret → secrète</span>
+        <span class="fg-rule-chip">inquiet → inquiète</span>
+      </div>
+    </div>
+
+
+    <!-- Suffix changes -->
+
+    <h3 class="fg-subheading">تغییر پسوند در مؤنث</h3>
+
+    <div class="fg-table-wrap">
+      <table class="fg-table">
+        <thead>
+          <tr>
+            <th>الگو</th>
+            <th>مثال مذکر</th>
+            <th>مثال مؤنث</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="fg-ltr-cell">-f → -ve</td>
+            <td class="fg-ltr-cell">sportif</td>
+            <td class="fg-ltr-cell">sportive</td>
+          </tr>
+          <tr>
+            <td class="fg-ltr-cell">-f → -ve</td>
+            <td class="fg-ltr-cell">actif</td>
+            <td class="fg-ltr-cell">active</td>
+          </tr>
+          <tr>
+            <td class="fg-ltr-cell">-f → -ve</td>
+            <td class="fg-ltr-cell">neuf</td>
+            <td class="fg-ltr-cell">neuve</td>
+          </tr>
+          <tr>
+            <td class="fg-ltr-cell">-eux → -euse</td>
+            <td class="fg-ltr-cell">sérieux</td>
+            <td class="fg-ltr-cell">sérieuse</td>
+          </tr>
+          <tr>
+            <td class="fg-ltr-cell">-eux → -euse</td>
+            <td class="fg-ltr-cell">heureux</td>
+            <td class="fg-ltr-cell">heureuse</td>
+          </tr>
+          <tr>
+            <td class="fg-ltr-cell">-eux → -euse</td>
+            <td class="fg-ltr-cell">dangereux</td>
+            <td class="fg-ltr-cell">dangereuse</td>
+          </tr>
+          <tr>
+            <td class="fg-ltr-cell">-eur → -euse</td>
+            <td class="fg-ltr-cell">rêveur</td>
+            <td class="fg-ltr-cell">rêveuse</td>
+          </tr>
+          <tr>
+            <td class="fg-ltr-cell">-eur → -euse</td>
+            <td class="fg-ltr-cell">travailleur</td>
+            <td class="fg-ltr-cell">travailleuse</td>
+          </tr>
+          <tr>
+            <td class="fg-ltr-cell">-teur → -trice</td>
+            <td class="fg-ltr-cell">créateur</td>
+            <td class="fg-ltr-cell">créatrice</td>
+          </tr>
+          <tr>
+            <td class="fg-ltr-cell">-teur → -trice</td>
+            <td class="fg-ltr-cell">protecteur</td>
+            <td class="fg-ltr-cell">protectrice</td>
+          </tr>
+          <tr>
+            <td class="fg-ltr-cell">-er → -ère</td>
+            <td class="fg-ltr-cell">étranger</td>
+            <td class="fg-ltr-cell">étrangère</td>
+          </tr>
+          <tr>
+            <td class="fg-ltr-cell">-er → -ère</td>
+            <td class="fg-ltr-cell">léger</td>
+            <td class="fg-ltr-cell">légère</td>
+          </tr>
+          <tr>
+            <td class="fg-ltr-cell">-er → -ère</td>
+            <td class="fg-ltr-cell">cher</td>
+            <td class="fg-ltr-cell">chère</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="fg-callout fg-callout-info">
+      <span class="fg-callout-title">دقت املایی</span>
+      در
+      <span class="fg-fr">léger → légère</span>
+      علامت
+      <span class="fg-fr">è</span>
+      بخشی از شکل درست کلمه است.
+    </div>
+
+
+    <!-- Irregular -->
+
+    <h3 class="fg-subheading">صفت‌های بی‌قاعده مهم</h3>
+
+    <div class="fg-table-wrap">
+      <table class="fg-table">
+        <thead>
+          <tr>
+            <th>مذکر</th>
+            <th>مؤنث</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="fg-ltr-cell">beau</td><td class="fg-ltr-cell">belle</td></tr>
+          <tr><td class="fg-ltr-cell">nouveau</td><td class="fg-ltr-cell">nouvelle</td></tr>
+          <tr><td class="fg-ltr-cell">faux</td><td class="fg-ltr-cell">fausse</td></tr>
+          <tr><td class="fg-ltr-cell">doux</td><td class="fg-ltr-cell">douce</td></tr>
+          <tr><td class="fg-ltr-cell">roux</td><td class="fg-ltr-cell">rousse</td></tr>
+          <tr><td class="fg-ltr-cell">jaloux</td><td class="fg-ltr-cell">jalouse</td></tr>
+          <tr><td class="fg-ltr-cell">gentil</td><td class="fg-ltr-cell">gentille</td></tr>
+          <tr><td class="fg-ltr-cell">vieux</td><td class="fg-ltr-cell">vieille</td></tr>
+          <tr><td class="fg-ltr-cell">gros</td><td class="fg-ltr-cell">grosse</td></tr>
+          <tr><td class="fg-ltr-cell">bas</td><td class="fg-ltr-cell">basse</td></tr>
+          <tr><td class="fg-ltr-cell">fou</td><td class="fg-ltr-cell">folle</td></tr>
+          <tr><td class="fg-ltr-cell">long</td><td class="fg-ltr-cell">longue</td></tr>
+          <tr><td class="fg-ltr-cell">frais</td><td class="fg-ltr-cell">fraîche</td></tr>
+          <tr><td class="fg-ltr-cell">sec</td><td class="fg-ltr-cell">sèche</td></tr>
+          <tr><td class="fg-ltr-cell">blanc</td><td class="fg-ltr-cell">blanche</td></tr>
+          <tr><td class="fg-ltr-cell">grec</td><td class="fg-ltr-cell">grecque</td></tr>
+          <tr><td class="fg-ltr-cell">public</td><td class="fg-ltr-cell">publique</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="fg-callout fg-callout-danger">
+      <span class="fg-callout-title">دام‌های املایی</span>
+
+      <div>
+        <span class="fg-fr">public → publique</span>
+        &nbsp; • &nbsp;
+        <span class="fg-fr">grec → grecque</span>
+        &nbsp; • &nbsp;
+        <span class="fg-fr">blanc → blanche</span>
+        &nbsp; • &nbsp;
+        <span class="fg-fr">frais → fraîche</span>
+        &nbsp; • &nbsp;
+        <span class="fg-fr">sec → sèche</span>
+        &nbsp; • &nbsp;
+        <span class="fg-fr">long → longue</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =========================================================
+       NATIONALITIES
+       ========================================================= -->
+
+  <section class="fg-section">
+    <h2 class="fg-section-title">
+      ۳. ملیت‌ها نیز مانند صفت تطابق پیدا می‌کنند
+    </h2>
+
+    <div class="fg-table-wrap">
+      <table class="fg-table">
+        <thead>
+          <tr>
+            <th>مذکر</th>
+            <th>مؤنث</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="fg-ltr-cell">allemand</td><td class="fg-ltr-cell">allemande</td></tr>
+          <tr><td class="fg-ltr-cell">français</td><td class="fg-ltr-cell">française</td></tr>
+          <tr><td class="fg-ltr-cell">anglais</td><td class="fg-ltr-cell">anglaise</td></tr>
+          <tr><td class="fg-ltr-cell">italien</td><td class="fg-ltr-cell">italienne</td></tr>
+          <tr><td class="fg-ltr-cell">canadien</td><td class="fg-ltr-cell">canadienne</td></tr>
+          <tr><td class="fg-ltr-cell">suédois</td><td class="fg-ltr-cell">suédoise</td></tr>
+          <tr><td class="fg-ltr-cell">polonais</td><td class="fg-ltr-cell">polonaise</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="fg-example">
+      <span class="fg-example-label">در نقش صفت</span>
+      <span class="fg-fr-block">Il est français.</span>
+      <span class="fg-fr-block">Elle est canadienne.</span>
+    </div>
+
+    <div class="fg-callout fg-callout-warning">
+      <span class="fg-callout-title">املای ملیت</span>
+      وقتی ملیت نقش <strong>صفت</strong> دارد، با حرف کوچک نوشته می‌شود:
+      <span class="fg-fr">français, canadienne, italienne</span>.
+    </div>
+  </section>
+
+
+  <!-- =========================================================
+       4. PLURAL
+       ========================================================= -->
+
+  <section class="fg-section" id="fg-plural">
+    <h2 class="fg-section-title">
+      ۴. ساخت جمع صفت
+      <span class="fg-fr">— Le pluriel</span>
+    </h2>
+
+    <h3 class="fg-subheading">
+      قاعده عمومی: افزودن
+      <span class="fg-code">-s</span>
+    </h3>
+
+    <div class="fg-table-wrap">
+      <table class="fg-table">
+        <thead>
+          <tr>
+            <th>مفرد</th>
+            <th>جمع</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="fg-ltr-cell">grand</td><td class="fg-ltr-cell">grands</td></tr>
+          <tr><td class="fg-ltr-cell">grande</td><td class="fg-ltr-cell">grandes</td></tr>
+          <tr><td class="fg-ltr-cell">réservé</td><td class="fg-ltr-cell">réservés</td></tr>
+          <tr><td class="fg-ltr-cell">réservée</td><td class="fg-ltr-cell">réservées</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="fg-example">
+      <span class="fg-example-label">مثال</span>
+      <span class="fg-fr-block">Paul est grand.</span>
+      <span class="fg-fr-block">Paul et Marc sont grands.</span>
+      <br>
+      <span class="fg-fr-block">Anne est grande.</span>
+      <span class="fg-fr-block">Anne et Marie sont grandes.</span>
+    </div>
+
+    <div class="fg-callout fg-callout-info">
+      <span class="fg-callout-title">نکته تلفظ</span>
+      حرف
+      <span class="fg-fr">-s</span>
+      جمع معمولاً تلفظ نمی‌شود؛ بنابراین تفاوت مفرد و جمع در بسیاری از
+      صفت‌ها بیشتر در <strong>نوشتار</strong> دیده می‌شود.
+    </div>
+
+
+    <!-- s/x -->
+
+    <h3 class="fg-subheading">
+      پایان
+      <span class="fg-fr">-s / -x</span>
+      : بدون تغییر
+    </h3>
+
+    <div class="fg-table-wrap">
+      <table class="fg-table">
+        <thead>
+          <tr>
+            <th>مفرد</th>
+            <th>جمع</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="fg-ltr-cell">français</td><td class="fg-ltr-cell">français</td></tr>
+          <tr><td class="fg-ltr-cell">roux</td><td class="fg-ltr-cell">roux</td></tr>
+          <tr><td class="fg-ltr-cell">heureux</td><td class="fg-ltr-cell">heureux</td></tr>
+          <tr><td class="fg-ltr-cell">doux</td><td class="fg-ltr-cell">doux</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+
+    <!-- eau -->
+
+    <h3 class="fg-subheading">
+      پایان
+      <span class="fg-fr">-eau → -eaux</span>
+    </h3>
+
+    <div class="fg-card-grid">
+      <div class="fg-card">
+        <h4><span class="fg-fr">beau → beaux</span></h4>
+      </div>
+
+      <div class="fg-card">
+        <h4><span class="fg-fr">nouveau → nouveaux</span></h4>
+      </div>
+    </div>
+
+
+    <!-- al -->
+
+    <h3 class="fg-subheading">
+      پایان
+      <span class="fg-fr">-al → -aux</span>
+    </h3>
+
+    <div class="fg-table-wrap">
+      <table class="fg-table">
+        <thead>
+          <tr>
+            <th>مفرد</th>
+            <th>جمع</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="fg-ltr-cell">original</td><td class="fg-ltr-cell">originaux</td></tr>
+          <tr><td class="fg-ltr-cell">régional</td><td class="fg-ltr-cell">régionaux</td></tr>
+          <tr><td class="fg-ltr-cell">sentimental</td><td class="fg-ltr-cell">sentimentaux</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="fg-callout fg-callout-warning">
+      <span class="fg-callout-title">
+        استثناهای مهم
+        <span class="fg-fr">-al</span>
+      </span>
+
+      برخی صفات به جای
+      <span class="fg-fr">-aux</span>
+      جمع
+      <span class="fg-fr">-als</span>
+      دارند:
+
+      <div style="margin-top:10px;">
+        <span class="fg-rule-chip">banal → banals</span>
+        <span class="fg-rule-chip">fatal → fatals</span>
+        <span class="fg-rule-chip">naval → navals</span>
+        <span class="fg-rule-chip">final → finals</span>
+      </div>
+    </div>
+
+
+    <!-- Feminine plural -->
+
+    <h3 class="fg-subheading">مؤنث جمع چگونه ساخته می‌شود؟</h3>
+
+    <p>
+      ابتدا شکل <strong>مؤنث مفرد</strong> را می‌سازیم و سپس
+      <span class="fg-code">s</span>
+      اضافه می‌کنیم.
+    </p>
+
+    <div class="fg-table-wrap">
+      <table class="fg-table">
+        <thead>
+          <tr>
+            <th>مذکر مفرد</th>
+            <th>مؤنث مفرد</th>
+            <th>مؤنث جمع</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="fg-ltr-cell">original</td>
+            <td class="fg-ltr-cell">originale</td>
+            <td class="fg-ltr-cell">originales</td>
+          </tr>
+          <tr>
+            <td class="fg-ltr-cell">sentimental</td>
+            <td class="fg-ltr-cell">sentimentale</td>
+            <td class="fg-ltr-cell">sentimentales</td>
+          </tr>
+          <tr>
+            <td class="fg-ltr-cell">régional</td>
+            <td class="fg-ltr-cell">régionale</td>
+            <td class="fg-ltr-cell">régionales</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="fg-wrong">
+      <span class="fg-fr">❌ Elles sont originaux.</span>
+    </div>
+
+    <div class="fg-correct">
+      <span class="fg-fr">✓ Elles sont originales.</span>
+    </div>
+  </section>
+
+
+  <!-- =========================================================
+       5. MIXED GROUP
+       ========================================================= -->
+
+  <section class="fg-section" id="fg-mixed">
+    <h2 class="fg-section-title">
+      ۵. گروه‌های مختلط
+    </h2>
+
+    <p>
+      وقتی صفت به چند نفر اشاره می‌کند، جنس اعضای گروه اهمیت دارد.
+    </p>
+
+    <div class="fg-table-wrap">
+      <table class="fg-table">
+        <thead>
+          <tr>
+            <th>گروه</th>
+            <th>شکل صفت</th>
+            <th>نمونه</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>چند مرد</td>
+            <td>مذکر جمع</td>
+            <td class="fg-ltr-cell">Paul et Marc sont blonds.</td>
+          </tr>
+          <tr>
+            <td>چند زن</td>
+            <td>مؤنث جمع</td>
+            <td class="fg-ltr-cell">Anne et Marie sont blondes.</td>
+          </tr>
+          <tr>
+            <td>مرد + زن</td>
+            <td>مذکر جمع</td>
+            <td class="fg-ltr-cell">Paul et Marie sont blonds.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="fg-callout fg-callout-danger">
+      <span class="fg-callout-title">دام بسیار مهم</span>
+      در دستور معیار فرانسه، حضور حداقل یک عضو مذکر در گروه باعث می‌شود
+      صفت به شکل <strong>مذکر جمع</strong> بیاید.
+    </div>
+
+    <div class="fg-example">
+      <span class="fg-example-label">مثال</span>
+      <span class="fg-fr-block">
+        Paul, Anne et Marie sont bruns et ils sont beaux.
+      </span>
+    </div>
+  </section>
+
+
+  <!-- =========================================================
+       6. COLORS
+       ========================================================= -->
+
+  <section class="fg-section" id="fg-colors">
+    <h2 class="fg-section-title">
+      ۶. صفات رنگ
+      <span class="fg-fr">— Les adjectifs de couleur</span>
+    </h2>
+
+    <h3 class="fg-subheading">الف) رنگ‌های ساده معمولاً تطابق دارند</h3>
+
+    <div class="fg-table-wrap">
+      <table class="fg-table">
+        <thead>
+          <tr>
+            <th>مذکر مفرد</th>
+            <th>مؤنث مفرد</th>
+            <th>مذکر جمع</th>
+            <th>مؤنث جمع</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="fg-ltr-cell">vert</td>
+            <td class="fg-ltr-cell">verte</td>
+            <td class="fg-ltr-cell">verts</td>
+            <td class="fg-ltr-cell">vertes</td>
+          </tr>
+          <tr>
+            <td class="fg-ltr-cell">bleu</td>
+            <td class="fg-ltr-cell">bleue</td>
+            <td class="fg-ltr-cell">bleus</td>
+            <td class="fg-ltr-cell">bleues</td>
+          </tr>
+          <tr>
+            <td class="fg-ltr-cell">noir</td>
+            <td class="fg-ltr-cell">noire</td>
+            <td class="fg-ltr-cell">noirs</td>
+            <td class="fg-ltr-cell">noires</td>
+          </tr>
+          <tr>
+            <td class="fg-ltr-cell">blanc</td>
+            <td class="fg-ltr-cell">blanche</td>
+            <td class="fg-ltr-cell">blancs</td>
+            <td class="fg-ltr-cell">blanches</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="fg-example">
+      <span class="fg-example-label">مثال</span>
+      <span class="fg-fr-block">une veste verte</span>
+      <span class="fg-fr-block">des vestes vertes</span>
+    </div>
+
+
+    <h3 class="fg-subheading">
+      ب) رنگ‌هایی که از نام اشیا آمده‌اند معمولاً ثابت‌اند
+    </h3>
+
+    <p>
+      رنگ‌هایی مانند:
+    </p>
+
+    <div>
+      <span class="fg-rule-chip">orange</span>
+      <span class="fg-rule-chip">marron</span>
+      <span class="fg-rule-chip">noisette</span>
+    </div>
+
+    <div class="fg-example">
+      <span class="fg-example-label">نمونه‌ها</span>
+      <span class="fg-fr-block">une robe orange</span>
+      <span class="fg-fr-block">des robes orange</span>
+      <span class="fg-fr-block">un sac marron</span>
+      <span class="fg-fr-block">des sacs marron</span>
+      <span class="fg-fr-block">des yeux noisette</span>
+    </div>
+
+    <div class="fg-wrong">
+      <span class="fg-fr">❌ des sacs marrons</span>
+    </div>
+
+    <div class="fg-correct">
+      <span class="fg-fr">✓ des sacs marron</span>
+    </div>
+
+
+    <h3 class="fg-subheading">ج) رنگ‌های مرکب معمولاً تغییر نمی‌کنند</h3>
+
+    <p>
+      وقتی رنگ از چند کلمه تشکیل شده باشد، کل ترکیب معمولاً ثابت می‌ماند.
+    </p>
+
+    <div>
+      <span class="fg-rule-chip">vert foncé</span>
+      <span class="fg-rule-chip">bleu marine</span>
+      <span class="fg-rule-chip">gris clair</span>
+      <span class="fg-rule-chip">bleu ciel</span>
+    </div>
+
+    <div class="fg-example">
+      <span class="fg-example-label">مثال</span>
+      <span class="fg-fr-block">une veste vert foncé</span>
+      <span class="fg-fr-block">des vestes vert foncé</span>
+      <span class="fg-fr-block">des pulls bleu marine</span>
+      <span class="fg-fr-block">des yeux gris clair</span>
+    </div>
+
+    <div class="fg-wrong">
+      <span class="fg-fr">❌ des vestes vertes foncées</span>
+    </div>
+
+    <div class="fg-correct">
+      <span class="fg-fr">✓ des vestes vert foncé</span>
+    </div>
+
+
+    <h3 class="fg-subheading">
+      د) چند رنگ استثنایی که تطابق پیدا می‌کنند
+    </h3>
+
+    <div class="fg-callout fg-callout-warning">
+      <span class="fg-callout-title">استثناهای مهم این درس</span>
+
+      <div>
+        <span class="fg-rule-chip">rose</span>
+        <span class="fg-rule-chip">mauve</span>
+        <span class="fg-rule-chip">violet / violette</span>
+        <span class="fg-rule-chip">châtain</span>
+      </div>
+    </div>
+
+    <div class="fg-example">
+      <span class="fg-example-label">مثال</span>
+      <span class="fg-fr-block">des robes roses</span>
+      <span class="fg-fr-block">des chemises violettes</span>
+      <span class="fg-fr-block">des cheveux châtains</span>
+    </div>
+  </section>
+
+
+  <!-- =========================================================
+       7. SUBJECT PRONOUN AGREEMENT
+       ========================================================= -->
+
+  <section class="fg-section" id="fg-pronouns">
+    <h2 class="fg-section-title">
+      ۷. تطابق صفت با ضمیرهای فاعلی
+    </h2>
+
+    <h3 class="fg-subheading">
+      <span class="fg-fr">je</span>
+      و
+      <span class="fg-fr">tu</span>
+    </h3>
+
+    <p>
+      شکل صفت براساس جنسیت شخص واقعی انتخاب می‌شود.
+    </p>
+
+    <div class="fg-card-grid">
+      <div class="fg-card">
+        <h4>گوینده یا مخاطب مرد</h4>
+        <span class="fg-fr-block">Je suis étudiant.</span>
+        <span class="fg-fr-block">Tu es étudiant.</span>
+        <span class="fg-fr-block">Je suis fatigué.</span>
+      </div>
+
+      <div class="fg-card">
+        <h4>گوینده یا مخاطب زن</h4>
+        <span class="fg-fr-block">Je suis étudiante.</span>
+        <span class="fg-fr-block">Tu es étudiante.</span>
+        <span class="fg-fr-block">Je suis fatiguée.</span>
+      </div>
+    </div>
+
+
+    <!-- vous polite -->
+
+    <h3 class="fg-subheading">
+      <span class="fg-fr">vous</span>
+      مؤدبانه برای یک نفر
+    </h3>
+
+    <div class="fg-callout fg-callout-danger">
+      <span class="fg-callout-title">یکی از مهم‌ترین دام‌های درس</span>
+      اگر
+      <span class="fg-fr">vous</span>
+      برای خطاب مؤدبانه به <strong>یک نفر</strong> باشد،
+      صفت همچنان <strong>مفرد</strong> است.
+    </div>
+
+    <div class="fg-example">
+      <span class="fg-example-label">یک مرد</span>
+      <span class="fg-fr-block">Vous êtes prêt, monsieur ?</span>
+    </div>
+
+    <div class="fg-example">
+      <span class="fg-example-label">یک زن</span>
+      <span class="fg-fr-block">Vous êtes prête, madame ?</span>
+    </div>
+
+
+    <!-- vous plural -->
+
+    <h3 class="fg-subheading">
+      <span class="fg-fr">vous</span>
+      برای چند نفر
+    </h3>
+
+    <div class="fg-table-wrap">
+      <table class="fg-table">
+        <thead>
+          <tr>
+            <th>مخاطب</th>
+            <th>نمونه</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>چند مرد</td>
+            <td class="fg-ltr-cell">Vous êtes prêts, messieurs ?</td>
+          </tr>
+          <tr>
+            <td>چند زن</td>
+            <td class="fg-ltr-cell">Vous êtes prêtes, mesdames ?</td>
+          </tr>
+          <tr>
+            <td>گروه مختلط</td>
+            <td class="fg-ltr-cell">Vous êtes prêts, Paul et Marie ?</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+
+  <!-- =========================================================
+       8. ON
+       ========================================================= -->
+
+  <section class="fg-section" id="fg-on">
+    <h2 class="fg-section-title">
+      ۸. کاربردهای مختلف
+      <span class="fg-fr">on</span>
+    </h2>
+
+    <p>
+      برای انتخاب شکل درست صفت با
+      <span class="fg-fr">on</span>
+      باید بفهمیم
+      <strong>on در آن جمله به چه کسی یا چه کسانی اشاره می‌کند.</strong>
+    </p>
+
+
+    <!-- General on -->
+
+    <h3 class="fg-subheading">
+      حالت اول:
+      <span class="fg-fr">on = les gens / tout le monde</span>
+    </h3>
+
+    <p>
+      اگر
+      <span class="fg-fr">on</span>
+      به معنی «آدم»، «مردم» یا «انسان به‌طور کلی» باشد،
+      صفت معمولاً به شکل مذکر مفرد می‌آید.
+    </p>
+
+    <div class="fg-example">
+      <span class="fg-example-label">مثال</span>
+      <span class="fg-fr-block">En France, on est gourmand.</span>
+      <span class="fg-fr-block">Quand on est malade, on est fatigué.</span>
+    </div>
+
+
+    <!-- on = nous -->
+
+    <h3 class="fg-subheading">
+      حالت دوم:
+      <span class="fg-fr">on = nous</span>
+    </h3>
+
+    <p>
+      در زبان گفتاری،
+      <span class="fg-fr">on</span>
+      بسیار زیاد جای
+      <span class="fg-fr">nous</span>
+      را می‌گیرد.
+    </p>
+
+    <div class="fg-callout fg-callout-purple">
+      <span class="fg-callout-title">قانون بسیار مهم</span>
+
+      با
+      <span class="fg-fr">on</span>
+      فعل همیشه سوم‌شخص مفرد باقی می‌ماند:
+
+      <span class="fg-fr">on est</span>
+
+      اما صفت می‌تواند براساس افراد واقعی
+      <strong>جمع</strong>
+      شود.
+    </div>
+
+    <div class="fg-example">
+      <span class="fg-example-label">چند مرد / گروه مختلط</span>
+      <span class="fg-fr-block">Paul et moi, on est gourmands.</span>
+      <span class="fg-fr-block">Ugo et moi, on est grands et blonds.</span>
+    </div>
+
+    <div class="fg-example">
+      <span class="fg-example-label">چند زن</span>
+      <span class="fg-fr-block">Anne et moi, on est fatiguées.</span>
+      <span class="fg-fr-block">Patricia et moi, on est grandes et blondes.</span>
+    </div>
+
+    <div class="fg-correct">
+      <span class="fg-fr">✓ On est fatigués.</span>
+    </div>
+
+    <div class="fg-wrong">
+      <span class="fg-fr">❌ On sont fatigués.</span>
+    </div>
+
+
+    <!-- Specific person -->
+
+    <h3 class="fg-subheading">
+      حالت سوم:
+      <span class="fg-fr">on</span>
+      با مرجع مشخص
+    </h3>
+
+    <p>
+      اگر مرجع از context مشخص باشد، صفت با شخص واقعی هماهنگ می‌شود.
+    </p>
+
+    <div class="fg-card-grid">
+      <div class="fg-card">
+        <h4>مرجع مرد</h4>
+        <span class="fg-fr-block">
+          Quand on est sportif, on est musclé.
+        </span>
+      </div>
+
+      <div class="fg-card">
+        <h4>مرجع زن</h4>
+        <span class="fg-fr-block">
+          Quand on est sportive, on est musclée.
+        </span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =========================================================
+       9. COMMON TRAPS
+       ========================================================= -->
+
+  <section class="fg-section">
+    <h2 class="fg-section-title">
+      ۹. اشتباهات رایج و دام‌های امتحانی
+    </h2>
+
+    <ol class="fg-number-list">
+      <li>
+        فراموش کردن دو
+        <span class="fg-fr">l</span>
+        در
+        <span class="fg-fr">gentil → gentille</span>.
+      </li>
+
+      <li>
+        نوشتن
+        <span class="fg-fr">fraise</span>
+        به جای
+        <span class="fg-fr">fraîche</span>.
+      </li>
+
+      <li>
+        تطابق دادن
+        <span class="fg-fr">marron</span>
+        و رنگ‌های مرکب، در حالی که در کاربرد رنگی مورد نظر این درس ثابت‌اند.
+      </li>
+
+      <li>
+        فراموش کردن این‌که
+        <span class="fg-fr">rose</span>
+        از موارد توافق‌پذیر است:
+        <span class="fg-fr">des chemises roses</span>.
+      </li>
+
+      <li>
+        مؤنث کردن گروه مختلط:
+        <span class="fg-fr">Paul et Marie sont fatigués</span>
+        نه
+        <span class="fg-fr">fatiguées</span>.
+      </li>
+
+      <li>
+        جمع کردن صفت با
+        <span class="fg-fr">vous</span>
+        مؤدبانه برای یک فرد:
+        <span class="fg-fr">Vous êtes prête, madame ?</span>
+      </li>
+
+      <li>
+        صرف کردن فعل
+        <span class="fg-fr">on</span>
+        به صورت جمع:
+        درست
+        <span class="fg-fr">on est</span>
+        است، نه
+        <span class="fg-fr">on sont</span>.
+      </li>
+
+      <li>
+        نوشتن ملیت با حرف بزرگ وقتی نقش صفت دارد:
+        <span class="fg-fr">Elle est canadienne.</span>
+      </li>
+    </ol>
+  </section>
+
+
+  <!-- =========================================================
+       FINAL SUMMARY
+       ========================================================= -->
+
+  <section class="fg-summary" id="fg-summary">
+    <h2>خلاصه نهایی درس دوم</h2>
+
+    <p>
+      برای هر صفت، ابتدا چهار شکل اصلی را در ذهن بررسی کن:
+    </p>
+
+    <div class="fg-table-wrap">
+      <table class="fg-table">
+        <thead>
+          <tr>
+            <th>مذکر مفرد</th>
+            <th>مؤنث مفرد</th>
+            <th>مذکر جمع</th>
+            <th>مؤنث جمع</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="fg-ltr-cell">grand</td>
+            <td class="fg-ltr-cell">grande</td>
+            <td class="fg-ltr-cell">grands</td>
+            <td class="fg-ltr-cell">grandes</td>
+          </tr>
+          <tr>
+            <td class="fg-ltr-cell">sérieux</td>
+            <td class="fg-ltr-cell">sérieuse</td>
+            <td class="fg-ltr-cell">sérieux</td>
+            <td class="fg-ltr-cell">sérieuses</td>
+          </tr>
+          <tr>
+            <td class="fg-ltr-cell">beau</td>
+            <td class="fg-ltr-cell">belle</td>
+            <td class="fg-ltr-cell">beaux</td>
+            <td class="fg-ltr-cell">belles</td>
+          </tr>
+          <tr>
+            <td class="fg-ltr-cell">original</td>
+            <td class="fg-ltr-cell">originale</td>
+            <td class="fg-ltr-cell">originaux</td>
+            <td class="fg-ltr-cell">originales</td>
+          </tr>
+          <tr>
+            <td class="fg-ltr-cell">italien</td>
+            <td class="fg-ltr-cell">italienne</td>
+            <td class="fg-ltr-cell">italiens</td>
+            <td class="fg-ltr-cell">italiennes</td>
+          </tr>
+          <tr>
+            <td class="fg-ltr-cell">sportif</td>
+            <td class="fg-ltr-cell">sportive</td>
+            <td class="fg-ltr-cell">sportifs</td>
+            <td class="fg-ltr-cell">sportives</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p><strong>۸ قاعده‌ای که باید حتماً به خاطر بسپاری:</strong></p>
+
+    <ol class="fg-number-list">
+      <li>
+        مؤنث معمولاً با
+        <span class="fg-fr">-e</span>
+        ساخته می‌شود.
+      </li>
+
+      <li>
+        جمع معمولاً با
+        <span class="fg-fr">-s</span>
+        ساخته می‌شود.
+      </li>
+
+      <li>
+        صفت باید هم از نظر <strong>جنس</strong> و هم از نظر
+        <strong>شمار</strong> با مرجع خود هماهنگ شود.
+      </li>
+
+      <li>
+        گروه مختلط در دستور معیار، صفت
+        <strong>مذکر جمع</strong>
+        می‌گیرد.
+      </li>
+
+      <li>
+        رنگ‌های برگرفته از اسم مانند
+        <span class="fg-fr">marron</span>
+        و
+        <span class="fg-fr">orange</span>
+        معمولاً ثابت می‌مانند.
+      </li>
+
+      <li>
+        رنگ‌های مرکب مانند
+        <span class="fg-fr">vert foncé</span>
+        و
+        <span class="fg-fr">bleu marine</span>
+        معمولاً ثابت‌اند.
+      </li>
+
+      <li>
+        <span class="fg-fr">vous</span>
+        مؤدبانه برای یک نفر، صفت مفرد می‌گیرد.
+      </li>
+
+      <li>
+        با
+        <span class="fg-fr">on = nous</span>
+        فعل مفرد است اما صفت می‌تواند جمع باشد:
+        <span class="fg-fr">On est fatigués.</span>
+      </li>
+    </ol>
+  </section>
+
+</div>

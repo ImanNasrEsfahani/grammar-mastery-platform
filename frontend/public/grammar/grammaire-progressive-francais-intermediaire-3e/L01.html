@@ -1,0 +1,1421 @@
+<div class="french-grammar-wrapper fg-lesson-etre" dir="rtl">
+
+  <style scoped>
+    /* =========================================================
+       French Grammar Lesson — Scoped / Isolated Styles
+       Prefix: fg-
+       ========================================================= */
+
+    .fg-lesson-etre {
+      --fg-navy: #173b67;
+      --fg-blue: #245a92;
+      --fg-blue-soft: #eef5fb;
+      --fg-blue-border: #c9dced;
+
+      --fg-green: #157347;
+      --fg-green-bg: #eef9f3;
+      --fg-green-border: #b7dfc8;
+
+      --fg-red: #b42318;
+      --fg-red-bg: #fff1f0;
+      --fg-red-border: #f3b9b4;
+
+      --fg-orange: #b45309;
+      --fg-orange-bg: #fff7e8;
+      --fg-orange-border: #f4d098;
+
+      --fg-purple: #6941c6;
+      --fg-purple-bg: #f5f1ff;
+
+      --fg-text: #243447;
+      --fg-muted: #65758b;
+      --fg-border: #dce5ee;
+      --fg-bg: #f6f8fb;
+      --fg-card: #ffffff;
+
+      --fg-radius: 16px;
+      --fg-shadow: 0 6px 24px rgba(23, 59, 103, 0.08);
+
+      box-sizing: border-box;
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 18px;
+      background: var(--fg-bg);
+      color: var(--fg-text);
+      font-family:
+        "Vazirmatn",
+        "IRANSansX",
+        "Tahoma",
+        "Arial",
+        sans-serif;
+      line-height: 1.95;
+      direction: rtl;
+      text-align: right;
+    }
+
+    .fg-lesson-etre *,
+    .fg-lesson-etre *::before,
+    .fg-lesson-etre *::after {
+      box-sizing: border-box;
+    }
+
+    .fg-lesson-etre .fg-fr,
+    .fg-lesson-etre [lang="fr"] {
+      direction: ltr;
+      unicode-bidi: isolate;
+      text-align: left;
+      font-family:
+        "Inter",
+        "Segoe UI",
+        "Arial",
+        sans-serif;
+    }
+
+    .fg-lesson-etre .fg-inline-fr {
+      direction: ltr;
+      unicode-bidi: isolate;
+      display: inline-block;
+      text-align: left;
+      font-family:
+        "Inter",
+        "Segoe UI",
+        "Arial",
+        sans-serif;
+    }
+
+    .fg-lesson-etre .fg-hero {
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, #173b67 0%, #245a92 60%, #3377b8 100%);
+      color: #fff;
+      border-radius: 22px;
+      padding: 30px;
+      margin-bottom: 22px;
+      box-shadow: var(--fg-shadow);
+    }
+
+    .fg-lesson-etre .fg-hero::after {
+      content: "ÊTRE";
+      position: absolute;
+      left: 24px;
+      bottom: -20px;
+      font-size: 94px;
+      font-weight: 800;
+      opacity: 0.07;
+      direction: ltr;
+    }
+
+    .fg-lesson-etre .fg-lesson-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.24);
+      border-radius: 999px;
+      padding: 5px 12px;
+      font-size: 0.85rem;
+      margin-bottom: 10px;
+    }
+
+    .fg-lesson-etre .fg-hero h2 {
+      margin: 0 0 10px;
+      color: #fff;
+      font-size: clamp(1.65rem, 4vw, 2.45rem);
+      line-height: 1.45;
+    }
+
+    .fg-lesson-etre .fg-hero p {
+      margin: 0;
+      max-width: 800px;
+      color: #eaf3ff;
+    }
+
+    .fg-lesson-etre .fg-card {
+      background: var(--fg-card);
+      border: 1px solid var(--fg-border);
+      border-radius: var(--fg-radius);
+      padding: 22px;
+      margin: 18px 0;
+      box-shadow: var(--fg-shadow);
+    }
+
+    .fg-lesson-etre .fg-card h3 {
+      color: var(--fg-navy);
+      margin: 0 0 15px;
+      font-size: 1.28rem;
+      line-height: 1.6;
+    }
+
+    .fg-lesson-etre .fg-card h4 {
+      color: var(--fg-blue);
+      margin: 22px 0 10px;
+      font-size: 1.05rem;
+    }
+
+    .fg-lesson-etre .fg-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 9px;
+      background: var(--fg-navy);
+      color: white;
+      margin-left: 8px;
+      font-size: 0.9rem;
+      vertical-align: middle;
+    }
+
+    .fg-lesson-etre .fg-callout {
+      border-radius: 13px;
+      padding: 15px 17px;
+      margin: 16px 0;
+      border: 1px solid;
+    }
+
+    .fg-lesson-etre .fg-callout strong:first-child {
+      display: inline-block;
+      margin-bottom: 4px;
+    }
+
+    .fg-lesson-etre .fg-note {
+      background: var(--fg-blue-soft);
+      border-color: var(--fg-blue-border);
+      color: #25496c;
+    }
+
+    .fg-lesson-etre .fg-success {
+      background: var(--fg-green-bg);
+      border-color: var(--fg-green-border);
+      color: #175b3e;
+    }
+
+    .fg-lesson-etre .fg-warning {
+      background: var(--fg-orange-bg);
+      border-color: var(--fg-orange-border);
+      color: #7c4005;
+    }
+
+    .fg-lesson-etre .fg-error {
+      background: var(--fg-red-bg);
+      border-color: var(--fg-red-border);
+      color: #8f2119;
+    }
+
+    .fg-lesson-etre .fg-rule {
+      background: var(--fg-purple-bg);
+      border: 1px solid #d9cdfb;
+      border-radius: 12px;
+      padding: 16px;
+      margin: 14px 0;
+    }
+
+    .fg-lesson-etre .fg-formula {
+      display: block;
+      width: fit-content;
+      max-width: 100%;
+      direction: ltr;
+      text-align: left;
+      margin: 12px auto;
+      padding: 10px 18px;
+      border-radius: 10px;
+      background: #f3f6fa;
+      border: 1px dashed #9fb5ca;
+      font-family: "Consolas", "Courier New", monospace;
+      font-size: 1rem;
+      overflow-wrap: anywhere;
+    }
+
+    .fg-lesson-etre .fg-example {
+      margin: 12px 0;
+      padding: 13px 15px;
+      border-right: 4px solid var(--fg-green);
+      background: var(--fg-green-bg);
+      border-radius: 10px;
+    }
+
+    .fg-lesson-etre .fg-example .fg-fr {
+      display: block;
+      color: #155d41;
+      font-weight: 650;
+      margin-bottom: 4px;
+    }
+
+    .fg-lesson-etre .fg-translation {
+      color: var(--fg-muted);
+      font-size: 0.94rem;
+    }
+
+    .fg-lesson-etre .fg-table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      margin: 16px 0;
+      border-radius: 12px;
+      border: 1px solid var(--fg-border);
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .fg-lesson-etre table.fg-table {
+      width: 100%;
+      min-width: 560px;
+      border-collapse: collapse;
+      background: #fff;
+      direction: rtl;
+      text-align: right;
+    }
+
+    .fg-lesson-etre .fg-table th,
+    .fg-lesson-etre .fg-table td {
+      border: 1px solid var(--fg-border);
+      padding: 11px 13px;
+      vertical-align: middle;
+    }
+
+    .fg-lesson-etre .fg-table th {
+      background: var(--fg-navy);
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .fg-lesson-etre .fg-table tbody tr:nth-child(even) {
+      background: #f7fafc;
+    }
+
+    .fg-lesson-etre .fg-table tbody tr:hover {
+      background: #eef5fb;
+    }
+
+    .fg-lesson-etre .fg-table .fg-fr-cell {
+      direction: ltr;
+      unicode-bidi: isolate;
+      text-align: left;
+      font-family: "Inter", "Segoe UI", Arial, sans-serif;
+    }
+
+    .fg-lesson-etre .fg-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin: 15px 0;
+    }
+
+    .fg-lesson-etre .fg-mini-card {
+      border: 1px solid var(--fg-border);
+      border-radius: 13px;
+      padding: 15px;
+      background: #fff;
+    }
+
+    .fg-lesson-etre .fg-mini-card strong {
+      color: var(--fg-navy);
+    }
+
+    .fg-lesson-etre .fg-comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 15px 0;
+    }
+
+    .fg-lesson-etre .fg-comparison > div {
+      padding: 16px;
+      border-radius: 12px;
+      border: 1px solid var(--fg-border);
+    }
+
+    .fg-lesson-etre .fg-correct {
+      background: var(--fg-green-bg);
+      border-color: var(--fg-green-border) !important;
+    }
+
+    .fg-lesson-etre .fg-wrong {
+      background: var(--fg-red-bg);
+      border-color: var(--fg-red-border) !important;
+    }
+
+    .fg-lesson-etre .fg-badge {
+      display: inline-block;
+      border-radius: 999px;
+      padding: 3px 9px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      margin: 2px;
+    }
+
+    .fg-lesson-etre .fg-badge-blue {
+      background: #dfeeff;
+      color: #174e82;
+    }
+
+    .fg-lesson-etre .fg-badge-green {
+      background: #dff5e9;
+      color: #176342;
+    }
+
+    .fg-lesson-etre .fg-badge-orange {
+      background: #ffedcc;
+      color: #8a4a00;
+    }
+
+    .fg-lesson-etre .fg-separator {
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        var(--fg-border),
+        transparent
+      );
+      margin: 24px 0;
+    }
+
+    .fg-lesson-etre .fg-list {
+      margin: 10px 0;
+      padding-right: 22px;
+    }
+
+    .fg-lesson-etre .fg-list li {
+      margin: 7px 0;
+    }
+
+    .fg-lesson-etre .fg-summary {
+      border: 2px solid var(--fg-blue);
+      background: linear-gradient(180deg, #f5faff, #ffffff);
+    }
+
+    .fg-lesson-etre .fg-summary-line {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 9px 0;
+      border-bottom: 1px dashed #d9e4ef;
+    }
+
+    .fg-lesson-etre .fg-summary-line:last-child {
+      border-bottom: 0;
+    }
+
+    .fg-lesson-etre .fg-summary-line .fg-fr {
+      min-width: 220px;
+      font-weight: 700;
+      color: var(--fg-navy);
+    }
+
+    .fg-lesson-etre .fg-on-nous-box {
+      border-right: 5px solid var(--fg-purple);
+      background: #faf8ff;
+      padding: 16px;
+      border-radius: 12px;
+      margin: 14px 0;
+    }
+
+    .fg-lesson-etre .fg-small {
+      font-size: 0.9rem;
+      color: var(--fg-muted);
+    }
+
+    @media (max-width: 760px) {
+      .fg-lesson-etre {
+        padding: 10px;
+        font-size: 0.97rem;
+      }
+
+      .fg-lesson-etre .fg-hero {
+        padding: 22px 18px;
+        border-radius: 16px;
+      }
+
+      .fg-lesson-etre .fg-card {
+        padding: 17px 14px;
+      }
+
+      .fg-lesson-etre .fg-grid,
+      .fg-lesson-etre .fg-comparison {
+        grid-template-columns: 1fr;
+      }
+
+      .fg-lesson-etre .fg-summary-line {
+        flex-direction: column;
+        gap: 3px;
+      }
+
+      .fg-lesson-etre .fg-summary-line .fg-fr {
+        min-width: 0;
+      }
+
+      .fg-lesson-etre table.fg-table {
+        min-width: 520px;
+        font-size: 0.9rem;
+      }
+
+      .fg-lesson-etre .fg-table th,
+      .fg-lesson-etre .fg-table td {
+        padding: 9px 10px;
+      }
+
+      .fg-lesson-etre .fg-hero::after {
+        font-size: 64px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .fg-lesson-etre table.fg-table {
+        min-width: 470px;
+      }
+
+      .fg-lesson-etre .fg-formula {
+        width: 100%;
+      }
+    }
+  </style>
+
+
+  <!-- =========================================================
+       HERO
+       ========================================================= -->
+
+  <section class="fg-hero">
+    <div class="fg-lesson-label">
+      درس ۱
+      <span aria-hidden="true">•</span>
+      Grammaire française
+    </div>
+
+    <h2>
+      فعل
+      <span class="fg-inline-fr" lang="fr">ÊTRE</span>
+      — «بودن»
+    </h2>
+
+    <p>
+      در این درس با صرف فعل
+      <span class="fg-inline-fr" lang="fr">être</span>،
+      ضمایر فاعلی، کاربردهای پایهٔ آن، تفاوت
+      <span class="fg-inline-fr" lang="fr">nous / on</span>،
+      و ساخت‌های مهم مکانی مانند
+      <span class="fg-inline-fr" lang="fr">à, de, chez</span>
+      آشنا می‌شویم.
+    </p>
+  </section>
+
+
+  <!-- =========================================================
+       1. BASIC STRUCTURE
+       ========================================================= -->
+
+  <section class="fg-card">
+    <h3>
+      <span class="fg-number">۱</span>
+      ساختار پایهٔ جمله با
+      <span class="fg-inline-fr" lang="fr">être</span>
+    </h3>
+
+    <p>
+      فعل
+      <span class="fg-inline-fr" lang="fr">être</span>
+      تقریباً معادل «بودن / هستن» در فارسی است.
+      در فرانسه برخلاف فارسی معمولاً ضمیر یا فاعل را نمی‌توان حذف کرد.
+    </p>
+
+    <div class="fg-formula">
+      Sujet + être + information sur le sujet
+    </div>
+
+    <div class="fg-example">
+      <span class="fg-fr" lang="fr">Je suis français.</span>
+      <div class="fg-translation">من فرانسوی هستم.</div>
+    </div>
+
+    <div class="fg-example">
+      <span class="fg-fr" lang="fr">Marie est à Paris.</span>
+      <div class="fg-translation">ماری در پاریس است.</div>
+    </div>
+
+    <div class="fg-example">
+      <span class="fg-fr" lang="fr">Nous sommes en vacances.</span>
+      <div class="fg-translation">ما در تعطیلات هستیم.</div>
+    </div>
+
+    <div class="fg-comparison">
+      <div class="fg-wrong">
+        <strong>✗ نادرست</strong>
+        <span class="fg-fr" lang="fr">Suis français.</span>
+      </div>
+
+      <div class="fg-correct">
+        <strong>✓ درست</strong>
+        <span class="fg-fr" lang="fr">Je suis français.</span>
+      </div>
+    </div>
+
+    <div class="fg-callout fg-note">
+      <strong>نکته:</strong>
+      در فرانسه ضمیر فاعلی بخش مهم ساخت جمله است و معمولاً حذف نمی‌شود.
+    </div>
+  </section>
+
+
+  <!-- =========================================================
+       2. CONJUGATION
+       ========================================================= -->
+
+  <section class="fg-card">
+    <h3>
+      <span class="fg-number">۲</span>
+      صرف فعل
+      <span class="fg-inline-fr" lang="fr">être</span>
+      در زمان حال
+    </h3>
+
+    <div class="fg-table-wrap">
+      <table class="fg-table">
+        <thead>
+          <tr>
+            <th>ضمیر</th>
+            <th>صرف فعل</th>
+            <th>معنی</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td class="fg-fr-cell">Je</td>
+            <td class="fg-fr-cell"><strong>suis</strong></td>
+            <td>من هستم</td>
+          </tr>
+          <tr>
+            <td class="fg-fr-cell">Tu</td>
+            <td class="fg-fr-cell"><strong>es</strong></td>
+            <td>تو هستی</td>
+          </tr>
+          <tr>
+            <td class="fg-fr-cell">Il</td>
+            <td class="fg-fr-cell"><strong>est</strong></td>
+            <td>او / آن مذکر است</td>
+          </tr>
+          <tr>
+            <td class="fg-fr-cell">Elle</td>
+            <td class="fg-fr-cell"><strong>est</strong></td>
+            <td>او / آن مؤنث است</td>
+          </tr>
+          <tr>
+            <td class="fg-fr-cell">On</td>
+            <td class="fg-fr-cell"><strong>est</strong></td>
+            <td>ما / آدم / مردم</td>
+          </tr>
+          <tr>
+            <td class="fg-fr-cell">Nous</td>
+            <td class="fg-fr-cell"><strong>sommes</strong></td>
+            <td>ما هستیم</td>
+          </tr>
+          <tr>
+            <td class="fg-fr-cell">Vous</td>
+            <td class="fg-fr-cell"><strong>êtes</strong></td>
+            <td>شما هستید</td>
+          </tr>
+          <tr>
+            <td class="fg-fr-cell">Ils</td>
+            <td class="fg-fr-cell"><strong>sont</strong></td>
+            <td>آن‌ها مذکر / مختلط هستند</td>
+          </tr>
+          <tr>
+            <td class="fg-fr-cell">Elles</td>
+            <td class="fg-fr-cell"><strong>sont</strong></td>
+            <td>آن‌ها مؤنث هستند</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="fg-rule">
+      <strong>برای حفظ‌کردن با ریتم بخوانید:</strong>
+      <div class="fg-formula">
+        Je suis — Tu es — Il est — Nous sommes — Vous êtes — Ils sont
+      </div>
+    </div>
+
+    <div class="fg-callout fg-warning">
+      <strong>اشتباه رایج:</strong>
+      <span class="fg-inline-fr">on</span>
+      با اینکه اغلب معنی «ما» می‌دهد، همیشه فعل سوم‌شخص مفرد می‌گیرد:
+      <span class="fg-inline-fr">On est</span>،
+      نه
+      <span class="fg-inline-fr">On sommes</span>.
+    </div>
+  </section>
+
+
+  <!-- =========================================================
+       3. SUBJECT PRONOUNS
+       ========================================================= -->
+
+  <section class="fg-card">
+    <h3>
+      <span class="fg-number">۳</span>
+      ضمایر فاعلی
+    </h3>
+
+    <div class="fg-grid">
+      <div class="fg-mini-card">
+        <strong class="fg-fr" lang="fr">Je</strong>
+        برای شخص گوینده.
+        <div class="fg-example">
+          <span class="fg-fr">Je suis informaticien.</span>
+          <div class="fg-translation">من متخصص کامپیوتر هستم.</div>
+        </div>
+      </div>
+
+      <div class="fg-mini-card">
+        <strong class="fg-fr" lang="fr">Tu</strong>
+        برای یک نفر در رابطهٔ دوستانه، خانوادگی یا صمیمی.
+        <div class="fg-example">
+          <span class="fg-fr">Tu es prêt ?</span>
+          <div class="fg-translation">آماده‌ای؟</div>
+        </div>
+      </div>
+
+      <div class="fg-mini-card">
+        <strong class="fg-fr" lang="fr">Vous</strong>
+        برای خطاب محترمانه به یک نفر یا خطاب به چند نفر.
+        <div class="fg-example">
+          <span class="fg-fr">Vous êtes prêt, monsieur ?</span>
+          <div class="fg-translation">آقا، آماده‌اید؟</div>
+        </div>
+      </div>
+
+      <div class="fg-mini-card">
+        <strong class="fg-fr" lang="fr">Il / Elle</strong>
+        برای انسان و همچنین اسم‌های مذکر یا مؤنث.
+        <div class="fg-example">
+          <span class="fg-fr">La salle est grande. Elle est grande.</span>
+          <div class="fg-translation">سالن بزرگ است. آن بزرگ است.</div>
+        </div>
+      </div>
+
+      <div class="fg-mini-card">
+        <strong class="fg-fr" lang="fr">Ils</strong>
+        برای گروه مذکر یا گروه مختلط.
+        <div class="fg-example">
+          <span class="fg-fr">Paul et Marie sont français. Ils sont français.</span>
+        </div>
+      </div>
+
+      <div class="fg-mini-card">
+        <strong class="fg-fr" lang="fr">Elles</strong>
+        فقط برای گروه کاملاً مؤنث.
+        <div class="fg-example">
+          <span class="fg-fr">Marie et Julie sont françaises. Elles sont françaises.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="fg-callout fg-note">
+      <strong>قاعدهٔ مهم:</strong>
+      اگر در یک گروه حتی یک عضو مذکر وجود داشته باشد، ضمیر گروه معمولاً
+      <span class="fg-inline-fr">ils</span>
+      است.
+    </div>
+  </section>
+
+
+  <!-- =========================================================
+       4. ON VS NOUS
+       ========================================================= -->
+
+  <section class="fg-card">
+    <h3>
+      <span class="fg-number">۴</span>
+      تفاوت
+      <span class="fg-inline-fr">Nous</span>
+      و
+      <span class="fg-inline-fr">On</span>
+    </h3>
+
+    <p>
+      هر دو می‌توانند معنی «ما» بدهند، اما کاربرد و لحن آن‌ها یکسان نیست.
+    </p>
+
+    <div class="fg-table-wrap">
+      <table class="fg-table">
+        <thead>
+          <tr>
+            <th>ساخت</th>
+            <th>کاربرد معمول</th>
+            <th>مثال</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="fg-fr-cell">Nous</td>
+            <td>رسمی‌تر، نوشتاری‌تر، تأکید مستقیم بر «ما»</td>
+            <td class="fg-fr-cell">Nous sommes à Cannes.</td>
+          </tr>
+          <tr>
+            <td class="fg-fr-cell">On</td>
+            <td>بسیار رایج در گفت‌وگوی روزمره و پیام دوستانه</td>
+            <td class="fg-fr-cell">On est à Cannes.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="fg-on-nous-box">
+      <span class="fg-fr">Jean et moi, nous sommes à Cannes.</span>
+      <div class="fg-translation">
+        ساخت واضح و نسبتاً استاندارد: «ژان و من، ما در کن هستیم.»
+      </div>
+    </div>
+
+    <div class="fg-on-nous-box">
+      <span class="fg-fr">Jean et moi, on est à Cannes.</span>
+      <div class="fg-translation">
+        همان معنی، اما گفتاری‌تر و خودمانی‌تر.
+      </div>
+    </div>
+
+    <h4>
+      <span class="fg-inline-fr">On</span>
+      گاهی اصلاً معنی «ما» ندارد
+    </h4>
+
+    <div class="fg-example">
+      <span class="fg-fr">Quand on est en vacances, on est toujours en forme.</span>
+      <div class="fg-translation">
+        وقتی آدم در تعطیلات است، معمولاً سرحال است.
+      </div>
+    </div>
+
+    <p>
+      در این جمله
+      <span class="fg-inline-fr">on</span>
+      معنای عمومی «آدم / مردم / هر کسی» دارد.
+    </p>
+
+    <div class="fg-example">
+      <span class="fg-fr">On frappe à la porte.</span>
+      <div class="fg-translation">یک نفر در می‌زند.</div>
+    </div>
+
+    <div class="fg-callout fg-warning">
+      <strong>قاعدهٔ صرف:</strong>
+      حتی وقتی
+      <span class="fg-inline-fr">on</span>
+      به معنی «ما» باشد، فعل همیشه مفرد است:
+      <span class="fg-inline-fr">on est, on va, on a, on fait</span>.
+    </div>
+  </section>
+
+
+  <!-- =========================================================
+       5. USES OF ETRE
+       ========================================================= -->
+
+  <section class="fg-card">
+    <h3>
+      <span class="fg-number">۵</span>
+      کاربردهای اصلی فعل
+      <span class="fg-inline-fr">être</span>
+    </h3>
+
+    <h4>الف) ملیت</h4>
+
+    <div class="fg-example">
+      <span class="fg-fr">Je suis canadien.</span>
+      <div class="fg-translation">من کانادایی هستم.</div>
+    </div>
+
+    <div class="fg-example">
+      <span class="fg-fr">Elle est française.</span>
+      <div class="fg-translation">او فرانسوی است.</div>
+    </div>
+
+    <div class="fg-callout fg-note">
+      بعد از
+      <span class="fg-inline-fr">être</span>
+      برای بیان سادهٔ ملیت معمولاً حرف تعریف نمی‌آید:
+      <span class="fg-inline-fr">Je suis canadien.</span>
+    </div>
+
+
+    <h4>ب) شغل</h4>
+
+    <div class="fg-example">
+      <span class="fg-fr">Je suis ingénieur.</span>
+      <div class="fg-translation">من مهندس هستم.</div>
+    </div>
+
+    <div class="fg-example">
+      <span class="fg-fr">Elle est étudiante.</span>
+      <div class="fg-translation">او دانشجو است.</div>
+    </div>
+
+
+    <h4>پ) وضعیت تأهل</h4>
+
+    <div class="fg-example">
+      <span class="fg-fr">Je suis marié.</span>
+      <div class="fg-translation">من متأهل هستم.</div>
+    </div>
+
+    <div class="fg-example">
+      <span class="fg-fr">Je suis célibataire.</span>
+      <div class="fg-translation">من مجرد هستم.</div>
+    </div>
+
+
+    <h4>ت) حالت جسمی یا روحی</h4>
+
+    <div class="fg-grid">
+      <div class="fg-mini-card">
+        <span class="fg-fr">être fatigué</span>
+        <div>خسته بودن</div>
+      </div>
+
+      <div class="fg-mini-card">
+        <span class="fg-fr">être prêt</span>
+        <div>آماده بودن</div>
+      </div>
+
+      <div class="fg-mini-card">
+        <span class="fg-fr">être libre</span>
+        <div>آزاد / وقت‌داشتن</div>
+      </div>
+
+      <div class="fg-mini-card">
+        <span class="fg-fr">être occupé</span>
+        <div>مشغول بودن</div>
+      </div>
+
+      <div class="fg-mini-card">
+        <span class="fg-fr">être en forme</span>
+        <div>سرحال بودن</div>
+      </div>
+
+      <div class="fg-mini-card">
+        <span class="fg-fr">être en vacances</span>
+        <div>در تعطیلات بودن</div>
+      </div>
+    </div>
+
+
+    <h4>ث) توصیف افراد و اشیا</h4>
+
+    <div class="fg-example">
+      <span class="fg-fr">La salle est grande.</span>
+      <div class="fg-translation">سالن بزرگ است.</div>
+    </div>
+
+    <div class="fg-example">
+      <span class="fg-fr">Le livre est bleu.</span>
+      <div class="fg-translation">کتاب آبی است.</div>
+    </div>
+  </section>
+
+
+  <!-- =========================================================
+       6. AGREEMENT
+       ========================================================= -->
+
+  <section class="fg-card">
+    <h3>
+      <span class="fg-number">۶</span>
+      هماهنگی صفت با فاعل
+    </h3>
+
+    <p>
+      صفت معمولاً از نظر جنس و شمار با شخص یا چیزی که توصیف می‌کند هماهنگ می‌شود.
+    </p>
+
+    <div class="fg-table-wrap">
+      <table class="fg-table">
+        <thead>
+          <tr>
+            <th>فاعل</th>
+            <th>شکل صفت</th>
+            <th>مثال</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td class="fg-fr-cell">Il</td>
+            <td class="fg-fr-cell">français</td>
+            <td class="fg-fr-cell">Il est français.</td>
+          </tr>
+          <tr>
+            <td class="fg-fr-cell">Elle</td>
+            <td class="fg-fr-cell">française</td>
+            <td class="fg-fr-cell">Elle est française.</td>
+          </tr>
+          <tr>
+            <td class="fg-fr-cell">Ils</td>
+            <td class="fg-fr-cell">français</td>
+            <td class="fg-fr-cell">Ils sont français.</td>
+          </tr>
+          <tr>
+            <td class="fg-fr-cell">Elles</td>
+            <td class="fg-fr-cell">françaises</td>
+            <td class="fg-fr-cell">Elles sont françaises.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="fg-callout fg-note">
+      این موضوع در درس بعدی کتاب با جزئیات بیشتری آموزش داده می‌شود؛ در این درس فقط برای فهم مثال‌ها و تمرین‌ها به آن نیاز داریم.
+    </div>
+  </section>
+
+
+  <!-- =========================================================
+       7. A / DE / CHEZ
+       ========================================================= -->
+
+  <section class="fg-card">
+    <h3>
+      <span class="fg-number">۷</span>
+      مکان و مبدأ با
+      <span class="fg-inline-fr">à</span>،
+      <span class="fg-inline-fr">de</span>
+      و
+      <span class="fg-inline-fr">chez</span>
+    </h3>
+
+    <div class="fg-grid">
+
+      <div class="fg-mini-card">
+        <span class="fg-badge fg-badge-blue">à</span>
+        <strong>محل فعلی</strong>
+
+        <div class="fg-example">
+          <span class="fg-fr">Je suis à Paris.</span>
+          <div class="fg-translation">من در پاریس هستم.</div>
+        </div>
+      </div>
+
+      <div class="fg-mini-card">
+        <span class="fg-badge fg-badge-green">de</span>
+        <strong>مبدأ / شهر محل تولد یا تعلق</strong>
+
+        <div class="fg-example">
+          <span class="fg-fr">Je suis de Paris.</span>
+          <div class="fg-translation">من اهل پاریس هستم.</div>
+        </div>
+      </div>
+
+      <div class="fg-mini-card">
+        <span class="fg-badge fg-badge-orange">chez</span>
+        <strong>نزد یا در محل شخص</strong>
+
+        <div class="fg-example">
+          <span class="fg-fr">Je suis chez un ami.</span>
+          <div class="fg-translation">خانه / نزد یک دوست هستم.</div>
+        </div>
+      </div>
+
+      <div class="fg-mini-card">
+        <strong>مقایسهٔ سریع</strong>
+
+        <div class="fg-fr">
+          à Paris → de Paris → chez Pierre
+        </div>
+      </div>
+
+    </div>
+
+    <h4>
+      تبدیل
+      <span class="fg-inline-fr">de</span>
+      به
+      <span class="fg-inline-fr">d’</span>
+    </h4>
+
+    <p>
+      پیش از واژه‌ای که با صدای واکه آغاز شود،
+      <span class="fg-inline-fr">de</span>
+      کوتاه می‌شود:
+    </p>
+
+    <div class="fg-example">
+      <span class="fg-fr">Je suis d’Athènes.</span>
+      <div class="fg-translation">من اهل آتن هستم.</div>
+    </div>
+
+    <div class="fg-example">
+      <span class="fg-fr">Je suis d’Avignon.</span>
+      <div class="fg-translation">من اهل آوینیون هستم.</div>
+    </div>
+
+    <h4>
+      <span class="fg-inline-fr">chez</span>
+      با ضمایر
+    </h4>
+
+    <div class="fg-table-wrap">
+      <table class="fg-table">
+        <thead>
+          <tr>
+            <th>فرانسوی</th>
+            <th>معنی</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td class="fg-fr-cell">chez moi</td>
+            <td>خانه / نزد من</td>
+          </tr>
+          <tr>
+            <td class="fg-fr-cell">chez toi</td>
+            <td>خانه / نزد تو</td>
+          </tr>
+          <tr>
+            <td class="fg-fr-cell">chez lui</td>
+            <td>خانه / نزد او — مذکر</td>
+          </tr>
+          <tr>
+            <td class="fg-fr-cell">chez elle</td>
+            <td>خانه / نزد او — مؤنث</td>
+          </tr>
+          <tr>
+            <td class="fg-fr-cell">chez nous</td>
+            <td>خانه / نزد ما</td>
+          </tr>
+          <tr>
+            <td class="fg-fr-cell">chez vous</td>
+            <td>خانه / نزد شما</td>
+          </tr>
+          <tr>
+            <td class="fg-fr-cell">chez eux / chez elles</td>
+            <td>خانه / نزد آن‌ها</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="fg-comparison">
+      <div class="fg-wrong">
+        <strong>✗ نادرست</strong>
+        <span class="fg-fr">Je suis chez l’hôtel.</span>
+      </div>
+
+      <div class="fg-correct">
+        <strong>✓ درست</strong>
+        <span class="fg-fr">Je suis à l’hôtel.</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =========================================================
+       8. QUESTIONS
+       ========================================================= -->
+
+  <section class="fg-card">
+    <h3>
+      <span class="fg-number">۸</span>
+      سؤال ساختن با
+      <span class="fg-inline-fr">être</span>
+    </h3>
+
+    <p>
+      در این درس شکل ساده و گفتاری سؤال بیشتر دیده می‌شود:
+      جملهٔ خبری حفظ می‌شود و در گفتار آهنگ انتهایی بالا می‌رود.
+    </p>
+
+    <div class="fg-example">
+      <span class="fg-fr">Vous êtes italien ?</span>
+      <div class="fg-translation">ایتالیایی هستید؟</div>
+    </div>
+
+    <div class="fg-example">
+      <span class="fg-fr">Tu es marié ?</span>
+      <div class="fg-translation">متأهلی؟</div>
+    </div>
+
+    <div class="fg-example">
+      <span class="fg-fr">Vous êtes d’où ?</span>
+      <div class="fg-translation">اهل کجا هستید؟</div>
+    </div>
+
+    <div class="fg-example">
+      <span class="fg-fr">Vous êtes de quelle ville ?</span>
+      <div class="fg-translation">اهل کدام شهر هستید؟</div>
+    </div>
+  </section>
+
+
+  <!-- =========================================================
+       9. DAYS AND DATES
+       ========================================================= -->
+
+  <section class="fg-card">
+    <h3>
+      <span class="fg-number">۹</span>
+      روز و تاریخ با
+      <span class="fg-inline-fr">être</span>
+    </h3>
+
+    <div class="fg-example">
+      <span class="fg-fr">Nous sommes mardi.</span>
+      <div class="fg-translation">امروز سه‌شنبه است.</div>
+    </div>
+
+    <div class="fg-example">
+      <span class="fg-fr">On est le 4.</span>
+      <div class="fg-translation">امروز چهارم ماه است.</div>
+    </div>
+  </section>
+
+
+  <!-- =========================================================
+       10. PRONUNCIATION
+       ========================================================= -->
+
+  <section class="fg-card">
+    <h3>
+      <span class="fg-number">۱۰</span>
+      تلفظ و
+      <span class="fg-inline-fr">liaison</span>
+    </h3>
+
+    <div class="fg-table-wrap">
+      <table class="fg-table">
+        <thead>
+          <tr>
+            <th>عبارت</th>
+            <th>تلفظ تقریبی فارسی</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="fg-fr-cell">Je suis</td>
+            <td>ژُ سویی</td>
+          </tr>
+          <tr>
+            <td class="fg-fr-cell">Tu es</td>
+            <td>تو اِ</td>
+          </tr>
+          <tr>
+            <td class="fg-fr-cell">Il est</td>
+            <td>ایل اِ</td>
+          </tr>
+          <tr>
+            <td class="fg-fr-cell">Elle est</td>
+            <td>اِل اِ</td>
+          </tr>
+          <tr>
+            <td class="fg-fr-cell">On est</td>
+            <td>اُن نِ</td>
+          </tr>
+          <tr>
+            <td class="fg-fr-cell">Nous sommes</td>
+            <td>نو سُم</td>
+          </tr>
+          <tr>
+            <td class="fg-fr-cell">Vous êtes</td>
+            <td>وو زِت</td>
+          </tr>
+          <tr>
+            <td class="fg-fr-cell">Ils sont</td>
+            <td>ایل سُن</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="fg-callout fg-warning">
+      <strong>
+        Liaison مهم:
+      </strong>
+
+      <div class="fg-fr">Vous‿êtes → /vu.zɛt/</div>
+      <div class="fg-fr">On‿est → /ɔ̃.nɛ/</div>
+    </div>
+  </section>
+
+
+  <!-- =========================================================
+       11. EST VS ET
+       ========================================================= -->
+
+  <section class="fg-card">
+    <h3>
+      <span class="fg-number">۱۱</span>
+      تفاوت
+      <span class="fg-inline-fr">est</span>
+      و
+      <span class="fg-inline-fr">et</span>
+    </h3>
+
+    <div class="fg-grid">
+      <div class="fg-mini-card">
+        <span class="fg-fr"><strong>est</strong></span>
+        <div>شکل فعل être = «است»</div>
+
+        <div class="fg-example">
+          <span class="fg-fr">Paul est français.</span>
+        </div>
+      </div>
+
+      <div class="fg-mini-card">
+        <span class="fg-fr"><strong>et</strong></span>
+        <div>حرف ربط = «و»</div>
+
+        <div class="fg-example">
+          <span class="fg-fr">Paul et Marie sont français.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =========================================================
+       12. COMMON ERRORS
+       ========================================================= -->
+
+  <section class="fg-card">
+    <h3>
+      <span class="fg-number">۱۲</span>
+      اشتباه‌های رایج
+    </h3>
+
+    <div class="fg-comparison">
+      <div class="fg-wrong">
+        <strong>✗</strong>
+        <span class="fg-fr">Tu est français.</span>
+      </div>
+      <div class="fg-correct">
+        <strong>✓</strong>
+        <span class="fg-fr">Tu es français.</span>
+      </div>
+    </div>
+
+    <div class="fg-comparison">
+      <div class="fg-wrong">
+        <strong>✗</strong>
+        <span class="fg-fr">Nous sont à Paris.</span>
+      </div>
+      <div class="fg-correct">
+        <strong>✓</strong>
+        <span class="fg-fr">Nous sommes à Paris.</span>
+      </div>
+    </div>
+
+    <div class="fg-comparison">
+      <div class="fg-wrong">
+        <strong>✗</strong>
+        <span class="fg-fr">On sommes en vacances.</span>
+      </div>
+      <div class="fg-correct">
+        <strong>✓</strong>
+        <span class="fg-fr">On est en vacances.</span>
+      </div>
+    </div>
+
+    <div class="fg-comparison">
+      <div class="fg-wrong">
+        <strong>✗</strong>
+        <span class="fg-fr">Elle est français.</span>
+      </div>
+      <div class="fg-correct">
+        <strong>✓</strong>
+        <span class="fg-fr">Elle est française.</span>
+      </div>
+    </div>
+
+    <div class="fg-comparison">
+      <div class="fg-wrong">
+        <strong>✗</strong>
+        <span class="fg-fr">Je suis de Athènes.</span>
+      </div>
+      <div class="fg-correct">
+        <strong>✓</strong>
+        <span class="fg-fr">Je suis d’Athènes.</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =========================================================
+       13. COMPLETE INTRODUCTION
+       ========================================================= -->
+
+  <section class="fg-card">
+    <h3>
+      <span class="fg-number">۱۳</span>
+      نمونهٔ معرفی کامل
+    </h3>
+
+    <div class="fg-example">
+      <span class="fg-fr">
+        Je m’appelle Iman. Je suis iranien.
+        Je suis de Téhéran, mais actuellement je suis à Vancouver.
+        Je suis développeur. Je suis célibataire.
+        Aujourd’hui, je suis chez moi et je suis en forme.
+      </span>
+
+      <div class="fg-translation">
+        اسم من ایمان است. ایرانی هستم. اهل تهران هستم، اما در حال حاضر در
+        ونکوور هستم. توسعه‌دهنده هستم. مجرد هستم. امروز در خانه‌ام و سرحال
+        هستم.
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =========================================================
+       14. FINAL SUMMARY
+       ========================================================= -->
+
+  <section class="fg-card fg-summary">
+    <h3>
+      <span class="fg-number">۱۴</span>
+      خلاصهٔ سریع درس
+    </h3>
+
+    <div class="fg-summary-line">
+      <span class="fg-fr">Je suis canadien.</span>
+      <span>ملیت</span>
+    </div>
+
+    <div class="fg-summary-line">
+      <span class="fg-fr">Je suis développeur.</span>
+      <span>شغل</span>
+    </div>
+
+    <div class="fg-summary-line">
+      <span class="fg-fr">Je suis célibataire.</span>
+      <span>وضعیت تأهل</span>
+    </div>
+
+    <div class="fg-summary-line">
+      <span class="fg-fr">Je suis fatigué.</span>
+      <span>حالت</span>
+    </div>
+
+    <div class="fg-summary-line">
+      <span class="fg-fr">Je suis à Vancouver.</span>
+      <span>محل فعلی</span>
+    </div>
+
+    <div class="fg-summary-line">
+      <span class="fg-fr">Je suis de Téhéran.</span>
+      <span>مبدأ / شهر محل تعلق</span>
+    </div>
+
+    <div class="fg-summary-line">
+      <span class="fg-fr">Je suis chez un ami.</span>
+      <span>نزد یا در محل یک شخص</span>
+    </div>
+
+    <div class="fg-separator"></div>
+
+    <div class="fg-formula">
+      Je suis · Tu es · Il / Elle / On est ·
+      Nous sommes · Vous êtes · Ils / Elles sont
+    </div>
+  </section>
+
+</div>

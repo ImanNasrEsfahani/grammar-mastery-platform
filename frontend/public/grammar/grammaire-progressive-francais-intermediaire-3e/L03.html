@@ -1,0 +1,1681 @@
+<div class="french-grammar-wrapper">
+  <style scoped>
+    /* =========================================================
+       Grammar Mastery Platform
+       Lesson 3 — La négation et l’interrogation (1)
+       All styles are isolated under .french-grammar-wrapper
+       ========================================================= */
+
+    .french-grammar-wrapper {
+      --fg-navy: #163a63;
+      --fg-blue: #225f9c;
+      --fg-blue-soft: #edf5fc;
+      --fg-blue-border: #bad5ec;
+
+      --fg-green: #18794e;
+      --fg-green-soft: #edf9f3;
+      --fg-green-border: #a7dbc3;
+
+      --fg-red: #b42318;
+      --fg-red-soft: #fff1f0;
+      --fg-red-border: #f2b8b5;
+
+      --fg-orange: #b54708;
+      --fg-orange-soft: #fff7ed;
+      --fg-orange-border: #fed7aa;
+
+      --fg-purple: #6b46a1;
+      --fg-purple-soft: #f7f2fd;
+
+      --fg-text: #243447;
+      --fg-muted: #68778a;
+      --fg-border: #dce4ec;
+      --fg-bg: #f5f8fb;
+      --fg-card: #ffffff;
+      --fg-code-bg: #f3f6f9;
+
+      --fg-radius: 18px;
+      --fg-radius-sm: 10px;
+      --fg-shadow: 0 8px 28px rgba(30, 58, 95, 0.08);
+
+      box-sizing: border-box;
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 20px;
+      color: var(--fg-text);
+      background: var(--fg-bg);
+      border-radius: 22px;
+      direction: rtl;
+      text-align: right;
+      font-family:
+        Vazirmatn,
+        IRANSansX,
+        Tahoma,
+        Arial,
+        sans-serif;
+      line-height: 1.9;
+    }
+
+    .french-grammar-wrapper *,
+    .french-grammar-wrapper *::before,
+    .french-grammar-wrapper *::after {
+      box-sizing: border-box;
+    }
+
+    .french-grammar-wrapper .fg-fr,
+    .french-grammar-wrapper [lang="fr"] {
+      direction: ltr;
+      unicode-bidi: isolate;
+      text-align: left;
+      font-family:
+        "Segoe UI",
+        Arial,
+        Helvetica,
+        sans-serif;
+    }
+
+    .french-grammar-wrapper .fg-inline-fr {
+      direction: ltr;
+      unicode-bidi: isolate;
+      display: inline-block;
+      text-align: left;
+      font-family:
+        "Segoe UI",
+        Arial,
+        Helvetica,
+        sans-serif;
+      font-weight: 600;
+    }
+
+    .french-grammar-wrapper .fg-header {
+      position: relative;
+      overflow: hidden;
+      padding: 34px;
+      margin-bottom: 24px;
+      color: #fff;
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,.16), transparent 35%),
+        linear-gradient(135deg, #102e50, #1d5f9d);
+      border-radius: var(--fg-radius);
+      box-shadow: var(--fg-shadow);
+    }
+
+    .french-grammar-wrapper .fg-header::after {
+      content: "03";
+      position: absolute;
+      left: 26px;
+      bottom: -34px;
+      font-size: 130px;
+      line-height: 1;
+      font-weight: 800;
+      color: rgba(255,255,255,.08);
+      direction: ltr;
+    }
+
+    .french-grammar-wrapper .fg-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+      padding: 6px 12px;
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 999px;
+      background: rgba(255,255,255,.12);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .french-grammar-wrapper .fg-header h1 {
+      margin: 0 0 8px;
+      font-size: clamp(26px, 4vw, 42px);
+      line-height: 1.35;
+    }
+
+    .french-grammar-wrapper .fg-header .fg-title-fr {
+      display: block;
+      margin-top: 5px;
+      direction: ltr;
+      text-align: right;
+      font-family: "Segoe UI", Arial, sans-serif;
+      font-size: .67em;
+      font-weight: 600;
+      color: #d8ebff;
+    }
+
+    .french-grammar-wrapper .fg-header p {
+      max-width: 850px;
+      margin: 14px 0 0;
+      color: #edf7ff;
+      font-size: 15px;
+    }
+
+    .french-grammar-wrapper .fg-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .french-grammar-wrapper .fg-meta-item {
+      padding: 12px 14px;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 12px;
+      background: rgba(255,255,255,.08);
+    }
+
+    .french-grammar-wrapper .fg-meta-label {
+      display: block;
+      font-size: 11px;
+      color: #c7ddf3;
+    }
+
+    .french-grammar-wrapper .fg-meta-value {
+      display: block;
+      margin-top: 2px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .french-grammar-wrapper .fg-toc {
+      padding: 22px;
+      margin-bottom: 24px;
+      background: #fff;
+      border: 1px solid var(--fg-border);
+      border-radius: var(--fg-radius);
+      box-shadow: var(--fg-shadow);
+    }
+
+    .french-grammar-wrapper .fg-toc h2 {
+      margin: 0 0 14px;
+      color: var(--fg-navy);
+      font-size: 19px;
+    }
+
+    .french-grammar-wrapper .fg-toc-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px 18px;
+    }
+
+    .french-grammar-wrapper .fg-toc a {
+      display: flex;
+      gap: 9px;
+      align-items: center;
+      padding: 7px 9px;
+      color: var(--fg-blue);
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background .2s ease;
+    }
+
+    .french-grammar-wrapper .fg-toc a:hover {
+      background: var(--fg-blue-soft);
+    }
+
+    .french-grammar-wrapper .fg-toc-number {
+      min-width: 28px;
+      height: 28px;
+      display: inline-grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--fg-blue-soft);
+      color: var(--fg-blue);
+      direction: ltr;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .french-grammar-wrapper .fg-section {
+      margin: 0 0 24px;
+      padding: 26px;
+      background: var(--fg-card);
+      border: 1px solid var(--fg-border);
+      border-radius: var(--fg-radius);
+      box-shadow: var(--fg-shadow);
+      scroll-margin-top: 20px;
+    }
+
+    .french-grammar-wrapper .fg-section-title {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      margin: 0 0 18px;
+      color: var(--fg-navy);
+    }
+
+    .french-grammar-wrapper .fg-section-number {
+      flex: 0 0 auto;
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: var(--fg-blue);
+      border-radius: 11px;
+      direction: ltr;
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .french-grammar-wrapper .fg-section-title h2 {
+      margin: 0;
+      font-size: clamp(20px, 2.4vw, 26px);
+      line-height: 1.5;
+    }
+
+    .french-grammar-wrapper .fg-section-title small {
+      display: block;
+      margin-top: 2px;
+      color: var(--fg-muted);
+      direction: ltr;
+      text-align: right;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .french-grammar-wrapper h3 {
+      margin: 25px 0 10px;
+      color: var(--fg-blue);
+      font-size: 18px;
+    }
+
+    .french-grammar-wrapper h4 {
+      margin: 20px 0 8px;
+      color: var(--fg-navy);
+      font-size: 16px;
+    }
+
+    .french-grammar-wrapper p {
+      margin: 10px 0;
+    }
+
+    .french-grammar-wrapper ul,
+    .french-grammar-wrapper ol {
+      margin: 10px 0;
+      padding-right: 24px;
+    }
+
+    .french-grammar-wrapper li {
+      margin: 5px 0;
+    }
+
+    .french-grammar-wrapper .fg-rule {
+      margin: 18px 0;
+      padding: 18px;
+      border: 1px solid var(--fg-blue-border);
+      border-right: 5px solid var(--fg-blue);
+      border-radius: var(--fg-radius-sm);
+      background: var(--fg-blue-soft);
+    }
+
+    .french-grammar-wrapper .fg-rule-label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--fg-navy);
+      font-weight: 800;
+    }
+
+    .french-grammar-wrapper .fg-formula {
+      display: block;
+      width: 100%;
+      margin-top: 8px;
+      padding: 13px 16px;
+      overflow-x: auto;
+      direction: ltr;
+      text-align: left;
+      white-space: nowrap;
+      background: #fff;
+      border: 1px dashed #89b4dc;
+      border-radius: 9px;
+      color: #153f69;
+      font-family: "Segoe UI", Arial, sans-serif;
+      font-weight: 700;
+    }
+
+    .french-grammar-wrapper .fg-callout {
+      margin: 18px 0;
+      padding: 17px 18px;
+      border-radius: var(--fg-radius-sm);
+      border: 1px solid;
+    }
+
+    .french-grammar-wrapper .fg-callout strong:first-child {
+      display: inline-block;
+      margin-bottom: 5px;
+    }
+
+    .french-grammar-wrapper .fg-tip {
+      color: #15563b;
+      background: var(--fg-green-soft);
+      border-color: var(--fg-green-border);
+    }
+
+    .french-grammar-wrapper .fg-warning {
+      color: #8a3d0a;
+      background: var(--fg-orange-soft);
+      border-color: var(--fg-orange-border);
+    }
+
+    .french-grammar-wrapper .fg-danger {
+      color: #8f1d16;
+      background: var(--fg-red-soft);
+      border-color: var(--fg-red-border);
+    }
+
+    .french-grammar-wrapper .fg-note {
+      color: #523580;
+      background: var(--fg-purple-soft);
+      border-color: #d9c7ee;
+    }
+
+    .french-grammar-wrapper .fg-examples {
+      display: grid;
+      gap: 10px;
+      margin: 14px 0;
+    }
+
+    .french-grammar-wrapper .fg-example {
+      position: relative;
+      padding: 14px 16px 14px 50px;
+      direction: ltr;
+      text-align: left;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #fbfcfd;
+      border: 1px solid var(--fg-border);
+      border-radius: 10px;
+    }
+
+    .french-grammar-wrapper .fg-example::before {
+      position: absolute;
+      left: 14px;
+      top: 13px;
+      width: 25px;
+      height: 25px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      font-family: Arial, sans-serif;
+      font-weight: 900;
+    }
+
+    .french-grammar-wrapper .fg-example-correct {
+      border-left: 4px solid var(--fg-green);
+      background: #f8fcfa;
+    }
+
+    .french-grammar-wrapper .fg-example-correct::before {
+      content: "✓";
+      color: #fff;
+      background: var(--fg-green);
+    }
+
+    .french-grammar-wrapper .fg-example-wrong {
+      border-left: 4px solid var(--fg-red);
+      background: #fffafa;
+    }
+
+    .french-grammar-wrapper .fg-example-wrong::before {
+      content: "×";
+      color: #fff;
+      background: var(--fg-red);
+    }
+
+    .french-grammar-wrapper .fg-translation {
+      display: block;
+      margin-top: 4px;
+      direction: rtl;
+      text-align: right;
+      color: var(--fg-muted);
+      font-family:
+        Vazirmatn,
+        Tahoma,
+        Arial,
+        sans-serif;
+      font-size: 13px;
+    }
+
+    .french-grammar-wrapper .fg-compare {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin: 18px 0;
+    }
+
+    .french-grammar-wrapper .fg-compare-card {
+      padding: 17px;
+      border: 1px solid var(--fg-border);
+      border-radius: 12px;
+      background: #fbfcfe;
+    }
+
+    .french-grammar-wrapper .fg-compare-card h4 {
+      margin: 0 0 10px;
+    }
+
+    .french-grammar-wrapper .fg-table-wrap {
+      width: 100%;
+      margin: 18px 0;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border: 1px solid var(--fg-border);
+      border-radius: 12px;
+      background: #fff;
+    }
+
+    .french-grammar-wrapper table {
+      width: 100%;
+      min-width: 650px;
+      border-collapse: collapse;
+      border-spacing: 0;
+      background: #fff;
+    }
+
+    .french-grammar-wrapper th,
+    .french-grammar-wrapper td {
+      padding: 13px 15px;
+      vertical-align: top;
+      border-left: 1px solid var(--fg-border);
+      border-bottom: 1px solid var(--fg-border);
+    }
+
+    .french-grammar-wrapper th:last-child,
+    .french-grammar-wrapper td:last-child {
+      border-left: 0;
+    }
+
+    .french-grammar-wrapper thead th {
+      color: #fff;
+      background: var(--fg-navy);
+      font-weight: 800;
+    }
+
+    .french-grammar-wrapper tbody tr:nth-child(even) {
+      background: #f7f9fb;
+    }
+
+    .french-grammar-wrapper tbody tr:hover {
+      background: #edf5fc;
+    }
+
+    .french-grammar-wrapper td.fg-fr-cell,
+    .french-grammar-wrapper th.fg-fr-cell {
+      direction: ltr;
+      text-align: left;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    .french-grammar-wrapper .fg-highlight {
+      padding: 1px 5px;
+      border-radius: 5px;
+      background: #fff1b8;
+      color: #604800;
+      font-weight: 700;
+    }
+
+    .french-grammar-wrapper .fg-positive {
+      color: var(--fg-green);
+      font-weight: 800;
+    }
+
+    .french-grammar-wrapper .fg-negative {
+      color: var(--fg-red);
+      font-weight: 800;
+    }
+
+    .french-grammar-wrapper .fg-badge {
+      display: inline-block;
+      padding: 3px 9px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.7;
+    }
+
+    .french-grammar-wrapper .fg-badge-formal {
+      color: #61410a;
+      background: #fff1c2;
+    }
+
+    .french-grammar-wrapper .fg-badge-neutral {
+      color: #124f7a;
+      background: #e5f2fc;
+    }
+
+    .french-grammar-wrapper .fg-badge-spoken {
+      color: #25633e;
+      background: #e7f6ed;
+    }
+
+    .french-grammar-wrapper .fg-mini-title {
+      margin: 20px 0 8px;
+      padding-right: 10px;
+      border-right: 3px solid var(--fg-blue);
+      color: var(--fg-navy);
+      font-weight: 800;
+    }
+
+    .french-grammar-wrapper .fg-dialogue {
+      margin: 14px 0;
+      padding: 15px 18px;
+      border-right: 4px solid var(--fg-purple);
+      border-radius: 10px;
+      background: #faf7fe;
+    }
+
+    .french-grammar-wrapper .fg-dialogue-line {
+      direction: ltr;
+      text-align: left;
+      font-family: "Segoe UI", Arial, sans-serif;
+      margin: 4px 0;
+    }
+
+    .french-grammar-wrapper .fg-summary {
+      padding: 26px;
+      color: #fff;
+      background: linear-gradient(135deg, #173d66, #1d6a70);
+      border-radius: var(--fg-radius);
+      box-shadow: var(--fg-shadow);
+    }
+
+    .french-grammar-wrapper .fg-summary h2 {
+      margin-top: 0;
+      color: #fff;
+    }
+
+    .french-grammar-wrapper .fg-summary-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .french-grammar-wrapper .fg-summary-item {
+      padding: 15px;
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 11px;
+      background: rgba(255,255,255,.09);
+    }
+
+    .french-grammar-wrapper .fg-summary-item strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .french-grammar-wrapper .fg-summary .fg-fr {
+      color: #effcff;
+    }
+
+    @media (max-width: 820px) {
+      .french-grammar-wrapper {
+        padding: 12px;
+        border-radius: 14px;
+      }
+
+      .french-grammar-wrapper .fg-header {
+        padding: 24px 20px;
+      }
+
+      .french-grammar-wrapper .fg-meta-grid,
+      .french-grammar-wrapper .fg-toc-grid,
+      .french-grammar-wrapper .fg-compare,
+      .french-grammar-wrapper .fg-summary-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .french-grammar-wrapper .fg-section {
+        padding: 20px 16px;
+      }
+
+      .french-grammar-wrapper .fg-section-title {
+        gap: 9px;
+      }
+
+      .french-grammar-wrapper .fg-section-number {
+        width: 34px;
+        height: 34px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .french-grammar-wrapper {
+        padding: 8px;
+        background: #f7f9fb;
+      }
+
+      .french-grammar-wrapper .fg-header {
+        padding: 22px 16px;
+        border-radius: 14px;
+      }
+
+      .french-grammar-wrapper .fg-header::after {
+        font-size: 90px;
+      }
+
+      .french-grammar-wrapper .fg-section,
+      .french-grammar-wrapper .fg-toc {
+        padding: 17px 13px;
+        border-radius: 14px;
+      }
+
+      .french-grammar-wrapper .fg-example {
+        padding: 13px 12px 13px 44px;
+      }
+
+      .french-grammar-wrapper table {
+        min-width: 600px;
+        font-size: 14px;
+      }
+
+      .french-grammar-wrapper th,
+      .french-grammar-wrapper td {
+        padding: 11px 12px;
+      }
+    }
+  </style>
+
+  <!-- Header -->
+  <section class="fg-header">
+    <span class="fg-eyebrow">درس ۳ · ساختار جمله</span>
+
+    <h1>
+      نفی و پرسش در زبان فرانسه
+      <span class="fg-title-fr" lang="fr">La négation et l’interrogation (1)</span>
+    </h1>
+
+    <p>
+      در این درس یاد می‌گیریم چگونه جمله را با
+      <span class="fg-inline-fr" lang="fr">ne ... pas</span>
+      منفی کنیم، سؤال بله/خیر بسازیم، تفاوت
+      <span class="fg-inline-fr" lang="fr">oui / non / si</span>
+      را بفهمیم و از ساختارهای
+      <span class="fg-inline-fr" lang="fr">moi aussi / moi non plus</span>
+      به‌درستی استفاده کنیم.
+    </p>
+
+    <div class="fg-meta-grid">
+      <div class="fg-meta-item">
+        <span class="fg-meta-label">موضوع اصلی</span>
+        <span class="fg-meta-value" lang="fr">Négation & interrogation</span>
+      </div>
+
+      <div class="fg-meta-item">
+        <span class="fg-meta-label">تمرکز مهم</span>
+        <span class="fg-meta-value" lang="fr">ne…pas · est-ce que · inversion</span>
+      </div>
+
+      <div class="fg-meta-item">
+        <span class="fg-meta-label">سطح کاربرد</span>
+        <span class="fg-meta-value">پایه تا متوسط</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Table of contents -->
+  <nav class="fg-toc" aria-label="فهرست درس">
+    <h2>در این درس چه یاد می‌گیریم؟</h2>
+
+    <div class="fg-toc-grid">
+      <a href="#fg-negation">
+        <span class="fg-toc-number">1</span>
+        <span>نفی ساده با <span class="fg-inline-fr">ne ... pas</span></span>
+      </a>
+
+      <a href="#fg-negation-position">
+        <span class="fg-toc-number">2</span>
+        <span>جایگاه اجزای نفی</span>
+      </a>
+
+      <a href="#fg-spoken-ne">
+        <span class="fg-toc-number">3</span>
+        <span>حذف <span class="fg-inline-fr">ne</span> در گفتار</span>
+      </a>
+
+      <a href="#fg-articles">
+        <span class="fg-toc-number">4</span>
+        <span>حروف تعریف بعد از نفی</span>
+      </a>
+
+      <a href="#fg-question">
+        <span class="fg-toc-number">5</span>
+        <span>روش‌های ساخت سؤال</span>
+      </a>
+
+      <a href="#fg-oui-non-si">
+        <span class="fg-toc-number">6</span>
+        <span><span class="fg-inline-fr">oui / non / si</span></span>
+      </a>
+
+      <a href="#fg-aussi">
+        <span class="fg-toc-number">7</span>
+        <span><span class="fg-inline-fr">moi aussi / moi non plus</span></span>
+      </a>
+
+      <a href="#fg-non-pas">
+        <span class="fg-toc-number">8</span>
+        <span>تفاوت <span class="fg-inline-fr">non</span> و <span class="fg-inline-fr">pas</span></span>
+      </a>
+
+      <a href="#fg-agreement">
+        <span class="fg-toc-number">9</span>
+        <span>توافق صفت در جمله منفی</span>
+      </a>
+
+      <a href="#fg-advanced">
+        <span class="fg-toc-number">10</span>
+        <span>نکته‌های پیشرفته</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Section 1 -->
+  <section class="fg-section" id="fg-negation">
+    <div class="fg-section-title">
+      <span class="fg-section-number">1</span>
+      <div>
+        <h2>منفی ساده با <span class="fg-inline-fr">ne ... pas</span></h2>
+        <small lang="fr">La négation simple</small>
+      </div>
+    </div>
+
+    <p>
+      رایج‌ترین روش منفی کردن جمله در زبان فرانسه استفاده از دو جزء
+      <span class="fg-inline-fr">ne</span>
+      و
+      <span class="fg-inline-fr">pas</span>
+      است. فعل صرف‌شده میان این دو قرار می‌گیرد.
+    </p>
+
+    <div class="fg-rule">
+      <span class="fg-rule-label">فرمول اصلی</span>
+      <span class="fg-formula">Sujet + ne / n’ + verbe conjugué + pas</span>
+    </div>
+
+    <div class="fg-examples">
+      <div class="fg-example fg-example-correct">
+        Je suis en vacances.
+        <span class="fg-translation">من در تعطیلات هستم.</span>
+      </div>
+
+      <div class="fg-example fg-example-correct">
+        Je <strong>ne suis pas</strong> en vacances.
+        <span class="fg-translation">من در تعطیلات نیستم.</span>
+      </div>
+
+      <div class="fg-example fg-example-correct">
+        Nous <strong>ne sommes pas</strong> en juillet.
+        <span class="fg-translation">ما در ماه ژوئیه نیستیم.</span>
+      </div>
+    </div>
+
+    <h3>
+      تبدیل <span class="fg-inline-fr">ne</span> به
+      <span class="fg-inline-fr">n’</span>
+    </h3>
+
+    <p>
+      اگر فعل با واکه یا
+      <span class="fg-inline-fr">h muet</span>
+      شروع شود،
+      <span class="fg-inline-fr">ne</span>
+      به
+      <span class="fg-inline-fr">n’</span>
+      تبدیل می‌شود.
+    </p>
+
+    <div class="fg-examples">
+      <div class="fg-example fg-example-correct">
+        Vous <strong>n’êtes pas</strong> fatigué.
+      </div>
+
+      <div class="fg-example fg-example-correct">
+        Je <strong>n’ai pas</strong> faim.
+      </div>
+
+      <div class="fg-example fg-example-correct">
+        Il <strong>n’habite pas</strong> ici.
+      </div>
+
+      <div class="fg-example fg-example-correct">
+        Elle <strong>n’aime pas</strong> le café.
+      </div>
+    </div>
+
+    <div class="fg-callout fg-warning">
+      <strong>نکته ظریف: <span class="fg-inline-fr">h aspiré</span></strong><br>
+      پیش از بعضی واژه‌هایی که با
+      <span class="fg-inline-fr">h aspiré</span>
+      آغاز می‌شوند، حذف مصوت انجام نمی‌شود. این موارد محدودند و معمولاً باید همراه واژه یاد گرفته شوند.
+      نمونهٔ پیشرفته:
+      <span class="fg-inline-fr">Je ne hais pas cette personne.</span>
+    </div>
+  </section>
+
+  <!-- Section 2 -->
+  <section class="fg-section" id="fg-negation-position">
+    <div class="fg-section-title">
+      <span class="fg-section-number">2</span>
+      <div>
+        <h2>جایگاه <span class="fg-inline-fr">ne ... pas</span></h2>
+        <small lang="fr">La place de la négation</small>
+      </div>
+    </div>
+
+    <h3>الف) با یک فعل صرف‌شده ساده</h3>
+
+    <div class="fg-rule">
+      <span class="fg-formula">Sujet + ne + verbe + pas</span>
+    </div>
+
+    <div class="fg-examples">
+      <div class="fg-example fg-example-correct">Je <strong>ne travaille pas</strong>.</div>
+      <div class="fg-example fg-example-correct">Elle <strong>n’est pas</strong> française.</div>
+      <div class="fg-example fg-example-correct">Nous <strong>ne sommes pas</strong> prêts.</div>
+    </div>
+
+    <h3>ب) در زمان‌های مرکب</h3>
+
+    <p>
+      در زمان‌هایی مانند
+      <span class="fg-inline-fr">passé composé</span>،
+      دو جزء نفی معمولاً دور فعل کمکی قرار می‌گیرند.
+    </p>
+
+    <div class="fg-rule">
+      <span class="fg-formula">Sujet + ne + auxiliaire + pas + participe passé</span>
+    </div>
+
+    <div class="fg-examples">
+      <div class="fg-example fg-example-correct">
+        Je <strong>n’ai pas compris</strong>.
+      </div>
+
+      <div class="fg-example fg-example-correct">
+        Il <strong>n’est pas arrivé</strong>.
+      </div>
+
+      <div class="fg-example fg-example-correct">
+        Nous <strong>n’avons pas terminé</strong>.
+      </div>
+
+      <div class="fg-example fg-example-wrong">
+        Je n’ai compris pas.
+      </div>
+    </div>
+
+    <div class="fg-callout fg-tip">
+      <strong>قاعدهٔ ذهنی ساده:</strong>
+      در زمان مرکب ابتدا «فعل صرف‌شده» را پیدا کنید. در
+      <span class="fg-inline-fr">passé composé</span>
+      فعل صرف‌شده همان
+      <span class="fg-inline-fr">avoir</span>
+      یا
+      <span class="fg-inline-fr">être</span>
+      است؛ بنابراین
+      <span class="fg-inline-fr">ne ... pas</span>
+      اطراف همان قرار می‌گیرد.
+    </div>
+
+    <h3>ج) همراه ضمیر مفعولی</h3>
+
+    <p>
+      ضمیر مفعولی قبل از فعل قرار دارد و
+      <span class="fg-inline-fr">ne</span>
+      قبل از ضمیر می‌آید.
+    </p>
+
+    <div class="fg-examples">
+      <div class="fg-example fg-example-correct">
+        Je <strong>ne le connais pas</strong>.
+      </div>
+
+      <div class="fg-example fg-example-correct">
+        Elle <strong>ne me comprend pas</strong>.
+      </div>
+
+      <div class="fg-example fg-example-correct">
+        Nous <strong>ne lui parlons pas</strong>.
+      </div>
+    </div>
+
+    <h3>د) همراه مصدر</h3>
+
+    <p>
+      اگر خودِ مصدر منفی شود،
+      <span class="fg-inline-fr">ne pas</span>
+      معمولاً پیش از مصدر قرار می‌گیرد.
+    </p>
+
+    <div class="fg-examples">
+      <div class="fg-example fg-example-correct">
+        <strong>Ne pas entrer.</strong>
+        <span class="fg-translation">وارد نشوید.</span>
+      </div>
+
+      <div class="fg-example fg-example-correct">
+        Il préfère <strong>ne pas répondre</strong>.
+        <span class="fg-translation">او ترجیح می‌دهد پاسخ ندهد.</span>
+      </div>
+    </div>
+
+    <p>
+      اما اگر فعل اصلی جمله منفی باشد، نفی دور همان فعل صرف‌شده قرار می‌گیرد:
+    </p>
+
+    <div class="fg-example fg-example-correct">
+      Je <strong>ne veux pas</strong> partir.
+      <span class="fg-translation">من نمی‌خواهم بروم.</span>
+    </div>
+  </section>
+
+  <!-- Section 3 -->
+  <section class="fg-section" id="fg-spoken-ne">
+    <div class="fg-section-title">
+      <span class="fg-section-number">3</span>
+      <div>
+        <h2>حذف <span class="fg-inline-fr">ne</span> در گفتار</h2>
+        <small lang="fr">La négation à l’oral</small>
+      </div>
+    </div>
+
+    <p>
+      در مکالمه روزمره فرانسوی، حذف
+      <span class="fg-inline-fr">ne</span>
+      بسیار رایج است.
+    </p>
+
+    <div class="fg-table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>سبک</th>
+            <th class="fg-fr-cell">Exemple</th>
+            <th>توضیح</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="fg-badge fg-badge-neutral">استاندارد</span></td>
+            <td class="fg-fr-cell">Je ne suis pas fatigué.</td>
+            <td>مناسب نوشتار و موقعیت رسمی</td>
+          </tr>
+          <tr>
+            <td><span class="fg-badge fg-badge-spoken">گفتاری</span></td>
+            <td class="fg-fr-cell">Je suis pas fatigué.</td>
+            <td><span class="fg-inline-fr">ne</span> حذف شده است.</td>
+          </tr>
+          <tr>
+            <td><span class="fg-badge fg-badge-spoken">گفتاری</span></td>
+            <td class="fg-fr-cell">J’ai pas compris.</td>
+            <td>در مکالمه طبیعی بسیار رایج است.</td>
+          </tr>
+          <tr>
+            <td><span class="fg-badge fg-badge-spoken">گفتاری</span></td>
+            <td class="fg-fr-cell">On sait pas.</td>
+            <td>در زبان محاوره شنیده می‌شود.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="fg-callout fg-danger">
+      <strong>برای آزمون و نوشتار رسمی:</strong><br>
+      در بخش نوشتاری آزمون‌هایی مانند TCF یا TEF بهتر است
+      <span class="fg-inline-fr">ne</span>
+      را حذف نکنید.
+      بنویسید:
+      <span class="fg-inline-fr">Je ne suis pas d’accord.</span>
+    </div>
+  </section>
+
+  <!-- Section 4 -->
+  <section class="fg-section" id="fg-articles">
+    <div class="fg-section-title">
+      <span class="fg-section-number">4</span>
+      <div>
+        <h2>حروف تعریف بعد از نفی</h2>
+        <small lang="fr">Les articles après la négation</small>
+      </div>
+    </div>
+
+    <p>
+      این نکته یکی از خطاپذیرترین بخش‌های منفی‌سازی در فرانسه است.
+      در بسیاری از موارد،
+      <span class="fg-inline-fr">un / une / des / du / de la / de l’</span>
+      پس از منفی شدن به
+      <span class="fg-inline-fr">de / d’</span>
+      تبدیل می‌شوند.
+    </p>
+
+    <div class="fg-table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th class="fg-fr-cell">Phrase affirmative</th>
+            <th class="fg-fr-cell">Phrase négative</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="fg-fr-cell">J’ai <strong>une</strong> voiture.</td>
+            <td class="fg-fr-cell">Je n’ai pas <strong>de</strong> voiture.</td>
+          </tr>
+          <tr>
+            <td class="fg-fr-cell">Il boit <strong>du</strong> café.</td>
+            <td class="fg-fr-cell">Il ne boit pas <strong>de</strong> café.</td>
+          </tr>
+          <tr>
+            <td class="fg-fr-cell">Nous avons <strong>des</strong> enfants.</td>
+            <td class="fg-fr-cell">Nous n’avons pas <strong>d’</strong>enfants.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>
+      استثنای مهم: فعل <span class="fg-inline-fr">être</span>
+    </h3>
+
+    <p>
+      بعد از فعل
+      <span class="fg-inline-fr">être</span>
+      معمولاً حرف تعریف نامعین به
+      <span class="fg-inline-fr">de</span>
+      تبدیل نمی‌شود.
+    </p>
+
+    <div class="fg-compare">
+      <div class="fg-compare-card">
+        <h4>مثبت</h4>
+        <div class="fg-fr">C’est <strong>un</strong> problème.</div>
+      </div>
+
+      <div class="fg-compare-card">
+        <h4>منفی</h4>
+        <div class="fg-fr">Ce n’est pas <strong>un</strong> problème.</div>
+      </div>
+    </div>
+
+    <h3>حروف تعریف معین</h3>
+
+    <p>
+      حروف تعریف
+      <span class="fg-inline-fr">le / la / les</span>
+      معمولاً بعد از نفی باقی می‌مانند.
+    </p>
+
+    <div class="fg-examples">
+      <div class="fg-example fg-example-correct">J’aime <strong>le</strong> café.</div>
+      <div class="fg-example fg-example-correct">Je n’aime pas <strong>le</strong> café.</div>
+    </div>
+
+    <div class="fg-callout fg-note">
+      <strong>چرا؟</strong><br>
+      در
+      <span class="fg-inline-fr">Je n’aime pas le café</span>
+      شما وجود یا مقدار قهوه را نفی نمی‌کنید؛ بلکه درباره «قهوه» به‌عنوان یک مفهوم کلی صحبت می‌کنید.
+    </div>
+  </section>
+
+  <!-- Section 5 -->
+  <section class="fg-section" id="fg-question">
+    <div class="fg-section-title">
+      <span class="fg-section-number">5</span>
+      <div>
+        <h2>چهار روش مهم برای ساخت سؤال بله/خیر</h2>
+        <small lang="fr">L’interrogation totale</small>
+      </div>
+    </div>
+
+    <h3>روش اول: آهنگ صعودی</h3>
+
+    <p>
+      ساختار جمله خبری تغییر نمی‌کند؛ فقط در گفتار، آهنگ صدا در انتهای جمله بالا می‌رود.
+    </p>
+
+    <div class="fg-examples">
+      <div class="fg-example fg-example-correct">Vous êtes irlandais ?</div>
+      <div class="fg-example fg-example-correct">Patrick est irlandais ?</div>
+    </div>
+
+    <div class="fg-callout fg-tip">
+      این ساختار در مکالمه روزمره بسیار رایج و طبیعی است.
+    </div>
+
+    <h3>
+      روش دوم:
+      <span class="fg-inline-fr">Est-ce que</span>
+    </h3>
+
+    <div class="fg-rule">
+      <span class="fg-formula">Est-ce que + sujet + verbe + ... ?</span>
+    </div>
+
+    <div class="fg-examples">
+      <div class="fg-example fg-example-correct">Est-ce que vous êtes irlandais ?</div>
+      <div class="fg-example fg-example-correct">Est-ce que Patrick est irlandais ?</div>
+      <div class="fg-example fg-example-correct">Est-ce que la salle est prête ?</div>
+    </div>
+
+    <div class="fg-callout fg-danger">
+      <strong>اشتباه رایج:</strong><br>
+      بعد از
+      <span class="fg-inline-fr">est-ce que</span>
+      دیگر وارونگی انجام نمی‌دهیم.
+    </div>
+
+    <div class="fg-examples">
+      <div class="fg-example fg-example-wrong">Est-ce que êtes-vous fatigué ?</div>
+      <div class="fg-example fg-example-correct">Est-ce que vous êtes fatigué ?</div>
+    </div>
+
+    <h3>روش سوم: وارونگی فعل و ضمیر</h3>
+
+    <div class="fg-rule">
+      <span class="fg-formula">Verbe - pronom sujet + ... ?</span>
+    </div>
+
+    <div class="fg-examples">
+      <div class="fg-example fg-example-correct">Êtes-vous irlandais ?</div>
+      <div class="fg-example fg-example-correct">Est-elle prête ?</div>
+      <div class="fg-example fg-example-correct">Sont-ils arrivés ?</div>
+      <div class="fg-example fg-example-correct">Avez-vous compris ?</div>
+    </div>
+
+    <h3>
+      نکته مهم:
+      <span class="fg-inline-fr">-t-</span>
+    </h3>
+
+    <p>
+      وقتی فعل به صدای واکه ختم می‌شود و ضمیر
+      <span class="fg-inline-fr">il / elle / on</span>
+      باشد، برای روانی تلفظ
+      <span class="fg-inline-fr">-t-</span>
+      میان فعل و ضمیر اضافه می‌شود.
+    </p>
+
+    <div class="fg-examples">
+      <div class="fg-example fg-example-correct">A-t-il une voiture ?</div>
+      <div class="fg-example fg-example-correct">Va-t-elle venir ?</div>
+      <div class="fg-example fg-example-correct">Parle-t-on français ici ?</div>
+    </div>
+
+    <p>
+      اما اگر خود فعل در پایان دارای
+      <span class="fg-inline-fr">t</span>
+      یا
+      <span class="fg-inline-fr">d</span>
+      باشد، دوباره
+      <span class="fg-inline-fr">-t-</span>
+      اضافه نمی‌کنیم.
+    </p>
+
+    <div class="fg-examples">
+      <div class="fg-example fg-example-correct">Est-il prêt ?</div>
+      <div class="fg-example fg-example-correct">Prend-il le bus ?</div>
+      <div class="fg-example fg-example-correct">Attend-elle quelqu’un ?</div>
+    </div>
+
+    <h3>روش چهارم: فاعل اسمی + ضمیر</h3>
+
+    <p>
+      اگر فاعل اسم باشد، در وارونگی رسمی، اسم حفظ می‌شود و سپس با یک ضمیر مناسب تکرار می‌شود.
+    </p>
+
+    <div class="fg-examples">
+      <div class="fg-example fg-example-correct">Patrick est-il irlandais ?</div>
+      <div class="fg-example fg-example-correct">Marie est-elle française ?</div>
+      <div class="fg-example fg-example-correct">La salle est-elle prête ?</div>
+      <div class="fg-example fg-example-correct">Les clients sont-ils arrivés ?</div>
+      <div class="fg-example fg-example-correct">Paul et Marie sont-ils à Paris ?</div>
+    </div>
+
+    <div class="fg-examples">
+      <div class="fg-example fg-example-wrong">La salle est prête-elle ?</div>
+      <div class="fg-example fg-example-wrong">Patrick est irlandais-il ?</div>
+    </div>
+
+    <h3>مقایسه سطح رسمی ساختارها</h3>
+
+    <div class="fg-table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>روش</th>
+            <th class="fg-fr-cell">Exemple</th>
+            <th>سطح کاربرد</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>آهنگ صعودی</td>
+            <td class="fg-fr-cell">Vous êtes prêt ?</td>
+            <td><span class="fg-badge fg-badge-spoken">گفتاری</span></td>
+          </tr>
+          <tr>
+            <td><span class="fg-inline-fr">Est-ce que</span></td>
+            <td class="fg-fr-cell">Est-ce que vous êtes prêt ?</td>
+            <td><span class="fg-badge fg-badge-neutral">خنثی</span></td>
+          </tr>
+          <tr>
+            <td>وارونگی</td>
+            <td class="fg-fr-cell">Êtes-vous prêt ?</td>
+            <td><span class="fg-badge fg-badge-formal">رسمی‌تر</span></td>
+          </tr>
+          <tr>
+            <td>اسم + ضمیر</td>
+            <td class="fg-fr-cell">La salle est-elle prête ?</td>
+            <td><span class="fg-badge fg-badge-formal">رسمی</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Section 6 -->
+  <section class="fg-section" id="fg-oui-non-si">
+    <div class="fg-section-title">
+      <span class="fg-section-number">6</span>
+      <div>
+        <h2>
+          تفاوت
+          <span class="fg-inline-fr">oui</span>،
+          <span class="fg-inline-fr">non</span>
+          و
+          <span class="fg-inline-fr">si</span>
+        </h2>
+        <small lang="fr">Répondre à une question</small>
+      </div>
+    </div>
+
+    <h3><span class="fg-inline-fr">Oui</span></h3>
+
+    <p>برای تأیید یک سؤال مثبت استفاده می‌شود.</p>
+
+    <div class="fg-dialogue">
+      <div class="fg-dialogue-line">— Vous êtes marié ?</div>
+      <div class="fg-dialogue-line">— <strong>Oui</strong>, je suis marié.</div>
+    </div>
+
+    <h3><span class="fg-inline-fr">Non</span></h3>
+
+    <p>برای رد کردن سؤال مثبت استفاده می‌شود.</p>
+
+    <div class="fg-dialogue">
+      <div class="fg-dialogue-line">— Vous êtes marié ?</div>
+      <div class="fg-dialogue-line">— <strong>Non</strong>, je ne suis pas marié.</div>
+    </div>
+
+    <h3><span class="fg-inline-fr">Si</span></h3>
+
+    <p>
+      اگر سؤال منفی باشد و بخواهیم آن منفی بودن را رد کنیم، از
+      <span class="fg-inline-fr">si</span>
+      استفاده می‌کنیم.
+    </p>
+
+    <div class="fg-dialogue">
+      <div class="fg-dialogue-line">— Vous <strong>n’êtes pas</strong> marié ?</div>
+      <div class="fg-dialogue-line">— <strong>Si</strong>, je suis marié.</div>
+    </div>
+
+    <div class="fg-dialogue">
+      <div class="fg-dialogue-line">— Tu <strong>n’as pas compris</strong> ?</div>
+      <div class="fg-dialogue-line">— <strong>Si</strong>, j’ai compris.</div>
+    </div>
+
+    <div class="fg-callout fg-warning">
+      <strong>یکی از مهم‌ترین نکته‌های این درس</strong><br>
+      در زبان فرانسه برای «چرا، هستم / چرا، انجام دادم» در جواب سؤال منفی، معمولاً
+      <span class="fg-inline-fr">si</span>
+      به‌کار می‌رود، نه
+      <span class="fg-inline-fr">oui</span>.
+    </div>
+
+    <h3>یک سؤال منفی، دو پاسخ متفاوت</h3>
+
+    <div class="fg-dialogue">
+      <div class="fg-dialogue-line">— Vous n’êtes pas fatigué ?</div>
+      <div class="fg-dialogue-line">
+        — <strong>Non, je ne suis pas fatigué.</strong>
+      </div>
+      <span class="fg-translation">
+        نه، خسته نیستم. یعنی منفی بودن سؤال را تأیید می‌کنید.
+      </span>
+    </div>
+
+    <div class="fg-dialogue">
+      <div class="fg-dialogue-line">— Vous n’êtes pas fatigué ?</div>
+      <div class="fg-dialogue-line">
+        — <strong>Si, je suis fatigué.</strong>
+      </div>
+      <span class="fg-translation">
+        چرا، خسته‌ام. یعنی با منفی بودن سؤال مخالفت می‌کنید.
+      </span>
+    </div>
+  </section>
+
+  <!-- Section 7 -->
+  <section class="fg-section" id="fg-aussi">
+    <div class="fg-section-title">
+      <span class="fg-section-number">7</span>
+      <div>
+        <h2>
+          <span class="fg-inline-fr">Moi aussi</span>
+          و
+          <span class="fg-inline-fr">Moi non plus</span>
+        </h2>
+        <small lang="fr">Exprimer l’accord</small>
+      </div>
+    </div>
+
+    <h3><span class="fg-inline-fr">Moi aussi</span></h3>
+
+    <p>برای موافقت با یک جمله مثبت به‌کار می‌رود.</p>
+
+    <div class="fg-dialogue">
+      <div class="fg-dialogue-line">— Je suis marié.</div>
+      <div class="fg-dialogue-line">— <strong>Moi aussi.</strong></div>
+    </div>
+
+    <div class="fg-dialogue">
+      <div class="fg-dialogue-line">— J’aime la musique.</div>
+      <div class="fg-dialogue-line">— <strong>Moi aussi.</strong></div>
+    </div>
+
+    <h3><span class="fg-inline-fr">Moi non plus</span></h3>
+
+    <p>برای موافقت با یک جمله منفی استفاده می‌شود.</p>
+
+    <div class="fg-dialogue">
+      <div class="fg-dialogue-line">— Je ne suis pas marié.</div>
+      <div class="fg-dialogue-line">— <strong>Moi non plus.</strong></div>
+    </div>
+
+    <div class="fg-dialogue">
+      <div class="fg-dialogue-line">— Je n’aime pas le café.</div>
+      <div class="fg-dialogue-line">— <strong>Moi non plus.</strong></div>
+    </div>
+
+    <h3>دو ساختار ظریف دیگر</h3>
+
+    <div class="fg-compare">
+      <div class="fg-compare-card">
+        <h4>مخالفت با جمله منفی</h4>
+        <div class="fg-fr">— Je ne travaille pas demain.</div>
+        <div class="fg-fr">— <strong>Moi, si.</strong></div>
+        <p>یعنی: ولی من فردا کار می‌کنم.</p>
+      </div>
+
+      <div class="fg-compare-card">
+        <h4>مخالفت با جمله مثبت</h4>
+        <div class="fg-fr">— Je travaille demain.</div>
+        <div class="fg-fr">— <strong>Moi, non.</strong></div>
+        <p>یعنی: ولی من فردا کار نمی‌کنم.</p>
+      </div>
+    </div>
+
+    <div class="fg-rule">
+      <span class="fg-rule-label">الگوی حفظی</span>
+      <div class="fg-table-wrap" style="margin-bottom:0;">
+        <table style="min-width:520px;">
+          <thead>
+            <tr>
+              <th>جملهٔ طرف مقابل</th>
+              <th>موافقت شما</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>مثبت</td>
+              <td class="fg-fr-cell"><strong>Moi aussi.</strong></td>
+            </tr>
+            <tr>
+              <td>منفی</td>
+              <td class="fg-fr-cell"><strong>Moi non plus.</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 8 -->
+  <section class="fg-section" id="fg-non-pas">
+    <div class="fg-section-title">
+      <span class="fg-section-number">8</span>
+      <div>
+        <h2>
+          تفاوت
+          <span class="fg-inline-fr">non</span>
+          و
+          <span class="fg-inline-fr">pas</span>
+        </h2>
+        <small lang="fr">Négation globale ou partielle</small>
+      </div>
+    </div>
+
+    <h3><span class="fg-inline-fr">Non</span>: رد کل سؤال</h3>
+
+    <div class="fg-dialogue">
+      <div class="fg-dialogue-line">— Vous êtes belge ?</div>
+      <div class="fg-dialogue-line">— <strong>Non</strong>, je suis français.</div>
+    </div>
+
+    <div class="fg-dialogue">
+      <div class="fg-dialogue-line">— Tu viens ?</div>
+      <div class="fg-dialogue-line">— <strong>Non.</strong></div>
+    </div>
+
+    <h3><span class="fg-inline-fr">Pas</span>: نفی یا تصحیح یک بخش</h3>
+
+    <div class="fg-dialogue">
+      <div class="fg-dialogue-line">— Vous êtes de Paris ?</div>
+      <div class="fg-dialogue-line">— <strong>Pas de Paris</strong>, de Lyon.</div>
+    </div>
+
+    <div class="fg-dialogue">
+      <div class="fg-dialogue-line">— Vous rentrez lundi ?</div>
+      <div class="fg-dialogue-line">— <strong>Pas lundi</strong>, mardi.</div>
+    </div>
+
+    <div class="fg-dialogue">
+      <div class="fg-dialogue-line">— Tu viens avec Paul ?</div>
+      <div class="fg-dialogue-line">— <strong>Pas avec Paul</strong>, avec Marie.</div>
+    </div>
+
+    <div class="fg-dialogue">
+      <div class="fg-dialogue-line">— Qui a téléphoné ?</div>
+      <div class="fg-dialogue-line">— <strong>Pas moi.</strong></div>
+    </div>
+
+    <div class="fg-callout fg-note">
+      <strong>نکتهٔ زبانی:</strong><br>
+      پاسخ‌هایی مثل
+      <span class="fg-inline-fr">Pas lundi</span>
+      در واقع شکل کوتاه‌شدهٔ جمله کامل‌اند:
+      <span class="fg-inline-fr">Je ne rentre pas lundi.</span>
+    </div>
+  </section>
+
+  <!-- Section 9 -->
+  <section class="fg-section" id="fg-agreement">
+    <div class="fg-section-title">
+      <span class="fg-section-number">9</span>
+      <div>
+        <h2>توافق صفت در جمله منفی</h2>
+        <small lang="fr">L’accord de l’adjectif</small>
+      </div>
+    </div>
+
+    <p>
+      منفی شدن جمله هیچ تغییری در قواعد توافق صفت ایجاد نمی‌کند.
+      صفت همچنان باید با اسم یا ضمیری که توصیف می‌کند، از نظر جنس و شمار هماهنگ شود.
+    </p>
+
+    <div class="fg-table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th class="fg-fr-cell">Sujet</th>
+            <th class="fg-fr-cell">Phrase</th>
+            <th>نکته</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="fg-fr-cell">la viande</td>
+            <td class="fg-fr-cell">La viande n’est pas <strong>cuite</strong>.</td>
+            <td>مؤنث مفرد</td>
+          </tr>
+          <tr>
+            <td class="fg-fr-cell">la pizzeria</td>
+            <td class="fg-fr-cell">La pizzeria n’est pas <strong>chère</strong>.</td>
+            <td>مؤنث مفرد</td>
+          </tr>
+          <tr>
+            <td class="fg-fr-cell">les jours</td>
+            <td class="fg-fr-cell">Les jours ne sont pas <strong>longs</strong>.</td>
+            <td>مذکر جمع</td>
+          </tr>
+          <tr>
+            <td class="fg-fr-cell">Marie</td>
+            <td class="fg-fr-cell">Marie n’est pas <strong>fatiguée</strong>.</td>
+            <td>مؤنث مفرد</td>
+          </tr>
+          <tr>
+            <td class="fg-fr-cell">Paul et Marie</td>
+            <td class="fg-fr-cell">Paul et Marie ne sont pas <strong>fatigués</strong>.</td>
+            <td>گروه مختلط → مذکر جمع</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="fg-callout fg-tip">
+      وجود
+      <span class="fg-inline-fr">ne ... pas</span>
+      هیچ اثری روی جنس و شمار صفت ندارد؛ ابتدا مرجع صفت را پیدا کنید و سپس توافق را انجام دهید.
+    </div>
+  </section>
+
+  <!-- Section 10 -->
+  <section class="fg-section" id="fg-advanced">
+    <div class="fg-section-title">
+      <span class="fg-section-number">10</span>
+      <div>
+        <h2>دو نکته پیشرفته درباره <span class="fg-inline-fr">ne</span></h2>
+        <small lang="fr">Pour aller plus loin</small>
+      </div>
+    </div>
+
+    <div class="fg-callout fg-warning">
+      این بخش فراتر از هسته اصلی درس است. فعلاً کافی است آن‌ها را بشناسید؛ لازم نیست برای مکالمه روزمره فعالانه استفاده کنید.
+    </div>
+
+    <h3>
+      الف)
+      <span class="fg-inline-fr">ne</span>
+      بدون
+      <span class="fg-inline-fr">pas</span>
+    </h3>
+
+    <p>
+      در بعضی ساختارهای رسمی یا ادبی ممکن است
+      <span class="fg-inline-fr">pas</span>
+      حذف شود.
+    </p>
+
+    <div class="fg-examples">
+      <div class="fg-example fg-example-correct">
+        Je <strong>ne saurais</strong> vous répondre.
+      </div>
+
+      <div class="fg-example fg-example-correct">
+        Il <strong>ne cesse</strong> de parler.
+      </div>
+
+      <div class="fg-example fg-example-correct">
+        Je <strong>n’ose</strong> le dire.
+      </div>
+    </div>
+
+    <h3>
+      ب)
+      <span class="fg-inline-fr">ne explétif</span>
+    </h3>
+
+    <p>
+      گاهی
+      <span class="fg-inline-fr">ne</span>
+      در جمله وجود دارد اما معنای منفی ایجاد نمی‌کند.
+    </p>
+
+    <div class="fg-example fg-example-correct">
+      Je crains qu’il <strong>ne</strong> vienne.
+      <span class="fg-translation">
+        می‌ترسم که بیاید. این <span class="fg-inline-fr">ne</span> به معنی «نیاید» نیست.
+      </span>
+    </div>
+
+    <div class="fg-callout fg-note">
+      این ساختار در سطح‌های بالاتر و در زبان رسمی بیشتر دیده می‌شود و موضوع اصلی درس سوم نیست.
+    </div>
+  </section>
+
+  <!-- Final summary -->
+  <section class="fg-summary">
+    <h2>خلاصه طلایی درس ۳</h2>
+
+    <p>
+      اگر فقط چند قانون اصلی این درس را به خاطر بسپارید، این موارد مهم‌ترین‌ها هستند:
+    </p>
+
+    <div class="fg-summary-grid">
+      <div class="fg-summary-item">
+        <strong>۱. منفی ساده</strong>
+        <div class="fg-fr">ne + verbe + pas</div>
+      </div>
+
+      <div class="fg-summary-item">
+        <strong>۲. پیش از واکه</strong>
+        <div class="fg-fr">ne → n’</div>
+        <div class="fg-fr">Vous n’êtes pas prêt.</div>
+      </div>
+
+      <div class="fg-summary-item">
+        <strong>۳. سؤال خنثی و امن</strong>
+        <div class="fg-fr">Est-ce que + sujet + verbe ?</div>
+      </div>
+
+      <div class="fg-summary-item">
+        <strong>۴. پاسخ مثبت به سؤال منفی</strong>
+        <div class="fg-fr">
+          Vous n’êtes pas prêt ? — <strong>Si</strong>, je suis prêt.
+        </div>
+      </div>
+
+      <div class="fg-summary-item">
+        <strong>۵. موافقت با جمله مثبت</strong>
+        <div class="fg-fr">Moi aussi.</div>
+      </div>
+
+      <div class="fg-summary-item">
+        <strong>۶. موافقت با جمله منفی</strong>
+        <div class="fg-fr">Moi non plus.</div>
+      </div>
+
+      <div class="fg-summary-item">
+        <strong>۷. رد کل جمله</strong>
+        <div class="fg-fr">Non.</div>
+      </div>
+
+      <div class="fg-summary-item">
+        <strong>۸. نفی فقط یک بخش</strong>
+        <div class="fg-fr">Pas lundi, mardi.</div>
+      </div>
+    </div>
+  </section>
+</div>

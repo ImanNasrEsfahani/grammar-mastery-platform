@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ApiError, apiRequest } from "@/lib/api/client";
 import type { LessonCollectionEnvelope } from "@/lib/api/types";
 import type { Locale } from "@/lib/i18n";
+import { DEFAULT_GRAMMAR_BOOK_SLUG } from "@/lib/grammar-content/books";
 import { LoadingCard } from "@/components/ui/LoadingCard";
 import { StatusPanel } from "@/components/ui/StatusPanel";
 
@@ -27,7 +28,7 @@ export function LessonListClient({locale}: {locale: Locale}) {
     <ol className="card-list">
       {data.data.map((lesson) => (
         <li key={lesson.id}>
-          <Link className="surface list-card" href={`/${locale}/lessons/${lesson.id}`}>
+          <Link className="surface list-card" href={`/${locale}/lessons/${lesson.id}?book=${DEFAULT_GRAMMAR_BOOK_SLUG}`}>
             <span className="lesson-number">{lesson.lesson_no}</span>
             <span><strong lang="fr" dir="ltr">{lesson.title_fr}</strong><small>{lesson.short_title}</small></span>
           </Link>

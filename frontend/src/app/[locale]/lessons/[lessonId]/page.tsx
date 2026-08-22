@@ -1,8 +1,26 @@
-import { notFound } from "next/navigation";
-import { UnavailableSurface } from "@/components/product/UnavailableSurface";
-import { isLocale } from "@/lib/i18n";
+import {notFound} from "next/navigation";
+import {LessonContentClient} from "@/components/product/LessonContentClient";
+import {isLocale} from "@/lib/i18n";
+import {resolveGrammarBookSlug} from "@/lib/grammar-content/books";
 
-export default async function LessonPage({params}: {params: Promise<{locale: string; lessonId: string}>}) {
-  const {locale} = await params; if (!isLocale(locale)) notFound();
-  return <UnavailableSurface locale={locale} code="LESSON_ANALYTICS_VIEW_DEFERRED" title={locale === "fa" ? "تحلیل درس" : "Lesson analytics"} description={locale === "fa" ? "تسلط، اطمینان، پوشش و اقدام بعدی این درس." : "Mastery, confidence, coverage and the next action for this lesson."} />;
+type LessonPageProps = {
+  params: Promise<{locale: string; lessonId: string}>;
+  searchParams: Promise<{book?: string | string[]}>;
+};
+
+export default async function LessonPage({params, searchParams}: LessonPageProps) {
+  const [{locale, lessonId}, query] = await Promise.all([params, searchParams]);
+  if (!isLocale(locale)) notFound();
+
+  const requestedBook = Array.isArray(query.book) ? query.book[0] : query.book;
+  const bookSlug = resolveGrammarBookSlug(requestedBook);
+  if (!bookSlug) notFound();
+
+  return (
+    <LessonContentClient
+      locale={locale}
+      lessonId={lessonId}
+      bookSlug={bookSlug}
+    />
+  );
 }

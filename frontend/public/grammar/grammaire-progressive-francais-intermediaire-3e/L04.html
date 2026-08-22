@@ -1,0 +1,2647 @@
+<div class="french-grammar-wrapper fg-wrapper" dir="rtl">
+  <style>
+    /* =========================================================
+       Grammar Mastery Platform — Lesson 4
+       Scoped / Isolated styles
+       ========================================================= */
+
+    .fg-wrapper {
+      --fg-navy: #102a43;
+      --fg-blue: #1d4ed8;
+      --fg-blue-soft: #eff6ff;
+      --fg-blue-border: #bfdbfe;
+      --fg-green: #166534;
+      --fg-green-soft: #f0fdf4;
+      --fg-green-border: #bbf7d0;
+      --fg-red: #b91c1c;
+      --fg-red-soft: #fef2f2;
+      --fg-red-border: #fecaca;
+      --fg-orange: #c2410c;
+      --fg-orange-soft: #fff7ed;
+      --fg-orange-border: #fed7aa;
+      --fg-purple: #6d28d9;
+      --fg-purple-soft: #f5f3ff;
+      --fg-purple-border: #ddd6fe;
+      --fg-cyan: #0e7490;
+      --fg-cyan-soft: #ecfeff;
+      --fg-gray-50: #f8fafc;
+      --fg-gray-100: #f1f5f9;
+      --fg-gray-200: #e2e8f0;
+      --fg-gray-300: #cbd5e1;
+      --fg-gray-500: #64748b;
+      --fg-gray-600: #475569;
+      --fg-gray-700: #334155;
+      --fg-gray-900: #0f172a;
+      --fg-white: #ffffff;
+      --fg-radius: 16px;
+      --fg-shadow: 0 8px 24px rgba(15, 23, 42, 0.07);
+      --fg-shadow-hover: 0 12px 34px rgba(15, 23, 42, 0.12);
+
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 18px;
+      box-sizing: border-box;
+      direction: rtl;
+      text-align: right;
+      color: var(--fg-gray-900);
+      font-family:
+        Vazirmatn,
+        IRANSansX,
+        IRANSans,
+        Tahoma,
+        Arial,
+        sans-serif;
+      font-size: 16px;
+      line-height: 1.95;
+      background: transparent;
+    }
+
+    .fg-wrapper *,
+    .fg-wrapper *::before,
+    .fg-wrapper *::after {
+      box-sizing: border-box;
+    }
+
+    .fg-wrapper .fg-fr,
+    .fg-wrapper [lang="fr"] {
+      direction: ltr;
+      text-align: left;
+      unicode-bidi: isolate;
+      font-family:
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+    }
+
+    .fg-wrapper .fg-fr-inline {
+      direction: ltr;
+      unicode-bidi: isolate;
+      display: inline-block;
+      font-family:
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+      font-weight: 600;
+    }
+
+    .fg-wrapper .fg-hero {
+      position: relative;
+      overflow: hidden;
+      padding: 30px;
+      margin-bottom: 24px;
+      border-radius: 22px;
+      background:
+        linear-gradient(135deg, #102a43 0%, #173f73 56%, #1d4ed8 100%);
+      color: #fff;
+      box-shadow: var(--fg-shadow);
+    }
+
+    .fg-wrapper .fg-hero::after {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      left: -70px;
+      top: -90px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.08);
+    }
+
+    .fg-wrapper .fg-hero::before {
+      content: "";
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      right: -45px;
+      bottom: -70px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.07);
+    }
+
+    .fg-wrapper .fg-hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .fg-wrapper .fg-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 12px;
+      margin-bottom: 10px;
+      border: 1px solid rgba(255,255,255,.28);
+      border-radius: 999px;
+      background: rgba(255,255,255,.1);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .fg-wrapper .fg-hero h1 {
+      margin: 0 0 10px;
+      color: #fff;
+      font-size: clamp(26px, 4vw, 42px);
+      line-height: 1.35;
+    }
+
+    .fg-wrapper .fg-hero .fg-subtitle {
+      margin: 0;
+      max-width: 850px;
+      color: #dbeafe;
+      font-size: 16px;
+    }
+
+    .fg-wrapper .fg-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .fg-wrapper .fg-meta {
+      padding: 12px 14px;
+      border-radius: 13px;
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.14);
+    }
+
+    .fg-wrapper .fg-meta-label {
+      display: block;
+      margin-bottom: 3px;
+      color: #bfdbfe;
+      font-size: 12px;
+    }
+
+    .fg-wrapper .fg-meta-value {
+      color: #fff;
+      font-weight: 800;
+    }
+
+    .fg-wrapper .fg-toc {
+      padding: 20px;
+      margin-bottom: 24px;
+      border: 1px solid var(--fg-gray-200);
+      border-radius: var(--fg-radius);
+      background: var(--fg-white);
+      box-shadow: var(--fg-shadow);
+    }
+
+    .fg-wrapper .fg-toc-title {
+      margin: 0 0 13px;
+      color: var(--fg-navy);
+      font-size: 20px;
+      font-weight: 900;
+    }
+
+    .fg-wrapper .fg-toc-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 9px;
+    }
+
+    .fg-wrapper .fg-toc a {
+      display: block;
+      padding: 10px 13px;
+      color: var(--fg-blue);
+      text-decoration: none;
+      border-radius: 10px;
+      background: var(--fg-blue-soft);
+      border: 1px solid var(--fg-blue-border);
+      font-weight: 700;
+      transition: .2s ease;
+    }
+
+    .fg-wrapper .fg-toc a:hover {
+      transform: translateY(-1px);
+      background: #dbeafe;
+    }
+
+    .fg-wrapper .fg-section {
+      margin: 28px 0;
+      scroll-margin-top: 30px;
+    }
+
+    .fg-wrapper .fg-section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 15px;
+      padding-bottom: 10px;
+      color: var(--fg-navy);
+      border-bottom: 3px solid var(--fg-blue);
+      font-size: clamp(22px, 3vw, 29px);
+      line-height: 1.45;
+    }
+
+    .fg-wrapper .fg-section-number {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-width: 36px;
+      height: 36px;
+      padding: 0 9px;
+      border-radius: 10px;
+      color: #fff;
+      background: var(--fg-blue);
+      font-size: 16px;
+    }
+
+    .fg-wrapper .fg-card {
+      padding: 22px;
+      margin: 15px 0;
+      border: 1px solid var(--fg-gray-200);
+      border-radius: var(--fg-radius);
+      background: var(--fg-white);
+      box-shadow: var(--fg-shadow);
+    }
+
+    .fg-wrapper .fg-card:hover {
+      box-shadow: var(--fg-shadow-hover);
+    }
+
+    .fg-wrapper .fg-card h3 {
+      margin: 0 0 12px;
+      color: var(--fg-navy);
+      font-size: 20px;
+    }
+
+    .fg-wrapper .fg-card h4 {
+      margin: 19px 0 8px;
+      color: var(--fg-blue);
+      font-size: 17px;
+    }
+
+    .fg-wrapper .fg-card p {
+      margin: 9px 0;
+    }
+
+    .fg-wrapper .fg-rule {
+      padding: 15px 17px;
+      margin: 12px 0;
+      border-right: 5px solid var(--fg-blue);
+      border-radius: 11px;
+      background: var(--fg-blue-soft);
+    }
+
+    .fg-wrapper .fg-tip {
+      padding: 15px 17px;
+      margin: 13px 0;
+      border-right: 5px solid var(--fg-green);
+      border-radius: 11px;
+      background: var(--fg-green-soft);
+      color: #14532d;
+    }
+
+    .fg-wrapper .fg-warning {
+      padding: 15px 17px;
+      margin: 13px 0;
+      border-right: 5px solid var(--fg-orange);
+      border-radius: 11px;
+      background: var(--fg-orange-soft);
+      color: #7c2d12;
+    }
+
+    .fg-wrapper .fg-error {
+      padding: 15px 17px;
+      margin: 13px 0;
+      border-right: 5px solid var(--fg-red);
+      border-radius: 11px;
+      background: var(--fg-red-soft);
+      color: #7f1d1d;
+    }
+
+    .fg-wrapper .fg-memory {
+      padding: 15px 17px;
+      margin: 13px 0;
+      border-right: 5px solid var(--fg-purple);
+      border-radius: 11px;
+      background: var(--fg-purple-soft);
+      color: #4c1d95;
+    }
+
+    .fg-wrapper .fg-callout-title {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 900;
+    }
+
+    .fg-wrapper .fg-example {
+      margin: 10px 0;
+      padding: 12px 15px;
+      direction: ltr;
+      text-align: left;
+      unicode-bidi: isolate;
+      border: 1px solid var(--fg-green-border);
+      border-left: 4px solid var(--fg-green);
+      border-radius: 10px;
+      background: var(--fg-green-soft);
+      color: #14532d;
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+    }
+
+    .fg-wrapper .fg-example-wrong {
+      margin: 10px 0;
+      padding: 12px 15px;
+      direction: ltr;
+      text-align: left;
+      unicode-bidi: isolate;
+      border: 1px solid var(--fg-red-border);
+      border-left: 4px solid var(--fg-red);
+      border-radius: 10px;
+      background: var(--fg-red-soft);
+      color: #991b1b;
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+    }
+
+    .fg-wrapper .fg-two-col {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 15px;
+    }
+
+    .fg-wrapper .fg-three-col {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 15px;
+    }
+
+    .fg-wrapper .fg-table-wrap {
+      width: 100%;
+      margin: 15px 0;
+      overflow-x: auto;
+      border: 1px solid var(--fg-gray-200);
+      border-radius: 13px;
+      background: #fff;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .fg-wrapper .fg-table {
+      width: 100%;
+      min-width: 620px;
+      border-collapse: collapse;
+      direction: rtl;
+      text-align: right;
+    }
+
+    .fg-wrapper .fg-table th,
+    .fg-wrapper .fg-table td {
+      padding: 12px 14px;
+      vertical-align: top;
+      border: 1px solid var(--fg-gray-200);
+    }
+
+    .fg-wrapper .fg-table thead th {
+      color: #fff;
+      background: var(--fg-navy);
+      font-weight: 800;
+    }
+
+    .fg-wrapper .fg-table tbody tr:nth-child(even) {
+      background: var(--fg-gray-50);
+    }
+
+    .fg-wrapper .fg-table .fg-fr-cell {
+      direction: ltr;
+      text-align: left;
+      unicode-bidi: isolate;
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+    }
+
+    .fg-wrapper ul,
+    .fg-wrapper ol {
+      margin: 8px 0 12px;
+      padding-right: 24px;
+    }
+
+    .fg-wrapper li {
+      margin: 5px 0;
+    }
+
+    .fg-wrapper .fg-fr-list {
+      direction: ltr;
+      text-align: left;
+      padding-left: 25px;
+      padding-right: 0;
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+    }
+
+    .fg-wrapper .fg-pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 9px 0;
+    }
+
+    .fg-wrapper .fg-pill {
+      direction: ltr;
+      unicode-bidi: isolate;
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: var(--fg-gray-100);
+      border: 1px solid var(--fg-gray-200);
+      color: var(--fg-gray-700);
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .fg-wrapper .fg-arrow {
+      padding: 0 6px;
+      color: var(--fg-blue);
+      font-weight: 900;
+    }
+
+    .fg-wrapper .fg-exercise {
+      margin: 18px 0;
+      overflow: hidden;
+      border: 1px solid var(--fg-gray-200);
+      border-radius: var(--fg-radius);
+      background: #fff;
+      box-shadow: var(--fg-shadow);
+    }
+
+    .fg-wrapper .fg-exercise-header {
+      padding: 14px 18px;
+      color: #fff;
+      background: linear-gradient(135deg, var(--fg-navy), #1e40af);
+    }
+
+    .fg-wrapper .fg-exercise-header h3 {
+      margin: 0;
+      color: #fff;
+      font-size: 19px;
+    }
+
+    .fg-wrapper .fg-exercise-body {
+      padding: 18px;
+    }
+
+    .fg-wrapper .fg-question {
+      padding: 12px 14px;
+      margin-bottom: 12px;
+      border-radius: 10px;
+      background: var(--fg-gray-50);
+      border: 1px solid var(--fg-gray-200);
+    }
+
+    .fg-wrapper .fg-answer {
+      padding: 12px 14px;
+      margin: 8px 0 13px;
+      border-radius: 10px;
+      background: var(--fg-green-soft);
+      border: 1px solid var(--fg-green-border);
+    }
+
+    .fg-wrapper .fg-answer-label {
+      color: var(--fg-green);
+      font-weight: 900;
+    }
+
+    .fg-wrapper .fg-note {
+      color: var(--fg-gray-600);
+      font-size: 14px;
+    }
+
+    .fg-wrapper .fg-separator {
+      height: 1px;
+      margin: 26px 0;
+      border: 0;
+      background: linear-gradient(
+        to left,
+        transparent,
+        var(--fg-gray-300),
+        transparent
+      );
+    }
+
+    .fg-wrapper .fg-summary-box {
+      padding: 22px;
+      margin-top: 30px;
+      border-radius: 18px;
+      border: 1px solid var(--fg-blue-border);
+      background: linear-gradient(135deg, #eff6ff, #ffffff);
+    }
+
+    .fg-wrapper .fg-summary-box h2 {
+      margin-top: 0;
+      color: var(--fg-navy);
+    }
+
+    .fg-wrapper .fg-mini {
+      font-size: 13px;
+      color: var(--fg-gray-500);
+    }
+
+    @media (max-width: 850px) {
+      .fg-wrapper {
+        padding: 12px;
+      }
+
+      .fg-wrapper .fg-meta-grid,
+      .fg-wrapper .fg-three-col {
+        grid-template-columns: 1fr;
+      }
+
+      .fg-wrapper .fg-two-col {
+        grid-template-columns: 1fr;
+      }
+
+      .fg-wrapper .fg-toc-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .fg-wrapper .fg-hero {
+        padding: 22px 18px;
+      }
+
+      .fg-wrapper .fg-card,
+      .fg-wrapper .fg-exercise-body {
+        padding: 16px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .fg-wrapper {
+        font-size: 15px;
+        line-height: 1.9;
+      }
+
+      .fg-wrapper .fg-section-title {
+        align-items: flex-start;
+        font-size: 21px;
+      }
+
+      .fg-wrapper .fg-section-number {
+        min-width: 31px;
+        height: 31px;
+        font-size: 14px;
+      }
+
+      .fg-wrapper .fg-table {
+        min-width: 560px;
+      }
+
+      .fg-wrapper .fg-table th,
+      .fg-wrapper .fg-table td {
+        padding: 10px;
+      }
+    }
+  </style>
+
+  <!-- ==================== HERO ==================== -->
+  <section class="fg-hero">
+    <div class="fg-hero-content">
+      <span class="fg-kicker">درس ۴ · Grammaire Progressive du Français</span>
+
+      <h1>
+        <span class="fg-fr-inline" lang="fr">LE NOM et L’ARTICLE</span>
+        — اسم و حرف تعریف
+      </h1>
+
+      <p class="fg-subtitle">
+        آموزش جامع جنس و جمع اسم‌ها، حروف تعریف معیّن و نامعیّن،
+        <span class="fg-fr-inline" lang="fr">articles contractés</span>
+        و نکات ظریف و استثناهای مهم درس.
+      </p>
+
+      <div class="fg-meta-grid">
+        <div class="fg-meta">
+          <span class="fg-meta-label">صفحات چاپی کتاب</span>
+          <span class="fg-meta-value">۲۲ تا ۳۱</span>
+        </div>
+
+        <div class="fg-meta">
+          <span class="fg-meta-label">صفحات فایل PDF</span>
+          <span class="fg-meta-value">۲۴ تا ۳۳</span>
+        </div>
+
+        <div class="fg-meta">
+          <span class="fg-meta-label">موضوع اصلی</span>
+          <span class="fg-meta-value">Noms et articles</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TOC ==================== -->
+  <nav class="fg-toc" aria-label="فهرست درس">
+    <h2 class="fg-toc-title">فهرست آموزش</h2>
+
+    <div class="fg-toc-grid">
+      <a href="#fg-gender-person">۱. جنس اسم اشخاص</a>
+      <a href="#fg-gender-things">۲. جنس اسم اشیا</a>
+      <a href="#fg-animals">۳. اسم حیوانات</a>
+      <a href="#fg-plural">۴. جمع اسم‌ها</a>
+      <a href="#fg-articles">۵. حروف تعریف</a>
+      <a href="#fg-elision">۶. Élision و حرف H</a>
+      <a href="#fg-contracted">۷. Articles contractés</a>
+      <a href="#fg-subtleties">۸. نکات ظریف</a>
+      <a href="#fg-exercises">۹. تمرین‌ها و پاسخ‌ها</a>
+      <a href="#fg-summary">۱۰. جمع‌بندی سریع</a>
+    </div>
+  </nav>
+
+  <!-- =========================================================
+       INTRODUCTION
+       ========================================================= -->
+  <section class="fg-section">
+    <h2 class="fg-section-title">
+      <span class="fg-section-number">۰</span>
+      مفهوم پایه: هر اسم در فرانسه یک «هویت دستوری» دارد
+    </h2>
+
+    <div class="fg-card">
+      <p>
+        در زبان فرانسوی، هر اسم دارای دو ویژگی اصلی است:
+        <strong>جنس دستوری</strong> و <strong>شمار</strong>.
+        بنابراین هنگام استفاده از اسم باید بدانیم مذکر است یا مؤنث و مفرد است یا جمع.
+      </p>
+
+      <div class="fg-table-wrap">
+        <table class="fg-table">
+          <thead>
+            <tr>
+              <th>نوع</th>
+              <th>نامعیّن</th>
+              <th>معیّن</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>مذکر مفرد</td>
+              <td class="fg-fr-cell">un garçon</td>
+              <td class="fg-fr-cell">le garçon</td>
+            </tr>
+            <tr>
+              <td>مؤنث مفرد</td>
+              <td class="fg-fr-cell">une fille</td>
+              <td class="fg-fr-cell">la fille</td>
+            </tr>
+            <tr>
+              <td>جمع</td>
+              <td class="fg-fr-cell">des enfants</td>
+              <td class="fg-fr-cell">les enfants</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="fg-rule">
+        <span class="fg-callout-title">قاعدهٔ بنیادی</span>
+        حرف تعریف و صفت باید با اسم از نظر جنس و شمار هماهنگ شوند.
+      </div>
+
+      <div class="fg-example" lang="fr">
+        un étudiant intelligent<br>
+        une étudiante intelligente<br>
+        des étudiants intelligents<br>
+        des étudiantes intelligentes
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       1. GENDER OF PEOPLE
+       ========================================================= -->
+  <section class="fg-section" id="fg-gender-person">
+    <h2 class="fg-section-title">
+      <span class="fg-section-number">۱</span>
+      مذکر و مؤنث اسم اشخاص
+    </h2>
+
+    <div class="fg-card">
+      <h3>قاعدهٔ عمومی: افزودن <span class="fg-fr-inline">-e</span></h3>
+
+      <p>
+        در بسیاری از اسم‌های اشخاص، شکل مؤنث با افزودن
+        <span class="fg-fr-inline">e</span>
+        به شکل مذکر ساخته می‌شود.
+      </p>
+
+      <div class="fg-example" lang="fr">
+        un étudiant → une étudiante<br>
+        un ami → une amie<br>
+        un employé → une employée<br>
+        un voisin → une voisine
+      </div>
+
+      <p>
+        اگر صفت هم داشته باشیم، صفت نیز باید مؤنث شود:
+      </p>
+
+      <div class="fg-example" lang="fr">
+        un étudiant blond → une étudiante blonde
+      </div>
+
+      <div class="fg-tip">
+        <span class="fg-callout-title">نکتهٔ تلفظی</span>
+        افزودن <span class="fg-fr-inline">-e</span> گاهی باعث می‌شود
+        صامت پایانی که در مذکر شنیده نمی‌شود، در مؤنث تلفظ شود.
+      </div>
+
+      <div class="fg-example" lang="fr">
+        étudiant → étudiante<br>
+        grand → grande
+      </div>
+    </div>
+
+    <div class="fg-card">
+      <h3>اسم‌هایی که در مذکر به <span class="fg-fr-inline">-e</span> ختم می‌شوند</h3>
+
+      <p>
+        در بسیاری از این اسم‌ها شکل نوشتاری مذکر و مؤنث یکسان باقی می‌ماند
+        و فقط حرف تعریف جنس را مشخص می‌کند.
+      </p>
+
+      <div class="fg-example" lang="fr">
+        un concierge → une concierge<br>
+        un journaliste → une journaliste<br>
+        un artiste → une artiste<br>
+        un secrétaire → une secrétaire<br>
+        un collègue → une collègue
+      </div>
+
+      <div class="fg-rule">
+        به این نوع اسم‌ها در دستور زبان فرانسه
+        <span class="fg-fr-inline">noms épicènes</span>
+        گفته می‌شود.
+      </div>
+
+      <div class="fg-example" lang="fr">
+        un journaliste compétent<br>
+        une journaliste compétente
+      </div>
+    </div>
+
+    <div class="fg-card">
+      <h3>تغییر پسوند در مؤنث</h3>
+
+      <div class="fg-table-wrap">
+        <table class="fg-table">
+          <thead>
+            <tr>
+              <th>الگو</th>
+              <th>مذکر</th>
+              <th>مؤنث</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="fg-fr-cell">-en → -enne</td>
+              <td class="fg-fr-cell">musicien</td>
+              <td class="fg-fr-cell">musicienne</td>
+            </tr>
+            <tr>
+              <td class="fg-fr-cell">-en → -enne</td>
+              <td class="fg-fr-cell">technicien</td>
+              <td class="fg-fr-cell">technicienne</td>
+            </tr>
+            <tr>
+              <td class="fg-fr-cell">-on → -onne</td>
+              <td class="fg-fr-cell">champion</td>
+              <td class="fg-fr-cell">championne</td>
+            </tr>
+            <tr>
+              <td class="fg-fr-cell">-on → -onne</td>
+              <td class="fg-fr-cell">patron</td>
+              <td class="fg-fr-cell">patronne</td>
+            </tr>
+            <tr>
+              <td class="fg-fr-cell">-eur → -euse</td>
+              <td class="fg-fr-cell">serveur</td>
+              <td class="fg-fr-cell">serveuse</td>
+            </tr>
+            <tr>
+              <td class="fg-fr-cell">-eur → -euse</td>
+              <td class="fg-fr-cell">vendeur</td>
+              <td class="fg-fr-cell">vendeuse</td>
+            </tr>
+            <tr>
+              <td class="fg-fr-cell">-teur → -trice</td>
+              <td class="fg-fr-cell">acteur</td>
+              <td class="fg-fr-cell">actrice</td>
+            </tr>
+            <tr>
+              <td class="fg-fr-cell">-teur → -trice</td>
+              <td class="fg-fr-cell">directeur</td>
+              <td class="fg-fr-cell">directrice</td>
+            </tr>
+            <tr>
+              <td class="fg-fr-cell">-teur → -trice</td>
+              <td class="fg-fr-cell">électeur</td>
+              <td class="fg-fr-cell">électrice</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="fg-warning">
+        <span class="fg-callout-title">استثنای مهم</span>
+        همهٔ اسم‌های پایان‌یافته به
+        <span class="fg-fr-inline">-teur</span>
+        به
+        <span class="fg-fr-inline">-trice</span>
+        تبدیل نمی‌شوند.
+      </div>
+
+      <div class="fg-example" lang="fr">
+        chanteur → chanteuse<br>
+        menteur → menteuse<br>
+        conteur → conteuse<br>
+        monteur → monteuse<br>
+        acheteur → acheteuse
+      </div>
+
+      <p>
+        بنابراین شکل مؤنث بسیاری از اسم‌های حرفه و شخص را بهتر است
+        همراه با خود واژه یاد بگیرید.
+      </p>
+    </div>
+
+    <div class="fg-card">
+      <h3>صورت‌های کاملاً بی‌قاعده</h3>
+
+      <div class="fg-table-wrap">
+        <table class="fg-table">
+          <thead>
+            <tr>
+              <th>مذکر</th>
+              <th>مؤنث</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="fg-fr-cell">un garçon</td><td class="fg-fr-cell">une fille</td></tr>
+            <tr><td class="fg-fr-cell">un homme</td><td class="fg-fr-cell">une femme</td></tr>
+            <tr><td class="fg-fr-cell">un fils</td><td class="fg-fr-cell">une fille</td></tr>
+            <tr><td class="fg-fr-cell">un mari</td><td class="fg-fr-cell">une femme</td></tr>
+            <tr><td class="fg-fr-cell">un monsieur</td><td class="fg-fr-cell">une dame</td></tr>
+            <tr><td class="fg-fr-cell">un roi</td><td class="fg-fr-cell">une reine</td></tr>
+            <tr><td class="fg-fr-cell">un prince</td><td class="fg-fr-cell">une princesse</td></tr>
+            <tr><td class="fg-fr-cell">un père</td><td class="fg-fr-cell">une mère</td></tr>
+            <tr><td class="fg-fr-cell">un frère</td><td class="fg-fr-cell">une sœur</td></tr>
+            <tr><td class="fg-fr-cell">un oncle</td><td class="fg-fr-cell">une tante</td></tr>
+            <tr><td class="fg-fr-cell">un neveu</td><td class="fg-fr-cell">une nièce</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="fg-card">
+      <h3>
+        <span class="fg-fr-inline">Monsieur, Madame, Mademoiselle</span>
+      </h3>
+
+      <p>
+        هنگامی که این کلمات به‌عنوان عنوان یا خطاب استفاده می‌شوند،
+        معمولاً بدون حرف تعریف می‌آیند:
+      </p>
+
+      <div class="fg-example" lang="fr">
+        Bonjour, Madame.<br>
+        Merci, Monsieur.<br>
+        Madame Dupont est arrivée.<br>
+        Monsieur Leroy travaille ici.
+      </div>
+
+      <p>
+        اما وقتی منظور «یک آقا» یا «یک خانم» باشد، حرف تعریف لازم است:
+      </p>
+
+      <div class="fg-example" lang="fr">
+        Il y a un monsieur à la porte.<br>
+        Une dame vous attend.
+      </div>
+    </div>
+
+    <div class="fg-card">
+      <h3>جنس دستوری همیشه برابر جنس واقعی نیست</h3>
+
+      <div class="fg-warning">
+        برخی اسم‌ها جنس دستوری ثابتی دارند، مستقل از جنس واقعی شخص.
+      </div>
+
+      <div class="fg-example" lang="fr">
+        Paul est une personne très gentille.<br>
+        Marie est un individu dangereux.
+      </div>
+
+      <ul>
+        <li><span class="fg-fr-inline">une personne</span> همیشه مؤنث دستوری است.</li>
+        <li><span class="fg-fr-inline">une victime</span> همیشه مؤنث دستوری است.</li>
+        <li><span class="fg-fr-inline">un individu</span> همیشه مذکر دستوری است.</li>
+      </ul>
+    </div>
+
+    <div class="fg-card">
+      <h3>شکل مؤنث بعضی مشاغل در کاربرد معاصر</h3>
+
+      <div class="fg-example" lang="fr">
+        un professeur → une professeure / une professeur<br>
+        un auteur → une auteure / une autrice<br>
+        un docteur → une docteure<br>
+        un ingénieur → une ingénieure
+      </div>
+
+      <div class="fg-tip">
+        در کانادا و به‌ویژه در کاربرد رسمی فرانسوی کانادایی، شکل‌هایی مانند
+        <span class="fg-fr-inline">professeure</span>،
+        <span class="fg-fr-inline">auteure</span>،
+        <span class="fg-fr-inline">ingénieure</span>
+        و
+        <span class="fg-fr-inline">docteure</span>
+        بسیار رایج‌اند.
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       2. GENDER OF THINGS
+       ========================================================= -->
+  <section class="fg-section" id="fg-gender-things">
+    <h2 class="fg-section-title">
+      <span class="fg-section-number">۲</span>
+      مذکر و مؤنث اسم اشیا و مفاهیم
+    </h2>
+
+    <div class="fg-card">
+      <p>
+        برای اشیا و مفاهیم، جنس دستوری معمولاً قراردادی است و الزاماً از
+        معنای کلمه قابل حدس نیست.
+      </p>
+
+      <div class="fg-example" lang="fr">
+        un placard<br>
+        une armoire<br>
+        un problème<br>
+        une solution
+      </div>
+
+      <div class="fg-memory">
+        <span class="fg-callout-title">روش درست حفظ واژگان</span>
+        اسم فرانسوی را هرگز به‌تنهایی حفظ نکنید. آن را همراه حرف تعریف
+        یاد بگیرید:
+        <br>
+        <span class="fg-fr-inline">un problème / le problème</span>
+      </div>
+    </div>
+
+    <div class="fg-two-col">
+      <div class="fg-card">
+        <h3>پایانه‌هایی که اغلب مذکرند</h3>
+
+        <h4><span class="fg-fr-inline">-age</span></h4>
+        <div class="fg-example" lang="fr">
+          le garage<br>
+          le fromage<br>
+          le ménage<br>
+          le voyage<br>
+          le courage<br>
+          le jardinage
+        </div>
+
+        <div class="fg-warning">
+          استثناها:
+          <span class="fg-fr-inline">
+            la plage, la cage, la page, la nage, l’image, la rage
+          </span>
+        </div>
+
+        <h4><span class="fg-fr-inline">-ment</span></h4>
+        <div class="fg-example" lang="fr">
+          le gouvernement<br>
+          le monument<br>
+          le médicament<br>
+          le comportement<br>
+          le stationnement
+        </div>
+
+        <h4><span class="fg-fr-inline">-eau</span></h4>
+        <div class="fg-example" lang="fr">
+          le bureau<br>
+          le couteau<br>
+          le bateau<br>
+          le tableau<br>
+          le cadeau
+        </div>
+
+        <h4><span class="fg-fr-inline">-phone / -scope</span></h4>
+        <div class="fg-example" lang="fr">
+          le téléphone<br>
+          le microphone<br>
+          le télescope<br>
+          le microscope
+        </div>
+
+        <h4><span class="fg-fr-inline">-isme</span></h4>
+        <div class="fg-example" lang="fr">
+          le réalisme<br>
+          le tourisme<br>
+          le capitalisme<br>
+          le mécanisme
+        </div>
+      </div>
+
+      <div class="fg-card">
+        <h3>پایانه‌هایی که اغلب مؤنث‌اند</h3>
+
+        <h4><span class="fg-fr-inline">-tion / -sion</span></h4>
+        <div class="fg-example" lang="fr">
+          la situation<br>
+          la solution<br>
+          la traduction<br>
+          la décision<br>
+          la télévision
+        </div>
+
+        <h4><span class="fg-fr-inline">-té</span></h4>
+        <div class="fg-example" lang="fr">
+          la société<br>
+          la réalité<br>
+          la beauté<br>
+          la santé
+        </div>
+
+        <div class="fg-warning">
+          استثناها:
+          <span class="fg-fr-inline">
+            le côté, l’été, le comité, le député, le pâté
+          </span>
+        </div>
+
+        <h4><span class="fg-fr-inline">-ette</span></h4>
+        <div class="fg-example" lang="fr">
+          la bicyclette<br>
+          la cigarette<br>
+          la fourchette<br>
+          la tablette
+        </div>
+
+        <div class="fg-warning">
+          استثنا:
+          <span class="fg-fr-inline">le squelette</span>
+        </div>
+
+        <h4><span class="fg-fr-inline">-ance / -ence</span></h4>
+        <div class="fg-example" lang="fr">
+          la confiance<br>
+          la connaissance<br>
+          la différence<br>
+          la présence
+        </div>
+
+        <div class="fg-warning">
+          استثنا:
+          <span class="fg-fr-inline">le silence</span>
+        </div>
+
+        <h4><span class="fg-fr-inline">-ure</span></h4>
+        <div class="fg-example" lang="fr">
+          la culture<br>
+          la peinture<br>
+          la nourriture<br>
+          la sculpture
+        </div>
+      </div>
+    </div>
+
+    <div class="fg-card">
+      <h3>پایان <span class="fg-fr-inline">-e</span> به معنی مؤنث بودن نیست</h3>
+
+      <div class="fg-example" lang="fr">
+        un problème<br>
+        un système<br>
+        un programme<br>
+        un volume<br>
+        un modèle<br>
+        un groupe<br>
+        un domaine<br>
+        un rôle<br>
+        un téléphone<br>
+        un musée
+      </div>
+    </div>
+
+    <div class="fg-card">
+      <h3>اسم‌های مؤنث پایان‌یافته به <span class="fg-fr-inline">-eur</span></h3>
+
+      <div class="fg-example" lang="fr">
+        la couleur<br>
+        l’odeur<br>
+        la saveur<br>
+        la peur<br>
+        la douleur<br>
+        la fleur<br>
+        l’erreur<br>
+        la valeur
+      </div>
+    </div>
+
+    <div class="fg-card">
+      <h3>کلماتی که با تغییر جنس، معنی‌شان تغییر می‌کند</h3>
+
+      <div class="fg-table-wrap">
+        <table class="fg-table">
+          <thead>
+            <tr>
+              <th>مذکر</th>
+              <th>معنی</th>
+              <th>مؤنث</th>
+              <th>معنی</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="fg-fr-cell">le tour</td>
+              <td>گردش / نوبت</td>
+              <td class="fg-fr-cell">la tour</td>
+              <td>برج</td>
+            </tr>
+            <tr>
+              <td class="fg-fr-cell">le livre</td>
+              <td>کتاب</td>
+              <td class="fg-fr-cell">la livre</td>
+              <td>پوند</td>
+            </tr>
+            <tr>
+              <td class="fg-fr-cell">le poste</td>
+              <td>شغل / دستگاه</td>
+              <td class="fg-fr-cell">la poste</td>
+              <td>اداره پست</td>
+            </tr>
+            <tr>
+              <td class="fg-fr-cell">le mode</td>
+              <td>روش / حالت</td>
+              <td class="fg-fr-cell">la mode</td>
+              <td>مد</td>
+            </tr>
+            <tr>
+              <td class="fg-fr-cell">le manche</td>
+              <td>دسته ابزار</td>
+              <td class="fg-fr-cell">la manche</td>
+              <td>آستین</td>
+            </tr>
+            <tr>
+              <td class="fg-fr-cell">le mémoire</td>
+              <td>پایان‌نامه / گزارش</td>
+              <td class="fg-fr-cell">la mémoire</td>
+              <td>حافظه</td>
+            </tr>
+            <tr>
+              <td class="fg-fr-cell">le voile</td>
+              <td>روبند / حجاب</td>
+              <td class="fg-fr-cell">la voile</td>
+              <td>بادبان</td>
+            </tr>
+            <tr>
+              <td class="fg-fr-cell">le vase</td>
+              <td>گلدان</td>
+              <td class="fg-fr-cell">la vase</td>
+              <td>لجن</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       3. ANIMALS
+       ========================================================= -->
+  <section class="fg-section" id="fg-animals">
+    <h2 class="fg-section-title">
+      <span class="fg-section-number">۳</span>
+      جنس اسم حیوانات
+    </h2>
+
+    <div class="fg-card">
+      <p>
+        برخی نام‌های حیوانات یک جنس دستوری ثابت دارند و این جنس الزاماً
+        جنس واقعی حیوان را مشخص نمی‌کند.
+      </p>
+
+      <div class="fg-example" lang="fr">
+        la mouche<br>
+        la souris<br>
+        la tortue<br>
+        le poisson<br>
+        le pigeon<br>
+        le moineau
+      </div>
+
+      <p>برای مشخص‌کردن جنس واقعی می‌توان گفت:</p>
+
+      <div class="fg-example" lang="fr">
+        une souris mâle<br>
+        une souris femelle<br>
+        un poisson mâle<br>
+        un poisson femelle
+      </div>
+
+      <p>اما بعضی حیوانات شکل مذکر و مؤنث جدا دارند:</p>
+
+      <div class="fg-table-wrap">
+        <table class="fg-table">
+          <thead>
+            <tr>
+              <th>مذکر</th>
+              <th>مؤنث</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="fg-fr-cell">le chat</td><td class="fg-fr-cell">la chatte</td></tr>
+            <tr><td class="fg-fr-cell">le coq</td><td class="fg-fr-cell">la poule</td></tr>
+            <tr><td class="fg-fr-cell">le cheval</td><td class="fg-fr-cell">la jument</td></tr>
+            <tr><td class="fg-fr-cell">le lion</td><td class="fg-fr-cell">la lionne</td></tr>
+            <tr><td class="fg-fr-cell">le chien</td><td class="fg-fr-cell">la chienne</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       4. PLURAL
+       ========================================================= -->
+  <section class="fg-section" id="fg-plural">
+    <h2 class="fg-section-title">
+      <span class="fg-section-number">۴</span>
+      مفرد و جمع اسم‌ها
+    </h2>
+
+    <div class="fg-card">
+      <h3>قاعدهٔ عمومی: افزودن <span class="fg-fr-inline">-s</span></h3>
+
+      <div class="fg-example" lang="fr">
+        un livre → des livres<br>
+        une table → des tables<br>
+        un étudiant espagnol → des étudiants espagnols<br>
+        une étudiante espagnole → des étudiantes espagnoles
+      </div>
+
+      <div class="fg-tip">
+        حرف <span class="fg-fr-inline">-s</span> جمع معمولاً در تلفظ شنیده نمی‌شود.
+      </div>
+    </div>
+
+    <div class="fg-card">
+      <h3>
+        اسم‌های پایان‌یافته به
+        <span class="fg-fr-inline">s, x, z</span>
+      </h3>
+
+      <p>در جمع از نظر نوشتاری تغییر نمی‌کنند.</p>
+
+      <div class="fg-example" lang="fr">
+        un cas → des cas<br>
+        un choix → des choix<br>
+        un gaz → des gaz<br>
+        un nez → des nez
+      </div>
+    </div>
+
+    <div class="fg-card">
+      <h3><span class="fg-fr-inline">-al → -aux</span></h3>
+
+      <div class="fg-example" lang="fr">
+        un journal → des journaux<br>
+        un animal → des animaux<br>
+        un métal → des métaux<br>
+        anormal → anormaux
+      </div>
+
+      <div class="fg-warning">
+        <span class="fg-callout-title">استثناهای رایج</span>
+        <span class="fg-fr-inline">
+          bal → bals,
+          carnaval → carnavals,
+          festival → festivals,
+          récital → récitals,
+          chacal → chacals,
+          régal → régals
+        </span>
+      </div>
+    </div>
+
+    <div class="fg-card">
+      <h3>
+        <span class="fg-fr-inline">-au / -eau → -aux / -eaux</span>
+      </h3>
+
+      <div class="fg-example" lang="fr">
+        tableau → tableaux<br>
+        bateau → bateaux<br>
+        cadeau → cadeaux<br>
+        tuyau → tuyaux
+      </div>
+    </div>
+
+    <div class="fg-card">
+      <h3>اسم‌های پایان‌یافته به <span class="fg-fr-inline">-ail</span></h3>
+
+      <p>بیشتر آن‌ها فقط <span class="fg-fr-inline">-s</span> می‌گیرند:</p>
+
+      <div class="fg-example" lang="fr">
+        détail → détails<br>
+        portail → portails<br>
+        éventail → éventails<br>
+        rail → rails
+      </div>
+
+      <div class="fg-warning">
+        برخی به
+        <span class="fg-fr-inline">-aux</span>
+        تبدیل می‌شوند:
+        <br>
+        <span class="fg-fr-inline">
+          travail → travaux,
+          vitrail → vitraux,
+          émail → émaux,
+          bail → baux,
+          corail → coraux,
+          soupirail → soupiraux,
+          vantail → vantaux
+        </span>
+      </div>
+    </div>
+
+    <div class="fg-card">
+      <h3><span class="fg-fr-inline">-eu → -eux</span></h3>
+
+      <div class="fg-example" lang="fr">
+        cheveu → cheveux<br>
+        jeu → jeux<br>
+        feu → feux
+      </div>
+
+      <div class="fg-warning">
+        استثناها:
+        <span class="fg-fr-inline">
+          pneu → pneus,
+          bleu → bleus,
+          émeu → émeus
+        </span>
+      </div>
+    </div>
+
+    <div class="fg-card">
+      <h3>اسم‌های پایان‌یافته به <span class="fg-fr-inline">-ou</span></h3>
+
+      <p>
+        بیشتر آن‌ها در جمع فقط
+        <span class="fg-fr-inline">-s</span>
+        می‌گیرند:
+      </p>
+
+      <div class="fg-example" lang="fr">
+        trou → trous<br>
+        clou → clous<br>
+        bisou → bisous
+      </div>
+
+      <div class="fg-memory">
+        <span class="fg-callout-title">
+          هفت کلمهٔ معروف که در جمع <span class="fg-fr-inline">-x</span> می‌گیرند
+        </span>
+        <div class="fg-pill-row">
+          <span class="fg-pill">bijou → bijoux</span>
+          <span class="fg-pill">caillou → cailloux</span>
+          <span class="fg-pill">chou → choux</span>
+          <span class="fg-pill">genou → genoux</span>
+          <span class="fg-pill">hibou → hiboux</span>
+          <span class="fg-pill">joujou → joujoux</span>
+          <span class="fg-pill">pou → poux</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="fg-card">
+      <h3>جمع‌های کاملاً بی‌قاعده</h3>
+
+      <div class="fg-example" lang="fr">
+        un œil → des yeux<br>
+        un ciel → des cieux<br>
+        Madame → Mesdames<br>
+        Monsieur → Messieurs<br>
+        Mademoiselle → Mesdemoiselles
+      </div>
+
+      <div class="fg-warning">
+        <span class="fg-callout-title">
+          نکتهٔ ظریف دربارهٔ <span class="fg-fr-inline">ciel</span>
+        </span>
+
+        هر دو شکل
+        <span class="fg-fr-inline">cieux</span>
+        و
+        <span class="fg-fr-inline">ciels</span>
+        وجود دارند، اما کاربردشان متفاوت است.
+      </div>
+
+      <div class="fg-example" lang="fr">
+        les cieux étoilés<br>
+        les ciels gris de l’hiver<br>
+        les ciels de Van Gogh
+      </div>
+    </div>
+
+    <div class="fg-card">
+      <h3>
+        تلفظ
+        <span class="fg-fr-inline">œuf / œufs</span>
+        و
+        <span class="fg-fr-inline">bœuf / bœufs</span>
+      </h3>
+
+      <div class="fg-rule">
+        در مفرد، صدای <span class="fg-fr-inline">f</span> شنیده می‌شود،
+        اما در شکل جمع معمولاً تلفظ نمی‌شود.
+      </div>
+
+      <div class="fg-example" lang="fr">
+        un œuf → des œufs<br>
+        un bœuf → des bœufs
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       5. ARTICLES
+       ========================================================= -->
+  <section class="fg-section" id="fg-articles">
+    <h2 class="fg-section-title">
+      <span class="fg-section-number">۵</span>
+      حروف تعریف معیّن و نامعیّن
+    </h2>
+
+    <div class="fg-card">
+      <h3>
+        حرف تعریف نامعیّن:
+        <span class="fg-fr-inline">un, une, des</span>
+      </h3>
+
+      <p>
+        برای معرفی شخص یا شیئی که هنوز مشخص یا شناخته‌شده نیست،
+        از حرف تعریف نامعیّن استفاده می‌شود.
+      </p>
+
+      <div class="fg-example" lang="fr">
+        C’est un restaurant.<br>
+        J’ai acheté une lampe.<br>
+        Il y a des arbres devant la maison.
+      </div>
+
+      <p>
+        <span class="fg-fr-inline">un / une</span>
+        می‌توانند معنی عدد «یک» نیز داشته باشند:
+      </p>
+
+      <div class="fg-example" lang="fr">
+        J’ai un chien, une chatte et deux canaris.
+      </div>
+    </div>
+
+    <div class="fg-card">
+      <h3>
+        حرف تعریف معیّن:
+        <span class="fg-fr-inline">le, la, l’, les</span>
+      </h3>
+
+      <h4>۱. شخص یا شیء مشخص</h4>
+
+      <div class="fg-example" lang="fr">
+        le restaurant Adonis<br>
+        la tour Eiffel<br>
+        le boulanger de ma rue
+      </div>
+
+      <h4>۲. چیزی که قبلاً معرفی شده است</h4>
+
+      <div class="fg-example" lang="fr">
+        J’ai acheté une lampe.<br>
+        La lampe est sur la table.
+      </div>
+
+      <h4>۳. مفهوم کلی</h4>
+
+      <div class="fg-example" lang="fr">
+        La liberté est importante.<br>
+        Le bonheur est difficile à définir.<br>
+        Les chiens sont fidèles.
+      </div>
+
+      <h4>۴. با افعال علاقه و سلیقه</h4>
+
+      <div class="fg-example" lang="fr">
+        J’aime le café.<br>
+        Elle adore les fruits.<br>
+        Je déteste le poisson.<br>
+        Nous préférons la montagne.
+      </div>
+    </div>
+
+    <div class="fg-card">
+      <h3>سه معنی متفاوت با یک اسم</h3>
+
+      <div class="fg-table-wrap">
+        <table class="fg-table">
+          <thead>
+            <tr>
+              <th>جمله</th>
+              <th>مفهوم</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="fg-fr-cell">J’aime le café.</td>
+              <td>قهوه را به‌طور کلی دوست دارم.</td>
+            </tr>
+            <tr>
+              <td class="fg-fr-cell">Je voudrais un café.</td>
+              <td>یک قهوه / یک فنجان قهوه می‌خواهم.</td>
+            </tr>
+            <tr>
+              <td class="fg-fr-cell">Je bois du café.</td>
+              <td>مقداری قهوه می‌نوشم.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       6. ELISION + H
+       ========================================================= -->
+  <section class="fg-section" id="fg-elision">
+    <h2 class="fg-section-title">
+      <span class="fg-section-number">۶</span>
+      حذف مصوت، <span class="fg-fr-inline">h muet</span> و
+      <span class="fg-fr-inline">h aspiré</span>
+    </h2>
+
+    <div class="fg-card">
+      <h3><span class="fg-fr-inline">L’élision</span></h3>
+
+      <p>
+        <span class="fg-fr-inline">le</span>
+        و
+        <span class="fg-fr-inline">la</span>
+        پیش از مصوت یا
+        <span class="fg-fr-inline">h muet</span>
+        به
+        <span class="fg-fr-inline">l’</span>
+        تبدیل می‌شوند.
+      </p>
+
+      <div class="fg-example-wrong" lang="fr">
+        le étudiant ✗<br>
+        la école ✗
+      </div>
+
+      <div class="fg-example" lang="fr">
+        l’étudiant ✓<br>
+        l’école ✓<br>
+        l’homme ✓
+      </div>
+
+      <div class="fg-warning">
+        <span class="fg-callout-title">نکتهٔ مهم</span>
+        حرف تعریف
+        <span class="fg-fr-inline">l’</span>
+        جنس اسم را نشان نمی‌دهد.
+        جنس اسم را باید از قبل بدانید.
+      </div>
+
+      <div class="fg-example" lang="fr">
+        l’école → féminin<br>
+        l’histoire → féminin<br>
+        l’hôtel → masculin<br>
+        l’homme → masculin
+      </div>
+    </div>
+
+    <div class="fg-two-col">
+      <div class="fg-card">
+        <h3><span class="fg-fr-inline">h muet</span></h3>
+
+        <p>
+          مانند مصوت رفتار می‌کند. هم حذف مصوت و هم
+          <span class="fg-fr-inline">liaison</span>
+          امکان‌پذیر است.
+        </p>
+
+        <div class="fg-example" lang="fr">
+          l’homme<br>
+          l’hôtel<br>
+          l’histoire<br>
+          l’hiver<br>
+          les hommes<br>
+          les hôtels
+        </div>
+      </div>
+
+      <div class="fg-card">
+        <h3><span class="fg-fr-inline">h aspiré</span></h3>
+
+        <p>
+          در این حالت نه حذف مصوت انجام می‌شود و نه
+          <span class="fg-fr-inline">liaison</span>.
+        </p>
+
+        <div class="fg-example" lang="fr">
+          le héros<br>
+          la honte<br>
+          le hasard<br>
+          le haricot<br>
+          les héros<br>
+          les Hollandais
+        </div>
+
+        <div class="fg-warning">
+          نوع <span class="fg-fr-inline">h</span> همیشه از ظاهر کلمه قابل
+          تشخیص نیست و باید با واژه یاد گرفته شود.
+        </div>
+      </div>
+    </div>
+
+    <div class="fg-card">
+      <h3><span class="fg-fr-inline">Liaison</span> با حروف تعریف</h3>
+
+      <div class="fg-example" lang="fr">
+        un étudiant → liaison en [n]<br>
+        un homme → liaison en [n]<br>
+        les étudiants → liaison en [z]<br>
+        des hommes → liaison en [z]
+      </div>
+
+      <div class="fg-example-wrong" lang="fr">
+        les héros → pas de liaison<br>
+        les Hollandais → pas de liaison
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       7. CONTRACTED ARTICLES
+       ========================================================= -->
+  <section class="fg-section" id="fg-contracted">
+    <h2 class="fg-section-title">
+      <span class="fg-section-number">۷</span>
+      حروف تعریف ادغام‌شده —
+      <span class="fg-fr-inline">articles contractés</span>
+    </h2>
+
+    <div class="fg-card">
+      <p>
+        حروف اضافه
+        <span class="fg-fr-inline">à</span>
+        و
+        <span class="fg-fr-inline">de</span>
+        با
+        <span class="fg-fr-inline">le</span>
+        و
+        <span class="fg-fr-inline">les</span>
+        ادغام می‌شوند.
+      </p>
+
+      <div class="fg-table-wrap">
+        <table class="fg-table">
+          <thead>
+            <tr>
+              <th>ترکیب</th>
+              <th>نتیجه</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="fg-fr-cell">de + le</td>
+              <td class="fg-fr-cell"><strong>du</strong></td>
+            </tr>
+            <tr>
+              <td class="fg-fr-cell">de + les</td>
+              <td class="fg-fr-cell"><strong>des</strong></td>
+            </tr>
+            <tr>
+              <td class="fg-fr-cell">à + le</td>
+              <td class="fg-fr-cell"><strong>au</strong></td>
+            </tr>
+            <tr>
+              <td class="fg-fr-cell">à + les</td>
+              <td class="fg-fr-cell"><strong>aux</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="fg-example" lang="fr">
+        la voiture du directeur<br>
+        le chien des voisins<br>
+        je vais au cinéma<br>
+        je participe aux activités
+      </div>
+    </div>
+
+    <div class="fg-card">
+      <h3>با <span class="fg-fr-inline">la</span> و <span class="fg-fr-inline">l’</span> ادغام انجام نمی‌شود</h3>
+
+      <div class="fg-example" lang="fr">
+        à la gare<br>
+        à l’aéroport<br>
+        de la gare<br>
+        de l’aéroport
+      </div>
+
+      <div class="fg-example-wrong" lang="fr">
+        à le cinéma ✗<br>
+        de le professeur ✗<br>
+        à les étudiants ✗<br>
+        de les enfants ✗
+      </div>
+
+      <div class="fg-example" lang="fr">
+        au cinéma ✓<br>
+        du professeur ✓<br>
+        aux étudiants ✓<br>
+        des enfants ✓
+      </div>
+    </div>
+
+    <div class="fg-card">
+      <h3>کاربردهای مهم <span class="fg-fr-inline">de + article</span></h3>
+
+      <h4>مالکیت و وابستگی</h4>
+
+      <div class="fg-example" lang="fr">
+        le vélo du professeur<br>
+        la voiture de la directrice<br>
+        le chien des voisins<br>
+        la chambre de l’enfant
+      </div>
+
+      <h4>مکان</h4>
+
+      <div class="fg-example" lang="fr">
+        près du métro<br>
+        près de la poste<br>
+        à côté de l’école<br>
+        loin des magasins
+      </div>
+
+      <h4>بخشی یا ویژگی از یک چیز</h4>
+
+      <div class="fg-example" lang="fr">
+        la couleur de la mer<br>
+        le goût du fromage<br>
+        la porte du garage
+      </div>
+    </div>
+
+    <div class="fg-card">
+      <h3>کاربردهای مهم <span class="fg-fr-inline">à + article</span></h3>
+
+      <h4>مکان یا مقصد</h4>
+
+      <div class="fg-example" lang="fr">
+        Je suis au bureau.<br>
+        Je vais au café.<br>
+        Elle est à la gare.<br>
+        Nous allons à l’aéroport.<br>
+        Ils participent aux activités.
+      </div>
+
+      <h4>غذا، طعم یا ویژگی</h4>
+
+      <div class="fg-example" lang="fr">
+        une pizza au jambon<br>
+        une tarte aux pommes<br>
+        une glace à la vanille<br>
+        un homme aux yeux bleus
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       8. SUBTLETIES
+       ========================================================= -->
+  <section class="fg-section" id="fg-subtleties">
+    <h2 class="fg-section-title">
+      <span class="fg-section-number">۸</span>
+      نکات ظریف و اشتباهات رایج
+    </h2>
+
+    <div class="fg-card">
+      <h3>
+        تفاوت دو نوع <span class="fg-fr-inline">des</span>
+      </h3>
+
+      <div class="fg-two-col">
+        <div class="fg-rule">
+          <span class="fg-callout-title">
+            ۱. <span class="fg-fr-inline">des</span> = جمع
+            <span class="fg-fr-inline">un / une</span>
+          </span>
+
+          <div class="fg-example" lang="fr">
+            Je connais des Français.
+          </div>
+
+          یعنی: چند فرانسوی را می‌شناسم.
+        </div>
+
+        <div class="fg-rule">
+          <span class="fg-callout-title">
+            ۲. <span class="fg-fr-inline">des = de + les</span>
+          </span>
+
+          <div class="fg-example" lang="fr">
+            Je parle des Français.
+          </div>
+
+          یعنی: دربارهٔ فرانسوی‌ها صحبت می‌کنم.
+        </div>
+      </div>
+    </div>
+
+    <div class="fg-card">
+      <h3>تفاوت دو نوع <span class="fg-fr-inline">du</span></h3>
+
+      <div class="fg-table-wrap">
+        <table class="fg-table">
+          <thead>
+            <tr>
+              <th>جمله</th>
+              <th>نوع</th>
+              <th>معنی</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="fg-fr-cell">Je mange du fromage.</td>
+              <td>حرف تعریف جزئی</td>
+              <td>مقداری پنیر می‌خورم.</td>
+            </tr>
+            <tr>
+              <td class="fg-fr-cell">Je parle du fromage français.</td>
+              <td class="fg-fr-cell">de + le</td>
+              <td>دربارهٔ پنیر فرانسوی صحبت می‌کنم.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="fg-tip">
+        در جملهٔ منفی تفاوت واضح‌تر می‌شود:
+      </div>
+
+      <div class="fg-example" lang="fr">
+        Je ne mange pas de fromage.<br>
+        Je ne parle pas du fromage français.
+      </div>
+    </div>
+
+    <div class="fg-card">
+      <h3>
+        <span class="fg-fr-inline">des → de</span>
+        قبل از صفت جمعِ پیش از اسم
+      </h3>
+
+      <div class="fg-example" lang="fr">
+        des livres → de beaux livres<br>
+        des amis → d’excellents amis<br>
+        des maisons → de grandes maisons
+      </div>
+
+      <div class="fg-warning">
+        این قاعده مربوط به زمانی است که صفت پیش از اسم جمع قرار می‌گیرد.
+      </div>
+    </div>
+
+    <div class="fg-card">
+      <h3>
+        تبدیل <span class="fg-fr-inline">un / une / des</span>
+        به <span class="fg-fr-inline">de</span> در نفی
+      </h3>
+
+      <div class="fg-example" lang="fr">
+        J’ai une voiture.<br>
+        Je n’ai pas de voiture.
+      </div>
+
+      <div class="fg-example" lang="fr">
+        Il achète des livres.<br>
+        Il n’achète pas de livres.
+      </div>
+
+      <div class="fg-rule">
+        حروف تعریف معیّن در نفی تغییر نمی‌کنند.
+      </div>
+
+      <div class="fg-example" lang="fr">
+        J’aime le café.<br>
+        Je n’aime pas le café.
+      </div>
+
+      <div class="fg-warning">
+        با فعل <span class="fg-fr-inline">être</span> نیز معمولاً حرف تعریف
+        باقی می‌ماند.
+      </div>
+
+      <div class="fg-example" lang="fr">
+        C’est une voiture.<br>
+        Ce n’est pas une voiture.
+      </div>
+    </div>
+
+    <div class="fg-card">
+      <h3>شغل بعد از <span class="fg-fr-inline">être</span></h3>
+
+      <p>
+        وقتی فقط شغل، ملیت یا موقعیت را به شکل وصفی بیان می‌کنیم،
+        معمولاً حرف تعریف حذف می‌شود.
+      </p>
+
+      <div class="fg-example" lang="fr">
+        Il est ingénieur.<br>
+        Elle est médecin.<br>
+        Paul est français.
+      </div>
+
+      <p>
+        اما با
+        <span class="fg-fr-inline">c’est</span>
+        حرف تعریف لازم است:
+      </p>
+
+      <div class="fg-example" lang="fr">
+        C’est un ingénieur.<br>
+        C’est une médecin.<br>
+        C’est un Français.
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       EXERCISES
+       ========================================================= -->
+  <section class="fg-section" id="fg-exercises">
+    <h2 class="fg-section-title">
+      <span class="fg-section-number">۹</span>
+      تمرین‌های درس با پاسخ و نکات آموزشی
+    </h2>
+
+    <!-- PAGE 23 -->
+    <div class="fg-exercise">
+      <div class="fg-exercise-header">
+        <h3>صفحهٔ ۲۳ — مذکر و مؤنث اسم اشخاص</h3>
+      </div>
+
+      <div class="fg-exercise-body">
+        <h3>تمرین ۱ — <span class="fg-fr-inline">Complétez, selon le modèle.</span></h3>
+
+        <div class="fg-question fg-fr" lang="fr">
+          Modèle : Un étudiant chinois et une étudiante chinoise.
+        </div>
+
+        <div class="fg-answer">
+          <span class="fg-answer-label">پاسخ‌ها:</span>
+
+          <ol class="fg-fr-list" lang="fr">
+            <li>Un homme seul et une femme seule.</li>
+            <li>Un homme élancé et une femme élancée.</li>
+            <li>Un chanteur grec et une chanteuse grecque.</li>
+            <li>Un garçon sportif et une fille sportive.</li>
+            <li>Un joli garçon et une jolie fille.</li>
+            <li>Un chat roux et une chatte rousse.</li>
+            <li>Un mari jaloux et une femme jalouse.</li>
+            <li>Un serveur rêveur et une serveuse rêveuse.</li>
+          </ol>
+        </div>
+
+        <div class="fg-tip">
+          نکات:
+          <span class="fg-fr-inline">
+            grec → grecque,
+            roux → rousse,
+            jaloux → jalouse,
+            rêveur → rêveuse,
+            chat → chatte
+          </span>
+        </div>
+
+        <hr class="fg-separator">
+
+        <h3>تمرین ۲</h3>
+
+        <div class="fg-answer">
+          <ol class="fg-fr-list" lang="fr">
+            <li>Madame Lauder est une cliente importante.</li>
+            <li>Sophie est une actrice française.</li>
+            <li>Anna est une championne de ski italienne.</li>
+            <li>Alanis est une chanteuse canadienne.</li>
+            <li>Surya est une sportive émotive.</li>
+            <li>Madame Leroy est une électrice conservatrice.</li>
+            <li>Sonia est une créative imaginative.</li>
+          </ol>
+        </div>
+
+        <div class="fg-warning">
+          به تغییرهای هم‌زمان اسم و صفت توجه کنید:
+          <span class="fg-fr-inline">
+            acteur → actrice,
+            français → française,
+            italien → italienne,
+            électeur → électrice,
+            conservateur → conservatrice
+          </span>
+        </div>
+
+        <hr class="fg-separator">
+
+        <h3>تمرین ۳ — تبدیل کامل متن به مؤنث</h3>
+
+        <div class="fg-question fg-fr" lang="fr">
+          J’ai un fils adolescent, un mari toujours absent,
+          un voisin envahissant, un copain américain,
+          un chien végétarien, un arrière-grand-père normand
+          et un cousin germain allemand.
+        </div>
+
+        <div class="fg-answer fg-fr" lang="fr">
+          J’ai une fille adolescente, une femme toujours absente,
+          une voisine envahissante, une copine américaine,
+          une chienne végétarienne, une arrière-grand-mère normande
+          et une cousine germaine allemande.
+        </div>
+
+        <div class="fg-tip">
+          <span class="fg-fr-inline">cousin germain / cousine germaine</span>
+          به خویشاوند درجه اول در سطح cousin اشاره می‌کند.
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE 25 -->
+    <div class="fg-exercise">
+      <div class="fg-exercise-header">
+        <h3>صفحهٔ ۲۵ — جنس اسم اشیا</h3>
+      </div>
+
+      <div class="fg-exercise-body">
+        <h3>تمرین ۱ — انتخاب <span class="fg-fr-inline">un / une</span></h3>
+
+        <div class="fg-answer">
+          <ol class="fg-fr-list" lang="fr">
+            <li>une voiture performante</li>
+            <li>une situation gênante</li>
+            <li>un événement important</li>
+            <li>une attitude prudente</li>
+            <li>un dosage précis</li>
+            <li>un médicament dangereux</li>
+            <li>une sculpture originale</li>
+            <li>un fromage piquant</li>
+            <li>une beauté éclatante</li>
+            <li>un voyage intéressant</li>
+            <li>un équipement complet</li>
+            <li>une traduction précise</li>
+            <li>une émotion forte</li>
+            <li>une société imparfaite</li>
+            <li>un problème permanent</li>
+          </ol>
+        </div>
+
+        <div class="fg-tip">
+          گاهی شکل صفت به تشخیص جنس اسم کمک می‌کند:
+          <span class="fg-fr-inline">performante, gênante, forte</span>.
+        </div>
+
+        <hr class="fg-separator">
+
+        <h3>تمرین ۲</h3>
+
+        <div class="fg-answer fg-fr" lang="fr">
+          un garçon, une dame, un garage,<br>
+          une télévision, un ordinateur, une tablette,<br>
+          un bateau, un voyage, une aventure,<br>
+          une voiture, une bicyclette, un virage,<br>
+          une assiette, un couteau, une fourchette,<br>
+          une pharmacienne, un nuage, un télescope,<br>
+          une chienne, une lionne, une cage, une souris,<br>
+          une image, une fleur, une couleur.
+        </div>
+
+        <hr class="fg-separator">
+
+        <h3>تمرین ۳ — انتخاب <span class="fg-fr-inline">le / la</span></h3>
+
+        <div class="fg-answer fg-fr" lang="fr">
+          la société, la solution, la santé,<br>
+          la nature, le modèle, le sondage,<br>
+          la réalité, la publicité, la caution,<br>
+          la confiance, la culture, le système,<br>
+          le programme, le groupe, la différence,<br>
+          le courage, la révolution, le rangement,<br>
+          le jardinage, la sculpture, le côté,<br>
+          le domaine, la peinture, la peur.
+        </div>
+
+        <div class="fg-warning">
+          واژه‌هایی مانند
+          <span class="fg-fr-inline">
+            le modèle, le système, le programme, le groupe,
+            le domaine, la peur
+          </span>
+          بهتر است همراه article حفظ شوند.
+        </div>
+
+        <hr class="fg-separator">
+
+        <h3>تمرین ۴</h3>
+
+        <div class="fg-answer fg-fr" lang="fr">
+          — Où est le téléphone ?<br>
+          — Sur la commode, sous le chapeau !<br>
+          — Et le caméscope ?<br>
+          — Sur la moquette, sous la télévision.<br><br>
+
+          — Où est la tablette de Léo ?<br>
+          — Dans la voiture, sur la banquette.<br>
+          — Et la voiture : elle est dans le garage, j’espère !
+        </div>
+
+        <hr class="fg-separator">
+
+        <h3>تمرین ۵</h3>
+
+        <div class="fg-answer">
+          <ol class="fg-fr-list" lang="fr">
+            <li>La maisonnette est sur la plage près de la pension Beausoleil.</li>
+            <li>Le problème est à la page 8 et la solution à la page 10.</li>
+            <li>La poussette et la bicyclette sont dans le garage.</li>
+            <li>La nourriture des bébés est importante dès la naissance.</li>
+            <li>La fiction est souvent plus banale que la réalité.</li>
+            <li>Marcher dans la nature est bon pour la santé.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE 27 -->
+    <div class="fg-exercise">
+      <div class="fg-exercise-header">
+        <h3>صفحهٔ ۲۷ — جمع اسم‌ها</h3>
+      </div>
+
+      <div class="fg-exercise-body">
+        <h3>تمرین ۱ — تبدیل به جمع</h3>
+
+        <div class="fg-table-wrap">
+          <table class="fg-table">
+            <thead>
+              <tr>
+                <th>مفرد</th>
+                <th>جمع</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="fg-fr-cell">un costume noir</td><td class="fg-fr-cell">des costumes noirs</td></tr>
+              <tr><td class="fg-fr-cell">une rose rouge</td><td class="fg-fr-cell">des roses rouges</td></tr>
+              <tr><td class="fg-fr-cell">un organisme international</td><td class="fg-fr-cell">des organismes internationaux</td></tr>
+              <tr><td class="fg-fr-cell">un homme précis</td><td class="fg-fr-cell">des hommes précis</td></tr>
+              <tr><td class="fg-fr-cell">un métal précieux</td><td class="fg-fr-cell">des métaux précieux</td></tr>
+              <tr><td class="fg-fr-cell">un journal espagnol</td><td class="fg-fr-cell">des journaux espagnols</td></tr>
+              <tr><td class="fg-fr-cell">un bas gris</td><td class="fg-fr-cell">des bas gris</td></tr>
+              <tr><td class="fg-fr-cell">un comportement anormal</td><td class="fg-fr-cell">des comportements anormaux</td></tr>
+              <tr><td class="fg-fr-cell">un jeu dangereux</td><td class="fg-fr-cell">des jeux dangereux</td></tr>
+              <tr><td class="fg-fr-cell">un tableau original</td><td class="fg-fr-cell">des tableaux originaux</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <hr class="fg-separator">
+
+        <h3>تمرین ۲</h3>
+
+        <div class="fg-answer fg-fr" lang="fr">
+          1 café allongé et 2 cafés serrés,<br>
+          1 salade verte et 2 salades niçoises,<br>
+          1 œuf au plat et 2 œufs à la coque,<br>
+          1 jus d’orange et 2 jus de pomme,<br>
+          1 gâteau au chocolat et 2 gâteaux au citron.<br>
+          Et voilà 3 fourchettes, 3 cuillères et 3 couteaux.
+        </div>
+
+        <div class="fg-tip">
+          <span class="fg-fr-inline">jus</span>
+          در جمع تغییر نوشتاری ندارد.
+        </div>
+
+        <hr class="fg-separator">
+
+        <h3>تمرین ۳</h3>
+
+        <div class="fg-answer">
+          <ol class="fg-fr-list" lang="fr">
+            <li>des cheveux blonds</li>
+            <li>des cailloux bleus</li>
+            <li>des bureaux spacieux</li>
+            <li>des couteaux pointus</li>
+            <li>des animaux domestiques</li>
+            <li>des yeux noirs</li>
+            <li>des œufs durs</li>
+            <li>des bœufs normands</li>
+            <li>des pneus crevés</li>
+            <li>des messieurs polis</li>
+          </ol>
+        </div>
+
+        <div class="fg-warning">
+          موارد مهم:
+          <span class="fg-fr-inline">
+            caillou → cailloux,
+            pneu → pneus,
+            œil → yeux,
+            monsieur → messieurs
+          </span>
+        </div>
+
+        <hr class="fg-separator">
+
+        <h3>تمرین ۴</h3>
+
+        <div class="fg-answer">
+          <ol class="fg-fr-list" lang="fr">
+            <li>Les saphirs sont des bijoux merveilleux.</li>
+            <li>Les roses sont des fleurs ornementales.</li>
+            <li>Les chiens sont des animaux amicaux.</li>
+            <li>Les choux sont des légumes indigestes.</li>
+            <li>Les zèbres sont des chevaux sauvages.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE 29 -->
+    <div class="fg-exercise">
+      <div class="fg-exercise-header">
+        <h3>صفحهٔ ۲۹ — حروف تعریف</h3>
+      </div>
+
+      <div class="fg-exercise-body">
+        <h3>
+          تمرین ۱ —
+          <span class="fg-fr-inline">un, une, des, le, la, l’, les</span>
+        </h3>
+
+        <div class="fg-answer fg-fr" lang="fr">
+          — Je cherche un restaurant, sur une petite place
+          avec une église, une fontaine et des arbres…<br>
+          — C’est un restaurant français ?<br>
+          — Non, c’est un restaurant grec.<br>
+          — Ah oui, je vois : c’est le restaurant « Adonis »,
+          sur la place Abélard !<br>
+          — C’est loin ?<br>
+          — Non, c’est là : juste derrière les arbres,
+          à côté de l’église !
+        </div>
+
+        <div class="fg-tip">
+          اولین معرفی:
+          <span class="fg-fr-inline">un / une / des</span>.
+          <br>
+          اشارهٔ دوباره به همان مرجع:
+          <span class="fg-fr-inline">le / la / les / l’</span>.
+        </div>
+
+        <hr class="fg-separator">
+
+        <h3>تمرین ۲</h3>
+
+        <div class="fg-answer">
+          <ol class="fg-fr-list" lang="fr">
+            <li>
+              J’ai acheté une lampe.
+              J’ai mis la lampe sur la table.
+            </li>
+            <li>
+              J’ai acheté une couverture.
+              J’ai mis la couverture sur le lit.
+            </li>
+            <li>
+              J’ai acheté un tapis.
+              J’ai mis le tapis sur le sol.
+            </li>
+            <li>
+              J’ai acheté des plantes vertes.
+              J’ai mis les plantes vertes sur le balcon.
+            </li>
+            <li>
+              J’ai acheté des livres.
+              J’ai mis les livres sur l’étagère.
+            </li>
+          </ol>
+        </div>
+
+        <hr class="fg-separator">
+
+        <h3>تمرین ۳</h3>
+
+        <div class="fg-answer">
+          <ol class="fg-fr-list" lang="fr">
+            <li>La pyramide du Louvre est une grande pyramide de verre.</li>
+            <li>Pour le gouvernement, le chômage est le problème numéro un.</li>
+            <li>Selon moi, le téléphone est une invention diabolique !</li>
+            <li>À Paris, le stationnement est un problème permanent.</li>
+            <li>J’aime les fruits et les légumes, et je déteste le fromage et le poisson.</li>
+            <li>Quelle est la hauteur de la tour Eiffel ? Qui est l’auteur des Noces de Figaro ?</li>
+            <li>Chaque fois que je vais à Paris, j’achète une tour Eiffel pour mon neveu.</li>
+          </ol>
+        </div>
+
+        <div class="fg-warning">
+          در جملهٔ
+          <span class="fg-fr-inline">une tour Eiffel</span>
+          منظور یک ماکت یا سوغاتی برج ایفل است، نه خود بنای مشخص برج؛
+          بنابراین article نامعیّن می‌آید.
+        </div>
+
+        <hr class="fg-separator">
+
+        <h3>تمرین ۴</h3>
+
+        <div class="fg-answer fg-fr" lang="fr">
+          Je regarde un film à la télévision.
+          Un homme et une femme entrent dans un café.
+          L’homme est barbu, la femme est très jeune
+          et elle porte un bébé dans les bras.<br><br>
+
+          Au fond du café, une autre femme lit un journal étranger.
+          Sur une photo, dans le journal, on voit l’homme,
+          la femme et le bébé qui viennent d’entrer…
+        </div>
+
+        <div class="fg-tip">
+          برای اعضای بدن وقتی مالک از بافت مشخص است،
+          article معیّن بسیار رایج است:
+          <span class="fg-fr-inline">dans les bras</span>.
+        </div>
+
+        <hr class="fg-separator">
+
+        <h3>تمرین ۵</h3>
+
+        <div class="fg-answer">
+          <ul class="fg-fr-list" lang="fr">
+            <li>Véhicule privé à moteur : une voiture</li>
+            <li>Monument parisien en fer : la tour Eiffel</li>
+            <li>Tourne autour de la Terre : la Lune</li>
+            <li>Brille pour tous : le Soleil</li>
+            <li>Circule sous terre : le métro</li>
+            <li>Individu né en France : un Français / une Française</li>
+            <li>Égale 60 secondes : une minute</li>
+            <li>Égale 7 jours : une semaine</li>
+            <li>Langue parlée en France : le français</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE 31 -->
+    <div class="fg-exercise">
+      <div class="fg-exercise-header">
+        <h3>صفحهٔ ۳۱ — Articles contractés</h3>
+      </div>
+
+      <div class="fg-exercise-body">
+        <h3>تمرین ۱</h3>
+
+        <div class="fg-answer">
+          <ol class="fg-fr-list" lang="fr">
+            <li>Pour prendre le train, je vais à la gare.</li>
+            <li>Pour prendre le bateau, je vais au port.</li>
+            <li>Pour prendre le bus, je vais à la station de bus.</li>
+            <li>Pour prendre l’avion, je vais à l’aéroport.</li>
+          </ol>
+        </div>
+
+        <div class="fg-tip">
+          <span class="fg-fr-inline">à + le port → au port</span>
+          اما:
+          <span class="fg-fr-inline">à la gare</span>
+          و
+          <span class="fg-fr-inline">à l’aéroport</span>.
+        </div>
+
+        <hr class="fg-separator">
+
+        <h3>تمرین ۲</h3>
+
+        <div class="fg-answer">
+          <ol class="fg-fr-list" lang="fr">
+            <li>C’est l’heure du déjeuner.</li>
+            <li>C’est l’heure de la sieste.</li>
+            <li>C’est l’heure de l’apéritif.</li>
+            <li>C’est l’heure du dîner.</li>
+          </ol>
+        </div>
+
+        <hr class="fg-separator">
+
+        <h3>تمرین ۳</h3>
+
+        <div class="fg-answer fg-fr" lang="fr">
+          Je suis au restaurant, près du bureau.
+          Je mange une quiche au fromage et un gâteau au chocolat.
+          La pâte de la quiche est très légère,
+          mais le goût du fromage est un peu fort.
+          Le gâteau au chocolat et aux amandes est une merveille :
+          c’est une spécialité du chef.
+        </div>
+
+        <div class="fg-tip">
+          <span class="fg-fr-inline">au fromage</span> =
+          <span class="fg-fr-inline">à + le fromage</span>
+          <br>
+          <span class="fg-fr-inline">aux amandes</span> =
+          <span class="fg-fr-inline">à + les amandes</span>
+        </div>
+
+        <hr class="fg-separator">
+
+        <h3>تمرین ۴</h3>
+
+        <div class="fg-answer fg-fr" lang="fr">
+          — La mode, l’informatique, le sport, le cinéma,
+          les voyages, les sciences : qu’est-ce qui vous intéresse ?<br><br>
+
+          — Je m’intéresse surtout à l’informatique,
+          au cinéma et aux sciences.<br><br>
+
+          — Alors, pour tout savoir sur le monde de l’informatique,
+          du cinéma et des sciences — et sur le reste — lisez Global !<br><br>
+
+          — C’est nouveau ? Et ça coûte combien ?<br><br>
+
+          — Un euro : c’est le prix du papier !
+        </div>
+
+        <div class="fg-rule">
+          فعل
+          <span class="fg-fr-inline">s’intéresser</span>
+          با حرف اضافه
+          <span class="fg-fr-inline">à</span>
+          ساخته می‌شود:
+          <br>
+          <span class="fg-fr-inline">
+            s’intéresser à l’informatique / au cinéma / aux sciences
+          </span>
+        </div>
+
+        <hr class="fg-separator">
+
+        <h3>تمرین ۵</h3>
+
+        <div class="fg-answer fg-fr" lang="fr">
+          L’appartement de Chloé est vraiment un appartement extraordinaire :
+          l’éclairage du couloir est vert fluorescent.
+          Au milieu du salon, il y a un petit lac.
+          L’eau du lac est chaude en hiver et froide en été.
+          Le plafond de la salle de bains est ouvert sur les étoiles.<br><br>
+
+          Les placards de la cuisine sont transparents.
+          Le lit du fils de Chloé est un hamac pendu aux branches d’un arbre.
+          Le hamac est jaune d’or, l’arbre est un palmier véritable.
+          Tout est parfait à mon avis,
+          sauf la couleur beige de la moquette !
+        </div>
+
+        <div class="fg-warning">
+          <span class="fg-fr-inline">hamac</span>
+          با
+          <span class="fg-fr-inline">h aspiré</span>
+          آغاز می‌شود؛ بنابراین می‌گوییم
+          <span class="fg-fr-inline">le hamac</span>
+          و نه
+          <span class="fg-fr-inline">l’hamac</span>.
+        </div>
+
+        <hr class="fg-separator">
+
+        <h3>تمرین ۶ — ساخت غذاهای فرضی</h3>
+
+        <div class="fg-answer fg-fr" lang="fr">
+          Une pizza aux champignons.<br>
+          Un sandwich au jambon.<br>
+          Un gâteau au chocolat.<br>
+          Une glace à la vanille.<br>
+          Une tarte aux pommes.<br>
+          Des pâtes à la carbonara.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SUMMARY
+       ========================================================= -->
+  <section class="fg-section" id="fg-summary">
+    <h2 class="fg-section-title">
+      <span class="fg-section-number">۱۰</span>
+      جمع‌بندی سریع درس
+    </h2>
+
+    <div class="fg-summary-box">
+      <h2>چک‌لیست تسلط بر درس ۴</h2>
+
+      <ul>
+        <li>
+          هر اسم را همراه article یاد بگیرید:
+          <span class="fg-fr-inline">un problème, une solution</span>.
+        </li>
+
+        <li>
+          مؤنث اشخاص معمولاً با
+          <span class="fg-fr-inline">-e</span>
+          ساخته می‌شود، اما الگوهای
+          <span class="fg-fr-inline">
+            -enne, -onne, -euse, -trice
+          </span>
+          و صورت‌های بی‌قاعده را جداگانه بشناسید.
+        </li>
+
+        <li>
+          برای اشیا، پایان کلمه فقط یک «سرنخ» است و قانون قطعی نیست.
+        </li>
+
+        <li>
+          جمع معمولاً
+          <span class="fg-fr-inline">-s</span>
+          می‌گیرد، اما
+          <span class="fg-fr-inline">
+            -al → -aux
+          </span>
+          و برخی جمع‌های بی‌قاعده را حفظ کنید.
+        </li>
+
+        <li>
+          اولین معرفی معمولاً با
+          <span class="fg-fr-inline">un / une / des</span>
+          و اشارهٔ بعدی با
+          <span class="fg-fr-inline">le / la / les</span>
+          انجام می‌شود.
+        </li>
+
+        <li>
+          برای مفاهیم کلی و بعد از افعال علاقه، معمولاً article معیّن می‌آید:
+          <span class="fg-fr-inline">J’aime le café.</span>
+        </li>
+
+        <li>
+          <span class="fg-fr-inline">de + le = du</span>،
+          <span class="fg-fr-inline">de + les = des</span>،
+          <span class="fg-fr-inline">à + le = au</span>،
+          <span class="fg-fr-inline">à + les = aux</span>.
+        </li>
+
+        <li>
+          با
+          <span class="fg-fr-inline">la</span>
+          و
+          <span class="fg-fr-inline">l’</span>
+          ادغام انجام نمی‌شود.
+        </li>
+
+        <li>
+          تفاوت
+          <span class="fg-fr-inline">h muet</span>
+          و
+          <span class="fg-fr-inline">h aspiré</span>
+          را جدی بگیرید.
+        </li>
+
+        <li>
+          در نفی:
+          <span class="fg-fr-inline">
+            un / une / des → de
+          </span>
+          در بسیاری از ساخت‌ها.
+        </li>
+      </ul>
+
+      <div class="fg-memory">
+        <span class="fg-callout-title">فرمول ذهنی پیشنهادی</span>
+        هر بار که یک اسم فرانسوی می‌بینید، چهار سؤال از خودتان بپرسید:
+        <strong>جنس چیست؟ شمار چیست؟ article مناسب چیست؟ آیا استثنا یا contraction داریم؟</strong>
+      </div>
+    </div>
+  </section>
+
+  <p class="fg-mini">
+    این بخش به‌صورت component-like طراحی شده و همهٔ کلاس‌ها با پیشوند
+    <span class="fg-fr-inline">fg-</span>
+    ایزوله شده‌اند تا کمترین تداخل را با CSS صفحهٔ اصلی داشته باشند.
+  </p>
+</div>

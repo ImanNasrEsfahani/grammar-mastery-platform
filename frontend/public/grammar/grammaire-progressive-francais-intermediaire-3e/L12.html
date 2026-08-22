@@ -1,0 +1,2812 @@
+<div class="fg-french-grammar-wrapper" dir="rtl">
+
+  <style>
+    /* =========================================================
+       Grammar Mastery Platform
+       Lesson 12 — L'ADJECTIF (2)
+       Scoped / Isolated Styles
+       ========================================================= */
+
+    .fg-french-grammar-wrapper {
+      --fg-primary: #163b65;
+      --fg-primary-2: #245c92;
+      --fg-primary-soft: #edf4fb;
+      --fg-accent: #346fa8;
+
+      --fg-green: #18794e;
+      --fg-green-soft: #edf9f3;
+      --fg-green-border: #a9dfc5;
+
+      --fg-red: #b42318;
+      --fg-red-soft: #fff1f0;
+      --fg-red-border: #f0b6b2;
+
+      --fg-orange: #b54708;
+      --fg-orange-soft: #fff7ed;
+      --fg-orange-border: #fed7aa;
+
+      --fg-purple: #6941c6;
+      --fg-purple-soft: #f4f0ff;
+
+      --fg-cyan: #0e7490;
+      --fg-cyan-soft: #ecfeff;
+
+      --fg-text: #243447;
+      --fg-muted: #617286;
+      --fg-border: #d8e2ec;
+      --fg-bg: #f6f9fc;
+      --fg-card: #ffffff;
+      --fg-zebra: #f8fafc;
+
+      --fg-radius-sm: 10px;
+      --fg-radius: 16px;
+      --fg-radius-lg: 22px;
+
+      --fg-shadow:
+        0 8px 30px rgba(22, 59, 101, 0.08);
+
+      width: 100%;
+      box-sizing: border-box;
+      direction: rtl;
+      text-align: right;
+      color: var(--fg-text);
+      line-height: 1.95;
+      font-family:
+        "Vazirmatn",
+        "IRANSansX",
+        "Tahoma",
+        "Segoe UI",
+        Arial,
+        sans-serif;
+    }
+
+    .fg-french-grammar-wrapper *,
+    .fg-french-grammar-wrapper *::before,
+    .fg-french-grammar-wrapper *::after {
+      box-sizing: border-box;
+    }
+
+    .fg-french-grammar-wrapper .fg-container {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .fg-french-grammar-wrapper .fg-fr,
+    .fg-french-grammar-wrapper [lang="fr"] {
+      direction: ltr;
+      text-align: left;
+      unicode-bidi: isolate;
+      font-family:
+        "Segoe UI",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+    }
+
+    .fg-french-grammar-wrapper .fg-fr-inline {
+      direction: ltr;
+      unicode-bidi: isolate;
+      display: inline-block;
+      text-align: left;
+      font-family:
+        "Segoe UI",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+    }
+
+    .fg-french-grammar-wrapper .fg-hero {
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(
+          circle at 10% 10%,
+          rgba(255,255,255,.16),
+          transparent 26%
+        ),
+        linear-gradient(135deg, #123456 0%, #1e5a8f 100%);
+      color: #fff;
+      padding: 38px 34px;
+      border-radius: var(--fg-radius-lg);
+      margin-bottom: 24px;
+      box-shadow: var(--fg-shadow);
+    }
+
+    .fg-french-grammar-wrapper .fg-hero::after {
+      content: "A2–B1";
+      position: absolute;
+      left: 24px;
+      top: 22px;
+      padding: 5px 12px;
+      border: 1px solid rgba(255,255,255,.3);
+      border-radius: 999px;
+      background: rgba(255,255,255,.12);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .5px;
+      direction: ltr;
+    }
+
+    .fg-french-grammar-wrapper .fg-kicker {
+      margin-bottom: 7px;
+      opacity: .82;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .fg-french-grammar-wrapper .fg-hero h1 {
+      margin: 0 0 8px;
+      color: #fff;
+      line-height: 1.45;
+      font-size: clamp(25px, 4vw, 40px);
+      font-weight: 850;
+    }
+
+    .fg-french-grammar-wrapper .fg-hero .fg-title-fr {
+      display: block;
+      margin-top: 3px;
+      font-size: .75em;
+      font-weight: 650;
+      opacity: .92;
+    }
+
+    .fg-french-grammar-wrapper .fg-hero p {
+      margin: 15px 0 0;
+      max-width: 850px;
+      color: rgba(255,255,255,.9);
+      font-size: 15px;
+    }
+
+    .fg-french-grammar-wrapper .fg-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .fg-french-grammar-wrapper .fg-meta {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 6px 12px;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 999px;
+      font-size: 12px;
+    }
+
+    .fg-french-grammar-wrapper .fg-toc {
+      background: var(--fg-card);
+      border: 1px solid var(--fg-border);
+      border-radius: var(--fg-radius);
+      padding: 20px 22px;
+      margin: 0 0 24px;
+      box-shadow: var(--fg-shadow);
+    }
+
+    .fg-french-grammar-wrapper .fg-toc-title {
+      color: var(--fg-primary);
+      font-size: 17px;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .fg-french-grammar-wrapper .fg-toc-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px 18px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .fg-french-grammar-wrapper .fg-toc-list a {
+      display: block;
+      color: var(--fg-primary-2);
+      text-decoration: none;
+      padding: 7px 9px;
+      border-radius: 8px;
+      transition: .2s ease;
+      font-size: 14px;
+    }
+
+    .fg-french-grammar-wrapper .fg-toc-list a:hover {
+      background: var(--fg-primary-soft);
+    }
+
+    .fg-french-grammar-wrapper .fg-section {
+      margin: 28px 0;
+      scroll-margin-top: 18px;
+    }
+
+    .fg-french-grammar-wrapper .fg-section-heading {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      color: var(--fg-primary);
+      margin: 0 0 16px;
+      padding-bottom: 11px;
+      border-bottom: 2px solid #dce9f5;
+      font-size: clamp(20px, 3vw, 27px);
+      line-height: 1.55;
+      font-weight: 850;
+    }
+
+    .fg-french-grammar-wrapper .fg-section-number {
+      width: 34px;
+      height: 34px;
+      flex: 0 0 34px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      background: var(--fg-primary);
+      color: white;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .fg-french-grammar-wrapper .fg-card {
+      background: var(--fg-card);
+      border: 1px solid var(--fg-border);
+      border-radius: var(--fg-radius);
+      padding: 22px;
+      margin-bottom: 16px;
+      box-shadow: var(--fg-shadow);
+    }
+
+    .fg-french-grammar-wrapper .fg-card h3 {
+      margin: 0 0 13px;
+      color: var(--fg-primary);
+      line-height: 1.65;
+      font-size: 18px;
+      font-weight: 820;
+    }
+
+    .fg-french-grammar-wrapper .fg-card h4 {
+      margin: 20px 0 10px;
+      color: var(--fg-primary-2);
+      font-size: 16px;
+      font-weight: 800;
+    }
+
+    .fg-french-grammar-wrapper .fg-card p {
+      margin: 8px 0;
+    }
+
+    .fg-french-grammar-wrapper .fg-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 15px;
+    }
+
+    .fg-french-grammar-wrapper .fg-callout {
+      position: relative;
+      padding: 17px 18px 17px 20px;
+      border-radius: 13px;
+      margin: 15px 0;
+      border: 1px solid;
+    }
+
+    .fg-french-grammar-wrapper .fg-callout-title {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin-bottom: 5px;
+      font-weight: 850;
+    }
+
+    .fg-french-grammar-wrapper .fg-callout-note {
+      color: var(--fg-primary);
+      background: var(--fg-primary-soft);
+      border-color: #b8d4ea;
+    }
+
+    .fg-french-grammar-wrapper .fg-callout-tip {
+      color: var(--fg-green);
+      background: var(--fg-green-soft);
+      border-color: var(--fg-green-border);
+    }
+
+    .fg-french-grammar-wrapper .fg-callout-warning {
+      color: var(--fg-orange);
+      background: var(--fg-orange-soft);
+      border-color: var(--fg-orange-border);
+    }
+
+    .fg-french-grammar-wrapper .fg-callout-danger {
+      color: var(--fg-red);
+      background: var(--fg-red-soft);
+      border-color: var(--fg-red-border);
+    }
+
+    .fg-french-grammar-wrapper .fg-example {
+      margin: 12px 0;
+      padding: 14px 16px;
+      background: #fbfdff;
+      border: 1px solid #dce6ef;
+      border-right: 4px solid var(--fg-primary-2);
+      border-radius: 11px;
+    }
+
+    .fg-french-grammar-wrapper .fg-example-fr {
+      display: block;
+      direction: ltr;
+      text-align: left;
+      unicode-bidi: isolate;
+      color: #16283c;
+      font-family:
+        "Segoe UI",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+      font-size: 16px;
+      font-weight: 650;
+      line-height: 1.7;
+    }
+
+    .fg-french-grammar-wrapper .fg-example-fa {
+      display: block;
+      margin-top: 4px;
+      color: var(--fg-muted);
+      font-size: 13px;
+    }
+
+    .fg-french-grammar-wrapper .fg-correct {
+      border-right-color: var(--fg-green);
+      background: var(--fg-green-soft);
+    }
+
+    .fg-french-grammar-wrapper .fg-wrong {
+      border-right-color: var(--fg-red);
+      background: var(--fg-red-soft);
+    }
+
+    .fg-french-grammar-wrapper .fg-wrong .fg-example-fr {
+      color: var(--fg-red);
+      text-decoration: line-through;
+      text-decoration-thickness: 1px;
+    }
+
+    .fg-french-grammar-wrapper .fg-compare {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin: 14px 0;
+    }
+
+    .fg-french-grammar-wrapper .fg-compare-box {
+      border: 1px solid var(--fg-border);
+      border-radius: 13px;
+      padding: 16px;
+      background: #fff;
+    }
+
+    .fg-french-grammar-wrapper .fg-compare-box strong {
+      color: var(--fg-primary);
+    }
+
+    .fg-french-grammar-wrapper .fg-table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: 15px 0 4px;
+      border-radius: 12px;
+      border: 1px solid var(--fg-border);
+    }
+
+    .fg-french-grammar-wrapper .fg-table {
+      width: 100%;
+      min-width: 640px;
+      border-collapse: collapse;
+      border-spacing: 0;
+      background: #fff;
+      font-size: 14px;
+    }
+
+    .fg-french-grammar-wrapper .fg-table th,
+    .fg-french-grammar-wrapper .fg-table td {
+      padding: 12px 14px;
+      border-left: 1px solid var(--fg-border);
+      border-bottom: 1px solid var(--fg-border);
+      vertical-align: top;
+    }
+
+    .fg-french-grammar-wrapper .fg-table th:last-child,
+    .fg-french-grammar-wrapper .fg-table td:last-child {
+      border-left: none;
+    }
+
+    .fg-french-grammar-wrapper .fg-table tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .fg-french-grammar-wrapper .fg-table thead th {
+      background: var(--fg-primary);
+      color: white;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    .fg-french-grammar-wrapper .fg-table tbody tr:nth-child(even) {
+      background: var(--fg-zebra);
+    }
+
+    .fg-french-grammar-wrapper .fg-table tbody tr:hover {
+      background: #edf5fc;
+    }
+
+    .fg-french-grammar-wrapper .fg-table .fg-fr-cell {
+      direction: ltr;
+      text-align: left;
+      unicode-bidi: isolate;
+      font-family:
+        "Segoe UI",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+    }
+
+    .fg-french-grammar-wrapper .fg-rule {
+      display: flex;
+      gap: 13px;
+      align-items: flex-start;
+      margin: 12px 0;
+      padding: 14px 16px;
+      background: var(--fg-bg);
+      border-radius: 12px;
+      border: 1px solid var(--fg-border);
+    }
+
+    .fg-french-grammar-wrapper .fg-rule-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      flex: 0 0 28px;
+      border-radius: 50%;
+      background: var(--fg-primary-2);
+      color: white;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .fg-french-grammar-wrapper .fg-formula {
+      direction: ltr;
+      text-align: center;
+      unicode-bidi: isolate;
+      display: block;
+      padding: 13px 16px;
+      margin: 12px 0;
+      border-radius: 12px;
+      background: #122f4e;
+      color: #fff;
+      font-family:
+        "Segoe UI",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+      font-weight: 700;
+      letter-spacing: .15px;
+    }
+
+    .fg-french-grammar-wrapper .fg-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 9px;
+      margin: 2px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .fg-french-grammar-wrapper .fg-badge-blue {
+      background: var(--fg-primary-soft);
+      color: var(--fg-primary);
+    }
+
+    .fg-french-grammar-wrapper .fg-badge-green {
+      background: var(--fg-green-soft);
+      color: var(--fg-green);
+    }
+
+    .fg-french-grammar-wrapper .fg-badge-orange {
+      background: var(--fg-orange-soft);
+      color: var(--fg-orange);
+    }
+
+    .fg-french-grammar-wrapper .fg-badge-purple {
+      background: var(--fg-purple-soft);
+      color: var(--fg-purple);
+    }
+
+    .fg-french-grammar-wrapper .fg-list {
+      padding: 0 21px 0 0;
+      margin: 10px 0;
+    }
+
+    .fg-french-grammar-wrapper .fg-list li {
+      margin: 7px 0;
+      padding-right: 3px;
+    }
+
+    .fg-french-grammar-wrapper .fg-summary {
+      padding: 24px;
+      border-radius: var(--fg-radius-lg);
+      background:
+        linear-gradient(135deg, #f0f7fd 0%, #f8fbfe 100%);
+      border: 1px solid #c8dff1;
+      margin: 30px 0 0;
+    }
+
+    .fg-french-grammar-wrapper .fg-summary h2 {
+      margin: 0 0 15px;
+      color: var(--fg-primary);
+      font-size: 22px;
+    }
+
+    .fg-french-grammar-wrapper .fg-summary-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .fg-french-grammar-wrapper .fg-summary-item {
+      background: #fff;
+      border: 1px solid var(--fg-border);
+      border-radius: 11px;
+      padding: 13px 14px;
+    }
+
+    .fg-french-grammar-wrapper .fg-mini-title {
+      color: var(--fg-primary);
+      font-weight: 850;
+      margin-bottom: 4px;
+    }
+
+    .fg-french-grammar-wrapper .fg-divider {
+      height: 1px;
+      background: var(--fg-border);
+      border: 0;
+      margin: 25px 0;
+    }
+
+    @media (max-width: 800px) {
+      .fg-french-grammar-wrapper .fg-grid-2,
+      .fg-french-grammar-wrapper .fg-compare,
+      .fg-french-grammar-wrapper .fg-summary-grid,
+      .fg-french-grammar-wrapper .fg-toc-list {
+        grid-template-columns: 1fr;
+      }
+
+      .fg-french-grammar-wrapper .fg-hero {
+        padding: 31px 20px 24px;
+      }
+
+      .fg-french-grammar-wrapper .fg-card {
+        padding: 18px;
+      }
+
+      .fg-french-grammar-wrapper .fg-section-heading {
+        font-size: 20px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .fg-french-grammar-wrapper {
+        font-size: 14px;
+      }
+
+      .fg-french-grammar-wrapper .fg-hero {
+        border-radius: 16px;
+      }
+
+      .fg-french-grammar-wrapper .fg-hero::after {
+        position: static;
+        display: inline-flex;
+        margin-bottom: 14px;
+      }
+
+      .fg-french-grammar-wrapper .fg-card,
+      .fg-french-grammar-wrapper .fg-toc {
+        padding: 15px;
+        border-radius: 12px;
+      }
+
+      .fg-french-grammar-wrapper .fg-table {
+        min-width: 580px;
+        font-size: 13px;
+      }
+
+      .fg-french-grammar-wrapper .fg-table th,
+      .fg-french-grammar-wrapper .fg-table td {
+        padding: 10px;
+      }
+
+      .fg-french-grammar-wrapper .fg-example-fr {
+        font-size: 15px;
+      }
+    }
+  </style>
+
+
+  <div class="fg-container">
+
+    <!-- ======================================================
+         HERO
+         ====================================================== -->
+    <section class="fg-hero">
+      <div class="fg-kicker">درس ۱۲ • صفت در زبان فرانسه</div>
+
+      <h1>
+        جایگاه و معنای صفت
+        <span class="fg-title-fr fg-fr" lang="fr">L’ADJECTIF (2)</span>
+      </h1>
+
+      <p>
+        در این درس یاد می‌گیریم صفت در زبان فرانسه چه زمانی قبل یا بعد از اسم
+        قرار می‌گیرد، چرا بعضی صفت‌ها با تغییر جایگاه معنای متفاوتی پیدا
+        می‌کنند، شکل‌های ویژه
+        <span class="fg-fr-inline" lang="fr">bel, vieil, nouvel</span>
+        چگونه ساخته می‌شوند و چه تفاوتی میان
+        <span class="fg-fr-inline" lang="fr">neuf</span>
+        و
+        <span class="fg-fr-inline" lang="fr">nouveau</span>
+        وجود دارد.
+      </p>
+
+      <div class="fg-meta-row">
+        <span class="fg-meta">📘 صفحات چاپی ۵۴ تا ۵۷</span>
+        <span class="fg-meta">🎯 محور: Place &amp; sens de l’adjectif</span>
+        <span class="fg-meta">🧩 درس ۱۲</span>
+      </div>
+    </section>
+
+
+    <!-- ======================================================
+         TOC
+         ====================================================== -->
+    <nav class="fg-toc" aria-label="فهرست مطالب درس">
+      <div class="fg-toc-title">فهرست مطالب</div>
+
+      <ul class="fg-toc-list">
+        <li><a href="#fg-general-position">۱. جایگاه عمومی صفت</a></li>
+        <li><a href="#fg-before-noun">۲. صفت‌های قبل از اسم</a></li>
+        <li><a href="#fg-numbers">۳. اعداد و صفت</a></li>
+        <li><a href="#fg-premier">۴. premier / dernier / prochain</a></li>
+        <li><a href="#fg-special-forms">۵. bel / vieil / nouvel</a></li>
+        <li><a href="#fg-des-de">۶. تبدیل des به de</a></li>
+        <li><a href="#fg-liaison">۷. liaison</a></li>
+        <li><a href="#fg-demi">۸. demi / même / autre</a></li>
+        <li><a href="#fg-position-meaning">۹. تغییر معنا با جایگاه</a></li>
+        <li><a href="#fg-neuf-nouveau">۱۰. neuf و nouveau</a></li>
+      </ul>
+    </nav>
+
+
+    <!-- ======================================================
+         1
+         ====================================================== -->
+    <section class="fg-section" id="fg-general-position">
+
+      <h2 class="fg-section-heading">
+        <span class="fg-section-number">۱</span>
+        جایگاه عادی صفت در زبان فرانسه
+      </h2>
+
+      <div class="fg-card">
+
+        <p>
+          در حالت معمول، بسیاری از صفت‌های فرانسوی
+          <strong>بعد از اسم</strong>
+          قرار می‌گیرند.
+        </p>
+
+        <div class="fg-formula">
+          nom + adjectif
+        </div>
+
+        <div class="fg-grid-2">
+
+          <div class="fg-example fg-correct">
+            <span class="fg-example-fr" lang="fr">
+              une chemise blanche
+            </span>
+            <span class="fg-example-fa">
+              یک پیراهن سفید
+            </span>
+          </div>
+
+          <div class="fg-example fg-correct">
+            <span class="fg-example-fr" lang="fr">
+              un livre intéressant
+            </span>
+            <span class="fg-example-fa">
+              یک کتاب جالب
+            </span>
+          </div>
+
+          <div class="fg-example fg-correct">
+            <span class="fg-example-fr" lang="fr">
+              un exercice difficile
+            </span>
+            <span class="fg-example-fa">
+              یک تمرین دشوار
+            </span>
+          </div>
+
+          <div class="fg-example fg-correct">
+            <span class="fg-example-fr" lang="fr">
+              une table ronde
+            </span>
+            <span class="fg-example-fa">
+              یک میز گرد
+            </span>
+          </div>
+
+        </div>
+
+        <h3>چه نوع صفت‌هایی معمولاً بعد از اسم قرار می‌گیرند؟</h3>
+
+        <div class="fg-table-wrap">
+          <table class="fg-table">
+            <thead>
+              <tr>
+                <th>نوع صفت</th>
+                <th>مثال فرانسوی</th>
+                <th>معنی</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>رنگ</td>
+                <td class="fg-fr-cell" lang="fr">une voiture rouge</td>
+                <td>یک ماشین قرمز</td>
+              </tr>
+
+              <tr>
+                <td>شکل</td>
+                <td class="fg-fr-cell" lang="fr">une table ronde</td>
+                <td>یک میز گرد</td>
+              </tr>
+
+              <tr>
+                <td>ملیت</td>
+                <td class="fg-fr-cell" lang="fr">un écrivain français</td>
+                <td>یک نویسنده فرانسوی</td>
+              </tr>
+
+              <tr>
+                <td>ویژگی توصیفی</td>
+                <td class="fg-fr-cell" lang="fr">un visage carré</td>
+                <td>یک صورت چهارگوش</td>
+              </tr>
+
+              <tr>
+                <td>صفات توصیفی طولانی‌تر</td>
+                <td class="fg-fr-cell" lang="fr">une histoire intéressante</td>
+                <td>یک داستان جالب</td>
+              </tr>
+
+              <tr>
+                <td>صفت رابطه‌ای / تخصصی</td>
+                <td class="fg-fr-cell" lang="fr">une décision gouvernementale</td>
+                <td>یک تصمیم دولتی</td>
+              </tr>
+
+              <tr>
+                <td>وجه وصفی</td>
+                <td class="fg-fr-cell" lang="fr">une porte fermée</td>
+                <td>یک درِ بسته</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="fg-callout fg-callout-note">
+          <div class="fg-callout-title">💡 نکته</div>
+          جایگاه صفت را نمی‌توان فقط با یک قانون مکانیکی تعیین کرد. بعضی صفت‌ها
+          دارای جایگاه تثبیت‌شده‌اند و بعضی دیگر با تغییر جایگاه، معنی‌شان نیز
+          تغییر می‌کند.
+        </div>
+
+        <div class="fg-example">
+          <span class="fg-example-fr" lang="fr">
+            un jeune homme brun avec une bicyclette verte
+          </span>
+          <span class="fg-example-fa">
+            یک مرد جوانِ مو‌قهوه‌ای با یک دوچرخه سبز
+          </span>
+        </div>
+
+        <ul class="fg-list">
+          <li>
+            <span class="fg-fr-inline" lang="fr">jeune</span>
+            قبل از اسم قرار گرفته است.
+          </li>
+          <li>
+            <span class="fg-fr-inline" lang="fr">brun</span>
+            بعد از اسم آمده است.
+          </li>
+          <li>
+            <span class="fg-fr-inline" lang="fr">verte</span>
+            نیز بعد از اسم آمده، زیرا رنگ است.
+          </li>
+        </ul>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================
+         2
+         ====================================================== -->
+    <section class="fg-section" id="fg-before-noun">
+
+      <h2 class="fg-section-heading">
+        <span class="fg-section-number">۲</span>
+        صفت‌های رایجی که معمولاً قبل از اسم می‌آیند
+      </h2>
+
+      <div class="fg-card">
+
+        <p>
+          گروهی از صفت‌های کوتاه و بسیار رایج معمولاً
+          <strong>قبل از اسم</strong>
+          قرار می‌گیرند.
+        </p>
+
+        <div class="fg-formula">
+          adjectif + nom
+        </div>
+
+        <div class="fg-table-wrap">
+          <table class="fg-table">
+            <thead>
+              <tr>
+                <th>دسته</th>
+                <th>صفت‌ها</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>زیبایی</td>
+                <td class="fg-fr-cell" lang="fr">beau, joli</td>
+              </tr>
+
+              <tr>
+                <td>ارزیابی خوب / بد</td>
+                <td class="fg-fr-cell" lang="fr">bon, mauvais</td>
+              </tr>
+
+              <tr>
+                <td>اندازه</td>
+                <td class="fg-fr-cell" lang="fr">petit, grand, gros</td>
+              </tr>
+
+              <tr>
+                <td>سن و تازگی</td>
+                <td class="fg-fr-cell" lang="fr">jeune, vieux, nouveau</td>
+              </tr>
+
+              <tr>
+                <td>مقدار یا ساخت خاص</td>
+                <td class="fg-fr-cell" lang="fr">double, demi</td>
+              </tr>
+
+              <tr>
+                <td>تمایز و تعیین</td>
+                <td class="fg-fr-cell" lang="fr">autre, même</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="fg-grid-2">
+
+          <div class="fg-example fg-correct">
+            <span class="fg-example-fr" lang="fr">une petite maison</span>
+            <span class="fg-example-fa">یک خانه کوچک</span>
+          </div>
+
+          <div class="fg-example fg-correct">
+            <span class="fg-example-fr" lang="fr">une jolie robe</span>
+            <span class="fg-example-fa">یک لباس زیبا</span>
+          </div>
+
+          <div class="fg-example fg-correct">
+            <span class="fg-example-fr" lang="fr">un gros livre</span>
+            <span class="fg-example-fa">یک کتاب قطور</span>
+          </div>
+
+          <div class="fg-example fg-correct">
+            <span class="fg-example-fr" lang="fr">une bonne idée</span>
+            <span class="fg-example-fa">یک ایده خوب</span>
+          </div>
+
+          <div class="fg-example fg-correct">
+            <span class="fg-example-fr" lang="fr">un jeune homme</span>
+            <span class="fg-example-fa">یک مرد جوان</span>
+          </div>
+
+        </div>
+
+        <div class="fg-callout fg-callout-warning">
+          <div class="fg-callout-title">⚠️ نکته ظریف</div>
+          این فهرست یک راهنمای عمومی است. بعضی از همین صفت‌ها بسته به معنایی
+          که می‌خواهیم بیان کنیم می‌توانند جایگاه دیگری بگیرند. مهم‌ترین
+          نمونه‌های آن در بخش «تغییر معنا با جایگاه صفت» بررسی می‌شوند.
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================
+         3
+         ====================================================== -->
+    <section class="fg-section" id="fg-numbers">
+
+      <h2 class="fg-section-heading">
+        <span class="fg-section-number">۳</span>
+        اعداد همیشه قبل از اسم قرار می‌گیرند
+      </h2>
+
+      <div class="fg-card">
+
+        <p>
+          اعداد اصلی و ترتیبی پیش از اسم قرار می‌گیرند.
+        </p>
+
+        <div class="fg-grid-2">
+          <div class="fg-example fg-correct">
+            <span class="fg-example-fr" lang="fr">
+              les trois mousquetaires
+            </span>
+            <span class="fg-example-fa">سه تفنگدار</span>
+          </div>
+
+          <div class="fg-example fg-correct">
+            <span class="fg-example-fr" lang="fr">
+              les sept nains
+            </span>
+            <span class="fg-example-fa">هفت کوتوله</span>
+          </div>
+
+          <div class="fg-example fg-correct">
+            <span class="fg-example-fr" lang="fr">
+              le septième art
+            </span>
+            <span class="fg-example-fa">هنر هفتم</span>
+          </div>
+        </div>
+
+        <h3>اگر هم عدد و هم صفت داشته باشیم</h3>
+
+        <div class="fg-formula">
+          déterminant + nombre + adjectif + nom
+        </div>
+
+        <div class="fg-example fg-correct">
+          <span class="fg-example-fr" lang="fr">
+            les trois petits cochons
+          </span>
+          <span class="fg-example-fa">
+            سه خوک کوچک
+          </span>
+        </div>
+
+        <div class="fg-example fg-correct">
+          <span class="fg-example-fr" lang="fr">
+            les dix dernières années
+          </span>
+          <span class="fg-example-fa">
+            ده سال گذشته
+          </span>
+        </div>
+
+        <div class="fg-example fg-correct">
+          <span class="fg-example-fr" lang="fr">
+            les deux prochaines réunions
+          </span>
+          <span class="fg-example-fa">
+            دو جلسه آینده
+          </span>
+        </div>
+
+        <div class="fg-callout fg-callout-danger">
+          <div class="fg-callout-title">❌ خطای رایج</div>
+
+          <div class="fg-example fg-wrong">
+            <span class="fg-example-fr" lang="fr">
+              les dernières dix années
+            </span>
+          </div>
+
+          شکل طبیعی و درست:
+          <span class="fg-fr-inline" lang="fr">
+            les dix dernières années
+          </span>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================
+         4
+         ====================================================== -->
+    <section class="fg-section" id="fg-premier">
+
+      <h2 class="fg-section-heading">
+        <span class="fg-section-number">۴</span>
+        جایگاه
+        <span class="fg-fr-inline" lang="fr">premier, dernier, prochain</span>
+      </h2>
+
+      <div class="fg-card">
+
+        <h3>الف) وقتی درباره ترتیب در یک مجموعه صحبت می‌کنیم</h3>
+
+        <p>
+          صفت معمولاً قبل از اسم می‌آید.
+        </p>
+
+        <div class="fg-grid-2">
+
+          <div class="fg-example fg-correct">
+            <span class="fg-example-fr" lang="fr">le premier candidat</span>
+            <span class="fg-example-fa">اولین داوطلب</span>
+          </div>
+
+          <div class="fg-example fg-correct">
+            <span class="fg-example-fr" lang="fr">le prochain candidat</span>
+            <span class="fg-example-fa">داوطلب بعدی</span>
+          </div>
+
+          <div class="fg-example fg-correct">
+            <span class="fg-example-fr" lang="fr">le dernier candidat</span>
+            <span class="fg-example-fa">آخرین داوطلب</span>
+          </div>
+
+          <div class="fg-example fg-correct">
+            <span class="fg-example-fr" lang="fr">
+              la dernière question de l’examen
+            </span>
+            <span class="fg-example-fa">آخرین سؤال امتحان</span>
+          </div>
+
+        </div>
+
+        <h3>ب) وقتی اسم زمان معنای «گذشته / آینده» دارد</h3>
+
+        <p>
+          <span class="fg-fr-inline" lang="fr">dernier</span>
+          و
+          <span class="fg-fr-inline" lang="fr">prochain</span>
+          معمولاً بعد از اسم زمان قرار می‌گیرند.
+        </p>
+
+        <div class="fg-grid-2">
+
+          <div class="fg-example fg-correct">
+            <span class="fg-example-fr" lang="fr">mardi dernier</span>
+            <span class="fg-example-fa">سه‌شنبه گذشته</span>
+          </div>
+
+          <div class="fg-example fg-correct">
+            <span class="fg-example-fr" lang="fr">mardi prochain</span>
+            <span class="fg-example-fa">سه‌شنبه آینده</span>
+          </div>
+
+          <div class="fg-example fg-correct">
+            <span class="fg-example-fr" lang="fr">le mois dernier</span>
+            <span class="fg-example-fa">ماه گذشته</span>
+          </div>
+
+          <div class="fg-example fg-correct">
+            <span class="fg-example-fr" lang="fr">le mois prochain</span>
+            <span class="fg-example-fa">ماه آینده</span>
+          </div>
+
+          <div class="fg-example fg-correct">
+            <span class="fg-example-fr" lang="fr">l’année prochaine</span>
+            <span class="fg-example-fa">سال آینده</span>
+          </div>
+
+        </div>
+
+        <h3>مقایسه بسیار مهم</h3>
+
+        <div class="fg-compare">
+
+          <div class="fg-compare-box">
+            <strong>ترتیب در مجموعه</strong>
+
+            <div class="fg-example">
+              <span class="fg-example-fr" lang="fr">
+                la dernière semaine du mois
+              </span>
+              <span class="fg-example-fa">
+                آخرین هفته ماه
+              </span>
+            </div>
+          </div>
+
+          <div class="fg-compare-box">
+            <strong>عبارت زمانی</strong>
+
+            <div class="fg-example">
+              <span class="fg-example-fr" lang="fr">
+                la semaine dernière
+              </span>
+              <span class="fg-example-fa">
+                هفته گذشته
+              </span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="fg-callout fg-callout-tip">
+          <div class="fg-callout-title">✅ کلید تشخیص</div>
+          اگر منظور «آخرین/بعدی در یک مجموعه» باشد، صفت معمولاً قبل از اسم است.
+          اگر منظور «گذشته/آینده» در یک عبارت زمانی باشد، معمولاً بعد از اسم
+          قرار می‌گیرد.
+        </div>
+
+        <h3>ساخت‌های جمع</h3>
+
+        <div class="fg-example fg-correct">
+          <span class="fg-example-fr" lang="fr">
+            les deux prochaines semaines
+          </span>
+          <span class="fg-example-fa">
+            دو هفته آینده
+          </span>
+        </div>
+
+        <div class="fg-example fg-correct">
+          <span class="fg-example-fr" lang="fr">
+            les trois derniers mois
+          </span>
+          <span class="fg-example-fa">
+            سه ماه گذشته
+          </span>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================
+         5
+         ====================================================== -->
+    <section class="fg-section" id="fg-special-forms">
+
+      <h2 class="fg-section-heading">
+        <span class="fg-section-number">۵</span>
+        شکل‌های ویژه
+        <span class="fg-fr-inline" lang="fr">bel, vieil, nouvel</span>
+      </h2>
+
+      <div class="fg-card">
+
+        <p>
+          سه صفت
+          <span class="fg-fr-inline" lang="fr">beau, vieux, nouveau</span>
+          وقتی قبل از یک اسم مذکر مفرد قرار بگیرند که با مصوت یا
+          <span class="fg-fr-inline" lang="fr">h muet</span>
+          شروع می‌شود، شکل خاصی پیدا می‌کنند.
+        </p>
+
+        <div class="fg-table-wrap">
+          <table class="fg-table">
+            <thead>
+              <tr>
+                <th>شکل عادی</th>
+                <th>قبل از مصوت / h muet</th>
+                <th>مثال</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="fg-fr-cell" lang="fr">beau</td>
+                <td class="fg-fr-cell" lang="fr"><strong>bel</strong></td>
+                <td class="fg-fr-cell" lang="fr">un bel acteur</td>
+              </tr>
+
+              <tr>
+                <td class="fg-fr-cell" lang="fr">vieux</td>
+                <td class="fg-fr-cell" lang="fr"><strong>vieil</strong></td>
+                <td class="fg-fr-cell" lang="fr">un vieil homme</td>
+              </tr>
+
+              <tr>
+                <td class="fg-fr-cell" lang="fr">nouveau</td>
+                <td class="fg-fr-cell" lang="fr"><strong>nouvel</strong></td>
+                <td class="fg-fr-cell" lang="fr">un nouvel ordinateur</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="fg-grid-2">
+
+          <div class="fg-example fg-correct">
+            <span class="fg-example-fr" lang="fr">un bel appartement</span>
+            <span class="fg-example-fa">یک آپارتمان زیبا</span>
+          </div>
+
+          <div class="fg-example fg-correct">
+            <span class="fg-example-fr" lang="fr">un vieil immeuble</span>
+            <span class="fg-example-fa">یک ساختمان قدیمی</span>
+          </div>
+
+          <div class="fg-example fg-correct">
+            <span class="fg-example-fr" lang="fr">un nouvel élève</span>
+            <span class="fg-example-fa">یک دانش‌آموز جدید</span>
+          </div>
+
+        </div>
+
+        <h3>صرف کامل سه صفت</h3>
+
+        <div class="fg-table-wrap">
+          <table class="fg-table">
+            <thead>
+              <tr>
+                <th>مذکر مفرد</th>
+                <th>قبل از مصوت</th>
+                <th>مؤنث مفرد</th>
+                <th>مذکر جمع</th>
+                <th>مؤنث جمع</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="fg-fr-cell" lang="fr">beau</td>
+                <td class="fg-fr-cell" lang="fr">bel</td>
+                <td class="fg-fr-cell" lang="fr">belle</td>
+                <td class="fg-fr-cell" lang="fr">beaux</td>
+                <td class="fg-fr-cell" lang="fr">belles</td>
+              </tr>
+
+              <tr>
+                <td class="fg-fr-cell" lang="fr">vieux</td>
+                <td class="fg-fr-cell" lang="fr">vieil</td>
+                <td class="fg-fr-cell" lang="fr">vieille</td>
+                <td class="fg-fr-cell" lang="fr">vieux</td>
+                <td class="fg-fr-cell" lang="fr">vieilles</td>
+              </tr>
+
+              <tr>
+                <td class="fg-fr-cell" lang="fr">nouveau</td>
+                <td class="fg-fr-cell" lang="fr">nouvel</td>
+                <td class="fg-fr-cell" lang="fr">nouvelle</td>
+                <td class="fg-fr-cell" lang="fr">nouveaux</td>
+                <td class="fg-fr-cell" lang="fr">nouvelles</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="fg-callout fg-callout-warning">
+          <div class="fg-callout-title">
+            ⚠️
+            <span class="fg-fr-inline" lang="fr">h aspiré</span>
+          </div>
+
+          در برابر
+          <span class="fg-fr-inline" lang="fr">h aspiré</span>
+          شکل ویژه به همان صورت اعمال نمی‌شود.
+
+          <div class="fg-example">
+            <span class="fg-example-fr" lang="fr">un beau héros</span>
+          </div>
+
+          <div class="fg-example">
+            <span class="fg-example-fr" lang="fr">un vieux hibou</span>
+          </div>
+        </div>
+
+        <div class="fg-callout fg-callout-note">
+          <div class="fg-callout-title">💡 نکته مهم درباره جمع</div>
+
+          در جمع، شکل‌های
+          <span class="fg-fr-inline" lang="fr">bel, vieil, nouvel</span>
+          دیگر استفاده نمی‌شوند.
+
+          <div class="fg-example">
+            <span class="fg-example-fr" lang="fr">
+              de beaux hommes
+            </span>
+          </div>
+
+          <div class="fg-example">
+            <span class="fg-example-fr" lang="fr">
+              de vieux amis
+            </span>
+          </div>
+
+          <div class="fg-example">
+            <span class="fg-example-fr" lang="fr">
+              de nouveaux ordinateurs
+            </span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================
+         6
+         ====================================================== -->
+    <section class="fg-section" id="fg-des-de">
+
+      <h2 class="fg-section-heading">
+        <span class="fg-section-number">۶</span>
+        تبدیل
+        <span class="fg-fr-inline" lang="fr">des</span>
+        به
+        <span class="fg-fr-inline" lang="fr">de</span>
+        قبل از صفت
+      </h2>
+
+      <div class="fg-card">
+
+        <p>
+          در گروه اسمی جمع نامعین، اگر یک صفت
+          <strong>قبل از اسم جمع</strong>
+          قرار بگیرد، در زبان معیار معمولاً
+          <span class="fg-fr-inline" lang="fr">des</span>
+          به
+          <span class="fg-fr-inline" lang="fr">de</span>
+          تبدیل می‌شود.
+        </p>
+
+        <div class="fg-formula">
+          des + nom → de + adjectif + nom
+        </div>
+
+        <div class="fg-compare">
+          <div class="fg-compare-box">
+            <div class="fg-mini-title">بدون صفت پیش‌اسمی</div>
+            <div class="fg-example">
+              <span class="fg-example-fr" lang="fr">des amis</span>
+              <span class="fg-example-fa">دوستانی</span>
+            </div>
+          </div>
+
+          <div class="fg-compare-box">
+            <div class="fg-mini-title">با صفت پیش‌اسمی</div>
+            <div class="fg-example fg-correct">
+              <span class="fg-example-fr" lang="fr">de bons amis</span>
+              <span class="fg-example-fa">دوستان خوبی</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="fg-grid-2">
+
+          <div class="fg-example fg-correct">
+            <span class="fg-example-fr" lang="fr">de beaux livres</span>
+            <span class="fg-example-fa">کتاب‌های زیبایی</span>
+          </div>
+
+          <div class="fg-example fg-correct">
+            <span class="fg-example-fr" lang="fr">de longues jambes</span>
+            <span class="fg-example-fa">پاهای بلندی</span>
+          </div>
+
+          <div class="fg-example fg-correct">
+            <span class="fg-example-fr" lang="fr">de vieux amis</span>
+            <span class="fg-example-fa">دوستان قدیمی</span>
+          </div>
+
+          <div class="fg-example fg-correct">
+            <span class="fg-example-fr" lang="fr">d’autres photos</span>
+            <span class="fg-example-fa">عکس‌های دیگری</span>
+          </div>
+
+          <div class="fg-example fg-correct">
+            <span class="fg-example-fr" lang="fr">
+              d’excellents résultats
+            </span>
+            <span class="fg-example-fa">
+              نتایج بسیار خوبی
+            </span>
+          </div>
+
+        </div>
+
+        <h3>اگر صفت بعد از اسم باشد</h3>
+
+        <p>
+          در این صورت
+          <span class="fg-fr-inline" lang="fr">des</span>
+          باقی می‌ماند.
+        </p>
+
+        <div class="fg-grid-2">
+
+          <div class="fg-example">
+            <span class="fg-example-fr" lang="fr">
+              des histoires étranges
+            </span>
+          </div>
+
+          <div class="fg-example">
+            <span class="fg-example-fr" lang="fr">
+              des endroits magnifiques
+            </span>
+          </div>
+
+          <div class="fg-example">
+            <span class="fg-example-fr" lang="fr">
+              des lunettes noires
+            </span>
+          </div>
+
+        </div>
+
+        <div class="fg-compare">
+
+          <div class="fg-compare-box">
+            <div class="fg-example">
+              <span class="fg-example-fr" lang="fr">
+                des histoires intéressantes
+              </span>
+            </div>
+          </div>
+
+          <div class="fg-compare-box">
+            <div class="fg-example fg-correct">
+              <span class="fg-example-fr" lang="fr">
+                de belles histoires
+              </span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="fg-callout fg-callout-warning">
+          <div class="fg-callout-title">⚠️ ترکیب‌های تثبیت‌شده</div>
+
+          بعضی گروه‌های اسمی تثبیت‌شده می‌توانند
+          <span class="fg-fr-inline" lang="fr">des</span>
+          را حفظ کنند:
+
+          <div class="fg-example">
+            <span class="fg-example-fr" lang="fr">des petits pois</span>
+            <span class="fg-example-fa">نخودفرنگی</span>
+          </div>
+
+          <div class="fg-example">
+            <span class="fg-example-fr" lang="fr">des grands-parents</span>
+            <span class="fg-example-fa">پدربزرگ‌ها و مادربزرگ‌ها</span>
+          </div>
+
+          <div class="fg-example">
+            <span class="fg-example-fr" lang="fr">des jeunes gens</span>
+            <span class="fg-example-fa">جوانان</span>
+          </div>
+        </div>
+
+        <div class="fg-callout fg-callout-danger">
+          <div class="fg-callout-title">🗣️ گفتار در برابر نوشتار معیار</div>
+
+          در زبان گفتاری ممکن است ساخت‌هایی مانند
+
+          <span class="fg-fr-inline" lang="fr">des bons amis</span>
+
+          یا
+
+          <span class="fg-fr-inline" lang="fr">des belles maisons</span>
+
+          شنیده شوند؛ اما برای تمرین‌های گرامری و نوشتار معیار، شکل‌های
+
+          <span class="fg-fr-inline" lang="fr">de bons amis</span>
+
+          و
+
+          <span class="fg-fr-inline" lang="fr">de belles maisons</span>
+
+          را به کار ببرید.
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================
+         7
+         ====================================================== -->
+    <section class="fg-section" id="fg-liaison">
+
+      <h2 class="fg-section-heading">
+        <span class="fg-section-number">۷</span>
+        Liaison میان صفت و اسم
+      </h2>
+
+      <div class="fg-card">
+
+        <p>
+          وقتی صفت قبل از اسمی قرار می‌گیرد که با مصوت یا
+          <span class="fg-fr-inline" lang="fr">h muet</span>
+          شروع شده است، در بسیاری از این گروه‌ها
+          <span class="fg-fr-inline" lang="fr">liaison</span>
+          انجام می‌شود.
+        </p>
+
+        <div class="fg-grid-2">
+
+          <div class="fg-example">
+            <span class="fg-example-fr" lang="fr">
+              un petit enfant
+            </span>
+            <span class="fg-example-fa">
+              صدای نهایی t به کلمه بعد متصل می‌شود.
+            </span>
+          </div>
+
+          <div class="fg-example">
+            <span class="fg-example-fr" lang="fr">
+              un bon acteur
+            </span>
+            <span class="fg-example-fa">
+              صدای n پیوند ایجاد می‌کند.
+            </span>
+          </div>
+
+          <div class="fg-example">
+            <span class="fg-example-fr" lang="fr">
+              de grands amis
+            </span>
+            <span class="fg-example-fa">
+              صدای z شنیده می‌شود.
+            </span>
+          </div>
+
+          <div class="fg-example">
+            <span class="fg-example-fr" lang="fr">
+              de beaux appartements
+            </span>
+            <span class="fg-example-fa">
+              liaison با صدای z.
+            </span>
+          </div>
+
+        </div>
+
+        <div class="fg-callout fg-callout-note">
+          <div class="fg-callout-title">🎧 نکته تلفظی</div>
+          در گروه «صفت + اسم»، این liaison بسیار رایج و در بسیاری از ساخت‌ها
+          ضروری است. اما بین اسم جمع و صفتی که بعد از آن قرار گرفته، وضعیت
+          متفاوت است.
+        </div>
+
+        <div class="fg-example">
+          <span class="fg-example-fr" lang="fr">
+            des enfants adorables
+          </span>
+          <span class="fg-example-fa">
+            در تلفظ معیار، معمولاً پس از enfants یک z به adjectif وصل نمی‌شود.
+          </span>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================
+         8
+         ====================================================== -->
+    <section class="fg-section" id="fg-demi">
+
+      <h2 class="fg-section-heading">
+        <span class="fg-section-number">۸</span>
+        سه صفت مهم:
+        <span class="fg-fr-inline" lang="fr">demi, même, autre</span>
+      </h2>
+
+      <div class="fg-card">
+
+        <h3>
+          <span class="fg-fr-inline" lang="fr">demi</span>
+        </h3>
+
+        <p>
+          وقتی
+          <span class="fg-fr-inline" lang="fr">demi</span>
+          قبل از اسم قرار می‌گیرد، تغییر نمی‌کند و با اسم خط تیره می‌گیرد.
+        </p>
+
+        <div class="fg-grid-2">
+
+          <div class="fg-example">
+            <span class="fg-example-fr" lang="fr">une demi-heure</span>
+            <span class="fg-example-fa">نیم ساعت</span>
+          </div>
+
+          <div class="fg-example">
+            <span class="fg-example-fr" lang="fr">deux demi-journées</span>
+            <span class="fg-example-fa">دو نیم‌روز</span>
+          </div>
+
+        </div>
+
+        <p>
+          بعد از اسم و همراه
+          <span class="fg-fr-inline" lang="fr">et</span>
+          فقط از نظر جنس تطابق پیدا می‌کند.
+        </p>
+
+        <div class="fg-grid-2">
+
+          <div class="fg-example">
+            <span class="fg-example-fr" lang="fr">
+              deux heures et demie
+            </span>
+          </div>
+
+          <div class="fg-example">
+            <span class="fg-example-fr" lang="fr">
+              deux ans et demi
+            </span>
+          </div>
+
+        </div>
+
+
+        <hr class="fg-divider">
+
+
+        <h3>
+          <span class="fg-fr-inline" lang="fr">même</span>
+        </h3>
+
+        <p>
+          قبل از اسم می‌تواند معنی «همان» بدهد.
+        </p>
+
+        <div class="fg-grid-2">
+          <div class="fg-example">
+            <span class="fg-example-fr" lang="fr">la même voiture</span>
+            <span class="fg-example-fa">همان ماشین</span>
+          </div>
+
+          <div class="fg-example">
+            <span class="fg-example-fr" lang="fr">les mêmes personnes</span>
+            <span class="fg-example-fa">همان اشخاص</span>
+          </div>
+        </div>
+
+        <p>
+          همراه ضمیر یا اسم می‌تواند مفهوم «خودِ شخص» ایجاد کند.
+        </p>
+
+        <div class="fg-grid-2">
+          <div class="fg-example">
+            <span class="fg-example-fr" lang="fr">moi-même</span>
+            <span class="fg-example-fa">خودم</span>
+          </div>
+
+          <div class="fg-example">
+            <span class="fg-example-fr" lang="fr">
+              le directeur lui-même
+            </span>
+            <span class="fg-example-fa">خود مدیر</span>
+          </div>
+        </div>
+
+
+        <hr class="fg-divider">
+
+
+        <h3>
+          <span class="fg-fr-inline" lang="fr">autre</span>
+        </h3>
+
+        <p>
+          معمولاً قبل از اسم قرار می‌گیرد.
+        </p>
+
+        <div class="fg-grid-2">
+          <div class="fg-example">
+            <span class="fg-example-fr" lang="fr">
+              une autre question
+            </span>
+            <span class="fg-example-fa">یک سؤال دیگر</span>
+          </div>
+
+          <div class="fg-example">
+            <span class="fg-example-fr" lang="fr">
+              d’autres personnes
+            </span>
+            <span class="fg-example-fa">اشخاص دیگری</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================
+         9
+         ====================================================== -->
+    <section class="fg-section" id="fg-position-meaning">
+
+      <h2 class="fg-section-heading">
+        <span class="fg-section-number">۹</span>
+        صفت‌هایی که با تغییر جایگاه، معنایشان تغییر می‌کند
+      </h2>
+
+      <div class="fg-card">
+
+        <div class="fg-callout fg-callout-note">
+          <div class="fg-callout-title">🧠 ایده اصلی</div>
+
+          در بسیاری از موارد:
+
+          <ul class="fg-list">
+            <li>
+              صفت <strong>بعد از اسم</strong> معنای عینی‌تر و توصیفی‌تر دارد.
+            </li>
+            <li>
+              صفت <strong>قبل از اسم</strong> می‌تواند معنای ذهنی، ارزشی،
+              عاطفی، مجازی یا محدودکننده پیدا کند.
+            </li>
+          </ul>
+        </div>
+
+        <div class="fg-table-wrap">
+          <table class="fg-table">
+            <thead>
+              <tr>
+                <th>بعد از اسم</th>
+                <th>معنا</th>
+                <th>قبل از اسم</th>
+                <th>معنا</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="fg-fr-cell" lang="fr">un homme grand</td>
+                <td>مرد قدبلند</td>
+                <td class="fg-fr-cell" lang="fr">un grand homme</td>
+                <td>مرد بزرگ و برجسته</td>
+              </tr>
+
+              <tr>
+                <td class="fg-fr-cell" lang="fr">un voisin curieux</td>
+                <td>همسایه فضول / کنجکاو</td>
+                <td class="fg-fr-cell" lang="fr">un curieux voisin</td>
+                <td>همسایه عجیب</td>
+              </tr>
+
+              <tr>
+                <td class="fg-fr-cell" lang="fr">un homme pauvre</td>
+                <td>مرد فقیر</td>
+                <td class="fg-fr-cell" lang="fr">un pauvre homme</td>
+                <td>مرد بیچاره</td>
+              </tr>
+
+              <tr>
+                <td class="fg-fr-cell" lang="fr">une femme seule</td>
+                <td>زن تنها</td>
+                <td class="fg-fr-cell" lang="fr">une seule femme</td>
+                <td>فقط یک زن</td>
+              </tr>
+
+              <tr>
+                <td class="fg-fr-cell" lang="fr">une maison chère</td>
+                <td>خانه گران</td>
+                <td class="fg-fr-cell" lang="fr">ma chère maison</td>
+                <td>خانه عزیزم</td>
+              </tr>
+
+              <tr>
+                <td class="fg-fr-cell" lang="fr">une chambre propre</td>
+                <td>اتاق تمیز</td>
+                <td class="fg-fr-cell" lang="fr">ma propre chambre</td>
+                <td>اتاق خودم</td>
+              </tr>
+
+              <tr>
+                <td class="fg-fr-cell" lang="fr">un immeuble ancien</td>
+                <td>ساختمان قدیمی</td>
+                <td class="fg-fr-cell" lang="fr">mon ancien immeuble</td>
+                <td>ساختمان قبلی من</td>
+              </tr>
+
+              <tr>
+                <td class="fg-fr-cell" lang="fr">des livres différents</td>
+                <td>کتاب‌هایی متفاوت از یکدیگر</td>
+                <td class="fg-fr-cell" lang="fr">différents livres</td>
+                <td>چندین / کتاب‌های گوناگون</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+
+      <!-- GRAND -->
+      <div class="fg-card">
+        <h3>
+          <span class="fg-fr-inline" lang="fr">grand</span>
+        </h3>
+
+        <div class="fg-compare">
+
+          <div class="fg-compare-box">
+            <div class="fg-example">
+              <span class="fg-example-fr" lang="fr">un homme grand</span>
+              <span class="fg-example-fa">
+                مردی قدبلند
+              </span>
+            </div>
+          </div>
+
+          <div class="fg-compare-box">
+            <div class="fg-example">
+              <span class="fg-example-fr" lang="fr">un grand homme</span>
+              <span class="fg-example-fa">
+                مردی بزرگ و برجسته
+              </span>
+            </div>
+          </div>
+
+        </div>
+
+        <p>
+          قبل از بعضی اسم‌ها،
+          <span class="fg-fr-inline" lang="fr">grand</span>
+          می‌تواند شدت یا میزان زیاد فعالیت را نشان دهد:
+        </p>
+
+        <div class="fg-grid-2">
+          <div class="fg-example">
+            <span class="fg-example-fr" lang="fr">un grand voyageur</span>
+            <span class="fg-example-fa">کسی که زیاد سفر می‌کند</span>
+          </div>
+
+          <div class="fg-example">
+            <span class="fg-example-fr" lang="fr">un grand lecteur</span>
+            <span class="fg-example-fa">کسی که زیاد کتاب می‌خواند</span>
+          </div>
+
+          <div class="fg-example">
+            <span class="fg-example-fr" lang="fr">
+              un grand consommateur de café
+            </span>
+            <span class="fg-example-fa">
+              کسی که قهوه زیادی مصرف می‌کند
+            </span>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- PETIT -->
+      <div class="fg-card">
+        <h3>
+          <span class="fg-fr-inline" lang="fr">petit</span>
+        </h3>
+
+        <div class="fg-compare">
+          <div class="fg-compare-box">
+            <div class="fg-example">
+              <span class="fg-example-fr" lang="fr">un homme petit</span>
+              <span class="fg-example-fa">
+                مردی کوتاه‌قد؛ توصیف نسبتاً عینی
+              </span>
+            </div>
+          </div>
+
+          <div class="fg-compare-box">
+            <div class="fg-example">
+              <span class="fg-example-fr" lang="fr">un petit homme</span>
+              <span class="fg-example-fa">
+                مرد کوچک‌اندام؛ بسته به بافت می‌تواند بار ذهنی داشته باشد
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="fg-example">
+          <span class="fg-example-fr" lang="fr">
+            un petit consommateur
+          </span>
+          <span class="fg-example-fa">
+            کسی که کم مصرف می‌کند
+          </span>
+        </div>
+
+        <div class="fg-example">
+          <span class="fg-example-fr" lang="fr">
+            un petit mangeur
+          </span>
+          <span class="fg-example-fa">
+            کسی که کم غذا می‌خورد
+          </span>
+        </div>
+
+        <div class="fg-example">
+          <span class="fg-example-fr" lang="fr">
+            un petit salaire
+          </span>
+          <span class="fg-example-fa">
+            حقوق کم
+          </span>
+        </div>
+      </div>
+
+
+      <!-- VIEUX -->
+      <div class="fg-card">
+        <h3>
+          <span class="fg-fr-inline" lang="fr">vieux</span>
+        </h3>
+
+        <div class="fg-example">
+          <span class="fg-example-fr" lang="fr">un vieil homme</span>
+          <span class="fg-example-fa">یک مرد پیر</span>
+        </div>
+
+        <p>
+          اما با اسم‌هایی مثل
+          <span class="fg-fr-inline" lang="fr">ami, client, collègue</span>
+          می‌تواند مدت طولانی رابطه را نشان دهد.
+        </p>
+
+        <div class="fg-grid-2">
+          <div class="fg-example">
+            <span class="fg-example-fr" lang="fr">un vieux client</span>
+            <span class="fg-example-fa">یک مشتری قدیمی</span>
+          </div>
+
+          <div class="fg-example">
+            <span class="fg-example-fr" lang="fr">un vieil ami</span>
+            <span class="fg-example-fa">یک دوست قدیمی</span>
+          </div>
+        </div>
+
+        <div class="fg-callout fg-callout-tip">
+          <div class="fg-callout-title">✅ توجه</div>
+          در
+          <span class="fg-fr-inline" lang="fr">un vieil ami</span>
+          لزوماً منظور این نیست که دوست موردنظر پیر است؛ ممکن است منظور دوستی
+          باشد که مدت زیادی او را می‌شناسیم.
+        </div>
+      </div>
+
+
+      <!-- CURIEUX -->
+      <div class="fg-card">
+        <h3>
+          <span class="fg-fr-inline" lang="fr">curieux</span>
+        </h3>
+
+        <div class="fg-compare">
+          <div class="fg-compare-box">
+            <div class="fg-example">
+              <span class="fg-example-fr" lang="fr">un enfant curieux</span>
+              <span class="fg-example-fa">کودکی کنجکاو</span>
+            </div>
+
+            <div class="fg-example">
+              <span class="fg-example-fr" lang="fr">un voisin curieux</span>
+              <span class="fg-example-fa">همسایه‌ای فضول / کنجکاو</span>
+            </div>
+          </div>
+
+          <div class="fg-compare-box">
+            <div class="fg-example">
+              <span class="fg-example-fr" lang="fr">
+                un curieux personnage
+              </span>
+              <span class="fg-example-fa">شخصیت عجیبی</span>
+            </div>
+
+            <div class="fg-example">
+              <span class="fg-example-fr" lang="fr">
+                une curieuse histoire
+              </span>
+              <span class="fg-example-fa">داستان عجیبی</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- PAUVRE -->
+      <div class="fg-card">
+        <h3>
+          <span class="fg-fr-inline" lang="fr">pauvre</span>
+        </h3>
+
+        <div class="fg-compare">
+
+          <div class="fg-compare-box">
+            <div class="fg-example">
+              <span class="fg-example-fr" lang="fr">une famille pauvre</span>
+              <span class="fg-example-fa">خانواده کم‌درآمد</span>
+            </div>
+
+            <div class="fg-example">
+              <span class="fg-example-fr" lang="fr">un pays pauvre</span>
+              <span class="fg-example-fa">کشور فقیر</span>
+            </div>
+          </div>
+
+          <div class="fg-compare-box">
+            <div class="fg-example">
+              <span class="fg-example-fr" lang="fr">ce pauvre homme</span>
+              <span class="fg-example-fa">این مرد بیچاره</span>
+            </div>
+
+            <div class="fg-example">
+              <span class="fg-example-fr" lang="fr">ma pauvre mère</span>
+              <span class="fg-example-fa">مادر بیچاره‌ام</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="fg-callout fg-callout-note">
+          <div class="fg-callout-title">💡 تفاوت معنایی</div>
+          قبل از اسم، معمولاً درباره وضعیت مالی صحبت نمی‌کنیم؛ صفت بار
+          دلسوزی و عاطفی پیدا می‌کند.
+        </div>
+      </div>
+
+
+      <!-- SEUL -->
+      <div class="fg-card">
+        <h3>
+          <span class="fg-fr-inline" lang="fr">seul</span>
+        </h3>
+
+        <div class="fg-compare">
+          <div class="fg-compare-box">
+            <div class="fg-example">
+              <span class="fg-example-fr" lang="fr">une femme seule</span>
+              <span class="fg-example-fa">
+                زنی تنها / بدون همراه
+              </span>
+            </div>
+          </div>
+
+          <div class="fg-compare-box">
+            <div class="fg-example">
+              <span class="fg-example-fr" lang="fr">une seule femme</span>
+              <span class="fg-example-fa">
+                فقط یک زن
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="fg-grid-2">
+          <div class="fg-example">
+            <span class="fg-example-fr" lang="fr">Il vit seul.</span>
+            <span class="fg-example-fa">او تنها زندگی می‌کند.</span>
+          </div>
+
+          <div class="fg-example">
+            <span class="fg-example-fr" lang="fr">
+              Une seule personne a répondu.
+            </span>
+            <span class="fg-example-fa">
+              فقط یک نفر پاسخ داد.
+            </span>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- CHER -->
+      <div class="fg-card">
+        <h3>
+          <span class="fg-fr-inline" lang="fr">cher</span>
+        </h3>
+
+        <div class="fg-compare">
+          <div class="fg-compare-box">
+            <div class="fg-example">
+              <span class="fg-example-fr" lang="fr">une voiture chère</span>
+              <span class="fg-example-fa">یک ماشین گران</span>
+            </div>
+
+            <div class="fg-example">
+              <span class="fg-example-fr" lang="fr">des vêtements chers</span>
+              <span class="fg-example-fa">لباس‌های گران</span>
+            </div>
+          </div>
+
+          <div class="fg-compare-box">
+            <div class="fg-example">
+              <span class="fg-example-fr" lang="fr">mon cher ami</span>
+              <span class="fg-example-fa">دوست عزیزم</span>
+            </div>
+
+            <div class="fg-example">
+              <span class="fg-example-fr" lang="fr">ma chère collègue</span>
+              <span class="fg-example-fa">همکار عزیزم</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="fg-example">
+          <span class="fg-example-fr" lang="fr">Cher Monsieur,</span>
+          <span class="fg-example-fa">
+            کاربرد خطاب در آغاز نامه
+          </span>
+        </div>
+      </div>
+
+
+      <!-- PROPRE -->
+      <div class="fg-card">
+        <h3>
+          <span class="fg-fr-inline" lang="fr">propre</span>
+        </h3>
+
+        <div class="fg-compare">
+          <div class="fg-compare-box">
+            <div class="fg-example">
+              <span class="fg-example-fr" lang="fr">une maison propre</span>
+              <span class="fg-example-fa">خانه‌ای تمیز</span>
+            </div>
+
+            <div class="fg-example">
+              <span class="fg-example-fr" lang="fr">des vêtements propres</span>
+              <span class="fg-example-fa">لباس‌های تمیز</span>
+            </div>
+          </div>
+
+          <div class="fg-compare-box">
+            <div class="fg-example">
+              <span class="fg-example-fr" lang="fr">ma propre maison</span>
+              <span class="fg-example-fa">خانه خودم</span>
+            </div>
+
+            <div class="fg-example">
+              <span class="fg-example-fr" lang="fr">ses propres idées</span>
+              <span class="fg-example-fa">ایده‌های خودش</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="fg-example">
+          <span class="fg-example-fr" lang="fr">
+            Il a créé sa propre entreprise.
+          </span>
+          <span class="fg-example-fa">
+            او شرکت خودش را تأسیس کرده است.
+          </span>
+        </div>
+      </div>
+
+
+      <!-- ANCIEN -->
+      <div class="fg-card">
+        <h3>
+          <span class="fg-fr-inline" lang="fr">ancien</span>
+        </h3>
+
+        <div class="fg-compare">
+
+          <div class="fg-compare-box">
+            <div class="fg-example">
+              <span class="fg-example-fr" lang="fr">un bâtiment ancien</span>
+              <span class="fg-example-fa">ساختمانی قدیمی</span>
+            </div>
+
+            <div class="fg-example">
+              <span class="fg-example-fr" lang="fr">des meubles anciens</span>
+              <span class="fg-example-fa">اثاثیه قدیمی / عتیقه</span>
+            </div>
+          </div>
+
+          <div class="fg-compare-box">
+            <div class="fg-example">
+              <span class="fg-example-fr" lang="fr">mon ancien travail</span>
+              <span class="fg-example-fa">شغل قبلی من</span>
+            </div>
+
+            <div class="fg-example">
+              <span class="fg-example-fr" lang="fr">un ancien professeur</span>
+              <span class="fg-example-fa">استاد / معلم سابق</span>
+            </div>
+
+            <div class="fg-example">
+              <span class="fg-example-fr" lang="fr">son ancienne adresse</span>
+              <span class="fg-example-fa">آدرس قبلی‌اش</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="fg-callout fg-callout-tip">
+          <div class="fg-callout-title">✅ تفاوت کلیدی</div>
+
+          <span class="fg-fr-inline" lang="fr">un immeuble ancien</span>
+          =
+          ساختمان قدیمی
+
+          <br>
+
+          <span class="fg-fr-inline" lang="fr">mon ancien immeuble</span>
+          =
+          ساختمان قبلی من
+        </div>
+      </div>
+
+
+      <!-- DIFFERENT -->
+      <div class="fg-card">
+        <h3>
+          <span class="fg-fr-inline" lang="fr">différent</span>
+        </h3>
+
+        <div class="fg-example">
+          <span class="fg-example-fr" lang="fr">
+            Ces deux livres sont différents.
+          </span>
+          <span class="fg-example-fa">
+            این دو کتاب با هم متفاوت‌اند.
+          </span>
+        </div>
+
+        <div class="fg-example">
+          <span class="fg-example-fr" lang="fr">
+            J’ai acheté des livres différents.
+          </span>
+          <span class="fg-example-fa">
+            کتاب‌هایی خریدم که با یکدیگر متفاوت‌اند.
+          </span>
+        </div>
+
+        <div class="fg-example">
+          <span class="fg-example-fr" lang="fr">
+            J’ai consulté différents livres.
+          </span>
+          <span class="fg-example-fa">
+            چندین کتاب مختلف را بررسی کردم.
+          </span>
+        </div>
+
+        <div class="fg-callout fg-callout-note">
+          <div class="fg-callout-title">💡 نکته</div>
+          وقتی
+          <span class="fg-fr-inline" lang="fr">différents</span>
+          قبل از اسم قرار می‌گیرد، در بسیاری از بافت‌ها معنایی نزدیک به
+          «چندین / گوناگون» پیدا می‌کند.
+        </div>
+      </div>
+
+
+      <!-- EXTRA -->
+      <div class="fg-card">
+        <h3>چند نمونه تکمیلی مهم</h3>
+
+        <div class="fg-table-wrap">
+          <table class="fg-table">
+            <thead>
+              <tr>
+                <th>صفت</th>
+                <th>ساخت اول</th>
+                <th>معنا</th>
+                <th>ساخت دوم</th>
+                <th>معنا</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="fg-fr-cell" lang="fr">certain</td>
+                <td class="fg-fr-cell" lang="fr">une information certaine</td>
+                <td>اطلاعات قطعی</td>
+                <td class="fg-fr-cell" lang="fr">une certaine information</td>
+                <td>اطلاعاتی خاص / معین</td>
+              </tr>
+
+              <tr>
+                <td class="fg-fr-cell" lang="fr">simple</td>
+                <td class="fg-fr-cell" lang="fr">une question simple</td>
+                <td>سؤالی آسان</td>
+                <td class="fg-fr-cell" lang="fr">une simple question</td>
+                <td>صرفاً یک سؤال</td>
+              </tr>
+
+              <tr>
+                <td class="fg-fr-cell" lang="fr">brave</td>
+                <td class="fg-fr-cell" lang="fr">un homme brave</td>
+                <td>مردی شجاع</td>
+                <td class="fg-fr-cell" lang="fr">un brave homme</td>
+                <td>مردی خوب و محترم</td>
+              </tr>
+
+              <tr>
+                <td class="fg-fr-cell" lang="fr">vrai</td>
+                <td class="fg-fr-cell" lang="fr">une histoire vraie</td>
+                <td>داستان واقعی</td>
+                <td class="fg-fr-cell" lang="fr">un vrai problème</td>
+                <td>یک مشکل واقعی / جدی</td>
+              </tr>
+
+              <tr>
+                <td class="fg-fr-cell" lang="fr">sacré</td>
+                <td class="fg-fr-cell" lang="fr">une musique sacrée</td>
+                <td>موسیقی مذهبی</td>
+                <td class="fg-fr-cell" lang="fr">un sacré problème</td>
+                <td>یک مشکل حسابی</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================
+         10
+         ====================================================== -->
+    <section class="fg-section" id="fg-neuf-nouveau">
+
+      <h2 class="fg-section-heading">
+        <span class="fg-section-number">۱۰</span>
+        تفاوت
+        <span class="fg-fr-inline" lang="fr">neuf</span>
+        و
+        <span class="fg-fr-inline" lang="fr">nouveau</span>
+      </h2>
+
+
+      <!-- NEUF -->
+      <div class="fg-card">
+
+        <h3>
+          <span class="fg-badge fg-badge-green">NEUF</span>
+          یعنی «نو و استفاده‌نشده»
+        </h3>
+
+        <p>
+          <span class="fg-fr-inline" lang="fr">neuf</span>
+          معمولاً زمانی استفاده می‌شود که چیزی تازه ساخته شده، تازه تولید
+          شده یا هنوز استفاده نشده باشد.
+        </p>
+
+        <p>
+          این صفت معمولاً <strong>بعد از اسم</strong> قرار می‌گیرد.
+        </p>
+
+        <div class="fg-grid-2">
+
+          <div class="fg-example fg-correct">
+            <span class="fg-example-fr" lang="fr">une voiture neuve</span>
+            <span class="fg-example-fa">
+              یک ماشین صفر / کاملاً نو
+            </span>
+          </div>
+
+          <div class="fg-example fg-correct">
+            <span class="fg-example-fr" lang="fr">un ordinateur neuf</span>
+            <span class="fg-example-fa">
+              یک کامپیوتر نو و استفاده‌نشده
+            </span>
+          </div>
+
+          <div class="fg-example fg-correct">
+            <span class="fg-example-fr" lang="fr">des chaussures neuves</span>
+            <span class="fg-example-fa">
+              کفش‌های نو
+            </span>
+          </div>
+
+          <div class="fg-example fg-correct">
+            <span class="fg-example-fr" lang="fr">un immeuble neuf</span>
+            <span class="fg-example-fa">
+              ساختمان نوساز
+            </span>
+          </div>
+
+        </div>
+
+        <h4>صرف صفت</h4>
+
+        <div class="fg-table-wrap">
+          <table class="fg-table">
+            <thead>
+              <tr>
+                <th>مذکر مفرد</th>
+                <th>مؤنث مفرد</th>
+                <th>مذکر جمع</th>
+                <th>مؤنث جمع</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="fg-fr-cell" lang="fr">neuf</td>
+                <td class="fg-fr-cell" lang="fr">neuve</td>
+                <td class="fg-fr-cell" lang="fr">neufs</td>
+                <td class="fg-fr-cell" lang="fr">neuves</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+
+      <!-- NOUVEAU -->
+      <div class="fg-card">
+
+        <h3>
+          <span class="fg-badge fg-badge-blue">NOUVEAU</span>
+          یعنی «جدید نسبت به موقعیت قبلی»
+        </h3>
+
+        <p>
+          <span class="fg-fr-inline" lang="fr">nouveau</span>
+          لزوماً به این معنی نیست که شیء تازه تولید شده است. ممکن است چیزی
+          فقط برای شخص، موقعیت یا دوره جدید باشد یا جای مورد قبلی را گرفته
+          باشد.
+        </p>
+
+        <p>
+          این صفت معمولاً <strong>قبل از اسم</strong> قرار می‌گیرد.
+        </p>
+
+        <div class="fg-grid-2">
+
+          <div class="fg-example fg-correct">
+            <span class="fg-example-fr" lang="fr">une nouvelle voiture</span>
+            <span class="fg-example-fa">
+              یک ماشین جدید برای شخص؛ ممکن است دست‌دوم باشد
+            </span>
+          </div>
+
+          <div class="fg-example fg-correct">
+            <span class="fg-example-fr" lang="fr">un nouveau travail</span>
+            <span class="fg-example-fa">شغل جدید</span>
+          </div>
+
+          <div class="fg-example fg-correct">
+            <span class="fg-example-fr" lang="fr">une nouvelle adresse</span>
+            <span class="fg-example-fa">آدرس جدید</span>
+          </div>
+
+          <div class="fg-example fg-correct">
+            <span class="fg-example-fr" lang="fr">un nouveau collègue</span>
+            <span class="fg-example-fa">همکار جدید</span>
+          </div>
+
+          <div class="fg-example fg-correct">
+            <span class="fg-example-fr" lang="fr">un nouvel ordinateur</span>
+            <span class="fg-example-fa">
+              کامپیوتر جدیدی که جای قبلی را گرفته
+            </span>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- MAIN CONTRAST -->
+      <div class="fg-card">
+
+        <h3>مقایسه‌ای که باید کاملاً حفظ کنید</h3>
+
+        <div class="fg-compare">
+
+          <div class="fg-compare-box">
+            <span class="fg-badge fg-badge-green">NEUF</span>
+
+            <div class="fg-example">
+              <span class="fg-example-fr" lang="fr">
+                Paul a acheté une voiture neuve.
+              </span>
+              <span class="fg-example-fa">
+                پل یک ماشین صفر خریده است.
+              </span>
+            </div>
+          </div>
+
+          <div class="fg-compare-box">
+            <span class="fg-badge fg-badge-blue">NOUVEAU</span>
+
+            <div class="fg-example">
+              <span class="fg-example-fr" lang="fr">
+                Paul a une nouvelle voiture.
+              </span>
+              <span class="fg-example-fa">
+                پل اکنون ماشین دیگری دارد؛ لازم نیست ماشین صفر باشد.
+              </span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="fg-callout fg-callout-tip">
+          <div class="fg-callout-title">🎯 تست سریع ذهنی</div>
+
+          اگر سؤال این است:
+
+          <strong>«آیا این چیز تازه ساخته یا استفاده‌نشده است؟»</strong>
+
+          → معمولاً
+          <span class="fg-fr-inline" lang="fr">neuf</span>
+
+          <br>
+
+          اگر سؤال این است:
+
+          <strong>«آیا این مورد نسبت به قبلی برای من جدید است؟»</strong>
+
+          → معمولاً
+          <span class="fg-fr-inline" lang="fr">nouveau</span>
+        </div>
+
+      </div>
+
+
+      <!-- OPPOSITES -->
+      <div class="fg-card">
+        <h3>متضادها</h3>
+
+        <div class="fg-table-wrap">
+          <table class="fg-table">
+            <thead>
+              <tr>
+                <th>مفهوم</th>
+                <th>یک طرف</th>
+                <th>متضاد طبیعی</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>نو / کهنه از نظر فیزیکی</td>
+                <td class="fg-fr-cell" lang="fr">une voiture neuve</td>
+                <td class="fg-fr-cell" lang="fr">une vieille voiture</td>
+              </tr>
+
+              <tr>
+                <td>نو / قبلی از نظر موقعیت</td>
+                <td class="fg-fr-cell" lang="fr">mon nouveau travail</td>
+                <td class="fg-fr-cell" lang="fr">mon ancien travail</td>
+              </tr>
+
+              <tr>
+                <td>نو / قبلی از نظر آدرس</td>
+                <td class="fg-fr-cell" lang="fr">ma nouvelle adresse</td>
+                <td class="fg-fr-cell" lang="fr">mon ancienne adresse</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+
+      <!-- QUOI DE NEUF -->
+      <div class="fg-card">
+        <h3>
+          عبارت بسیار رایج:
+          <span class="fg-fr-inline" lang="fr">Quoi de neuf ?</span>
+        </h3>
+
+        <div class="fg-example fg-correct">
+          <span class="fg-example-fr" lang="fr">Quoi de neuf ?</span>
+          <span class="fg-example-fa">
+            چه خبر؟ / چه چیز جدیدی هست؟
+          </span>
+        </div>
+
+        <div class="fg-example fg-correct">
+          <span class="fg-example-fr" lang="fr">
+            Qu’est-ce qu’il y a de nouveau ?
+          </span>
+          <span class="fg-example-fa">
+            چه چیز جدیدی وجود دارد؟
+          </span>
+        </div>
+      </div>
+
+
+      <!-- POST-NOMINAL NOUVEAU -->
+      <div class="fg-card">
+        <h3>
+          آیا
+          <span class="fg-fr-inline" lang="fr">nouveau</span>
+          همیشه قبل از اسم است؟
+        </h3>
+
+        <p>
+          در کاربرد معمول آموزشی، جایگاه پیش از اسم قاعده اصلی است. با این
+          حال، در برخی کاربردهای ادبی، سبکی یا ترکیب‌های تثبیت‌شده ممکن است
+          بعد از اسم نیز دیده شود.
+        </p>
+
+        <div class="fg-grid-2">
+          <div class="fg-example">
+            <span class="fg-example-fr" lang="fr">un monde nouveau</span>
+            <span class="fg-example-fa">دنیایی نو</span>
+          </div>
+
+          <div class="fg-example">
+            <span class="fg-example-fr" lang="fr">l’Art nouveau</span>
+            <span class="fg-example-fa">آرت نوو</span>
+          </div>
+        </div>
+
+        <div class="fg-callout fg-callout-tip">
+          <div class="fg-callout-title">✅ قاعده امن برای زبان‌آموز</div>
+
+          در مکالمه و نوشتار عادی از این الگوها استفاده کنید:
+
+          <div class="fg-example">
+            <span class="fg-example-fr" lang="fr">
+              un nouveau téléphone
+            </span>
+          </div>
+
+          <div class="fg-example">
+            <span class="fg-example-fr" lang="fr">
+              une nouvelle adresse
+            </span>
+          </div>
+
+          <div class="fg-example">
+            <span class="fg-example-fr" lang="fr">
+              un nouvel emploi
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ======================================================
+         SUMMARY
+         ====================================================== -->
+    <section class="fg-summary">
+
+      <h2>جمع‌بندی سریع درس ۱۲</h2>
+
+      <div class="fg-summary-grid">
+
+        <div class="fg-summary-item">
+          <div class="fg-mini-title">۱. جایگاه عادی</div>
+          بیشتر صفت‌ها بعد از اسم می‌آیند:
+          <span class="fg-fr-inline" lang="fr">
+            une voiture rouge
+          </span>
+        </div>
+
+        <div class="fg-summary-item">
+          <div class="fg-mini-title">۲. صفات کوتاه رایج</div>
+          صفاتی مانند
+          <span class="fg-fr-inline" lang="fr">
+            beau, bon, petit, grand, jeune, vieux
+          </span>
+          معمولاً قبل از اسم‌اند.
+        </div>
+
+        <div class="fg-summary-item">
+          <div class="fg-mini-title">۳. عدد</div>
+          عدد قبل از صفت و اسم:
+          <span class="fg-fr-inline" lang="fr">
+            les trois dernières années
+          </span>
+        </div>
+
+        <div class="fg-summary-item">
+          <div class="fg-mini-title">۴. عبارت زمانی</div>
+          <span class="fg-fr-inline" lang="fr">
+            la semaine dernière
+          </span>
+          /
+          <span class="fg-fr-inline" lang="fr">
+            l’année prochaine
+          </span>
+        </div>
+
+        <div class="fg-summary-item">
+          <div class="fg-mini-title">۵. قبل از مصوت</div>
+          <span class="fg-fr-inline" lang="fr">
+            beau → bel
+          </span>
+          ،
+          <span class="fg-fr-inline" lang="fr">
+            vieux → vieil
+          </span>
+          ،
+          <span class="fg-fr-inline" lang="fr">
+            nouveau → nouvel
+          </span>
+        </div>
+
+        <div class="fg-summary-item">
+          <div class="fg-mini-title">۶. des → de</div>
+          قبل از صفت جمع پیش‌اسمی:
+          <span class="fg-fr-inline" lang="fr">
+            de belles maisons
+          </span>
+        </div>
+
+        <div class="fg-summary-item">
+          <div class="fg-mini-title">۷. تغییر معنا با جایگاه</div>
+          <span class="fg-fr-inline" lang="fr">
+            un homme pauvre
+          </span>
+          ≠
+          <span class="fg-fr-inline" lang="fr">
+            un pauvre homme
+          </span>
+        </div>
+
+        <div class="fg-summary-item">
+          <div class="fg-mini-title">۸. ancien</div>
+          <span class="fg-fr-inline" lang="fr">
+            un immeuble ancien
+          </span>
+          = ساختمان قدیمی
+        </div>
+
+        <div class="fg-summary-item">
+          <div class="fg-mini-title">۹. ancien قبل از اسم</div>
+          <span class="fg-fr-inline" lang="fr">
+            mon ancien immeuble
+          </span>
+          = ساختمان قبلی من
+        </div>
+
+        <div class="fg-summary-item">
+          <div class="fg-mini-title">۱۰. neuf</div>
+          چیز تازه‌ساخت یا استفاده‌نشده:
+          <span class="fg-fr-inline" lang="fr">
+            une voiture neuve
+          </span>
+        </div>
+
+        <div class="fg-summary-item">
+          <div class="fg-mini-title">۱۱. nouveau</div>
+          چیزی که نسبت به قبل جدید است:
+          <span class="fg-fr-inline" lang="fr">
+            une nouvelle voiture
+          </span>
+        </div>
+
+        <div class="fg-summary-item">
+          <div class="fg-mini-title">۱۲. سؤال طلایی</div>
+          <span class="fg-fr-inline" lang="fr">
+            Quoi de neuf ?
+          </span>
+          = چه خبر؟
+        </div>
+
+      </div>
+
+    </section>
+
+  </div>
+</div>

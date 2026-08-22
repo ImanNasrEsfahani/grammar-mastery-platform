@@ -1,0 +1,2069 @@
+<div class="french-grammar-wrapper fg-lesson-15">
+  <style scoped>
+    .french-grammar-wrapper,
+    .french-grammar-wrapper * {
+      box-sizing: border-box;
+    }
+
+    .french-grammar-wrapper {
+      --fg-primary: #173b6c;
+      --fg-primary-2: #24589a;
+      --fg-primary-soft: #eef5fc;
+      --fg-text: #263445;
+      --fg-muted: #66778a;
+      --fg-border: #d9e3ee;
+      --fg-bg: #f7f9fc;
+      --fg-card: #ffffff;
+
+      --fg-green: #16875c;
+      --fg-green-bg: #edf9f4;
+      --fg-red: #c23b3b;
+      --fg-red-bg: #fff1f1;
+      --fg-orange: #d97706;
+      --fg-orange-bg: #fff7e8;
+      --fg-purple: #7357b3;
+      --fg-purple-bg: #f5f1ff;
+
+      direction: rtl;
+      text-align: right;
+      font-family:
+        Tahoma,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+      color: var(--fg-text);
+      line-height: 2;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px;
+      background: var(--fg-bg);
+      border-radius: 24px;
+    }
+
+    .french-grammar-wrapper .fg-ltr,
+    .french-grammar-wrapper .fg-fr {
+      direction: ltr;
+      unicode-bidi: isolate;
+      text-align: left;
+    }
+
+    .french-grammar-wrapper .fg-inline-fr {
+      direction: ltr;
+      unicode-bidi: isolate;
+      display: inline-block;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    .french-grammar-wrapper .fg-hero {
+      background:
+        linear-gradient(135deg, #173b6c 0%, #24589a 100%);
+      color: #fff;
+      padding: 34px;
+      border-radius: 22px;
+      margin-bottom: 24px;
+      box-shadow: 0 12px 30px rgba(23, 59, 108, .15);
+    }
+
+    .french-grammar-wrapper .fg-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 6px 12px;
+      margin-bottom: 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.15);
+      border: 1px solid rgba(255,255,255,.25);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .french-grammar-wrapper .fg-hero h1 {
+      margin: 0 0 8px;
+      color: #fff;
+      font-size: clamp(26px, 4vw, 42px);
+      line-height: 1.45;
+    }
+
+    .french-grammar-wrapper .fg-hero p {
+      margin: 5px 0 0;
+      color: #eaf3ff;
+    }
+
+    .french-grammar-wrapper .fg-section {
+      margin: 26px 0;
+    }
+
+    .french-grammar-wrapper .fg-section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--fg-primary);
+      font-size: clamp(21px, 3vw, 30px);
+      line-height: 1.5;
+      margin: 0 0 16px;
+    }
+
+    .french-grammar-wrapper .fg-number {
+      display: inline-flex;
+      min-width: 38px;
+      height: 38px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 11px;
+      background: var(--fg-primary);
+      color: #fff;
+      font-size: 17px;
+      line-height: 1;
+    }
+
+    .french-grammar-wrapper .fg-card {
+      background: var(--fg-card);
+      border: 1px solid var(--fg-border);
+      border-radius: 18px;
+      padding: 22px;
+      margin: 14px 0;
+      box-shadow: 0 5px 16px rgba(25, 50, 80, .045);
+    }
+
+    .french-grammar-wrapper .fg-card h3 {
+      color: var(--fg-primary-2);
+      margin: 0 0 12px;
+      font-size: 21px;
+    }
+
+    .french-grammar-wrapper .fg-card h4 {
+      color: #344d69;
+      margin: 18px 0 8px;
+      font-size: 17px;
+    }
+
+    .french-grammar-wrapper p {
+      margin: 8px 0;
+    }
+
+    .french-grammar-wrapper ul,
+    .french-grammar-wrapper ol {
+      margin: 8px 0;
+      padding-right: 24px;
+    }
+
+    .french-grammar-wrapper li {
+      margin: 5px 0;
+    }
+
+    .french-grammar-wrapper .fg-rule {
+      direction: ltr;
+      text-align: left;
+      unicode-bidi: isolate;
+      background: #f3f7fb;
+      border: 1px solid #d8e6f3;
+      border-left: 5px solid var(--fg-primary-2);
+      border-radius: 12px;
+      padding: 12px 16px;
+      margin: 12px 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      font-weight: 650;
+      color: #163b68;
+    }
+
+    .french-grammar-wrapper .fg-example {
+      direction: ltr;
+      text-align: left;
+      unicode-bidi: isolate;
+      background: var(--fg-green-bg);
+      border-left: 5px solid var(--fg-green);
+      border-radius: 12px;
+      padding: 13px 16px;
+      margin: 10px 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: #185f48;
+    }
+
+    .french-grammar-wrapper .fg-example .fg-fa-translation {
+      direction: rtl;
+      text-align: right;
+      margin-top: 5px;
+      color: #52675e;
+      font-family: Tahoma, "Segoe UI", Arial, sans-serif;
+    }
+
+    .french-grammar-wrapper .fg-callout {
+      padding: 16px 18px;
+      border-radius: 14px;
+      margin: 14px 0;
+    }
+
+    .french-grammar-wrapper .fg-callout strong:first-child {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .french-grammar-wrapper .fg-note {
+      background: var(--fg-primary-soft);
+      border-right: 5px solid var(--fg-primary-2);
+    }
+
+    .french-grammar-wrapper .fg-warning {
+      background: var(--fg-orange-bg);
+      border-right: 5px solid var(--fg-orange);
+    }
+
+    .french-grammar-wrapper .fg-error {
+      background: var(--fg-red-bg);
+      border-right: 5px solid var(--fg-red);
+    }
+
+    .french-grammar-wrapper .fg-memory {
+      background: var(--fg-purple-bg);
+      border-right: 5px solid var(--fg-purple);
+    }
+
+    .french-grammar-wrapper .fg-correct {
+      color: var(--fg-green);
+      font-weight: 700;
+    }
+
+    .french-grammar-wrapper .fg-wrong {
+      color: var(--fg-red);
+      font-weight: 700;
+    }
+
+    .french-grammar-wrapper .fg-table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      margin: 15px 0;
+      border-radius: 14px;
+      border: 1px solid var(--fg-border);
+      background: #fff;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .french-grammar-wrapper table.fg-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 650px;
+      background: #fff;
+    }
+
+    .french-grammar-wrapper .fg-table th,
+    .french-grammar-wrapper .fg-table td {
+      padding: 12px 14px;
+      border: 1px solid var(--fg-border);
+      vertical-align: top;
+    }
+
+    .french-grammar-wrapper .fg-table th {
+      background: #e9f1f9;
+      color: var(--fg-primary);
+      font-weight: 800;
+      text-align: right;
+    }
+
+    .french-grammar-wrapper .fg-table tbody tr:nth-child(even) {
+      background: #f9fbfd;
+    }
+
+    .french-grammar-wrapper .fg-table .fg-cell-fr {
+      direction: ltr;
+      text-align: left;
+      unicode-bidi: isolate;
+    }
+
+    .french-grammar-wrapper .fg-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .french-grammar-wrapper .fg-mini-card {
+      border: 1px solid var(--fg-border);
+      border-radius: 14px;
+      background: #fff;
+      padding: 16px;
+    }
+
+    .french-grammar-wrapper .fg-mini-card h4 {
+      margin-top: 0;
+      color: var(--fg-primary);
+    }
+
+    .french-grammar-wrapper .fg-divider {
+      height: 1px;
+      margin: 24px 0;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        var(--fg-border),
+        transparent
+      );
+    }
+
+    .french-grammar-wrapper .fg-exercise {
+      border-top: 4px solid var(--fg-primary-2);
+    }
+
+    .french-grammar-wrapper .fg-answer {
+      background: #f4fbf7;
+      border: 1px solid #cceadd;
+      padding: 15px;
+      border-radius: 13px;
+      margin: 10px 0;
+    }
+
+    .french-grammar-wrapper .fg-answer-title {
+      color: var(--fg-green);
+      font-weight: 800;
+      margin-bottom: 7px;
+    }
+
+    .french-grammar-wrapper .fg-chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 12px 0;
+    }
+
+    .french-grammar-wrapper .fg-chip {
+      direction: ltr;
+      unicode-bidi: isolate;
+      display: inline-flex;
+      background: #eef4fa;
+      border: 1px solid #d7e4ef;
+      color: #244a73;
+      border-radius: 999px;
+      padding: 5px 11px;
+      font-size: 14px;
+      font-weight: 650;
+    }
+
+    .french-grammar-wrapper .fg-summary {
+      background: #102d50;
+      color: #f4f8fc;
+      border-radius: 18px;
+      padding: 22px;
+    }
+
+    .french-grammar-wrapper .fg-summary h2,
+    .french-grammar-wrapper .fg-summary h3 {
+      color: #fff;
+    }
+
+    .french-grammar-wrapper .fg-summary .fg-rule {
+      background: rgba(255,255,255,.07);
+      border-color: rgba(255,255,255,.16);
+      color: #fff;
+    }
+
+    @media (max-width: 768px) {
+      .french-grammar-wrapper {
+        padding: 12px;
+        border-radius: 16px;
+      }
+
+      .french-grammar-wrapper .fg-hero {
+        padding: 23px 18px;
+        border-radius: 17px;
+      }
+
+      .french-grammar-wrapper .fg-card {
+        padding: 16px;
+        border-radius: 15px;
+      }
+
+      .french-grammar-wrapper .fg-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .french-grammar-wrapper .fg-section-title {
+        align-items: flex-start;
+      }
+
+      .french-grammar-wrapper .fg-table th,
+      .french-grammar-wrapper .fg-table td {
+        padding: 10px;
+        font-size: 14px;
+      }
+    }
+  </style>
+
+  <!-- ========================= -->
+  <!-- HERO -->
+  <!-- ========================= -->
+  <section class="fg-hero">
+    <span class="fg-badge">درس ۱۵ • Lesson 15</span>
+    <h1>
+      <span class="fg-inline-fr">Les indéfinis</span>
+      — کلمات نامعین
+    </h1>
+    <p>
+      آموزش کامل تعیین‌کننده‌ها و ضمیرهای نامعین در زبان فرانسه،
+      همراه با تفاوت‌های ظریف، استثناها، اشتباهات رایج و تمرین‌های درس.
+    </p>
+  </section>
+
+  <!-- ========================= -->
+  <!-- INTRO -->
+  <!-- ========================= -->
+  <section class="fg-section">
+    <h2 class="fg-section-title">
+      <span class="fg-number">1</span>
+      مفهوم کلی کلمات نامعین
+    </h2>
+
+    <div class="fg-card">
+      <p>
+        کلمات نامعین به شخص، شیء، تعداد یا مجموعه‌ای اشاره می‌کنند که
+        دقیقاً مشخص نشده است.
+      </p>
+
+      <div class="fg-grid">
+        <div class="fg-mini-card">
+          <h4>تعیین‌کننده / صفت نامعین</h4>
+          <p>قبل از اسم قرار می‌گیرد و اسم همچنان در جمله حضور دارد.</p>
+
+          <div class="fg-example">
+            quelques étudiants
+            <div class="fg-fa-translation">چند دانشجو</div>
+          </div>
+
+          <div class="fg-example">
+            chaque étudiant
+            <div class="fg-fa-translation">هر دانشجو</div>
+          </div>
+
+          <div class="fg-example">
+            aucun étudiant
+            <div class="fg-fa-translation">هیچ دانشجویی</div>
+          </div>
+        </div>
+
+        <div class="fg-mini-card">
+          <h4>ضمیر نامعین</h4>
+          <p>جای اسم را می‌گیرد؛ بنابراین اسم دیگر تکرار نمی‌شود.</p>
+
+          <div class="fg-example">
+            Quelques-uns sont absents.
+            <div class="fg-fa-translation">چند نفر غایب‌اند.</div>
+          </div>
+
+          <div class="fg-example">
+            Chacun a un livre.
+            <div class="fg-fa-translation">هرکدام یک کتاب دارند.</div>
+          </div>
+
+          <div class="fg-example">
+            Aucun n’est absent.
+            <div class="fg-fa-translation">هیچ‌کدام غایب نیستند.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fg-note fg-callout">
+        <strong>نکتهٔ اصطلاح‌شناسی</strong>
+        کتاب از اصطلاح
+        <span class="fg-inline-fr">adjectif indéfini</span>
+        استفاده می‌کند. در بسیاری از دستورهای جدیدتر، برای مواردی که
+        پیش از اسم می‌آیند اصطلاح
+        <span class="fg-inline-fr">déterminant indéfini</span>
+        نیز به‌کار می‌رود.
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= -->
+  <!-- QUELQUES -->
+  <!-- ========================= -->
+  <section class="fg-section">
+    <h2 class="fg-section-title">
+      <span class="fg-number">2</span>
+      <span class="fg-inline-fr">quelques</span> — چند، تعدادی
+    </h2>
+
+    <div class="fg-card">
+      <div class="fg-rule">quelques + nom pluriel</div>
+
+      <p>
+        برای تعداد کم و نامشخصی از افراد یا اشیا استفاده می‌شود.
+      </p>
+
+      <div class="fg-example">
+        J’ai quelques amis à Montréal.
+        <div class="fg-fa-translation">
+          چند دوست در مونترال دارم.
+        </div>
+      </div>
+
+      <div class="fg-example">
+        Nous avons quelques questions.
+        <div class="fg-fa-translation">
+          چند سؤال داریم.
+        </div>
+      </div>
+
+      <div class="fg-warning fg-callout">
+        <strong>نکتهٔ مهم</strong>
+        <span class="fg-inline-fr">quelques</span>
+        در معنای «چند تا» همیشه با اسم جمع می‌آید.
+      </div>
+
+      <div class="fg-error fg-callout">
+        <strong>اشتباه رایج</strong>
+        <span class="fg-correct fg-inline-fr">quelques livres ✓</span>
+        &nbsp;&nbsp;
+        <span class="fg-wrong fg-inline-fr">quelque livres ✗</span>
+      </div>
+
+      <h4>اما شکل مفرد <span class="fg-inline-fr">quelque</span> نیز وجود دارد</h4>
+
+      <div class="fg-chip-row">
+        <span class="fg-chip">quelque temps</span>
+        <span class="fg-chip">quelque difficulté</span>
+        <span class="fg-chip">quelque chose</span>
+        <span class="fg-chip">quelqu’un</span>
+      </div>
+
+      <div class="fg-note fg-callout">
+        <strong>تلفظ و liaison</strong>
+        پیش از اسم آغازشده با مصوت، معمولاً اتصال صوتی شنیده می‌شود:
+        <div class="fg-rule">quelques amis → /kɛlk.z‿ami/</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= -->
+  <!-- PLUSIEURS -->
+  <!-- ========================= -->
+  <section class="fg-section">
+    <h2 class="fg-section-title">
+      <span class="fg-number">3</span>
+      <span class="fg-inline-fr">plusieurs</span> — چندین
+    </h2>
+
+    <div class="fg-card">
+      <div class="fg-rule">plusieurs + nom pluriel</div>
+
+      <div class="fg-example">
+        Plusieurs étudiants ont posé la même question.
+        <div class="fg-fa-translation">
+          چندین دانشجو همان سؤال را پرسیدند.
+        </div>
+      </div>
+
+      <div class="fg-table-wrap">
+        <table class="fg-table">
+          <thead>
+            <tr>
+              <th>کلمه</th>
+              <th>برداشت معمول</th>
+              <th>مثال</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="fg-cell-fr">quelques</td>
+              <td>چند تا، تعداد نسبتاً کم</td>
+              <td class="fg-cell-fr">quelques pages</td>
+            </tr>
+            <tr>
+              <td class="fg-cell-fr">plusieurs</td>
+              <td>چندین، بیش از یکی و معمولاً تعداد بیشتر</td>
+              <td class="fg-cell-fr">plusieurs chapitres</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="fg-note fg-callout">
+        بین
+        <span class="fg-inline-fr">quelques</span>
+        و
+        <span class="fg-inline-fr">plusieurs</span>
+        مرز عددی ثابت و ریاضی وجود ندارد؛ انتخاب آن به برداشت گوینده
+        و موقعیت بستگی دارد.
+      </div>
+
+      <div class="fg-error fg-callout">
+        <strong>شکل مؤنث جدا ندارد</strong>
+        <span class="fg-correct fg-inline-fr">plusieurs femmes ✓</span>
+        &nbsp;&nbsp;
+        <span class="fg-wrong fg-inline-fr">plusieures femmes ✗</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= -->
+  <!-- CHAQUE -->
+  <!-- ========================= -->
+  <section class="fg-section">
+    <h2 class="fg-section-title">
+      <span class="fg-number">4</span>
+      <span class="fg-inline-fr">chaque</span> — هر، تک‌تک
+    </h2>
+
+    <div class="fg-card">
+      <div class="fg-rule">chaque + nom singulier + verbe singulier</div>
+
+      <div class="fg-example">
+        Chaque étudiant a un livre.
+        <div class="fg-fa-translation">
+          هر دانشجو یک کتاب دارد.
+        </div>
+      </div>
+
+      <p>
+        با وجود اینکه از نظر معنا چند نفر در نظر گرفته شده‌اند،
+        <span class="fg-inline-fr">chaque</span>
+        هر عضو را جداگانه در نظر می‌گیرد؛ بنابراین اسم مفرد است.
+      </p>
+
+      <div class="fg-error fg-callout">
+        <span class="fg-correct fg-inline-fr">chaque étudiant ✓</span>
+        <br>
+        <span class="fg-wrong fg-inline-fr">chaque étudiants ✗</span>
+      </div>
+
+      <h4>
+        تفاوت
+        <span class="fg-inline-fr">chaque</span>
+        و
+        <span class="fg-inline-fr">tous les</span>
+      </h4>
+
+      <div class="fg-example">
+        Chaque étudiant a un dossier.
+        <div class="fg-fa-translation">
+          هر دانشجو، به‌صورت جداگانه، پرونده‌ای دارد.
+        </div>
+      </div>
+
+      <div class="fg-example">
+        Tous les étudiants ont un dossier.
+        <div class="fg-fa-translation">
+          تمام دانشجویان پرونده دارند.
+        </div>
+      </div>
+
+      <div class="fg-note fg-callout">
+        <strong>زاویهٔ دید</strong>
+        <span class="fg-inline-fr">chaque</span>
+        نگاه فردبه‌فرد و توزیعی دارد؛
+        <span class="fg-inline-fr">tous les</span>
+        کل گروه را در نظر می‌گیرد.
+      </div>
+
+      <h4>استفاده با زمان</h4>
+
+      <div class="fg-chip-row">
+        <span class="fg-chip">chaque jour</span>
+        <span class="fg-chip">chaque semaine</span>
+        <span class="fg-chip">chaque mois</span>
+        <span class="fg-chip">chaque année</span>
+      </div>
+
+      <div class="fg-error fg-callout">
+        <strong>برای فاصلهٔ عددی، از chaque استفاده نمی‌کنیم</strong>
+
+        <div class="fg-rule">chaque deux jours ✗</div>
+        <div class="fg-rule">tous les deux jours ✓</div>
+        <div class="fg-rule">toutes les trois semaines ✓</div>
+      </div>
+
+      <div class="fg-note fg-callout">
+        برای «یک روز در میان» ساخت دقیق‌تر:
+        <div class="fg-rule">un jour sur deux</div>
+      </div>
+
+      <h4>وقتی اسم حذف می‌شود</h4>
+
+      <div class="fg-example">
+        Chacun a un livre.
+        <div class="fg-fa-translation">
+          هرکدام یک کتاب دارند.
+        </div>
+      </div>
+
+      <div class="fg-error fg-callout">
+        <span class="fg-wrong fg-inline-fr">Chaque a un livre. ✗</span>
+        <br>
+        <span class="fg-correct fg-inline-fr">Chacun a un livre. ✓</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= -->
+  <!-- TOUT -->
+  <!-- ========================= -->
+  <section class="fg-section">
+    <h2 class="fg-section-title">
+      <span class="fg-number">5</span>
+      خانوادهٔ <span class="fg-inline-fr">tout</span>
+    </h2>
+
+    <div class="fg-card">
+      <div class="fg-table-wrap">
+        <table class="fg-table">
+          <thead>
+            <tr>
+              <th>جنس / تعداد</th>
+              <th>شکل</th>
+              <th>مثال</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>مذکر مفرد</td>
+              <td class="fg-cell-fr">tout</td>
+              <td class="fg-cell-fr">tout le groupe</td>
+            </tr>
+            <tr>
+              <td>مؤنث مفرد</td>
+              <td class="fg-cell-fr">toute</td>
+              <td class="fg-cell-fr">toute la classe</td>
+            </tr>
+            <tr>
+              <td>مذکر جمع</td>
+              <td class="fg-cell-fr">tous</td>
+              <td class="fg-cell-fr">tous les étudiants</td>
+            </tr>
+            <tr>
+              <td>مؤنث جمع</td>
+              <td class="fg-cell-fr">toutes</td>
+              <td class="fg-cell-fr">toutes les étudiantes</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4>کل یک مجموعهٔ مفرد</h4>
+
+      <div class="fg-example">
+        Toute la classe est silencieuse.
+        <div class="fg-fa-translation">
+          تمام کلاس ساکت است.
+        </div>
+      </div>
+
+      <h4>تمام اعضای یک مجموعهٔ جمع</h4>
+
+      <div class="fg-example">
+        Tous les étudiants sont présents.
+        <div class="fg-fa-translation">
+          تمام دانشجویان حاضر هستند.
+        </div>
+      </div>
+
+      <h4>تفاوت معنایی بسیار مهم</h4>
+
+      <div class="fg-table-wrap">
+        <table class="fg-table">
+          <thead>
+            <tr>
+              <th>ساخت</th>
+              <th>معنا</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="fg-cell-fr">toute la journée</td>
+              <td>تمام طول روز</td>
+            </tr>
+            <tr>
+              <td class="fg-cell-fr">tous les jours</td>
+              <td>هر روز</td>
+            </tr>
+            <tr>
+              <td class="fg-cell-fr">toute la semaine</td>
+              <td>تمام طول هفته</td>
+            </tr>
+            <tr>
+              <td class="fg-cell-fr">toutes les semaines</td>
+              <td>هر هفته</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="fg-warning fg-callout">
+        <strong><span class="fg-inline-fr">tout le monde</span></strong>
+        از نظر معنا «همه» است، ولی از نظر دستوری مفرد محسوب می‌شود.
+        <div class="fg-rule">Tout le monde est prêt. ✓</div>
+        <div class="fg-rule">Tout le monde sont prêts. ✗</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= -->
+  <!-- CERTAINS -->
+  <!-- ========================= -->
+  <section class="fg-section">
+    <h2 class="fg-section-title">
+      <span class="fg-number">6</span>
+      <span class="fg-inline-fr">certains / certaines</span> — بعضی
+    </h2>
+
+    <div class="fg-card">
+      <div class="fg-example">
+        Certains étudiants travaillent.
+        <div class="fg-fa-translation">
+          بعضی دانشجویان کار می‌کنند.
+        </div>
+      </div>
+
+      <div class="fg-example">
+        Certaines personnes préfèrent rester seules.
+        <div class="fg-fa-translation">
+          بعضی افراد ترجیح می‌دهند تنها بمانند.
+        </div>
+      </div>
+
+      <div class="fg-rule">certains + nom masculin pluriel</div>
+      <div class="fg-rule">certaines + nom féminin pluriel</div>
+
+      <div class="fg-warning fg-callout">
+        <strong>معنای certain به جایگاه آن بستگی دارد</strong>
+      </div>
+
+      <div class="fg-example">
+        Certains étudiants sont absents.
+        <div class="fg-fa-translation">
+          بعضی دانشجویان غایب‌اند.
+        </div>
+      </div>
+
+      <div class="fg-example">
+        un résultat certain
+        <div class="fg-fa-translation">
+          یک نتیجهٔ قطعی
+        </div>
+      </div>
+
+      <div class="fg-example">
+        un certain monsieur
+        <div class="fg-fa-translation">
+          آقایی خاص / فردی مشخص ولی نام‌برده‌نشده
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= -->
+  <!-- D'AUTRES -->
+  <!-- ========================= -->
+  <section class="fg-section">
+    <h2 class="fg-section-title">
+      <span class="fg-number">7</span>
+      <span class="fg-inline-fr">d’autres</span> — افراد یا چیزهای دیگر
+    </h2>
+
+    <div class="fg-card">
+      <div class="fg-example">
+        Certains étudiants habitent seuls,
+        d’autres vivent en couple.
+        <div class="fg-fa-translation">
+          بعضی دانشجویان تنها زندگی می‌کنند و بعضی دیگر با شریک زندگی می‌کنند.
+        </div>
+      </div>
+
+      <div class="fg-example">
+        J’attends d’autres étudiants.
+        <div class="fg-fa-translation">
+          منتظر دانشجویان دیگری هستم.
+        </div>
+      </div>
+
+      <div class="fg-table-wrap">
+        <table class="fg-table">
+          <thead>
+            <tr>
+              <th>ساخت</th>
+              <th>معنا / کاربرد</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="fg-cell-fr">d’autres étudiants</td>
+              <td>دانشجویان دیگری؛ گروهی نامشخص</td>
+            </tr>
+            <tr>
+              <td class="fg-cell-fr">les autres étudiants</td>
+              <td>بقیهٔ دانشجویان؛ گروه مشخص باقی‌مانده</td>
+            </tr>
+            <tr>
+              <td class="fg-cell-fr">des autres étudiants</td>
+              <td>
+                معمولاً حاصل
+                <span class="fg-inline-fr">de + les</span>
+                است
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="fg-example">
+        Je parle des autres étudiants.
+        <div class="fg-fa-translation">
+          دربارهٔ بقیهٔ دانشجویان صحبت می‌کنم.
+        </div>
+      </div>
+
+      <div class="fg-error fg-callout">
+        برای «دانشجویان دیگری»:
+        <br>
+        <span class="fg-correct fg-inline-fr">d’autres étudiants ✓</span>
+        <br>
+        <span class="fg-wrong fg-inline-fr">des autres étudiants ✗</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= -->
+  <!-- AUCUN -->
+  <!-- ========================= -->
+  <section class="fg-section">
+    <h2 class="fg-section-title">
+      <span class="fg-number">8</span>
+      <span class="fg-inline-fr">aucun / aucune</span> — هیچ
+    </h2>
+
+    <div class="fg-card">
+      <div class="fg-rule">
+        ne + verbe + aucun / aucune + nom
+      </div>
+
+      <div class="fg-example">
+        Je ne connais aucun étudiant.
+        <div class="fg-fa-translation">
+          هیچ دانشجویی را نمی‌شناسم.
+        </div>
+      </div>
+
+      <div class="fg-example">
+        Je n’ai aucune question.
+        <div class="fg-fa-translation">
+          هیچ سؤالی ندارم.
+        </div>
+      </div>
+
+      <div class="fg-warning fg-callout">
+        <strong>با aucun معمولاً pas نمی‌آید</strong>
+        <div class="fg-rule">Je ne connais aucun étudiant. ✓</div>
+        <div class="fg-rule">Je ne connais pas aucun étudiant. ✗</div>
+      </div>
+
+      <h4>وقتی فاعل جمله باشد</h4>
+
+      <div class="fg-example">
+        Aucun étudiant n’est venu.
+        <div class="fg-fa-translation">
+          هیچ دانشجویی نیامد.
+        </div>
+      </div>
+
+      <div class="fg-example">
+        Aucune étudiante n’est absente.
+        <div class="fg-fa-translation">
+          هیچ دانشجوی زنی غایب نیست.
+        </div>
+      </div>
+
+      <h4>هماهنگی جنسیتی</h4>
+
+      <div class="fg-chip-row">
+        <span class="fg-chip">aucun problème</span>
+        <span class="fg-chip">aucun livre</span>
+        <span class="fg-chip">aucune question</span>
+        <span class="fg-chip">aucune personne</span>
+      </div>
+
+      <div class="fg-note fg-callout">
+        <strong>چرا معمولاً مفرد است؟</strong>
+        چون معنای اصلی آن «حتی یک مورد هم وجود ندارد» است.
+      </div>
+
+      <h4>استثنای جمع</h4>
+
+      <p>
+        در مقابل برخی اسم‌هایی که ذاتاً یا معمولاً به شکل جمع استفاده می‌شوند،
+        شکل جمع نیز ممکن است دیده شود:
+      </p>
+
+      <div class="fg-chip-row">
+        <span class="fg-chip">aucuns frais</span>
+        <span class="fg-chip">aucunes funérailles</span>
+      </div>
+
+      <div class="fg-warning fg-callout">
+        این کاربرد نسبتاً رسمی و کم‌بسامد است.
+      </div>
+
+      <h4>موقعیت‌هایی که <span class="fg-inline-fr">ne</span> دیده نمی‌شود</h4>
+
+      <div class="fg-example">
+        — Vous avez des questions ?<br>
+        — Aucune.
+      </div>
+
+      <div class="fg-example">
+        Aucun problème !
+        <div class="fg-fa-translation">
+          مشکلی نیست!
+        </div>
+      </div>
+
+      <div class="fg-example">
+        sans aucun doute
+        <div class="fg-fa-translation">
+          بدون هیچ شکی
+        </div>
+      </div>
+
+      <div class="fg-note fg-callout">
+        در گفتار روزمره ممکن است
+        <span class="fg-inline-fr">ne</span>
+        حذف شود:
+        <div class="fg-rule">J’ai aucun problème.</div>
+        اما در نوشتار رسمی و آزمون بهتر است:
+        <div class="fg-rule">Je n’ai aucun problème.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= -->
+  <!-- PRONOUNS -->
+  <!-- ========================= -->
+  <section class="fg-section">
+    <h2 class="fg-section-title">
+      <span class="fg-number">9</span>
+      ضمیرهای نامعین
+    </h2>
+
+    <div class="fg-card">
+      <div class="fg-table-wrap">
+        <table class="fg-table">
+          <thead>
+            <tr>
+              <th>همراه اسم</th>
+              <th>وقتی اسم حذف می‌شود</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="fg-cell-fr">plusieurs étudiants</td>
+              <td class="fg-cell-fr">plusieurs</td>
+            </tr>
+            <tr>
+              <td class="fg-cell-fr">certains étudiants</td>
+              <td class="fg-cell-fr">certains</td>
+            </tr>
+            <tr>
+              <td class="fg-cell-fr">certaines étudiantes</td>
+              <td class="fg-cell-fr">certaines</td>
+            </tr>
+            <tr>
+              <td class="fg-cell-fr">d’autres étudiants</td>
+              <td class="fg-cell-fr">d’autres</td>
+            </tr>
+            <tr>
+              <td class="fg-cell-fr">quelques étudiants</td>
+              <td class="fg-cell-fr">quelques-uns</td>
+            </tr>
+            <tr>
+              <td class="fg-cell-fr">quelques étudiantes</td>
+              <td class="fg-cell-fr">quelques-unes</td>
+            </tr>
+            <tr>
+              <td class="fg-cell-fr">chaque étudiant</td>
+              <td class="fg-cell-fr">chacun</td>
+            </tr>
+            <tr>
+              <td class="fg-cell-fr">chaque étudiante</td>
+              <td class="fg-cell-fr">chacune</td>
+            </tr>
+            <tr>
+              <td class="fg-cell-fr">aucun étudiant</td>
+              <td class="fg-cell-fr">aucun</td>
+            </tr>
+            <tr>
+              <td class="fg-cell-fr">aucune étudiante</td>
+              <td class="fg-cell-fr">aucune</td>
+            </tr>
+            <tr>
+              <td class="fg-cell-fr">tous les étudiants</td>
+              <td class="fg-cell-fr">tous</td>
+            </tr>
+            <tr>
+              <td class="fg-cell-fr">toutes les étudiantes</td>
+              <td class="fg-cell-fr">toutes</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= -->
+  <!-- QUELQUES-UNS -->
+  <!-- ========================= -->
+  <section class="fg-section">
+    <h2 class="fg-section-title">
+      <span class="fg-number">10</span>
+      <span class="fg-inline-fr">quelques-uns / quelques-unes</span>
+    </h2>
+
+    <div class="fg-card">
+      <div class="fg-example">
+        J’ai acheté plusieurs livres.
+        Quelques-uns sont en français.
+        <div class="fg-fa-translation">
+          چند کتاب خریده‌ام. چندتای آن‌ها فرانسوی هستند.
+        </div>
+      </div>
+
+      <div class="fg-example">
+        J’ai pris beaucoup de photos.
+        Quelques-unes sont réussies.
+        <div class="fg-fa-translation">
+          عکس‌های زیادی گرفتم. چندتای آن‌ها خوب شده‌اند.
+        </div>
+      </div>
+
+      <div class="fg-warning fg-callout">
+        این ضمیر حتماً با خط تیره نوشته می‌شود:
+        <div class="fg-rule">quelques-uns / quelques-unes</div>
+      </div>
+
+      <h4>ساخت با <span class="fg-inline-fr">de</span></h4>
+
+      <div class="fg-chip-row">
+        <span class="fg-chip">quelques-uns de mes amis</span>
+        <span class="fg-chip">quelques-unes des étudiantes</span>
+        <span class="fg-chip">quelques-uns d’entre eux</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= -->
+  <!-- CHACUN -->
+  <!-- ========================= -->
+  <section class="fg-section">
+    <h2 class="fg-section-title">
+      <span class="fg-number">11</span>
+      <span class="fg-inline-fr">chacun / chacune</span>
+    </h2>
+
+    <div class="fg-card">
+      <div class="fg-example">
+        Chacun a son opinion.
+        <div class="fg-fa-translation">
+          هرکس نظر خودش را دارد.
+        </div>
+      </div>
+
+      <div class="fg-example">
+        Chacune a reçu un cadeau.
+        <div class="fg-fa-translation">
+          هرکدام از زنان هدیه‌ای دریافت کرده‌اند.
+        </div>
+      </div>
+
+      <div class="fg-example">
+        Chacun des étudiants a un dossier.
+        <div class="fg-fa-translation">
+          هرکدام از دانشجویان یک پرونده دارد.
+        </div>
+      </div>
+
+      <div class="fg-note fg-callout">
+        حتی اگر
+        <span class="fg-inline-fr">des étudiants</span>
+        جمع باشد، فاعل اصلی
+        <span class="fg-inline-fr">chacun</span>
+        است و فعل مفرد می‌آید.
+        <div class="fg-rule">Chacun des étudiants est prêt.</div>
+      </div>
+
+      <h4>بعد از فعل</h4>
+
+      <div class="fg-example">
+        Ils ont chacun leur chambre.
+        <div class="fg-fa-translation">
+          هرکدام اتاق خودشان را دارند.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= -->
+  <!-- TOUS PRONOUN -->
+  <!-- ========================= -->
+  <section class="fg-section">
+    <h2 class="fg-section-title">
+      <span class="fg-number">12</span>
+      <span class="fg-inline-fr">tous / toutes</span> به‌عنوان ضمیر
+    </h2>
+
+    <div class="fg-card">
+      <div class="fg-example">
+        Ils sont tous sympathiques.
+        <div class="fg-fa-translation">
+          همهٔ آن‌ها خوش‌برخوردند.
+        </div>
+      </div>
+
+      <div class="fg-example">
+        Elles sont toutes prêtes.
+        <div class="fg-fa-translation">
+          همهٔ آن‌ها آماده‌اند.
+        </div>
+      </div>
+
+      <h4>در زمان مرکب</h4>
+
+      <div class="fg-example">
+        Ils ont tous compris.
+        <div class="fg-fa-translation">
+          همهٔ آن‌ها فهمیده‌اند.
+        </div>
+      </div>
+
+      <div class="fg-example">
+        Elles sont toutes arrivées.
+        <div class="fg-fa-translation">
+          همهٔ آن‌ها رسیده‌اند.
+        </div>
+      </div>
+
+      <h4>به‌عنوان فاعل</h4>
+
+      <div class="fg-example">
+        Tous sont venus.
+        <div class="fg-fa-translation">
+          همه آمدند.
+        </div>
+      </div>
+
+      <div class="fg-example">
+        Toutes ont répondu.
+        <div class="fg-fa-translation">
+          همهٔ زنان پاسخ دادند.
+        </div>
+      </div>
+
+      <div class="fg-warning fg-callout">
+        <strong>تفاوت بسیار مهم تلفظ <span class="fg-inline-fr">tous</span></strong>
+
+        <div class="fg-rule">
+          tous les étudiants → /tu lez‿etydjɑ̃/
+        </div>
+
+        <div class="fg-rule">
+          Ils sont tous là. → /tus/
+        </div>
+
+        <div class="fg-rule">
+          Tous ont compris. → /tuz‿ɔ̃ kɔ̃pʁi/
+        </div>
+
+        <p>
+          وقتی
+          <span class="fg-inline-fr">tous</span>
+          تعیین‌کننده است، معمولاً
+          <span class="fg-inline-fr">s</span>
+          تلفظ نمی‌شود؛ وقتی ضمیر است، معمولاً شنیده می‌شود.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= -->
+  <!-- TOUT PRONOUN -->
+  <!-- ========================= -->
+  <section class="fg-section">
+    <h2 class="fg-section-title">
+      <span class="fg-number">13</span>
+      <span class="fg-inline-fr">tout</span> به معنای «همه‌چیز»
+    </h2>
+
+    <div class="fg-card">
+      <div class="fg-example">
+        Tout va bien.
+        <div class="fg-fa-translation">
+          همه‌چیز خوب پیش می‌رود.
+        </div>
+      </div>
+
+      <div class="fg-example">
+        Je comprends tout.
+        <div class="fg-fa-translation">
+          همه‌چیز را می‌فهمم.
+        </div>
+      </div>
+
+      <div class="fg-example">
+        J’ai tout terminé.
+        <div class="fg-fa-translation">
+          همه‌چیز را تمام کرده‌ام.
+        </div>
+      </div>
+
+      <div class="fg-table-wrap">
+        <table class="fg-table">
+          <thead>
+            <tr>
+              <th>ساخت</th>
+              <th>کاربرد</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="fg-cell-fr">Merci pour tout.</td>
+              <td>بابت همه‌چیز ممنون.</td>
+            </tr>
+            <tr>
+              <td class="fg-cell-fr">Merci à tous.</td>
+              <td>از همهٔ شما ممنونم.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="fg-memory fg-callout">
+        برای «همه‌چیز» → <span class="fg-inline-fr">tout</span><br>
+        برای «همهٔ افراد» → <span class="fg-inline-fr">tous / toutes</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= -->
+  <!-- QUELQU'UN ETC -->
+  <!-- ========================= -->
+  <section class="fg-section">
+    <h2 class="fg-section-title">
+      <span class="fg-number">14</span>
+      <span class="fg-inline-fr">
+        quelqu’un / quelque chose / quelque part
+      </span>
+    </h2>
+
+    <div class="fg-card">
+
+      <div class="fg-table-wrap">
+        <table class="fg-table">
+          <thead>
+            <tr>
+              <th>ساخت</th>
+              <th>معنا</th>
+              <th>پرسش متناظر</th>
+              <th>صورت منفی</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="fg-cell-fr">quelqu’un</td>
+              <td>کسی</td>
+              <td class="fg-cell-fr">Qui ?</td>
+              <td class="fg-cell-fr">personne</td>
+            </tr>
+            <tr>
+              <td class="fg-cell-fr">quelque chose</td>
+              <td>چیزی</td>
+              <td class="fg-cell-fr">Quoi ?</td>
+              <td class="fg-cell-fr">rien</td>
+            </tr>
+            <tr>
+              <td class="fg-cell-fr">quelque part</td>
+              <td>جایی</td>
+              <td class="fg-cell-fr">Où ?</td>
+              <td class="fg-cell-fr">nulle part</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4><span class="fg-inline-fr">quelqu’un</span></h4>
+
+      <div class="fg-example">
+        Quelqu’un vous attend.
+        <div class="fg-fa-translation">
+          کسی منتظر شماست.
+        </div>
+      </div>
+
+      <div class="fg-example">
+        Je n’ai vu personne.
+        <div class="fg-fa-translation">
+          هیچ‌کس را ندیدم.
+        </div>
+      </div>
+
+      <h4><span class="fg-inline-fr">quelque chose</span></h4>
+
+      <div class="fg-example">
+        Je cherche quelque chose.
+        <div class="fg-fa-translation">
+          دنبال چیزی می‌گردم.
+        </div>
+      </div>
+
+      <div class="fg-example">
+        Je ne trouve rien.
+        <div class="fg-fa-translation">
+          چیزی پیدا نمی‌کنم.
+        </div>
+      </div>
+
+      <h4><span class="fg-inline-fr">quelque part</span></h4>
+
+      <div class="fg-example">
+        J’ai mis mes clés quelque part.
+        <div class="fg-fa-translation">
+          کلیدهایم را جایی گذاشته‌ام.
+        </div>
+      </div>
+
+      <div class="fg-example">
+        Je ne vais nulle part.
+        <div class="fg-fa-translation">
+          هیچ‌جا نمی‌روم.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= -->
+  <!-- DE + ADJECTIVE -->
+  <!-- ========================= -->
+  <section class="fg-section">
+    <h2 class="fg-section-title">
+      <span class="fg-number">15</span>
+      صفت بعد از ضمیرهای نامعین
+    </h2>
+
+    <div class="fg-card">
+      <div class="fg-rule">
+        quelqu’un + de + adjectif
+      </div>
+
+      <div class="fg-rule">
+        quelque chose + de + adjectif
+      </div>
+
+      <div class="fg-rule">
+        rien + de + adjectif
+      </div>
+
+      <div class="fg-example">
+        quelqu’un de gentil
+        <div class="fg-fa-translation">
+          فردی مهربان
+        </div>
+      </div>
+
+      <div class="fg-example">
+        quelque chose d’intéressant
+        <div class="fg-fa-translation">
+          چیزی جالب
+        </div>
+      </div>
+
+      <div class="fg-example">
+        rien de spécial
+        <div class="fg-fa-translation">
+          چیز خاصی نیست
+        </div>
+      </div>
+
+      <div class="fg-error fg-callout">
+        <span class="fg-wrong fg-inline-fr">
+          quelqu’un intelligent ✗
+        </span>
+        <br>
+        <span class="fg-correct fg-inline-fr">
+          quelqu’un d’intelligent ✓
+        </span>
+      </div>
+
+      <div class="fg-warning fg-callout">
+        <strong>نکتهٔ ظریف جنس دستوری</strong>
+
+        <span class="fg-inline-fr">quelqu’un</span>
+        و
+        <span class="fg-inline-fr">quelque chose</span>
+        در این ساخت از نظر دستوری مذکر مفرد در نظر گرفته می‌شوند.
+      </div>
+
+      <div class="fg-example">
+        Ma tante est quelqu’un de spécial.
+        <div class="fg-fa-translation">
+          خاله/عمهٔ من آدم خاصی است.
+        </div>
+      </div>
+
+      <div class="fg-error fg-callout">
+        <span class="fg-correct fg-inline-fr">
+          quelqu’un de spécial ✓
+        </span>
+        <br>
+        <span class="fg-wrong fg-inline-fr">
+          quelqu’un de spéciale ✗
+        </span>
+      </div>
+
+      <div class="fg-example">
+        une chose intéressante
+        <div class="fg-fa-translation">
+          یک چیز جالب
+        </div>
+      </div>
+
+      <div class="fg-example">
+        quelque chose d’intéressant
+        <div class="fg-fa-translation">
+          چیزی جالب
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= -->
+  <!-- EXERCISES -->
+  <!-- ========================= -->
+  <section class="fg-section">
+    <h2 class="fg-section-title">
+      <span class="fg-number">16</span>
+      تمرین‌های درس و پاسخ تشریحی
+    </h2>
+
+    <!-- Exercise 1 -->
+    <div class="fg-card fg-exercise">
+      <h3>تمرین ۱ — چند، چندین، همه، هیچ</h3>
+
+      <p>
+        بر اساس اطلاعات یک گروه ۳۰ نفره، از
+        <span class="fg-inline-fr">quelques, plusieurs, tous, aucun</span>
+        استفاده کنید.
+      </p>
+
+      <div class="fg-answer">
+        <div class="fg-answer-title">پاسخ</div>
+
+        <div class="fg-example">
+          Plusieurs étudiants habitent chez leurs parents.
+        </div>
+
+        <div class="fg-example">
+          Quelques étudiants habitent à la cité universitaire.
+        </div>
+
+        <div class="fg-example">
+          Plusieurs étudiants cohabitent avec des amis.
+        </div>
+
+        <div class="fg-example">
+          Tous les étudiants habitent dans le centre.
+        </div>
+
+        <div class="fg-example">
+          Aucun étudiant n’habite à l’hôtel.
+        </div>
+      </div>
+
+      <div class="fg-note fg-callout">
+        اگر تعداد بسیار کم باشد
+        <span class="fg-inline-fr">quelques</span>،
+        اگر چندین مورد باشد
+        <span class="fg-inline-fr">plusieurs</span>،
+        برای ۱۰۰٪ اعضا
+        <span class="fg-inline-fr">tous</span>
+        و برای صفر
+        <span class="fg-inline-fr">aucun</span>
+        مناسب است.
+      </div>
+
+      <h4>
+        ساخت
+        <span class="fg-inline-fr">certains…, d’autres…</span>
+      </h4>
+
+      <div class="fg-example">
+        Certains étudiants habitent dans un studio,
+        d’autres habitent dans un deux-pièces.
+      </div>
+
+      <div class="fg-example">
+        Certains vivent seuls, d’autres vivent en couple.
+      </div>
+
+      <div class="fg-example">
+        Certains sont propriétaires, d’autres sont locataires.
+      </div>
+    </div>
+
+    <!-- Exercise 2 -->
+    <div class="fg-card fg-exercise">
+      <h3>تمرین ۲ — خانوادهٔ <span class="fg-inline-fr">tout</span></h3>
+
+      <p>
+        جمله را مانند الگوی زیر کامل کنید:
+      </p>
+
+      <div class="fg-rule">
+        J’aime toutes les couleurs, mais surtout le bleu.
+      </div>
+
+      <div class="fg-answer">
+        <div class="fg-answer-title">نمونه پاسخ</div>
+
+        <div class="fg-example">
+          J’aime tous les fruits, mais surtout les pêches.
+        </div>
+
+        <div class="fg-example">
+          J’aime tous les légumes, mais surtout les asperges.
+        </div>
+
+        <div class="fg-example">
+          J’aime toutes les saisons, mais surtout l’automne.
+        </div>
+
+        <div class="fg-example">
+          J’aime toutes les fleurs, mais surtout les tulipes.
+        </div>
+
+        <div class="fg-example">
+          J’aime tous les animaux, mais surtout les chiens.
+        </div>
+
+        <div class="fg-example">
+          J’aime tous les sports, mais surtout le football.
+        </div>
+
+        <div class="fg-example">
+          J’aime tous les genres de musique, mais surtout le jazz.
+        </div>
+      </div>
+
+      <div class="fg-warning fg-callout">
+        شکل
+        <span class="fg-inline-fr">tout</span>
+        با اسم دسته هماهنگ می‌شود:
+        <span class="fg-inline-fr">fruits, saisons, fleurs, sports...</span>
+      </div>
+    </div>
+
+    <!-- Exercise 3 -->
+    <div class="fg-card fg-exercise">
+      <h3>تمرین ۳ — <span class="fg-inline-fr">chaque / tous / toutes</span></h3>
+
+      <div class="fg-answer">
+        <div class="fg-answer-title">پاسخ</div>
+
+        <div class="fg-example">
+          — Vous vous lavez les cheveux chaque jour ?<br>
+          — Non, tous les deux jours.
+        </div>
+
+        <div class="fg-example">
+          — Vous changez de voiture chaque année ?<br>
+          — Non, tous les trois ans environ.
+        </div>
+
+        <div class="fg-example">
+          — Vous allez chez le coiffeur chaque mois ?<br>
+          — Non, toutes les deux semaines.
+        </div>
+      </div>
+
+      <div class="fg-memory fg-callout">
+        <div class="fg-rule">chaque + nom singulier</div>
+        <div class="fg-rule">
+          tous / toutes les + nombre + nom pluriel
+        </div>
+      </div>
+    </div>
+
+    <!-- Exercise 4 -->
+    <div class="fg-card fg-exercise">
+      <h3>تمرین ۴ — شکل صحیح <span class="fg-inline-fr">tout</span></h3>
+
+      <div class="fg-answer">
+        <div class="fg-answer-title">پاسخ‌ها</div>
+
+        <ol>
+          <li><span class="fg-inline-fr">Tout le temps</span></li>
+          <li><span class="fg-inline-fr">Toutes les nuits</span></li>
+          <li><span class="fg-inline-fr">Tous les jours</span></li>
+          <li><span class="fg-inline-fr">Toute la vie</span></li>
+          <li><span class="fg-inline-fr">Tous les habitants</span></li>
+          <li><span class="fg-inline-fr">Toute la région</span></li>
+          <li><span class="fg-inline-fr">Tout le pays</span></li>
+          <li><span class="fg-inline-fr">Toutes les villes</span></li>
+        </ol>
+      </div>
+
+      <div class="fg-note fg-callout">
+        همیشه جنس و تعداد اسم را بررسی کنید:
+        <span class="fg-inline-fr">
+          tout / toute / tous / toutes
+        </span>.
+      </div>
+    </div>
+
+    <!-- Exercise 5 -->
+    <div class="fg-card fg-exercise">
+      <h3>تمرین ۵ — انتخاب کلمه بر اساس تعداد</h3>
+
+      <div class="fg-answer">
+        <div class="fg-example">
+          Je connais plusieurs acteurs américains, une dizaine,
+          et quelques acteurs français, deux ou trois.
+        </div>
+
+        <div class="fg-example">
+          Je connais quelques chansons françaises, trois ou quatre,
+          et plusieurs chansons anglaises, une vingtaine.
+        </div>
+
+        <div class="fg-example">
+          Je ne connais aucun poème de Baudelaire
+          et aucune pièce de Marivaux.
+        </div>
+      </div>
+
+      <div class="fg-note fg-callout">
+        <span class="fg-inline-fr">poème</span>
+        مذکر است → <span class="fg-inline-fr">aucun</span><br>
+        <span class="fg-inline-fr">pièce</span>
+        مؤنث است → <span class="fg-inline-fr">aucune</span>
+      </div>
+    </div>
+
+    <!-- Exercise 6 -->
+    <div class="fg-card fg-exercise">
+      <h3>تمرین ۶ — حذف اسم و استفاده از ضمیر</h3>
+
+      <p>
+        مرجع جمله
+        <span class="fg-inline-fr">photos</span>
+        است؛ بنابراین مؤنث جمع است.
+      </p>
+
+      <div class="fg-answer">
+        <ol>
+          <li><span class="fg-inline-fr">Plusieurs sont ratées.</span></li>
+          <li><span class="fg-inline-fr">Quelques-unes sont réussies.</span></li>
+          <li><span class="fg-inline-fr">Certaines sont originales.</span></li>
+          <li><span class="fg-inline-fr">D’autres sont bizarres.</span></li>
+          <li><span class="fg-inline-fr">Aucune n’est banale.</span></li>
+          <li><span class="fg-inline-fr">Chacune a une histoire.</span></li>
+        </ol>
+      </div>
+
+      <div class="fg-warning fg-callout">
+        با
+        <span class="fg-inline-fr">aucune</span>
+        فعل مفرد می‌آید:
+        <div class="fg-rule">Aucune n’est banale.</div>
+      </div>
+    </div>
+
+    <!-- Exercise 7 -->
+    <div class="fg-card fg-exercise">
+      <h3>
+        تمرین ۷ —
+        <span class="fg-inline-fr">quelques / quelques-uns / chaque / chacun</span>
+      </h3>
+
+      <div class="fg-answer">
+        <div class="fg-example">
+          Voici quelques nouveaux produits.
+          Quelques-uns sont révolutionnaires.
+          Chaque produit de cette gamme est garanti sans OGM.
+          Chacun a un label de qualité.
+        </div>
+
+        <div class="fg-example">
+          J’ai quelques timbres anciens.
+          Quelques-uns datent de 1850 !
+        </div>
+
+        <div class="fg-example">
+          Vos enfants ont chacun leur chambre ?
+        </div>
+
+        <div class="fg-example">
+          Attendez ! Chacun son tour !
+          Chaque passager a un ticket avec un numéro.
+        </div>
+
+        <div class="fg-example">
+          Je ne connais pas tous les étudiants,
+          je connais seulement quelques-uns d’entre eux.
+        </div>
+      </div>
+
+      <div class="fg-memory fg-callout">
+        <strong>اصل تشخیص</strong>
+        اگر اسم بعد از کلمه وجود دارد:
+        <span class="fg-inline-fr">quelques / chaque</span><br>
+        اگر اسم حذف شده:
+        <span class="fg-inline-fr">quelques-uns / chacun</span>
+      </div>
+    </div>
+
+    <!-- Exercise 8 -->
+    <div class="fg-card fg-exercise">
+      <h3>
+        تمرین ۸ —
+        <span class="fg-inline-fr">tous / toutes / aucun / aucune</span>
+      </h3>
+
+      <div class="fg-answer">
+        <h4>Étudiants</h4>
+        <div class="fg-example">
+          Tous les étudiants sont arrivés ?<br>
+          Oui, ils sont tous arrivés.<br>
+          Non, aucun n’est arrivé.
+        </div>
+
+        <h4>Dossiers</h4>
+        <div class="fg-example">
+          Tous les dossiers sont complets ?<br>
+          Oui, ils sont tous complets.<br>
+          Non, aucun n’est complet.
+        </div>
+
+        <h4>Salles</h4>
+        <div class="fg-example">
+          Toutes les salles sont occupées ?<br>
+          Oui, elles sont toutes occupées.<br>
+          Non, aucune n’est occupée.
+        </div>
+
+        <h4>Tests</h4>
+        <div class="fg-example">
+          Tous les tests sont corrigés ?<br>
+          Oui, ils sont tous corrigés.<br>
+          Non, aucun n’est corrigé.
+        </div>
+      </div>
+
+      <div class="fg-note fg-callout">
+        در سؤال:
+        <span class="fg-inline-fr">tous/toutes + nom</span><br>
+        وقتی اسم حذف می‌شود:
+        <span class="fg-inline-fr">ils sont tous / elles sont toutes</span>
+      </div>
+    </div>
+
+    <!-- Exercise 9 -->
+    <div class="fg-card fg-exercise">
+      <h3>
+        تمرین ۹ —
+        <span class="fg-inline-fr">
+          quelqu’un / quelque chose / quelque part
+        </span>
+      </h3>
+
+      <div class="fg-answer">
+        <ol>
+          <li>
+            <span class="fg-inline-fr">
+              Il y a quelqu’un à côté de vous ?
+            </span>
+          </li>
+          <li>
+            <span class="fg-inline-fr">
+              Vous avez soif ? Vous voulez boire quelque chose ?
+            </span>
+          </li>
+          <li>
+            <span class="fg-inline-fr">
+              Si quelqu’un appelle, dites-lui de laisser un message.
+            </span>
+          </li>
+          <li>
+            <span class="fg-inline-fr">
+              Qu’est-ce que vous cherchez ?
+              Vous avez perdu quelque chose ?
+            </span>
+          </li>
+          <li>
+            <span class="fg-inline-fr">
+              Je ne trouve plus mes clés :
+              j’ai dû les oublier quelque part.
+            </span>
+          </li>
+        </ol>
+      </div>
+
+      <div class="fg-memory fg-callout">
+        شخص → <span class="fg-inline-fr">quelqu’un</span><br>
+        شیء / موضوع → <span class="fg-inline-fr">quelque chose</span><br>
+        محل → <span class="fg-inline-fr">quelque part</span>
+      </div>
+    </div>
+
+    <!-- Exercise 10 -->
+    <div class="fg-card fg-exercise">
+      <h3>
+        تمرین ۱۰ —
+        <span class="fg-inline-fr">quelqu’un de / quelque chose de</span>
+      </h3>
+
+      <div class="fg-answer">
+        <div class="fg-example">
+          Un sac, c’est quelque chose d’utile.
+        </div>
+
+        <div class="fg-example">
+          Charlie Chaplin, c’est quelqu’un d’amusant.
+        </div>
+
+        <div class="fg-example">
+          La liberté, c’est quelque chose de précieux.
+        </div>
+
+        <div class="fg-example">
+          Une star, c’est quelqu’un de célèbre.
+        </div>
+
+        <div class="fg-example">
+          Un revolver, c’est quelque chose de dangereux.
+        </div>
+
+        <div class="fg-example">
+          Ma tante, c’est quelqu’un de spécial.
+        </div>
+
+        <div class="fg-example">
+          Un milliardaire, c’est quelqu’un de très riche.
+        </div>
+
+        <div class="fg-example">
+          L’argent, c’est quelque chose d’important.
+        </div>
+      </div>
+
+      <div class="fg-warning fg-callout">
+        اگر صفت با مصوت شروع شود:
+        <div class="fg-rule">
+          de + intéressant → d’intéressant
+        </div>
+        <div class="fg-rule">
+          de + utile → d’utile
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= -->
+  <!-- FINAL SUMMARY -->
+  <!-- ========================= -->
+  <section class="fg-section fg-summary">
+    <h2>جمع‌بندی سریع درس ۱۵</h2>
+
+    <div class="fg-table-wrap">
+      <table class="fg-table">
+        <thead>
+          <tr>
+            <th>کاربرد</th>
+            <th>ساخت فرانسوی</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>چند دانشجو</td>
+            <td class="fg-cell-fr">quelques étudiants</td>
+          </tr>
+          <tr>
+            <td>چندین دانشجو</td>
+            <td class="fg-cell-fr">plusieurs étudiants</td>
+          </tr>
+          <tr>
+            <td>هر دانشجو</td>
+            <td class="fg-cell-fr">chaque étudiant</td>
+          </tr>
+          <tr>
+            <td>همهٔ دانشجویان</td>
+            <td class="fg-cell-fr">tous les étudiants</td>
+          </tr>
+          <tr>
+            <td>بعضی دانشجویان</td>
+            <td class="fg-cell-fr">certains étudiants</td>
+          </tr>
+          <tr>
+            <td>دانشجویان دیگری</td>
+            <td class="fg-cell-fr">d’autres étudiants</td>
+          </tr>
+          <tr>
+            <td>هیچ دانشجویی</td>
+            <td class="fg-cell-fr">aucun étudiant</td>
+          </tr>
+          <tr>
+            <td>چند نفر</td>
+            <td class="fg-cell-fr">quelques-uns</td>
+          </tr>
+          <tr>
+            <td>هرکدام</td>
+            <td class="fg-cell-fr">chacun / chacune</td>
+          </tr>
+          <tr>
+            <td>کسی</td>
+            <td class="fg-cell-fr">quelqu’un</td>
+          </tr>
+          <tr>
+            <td>چیزی</td>
+            <td class="fg-cell-fr">quelque chose</td>
+          </tr>
+          <tr>
+            <td>جایی</td>
+            <td class="fg-cell-fr">quelque part</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>اشتباهاتی که باید حتماً به خاطر بسپارید</h3>
+
+    <div class="fg-rule">
+      chaque étudiants ✗ → chaque étudiant ✓
+    </div>
+
+    <div class="fg-rule">
+      chaque deux jours ✗ → tous les deux jours ✓
+    </div>
+
+    <div class="fg-rule">
+      quelques-un ✗ → quelques-uns ✓
+    </div>
+
+    <div class="fg-rule">
+      des autres étudiants ✗ → d’autres étudiants ✓
+    </div>
+
+    <div class="fg-rule">
+      Je ne connais pas aucun étudiant. ✗
+      → Je ne connais aucun étudiant. ✓
+    </div>
+
+    <div class="fg-rule">
+      quelqu’un intelligent ✗
+      → quelqu’un d’intelligent ✓
+    </div>
+
+    <div class="fg-rule">
+      quelque chose intéressante ✗
+      → quelque chose d’intéressant ✓
+    </div>
+
+    <div class="fg-rule">
+      Tous les étudiants → tous = /tu/
+    </div>
+
+    <div class="fg-rule">
+      Ils sont tous là. → tous = /tus/
+    </div>
+  </section>
+</div>

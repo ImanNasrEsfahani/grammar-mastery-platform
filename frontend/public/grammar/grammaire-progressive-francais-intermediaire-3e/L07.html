@@ -1,0 +1,1793 @@
+<div class="french-grammar-wrapper">
+    <style scoped>
+        .french-grammar-wrapper,
+        .french-grammar-wrapper * {
+            box-sizing: border-box;
+        }
+
+        .french-grammar-wrapper {
+            --fg-primary: #123b6d;
+            --fg-primary-dark: #0a294f;
+            --fg-primary-light: #eaf3ff;
+
+            --fg-accent: #2b6cb0;
+            --fg-accent-soft: #edf6ff;
+
+            --fg-green: #177245;
+            --fg-green-bg: #edf9f2;
+            --fg-green-border: #a9dfbf;
+
+            --fg-red: #b42318;
+            --fg-red-bg: #fff1f0;
+            --fg-red-border: #ffc7c3;
+
+            --fg-orange: #b54708;
+            --fg-orange-bg: #fff7e8;
+            --fg-orange-border: #f4d49a;
+
+            --fg-purple: #6941c6;
+            --fg-purple-bg: #f5f1ff;
+
+            --fg-text: #233043;
+            --fg-muted: #64748b;
+            --fg-border: #dbe3ee;
+            --fg-background: #f5f8fc;
+            --fg-white: #ffffff;
+
+            font-family: Tahoma, Arial, "Segoe UI", sans-serif;
+            color: var(--fg-text);
+            background: var(--fg-background);
+            line-height: 1.9;
+            font-size: 16px;
+            width: 100%;
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 22px;
+            border-radius: 22px;
+        }
+
+        .french-grammar-wrapper .fg-rtl {
+            direction: rtl;
+            text-align: right;
+        }
+
+        .french-grammar-wrapper .fg-fr {
+            direction: ltr;
+            unicode-bidi: isolate;
+            text-align: left;
+            display: inline-block;
+            font-family: "Segoe UI", Arial, sans-serif;
+            font-weight: 500;
+        }
+
+        .french-grammar-wrapper .fg-fr-block {
+            direction: ltr;
+            unicode-bidi: isolate;
+            text-align: left;
+            font-family: "Segoe UI", Arial, sans-serif;
+            line-height: 1.7;
+        }
+
+        .french-grammar-wrapper .fg-hero {
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--fg-primary-dark) 0%,
+                    var(--fg-primary) 55%,
+                    #245d98 100%
+                );
+            border-radius: 20px;
+            padding: 32px;
+            color: #fff;
+            margin-bottom: 24px;
+            box-shadow: 0 14px 30px rgba(16, 59, 109, 0.16);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .french-grammar-wrapper .fg-hero::after {
+            content: "";
+            position: absolute;
+            width: 230px;
+            height: 230px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+            left: -80px;
+            top: -90px;
+        }
+
+        .french-grammar-wrapper .fg-lesson-number {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 5px 12px;
+            border-radius: 999px;
+            background: rgba(255,255,255,.15);
+            border: 1px solid rgba(255,255,255,.2);
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+
+        .french-grammar-wrapper .fg-hero h1 {
+            margin: 0 0 8px;
+            font-size: clamp(27px, 4vw, 42px);
+            line-height: 1.35;
+            position: relative;
+            z-index: 2;
+        }
+
+        .french-grammar-wrapper .fg-hero-subtitle {
+            margin: 0;
+            opacity: .92;
+            font-size: 17px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .french-grammar-wrapper .fg-card {
+            background: var(--fg-white);
+            border: 1px solid var(--fg-border);
+            border-radius: 17px;
+            padding: 24px;
+            margin: 20px 0;
+            box-shadow: 0 6px 18px rgba(15, 38, 69, 0.045);
+        }
+
+        .french-grammar-wrapper .fg-card h2,
+        .french-grammar-wrapper .fg-section-title {
+            color: var(--fg-primary-dark);
+            margin: 0 0 18px;
+            line-height: 1.5;
+        }
+
+        .french-grammar-wrapper .fg-card h2 {
+            font-size: 24px;
+            border-bottom: 2px solid #e6eef8;
+            padding-bottom: 12px;
+        }
+
+        .french-grammar-wrapper .fg-card h3 {
+            color: var(--fg-primary);
+            margin: 26px 0 10px;
+            font-size: 20px;
+        }
+
+        .french-grammar-wrapper .fg-card h4 {
+            color: #334e68;
+            font-size: 17px;
+            margin: 20px 0 8px;
+        }
+
+        .french-grammar-wrapper p {
+            margin: 9px 0;
+        }
+
+        .french-grammar-wrapper .fg-lead {
+            font-size: 17px;
+            color: #334155;
+        }
+
+        .french-grammar-wrapper .fg-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .french-grammar-wrapper .fg-grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .french-grammar-wrapper .fg-mini-card {
+            border: 1px solid var(--fg-border);
+            border-radius: 14px;
+            padding: 17px;
+            background: #fbfdff;
+        }
+
+        .french-grammar-wrapper .fg-mini-card strong {
+            color: var(--fg-primary);
+        }
+
+        .french-grammar-wrapper .fg-callout {
+            border-radius: 14px;
+            padding: 17px 18px;
+            margin: 16px 0;
+            border: 1px solid;
+        }
+
+        .french-grammar-wrapper .fg-callout strong:first-child {
+            display: inline-block;
+            margin-bottom: 3px;
+        }
+
+        .french-grammar-wrapper .fg-info {
+            background: var(--fg-primary-light);
+            border-color: #bcd5ef;
+            color: #173b64;
+        }
+
+        .french-grammar-wrapper .fg-success {
+            background: var(--fg-green-bg);
+            border-color: var(--fg-green-border);
+            color: #135c39;
+        }
+
+        .french-grammar-wrapper .fg-warning {
+            background: var(--fg-orange-bg);
+            border-color: var(--fg-orange-border);
+            color: #814000;
+        }
+
+        .french-grammar-wrapper .fg-danger {
+            background: var(--fg-red-bg);
+            border-color: var(--fg-red-border);
+            color: #8f211a;
+        }
+
+        .french-grammar-wrapper .fg-purple {
+            background: var(--fg-purple-bg);
+            border-color: #d9cdf7;
+            color: #5137a1;
+        }
+
+        .french-grammar-wrapper .fg-example {
+            margin: 13px 0;
+            border-right: 4px solid var(--fg-green);
+            background: #fbfefc;
+            border-radius: 10px;
+            padding: 14px 16px;
+        }
+
+        .french-grammar-wrapper .fg-example .fg-fr-block {
+            font-size: 16px;
+            color: #164d32;
+            font-weight: 600;
+        }
+
+        .french-grammar-wrapper .fg-translation {
+            color: #556273;
+            font-size: 14px;
+            margin-top: 4px;
+        }
+
+        .french-grammar-wrapper .fg-wrong {
+            color: var(--fg-red);
+            text-decoration: line-through;
+            text-decoration-thickness: 1px;
+        }
+
+        .french-grammar-wrapper .fg-correct {
+            color: var(--fg-green);
+            font-weight: 700;
+        }
+
+        .french-grammar-wrapper .fg-table-wrap {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 16px 0;
+            border-radius: 13px;
+            border: 1px solid var(--fg-border);
+        }
+
+        .french-grammar-wrapper table {
+            border-collapse: collapse;
+            width: 100%;
+            min-width: 620px;
+            background: #fff;
+        }
+
+        .french-grammar-wrapper th,
+        .french-grammar-wrapper td {
+            border: 1px solid #dbe3ee;
+            padding: 12px 14px;
+            vertical-align: top;
+        }
+
+        .french-grammar-wrapper th {
+            background: var(--fg-primary);
+            color: #fff;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .french-grammar-wrapper tbody tr:nth-child(even) {
+            background: #f8fbff;
+        }
+
+        .french-grammar-wrapper tbody tr:hover {
+            background: #eef6ff;
+        }
+
+        .french-grammar-wrapper .fg-table-fr td,
+        .french-grammar-wrapper .fg-table-fr th {
+            direction: ltr;
+            text-align: left;
+        }
+
+        .french-grammar-wrapper .fg-list {
+            margin: 10px 0;
+            padding: 0 22px 0 0;
+        }
+
+        .french-grammar-wrapper .fg-list li {
+            margin: 7px 0;
+            padding-right: 4px;
+        }
+
+        .french-grammar-wrapper .fg-rule {
+            display: flex;
+            align-items: stretch;
+            gap: 12px;
+            padding: 15px;
+            border: 1px solid var(--fg-border);
+            border-radius: 13px;
+            margin: 11px 0;
+            background: #fff;
+        }
+
+        .french-grammar-wrapper .fg-rule-num {
+            flex: 0 0 34px;
+            height: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: var(--fg-primary);
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .french-grammar-wrapper .fg-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 3px 9px;
+            border-radius: 999px;
+            background: #e8f1fc;
+            color: var(--fg-primary);
+            font-size: 12px;
+            margin: 2px;
+            white-space: nowrap;
+        }
+
+        .french-grammar-wrapper .fg-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 13px;
+            margin: 16px 0;
+        }
+
+        .french-grammar-wrapper .fg-compare-box {
+            border-radius: 14px;
+            padding: 17px;
+            border: 1px solid var(--fg-border);
+            background: #fff;
+        }
+
+        .french-grammar-wrapper .fg-compare-box h4 {
+            margin-top: 0;
+            color: var(--fg-primary);
+        }
+
+        .french-grammar-wrapper .fg-focus {
+            font-weight: 800;
+            color: #0d4f8c;
+            background: #edf6ff;
+            border-radius: 5px;
+            padding: 1px 5px;
+        }
+
+        .french-grammar-wrapper .fg-personne-master {
+            border: 2px solid #9bc0e8;
+            background: linear-gradient(180deg, #f5faff 0%, #fff 100%);
+        }
+
+        .french-grammar-wrapper .fg-formula {
+            background: #102f55;
+            color: #fff;
+            border-radius: 14px;
+            padding: 18px;
+            margin: 18px 0;
+            text-align: center;
+        }
+
+        .french-grammar-wrapper .fg-formula .fg-fr {
+            font-size: 18px;
+            color: #fff;
+        }
+
+        .french-grammar-wrapper .fg-exercise {
+            border-top: 4px solid #2b6cb0;
+        }
+
+        .french-grammar-wrapper .fg-answer {
+            border-right: 4px solid var(--fg-green);
+            padding: 13px 15px;
+            background: #f6fcf8;
+            margin: 10px 0;
+            border-radius: 9px;
+        }
+
+        .french-grammar-wrapper .fg-mistakes td:first-child {
+            color: var(--fg-red);
+            font-weight: 700;
+        }
+
+        .french-grammar-wrapper .fg-mistakes td:nth-child(2) {
+            color: var(--fg-green);
+            font-weight: 700;
+        }
+
+        .french-grammar-wrapper .fg-summary {
+            background: linear-gradient(135deg, #edf5ff, #f8fbff);
+            border: 2px solid #cbdff4;
+        }
+
+        .french-grammar-wrapper .fg-footer-note {
+            color: var(--fg-muted);
+            font-size: 13px;
+            padding: 15px 3px 3px;
+            border-top: 1px dashed #cad5e2;
+            margin-top: 25px;
+        }
+
+        @media (max-width: 800px) {
+            .french-grammar-wrapper {
+                padding: 14px;
+                border-radius: 14px;
+            }
+
+            .french-grammar-wrapper .fg-hero {
+                padding: 23px 18px;
+                border-radius: 15px;
+            }
+
+            .french-grammar-wrapper .fg-card {
+                padding: 18px 15px;
+                border-radius: 14px;
+            }
+
+            .french-grammar-wrapper .fg-grid,
+            .french-grammar-wrapper .fg-grid-3,
+            .french-grammar-wrapper .fg-comparison {
+                grid-template-columns: 1fr;
+            }
+
+            .french-grammar-wrapper .fg-rule {
+                gap: 9px;
+            }
+
+            .french-grammar-wrapper .fg-card h2 {
+                font-size: 21px;
+            }
+
+            .french-grammar-wrapper .fg-card h3 {
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .french-grammar-wrapper {
+                font-size: 15px;
+                padding: 10px;
+            }
+
+            .french-grammar-wrapper .fg-hero h1 {
+                font-size: 26px;
+            }
+
+            .french-grammar-wrapper .fg-card {
+                padding: 15px 12px;
+            }
+
+            .french-grammar-wrapper th,
+            .french-grammar-wrapper td {
+                padding: 9px 10px;
+                font-size: 14px;
+            }
+
+            .french-grammar-wrapper table {
+                min-width: 560px;
+            }
+        }
+    </style>
+
+    <!-- Hero -->
+    <section class="fg-hero fg-rtl">
+        <div class="fg-lesson-number">
+            درس ۷
+            <span>•</span>
+            Grammaire Progressive
+        </div>
+
+        <h1>
+            <span class="fg-fr">Les noms de parenté et de groupe</span>
+        </h1>
+
+        <p class="fg-hero-subtitle">
+            اسامی خویشاوندی، روابط خانوادگی، واژه‌های گروهی و تفاوت
+            <span class="fg-fr">gens</span>،
+            <span class="fg-fr">personnes</span> و
+            <span class="fg-fr">tout le monde</span>
+        </p>
+    </section>
+
+    <!-- Lesson overview -->
+    <section class="fg-card fg-rtl">
+        <h2>🎯 در این درس چه چیزی یاد می‌گیریم؟</h2>
+
+        <div class="fg-grid">
+            <div class="fg-mini-card">
+                <strong>۱. روابط خانوادگی</strong>
+                <p>
+                    واژه‌هایی مانند
+                    <span class="fg-fr">père, mère, frère, sœur, oncle, tante</span>
+                    و نسل‌های بالاتر و پایین‌تر.
+                </p>
+            </div>
+
+            <div class="fg-mini-card">
+                <strong>۲. خانواده سببی و ناتنی</strong>
+                <p>
+                    کاربرد
+                    <span class="fg-fr">beau-père, belle-mère, beau-frère, belle-sœur</span>.
+                </p>
+            </div>
+
+            <div class="fg-mini-card">
+                <strong>۳. نام‌های گروهی</strong>
+                <p>
+                    تفاوت دستوری و معنایی
+                    <span class="fg-fr">gens</span>،
+                    <span class="fg-fr">personnes</span>،
+                    <span class="fg-fr">tout le monde</span>.
+                </p>
+            </div>
+
+            <div class="fg-mini-card">
+                <strong>۴. دوست یا شریک عاطفی؟</strong>
+                <p>
+                    تفاوت ظریف
+                    <span class="fg-fr">un ami</span>
+                    و
+                    <span class="fg-fr">mon ami</span>
+                    در بافت‌های مختلف.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Family vocabulary -->
+    <section class="fg-card fg-rtl">
+        <h2>۱. اسامی خویشاوندی — <span class="fg-fr">Les noms de parenté</span></h2>
+
+        <p class="fg-lead">
+            بسیاری از نسبت‌های خانوادگی در فرانسه زوج مذکر و مؤنث دارند.
+            بهتر است واژه‌ها را همیشه همراه با جنس دستوری و حرف تعریف یاد بگیرید.
+        </p>
+
+        <div class="fg-table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>مذکر</th>
+                        <th>مؤنث</th>
+                        <th>نام گروه / جمع</th>
+                        <th>معنی</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="fg-fr">le père</span></td>
+                        <td><span class="fg-fr">la mère</span></td>
+                        <td><span class="fg-fr">les parents</span></td>
+                        <td>پدر / مادر / والدین</td>
+                    </tr>
+                    <tr>
+                        <td><span class="fg-fr">le fils</span></td>
+                        <td><span class="fg-fr">la fille</span></td>
+                        <td><span class="fg-fr">les enfants</span></td>
+                        <td>پسر / دختر / فرزندان</td>
+                    </tr>
+                    <tr>
+                        <td><span class="fg-fr">le grand-père</span></td>
+                        <td><span class="fg-fr">la grand-mère</span></td>
+                        <td><span class="fg-fr">les grands-parents</span></td>
+                        <td>پدربزرگ / مادربزرگ / پدربزرگ و مادربزرگ</td>
+                    </tr>
+                    <tr>
+                        <td><span class="fg-fr">le petit-fils</span></td>
+                        <td><span class="fg-fr">la petite-fille</span></td>
+                        <td><span class="fg-fr">les petits-enfants</span></td>
+                        <td>نوه پسر / نوه دختر / نوه‌ها</td>
+                    </tr>
+                    <tr>
+                        <td><span class="fg-fr">l’oncle</span></td>
+                        <td><span class="fg-fr">la tante</span></td>
+                        <td>—</td>
+                        <td>عمو/دایی — عمه/خاله</td>
+                    </tr>
+                    <tr>
+                        <td><span class="fg-fr">le neveu</span></td>
+                        <td><span class="fg-fr">la nièce</span></td>
+                        <td><span class="fg-fr">les neveux</span></td>
+                        <td>برادرزاده یا خواهرزاده</td>
+                    </tr>
+                    <tr>
+                        <td><span class="fg-fr">le grand-oncle</span></td>
+                        <td><span class="fg-fr">la grand-tante</span></td>
+                        <td>—</td>
+                        <td>نسل بالاتر از عمو/دایی یا عمه/خاله</td>
+                    </tr>
+                    <tr>
+                        <td><span class="fg-fr">le petit-neveu</span></td>
+                        <td><span class="fg-fr">la petite-nièce</span></td>
+                        <td><span class="fg-fr">les petits-neveux</span></td>
+                        <td>فرزند برادرزاده یا خواهرزاده</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="fg-callout fg-info">
+            <strong>🔎 نکته درباره <span class="fg-fr">fils</span></strong>
+            <p>
+                شکل نوشتاری
+                <span class="fg-fr">fils</span>
+                در مفرد و جمع یکسان است:
+            </p>
+            <div class="fg-fr-block">
+                un fils<br>
+                deux fils
+            </div>
+        </div>
+
+        <h3>استفاده از <span class="fg-fr">grand-</span> و <span class="fg-fr">petit-</span></h3>
+
+        <div class="fg-comparison">
+            <div class="fg-compare-box">
+                <h4><span class="fg-fr">grand-</span></h4>
+                <p>برای برخی نسل‌های بالاتر:</p>
+                <div class="fg-fr-block">
+                    père → grand-père<br>
+                    mère → grand-mère
+                </div>
+            </div>
+
+            <div class="fg-compare-box">
+                <h4><span class="fg-fr">petit-</span></h4>
+                <p>برای برخی نسل‌های پایین‌تر:</p>
+                <div class="fg-fr-block">
+                    fils → petit-fils<br>
+                    fille → petite-fille
+                </div>
+            </div>
+        </div>
+
+        <div class="fg-callout fg-warning">
+            <strong>نسل‌های دورتر</strong>
+            <p>
+                برای نسل‌های دورتر می‌توان با
+                <span class="fg-fr">arrière-</span>
+                ساخت‌هایی مانند زیر داشت:
+            </p>
+            <div class="fg-fr-block">
+                l’arrière-grand-père<br>
+                l’arrière-grand-mère<br>
+                l’arrière-petit-fils<br>
+                l’arrière-petite-fille
+            </div>
+        </div>
+
+        <h3>جمع واژه‌های مرکب خانوادگی</h3>
+
+        <div class="fg-example">
+            <div class="fg-fr-block">
+                un grand-père → des grands-pères<br>
+                une grand-mère → des grands-mères<br>
+                un petit-enfant → des petits-enfants<br>
+                un beau-frère → des beaux-frères<br>
+                une belle-sœur → des belles-sœurs
+            </div>
+        </div>
+    </section>
+
+    <!-- parents -->
+    <section class="fg-card fg-rtl">
+        <h2>۲. تفاوت مهم <span class="fg-fr">les parents</span> و <span class="fg-fr">des parents</span></h2>
+
+        <div class="fg-comparison">
+            <div class="fg-compare-box">
+                <h4><span class="fg-fr">les parents</span></h4>
+                <p>
+                    اغلب به معنی «پدر و مادر» است.
+                </p>
+
+                <div class="fg-example">
+                    <div class="fg-fr-block">
+                        Mes parents habitent à Montréal.
+                    </div>
+                    <div class="fg-translation">
+                        پدر و مادرم در مونترال زندگی می‌کنند.
+                    </div>
+                </div>
+            </div>
+
+            <div class="fg-compare-box">
+                <h4><span class="fg-fr">des parents</span></h4>
+                <p>
+                    بسته به بافت می‌تواند «اقوام / بستگان» باشد.
+                </p>
+
+                <div class="fg-example">
+                    <div class="fg-fr-block">
+                        J’ai des parents en France.
+                    </div>
+                    <div class="fg-translation">
+                        من در فرانسه اقوامی دارم.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="fg-callout fg-info">
+            <strong>نکتهٔ معنایی</strong>
+            <p>
+                <span class="fg-fr">un parent</span>
+                نیز می‌تواند هم «یکی از والدین» و هم «یکی از بستگان» معنی دهد.
+                بافت جمله تعیین‌کننده است.
+            </p>
+        </div>
+    </section>
+
+    <!-- in-laws -->
+    <section class="fg-card fg-rtl">
+        <h2>۳. خویشاوندی سببی — <span class="fg-fr">La parenté par alliance</span></h2>
+
+        <div class="fg-table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>واژه فرانسوی</th>
+                        <th>معنی رایج</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="fg-fr">le beau-père</span></td>
+                        <td>پدر همسر / ناپدری</td>
+                    </tr>
+                    <tr>
+                        <td><span class="fg-fr">la belle-mère</span></td>
+                        <td>مادر همسر / نامادری</td>
+                    </tr>
+                    <tr>
+                        <td><span class="fg-fr">le beau-frère</span></td>
+                        <td>برادر همسر یا شوهر خواهر</td>
+                    </tr>
+                    <tr>
+                        <td><span class="fg-fr">la belle-sœur</span></td>
+                        <td>خواهر همسر یا زن برادر</td>
+                    </tr>
+                    <tr>
+                        <td><span class="fg-fr">le gendre</span></td>
+                        <td>داماد؛ شوهر دختر</td>
+                    </tr>
+                    <tr>
+                        <td><span class="fg-fr">la belle-fille</span></td>
+                        <td>عروس؛ زن پسر، یا در برخی بافت‌ها دختر ناتنی</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="fg-callout fg-warning">
+            <strong>⚠️ ابهام مهم در <span class="fg-fr">beau-père / belle-mère</span></strong>
+            <p>
+                این واژه‌ها فقط یک معنی ندارند. مثلاً
+                <span class="fg-fr">beau-père</span>
+                ممکن است «پدرِ همسر» یا «ناپدری» باشد.
+                معنای دقیق باید از بافت فهمیده شود.
+            </p>
+        </div>
+
+        <div class="fg-example">
+            <div class="fg-fr-block">
+                Le père de ma femme est mon beau-père.
+            </div>
+            <div class="fg-translation">
+                پدر همسرم، پدرزن من است.
+            </div>
+        </div>
+
+        <div class="fg-example">
+            <div class="fg-fr-block">
+                Ma mère s’est remariée. Son nouveau mari est mon beau-père.
+            </div>
+            <div class="fg-translation">
+                مادرم دوباره ازدواج کرده است؛ شوهر جدید او ناپدری من است.
+            </div>
+        </div>
+    </section>
+
+    <!-- ami -->
+    <section class="fg-card fg-rtl">
+        <h2>۴. تفاوت <span class="fg-fr">un ami</span> و <span class="fg-fr">mon ami</span></h2>
+
+        <div class="fg-comparison">
+            <div class="fg-compare-box">
+                <h4><span class="fg-fr">un ami / une amie</span></h4>
+                <p>معمولاً «یک دوست».</p>
+
+                <div class="fg-fr-block">
+                    C’est un ami de l’université.
+                </div>
+            </div>
+
+            <div class="fg-compare-box">
+                <h4><span class="fg-fr">mon ami / mon amie</span></h4>
+                <p>
+                    بسته به بافت ممکن است فقط «دوستم» باشد یا به شریک عاطفی اشاره کند.
+                </p>
+            </div>
+        </div>
+
+        <div class="fg-callout fg-info">
+            <strong>برای جلوگیری از ابهام</strong>
+
+            <div class="fg-fr-block">
+                un ami à moi = یکی از دوستانم<br>
+                une amie à moi = یکی از دوستانم<br>
+                mon petit ami = دوست‌پسرم<br>
+                ma petite amie = دوست‌دخترم<br>
+                mon compagnon / ma compagne = شریک زندگی
+            </div>
+        </div>
+
+        <div class="fg-callout fg-warning">
+            <strong>چرا <span class="fg-fr">mon amie</span> و نه <span class="fg-fr">ma amie</span>؟</strong>
+
+            <p>
+                پیش از اسم مؤنثی که با صدای واکه یا
+                <span class="fg-fr">h muet</span>
+                آغاز شود، برای روانی تلفظ از
+                <span class="fg-fr">mon / ton / son</span>
+                استفاده می‌شود.
+            </p>
+
+            <div class="fg-fr-block">
+                mon amie<br>
+                ton amie<br>
+                son amie
+            </div>
+        </div>
+    </section>
+
+    <!-- Possessives -->
+    <section class="fg-card fg-rtl">
+        <h2>۵. صفت ملکی و اعضای خانواده</h2>
+
+        <p>
+            صفت ملکی در فرانسه با <strong>اسمِ مملوک</strong> از نظر جنس و تعداد هماهنگ می‌شود،
+            نه با جنس مالک.
+        </p>
+
+        <div class="fg-table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>مذکر مفرد</th>
+                        <th>مؤنث مفرد</th>
+                        <th>جمع</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="fg-fr">mon père</span></td>
+                        <td><span class="fg-fr">ma mère</span></td>
+                        <td><span class="fg-fr">mes parents</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="fg-fr">ton frère</span></td>
+                        <td><span class="fg-fr">ta sœur</span></td>
+                        <td><span class="fg-fr">tes enfants</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="fg-fr">son oncle</span></td>
+                        <td><span class="fg-fr">sa tante</span></td>
+                        <td><span class="fg-fr">ses cousins</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="fg-fr">notre fils</span></td>
+                        <td><span class="fg-fr">notre fille</span></td>
+                        <td><span class="fg-fr">nos enfants</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="fg-fr">leur frère</span></td>
+                        <td><span class="fg-fr">leur sœur</span></td>
+                        <td><span class="fg-fr">leurs enfants</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="fg-callout fg-warning">
+            <strong>دام رایج</strong>
+            <p>
+                جنس صاحب یک چیز تعیین‌کننده نیست:
+            </p>
+
+            <div class="fg-fr-block">
+                Paul parle à son père.<br>
+                Marie parle à son père.
+            </div>
+
+            <p>
+                در هر دو مورد
+                <span class="fg-fr">son</span>
+                می‌آید، چون
+                <span class="fg-fr">père</span>
+                مذکر است.
+            </p>
+        </div>
+    </section>
+
+    <!-- Group nouns -->
+    <section class="fg-card fg-rtl">
+        <h2>۶. اسم‌های گروهی — <span class="fg-fr">Les noms de groupe</span></h2>
+
+        <p class="fg-lead">
+            مهم‌ترین بخش دستوری درس، تفاوت میان
+            <span class="fg-fr">gens</span>،
+            <span class="fg-fr">personnes</span>،
+            <span class="fg-fr">tout le monde</span>
+            و
+            <span class="fg-fr">le monde entier</span>
+            است.
+        </p>
+
+        <div class="fg-table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ساخت</th>
+                        <th>معنی</th>
+                        <th>تعداد دستوری</th>
+                        <th>نمونه</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="fg-fr">les gens</span></td>
+                        <td>مردم / آدم‌ها</td>
+                        <td>جمع</td>
+                        <td><span class="fg-fr">Les gens pensent.</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="fg-fr">les personnes</span></td>
+                        <td>افراد</td>
+                        <td>جمع</td>
+                        <td><span class="fg-fr">Ces personnes travaillent.</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="fg-fr">tout le monde</span></td>
+                        <td>همه</td>
+                        <td>مفرد</td>
+                        <td><span class="fg-fr">Tout le monde pense.</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="fg-fr">le monde entier</span></td>
+                        <td>سراسر جهان</td>
+                        <td>مفرد</td>
+                        <td><span class="fg-fr">Le monde entier regarde.</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- gens -->
+    <section class="fg-card fg-rtl">
+        <h2>۷. <span class="fg-fr">gens</span></h2>
+
+        <p>
+            <span class="fg-fr">gens</span>
+            به «مردم / آدم‌ها» به‌صورت کلی و معمولاً با تعداد نامشخص اشاره می‌کند.
+        </p>
+
+        <div class="fg-example">
+            <div class="fg-fr-block">
+                Il y a des gens dans la rue.
+            </div>
+            <div class="fg-translation">
+                تعدادی آدم در خیابان هستند.
+            </div>
+        </div>
+
+        <div class="fg-example">
+            <div class="fg-fr-block">
+                Les gens pensent que cette ville est chère.
+            </div>
+            <div class="fg-translation">
+                مردم فکر می‌کنند این شهر گران است.
+            </div>
+        </div>
+
+        <div class="fg-callout fg-info">
+            <strong>فعل بعد از <span class="fg-fr">gens</span> جمع است</strong>
+
+            <div class="fg-fr-block">
+                ✅ Les gens pensent.<br>
+                ❌ Les gens pense.
+            </div>
+        </div>
+
+        <div class="fg-callout fg-warning">
+            <strong>برای تعداد دقیق معمولاً <span class="fg-fr">personnes</span> مناسب‌تر است</strong>
+
+            <div class="fg-fr-block">
+                ✅ Il y a dix personnes.<br>
+                ⚠️ Il y a dix gens.
+            </div>
+        </div>
+    </section>
+
+    <!-- PERSONNE master section -->
+    <section class="fg-card fg-personne-master fg-rtl">
+        <h2>۸. نکتهٔ بسیار مهم: جنس دستوری <span class="fg-fr">personne</span></h2>
+
+        <div class="fg-callout fg-success">
+            <strong>قانون اصلی</strong>
+            <p>
+                کلمهٔ
+                <span class="fg-fr">personne</span>
+                وقتی به معنی «شخص / فرد» است، از نظر دستوری
+                <strong>همیشه مؤنث</strong> است؛
+                حتی اگر شخص موردنظر یک مرد باشد.
+            </p>
+        </div>
+
+        <div class="fg-example">
+            <div class="fg-fr-block">
+                Paul est une personne intelligente.
+            </div>
+            <div class="fg-translation">
+                پل شخص باهوشی است.
+            </div>
+        </div>
+
+        <p>
+            چون صفت به
+            <span class="fg-fr">personne</span>
+            مربوط است، می‌گوییم:
+        </p>
+
+        <div class="fg-fr-block">
+            <span class="fg-correct">une personne intelligente</span><br>
+            <span class="fg-wrong">une personne intelligent</span>
+        </div>
+
+        <h3>۸.۱. تعیین‌کننده‌ها با <span class="fg-fr">personne</span></h3>
+
+        <div class="fg-table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>مفرد</th>
+                        <th>جمع</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="fg-fr">une personne</span></td>
+                        <td><span class="fg-fr">des personnes</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="fg-fr">la personne</span></td>
+                        <td><span class="fg-fr">les personnes</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="fg-fr">cette personne</span></td>
+                        <td><span class="fg-fr">ces personnes</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="fg-fr">quelle personne</span></td>
+                        <td><span class="fg-fr">quelles personnes</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>۸.۲. صفت با <span class="fg-fr">personne</span></h3>
+
+        <div class="fg-grid">
+            <div class="fg-mini-card">
+                <strong>مفرد مؤنث</strong>
+                <div class="fg-fr-block">
+                    une personne gentille<br>
+                    une personne sérieuse<br>
+                    une personne compétente<br>
+                    une personne heureuse
+                </div>
+            </div>
+
+            <div class="fg-mini-card">
+                <strong>جمع مؤنث</strong>
+                <div class="fg-fr-block">
+                    des personnes gentilles<br>
+                    des personnes sérieuses<br>
+                    des personnes compétentes<br>
+                    des personnes heureuses
+                </div>
+            </div>
+        </div>
+
+        <div class="fg-callout fg-warning">
+            <strong>حتی اگر درباره مرد صحبت کنیم:</strong>
+
+            <div class="fg-fr-block">
+                Pierre est une personne organisée.<br>
+                Mon père est une personne généreuse.<br>
+                Cet homme est une personne respectée.
+            </div>
+        </div>
+
+        <h3>۸.۳. صفت به کدام اسم مربوط است؟</h3>
+
+        <div class="fg-comparison">
+            <div class="fg-compare-box">
+                <h4><span class="fg-fr">personne</span></h4>
+
+                <div class="fg-fr-block">
+                    Paul est une personne intelligente.
+                </div>
+
+                <p>
+                    چون صفت
+                    <span class="fg-fr">personne</span>
+                    را توصیف می‌کند:
+                    <strong>مؤنث</strong>.
+                </p>
+            </div>
+
+            <div class="fg-compare-box">
+                <h4><span class="fg-fr">homme</span></h4>
+
+                <div class="fg-fr-block">
+                    Paul est un homme intelligent.
+                </div>
+
+                <p>
+                    چون صفت
+                    <span class="fg-fr">homme</span>
+                    را توصیف می‌کند:
+                    <strong>مذکر</strong>.
+                </p>
+            </div>
+        </div>
+
+        <h3>۸.۴. فعل با <span class="fg-fr">personne</span></h3>
+
+        <div class="fg-callout fg-info">
+            <p>
+                فعل در زمان‌های ساده بر اساس «مفرد یا جمع بودن» فاعل صرف می‌شود؛
+                نه بر اساس مذکر یا مؤنث بودن.
+            </p>
+        </div>
+
+        <div class="fg-table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>مفرد</th>
+                        <th>جمع</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="fg-fr">La personne parle.</span></td>
+                        <td><span class="fg-fr">Les personnes parlent.</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="fg-fr">Une personne vient.</span></td>
+                        <td><span class="fg-fr">Plusieurs personnes viennent.</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="fg-fr">Cette personne est prête.</span></td>
+                        <td><span class="fg-fr">Ces personnes sont prêtes.</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>۸.۵. صفت بعد از <span class="fg-fr">être</span></h3>
+
+        <div class="fg-fr-block">
+            Cette personne est gentille.<br>
+            La personne est fatiguée.<br>
+            Ces personnes sont gentilles.<br>
+            Les personnes sont fatiguées.
+        </div>
+
+        <h3>۸.۶. <span class="fg-fr">personne</span> در <span class="fg-fr">passé composé</span></h3>
+
+        <h4>با <span class="fg-fr">avoir</span></h4>
+
+        <p>
+            در حالت عادی
+            <span class="fg-fr">participe passé</span>
+            با فاعل توافق نمی‌کند:
+        </p>
+
+        <div class="fg-fr-block">
+            Cette personne a téléphoné.<br>
+            Ces personnes ont téléphoné.<br>
+            La personne a parlé avec le directeur.
+        </div>
+
+        <h4>با <span class="fg-fr">être</span></h4>
+
+        <p>
+            در حالت معمول
+            <span class="fg-fr">participe passé</span>
+            با فاعل توافق می‌کند:
+        </p>
+
+        <div class="fg-fr-block">
+            Cette personne est arrivée.<br>
+            Ces personnes sont arrivées.<br>
+            La personne est partie.<br>
+            Les personnes sont parties.
+        </div>
+
+        <h3>۸.۷. مفعول مقدم با <span class="fg-fr">avoir</span></h3>
+
+        <div class="fg-comparison">
+            <div class="fg-compare-box">
+                <h4>مفعول بعد از فعل</h4>
+                <div class="fg-fr-block">
+                    J’ai rencontré cette personne.
+                </div>
+            </div>
+
+            <div class="fg-compare-box">
+                <h4>مفعول قبل از فعل</h4>
+                <div class="fg-fr-block">
+                    La personne que j’ai rencontrée...
+                </div>
+            </div>
+        </div>
+
+        <div class="fg-callout fg-warning">
+            <strong>جمع:</strong>
+            <div class="fg-fr-block">
+                Les personnes que j’ai rencontrées...
+            </div>
+        </div>
+
+        <h3>۸.۸. ضمیرهای مربوط به <span class="fg-fr">personne</span></h3>
+
+        <div class="fg-table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ساخت اصلی</th>
+                        <th>با ضمیر</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="fg-fr">Je vois cette personne.</span></td>
+                        <td><span class="fg-fr">Je la vois.</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="fg-fr">Je vois ces personnes.</span></td>
+                        <td><span class="fg-fr">Je les vois.</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="fg-fr">Je parle à cette personne.</span></td>
+                        <td><span class="fg-fr">Je lui parle.</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="fg-fr">Je parle à ces personnes.</span></td>
+                        <td><span class="fg-fr">Je leur parle.</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>۸.۹. دو کاربرد کاملاً متفاوت <span class="fg-fr">personne</span></h3>
+
+        <div class="fg-comparison">
+            <div class="fg-compare-box">
+                <h4>اسم = یک شخص</h4>
+
+                <div class="fg-fr-block">
+                    Une personne est arrivée.
+                </div>
+
+                <p>
+                    اینجا
+                    <span class="fg-fr">personne</span>
+                    اسم مؤنث است.
+                </p>
+            </div>
+
+            <div class="fg-compare-box">
+                <h4>ضمیر منفی = هیچ‌کس</h4>
+
+                <div class="fg-fr-block">
+                    Personne n’est arrivé.
+                </div>
+
+                <p>
+                    اینجا
+                    <span class="fg-fr">personne</span>
+                    دیگر اسم معمولی «شخص» نیست؛
+                    ضمیر منفی به معنی «هیچ‌کس» است.
+                </p>
+            </div>
+        </div>
+
+        <div class="fg-callout fg-danger">
+            <strong>این دو جمله را با هم اشتباه نکنید:</strong>
+
+            <div class="fg-fr-block">
+                Une personne ne vient pas. = یک نفر نمی‌آید.<br>
+                Personne ne vient. = هیچ‌کس نمی‌آید.
+            </div>
+        </div>
+    </section>
+
+    <!-- Tout le monde -->
+    <section class="fg-card fg-rtl">
+        <h2>۹. <span class="fg-fr">tout le monde</span></h2>
+
+        <p>
+            معنی آن «همه / همهٔ مردم» است، اما از نظر دستوری
+            <strong>مفرد</strong>
+            محسوب می‌شود.
+        </p>
+
+        <div class="fg-example">
+            <div class="fg-fr-block">
+                Tout le monde aime les vacances.
+            </div>
+            <div class="fg-translation">
+                همه تعطیلات را دوست دارند.
+            </div>
+        </div>
+
+        <div class="fg-callout fg-danger">
+            <strong>اشتباه بسیار رایج</strong>
+
+            <div class="fg-fr-block">
+                ✅ Tout le monde pense.<br>
+                ❌ Tout le monde pensent.
+            </div>
+        </div>
+
+        <p>صفت نیز معمولاً مفرد می‌آید:</p>
+
+        <div class="fg-fr-block">
+            Tout le monde est content.
+        </div>
+    </section>
+
+    <!-- Monde entier -->
+    <section class="fg-card fg-rtl">
+        <h2>۱۰. <span class="fg-fr">tout le monde</span> یا <span class="fg-fr">le monde entier</span>؟</h2>
+
+        <div class="fg-comparison">
+            <div class="fg-compare-box">
+                <h4><span class="fg-fr">tout le monde</span></h4>
+                <p>همهٔ آدم‌ها</p>
+
+                <div class="fg-fr-block">
+                    Tout le monde connaît ce chanteur.
+                </div>
+            </div>
+
+            <div class="fg-compare-box">
+                <h4><span class="fg-fr">le monde entier</span></h4>
+                <p>سراسر جهان</p>
+
+                <div class="fg-fr-block">
+                    Ce chanteur voyage dans le monde entier.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Master comparison -->
+    <section class="fg-card fg-rtl">
+        <h2>۱۱. جدول طلایی مقایسه</h2>
+
+        <div class="fg-table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ساخت</th>
+                        <th>نوع دستوری</th>
+                        <th>فعل</th>
+                        <th>مثال</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="fg-fr">les gens</span></td>
+                        <td>جمع</td>
+                        <td>جمع</td>
+                        <td><span class="fg-fr">Les gens pensent.</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="fg-fr">plusieurs personnes</span></td>
+                        <td>جمع مؤنث</td>
+                        <td>جمع</td>
+                        <td><span class="fg-fr">Plusieurs personnes pensent.</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="fg-fr">une personne</span></td>
+                        <td>مفرد مؤنث</td>
+                        <td>مفرد</td>
+                        <td><span class="fg-fr">Une personne pense.</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="fg-fr">tout le monde</span></td>
+                        <td>مفرد</td>
+                        <td>مفرد</td>
+                        <td><span class="fg-fr">Tout le monde pense.</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="fg-fr">le monde entier</span></td>
+                        <td>مفرد</td>
+                        <td>مفرد</td>
+                        <td><span class="fg-fr">Le monde entier regarde.</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Common mistakes -->
+    <section class="fg-card fg-rtl">
+        <h2>۱۲. اشتباهات رایج</h2>
+
+        <div class="fg-table-wrap">
+            <table class="fg-mistakes">
+                <thead>
+                    <tr>
+                        <th>❌ نادرست</th>
+                        <th>✅ درست</th>
+                        <th>علت</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="fg-fr">Tout le monde pensent.</span></td>
+                        <td><span class="fg-fr">Tout le monde pense.</span></td>
+                        <td><span class="fg-fr">tout le monde</span> مفرد است.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="fg-fr">Les gens pense.</span></td>
+                        <td><span class="fg-fr">Les gens pensent.</span></td>
+                        <td><span class="fg-fr">gens</span> جمع است.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="fg-fr">Trois gens</span></td>
+                        <td><span class="fg-fr">Trois personnes</span></td>
+                        <td>برای شمارش دقیق معمولاً <span class="fg-fr">personnes</span>.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="fg-fr">Ma amie</span></td>
+                        <td><span class="fg-fr">Mon amie</span></td>
+                        <td>پیش از واکه از <span class="fg-fr">mon</span> استفاده می‌شود.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="fg-fr">Son mère</span></td>
+                        <td><span class="fg-fr">Sa mère</span></td>
+                        <td><span class="fg-fr">mère</span> مؤنث است.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="fg-fr">Sa père</span></td>
+                        <td><span class="fg-fr">Son père</span></td>
+                        <td><span class="fg-fr">père</span> مذکر است.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="fg-fr">Une personne intelligent</span></td>
+                        <td><span class="fg-fr">Une personne intelligente</span></td>
+                        <td><span class="fg-fr">personne</span> مؤنث است.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="fg-fr">Ces personnes est arrivée.</span></td>
+                        <td><span class="fg-fr">Ces personnes sont arrivées.</span></td>
+                        <td>فاعل جمع مؤنث است.</td>
+                    </tr>
+                    <tr>
+                        <td><span class="fg-fr">dans tout le monde</span></td>
+                        <td><span class="fg-fr">dans le monde entier</span></td>
+                        <td>برای «سراسر جهان» از <span class="fg-fr">le monde entier</span> استفاده می‌شود.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Exercises -->
+    <section class="fg-card fg-exercise fg-rtl">
+        <h2>۱۳. تمرین — روابط خانوادگی</h2>
+
+        <p>
+            پاسخ مناسب را برای نسبت خانوادگی انتخاب کنید.
+        </p>
+
+        <div class="fg-answer">
+            <div class="fg-fr-block">
+                Qui est Élise pour Quentin ?<br>
+                → C’est sa sœur.
+            </div>
+        </div>
+
+        <div class="fg-answer">
+            <div class="fg-fr-block">
+                Qui est Jean pour Manon ?<br>
+                → C’est son père.
+            </div>
+        </div>
+
+        <div class="fg-answer">
+            <div class="fg-fr-block">
+                Qui est Pierre pour Manon ?<br>
+                → C’est son grand-père.
+            </div>
+        </div>
+
+        <div class="fg-answer">
+            <div class="fg-fr-block">
+                Qui sont Léo, Quentin et Élise pour Catherine ?<br>
+                → Ce sont ses enfants.
+            </div>
+        </div>
+
+        <div class="fg-answer">
+            <div class="fg-fr-block">
+                Qui sont Léo, Quentin et Élise pour Pierre et Marie ?<br>
+                → Ce sont leurs petits-enfants.
+            </div>
+        </div>
+
+        <div class="fg-answer">
+            <div class="fg-fr-block">
+                Qui est Élisabeth pour Élise ?<br>
+                → C’est sa tante.
+            </div>
+        </div>
+
+        <div class="fg-answer">
+            <div class="fg-fr-block">
+                Qui est Jean pour Quentin ?<br>
+                → C’est son oncle.
+            </div>
+        </div>
+    </section>
+
+    <!-- Exercise group nouns -->
+    <section class="fg-card fg-exercise fg-rtl">
+        <h2>۱۴. تمرین — <span class="fg-fr">gens / personnes / tout le monde / le monde entier</span></h2>
+
+        <p>
+            شکل مناسب را در متن انتخاب کنید.
+        </p>
+
+        <div class="fg-example">
+            <div class="fg-fr-block">
+                Mon beau-père est un grand journaliste :
+                il voyage dans <strong>le monde entier</strong>.
+            </div>
+        </div>
+
+        <div class="fg-example">
+            <div class="fg-fr-block">
+                Dans la rue,
+                <strong>tout le monde</strong>
+                le reconnaît.
+            </div>
+        </div>
+
+        <div class="fg-example">
+            <div class="fg-fr-block">
+                Il peut interviewer plusieurs
+                <strong>personnes</strong>
+                à la fois.
+            </div>
+        </div>
+
+        <div class="fg-example">
+            <div class="fg-fr-block">
+                Les
+                <strong>gens</strong>
+                pensent qu’il est français.
+            </div>
+        </div>
+
+        <div class="fg-callout fg-info">
+            <strong>منطق انتخاب</strong>
+            <ul class="fg-list">
+                <li>
+                    <span class="fg-fr">le monde entier</span>
+                    = سراسر جهان
+                </li>
+                <li>
+                    <span class="fg-fr">tout le monde</span>
+                    = همه
+                </li>
+                <li>
+                    <span class="fg-fr">plusieurs personnes</span>
+                    = چند فرد قابل شمارش
+                </li>
+                <li>
+                    <span class="fg-fr">les gens</span>
+                    = مردم به‌طور کلی
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Personne quick test -->
+    <section class="fg-card fg-exercise fg-rtl">
+        <h2>۱۵. تست سریع <span class="fg-fr">personne</span></h2>
+
+        <div class="fg-rule">
+            <div class="fg-rule-num">1</div>
+            <div>
+                <div class="fg-fr-block">
+                    Paul est une personne très ______.
+                </div>
+                <p>
+                    جواب:
+                    <span class="fg-correct fg-fr">organisée</span>
+                </p>
+            </div>
+        </div>
+
+        <div class="fg-rule">
+            <div class="fg-rule-num">2</div>
+            <div>
+                <div class="fg-fr-block">
+                    Ces personnes ______ français.
+                </div>
+                <p>
+                    جواب:
+                    <span class="fg-correct fg-fr">parlent</span>
+                </p>
+            </div>
+        </div>
+
+        <div class="fg-rule">
+            <div class="fg-rule-num">3</div>
+            <div>
+                <div class="fg-fr-block">
+                    Cette personne est ______ hier.
+                </div>
+                <p>
+                    جواب:
+                    <span class="fg-correct fg-fr">arrivée</span>
+                </p>
+            </div>
+        </div>
+
+        <div class="fg-rule">
+            <div class="fg-rule-num">4</div>
+            <div>
+                <div class="fg-fr-block">
+                    Les personnes que j’ai ______ étaient sympathiques.
+                </div>
+                <p>
+                    جواب:
+                    <span class="fg-correct fg-fr">rencontrées</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final formula -->
+    <section class="fg-card fg-summary fg-rtl">
+        <h2>۱۶. خلاصهٔ نهایی درس</h2>
+
+        <div class="fg-rule">
+            <div class="fg-rule-num">1</div>
+            <div>
+                <strong><span class="fg-fr">les parents</span></strong>
+                معمولاً پدر و مادر هستند؛
+                <span class="fg-fr">des parents</span>
+                می‌تواند به بستگان اشاره کند.
+            </div>
+        </div>
+
+        <div class="fg-rule">
+            <div class="fg-rule-num">2</div>
+            <div>
+                واژه‌های دارای
+                <span class="fg-fr">beau-/belle-</span>
+                ممکن است روابط سببی یا ناتنی را نشان دهند و بافت تعیین‌کننده است.
+            </div>
+        </div>
+
+        <div class="fg-rule">
+            <div class="fg-rule-num">3</div>
+            <div>
+                <span class="fg-fr">les gens</span>
+                و
+                <span class="fg-fr">les personnes</span>
+                فعل جمع می‌گیرند.
+            </div>
+        </div>
+
+        <div class="fg-rule">
+            <div class="fg-rule-num">4</div>
+            <div>
+                <span class="fg-fr">tout le monde</span>
+                با وجود معنای جمع، از نظر دستوری مفرد است.
+            </div>
+        </div>
+
+        <div class="fg-rule">
+            <div class="fg-rule-num">5</div>
+            <div>
+                <span class="fg-fr">personne</span>
+                به معنی «شخص» یک اسم مؤنث است؛ حتی اگر دربارهٔ مرد صحبت کنیم.
+            </div>
+        </div>
+
+        <div class="fg-rule">
+            <div class="fg-rule-num">6</div>
+            <div>
+                صفت با اسمی که توصیف می‌کند توافق می‌کند:
+                <span class="fg-fr">une personne intelligente</span>
+                ولی
+                <span class="fg-fr">un homme intelligent</span>.
+            </div>
+        </div>
+
+        <div class="fg-formula">
+            <div class="fg-fr">
+                une personne compétente → est arrivée
+            </div>
+
+            <div class="fg-fr">
+                des personnes compétentes → sont arrivées
+            </div>
+
+            <div class="fg-fr">
+                les gens → pensent
+            </div>
+
+            <div class="fg-fr">
+                tout le monde → pense
+            </div>
+        </div>
+
+        <div class="fg-callout fg-success">
+            <strong>قاعده‌ای که ارزش حفظ کردن دارد:</strong>
+            <p>
+                <span class="fg-fr">personne</span>
+                به معنی «شخص» =
+                <strong>اسم مؤنث</strong>؛
+                اما صرف فعل را
+                <strong>مفرد یا جمع بودن فاعل</strong>
+                تعیین می‌کند.
+            </p>
+        </div>
+    </section>
+
+    <div class="fg-footer-note fg-rtl">
+        منبع درس:
+        <span class="fg-fr">
+            Grammaire Progressive du Français — Niveau intermédiaire,
+            Leçon 7, « Les noms de parenté et de groupe »
+        </span>
+        — صفحات چاپی 38–39، صفحات PDF 40–41.
+    </div>
+</div>

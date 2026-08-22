@@ -1,0 +1,2209 @@
+<div class="french-grammar-wrapper">
+
+<style>
+/* =========================================================
+   FRENCH GRAMMAR — LESSON 14
+   Scoped / isolated styles
+   ========================================================= */
+
+.french-grammar-wrapper {
+    --fg-primary: #163a63;
+    --fg-primary-light: #eaf2fb;
+    --fg-secondary: #285f9e;
+    --fg-accent: #d7a126;
+
+    --fg-green: #18794e;
+    --fg-green-bg: #edf8f2;
+
+    --fg-red: #b42318;
+    --fg-red-bg: #fff0ee;
+
+    --fg-orange: #b65b16;
+    --fg-orange-bg: #fff7e8;
+
+    --fg-blue-bg: #f3f8fe;
+    --fg-gray-bg: #f7f8fa;
+
+    --fg-border: #d9e2ec;
+    --fg-text: #243447;
+    --fg-muted: #66788a;
+    --fg-white: #ffffff;
+
+    font-family:
+        "Vazirmatn",
+        "IRANSans",
+        "Tahoma",
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    color: var(--fg-text);
+    line-height: 1.9;
+    direction: rtl;
+    text-align: right;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.french-grammar-wrapper *,
+.french-grammar-wrapper *::before,
+.french-grammar-wrapper *::after {
+    box-sizing: border-box;
+}
+
+.french-grammar-wrapper .fg-fr {
+    direction: ltr;
+    unicode-bidi: isolate;
+    text-align: left;
+    display: inline-block;
+    font-family:
+        "Segoe UI",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+    letter-spacing: .01em;
+}
+
+.french-grammar-wrapper .fg-fr-block {
+    direction: ltr;
+    unicode-bidi: isolate;
+    text-align: left;
+    display: block;
+    font-family:
+        "Segoe UI",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+}
+
+.french-grammar-wrapper .fg-hero {
+    position: relative;
+    overflow: hidden;
+    background:
+        linear-gradient(135deg, #102e50 0%, #1e548b 60%, #3478b9 100%);
+    color: #fff;
+    border-radius: 22px;
+    padding: 38px 34px;
+    margin-bottom: 28px;
+    box-shadow: 0 16px 42px rgba(21, 58, 99, .18);
+}
+
+.french-grammar-wrapper .fg-hero::after {
+    content: "";
+    position: absolute;
+    width: 230px;
+    height: 230px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.07);
+    left: -70px;
+    top: -80px;
+}
+
+.french-grammar-wrapper .fg-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,.13);
+    border: 1px solid rgba(255,255,255,.2);
+    padding: 7px 14px;
+    border-radius: 999px;
+    font-size: .88rem;
+    margin-bottom: 14px;
+}
+
+.french-grammar-wrapper .fg-hero h1 {
+    margin: 0 0 8px;
+    color: #fff;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    line-height: 1.35;
+}
+
+.french-grammar-wrapper .fg-hero p {
+    margin: 0;
+    color: rgba(255,255,255,.87);
+}
+
+.french-grammar-wrapper .fg-section {
+    margin: 32px 0;
+}
+
+.french-grammar-wrapper .fg-section-title {
+    color: var(--fg-primary);
+    font-size: 1.55rem;
+    margin: 0 0 18px;
+    padding: 0 14px 10px 0;
+    border-right: 5px solid var(--fg-secondary);
+    border-bottom: 1px solid var(--fg-border);
+}
+
+.french-grammar-wrapper .fg-subtitle {
+    color: var(--fg-secondary);
+    font-size: 1.2rem;
+    margin: 28px 0 14px;
+}
+
+.french-grammar-wrapper .fg-card {
+    background: var(--fg-white);
+    border: 1px solid var(--fg-border);
+    border-radius: 16px;
+    padding: 22px;
+    margin: 16px 0;
+    box-shadow: 0 5px 20px rgba(31, 55, 81, .055);
+}
+
+.french-grammar-wrapper .fg-card h3,
+.french-grammar-wrapper .fg-card h4 {
+    color: var(--fg-primary);
+    margin-top: 0;
+}
+
+.french-grammar-wrapper .fg-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    gap: 18px;
+}
+
+.french-grammar-wrapper .fg-rule {
+    background: var(--fg-blue-bg);
+    border: 1px solid #cddff3;
+    border-right: 5px solid var(--fg-secondary);
+    border-radius: 13px;
+    padding: 18px 20px;
+    margin: 16px 0;
+}
+
+.french-grammar-wrapper .fg-tip {
+    background: var(--fg-orange-bg);
+    border: 1px solid #f0d39c;
+    border-right: 5px solid var(--fg-orange);
+    border-radius: 13px;
+    padding: 18px 20px;
+    margin: 16px 0;
+}
+
+.french-grammar-wrapper .fg-warning {
+    background: var(--fg-red-bg);
+    border: 1px solid #f0b9b4;
+    border-right: 5px solid var(--fg-red);
+    border-radius: 13px;
+    padding: 18px 20px;
+    margin: 16px 0;
+}
+
+.french-grammar-wrapper .fg-success {
+    background: var(--fg-green-bg);
+    border: 1px solid #b9dec9;
+    border-right: 5px solid var(--fg-green);
+    border-radius: 13px;
+    padding: 18px 20px;
+    margin: 16px 0;
+}
+
+.french-grammar-wrapper .fg-label {
+    font-weight: 800;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.french-grammar-wrapper .fg-example {
+    direction: ltr;
+    unicode-bidi: isolate;
+    text-align: left;
+    font-family:
+        "Segoe UI",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+    background: #fafcff;
+    border: 1px solid var(--fg-border);
+    border-left: 4px solid var(--fg-secondary);
+    padding: 13px 16px;
+    margin: 10px 0;
+    border-radius: 10px;
+    color: #17395d;
+}
+
+.french-grammar-wrapper .fg-correct {
+    color: var(--fg-green);
+    font-weight: 700;
+}
+
+.french-grammar-wrapper .fg-wrong {
+    color: var(--fg-red);
+    font-weight: 700;
+}
+
+.french-grammar-wrapper .fg-table-wrap {
+    overflow-x: auto;
+    margin: 18px 0;
+    border-radius: 13px;
+    border: 1px solid var(--fg-border);
+    -webkit-overflow-scrolling: touch;
+}
+
+.french-grammar-wrapper table.fg-table {
+    width: 100%;
+    min-width: 620px;
+    border-collapse: collapse;
+    background: #fff;
+    margin: 0;
+}
+
+.french-grammar-wrapper .fg-table th {
+    background: var(--fg-primary);
+    color: #fff;
+    font-weight: 700;
+    padding: 13px 14px;
+    border: 1px solid #355a7d;
+    text-align: center;
+}
+
+.french-grammar-wrapper .fg-table td {
+    padding: 12px 14px;
+    border: 1px solid var(--fg-border);
+    vertical-align: top;
+}
+
+.french-grammar-wrapper .fg-table tbody tr:nth-child(even) {
+    background: var(--fg-gray-bg);
+}
+
+.french-grammar-wrapper .fg-table .fg-french-cell {
+    direction: ltr;
+    unicode-bidi: isolate;
+    text-align: left;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.french-grammar-wrapper .fg-mini-table {
+    min-width: 480px !important;
+}
+
+.french-grammar-wrapper .fg-list {
+    margin: 10px 0;
+    padding-right: 22px;
+}
+
+.french-grammar-wrapper .fg-list li {
+    margin: 7px 0;
+}
+
+.french-grammar-wrapper .fg-divider {
+    height: 1px;
+    background: linear-gradient(
+        to left,
+        transparent,
+        var(--fg-border),
+        transparent
+    );
+    margin: 34px 0;
+}
+
+.french-grammar-wrapper .fg-badge {
+    display: inline-block;
+    border-radius: 999px;
+    padding: 4px 10px;
+    background: var(--fg-primary-light);
+    color: var(--fg-primary);
+    font-size: .82rem;
+    font-weight: 700;
+    margin: 3px;
+}
+
+.french-grammar-wrapper .fg-answer {
+    background: #f9fbfd;
+    border: 1px dashed #abc1d8;
+    border-radius: 12px;
+    padding: 16px;
+    margin: 12px 0;
+}
+
+.french-grammar-wrapper .fg-answer-title {
+    color: var(--fg-green);
+    font-weight: 800;
+    margin-bottom: 9px;
+}
+
+.french-grammar-wrapper .fg-note {
+    color: var(--fg-muted);
+    font-size: .93rem;
+}
+
+.french-grammar-wrapper .fg-summary {
+    background: #142f50;
+    color: #fff;
+    border-radius: 18px;
+    padding: 24px;
+}
+
+.french-grammar-wrapper .fg-summary h2 {
+    margin-top: 0;
+    color: #fff;
+}
+
+.french-grammar-wrapper .fg-summary .fg-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    gap: 10px 18px;
+}
+
+.french-grammar-wrapper .fg-summary-item {
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.11);
+    border-radius: 10px;
+    padding: 12px;
+}
+
+.french-grammar-wrapper .fg-pill-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+
+.french-grammar-wrapper .fg-exercise {
+    border-right: 4px solid #809cb8;
+}
+
+.french-grammar-wrapper strong {
+    color: inherit;
+}
+
+@media (max-width: 760px) {
+    .french-grammar-wrapper {
+        padding: 12px;
+        line-height: 1.85;
+    }
+
+    .french-grammar-wrapper .fg-hero {
+        padding: 27px 20px;
+        border-radius: 16px;
+    }
+
+    .french-grammar-wrapper .fg-grid,
+    .french-grammar-wrapper .fg-summary .fg-summary-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .french-grammar-wrapper .fg-card {
+        padding: 17px;
+        border-radius: 13px;
+    }
+
+    .french-grammar-wrapper .fg-section-title {
+        font-size: 1.3rem;
+    }
+
+    .french-grammar-wrapper .fg-table th,
+    .french-grammar-wrapper .fg-table td {
+        padding: 10px 9px;
+        font-size: .92rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .french-grammar-wrapper {
+        padding: 8px;
+    }
+
+    .french-grammar-wrapper .fg-hero {
+        padding: 22px 16px;
+    }
+
+    .french-grammar-wrapper .fg-card,
+    .french-grammar-wrapper .fg-rule,
+    .french-grammar-wrapper .fg-tip,
+    .french-grammar-wrapper .fg-warning,
+    .french-grammar-wrapper .fg-success {
+        padding: 14px;
+    }
+}
+</style>
+
+
+<!-- =======================================================
+     HERO
+     ======================================================= -->
+
+<section class="fg-hero">
+    <div class="fg-kicker">
+        درس ۱۴ · Grammaire Progressive du Français
+    </div>
+
+    <h1>
+        <span class="fg-fr">LE TEMPS (1)</span>
+    </h1>
+
+    <p>
+        روز، تاریخ، ماه‌ها، فصل‌ها، ساعت و بیان وضعیت آب‌وهوا
+    </p>
+</section>
+
+
+<!-- =======================================================
+     PART 1
+     ======================================================= -->
+
+<section class="fg-section">
+
+    <h2 class="fg-section-title">
+        بخش اول: روز، تاریخ، ماه و فصل
+        —
+        <span class="fg-fr">Le jour, la date et les saisons</span>
+    </h2>
+
+
+    <!-- Day & date -->
+    <div class="fg-card">
+
+        <h3>۱. بیان روز و تاریخ</h3>
+
+        <p>
+            برای گفتن تاریخ می‌توانیم از ساختارهای زیر استفاده کنیم:
+        </p>
+
+        <div class="fg-rule">
+            <span class="fg-fr-block">
+                Nous sommes le + date<br>
+                On est le + date
+            </span>
+        </div>
+
+        <div class="fg-example">
+            Nous sommes le 21 juin.
+        </div>
+
+        <p>برای گفتن فقط روز هفته:</p>
+
+        <div class="fg-example">
+            Nous sommes lundi.<br>
+            On est lundi.<br>
+            C’est lundi.
+        </div>
+
+        <div class="fg-tip">
+            <span class="fg-label">نکتهٔ کاربردی</span>
+            <span class="fg-fr">C’est lundi.</span>
+            در گفتار روزمره بسیار طبیعی است.
+        </div>
+
+        <h4 class="fg-subtitle">تفاوت سؤال درباره روز و تاریخ</h4>
+
+        <div class="fg-table-wrap">
+            <table class="fg-table">
+                <thead>
+                    <tr>
+                        <th>فرانسوی</th>
+                        <th>معنی</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="fg-french-cell">Quel jour sommes-nous ?</td>
+                        <td>امروز چه روزی از هفته است؟</td>
+                    </tr>
+                    <tr>
+                        <td class="fg-french-cell">Quelle est la date aujourd’hui ?</td>
+                        <td>امروز چندم است؟</td>
+                    </tr>
+                    <tr>
+                        <td class="fg-french-cell">On est quel jour ?</td>
+                        <td>امروز چه روزی است؟ — محاوره‌ای</td>
+                    </tr>
+                    <tr>
+                        <td class="fg-french-cell">On est le combien ?</td>
+                        <td>امروز چندم است؟ — بسیار محاوره‌ای</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="fg-example">
+            — Quel jour sommes-nous ?<br>
+            — Nous sommes jeudi.
+        </div>
+
+        <div class="fg-example">
+            — Quelle est la date aujourd’hui ?<br>
+            — Nous sommes le 23 juillet.
+        </div>
+
+    </div>
+
+
+    <!-- le before date -->
+    <div class="fg-card">
+
+        <h3>۲. حرف تعریف <span class="fg-fr">le</span> قبل از تاریخ</h3>
+
+        <p>
+            وقتی روز مشخص ماه را بیان می‌کنیم، معمولاً از
+            <span class="fg-fr">le</span>
+            استفاده می‌شود.
+        </p>
+
+        <div class="fg-example">
+            Paris, le 8 novembre 1988.
+        </div>
+
+        <div class="fg-example">
+            Je suis né le 7 mai.
+        </div>
+
+        <div class="fg-example">
+            Le rendez-vous est le 12 décembre.
+        </div>
+
+        <div class="fg-warning">
+            <span class="fg-label">اشتباه رایج</span>
+
+            <div class="fg-fr-block fg-wrong">
+                ❌ Je suis né en 7 mai.<br>
+                ❌ Je suis né à 7 mai.
+            </div>
+
+            <div class="fg-fr-block fg-correct">
+                ✅ Je suis né le 7 mai.
+            </div>
+        </div>
+
+        <p>
+            اما اگر فقط ماه را بگوییم و روز ماه وجود نداشته باشد:
+        </p>
+
+        <div class="fg-success">
+            <div class="fg-fr-block">
+                Je suis né <strong>en mai</strong>.
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- weekday + date -->
+    <div class="fg-card">
+
+        <h3>۳. روز هفته همراه با تاریخ</h3>
+
+        <div class="fg-example">
+            Nous sommes le mercredi 18 août.
+        </div>
+
+        <div class="fg-example">
+            La réunion aura lieu le lundi 12 décembre.
+        </div>
+
+        <p>
+            در تیتر، تقویم، برنامه یا اطلاعیه ممکن است
+            <span class="fg-fr">le</span>
+            حذف شود:
+        </p>
+
+        <div class="fg-example">
+            Réunion : lundi 12 décembre
+        </div>
+
+        <div class="fg-tip">
+            در جملهٔ کامل، استفاده از
+            <span class="fg-fr">le</span>
+            انتخاب مطمئن‌تری است.
+        </div>
+
+    </div>
+
+
+    <!-- premier -->
+    <div class="fg-card">
+
+        <h3>۴. روز اول ماه: <span class="fg-fr">premier</span></h3>
+
+        <p>
+            فقط برای روز اول ماه از عدد ترتیبی
+            <span class="fg-fr">premier</span>
+            استفاده می‌شود.
+        </p>
+
+        <div class="fg-example">
+            le 1er mai → le premier mai
+        </div>
+
+        <p>
+            از روز دوم به بعد از عدد اصلی استفاده می‌کنیم:
+        </p>
+
+        <div class="fg-example">
+            le 2 mai → le deux mai<br>
+            le 3 mai → le trois mai<br>
+            le 21 juin → le vingt et un juin
+        </div>
+
+        <div class="fg-warning">
+            <span class="fg-label">به این دام دقت کن</span>
+
+            <div class="fg-fr-block fg-wrong">
+                ❌ le deuxième mai<br>
+                ❌ le troisième juin
+            </div>
+
+            <p>
+                در تاریخ، برای دوم، سوم، چهارم و ... از
+                <strong>اعداد اصلی</strong>
+                استفاده می‌شود، نه اعداد ترتیبی.
+            </p>
+        </div>
+
+    </div>
+
+
+    <!-- Days -->
+    <div class="fg-card">
+
+        <h3>۵. روزهای هفته</h3>
+
+        <div class="fg-table-wrap">
+            <table class="fg-table fg-mini-table">
+                <thead>
+                    <tr>
+                        <th>Français</th>
+                        <th>فارسی</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td class="fg-french-cell">lundi</td><td>دوشنبه</td></tr>
+                    <tr><td class="fg-french-cell">mardi</td><td>سه‌شنبه</td></tr>
+                    <tr><td class="fg-french-cell">mercredi</td><td>چهارشنبه</td></tr>
+                    <tr><td class="fg-french-cell">jeudi</td><td>پنج‌شنبه</td></tr>
+                    <tr><td class="fg-french-cell">vendredi</td><td>جمعه</td></tr>
+                    <tr><td class="fg-french-cell">samedi</td><td>شنبه</td></tr>
+                    <tr><td class="fg-french-cell">dimanche</td><td>یکشنبه</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="fg-tip">
+            نام روزها و ماه‌ها در زبان فرانسه معمولاً با حرف کوچک نوشته می‌شوند:
+            <div class="fg-fr-block">
+                lundi, janvier, juillet
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- lundi vs le lundi -->
+    <div class="fg-card">
+
+        <h3>
+            ۶. تفاوت
+            <span class="fg-fr">lundi</span>
+            و
+            <span class="fg-fr">le lundi</span>
+        </h3>
+
+        <div class="fg-grid">
+
+            <div class="fg-rule">
+                <span class="fg-label">
+                    بدون حرف تعریف
+                </span>
+
+                <div class="fg-fr-block">
+                    Lundi, je suis à Berlin.
+                </div>
+
+                <p>
+                    یعنی یک دوشنبهٔ مشخص که از بافت معلوم است.
+                </p>
+            </div>
+
+            <div class="fg-rule">
+                <span class="fg-label">
+                    با <span class="fg-fr">le</span>
+                </span>
+
+                <div class="fg-fr-block">
+                    Le lundi, je travaille à la maison.
+                </div>
+
+                <p>
+                    یعنی دوشنبه‌ها، به‌صورت عادت یا تکرار.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="fg-example">
+            Le lundi et le jeudi, je suis à Lyon.
+        </div>
+
+        <p>همچنین می‌توان گفت:</p>
+
+        <div class="fg-example">
+            Tous les lundis, je travaille à la maison.
+        </div>
+
+        <div class="fg-tip">
+            در ساخت
+            <span class="fg-fr">tous les...</span>
+            نام روز هفته جمع می‌شود:
+            <span class="fg-fr">lundis, jeudis, vendredis</span>.
+        </div>
+
+    </div>
+
+
+    <!-- parts of day -->
+    <div class="fg-card">
+
+        <h3>۷. بخش‌های روز</h3>
+
+        <div class="fg-example">
+            Je dors le matin.
+        </div>
+
+        <div class="fg-example">
+            Je travaille l’après-midi.
+        </div>
+
+        <div class="fg-example">
+            Je sors le soir.
+        </div>
+
+        <p>
+            این ساخت‌ها معمولاً مفهوم عادت یا زمان عمومی دارند.
+        </p>
+
+        <div class="fg-table-wrap">
+            <table class="fg-table fg-mini-table">
+                <thead>
+                    <tr>
+                        <th>عبارت</th>
+                        <th>معنی</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="fg-french-cell">ce matin</td>
+                        <td>امروز صبح</td>
+                    </tr>
+                    <tr>
+                        <td class="fg-french-cell">cet après-midi</td>
+                        <td>امروز بعدازظهر</td>
+                    </tr>
+                    <tr>
+                        <td class="fg-french-cell">ce soir</td>
+                        <td>امشب</td>
+                    </tr>
+                    <tr>
+                        <td class="fg-french-cell">demain matin</td>
+                        <td>فردا صبح</td>
+                    </tr>
+                    <tr>
+                        <td class="fg-french-cell">hier soir</td>
+                        <td>دیشب</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="fg-rule">
+            <div class="fg-fr-block">
+                Je travaille le matin.
+            </div>
+            <p>من صبح‌ها کار می‌کنم.</p>
+
+            <div class="fg-fr-block">
+                J’ai travaillé ce matin.
+            </div>
+            <p>من امروز صبح کار کردم.</p>
+        </div>
+
+    </div>
+
+
+    <!-- months -->
+    <div class="fg-card">
+
+        <h3>۸. ماه‌های سال</h3>
+
+        <div class="fg-table-wrap">
+            <table class="fg-table">
+                <thead>
+                    <tr>
+                        <th>Français</th>
+                        <th>فارسی</th>
+                        <th>Français</th>
+                        <th>فارسی</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="fg-french-cell">janvier</td><td>ژانویه</td>
+                        <td class="fg-french-cell">juillet</td><td>ژوئیه</td>
+                    </tr>
+                    <tr>
+                        <td class="fg-french-cell">février</td><td>فوریه</td>
+                        <td class="fg-french-cell">août</td><td>اوت</td>
+                    </tr>
+                    <tr>
+                        <td class="fg-french-cell">mars</td><td>مارس</td>
+                        <td class="fg-french-cell">septembre</td><td>سپتامبر</td>
+                    </tr>
+                    <tr>
+                        <td class="fg-french-cell">avril</td><td>آوریل</td>
+                        <td class="fg-french-cell">octobre</td><td>اکتبر</td>
+                    </tr>
+                    <tr>
+                        <td class="fg-french-cell">mai</td><td>مه</td>
+                        <td class="fg-french-cell">novembre</td><td>نوامبر</td>
+                    </tr>
+                    <tr>
+                        <td class="fg-french-cell">juin</td><td>ژوئن</td>
+                        <td class="fg-french-cell">décembre</td><td>دسامبر</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h4 class="fg-subtitle">
+            ساخت اصلی:
+            <span class="fg-fr">en + mois</span>
+        </h4>
+
+        <div class="fg-example">
+            Nous sommes en mars.
+        </div>
+
+        <div class="fg-example">
+            Je suis né en mai.
+        </div>
+
+        <p>
+            ساخت رسمی‌تر یا تأکیدی‌تر:
+        </p>
+
+        <div class="fg-example">
+            Nous sommes au mois de mars.
+        </div>
+
+        <h4 class="fg-subtitle">ابتدا، میانه و پایان ماه</h4>
+
+        <div class="fg-example">
+            début mars<br>
+            mi-mars<br>
+            fin mars
+        </div>
+
+        <div class="fg-example">
+            Nous sommes début mars.
+        </div>
+
+        <div class="fg-example">
+            Le projet commencera mi-avril.
+        </div>
+
+        <div class="fg-example">
+            Je partirai fin juillet.
+        </div>
+
+        <div class="fg-tip">
+            با واژهٔ
+            <span class="fg-fr">mois</span>
+            ساخت تغییر می‌کند:
+            <div class="fg-fr-block">
+                au début du mois de mars<br>
+                à la fin du mois de juillet
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- Seasons -->
+    <div class="fg-card">
+
+        <h3>۹. فصل‌ها</h3>
+
+        <div class="fg-table-wrap">
+            <table class="fg-table fg-mini-table">
+                <thead>
+                    <tr>
+                        <th>فصل</th>
+                        <th>ساخت صحیح</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="fg-french-cell">le printemps</td>
+                        <td class="fg-french-cell">au printemps</td>
+                    </tr>
+                    <tr>
+                        <td class="fg-french-cell">l’été</td>
+                        <td class="fg-french-cell">en été</td>
+                    </tr>
+                    <tr>
+                        <td class="fg-french-cell">l’automne</td>
+                        <td class="fg-french-cell">en automne</td>
+                    </tr>
+                    <tr>
+                        <td class="fg-french-cell">l’hiver</td>
+                        <td class="fg-french-cell">en hiver</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="fg-example">
+            Il fait doux au printemps.
+        </div>
+
+        <div class="fg-example">
+            Il fait chaud en été.
+        </div>
+
+        <div class="fg-example">
+            Il pleut beaucoup en automne.
+        </div>
+
+        <div class="fg-example">
+            Il neige en hiver.
+        </div>
+
+        <div class="fg-warning">
+            <span class="fg-label">نکته‌ای که باید حفظ شود</span>
+            <div class="fg-fr-block">
+                ❌ en printemps<br>
+                ✅ au printemps
+            </div>
+        </div>
+
+        <p>برای اشاره به فصل مشخص:</p>
+
+        <div class="fg-example">
+            cet été<br>
+            l’hiver dernier<br>
+            au printemps prochain
+        </div>
+
+    </div>
+
+
+    <!-- years centuries -->
+    <div class="fg-card">
+
+        <h3>۱۰. سال و قرن</h3>
+
+        <p>برای سال:</p>
+
+        <div class="fg-example">
+            en 2026<br>
+            en 1989<br>
+            en 1789
+        </div>
+
+        <p>برای قرن:</p>
+
+        <div class="fg-example">
+            au XXIe siècle<br>
+            au XXe siècle<br>
+            au XVIIIe siècle
+        </div>
+
+        <div class="fg-rule">
+            <span class="fg-label">دلیل استفاده از au</span>
+
+            <span class="fg-fr">
+                à + le siècle → au siècle
+            </span>
+        </div>
+
+        <div class="fg-table-wrap">
+            <table class="fg-table fg-mini-table">
+                <thead>
+                    <tr>
+                        <th>سال</th>
+                        <th>قرن</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>1769</td><td class="fg-french-cell">XVIIIe siècle</td></tr>
+                    <tr><td>1871</td><td class="fg-french-cell">XIXe siècle</td></tr>
+                    <tr><td>1908</td><td class="fg-french-cell">XXe siècle</td></tr>
+                    <tr><td>2026</td><td class="fg-french-cell">XXIe siècle</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="fg-tip">
+            سال‌های 1801 تا 1900 متعلق به قرن نوزدهم‌اند.
+            بنابراین:
+            <div class="fg-fr-block">
+                1871 → au dix-neuvième siècle
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<div class="fg-divider"></div>
+
+
+<!-- =======================================================
+     EXERCISES PAGE 65
+     ======================================================= -->
+
+<section class="fg-section">
+
+    <h2 class="fg-section-title">
+        تمرین‌های تاریخ و فصل‌ها
+    </h2>
+
+
+    <div class="fg-card fg-exercise">
+
+        <h3>تمرین ۱ — نوشتن تاریخ</h3>
+
+        <div class="fg-pill-row">
+            <span class="fg-badge">jeudi 21/01</span>
+            <span class="fg-badge">dimanche 15/08</span>
+            <span class="fg-badge">vendredi 12/12</span>
+        </div>
+
+        <div class="fg-answer">
+            <div class="fg-answer-title">پاسخ ۱</div>
+            <div class="fg-fr-block">
+                Aujourd’hui, c’est jeudi.<br>
+                Nous sommes le 21.<br>
+                Nous sommes en janvier.
+            </div>
+        </div>
+
+        <div class="fg-answer">
+            <div class="fg-answer-title">پاسخ ۲</div>
+            <div class="fg-fr-block">
+                Aujourd’hui, c’est dimanche.<br>
+                Nous sommes le 15.<br>
+                Nous sommes en août.
+            </div>
+        </div>
+
+        <div class="fg-answer">
+            <div class="fg-answer-title">پاسخ ۳</div>
+            <div class="fg-fr-block">
+                Aujourd’hui, c’est vendredi.<br>
+                Nous sommes le 12.<br>
+                Nous sommes en décembre.
+            </div>
+        </div>
+
+        <div class="fg-tip">
+            می‌توان روز و تاریخ را در یک جمله نیز آورد:
+            <div class="fg-fr-block">
+                Aujourd’hui, nous sommes le jeudi 21 janvier.
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="fg-card fg-exercise">
+
+        <h3>
+            تمرین ۲ —
+            <span class="fg-fr">le / en / au</span>
+            یا بدون حرف اضافه
+        </h3>
+
+        <div class="fg-answer">
+            <div class="fg-fr-block">
+                Ma mère n’est pas jeune — elle est née
+                <strong>le</strong> 31 août 1950 —, mais c’est une excellente
+                nageuse et, <strong>en</strong> été, nous passons
+                <strong>le</strong> dimanche au bord de la mer.
+                <br><br>
+                En Bretagne, <strong>en</strong> août, il y a beaucoup de monde,
+                surtout <strong>le</strong> week-end : nous partons
+                <strong>le</strong> matin et nous rentrons
+                <strong>le</strong> soir après la chaleur.
+                <br><br>
+                En revanche, <strong>au</strong> printemps et
+                <strong>en</strong> automne, nous sommes seules sur la plage.
+                Nous prenons le dernier bain <strong>en</strong> septembre ou
+                même, parfois, <strong>début</strong> octobre et nous
+                recommençons <strong>au</strong> mois de mai.
+            </div>
+        </div>
+
+        <div class="fg-table-wrap">
+            <table class="fg-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>پاسخ</th>
+                        <th>دلیل</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>1</td><td class="fg-french-cell">le</td><td>قبل از تاریخ کامل</td></tr>
+                    <tr><td>2</td><td class="fg-french-cell">en</td><td class="fg-french-cell">en été</td></tr>
+                    <tr><td>3</td><td class="fg-french-cell">le</td><td>تکرار هفتگی</td></tr>
+                    <tr><td>4</td><td class="fg-french-cell">en</td><td class="fg-french-cell">en août</td></tr>
+                    <tr><td>5</td><td class="fg-french-cell">le</td><td class="fg-french-cell">le week-end</td></tr>
+                    <tr><td>6</td><td class="fg-french-cell">le</td><td class="fg-french-cell">le matin</td></tr>
+                    <tr><td>7</td><td class="fg-french-cell">le</td><td class="fg-french-cell">le soir</td></tr>
+                    <tr><td>8</td><td class="fg-french-cell">au</td><td class="fg-french-cell">au printemps</td></tr>
+                    <tr><td>9</td><td class="fg-french-cell">en</td><td class="fg-french-cell">en automne</td></tr>
+                    <tr><td>10</td><td class="fg-french-cell">en</td><td class="fg-french-cell">en septembre</td></tr>
+                    <tr><td>11</td><td>—</td><td class="fg-french-cell">début octobre</td></tr>
+                    <tr><td>12</td><td class="fg-french-cell">au</td><td class="fg-french-cell">au mois de mai</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+
+    <div class="fg-card fg-exercise">
+
+        <h3>تمرین ۳ — ماه تولد و قرن</h3>
+
+        <div class="fg-answer">
+            <div class="fg-fr-block">
+                Marcel Proust : Il est né en juillet, au dix-neuvième siècle.
+            </div>
+        </div>
+
+        <div class="fg-answer">
+            <div class="fg-fr-block">
+                Marilyn Monroe : Elle est née en juin, au vingtième siècle.
+            </div>
+        </div>
+
+        <div class="fg-answer">
+            <div class="fg-fr-block">
+                Albert Einstein : Il est né en mars, au dix-neuvième siècle.
+            </div>
+        </div>
+
+        <div class="fg-answer">
+            <div class="fg-fr-block">
+                Napoléon Ier : Il est né en août, au dix-huitième siècle.
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="fg-card fg-exercise">
+
+        <h3>تمرین ۴ — نوشتن سال با حروف</h3>
+
+        <div class="fg-table-wrap">
+            <table class="fg-table">
+                <thead>
+                    <tr>
+                        <th>سال</th>
+                        <th>نوشتار فرانسوی</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>1850</td><td class="fg-french-cell">mille huit cent cinquante</td></tr>
+                    <tr><td>1872</td><td class="fg-french-cell">mille huit cent soixante-douze</td></tr>
+                    <tr><td>1698</td><td class="fg-french-cell">mille six cent quatre-vingt-dix-huit</td></tr>
+                    <tr><td>1300</td><td class="fg-french-cell">mille trois cents</td></tr>
+                    <tr><td>1480</td><td class="fg-french-cell">mille quatre cent quatre-vingts</td></tr>
+                    <tr><td>1839</td><td class="fg-french-cell">mille huit cent trente-neuf</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="fg-tip">
+            <span class="fg-label">قاعدهٔ mille</span>
+            <span class="fg-fr">mille</span>
+            هیچ‌گاه
+            <span class="fg-fr">s</span>
+            نمی‌گیرد.
+        </div>
+
+        <div class="fg-tip">
+            <span class="fg-label">قاعدهٔ cent</span>
+            <span class="fg-fr">cent</span>
+            زمانی
+            <span class="fg-fr">s</span>
+            می‌گیرد که ضرب شده باشد و عدد دیگری بعد از آن نیاید.
+            <div class="fg-fr-block">
+                mille trois cents<br>
+                mille trois cent cinquante
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<div class="fg-divider"></div>
+
+
+<!-- =======================================================
+     HOUR
+     ======================================================= -->
+
+<section class="fg-section">
+
+    <h2 class="fg-section-title">
+        بخش دوم: ساعت
+        —
+        <span class="fg-fr">L’heure</span>
+    </h2>
+
+
+    <div class="fg-card">
+
+        <h3>۱. پرسیدن و گفتن ساعت</h3>
+
+        <div class="fg-rule">
+            <div class="fg-fr-block">
+                Quelle heure est-il ?
+            </div>
+        </div>
+
+        <p>
+            پاسخ با
+            <span class="fg-fr">Il est...</span>
+            ساخته می‌شود.
+        </p>
+
+        <div class="fg-example">
+            Il est une heure.
+        </div>
+
+        <div class="fg-example">
+            Il est dix heures.
+        </div>
+
+        <div class="fg-warning">
+            <div class="fg-fr-block">
+                ✅ Il est dix heures.<br>
+                ❌ Ils sont dix heures.
+            </div>
+            <p>
+                ساخت ساعت بی‌شخص است و
+                <span class="fg-fr">il</span>
+                همیشه مفرد باقی می‌ماند.
+            </p>
+        </div>
+
+    </div>
+
+
+    <div class="fg-card">
+
+        <h3>۲. ساعت در زبان روزمره</h3>
+
+        <div class="fg-table-wrap">
+            <table class="fg-table">
+                <thead>
+                    <tr>
+                        <th>ساعت</th>
+                        <th>فرانسوی</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>8:00</td><td class="fg-french-cell">huit heures</td></tr>
+                    <tr><td>8:05</td><td class="fg-french-cell">huit heures cinq</td></tr>
+                    <tr><td>8:10</td><td class="fg-french-cell">huit heures dix</td></tr>
+                    <tr><td>8:15</td><td class="fg-french-cell">huit heures et quart</td></tr>
+                    <tr><td>8:30</td><td class="fg-french-cell">huit heures et demie</td></tr>
+                    <tr><td>8:45</td><td class="fg-french-cell">neuf heures moins le quart</td></tr>
+                    <tr><td>8:50</td><td class="fg-french-cell">neuf heures moins dix</td></tr>
+                    <tr><td>8:55</td><td class="fg-french-cell">neuf heures moins cinq</td></tr>
+                    <tr><td>9:45</td><td class="fg-french-cell">dix heures moins le quart</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="fg-tip">
+            در ساخت
+            <span class="fg-fr">moins</span>
+            ساعت بعدی گفته می‌شود.
+            <div class="fg-fr-block">
+                neuf heures moins dix = 8h50
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="fg-card">
+
+        <h3>
+            ۳. تفاوت
+            <span class="fg-fr">et quart</span>
+            و
+            <span class="fg-fr">moins le quart</span>
+        </h3>
+
+        <div class="fg-grid">
+
+            <div class="fg-success">
+                <div class="fg-fr-block">
+                    huit heures et quart
+                </div>
+                <p>۸:۱۵</p>
+            </div>
+
+            <div class="fg-success">
+                <div class="fg-fr-block">
+                    neuf heures moins le quart
+                </div>
+                <p>۸:۴۵</p>
+            </div>
+
+        </div>
+
+        <div class="fg-warning">
+            <div class="fg-fr-block">
+                et quart → بدون le<br>
+                moins le quart → با le
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="fg-card">
+
+        <h3>۴. قاعدهٔ مهم <span class="fg-fr">demi / demie</span></h3>
+
+        <p>
+            وقتی
+            <span class="fg-fr">demi</span>
+            قبل از اسم قرار می‌گیرد، تغییر نمی‌کند و با خط تیره نوشته می‌شود:
+        </p>
+
+        <div class="fg-example">
+            une demi-heure
+        </div>
+
+        <p>
+            وقتی بعد از
+            <span class="fg-fr">heure</span>
+            قرار می‌گیرد، با اسم مؤنث توافق می‌کند:
+        </p>
+
+        <div class="fg-example">
+            une heure et demie<br>
+            deux heures et demie
+        </div>
+
+        <p>
+            اما
+            <span class="fg-fr">midi</span>
+            و
+            <span class="fg-fr">minuit</span>
+            مذکرند:
+        </p>
+
+        <div class="fg-example">
+            midi et demi<br>
+            minuit et demi
+        </div>
+
+        <div class="fg-warning">
+            <div class="fg-fr-block">
+                ❌ midi et demie<br>
+                ✅ midi et demi
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="fg-card">
+
+        <h3>۵. <span class="fg-fr">midi</span> و <span class="fg-fr">minuit</span></h3>
+
+        <div class="fg-table-wrap">
+            <table class="fg-table fg-mini-table">
+                <thead>
+                    <tr>
+                        <th>ساعت</th>
+                        <th>فرانسوی</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>12:00</td><td class="fg-french-cell">midi</td></tr>
+                    <tr><td>00:00</td><td class="fg-french-cell">minuit</td></tr>
+                    <tr><td>12:30</td><td class="fg-french-cell">midi et demi</td></tr>
+                    <tr><td>00:30</td><td class="fg-french-cell">minuit et demi</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+
+    <div class="fg-card">
+
+        <h3>۶. ساعت رسمی و ساعت روزمره</h3>
+
+        <div class="fg-grid">
+
+            <div class="fg-rule">
+                <span class="fg-label">روزمره</span>
+                <div class="fg-fr-block">
+                    20h25 → huit heures vingt-cinq du soir<br>
+                    15h45 → quatre heures moins le quart
+                </div>
+            </div>
+
+            <div class="fg-rule">
+                <span class="fg-label">رسمی / ۲۴ ساعته</span>
+                <div class="fg-fr-block">
+                    20h25 → vingt heures vingt-cinq<br>
+                    17h15 → dix-sept heures quinze
+                </div>
+            </div>
+
+        </div>
+
+        <div class="fg-tip">
+            در ساعت رسمی معمولاً از
+            <span class="fg-fr">et quart</span>،
+            <span class="fg-fr">et demie</span>
+            و
+            <span class="fg-fr">moins</span>
+            استفاده نمی‌شود.
+        </div>
+
+        <div class="fg-warning">
+            <div class="fg-fr-block">
+                17h25 → dix-sept heures vingt-cinq<br>
+                ❌ dix-sept heures et vingt-cinq
+            </div>
+        </div>
+
+        <div class="fg-tip">
+            اما در عدد ۲۱، خودِ عدد
+            <span class="fg-fr">et</span>
+            دارد:
+            <div class="fg-fr-block">
+                21h15 → vingt et une heures quinze
+            </div>
+            چون
+            <span class="fg-fr">heure</span>
+            مؤنث است:
+            <span class="fg-fr">une</span>
+            استفاده می‌شود.
+        </div>
+
+    </div>
+
+
+    <div class="fg-card">
+
+        <h3>۷. حروف اضافهٔ مربوط به ساعت</h3>
+
+        <div class="fg-table-wrap">
+            <table class="fg-table">
+                <thead>
+                    <tr>
+                        <th>ساخت</th>
+                        <th>مثال</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="fg-french-cell">à + heure</td>
+                        <td class="fg-french-cell">J’ai rendez-vous à 8 heures.</td>
+                    </tr>
+                    <tr>
+                        <td class="fg-french-cell">de ... à ...</td>
+                        <td class="fg-french-cell">Je travaille de 9 heures à 17 heures.</td>
+                    </tr>
+                    <tr>
+                        <td class="fg-french-cell">vers</td>
+                        <td class="fg-french-cell">J’arriverai vers 10 heures.</td>
+                    </tr>
+                    <tr>
+                        <td class="fg-french-cell">jusqu’à</td>
+                        <td class="fg-french-cell">Je travaille jusqu’à 18 heures.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+
+    <div class="fg-card">
+
+        <h3>
+            ۸.
+            <span class="fg-fr">tôt</span>،
+            <span class="fg-fr">tard</span>،
+            <span class="fg-fr">en avance</span>
+            و
+            <span class="fg-fr">en retard</span>
+        </h3>
+
+        <div class="fg-table-wrap">
+            <table class="fg-table">
+                <thead>
+                    <tr>
+                        <th>عبارت</th>
+                        <th>مفهوم</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="fg-french-cell">tôt</td>
+                        <td>زود از نظر ساعت روز</td>
+                    </tr>
+                    <tr>
+                        <td class="fg-french-cell">tard</td>
+                        <td>دیر از نظر ساعت روز</td>
+                    </tr>
+                    <tr>
+                        <td class="fg-french-cell">en avance</td>
+                        <td>زودتر از زمان برنامه</td>
+                    </tr>
+                    <tr>
+                        <td class="fg-french-cell">en retard</td>
+                        <td>دیرتر از زمان برنامه</td>
+                    </tr>
+                    <tr>
+                        <td class="fg-french-cell">à l’heure</td>
+                        <td>دقیقاً سر وقت</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="fg-example">
+            Il est 5 heures du matin : il est tôt.
+        </div>
+
+        <div class="fg-example">
+            Il est minuit : il est tard.
+        </div>
+
+        <div class="fg-example">
+            Il est 7h45 : je suis en avance.
+        </div>
+
+        <div class="fg-example">
+            Il est 8h00 : je suis à l’heure.
+        </div>
+
+        <div class="fg-example">
+            Il est 8h15 : je suis en retard.
+        </div>
+
+        <div class="fg-tip">
+            یک موقعیت می‌تواند هم
+            <span class="fg-fr">tôt</span>
+            باشد و هم شخص
+            <span class="fg-fr">en retard</span>
+            باشد:
+            <div class="fg-fr-block">
+                Le travail commence à 5h. J’arrive à 5h10.<br>
+                Il est tôt, mais je suis en retard.
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<div class="fg-divider"></div>
+
+
+<!-- =======================================================
+     WEATHER
+     ======================================================= -->
+
+<section class="fg-section">
+
+    <h2 class="fg-section-title">
+        بخش سوم: آب‌وهوا
+        —
+        <span class="fg-fr">Le temps</span>
+    </h2>
+
+
+    <div class="fg-card">
+
+        <h3>
+            ساخت اول:
+            <span class="fg-fr">Il fait + adjectif</span>
+        </h3>
+
+        <div class="fg-table-wrap">
+            <table class="fg-table">
+                <thead>
+                    <tr>
+                        <th>فرانسوی</th>
+                        <th>معنی</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td class="fg-french-cell">Il fait beau.</td><td>هوا خوب است.</td></tr>
+                    <tr><td class="fg-french-cell">Il fait mauvais.</td><td>هوا بد است.</td></tr>
+                    <tr><td class="fg-french-cell">Il fait chaud.</td><td>هوا گرم است.</td></tr>
+                    <tr><td class="fg-french-cell">Il fait froid.</td><td>هوا سرد است.</td></tr>
+                    <tr><td class="fg-french-cell">Il fait doux.</td><td>هوا ملایم است.</td></tr>
+                    <tr><td class="fg-french-cell">Il fait frais.</td><td>هوا خنک است.</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="fg-warning">
+            <div class="fg-fr-block">
+                ❌ Aujourd’hui, c’est froid.<br>
+                ❌ Aujourd’hui, il est froid.<br>
+                ✅ Aujourd’hui, il fait froid.
+            </div>
+        </div>
+
+        <p>
+            <span class="fg-fr">C’est froid</span>
+            یا
+            <span class="fg-fr">Il est froid</span>
+            می‌تواند برای یک شیء یا شخص استفاده شود، اما نه برای بیان عادی آب‌وهوا.
+        </p>
+
+    </div>
+
+
+    <div class="fg-card">
+
+        <h3>
+            ساخت دوم:
+            <span class="fg-fr">Il y a + nom</span>
+        </h3>
+
+        <div class="fg-example">
+            Il y a du soleil.
+        </div>
+
+        <div class="fg-example">
+            Il y a du vent.
+        </div>
+
+        <div class="fg-example">
+            Il y a des nuages.
+        </div>
+
+        <div class="fg-example">
+            Il y a du brouillard.
+        </div>
+
+        <div class="fg-tip">
+            در نفی، articleهای مقداری معمولاً به
+            <span class="fg-fr">de</span>
+            تبدیل می‌شوند:
+        </div>
+
+        <div class="fg-example">
+            Il y a du vent.<br>
+            Il n’y a pas de vent.
+        </div>
+
+        <div class="fg-example">
+            Il y a des nuages.<br>
+            Il n’y a pas de nuages.
+        </div>
+
+        <div class="fg-warning">
+            <div class="fg-fr-block">
+                ❌ Il n’y a pas du vent.<br>
+                ✅ Il n’y a pas de vent.
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="fg-card">
+
+        <h3>
+            ساخت سوم:
+            <span class="fg-fr">Il + verbe</span>
+        </h3>
+
+        <div class="fg-example">
+            Il pleut.
+        </div>
+
+        <div class="fg-example">
+            Il neige.
+        </div>
+
+        <div class="fg-example">
+            Il gèle.
+        </div>
+
+        <div class="fg-example">
+            Il fait 10 degrés.
+        </div>
+
+        <div class="fg-warning">
+            <div class="fg-fr-block">
+                ❌ Il fait pluie.<br>
+                ✅ Il pleut.<br><br>
+
+                ❌ Il fait neige.<br>
+                ✅ Il neige.
+            </div>
+        </div>
+
+        <p>برای دمای زیر صفر:</p>
+
+        <div class="fg-example">
+            Il fait moins cinq degrés.
+        </div>
+
+        <div class="fg-example">
+            Il fait cinq degrés au-dessous de zéro.
+        </div>
+
+    </div>
+
+</section>
+
+
+<div class="fg-divider"></div>
+
+
+<!-- =======================================================
+     EXERCISES HOUR / WEATHER
+     ======================================================= -->
+
+<section class="fg-section">
+
+    <h2 class="fg-section-title">
+        تمرین‌های ساعت و آب‌وهوا
+    </h2>
+
+
+    <div class="fg-card fg-exercise">
+
+        <h3>تمرین ۱ — ساعت معمولی و رسمی</h3>
+
+        <div class="fg-table-wrap">
+            <table class="fg-table">
+                <thead>
+                    <tr>
+                        <th>ساعت</th>
+                        <th>روزمره</th>
+                        <th>رسمی</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>14h15</td>
+                        <td class="fg-french-cell">deux heures et quart</td>
+                        <td class="fg-french-cell">quatorze heures quinze</td>
+                    </tr>
+                    <tr>
+                        <td>16h30</td>
+                        <td class="fg-french-cell">quatre heures et demie</td>
+                        <td class="fg-french-cell">seize heures trente</td>
+                    </tr>
+                    <tr>
+                        <td>19h10</td>
+                        <td class="fg-french-cell">sept heures dix</td>
+                        <td class="fg-french-cell">dix-neuf heures dix</td>
+                    </tr>
+                    <tr>
+                        <td>12h25</td>
+                        <td class="fg-french-cell">midi vingt-cinq</td>
+                        <td class="fg-french-cell">douze heures vingt-cinq</td>
+                    </tr>
+                    <tr>
+                        <td>13h55</td>
+                        <td class="fg-french-cell">deux heures moins cinq</td>
+                        <td class="fg-french-cell">treize heures cinquante-cinq</td>
+                    </tr>
+                    <tr>
+                        <td>15h45</td>
+                        <td class="fg-french-cell">quatre heures moins le quart</td>
+                        <td class="fg-french-cell">quinze heures quarante-cinq</td>
+                    </tr>
+                    <tr>
+                        <td>20h50</td>
+                        <td class="fg-french-cell">neuf heures moins dix</td>
+                        <td class="fg-french-cell">vingt heures cinquante</td>
+                    </tr>
+                    <tr>
+                        <td>22h00</td>
+                        <td class="fg-french-cell">dix heures</td>
+                        <td class="fg-french-cell">vingt-deux heures</td>
+                    </tr>
+                    <tr>
+                        <td>24h00</td>
+                        <td class="fg-french-cell">minuit</td>
+                        <td class="fg-french-cell">vingt-quatre heures</td>
+                    </tr>
+                    <tr>
+                        <td>10h15</td>
+                        <td class="fg-french-cell">dix heures et quart</td>
+                        <td class="fg-french-cell">dix heures quinze</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+
+    <div class="fg-card fg-exercise">
+
+        <h3>
+            تمرین ۲ —
+            <span class="fg-fr">tôt / tard / en retard / en avance</span>
+        </h3>
+
+        <div class="fg-answer">
+            <div class="fg-fr-block">
+                Il est une heure et demie du matin, viens te coucher :
+                <strong>il est tard</strong>.
+            </div>
+        </div>
+
+        <div class="fg-answer">
+            <div class="fg-fr-block">
+                — Pierre n’est pas encore arrivé ?<br>
+                — Non, <strong>il est en retard</strong>, comme d’habitude.
+            </div>
+        </div>
+
+        <div class="fg-answer">
+            <div class="fg-fr-block">
+                Le film commence à dix heures :
+                c’est <strong>tard</strong> pour les enfants.
+            </div>
+        </div>
+
+        <div class="fg-answer">
+            <div class="fg-fr-block">
+                — Nous sommes en retard, Paul ?<br>
+                — Non, au contraire, nous
+                <strong>sommes en avance</strong> !
+            </div>
+        </div>
+
+        <div class="fg-answer">
+            <div class="fg-fr-block">
+                Le bébé se réveille toujours très
+                <strong>tôt</strong> : à cinq heures du matin !
+            </div>
+        </div>
+
+        <div class="fg-answer">
+            <div class="fg-fr-block">
+                Il est dix heures et le facteur n’est pas passé :
+                il <strong>est en retard</strong> ce matin !
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="fg-card fg-exercise">
+
+        <h3>
+            تمرین ۳ —
+            <span class="fg-fr">il y a / il fait / il est</span>
+        </h3>
+
+        <div class="fg-answer">
+            <div class="fg-fr-block">
+                Quand <strong>il est</strong> 8 heures à Paris,
+                <strong>il est</strong> 4 heures à São Paulo.
+            </div>
+        </div>
+
+        <div class="fg-answer">
+            <div class="fg-fr-block">
+                Aujourd’hui, <strong>il fait</strong> très froid et
+                <strong>il y a</strong> du brouillard.
+            </div>
+        </div>
+
+        <div class="fg-answer">
+            <div class="fg-fr-block">
+                Dans les îles grecques, en été,
+                <strong>il fait</strong> chaud, mais
+                <strong>il y a</strong> toujours du vent.
+            </div>
+        </div>
+
+        <div class="fg-answer">
+            <div class="fg-fr-block">
+                C’est l’heure du journal télévisé :
+                <strong>il est</strong> huit heures.
+            </div>
+        </div>
+
+        <div class="fg-answer">
+            <div class="fg-fr-block">
+                C’est le premier jour du printemps :
+                <strong>il pleut</strong>, mais
+                <strong>il fait</strong> très doux.
+            </div>
+        </div>
+
+        <div class="fg-answer">
+            <div class="fg-fr-block">
+                Couvrez-vous bien : dehors
+                <strong>il fait</strong> froid et
+                <strong>il y a</strong> du vent.
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="fg-card fg-exercise">
+
+        <h3>تمرین ۴ — پاسخ‌های آزاد</h3>
+
+        <p class="fg-note">
+            پاسخ‌ها نمونه هستند و می‌توانند بر اساس زمان و مکان کاربر تغییر کنند.
+        </p>
+
+        <div class="fg-answer">
+            <strong>Quelle heure est-il ?</strong>
+            <div class="fg-fr-block">
+                Il est une heure de l’après-midi.
+            </div>
+        </div>
+
+        <div class="fg-answer">
+            <strong>Quel temps fait-il ?</strong>
+            <div class="fg-fr-block">
+                Il fait beau et il y a du soleil.
+            </div>
+        </div>
+
+        <div class="fg-answer">
+            <strong>Nous sommes en quelle saison ?</strong>
+            <div class="fg-fr-block">
+                Nous sommes en été.
+            </div>
+        </div>
+
+        <div class="fg-answer">
+            <strong>Nous sommes en quelle année ?</strong>
+            <div class="fg-fr-block">
+                Nous sommes en 2026.
+            </div>
+        </div>
+
+        <div class="fg-warning">
+            <div class="fg-fr-block">
+                ✅ en 2026<br>
+                ❌ au 2026
+            </div>
+        </div>
+
+        <div class="fg-answer">
+            <strong>Il fait froid ou chaud au Canada en janvier ?</strong>
+            <div class="fg-fr-block">
+                Au Canada, il fait généralement froid en janvier.
+            </div>
+        </div>
+
+        <div class="fg-answer">
+            <strong>Il fait froid au Brésil en février ?</strong>
+            <div class="fg-fr-block">
+                Non, en général, il fait chaud au Brésil en février.
+            </div>
+        </div>
+
+        <div class="fg-answer">
+            <strong>En août, quel temps fait-il ?</strong>
+            <div class="fg-fr-block">
+                En août, il fait généralement chaud et il y a souvent du soleil.
+            </div>
+        </div>
+
+        <div class="fg-answer">
+            <strong>Quelle est la température de la salle ?</strong>
+            <div class="fg-fr-block">
+                Il fait environ 22 degrés dans la salle.
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<div class="fg-divider"></div>
+
+
+<!-- =======================================================
+     COMMON ERRORS
+     ======================================================= -->
+
+<section class="fg-section">
+
+    <h2 class="fg-section-title">
+        اشتباهات بسیار رایج درس ۱۴
+    </h2>
+
+    <div class="fg-table-wrap">
+        <table class="fg-table">
+            <thead>
+                <tr>
+                    <th>اشتباه</th>
+                    <th>شکل صحیح</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td class="fg-french-cell fg-wrong">❌ en printemps</td>
+                    <td class="fg-french-cell fg-correct">✅ au printemps</td>
+                </tr>
+
+                <tr>
+                    <td class="fg-french-cell fg-wrong">❌ au été</td>
+                    <td class="fg-french-cell fg-correct">✅ en été</td>
+                </tr>
+
+                <tr>
+                    <td class="fg-french-cell fg-wrong">❌ en 7 mai</td>
+                    <td class="fg-french-cell fg-correct">✅ le 7 mai</td>
+                </tr>
+
+                <tr>
+                    <td class="fg-french-cell fg-wrong">❌ le deuxième mai</td>
+                    <td class="fg-french-cell fg-correct">✅ le deux mai</td>
+                </tr>
+
+                <tr>
+                    <td class="fg-french-cell fg-wrong">❌ en dix-neuvième siècle</td>
+                    <td class="fg-french-cell fg-correct">✅ au dix-neuvième siècle</td>
+                </tr>
+
+                <tr>
+                    <td class="fg-french-cell fg-wrong">❌ Il est froid. <small>(برای آب‌وهوا)</small></td>
+                    <td class="fg-french-cell fg-correct">✅ Il fait froid.</td>
+                </tr>
+
+                <tr>
+                    <td class="fg-french-cell fg-wrong">❌ Il fait pluie.</td>
+                    <td class="fg-french-cell fg-correct">✅ Il pleut.</td>
+                </tr>
+
+                <tr>
+                    <td class="fg-french-cell fg-wrong">❌ Il fait du vent.</td>
+                    <td class="fg-french-cell fg-correct">✅ Il y a du vent.</td>
+                </tr>
+
+                <tr>
+                    <td class="fg-french-cell fg-wrong">❌ une heure et demi</td>
+                    <td class="fg-french-cell fg-correct">✅ une heure et demie</td>
+                </tr>
+
+                <tr>
+                    <td class="fg-french-cell fg-wrong">❌ huit heures moins quart</td>
+                    <td class="fg-french-cell fg-correct">✅ huit heures moins le quart</td>
+                </tr>
+
+                <tr>
+                    <td class="fg-french-cell fg-wrong">❌ huit heures et le quart</td>
+                    <td class="fg-french-cell fg-correct">✅ huit heures et quart</td>
+                </tr>
+
+                <tr>
+                    <td class="fg-french-cell fg-wrong">❌ Je suis tard.</td>
+                    <td class="fg-french-cell fg-correct">✅ Je suis en retard.</td>
+                </tr>
+
+                <tr>
+                    <td class="fg-french-cell fg-wrong">❌ dix-sept heures et vingt-cinq</td>
+                    <td class="fg-french-cell fg-correct">✅ dix-sept heures vingt-cinq</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     FINAL SUMMARY
+     ======================================================= -->
+
+<section class="fg-summary">
+
+    <h2>جمع‌بندی سریع درس</h2>
+
+    <div class="fg-summary-grid">
+
+        <div class="fg-summary-item">
+            <strong>تاریخ</strong><br>
+            <span class="fg-fr">le + jour du mois</span>
+        </div>
+
+        <div class="fg-summary-item">
+            <strong>ماه</strong><br>
+            <span class="fg-fr">en + mois</span>
+        </div>
+
+        <div class="fg-summary-item">
+            <strong>سال</strong><br>
+            <span class="fg-fr">en + année</span>
+        </div>
+
+        <div class="fg-summary-item">
+            <strong>قرن</strong><br>
+            <span class="fg-fr">au + siècle</span>
+        </div>
+
+        <div class="fg-summary-item">
+            <strong>بهار</strong><br>
+            <span class="fg-fr">au printemps</span>
+        </div>
+
+        <div class="fg-summary-item">
+            <strong>تابستان / پاییز / زمستان</strong><br>
+            <span class="fg-fr">en été / en automne / en hiver</span>
+        </div>
+
+        <div class="fg-summary-item">
+            <strong>ساعت</strong><br>
+            <span class="fg-fr">Il est...</span>
+        </div>
+
+        <div class="fg-summary-item">
+            <strong>آب‌وهوا + صفت</strong><br>
+            <span class="fg-fr">Il fait...</span>
+        </div>
+
+        <div class="fg-summary-item">
+            <strong>آب‌وهوا + اسم</strong><br>
+            <span class="fg-fr">Il y a...</span>
+        </div>
+
+        <div class="fg-summary-item">
+            <strong>باران / برف</strong><br>
+            <span class="fg-fr">Il pleut / Il neige</span>
+        </div>
+
+    </div>
+
+</section>
+
+</div>

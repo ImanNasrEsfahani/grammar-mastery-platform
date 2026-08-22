@@ -1,0 +1,2521 @@
+<div class="fg-wrapper" dir="rtl">
+
+<style>
+/* =========================================================
+   FRENCH GRAMMAR — LESSON 10
+   Fully isolated styles
+   Prefix: fg-
+   ========================================================= */
+
+.fg-wrapper {
+    --fg-navy: #173f73;
+    --fg-blue: #245ea8;
+    --fg-blue-soft: #eef5ff;
+    --fg-blue-border: #cbdcf3;
+
+    --fg-green: #18794e;
+    --fg-green-bg: #edf9f3;
+    --fg-green-border: #b8e2cd;
+
+    --fg-red: #b42318;
+    --fg-red-bg: #fff1f0;
+    --fg-red-border: #f2c5c1;
+
+    --fg-orange: #b45309;
+    --fg-orange-bg: #fff7e8;
+    --fg-orange-border: #f2d5a2;
+
+    --fg-purple: #6941c6;
+    --fg-purple-bg: #f5f2ff;
+
+    --fg-gray-50: #f8fafc;
+    --fg-gray-100: #f1f5f9;
+    --fg-gray-200: #e2e8f0;
+    --fg-gray-300: #cbd5e1;
+    --fg-gray-500: #64748b;
+    --fg-gray-700: #334155;
+    --fg-gray-900: #0f172a;
+
+    --fg-radius: 16px;
+    --fg-radius-sm: 10px;
+    --fg-shadow: 0 8px 28px rgba(15, 23, 42, 0.07);
+
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 24px;
+    background: #ffffff;
+    color: var(--fg-gray-900);
+
+    font-family:
+        Vazirmatn,
+        IRANSans,
+        "Segoe UI",
+        Tahoma,
+        Arial,
+        sans-serif;
+
+    direction: rtl;
+    text-align: right;
+    line-height: 1.95;
+}
+
+.fg-wrapper *,
+.fg-wrapper *::before,
+.fg-wrapper *::after {
+    box-sizing: border-box;
+}
+
+.fg-wrapper .fg-fr,
+.fg-wrapper .fg-ltr {
+    direction: ltr;
+    unicode-bidi: isolate;
+    text-align: left;
+}
+
+.fg-wrapper .fg-fr-inline {
+    direction: ltr;
+    unicode-bidi: isolate;
+    display: inline-block;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-weight: 600;
+}
+
+.fg-wrapper .fg-hero {
+    position: relative;
+    overflow: hidden;
+    padding: 34px 30px;
+    margin-bottom: 28px;
+    border-radius: 22px;
+    background:
+        radial-gradient(circle at 10% 10%, rgba(255,255,255,.15), transparent 24%),
+        linear-gradient(135deg, #123765, #245ea8);
+    color: #fff;
+    box-shadow: var(--fg-shadow);
+}
+
+.fg-wrapper .fg-hero::after {
+    content: "";
+    position: absolute;
+    width: 170px;
+    height: 170px;
+    left: -50px;
+    bottom: -70px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.08);
+}
+
+.fg-wrapper .fg-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 12px;
+    margin-bottom: 10px;
+    border: 1px solid rgba(255,255,255,.28);
+    border-radius: 999px;
+    background: rgba(255,255,255,.10);
+    font-size: .87rem;
+    font-weight: 700;
+}
+
+.fg-wrapper .fg-hero h1 {
+    margin: 0 0 9px;
+    color: #fff;
+    font-size: clamp(1.65rem, 4vw, 2.55rem);
+    line-height: 1.45;
+}
+
+.fg-wrapper .fg-hero-subtitle {
+    margin: 0;
+    color: rgba(255,255,255,.90);
+    font-size: 1rem;
+}
+
+.fg-wrapper .fg-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 18px;
+}
+
+.fg-wrapper .fg-meta span {
+    padding: 6px 10px;
+    border-radius: 8px;
+    background: rgba(255,255,255,.11);
+    font-size: .82rem;
+}
+
+.fg-wrapper .fg-toc {
+    padding: 22px;
+    margin-bottom: 28px;
+    border: 1px solid var(--fg-gray-200);
+    border-radius: var(--fg-radius);
+    background: var(--fg-gray-50);
+}
+
+.fg-wrapper .fg-toc-title {
+    margin: 0 0 14px;
+    color: var(--fg-navy);
+    font-size: 1.1rem;
+    font-weight: 800;
+}
+
+.fg-wrapper .fg-toc-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    gap: 10px;
+}
+
+.fg-wrapper .fg-toc a {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    padding: 10px 12px;
+    color: var(--fg-gray-700);
+    text-decoration: none;
+    border-radius: 9px;
+    transition: .18s ease;
+}
+
+.fg-wrapper .fg-toc a:hover {
+    background: #fff;
+    color: var(--fg-blue);
+}
+
+.fg-wrapper .fg-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 28px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--fg-blue);
+    color: #fff;
+    font-size: .78rem;
+    font-weight: 800;
+}
+
+.fg-wrapper .fg-section {
+    scroll-margin-top: 20px;
+    margin: 34px 0;
+}
+
+.fg-wrapper .fg-section-heading {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0 0 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--fg-blue-soft);
+}
+
+.fg-wrapper .fg-section-heading span:first-child {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 42px;
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: var(--fg-blue-soft);
+    color: var(--fg-blue);
+    font-weight: 900;
+}
+
+.fg-wrapper .fg-section-heading h2 {
+    margin: 0;
+    color: var(--fg-navy);
+    font-size: clamp(1.3rem, 3vw, 1.7rem);
+    line-height: 1.5;
+}
+
+.fg-wrapper h3 {
+    margin: 25px 0 12px;
+    color: var(--fg-navy);
+    font-size: 1.18rem;
+}
+
+.fg-wrapper h4 {
+    color: var(--fg-gray-900);
+    margin: 18px 0 8px;
+    font-size: 1.04rem;
+}
+
+.fg-wrapper p {
+    margin: 8px 0 14px;
+}
+
+.fg-wrapper .fg-card {
+    margin: 18px 0;
+    padding: 20px;
+    border: 1px solid var(--fg-gray-200);
+    border-radius: var(--fg-radius);
+    background: #fff;
+    box-shadow: 0 3px 15px rgba(15, 23, 42, .035);
+}
+
+.fg-wrapper .fg-card-title {
+    margin: 0 0 12px;
+    color: var(--fg-navy);
+    font-weight: 800;
+    font-size: 1.08rem;
+}
+
+.fg-wrapper .fg-rule {
+    padding: 19px 20px;
+    margin: 18px 0;
+    border-right: 5px solid var(--fg-blue);
+    border-radius: 12px;
+    background: var(--fg-blue-soft);
+}
+
+.fg-wrapper .fg-rule strong {
+    color: var(--fg-navy);
+}
+
+.fg-wrapper .fg-tip,
+.fg-wrapper .fg-warning,
+.fg-wrapper .fg-success,
+.fg-wrapper .fg-error,
+.fg-wrapper .fg-info {
+    position: relative;
+    margin: 18px 0;
+    padding: 18px 20px;
+    border-radius: 12px;
+}
+
+.fg-wrapper .fg-tip {
+    background: var(--fg-orange-bg);
+    border: 1px solid var(--fg-orange-border);
+}
+
+.fg-wrapper .fg-warning,
+.fg-wrapper .fg-error {
+    background: var(--fg-red-bg);
+    border: 1px solid var(--fg-red-border);
+}
+
+.fg-wrapper .fg-success {
+    background: var(--fg-green-bg);
+    border: 1px solid var(--fg-green-border);
+}
+
+.fg-wrapper .fg-info {
+    background: var(--fg-blue-soft);
+    border: 1px solid var(--fg-blue-border);
+}
+
+.fg-wrapper .fg-callout-title {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 900;
+}
+
+.fg-wrapper .fg-warning .fg-callout-title,
+.fg-wrapper .fg-error .fg-callout-title {
+    color: var(--fg-red);
+}
+
+.fg-wrapper .fg-success .fg-callout-title {
+    color: var(--fg-green);
+}
+
+.fg-wrapper .fg-tip .fg-callout-title {
+    color: var(--fg-orange);
+}
+
+.fg-wrapper .fg-info .fg-callout-title {
+    color: var(--fg-blue);
+}
+
+.fg-wrapper .fg-example {
+    position: relative;
+    padding: 15px 18px;
+    margin: 11px 0;
+    border-right: 4px solid var(--fg-green);
+    border-radius: 10px;
+    background: var(--fg-green-bg);
+}
+
+.fg-wrapper .fg-example .fg-fr {
+    display: block;
+    font-size: 1.02rem;
+    font-weight: 650;
+    color: #145e3f;
+}
+
+.fg-wrapper .fg-example .fg-fa {
+    display: block;
+    margin-top: 5px;
+    color: var(--fg-gray-700);
+    font-size: .92rem;
+}
+
+.fg-wrapper .fg-bad-example {
+    padding: 13px 16px;
+    margin: 9px 0;
+    border-right: 4px solid var(--fg-red);
+    border-radius: 10px;
+    background: var(--fg-red-bg);
+}
+
+.fg-wrapper .fg-bad {
+    color: var(--fg-red);
+    font-weight: 800;
+}
+
+.fg-wrapper .fg-good {
+    color: var(--fg-green);
+    font-weight: 800;
+}
+
+.fg-wrapper .fg-formula {
+    direction: ltr;
+    text-align: center;
+    unicode-bidi: isolate;
+    margin: 16px 0;
+    padding: 15px;
+    border-radius: 10px;
+    background: #111827;
+    color: #f8fafc;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 1.06rem;
+    font-weight: 700;
+    letter-spacing: .01em;
+}
+
+.fg-wrapper .fg-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    margin: 18px 0 24px;
+    border: 1px solid var(--fg-gray-200);
+    border-radius: 13px;
+    -webkit-overflow-scrolling: touch;
+}
+
+.fg-wrapper table.fg-table {
+    width: 100%;
+    min-width: 640px;
+    border-collapse: collapse;
+    background: #fff;
+}
+
+.fg-wrapper .fg-table th,
+.fg-wrapper .fg-table td {
+    padding: 13px 14px;
+    border: 1px solid var(--fg-gray-200);
+    vertical-align: top;
+    line-height: 1.7;
+}
+
+.fg-wrapper .fg-table th {
+    background: var(--fg-navy);
+    color: #fff;
+    font-weight: 800;
+}
+
+.fg-wrapper .fg-table tbody tr:nth-child(even) {
+    background: var(--fg-gray-50);
+}
+
+.fg-wrapper .fg-table tbody tr:hover {
+    background: #f0f6ff;
+}
+
+.fg-wrapper .fg-table .fg-fr {
+    display: block;
+}
+
+.fg-wrapper .fg-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 12px 0;
+}
+
+.fg-wrapper .fg-pill {
+    direction: ltr;
+    unicode-bidi: isolate;
+    display: inline-flex;
+    padding: 5px 10px;
+    border-radius: 999px;
+    background: var(--fg-purple-bg);
+    color: var(--fg-purple);
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: .88rem;
+    font-weight: 700;
+}
+
+.fg-wrapper .fg-check-list,
+.fg-wrapper .fg-list {
+    margin: 12px 0;
+    padding: 0 22px 0 0;
+}
+
+.fg-wrapper .fg-check-list li,
+.fg-wrapper .fg-list li {
+    margin: 6px 0;
+}
+
+.fg-wrapper .fg-check-list li::marker {
+    color: var(--fg-green);
+}
+
+.fg-wrapper .fg-exercise {
+    margin: 22px 0;
+    border: 1px solid var(--fg-blue-border);
+    border-radius: var(--fg-radius);
+    overflow: hidden;
+    background: #fff;
+}
+
+.fg-wrapper .fg-exercise-header {
+    padding: 15px 18px;
+    background: var(--fg-blue-soft);
+    color: var(--fg-navy);
+    font-weight: 900;
+}
+
+.fg-wrapper .fg-exercise-body {
+    padding: 18px;
+}
+
+.fg-wrapper details.fg-answer {
+    margin: 13px 0;
+    border: 1px solid var(--fg-gray-200);
+    border-radius: 10px;
+    background: var(--fg-gray-50);
+}
+
+.fg-wrapper details.fg-answer summary {
+    cursor: pointer;
+    padding: 12px 15px;
+    color: var(--fg-blue);
+    font-weight: 800;
+    list-style: none;
+}
+
+.fg-wrapper details.fg-answer summary::-webkit-details-marker {
+    display: none;
+}
+
+.fg-wrapper details.fg-answer summary::before {
+    content: "＋";
+    display: inline-block;
+    margin-left: 7px;
+    font-weight: 900;
+}
+
+.fg-wrapper details.fg-answer[open] summary::before {
+    content: "−";
+}
+
+.fg-wrapper .fg-answer-content {
+    padding: 0 15px 15px;
+}
+
+.fg-wrapper .fg-divider {
+    height: 1px;
+    border: 0;
+    margin: 28px 0;
+    background: var(--fg-gray-200);
+}
+
+.fg-wrapper .fg-compare {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin: 18px 0;
+}
+
+.fg-wrapper .fg-compare-card {
+    padding: 18px;
+    border: 1px solid var(--fg-gray-200);
+    border-radius: 12px;
+    background: #fff;
+}
+
+.fg-wrapper .fg-compare-card h4 {
+    margin-top: 0;
+    color: var(--fg-navy);
+}
+
+.fg-wrapper .fg-summary {
+    padding: 24px;
+    margin-top: 35px;
+    border-radius: 18px;
+    background: linear-gradient(145deg, #f4f8ff, #eef7f4);
+    border: 1px solid #d7e4ef;
+}
+
+.fg-wrapper .fg-summary h2 {
+    margin-top: 0;
+    color: var(--fg-navy);
+}
+
+.fg-wrapper .fg-mini-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0,1fr));
+    gap: 10px;
+    margin: 16px 0;
+}
+
+.fg-wrapper .fg-mini-box {
+    padding: 14px 10px;
+    text-align: center;
+    border-radius: 10px;
+    background: #fff;
+    border: 1px solid var(--fg-gray-200);
+}
+
+.fg-wrapper .fg-mini-box strong {
+    display: block;
+    direction: ltr;
+    font-size: 1.1rem;
+    color: var(--fg-blue);
+}
+
+.fg-wrapper .fg-source-note {
+    margin-top: 25px;
+    padding: 14px 17px;
+    border-top: 1px solid var(--fg-gray-200);
+    color: var(--fg-gray-500);
+    font-size: .85rem;
+}
+
+@media (max-width: 850px) {
+    .fg-wrapper {
+        padding: 18px;
+    }
+
+    .fg-wrapper .fg-toc-grid,
+    .fg-wrapper .fg-compare {
+        grid-template-columns: 1fr;
+    }
+
+    .fg-wrapper .fg-mini-grid {
+        grid-template-columns: repeat(2, minmax(0,1fr));
+    }
+}
+
+@media (max-width: 560px) {
+    .fg-wrapper {
+        padding: 12px;
+        line-height: 1.85;
+    }
+
+    .fg-wrapper .fg-hero {
+        padding: 25px 19px;
+        border-radius: 16px;
+    }
+
+    .fg-wrapper .fg-card,
+    .fg-wrapper .fg-exercise-body {
+        padding: 15px;
+    }
+
+    .fg-wrapper .fg-section-heading {
+        align-items: flex-start;
+    }
+
+    .fg-wrapper .fg-section-heading span:first-child {
+        width: 35px;
+        height: 35px;
+        flex-basis: 35px;
+    }
+
+    .fg-wrapper .fg-mini-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .fg-wrapper .fg-table th,
+    .fg-wrapper .fg-table td {
+        padding: 10px;
+        font-size: .91rem;
+    }
+}
+</style>
+
+
+<!-- ======================================================
+     HERO
+     ====================================================== -->
+
+<section class="fg-hero">
+    <div class="fg-eyebrow">
+        درس ۱۰ • گرامر فرانسه
+    </div>
+
+    <h1>
+        <span class="fg-fr-inline">LA SITUATION DANS L’ESPACE (1)</span>
+    </h1>
+
+    <p class="fg-hero-subtitle">
+        آموزش جامع حروف اضافه مکان، کشورها و شهرها، موقعیت فضایی،
+        تفاوت‌های ظریف و تمرین‌های درس
+    </p>
+
+    <div class="fg-meta">
+        <span>کتاب: Grammaire Progressive du Français</span>
+        <span>صفحات چاپی: 44–47</span>
+        <span>PDF: 46–49</span>
+        <span>موضوع: Prépositions &amp; repérage spatial</span>
+    </div>
+</section>
+
+
+<!-- ======================================================
+     TOC
+     ====================================================== -->
+
+<nav class="fg-toc">
+    <div class="fg-toc-title">در این درس چه یاد می‌گیریم؟</div>
+
+    <div class="fg-toc-grid">
+        <a href="#fg-cities">
+            <span class="fg-number">1</span>
+            شهرها، کشورها و قاره‌ها
+        </a>
+
+        <a href="#fg-prepositions-countries">
+            <span class="fg-number">2</span>
+            <span class="fg-fr-inline">à / en / au / aux</span>
+        </a>
+
+        <a href="#fg-dans-sur-sous">
+            <span class="fg-number">3</span>
+            <span class="fg-fr-inline">dans / sur / sous</span>
+        </a>
+
+        <a href="#fg-vertical">
+            <span class="fg-number">4</span>
+            بالا، پایین، داخل و خارج
+        </a>
+
+        <a href="#fg-distance">
+            <span class="fg-number">5</span>
+            نزدیکی و فاصله
+        </a>
+
+        <a href="#fg-exercises">
+            <span class="fg-number">6</span>
+            تمرین‌های درس با پاسخ
+        </a>
+    </div>
+</nav>
+
+
+<!-- ======================================================
+     INTRO
+     ====================================================== -->
+
+<div class="fg-info">
+    <span class="fg-callout-title">هدف اصلی درس</span>
+    در این درس یاد می‌گیریم چگونه محل قرارگرفتن یک شخص یا شیء،
+    مقصد حرکت، موقعیت جغرافیایی و رابطه فضایی میان اشیا را به زبان فرانسه بیان کنیم.
+    نکته مهم این است که انتخاب حرف اضافه در فرانسه همیشه ترجمه مستقیم
+    «در / به / روی / زیر» از فارسی نیست؛ بعضی ترکیب‌ها باید به‌صورت ساخت ثابت یاد گرفته شوند.
+</div>
+
+
+<!-- ======================================================
+     SECTION 1
+     ====================================================== -->
+
+<section class="fg-section" id="fg-cities">
+
+    <div class="fg-section-heading">
+        <span>1</span>
+        <h2>شهرها، کشورها و قاره‌ها</h2>
+    </div>
+
+    <div class="fg-card">
+        <div class="fg-card-title">شهرها معمولاً بدون حرف تعریف می‌آیند</div>
+
+        <p>
+            نام بیشتر شهرها در زبان فرانسه بدون
+            <span class="fg-fr-inline">le / la / les</span>
+            استفاده می‌شود.
+        </p>
+
+        <div class="fg-pills">
+            <span class="fg-pill">Paris</span>
+            <span class="fg-pill">Madrid</span>
+            <span class="fg-pill">Tokyo</span>
+            <span class="fg-pill">Berlin</span>
+            <span class="fg-pill">Téhéran</span>
+        </div>
+
+        <p>
+            برای گفتن «در یک شهر» یا «به یک شهر»، معمولاً از
+            <span class="fg-fr-inline">à</span>
+            استفاده می‌کنیم.
+        </p>
+
+        <div class="fg-example">
+            <span class="fg-fr">Je suis à Paris.</span>
+            <span class="fg-fa">من در پاریس هستم.</span>
+        </div>
+
+        <div class="fg-example">
+            <span class="fg-fr">Je vais à Madrid.</span>
+            <span class="fg-fa">من به مادرید می‌روم.</span>
+        </div>
+
+        <div class="fg-example">
+            <span class="fg-fr">Mes cousins habitent à Téhéran.</span>
+            <span class="fg-fa">پسرعموها / دخترعموهایم در تهران زندگی می‌کنند.</span>
+        </div>
+    </div>
+
+    <div class="fg-warning">
+        <span class="fg-callout-title">استثنا: بعضی شهرها حرف تعریف دارند</span>
+
+        همه شهرها بدون حرف تعریف نیستند. برای مثال:
+
+        <div class="fg-pills">
+            <span class="fg-pill">Le Caire</span>
+            <span class="fg-pill">Le Havre</span>
+            <span class="fg-pill">La Havane</span>
+            <span class="fg-pill">La Haye</span>
+        </div>
+
+        در این موارد، حرف تعریف بخشی از ساخت نام شهر است.
+    </div>
+
+    <div class="fg-table-wrap">
+        <table class="fg-table">
+            <thead>
+                <tr>
+                    <th>نام شهر</th>
+                    <th>شکل مکانی صحیح</th>
+                    <th>علت</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="fg-fr">Le Caire</span></td>
+                    <td><span class="fg-fr">au Caire</span></td>
+                    <td><span class="fg-fr-inline">à + le = au</span></td>
+                </tr>
+                <tr>
+                    <td><span class="fg-fr">Le Havre</span></td>
+                    <td><span class="fg-fr">au Havre</span></td>
+                    <td><span class="fg-fr-inline">à + le = au</span></td>
+                </tr>
+                <tr>
+                    <td><span class="fg-fr">La Havane</span></td>
+                    <td><span class="fg-fr">à La Havane</span></td>
+                    <td>
+                        <span class="fg-fr-inline">à + la</span>
+                        ادغام نمی‌شود.
+                    </td>
+                </tr>
+                <tr>
+                    <td><span class="fg-fr">La Haye</span></td>
+                    <td><span class="fg-fr">à La Haye</span></td>
+                    <td>حرف تعریف مؤنث حفظ می‌شود.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="fg-bad-example">
+        <div class="fg-fr">
+            <span class="fg-bad">✗ à le Caire</span>
+            &nbsp; → &nbsp;
+            <span class="fg-good">✓ au Caire</span>
+        </div>
+    </div>
+
+    <div class="fg-bad-example">
+        <div class="fg-fr">
+            <span class="fg-bad">✗ à Havane</span>
+            &nbsp; → &nbsp;
+            <span class="fg-good">✓ à La Havane</span>
+        </div>
+    </div>
+
+
+    <h3>کشورها و قاره‌ها معمولاً حرف تعریف دارند</h3>
+
+    <div class="fg-pills">
+        <span class="fg-pill">la France</span>
+        <span class="fg-pill">la Chine</span>
+        <span class="fg-pill">le Canada</span>
+        <span class="fg-pill">le Japon</span>
+        <span class="fg-pill">les États-Unis</span>
+        <span class="fg-pill">l’Europe</span>
+        <span class="fg-pill">l’Afrique</span>
+    </div>
+
+    <p>
+        زمانی که نام کشور مستقیماً مفعول فعل است،
+        حرف تعریف آن معمولاً باقی می‌ماند.
+    </p>
+
+    <div class="fg-example">
+        <span class="fg-fr">Je connais le Japon.</span>
+        <span class="fg-fa">من ژاپن را می‌شناسم.</span>
+    </div>
+
+    <div class="fg-example">
+        <span class="fg-fr">J’aime la France.</span>
+        <span class="fg-fa">من فرانسه را دوست دارم.</span>
+    </div>
+
+    <div class="fg-example">
+        <span class="fg-fr">Je visite les États-Unis.</span>
+        <span class="fg-fa">من از ایالات متحده بازدید می‌کنم.</span>
+    </div>
+
+    <div class="fg-tip">
+        <span class="fg-callout-title">تفاوت بسیار مهم</span>
+
+        <div class="fg-fr">Je connais le Canada.</div>
+        <div>کانادا مفعول فعل است؛ بنابراین <span class="fg-fr-inline">le</span> داریم.</div>
+
+        <div class="fg-fr" style="margin-top:8px;">Je vais au Canada.</div>
+        <div>اینجا کانادا مقصد حرکت است؛ بنابراین <span class="fg-fr-inline">au</span> استفاده می‌شود.</div>
+    </div>
+
+    <div class="fg-bad-example">
+        <div class="fg-fr">
+            <span class="fg-bad">✗ Je visite au Canada.</span>
+        </div>
+        <div class="fg-fr">
+            <span class="fg-good">✓ Je visite le Canada.</span>
+        </div>
+        <div class="fg-fr">
+            <span class="fg-good">✓ Je vais au Canada.</span>
+        </div>
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+     SECTION 2
+     ====================================================== -->
+
+<section class="fg-section" id="fg-prepositions-countries">
+
+    <div class="fg-section-heading">
+        <span>2</span>
+        <h2>
+            انتخاب بین
+            <span class="fg-fr-inline">à, en, au, aux</span>
+        </h2>
+    </div>
+
+    <div class="fg-rule">
+        <strong>قاعده مرکزی درس:</strong>
+        نوع مکان و جنس دستوری نام کشور تعیین می‌کند از کدام حرف اضافه استفاده شود.
+    </div>
+
+    <div class="fg-table-wrap">
+        <table class="fg-table">
+            <thead>
+                <tr>
+                    <th>نوع مکان</th>
+                    <th>حرف اضافه</th>
+                    <th>مثال</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>شهر معمولی</td>
+                    <td><span class="fg-fr">à</span></td>
+                    <td><span class="fg-fr">à Paris</span></td>
+                </tr>
+                <tr>
+                    <td>برخی کشورها بدون article</td>
+                    <td><span class="fg-fr">à</span></td>
+                    <td><span class="fg-fr">à Cuba</span></td>
+                </tr>
+                <tr>
+                    <td>کشور مؤنث</td>
+                    <td><span class="fg-fr">en</span></td>
+                    <td><span class="fg-fr">en France</span></td>
+                </tr>
+                <tr>
+                    <td>قاره</td>
+                    <td><span class="fg-fr">en</span></td>
+                    <td><span class="fg-fr">en Europe</span></td>
+                </tr>
+                <tr>
+                    <td>کشور مذکر با صامت</td>
+                    <td><span class="fg-fr">au</span></td>
+                    <td><span class="fg-fr">au Canada</span></td>
+                </tr>
+                <tr>
+                    <td>کشور جمع</td>
+                    <td><span class="fg-fr">aux</span></td>
+                    <td><span class="fg-fr">aux États-Unis</span></td>
+                </tr>
+                <tr>
+                    <td>کشور مفرد که با واکه شروع می‌شود</td>
+                    <td><span class="fg-fr">en</span></td>
+                    <td><span class="fg-fr">en Iran</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="fg-info">
+        <span class="fg-callout-title">هم «بودن» و هم «رفتن»</span>
+        همین حروف اضافه هم برای محل حضور و هم برای مقصد حرکت استفاده می‌شوند.
+
+        <div class="fg-example">
+            <span class="fg-fr">Je suis en France.</span>
+            <span class="fg-fa">من در فرانسه هستم.</span>
+        </div>
+
+        <div class="fg-example">
+            <span class="fg-fr">Je vais en France.</span>
+            <span class="fg-fa">من به فرانسه می‌روم.</span>
+        </div>
+    </div>
+
+
+    <h3>کشور مؤنث → <span class="fg-fr-inline">en</span></h3>
+
+    <p>
+        بیشتر کشورهایی که نامشان به
+        <span class="fg-fr-inline">-e</span>
+        ختم می‌شود مؤنث هستند.
+    </p>
+
+    <div class="fg-pills">
+        <span class="fg-pill">en France</span>
+        <span class="fg-pill">en Chine</span>
+        <span class="fg-pill">en Russie</span>
+        <span class="fg-pill">en Italie</span>
+        <span class="fg-pill">en Finlande</span>
+        <span class="fg-pill">en Tanzanie</span>
+    </div>
+
+    <div class="fg-example">
+        <span class="fg-fr">Elle habite en Chine.</span>
+        <span class="fg-fa">او در چین زندگی می‌کند.</span>
+    </div>
+
+    <div class="fg-example">
+        <span class="fg-fr">Nous partons en Italie.</span>
+        <span class="fg-fa">ما به ایتالیا می‌رویم.</span>
+    </div>
+
+
+    <h3>قاره‌ها → <span class="fg-fr-inline">en</span></h3>
+
+    <div class="fg-pills">
+        <span class="fg-pill">en Europe</span>
+        <span class="fg-pill">en Afrique</span>
+        <span class="fg-pill">en Asie</span>
+        <span class="fg-pill">en Amérique</span>
+        <span class="fg-pill">en Océanie</span>
+        <span class="fg-pill">en Amérique du Nord</span>
+        <span class="fg-pill">en Amérique du Sud</span>
+        <span class="fg-pill">en Afrique du Nord</span>
+    </div>
+
+
+    <h3>استثنای مهم: همه کشورهای پایان‌یافته به <span class="fg-fr-inline">-e</span> مؤنث نیستند</h3>
+
+    <div class="fg-warning">
+        <span class="fg-callout-title">کشورهای مذکر مهم با پایان -e</span>
+
+        <div class="fg-pills">
+            <span class="fg-pill">le Mexique</span>
+            <span class="fg-pill">le Cambodge</span>
+            <span class="fg-pill">le Mozambique</span>
+            <span class="fg-pill">le Belize</span>
+            <span class="fg-pill">le Suriname</span>
+            <span class="fg-pill">le Zimbabwe</span>
+        </div>
+
+        بنابراین:
+        <div class="fg-example">
+            <span class="fg-fr">Je vais au Mexique.</span>
+        </div>
+
+        <div class="fg-bad-example">
+            <span class="fg-fr">
+                <span class="fg-bad">✗ en Mexique</span>
+                &nbsp; →
+                <span class="fg-good">✓ au Mexique</span>
+            </span>
+        </div>
+    </div>
+
+
+    <h3>کشور مذکر → <span class="fg-fr-inline">au</span></h3>
+
+    <div class="fg-pills">
+        <span class="fg-pill">au Canada</span>
+        <span class="fg-pill">au Japon</span>
+        <span class="fg-pill">au Chili</span>
+        <span class="fg-pill">au Brésil</span>
+        <span class="fg-pill">au Kenya</span>
+        <span class="fg-pill">au Portugal</span>
+    </div>
+
+    <div class="fg-formula">
+        à + le = au
+    </div>
+
+
+    <h3>کشور جمع → <span class="fg-fr-inline">aux</span></h3>
+
+    <div class="fg-pills">
+        <span class="fg-pill">aux États-Unis</span>
+        <span class="fg-pill">aux Pays-Bas</span>
+        <span class="fg-pill">aux Philippines</span>
+        <span class="fg-pill">aux Bahamas</span>
+    </div>
+
+    <div class="fg-formula">
+        à + les = aux
+    </div>
+
+
+    <h3>کشور مذکر با واکه → معمولاً <span class="fg-fr-inline">en</span></h3>
+
+    <p>
+        اگر نام کشور مفرد با صدای واکه شروع شود، معمولاً به جای
+        <span class="fg-fr-inline">au</span>
+        از
+        <span class="fg-fr-inline">en</span>
+        استفاده می‌کنیم.
+    </p>
+
+    <div class="fg-pills">
+        <span class="fg-pill">en Iran</span>
+        <span class="fg-pill">en Irak</span>
+        <span class="fg-pill">en Afghanistan</span>
+        <span class="fg-pill">en Angola</span>
+        <span class="fg-pill">en Ouganda</span>
+        <span class="fg-pill">en Uruguay</span>
+    </div>
+
+    <div class="fg-bad-example">
+        <div class="fg-fr">
+            <span class="fg-bad">✗ au Iran</span>
+            &nbsp; →
+            <span class="fg-good">✓ en Iran</span>
+        </div>
+    </div>
+
+    <div class="fg-tip">
+        <span class="fg-callout-title">دوباره فرق «مفعول» و «مکان» را ببینید</span>
+
+        <div class="fg-fr">Je visite l’Iran.</div>
+        <div>ایران مفعول فعل است.</div>
+
+        <div class="fg-fr" style="margin-top:8px;">Je vais en Iran.</div>
+        <div>ایران مقصد حرکت است.</div>
+    </div>
+
+
+    <h3>کشورهایی که معمولاً بدون حرف تعریف می‌آیند</h3>
+
+    <p>نمونه‌های مهم درس:</p>
+
+    <div class="fg-pills">
+        <span class="fg-pill">Chypre</span>
+        <span class="fg-pill">Haïti</span>
+        <span class="fg-pill">Israël</span>
+        <span class="fg-pill">Cuba</span>
+    </div>
+
+    <p>نمونه‌های رایج دیگر:</p>
+
+    <div class="fg-pills">
+        <span class="fg-pill">Madagascar</span>
+        <span class="fg-pill">Malte</span>
+        <span class="fg-pill">Monaco</span>
+        <span class="fg-pill">Singapour</span>
+        <span class="fg-pill">Bahreïn</span>
+        <span class="fg-pill">Oman</span>
+        <span class="fg-pill">Djibouti</span>
+    </div>
+
+    <div class="fg-example">
+        <span class="fg-fr">Je connais Cuba.</span>
+        <span class="fg-fa">من کوبا را می‌شناسم.</span>
+    </div>
+
+    <div class="fg-example">
+        <span class="fg-fr">Je vais à Cuba.</span>
+        <span class="fg-fa">من به کوبا می‌روم.</span>
+    </div>
+
+    <div class="fg-tip">
+        <span class="fg-callout-title">روش مطمئن یادگیری</span>
+        برای کشورها و جزیره‌های استثنایی، فقط خود نام را حفظ نکنید.
+        آن را همراه حرف اضافه یاد بگیرید:
+        <span class="fg-fr-inline">à Cuba</span>،
+        <span class="fg-fr-inline">en Israël</span>،
+        <span class="fg-fr-inline">à Chypre</span>.
+    </div>
+
+
+    <h3>مبدأ حرکت: «از کجا؟»</h3>
+
+    <div class="fg-table-wrap">
+        <table class="fg-table">
+            <thead>
+                <tr>
+                    <th>محل / مقصد</th>
+                    <th>مبدأ</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="fg-fr">à Paris</span></td>
+                    <td><span class="fg-fr">de Paris</span></td>
+                </tr>
+                <tr>
+                    <td><span class="fg-fr">en France</span></td>
+                    <td><span class="fg-fr">de France</span></td>
+                </tr>
+                <tr>
+                    <td><span class="fg-fr">en Italie</span></td>
+                    <td><span class="fg-fr">d’Italie</span></td>
+                </tr>
+                <tr>
+                    <td><span class="fg-fr">en Iran</span></td>
+                    <td><span class="fg-fr">d’Iran</span></td>
+                </tr>
+                <tr>
+                    <td><span class="fg-fr">au Canada</span></td>
+                    <td><span class="fg-fr">du Canada</span></td>
+                </tr>
+                <tr>
+                    <td><span class="fg-fr">au Japon</span></td>
+                    <td><span class="fg-fr">du Japon</span></td>
+                </tr>
+                <tr>
+                    <td><span class="fg-fr">aux États-Unis</span></td>
+                    <td><span class="fg-fr">des États-Unis</span></td>
+                </tr>
+                <tr>
+                    <td><span class="fg-fr">à Cuba</span></td>
+                    <td><span class="fg-fr">de Cuba</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="fg-example">
+        <span class="fg-fr">Je vais au Canada. Je reviens du Canada.</span>
+        <span class="fg-fa">به کانادا می‌روم. از کانادا برمی‌گردم.</span>
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+     SECTION 3
+     ====================================================== -->
+
+<section class="fg-section" id="fg-dans-sur-sous">
+
+    <div class="fg-section-heading">
+        <span>3</span>
+        <h2>
+            <span class="fg-fr-inline">dans / sur / sous</span>
+        </h2>
+    </div>
+
+
+    <h3><span class="fg-fr-inline">dans</span> — داخل</h3>
+
+    <p>
+        <span class="fg-fr-inline">dans</span>
+        برای قرارگرفتن درون یک فضای محدود یا محصور استفاده می‌شود.
+    </p>
+
+    <div class="fg-pills">
+        <span class="fg-pill">dans la maison</span>
+        <span class="fg-pill">dans le tiroir</span>
+        <span class="fg-pill">dans le placard</span>
+        <span class="fg-pill">dans la voiture</span>
+        <span class="fg-pill">dans le train</span>
+        <span class="fg-pill">dans le bus</span>
+        <span class="fg-pill">dans l’avion</span>
+    </div>
+
+    <div class="fg-example">
+        <span class="fg-fr">Les clés sont dans le tiroir.</span>
+        <span class="fg-fa">کلیدها داخل کشو هستند.</span>
+    </div>
+
+    <div class="fg-example">
+        <span class="fg-fr">Je suis dans le train.</span>
+        <span class="fg-fa">من داخل قطار هستم.</span>
+    </div>
+
+
+    <div class="fg-warning">
+        <span class="fg-callout-title">سه ساختی که نباید با هم اشتباه شوند</span>
+
+        <div class="fg-fr">Je suis dans le train.</div>
+        <div>من داخل قطار هستم.</div>
+
+        <div class="fg-fr" style="margin-top:8px;">Je voyage en train.</div>
+        <div>من با قطار سفر می‌کنم.</div>
+
+        <div class="fg-fr" style="margin-top:8px;">Je suis en train de travailler.</div>
+        <div>من در حال کار کردن هستم.</div>
+    </div>
+
+
+    <h3><span class="fg-fr-inline">sur</span> — روی سطح</h3>
+
+    <p>
+        <span class="fg-fr-inline">sur</span>
+        معمولاً برای چیزی به کار می‌رود که روی سطح قرار دارد.
+    </p>
+
+    <div class="fg-pills">
+        <span class="fg-pill">sur la table</span>
+        <span class="fg-pill">sur le toit</span>
+        <span class="fg-pill">sur la photo</span>
+        <span class="fg-pill">sur une chaise</span>
+        <span class="fg-pill">sur le mur</span>
+    </div>
+
+    <div class="fg-example">
+        <span class="fg-fr">Le livre est sur la table.</span>
+        <span class="fg-fa">کتاب روی میز است.</span>
+    </div>
+
+
+    <h3><span class="fg-fr-inline">sous</span> — زیر</h3>
+
+    <div class="fg-pills">
+        <span class="fg-pill">sous la table</span>
+        <span class="fg-pill">sous le lit</span>
+        <span class="fg-pill">sous le parapluie</span>
+        <span class="fg-pill">sous les arbres</span>
+    </div>
+
+    <div class="fg-example">
+        <span class="fg-fr">Le chat est sous la table.</span>
+        <span class="fg-fa">گربه زیر میز است.</span>
+    </div>
+
+
+    <h3>ترکیب‌هایی که بهتر است حفظ شوند</h3>
+
+    <div class="fg-table-wrap">
+        <table class="fg-table">
+            <thead>
+                <tr>
+                    <th>ساخت</th>
+                    <th>معنی / کاربرد</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="fg-fr">dans la rue</span></td>
+                    <td>در خیابان</td>
+                </tr>
+                <tr>
+                    <td><span class="fg-fr">sur la place</span></td>
+                    <td>در میدان</td>
+                </tr>
+                <tr>
+                    <td><span class="fg-fr">sur le boulevard</span></td>
+                    <td>در بلوار</td>
+                </tr>
+                <tr>
+                    <td><span class="fg-fr">dans le journal</span></td>
+                    <td>در محتوای روزنامه</td>
+                </tr>
+                <tr>
+                    <td><span class="fg-fr">à la radio</span></td>
+                    <td>در / از رادیو</td>
+                </tr>
+                <tr>
+                    <td><span class="fg-fr">à la télévision</span></td>
+                    <td>در / از تلویزیون</td>
+                </tr>
+                <tr>
+                    <td><span class="fg-fr">sur Internet</span></td>
+                    <td>در اینترنت</td>
+                </tr>
+                <tr>
+                    <td><span class="fg-fr">dans un fauteuil</span></td>
+                    <td>روی/داخل صندلی راحتی</td>
+                </tr>
+                <tr>
+                    <td><span class="fg-fr">sur une chaise</span></td>
+                    <td>روی صندلی</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <h3>تفاوت معنایی بر اساس حرف اضافه</h3>
+
+    <div class="fg-compare">
+
+        <div class="fg-compare-card">
+            <h4><span class="fg-fr-inline">dans le journal</span></h4>
+            <div class="fg-example">
+                <span class="fg-fr">J’ai lu cette nouvelle dans le journal.</span>
+                <span class="fg-fa">این خبر را در روزنامه خواندم.</span>
+            </div>
+        </div>
+
+        <div class="fg-compare-card">
+            <h4><span class="fg-fr-inline">sur le journal</span></h4>
+            <div class="fg-example">
+                <span class="fg-fr">Mon téléphone est sur le journal.</span>
+                <span class="fg-fa">تلفن من روی روزنامه قرار دارد.</span>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="fg-compare">
+
+        <div class="fg-compare-card">
+            <h4><span class="fg-fr-inline">à la télévision</span></h4>
+            <div class="fg-fr">Il y a un bon film à la télévision.</div>
+            <p>یک فیلم خوب از تلویزیون پخش می‌شود.</p>
+        </div>
+
+        <div class="fg-compare-card">
+            <h4><span class="fg-fr-inline">sur la télévision</span></h4>
+            <div class="fg-fr">Les clés sont sur la télévision.</div>
+            <p>کلیدها روی دستگاه تلویزیون هستند.</p>
+        </div>
+
+    </div>
+
+
+    <div class="fg-tip">
+        <span class="fg-callout-title">
+            چرا
+            <span class="fg-fr-inline">dans un fauteuil</span>
+            ولی
+            <span class="fg-fr-inline">sur une chaise</span>؟
+        </span>
+
+        صندلی راحتی یا
+        <span class="fg-fr-inline">fauteuil</span>
+        بدن را تا حدی دربرمی‌گیرد؛ بنابراین فرانسه آن را مثل یک فضای دربرگیرنده تصور می‌کند.
+
+        در مقابل، صندلی معمولی
+        <span class="fg-fr-inline">chaise</span>
+        بیشتر مانند یک سطح دیده می‌شود.
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+     SECTION 4
+     ====================================================== -->
+
+<section class="fg-section" id="fg-vertical">
+
+    <div class="fg-section-heading">
+        <span>4</span>
+        <h2>بالا، پایین، داخل و خارج</h2>
+    </div>
+
+
+    <h3>
+        تفاوت
+        <span class="fg-fr-inline">sur</span>
+        و
+        <span class="fg-fr-inline">au-dessus de</span>
+    </h3>
+
+    <div class="fg-compare">
+
+        <div class="fg-compare-card">
+            <h4><span class="fg-fr-inline">sur</span></h4>
+            <p>روی سطح و معمولاً در تماس با آن.</p>
+
+            <div class="fg-example">
+                <span class="fg-fr">Le vase est sur la table.</span>
+                <span class="fg-fa">گلدان روی میز است.</span>
+            </div>
+        </div>
+
+        <div class="fg-compare-card">
+            <h4><span class="fg-fr-inline">au-dessus de</span></h4>
+            <p>در ارتفاع بالاتر؛ تماس الزامی نیست.</p>
+
+            <div class="fg-example">
+                <span class="fg-fr">La lampe est au-dessus de la table.</span>
+                <span class="fg-fa">چراغ بالای میز است.</span>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="fg-rule">
+        <strong>ساخت:</strong>
+        <span class="fg-fr-inline">au-dessus de + nom</span>
+    </div>
+
+    <div class="fg-pills">
+        <span class="fg-pill">au-dessus de la table</span>
+        <span class="fg-pill">au-dessus du lit</span>
+        <span class="fg-pill">au-dessus des arbres</span>
+        <span class="fg-pill">au-dessus de l’armoire</span>
+    </div>
+
+    <div class="fg-bad-example">
+        <span class="fg-fr">
+            <span class="fg-bad">✗ au-dessus la table</span>
+            &nbsp; →
+            <span class="fg-good">✓ au-dessus de la table</span>
+        </span>
+    </div>
+
+
+    <h3>
+        <span class="fg-fr-inline">sous</span>
+        و
+        <span class="fg-fr-inline">au-dessous de</span>
+    </h3>
+
+    <div class="fg-example">
+        <span class="fg-fr">Le chat est sous la table.</span>
+        <span class="fg-fa">گربه مستقیماً زیر میز است.</span>
+    </div>
+
+    <div class="fg-example">
+        <span class="fg-fr">Le quatrième étage est au-dessous du cinquième.</span>
+        <span class="fg-fa">طبقه چهارم پایین‌تر از طبقه پنجم است.</span>
+    </div>
+
+    <div class="fg-info">
+        در زبان روزمره،
+        <span class="fg-fr-inline">en dessous de</span>
+        نیز بسیار رایج است.
+
+        <div class="fg-example">
+            <span class="fg-fr">Le lavabo est en dessous du miroir.</span>
+        </div>
+    </div>
+
+
+    <h3>
+        <span class="fg-fr-inline">dessus / dessous / dedans / dehors</span>
+    </h3>
+
+    <p>
+        این واژه‌ها قید هستند؛ یعنی معمولاً دیگر اسم بعد از خود نمی‌گیرند.
+    </p>
+
+    <div class="fg-table-wrap">
+        <table class="fg-table">
+            <thead>
+                <tr>
+                    <th>ساخت با اسم</th>
+                    <th>قید بدون اسم</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="fg-fr">sur la table</span></td>
+                    <td><span class="fg-fr">dessus</span></td>
+                </tr>
+                <tr>
+                    <td><span class="fg-fr">sous la table</span></td>
+                    <td><span class="fg-fr">dessous</span></td>
+                </tr>
+                <tr>
+                    <td><span class="fg-fr">dans la maison</span></td>
+                    <td><span class="fg-fr">dedans</span></td>
+                </tr>
+                <tr>
+                    <td><span class="fg-fr">à l’extérieur</span></td>
+                    <td><span class="fg-fr">dehors</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="fg-example">
+        <span class="fg-fr">Le livre est sur la table. Il est dessus.</span>
+    </div>
+
+    <div class="fg-example">
+        <span class="fg-fr">Les enfants sont dans la maison. Ils sont dedans.</span>
+    </div>
+
+    <div class="fg-warning">
+        <span class="fg-callout-title">خطای رایج</span>
+
+        <div class="fg-fr">
+            <span class="fg-bad">✗ Le livre est dessus la table.</span>
+        </div>
+
+        <div class="fg-fr">
+            <span class="fg-good">✓ Le livre est sur la table.</span>
+        </div>
+
+        <div class="fg-fr">
+            <span class="fg-good">✓ Le livre est dessus.</span>
+        </div>
+
+        <hr class="fg-divider">
+
+        <div class="fg-fr">
+            <span class="fg-bad">✗ Le chat est dedans la maison.</span>
+        </div>
+
+        <div class="fg-fr">
+            <span class="fg-good">✓ Le chat est dans la maison.</span>
+        </div>
+
+        <div class="fg-fr">
+            <span class="fg-good">✓ Le chat est dedans.</span>
+        </div>
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+     SECTION 5
+     ====================================================== -->
+
+<section class="fg-section" id="fg-distance">
+
+    <div class="fg-section-heading">
+        <span>5</span>
+        <h2>نزدیکی و فاصله</h2>
+    </div>
+
+    <div class="fg-card">
+        <div class="fg-card-title">
+            <span class="fg-fr-inline">à côté de</span>
+        </div>
+
+        <p>یعنی چیزی دقیقاً یا تقریباً کنار چیز دیگری قرار دارد.</p>
+
+        <div class="fg-example">
+            <span class="fg-fr">La pharmacie est à côté de la banque.</span>
+            <span class="fg-fa">داروخانه کنار بانک است.</span>
+        </div>
+    </div>
+
+    <div class="fg-card">
+        <div class="fg-card-title">
+            <span class="fg-fr-inline">près de</span>
+        </div>
+
+        <p>یعنی «نزدیک»، ولی الزاماً چسبیده یا دقیقاً کنار آن نیست.</p>
+
+        <div class="fg-example">
+            <span class="fg-fr">Versailles est près de Paris.</span>
+            <span class="fg-fa">ورسای نزدیک پاریس است.</span>
+        </div>
+    </div>
+
+    <div class="fg-card">
+        <div class="fg-card-title">
+            <span class="fg-fr-inline">loin de</span>
+        </div>
+
+        <p>یعنی «دور از».</p>
+
+        <div class="fg-example">
+            <span class="fg-fr">Moscou est loin de Paris.</span>
+            <span class="fg-fa">مسکو از پاریس دور است.</span>
+        </div>
+    </div>
+
+    <div class="fg-rule">
+        هر سه ساخت با
+        <span class="fg-fr-inline">de</span>
+        کامل می‌شوند:
+        <span class="fg-fr-inline">
+            à côté de / près de / loin de
+        </span>
+    </div>
+
+    <div class="fg-pills">
+        <span class="fg-pill">à côté du musée</span>
+        <span class="fg-pill">près du centre</span>
+        <span class="fg-pill">loin des montagnes</span>
+        <span class="fg-pill">à côté de la gare</span>
+        <span class="fg-pill">près de l’école</span>
+    </div>
+
+    <div class="fg-bad-example">
+        <div class="fg-fr">
+            <span class="fg-bad">✗ près Paris</span>
+            &nbsp; →
+            <span class="fg-good">✓ près de Paris</span>
+        </div>
+    </div>
+
+    <div class="fg-bad-example">
+        <div class="fg-fr">
+            <span class="fg-bad">✗ à côté le musée</span>
+            &nbsp; →
+            <span class="fg-good">✓ à côté du musée</span>
+        </div>
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+     EXERCISES
+     ====================================================== -->
+
+<section class="fg-section" id="fg-exercises">
+
+    <div class="fg-section-heading">
+        <span>6</span>
+        <h2>تمرین‌های درس با پاسخ و نکته آموزشی</h2>
+    </div>
+
+
+    <!-- EXERCISE P45-1 -->
+
+    <div class="fg-exercise">
+        <div class="fg-exercise-header">
+            تمرین ۱ — صفحه ۴۵: کشورها با
+            <span class="fg-fr-inline">connaître</span>
+            و
+            <span class="fg-fr-inline">aller</span>
+        </div>
+
+        <div class="fg-exercise-body">
+
+            <p>
+                در بخش اول باید article مناسب کشور را اضافه کنیم.
+                در بخش دوم حرف اضافه مقصد را انتخاب می‌کنیم.
+            </p>
+
+            <details class="fg-answer">
+                <summary>مشاهده پاسخ</summary>
+
+                <div class="fg-answer-content">
+
+                    <h4>با <span class="fg-fr-inline">connaître</span></h4>
+
+                    <div class="fg-example">
+                        <span class="fg-fr">
+                            Je connais le Japon, la Chine, la Russie, la Finlande,
+                            le Chili, les États-Unis, le Canada, le Mexique et Cuba.
+                        </span>
+                    </div>
+
+                    <h4>با <span class="fg-fr-inline">aller</span></h4>
+
+                    <div class="fg-example">
+                        <span class="fg-fr">
+                            Vous êtes allé(e) au Japon, en Chine, en Russie,
+                            en Finlande, au Chili, aux États-Unis,
+                            au Canada, au Mexique et à Cuba.
+                        </span>
+                    </div>
+
+                    <div class="fg-tip">
+                        <span class="fg-callout-title">نکته تمرین</span>
+
+                        <span class="fg-fr-inline">connaître le Japon</span>
+                        چون کشور مفعول فعل است.
+
+                        <br>
+
+                        <span class="fg-fr-inline">aller au Japon</span>
+                        چون کشور مقصد حرکت است.
+                    </div>
+
+                </div>
+            </details>
+        </div>
+    </div>
+
+
+    <!-- EXERCISE P45-2 -->
+
+    <div class="fg-exercise">
+        <div class="fg-exercise-header">
+            تمرین ۲ — موقعیت جغرافیایی مکان‌های معروف
+        </div>
+
+        <div class="fg-exercise-body">
+
+            <details class="fg-answer">
+                <summary>مشاهده پاسخ‌ها</summary>
+
+                <div class="fg-answer-content">
+
+                    <div class="fg-example">
+                        <span class="fg-fr">
+                            La tour Eiffel se trouve à Paris, en France, en Europe.
+                        </span>
+                    </div>
+
+                    <div class="fg-example">
+                        <span class="fg-fr">
+                            Les chutes du Niagara se trouvent en Amérique du Nord,
+                            aux États-Unis et au Canada.
+                        </span>
+                    </div>
+
+                    <div class="fg-example">
+                        <span class="fg-fr">
+                            Le Kilimandjaro se trouve en Afrique,
+                            au Kenya et en Tanzanie.
+                        </span>
+                    </div>
+
+                    <div class="fg-example">
+                        <span class="fg-fr">
+                            Le canal de Suez se trouve en Égypte,
+                            en Afrique du Nord.
+                        </span>
+                    </div>
+
+                    <div class="fg-example">
+                        <span class="fg-fr">
+                            Le Pain de sucre se trouve à Rio,
+                            au Brésil, en Amérique du Sud.
+                        </span>
+                    </div>
+
+                    <div class="fg-example">
+                        <span class="fg-fr">
+                            Le Colisée se trouve à Rome,
+                            en Italie, en Europe.
+                        </span>
+                    </div>
+
+                    <div class="fg-info">
+                        هدف اصلی این تمرین انتخاب درست
+                        <span class="fg-fr-inline">à / en / au / aux</span>
+                        بر اساس نوع نام جغرافیایی است.
+                    </div>
+
+                </div>
+            </details>
+
+        </div>
+    </div>
+
+
+    <!-- EXERCISE P45-3 -->
+
+    <div class="fg-exercise">
+        <div class="fg-exercise-header">
+            تمرین ۳ — <span class="fg-fr-inline">Une famille cosmopolite</span>
+        </div>
+
+        <div class="fg-exercise-body">
+
+            <details class="fg-answer">
+                <summary>مشاهده متن کامل‌شده</summary>
+
+                <div class="fg-answer-content">
+
+                    <div class="fg-example">
+                        <span class="fg-fr">
+                            Mon grand-père est à Berlin, en Allemagne.
+                            Mon frère est au Caire, en Égypte.
+                            Ma sœur et moi, nous sommes à Rotterdam, aux Pays-Bas.
+                            Mon oncle est à La Havane, à Cuba.
+                            Ma cousine Beth est à Nicosie, à Chypre.
+                            Mes cousins sont à Téhéran, en Iran,
+                            et mes parents sont à Madrid, en Espagne.
+                        </span>
+                    </div>
+
+                    <div class="fg-tip">
+                        <span class="fg-callout-title">نکته‌های مهم</span>
+
+                        <ul class="fg-list">
+                            <li>
+                                <span class="fg-fr-inline">au Caire</span>:
+                                چون نام شهر <span class="fg-fr-inline">Le Caire</span> است.
+                            </li>
+
+                            <li>
+                                <span class="fg-fr-inline">à La Havane</span>:
+                                حرف تعریف مؤنث شهر حفظ می‌شود.
+                            </li>
+
+                            <li>
+                                <span class="fg-fr-inline">aux Pays-Bas</span>:
+                                نام کشور جمع است.
+                            </li>
+
+                            <li>
+                                <span class="fg-fr-inline">en Iran</span>:
+                                نام کشور با واکه آغاز می‌شود.
+                            </li>
+
+                            <li>
+                                <span class="fg-fr-inline">à Chypre</span>:
+                                Chypre بدون article می‌آید.
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </details>
+
+        </div>
+    </div>
+
+
+    <!-- EXERCISE P45-4 -->
+
+    <div class="fg-exercise">
+        <div class="fg-exercise-header">
+            تمرین ۴ — ساخت جمله درباره مکان‌های مشهور
+        </div>
+
+        <div class="fg-exercise-body">
+
+            <details class="fg-answer">
+                <summary>مشاهده نمونه پاسخ‌ها</summary>
+
+                <div class="fg-answer-content">
+
+                    <div class="fg-example">
+                        <span class="fg-fr">
+                            Au Pérou, il y a un site archéologique inca célèbre :
+                            c’est le Machu Picchu.
+                        </span>
+                    </div>
+
+                    <div class="fg-example">
+                        <span class="fg-fr">
+                            Au Japon, il y a un grand volcan sacré :
+                            c’est le mont Fuji.
+                        </span>
+                    </div>
+
+                    <div class="fg-example">
+                        <span class="fg-fr">
+                            En Écosse, il y a un lac mystérieux :
+                            c’est le Loch Ness.
+                        </span>
+                    </div>
+
+                    <div class="fg-example">
+                        <span class="fg-fr">
+                            En Iran, il y a un site historique célèbre :
+                            c’est Persépolis.
+                        </span>
+                    </div>
+
+                    <div class="fg-example">
+                        <span class="fg-fr">
+                            Au Canada, il y a un parc national célèbre :
+                            c’est le parc national de Banff.
+                        </span>
+                    </div>
+
+                    <hr class="fg-divider">
+
+                    <div class="fg-example">
+                        <span class="fg-fr">L’Himalaya se trouve en Asie.</span>
+                    </div>
+
+                    <div class="fg-example">
+                        <span class="fg-fr">
+                            Le palais de Topkapi se trouve à Istanbul, en Turquie.
+                        </span>
+                    </div>
+
+                    <div class="fg-example">
+                        <span class="fg-fr">
+                            L’Etna se trouve en Sicile, en Italie, en Europe.
+                        </span>
+                    </div>
+
+                </div>
+            </details>
+
+        </div>
+    </div>
+
+
+    <!-- PAGE 47 -->
+
+    <h3>تمرین‌های صفحه ۴۷</h3>
+
+
+    <div class="fg-exercise">
+        <div class="fg-exercise-header">
+            تمرین ۱ —
+            <span class="fg-fr-inline">dans, sur, sous</span>
+        </div>
+
+        <div class="fg-exercise-body">
+
+            <details class="fg-answer">
+                <summary>مشاهده پاسخ</summary>
+
+                <div class="fg-answer-content">
+
+                    <div class="fg-example">
+                        <span class="fg-fr">
+                            — Les assiettes sont dans le placard ?<br>
+                            — Non, elles sont dans le lave-vaisselle.<br>
+                            — Les verres sont sur la table ?<br>
+                            — Non, ils sont sur l’étagère.
+                        </span>
+                    </div>
+
+                    <div class="fg-example">
+                        <span class="fg-fr">
+                            — On mange dans la cuisine ?<br>
+                            — Non, sur la terrasse, il fait beau !<br>
+                            — Il y a des tas de journaux sur la table…<br>
+                            — Jette-les dans la poubelle, sous l’évier.
+                        </span>
+                    </div>
+
+                    <div class="fg-tip">
+                        <span class="fg-callout-title">نکته آخر</span>
+
+                        روزنامه‌ها را
+                        <span class="fg-fr-inline">dans la poubelle</span>
+                        یعنی «داخل سطل» می‌اندازیم.
+
+                        خود سطل
+                        <span class="fg-fr-inline">sous l’évier</span>
+                        یعنی «زیر سینک» قرار دارد.
+                    </div>
+
+                </div>
+            </details>
+
+        </div>
+    </div>
+
+
+    <div class="fg-exercise">
+        <div class="fg-exercise-header">
+            تمرین ۲ — تفاوت معنایی حرف اضافه
+        </div>
+
+        <div class="fg-exercise-body">
+
+            <details class="fg-answer">
+                <summary>مشاهده پاسخ‌ها</summary>
+
+                <div class="fg-answer-content">
+
+                    <h4>1. <span class="fg-fr-inline">Bouteille</span></h4>
+
+                    <div class="fg-example">
+                        <span class="fg-fr">
+                            Sur la bouteille, il y a une étiquette.
+                            Dans la bouteille, il y a du cognac.
+                        </span>
+                    </div>
+
+                    <h4>2. <span class="fg-fr-inline">Lac</span></h4>
+
+                    <div class="fg-example">
+                        <span class="fg-fr">
+                            Sur le lac, il y a des bateaux.
+                            Dans le lac, il y a des poissons.
+                        </span>
+                    </div>
+
+                    <h4>3. <span class="fg-fr-inline">Télévision</span></h4>
+
+                    <div class="fg-example">
+                        <span class="fg-fr">
+                            La télévision est sur la table basse.
+                            À la télévision, il y a un reportage.
+                        </span>
+                    </div>
+
+                    <h4>4. <span class="fg-fr-inline">Avion</span></h4>
+
+                    <div class="fg-example">
+                        <span class="fg-fr">
+                            Dans l’avion, il y a des voyageurs.
+                            Sur l’avion, il y a James Bond.
+                        </span>
+                    </div>
+
+                    <div class="fg-tip">
+                        <span class="fg-callout-title">چرا؟</span>
+                        مسافر معمولی
+                        <span class="fg-fr-inline">dans l’avion</span>
+                        است؛ اما در جمله تمرین، James Bond روی سطح خارجی هواپیما قرار گرفته است،
+                        بنابراین
+                        <span class="fg-fr-inline">sur l’avion</span>.
+                    </div>
+
+                    <h4>5. <span class="fg-fr-inline">Radio</span></h4>
+
+                    <div class="fg-example">
+                        <span class="fg-fr">
+                            Sur la radio, il y a un autocollant.
+                            À la radio, il y a un concert de jazz.
+                        </span>
+                    </div>
+
+                </div>
+            </details>
+
+        </div>
+    </div>
+
+
+    <div class="fg-exercise">
+        <div class="fg-exercise-header">
+            تمرین ۳ — تکمیل ترکیب‌های ثابت
+        </div>
+
+        <div class="fg-exercise-body">
+
+            <details class="fg-answer">
+                <summary>مشاهده پاسخ‌ها</summary>
+
+                <div class="fg-answer-content">
+
+                    <ol class="fg-list">
+
+                        <li>
+                            <span class="fg-fr">
+                                Le chat est dans la cuisine ou sur le balcon ?
+                            </span>
+                        </li>
+
+                        <li>
+                            <span class="fg-fr">
+                                Il y a beaucoup de monde dans la rue.
+                            </span>
+                        </li>
+
+                        <li>
+                            <span class="fg-fr">
+                                Le père de Charlie est toujours assis
+                                dans un gros fauteuil en cuir jaune
+                                et sa mère sur une petite chaise en paille.
+                            </span>
+                        </li>
+
+                        <li>
+                            <span class="fg-fr">
+                                Regarde, il y a Sharon Stone à la télévision.
+                            </span>
+                        </li>
+
+                        <li>
+                            <span class="fg-fr">
+                                Le cinéma Le Champo est dans la rue des Écoles
+                                ou sur le boulevard Saint-Michel ?
+                            </span>
+                        </li>
+
+                        <li>
+                            <span class="fg-fr">
+                                Nous déjeunons souvent sur l’herbe,
+                                sous les arbres.
+                            </span>
+                        </li>
+
+                        <li>
+                            <span class="fg-fr">
+                                Ce soir, il y a un bon concert à la radio
+                                et un bon film à la télé.
+                            </span>
+                        </li>
+
+                    </ol>
+
+                    <div class="fg-tip">
+                        <span class="fg-callout-title">ترکیب‌های مهم این تمرین</span>
+
+                        <div class="fg-pills">
+                            <span class="fg-pill">dans la rue</span>
+                            <span class="fg-pill">sur le boulevard</span>
+                            <span class="fg-pill">dans un fauteuil</span>
+                            <span class="fg-pill">sur une chaise</span>
+                            <span class="fg-pill">à la télévision</span>
+                            <span class="fg-pill">à la radio</span>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+        </div>
+    </div>
+
+
+    <div class="fg-exercise">
+        <div class="fg-exercise-header">
+            تمرین ۴ —
+            <span class="fg-fr-inline">dessus, dessous, dedans, dehors</span>
+        </div>
+
+        <div class="fg-exercise-body">
+
+            <details class="fg-answer">
+                <summary>مشاهده پاسخ‌ها</summary>
+
+                <div class="fg-answer-content">
+
+                    <ol class="fg-list">
+
+                        <li>
+                            <span class="fg-fr">
+                                Le prix est marqué sous le vase :
+                                regarde, il est collé dessous.
+                            </span>
+                        </li>
+
+                        <li>
+                            <span class="fg-fr">
+                                — Ma veste n’est pas dans l’armoire !<br>
+                                — Mais si, regarde bien, elle est dedans.
+                            </span>
+                        </li>
+
+                        <li>
+                            <span class="fg-fr">
+                                — Il y a une étiquette sur ta valise ?<br>
+                                — Oui, regarde, elle est collée dessus.
+                            </span>
+                        </li>
+
+                        <li>
+                            <span class="fg-fr">
+                                Le chien n’a pas le droit d’entrer dans ce restaurant,
+                                laissez-le dehors.
+                            </span>
+                        </li>
+
+                        <li>
+                            <span class="fg-fr">
+                                Un cadeau est caché sous ta serviette :
+                                regarde vite dessous.
+                            </span>
+                        </li>
+
+                    </ol>
+
+                    <div class="fg-info">
+                        در این مثال‌ها مکان قبلاً مشخص شده است؛ بنابراین
+                        دیگر لازم نیست اسم را دوباره بعد از
+                        <span class="fg-fr-inline">dessus / dessous / dedans / dehors</span>
+                        بیاوریم.
+                    </div>
+
+                </div>
+            </details>
+
+        </div>
+    </div>
+
+
+    <div class="fg-exercise">
+        <div class="fg-exercise-header">
+            تمرین ۵ — جمله‌سازی آزاد
+        </div>
+
+        <div class="fg-exercise-body">
+
+            <p>
+                این تمرین بیش از یک پاسخ درست دارد.
+                هدف تشخیص رابطه فضایی میان اشیاست.
+            </p>
+
+            <details class="fg-answer">
+                <summary>مشاهده نمونه پاسخ‌ها</summary>
+
+                <div class="fg-answer-content">
+
+                    <h4>با <span class="fg-fr-inline">table</span></h4>
+
+                    <div class="fg-example">
+                        <span class="fg-fr">Le vase est sur la table.</span>
+                    </div>
+
+                    <div class="fg-example">
+                        <span class="fg-fr">Le lustre est au-dessus de la table.</span>
+                    </div>
+
+                    <div class="fg-example">
+                        <span class="fg-fr">Le tapis est sous la table.</span>
+                    </div>
+
+                    <div class="fg-example">
+                        <span class="fg-fr">Le chat est sous la table.</span>
+                    </div>
+
+
+                    <h4>با <span class="fg-fr-inline">miroir</span></h4>
+
+                    <div class="fg-example">
+                        <span class="fg-fr">La lampe est au-dessus du miroir.</span>
+                    </div>
+
+                    <div class="fg-example">
+                        <span class="fg-fr">La photo est sur le miroir.</span>
+                    </div>
+
+                    <div class="fg-example">
+                        <span class="fg-fr">Le lavabo est au-dessous du miroir.</span>
+                    </div>
+
+
+                    <h4>با <span class="fg-fr-inline">lit</span></h4>
+
+                    <div class="fg-example">
+                        <span class="fg-fr">La balle est dans le lit.</span>
+                    </div>
+
+                    <div class="fg-example">
+                        <span class="fg-fr">La couverture est sur le lit.</span>
+                    </div>
+
+                    <div class="fg-example">
+                        <span class="fg-fr">Les pantoufles sont sous le lit.</span>
+                    </div>
+
+                </div>
+            </details>
+
+        </div>
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+     COMMON ERRORS
+     ====================================================== -->
+
+<section class="fg-section">
+
+    <div class="fg-section-heading">
+        <span>!</span>
+        <h2>اشتباهات بسیار رایج درس ۱۰</h2>
+    </div>
+
+    <div class="fg-table-wrap">
+        <table class="fg-table">
+            <thead>
+                <tr>
+                    <th>نادرست</th>
+                    <th>درست</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td><span class="fg-fr fg-bad">à Canada</span></td>
+                    <td><span class="fg-fr fg-good">au Canada</span></td>
+                </tr>
+
+                <tr>
+                    <td><span class="fg-fr fg-bad">en Japon</span></td>
+                    <td><span class="fg-fr fg-good">au Japon</span></td>
+                </tr>
+
+                <tr>
+                    <td><span class="fg-fr fg-bad">au Iran</span></td>
+                    <td><span class="fg-fr fg-good">en Iran</span></td>
+                </tr>
+
+                <tr>
+                    <td><span class="fg-fr fg-bad">en Cuba</span></td>
+                    <td><span class="fg-fr fg-good">à Cuba</span></td>
+                </tr>
+
+                <tr>
+                    <td><span class="fg-fr fg-bad">à les États-Unis</span></td>
+                    <td><span class="fg-fr fg-good">aux États-Unis</span></td>
+                </tr>
+
+                <tr>
+                    <td><span class="fg-fr fg-bad">Je visite au Canada.</span></td>
+                    <td><span class="fg-fr fg-good">Je visite le Canada.</span></td>
+                </tr>
+
+                <tr>
+                    <td><span class="fg-fr fg-bad">Je suis sur le train.</span></td>
+                    <td><span class="fg-fr fg-good">Je suis dans le train.</span></td>
+                </tr>
+
+                <tr>
+                    <td><span class="fg-fr fg-bad">Un film sur la télévision.</span></td>
+                    <td><span class="fg-fr fg-good">Un film à la télévision.</span></td>
+                </tr>
+
+                <tr>
+                    <td><span class="fg-fr fg-bad">Le livre est dessus la table.</span></td>
+                    <td><span class="fg-fr fg-good">Le livre est sur la table.</span></td>
+                </tr>
+
+                <tr>
+                    <td><span class="fg-fr fg-bad">Le livre est au-dessus la table.</span></td>
+                    <td><span class="fg-fr fg-good">Le livre est au-dessus de la table.</span></td>
+                </tr>
+
+                <tr>
+                    <td><span class="fg-fr fg-bad">Le chat est dedans la maison.</span></td>
+                    <td><span class="fg-fr fg-good">Le chat est dans la maison.</span></td>
+                </tr>
+
+                <tr>
+                    <td><span class="fg-fr fg-bad">La pharmacie est à côté la banque.</span></td>
+                    <td><span class="fg-fr fg-good">La pharmacie est à côté de la banque.</span></td>
+                </tr>
+
+                <tr>
+                    <td><span class="fg-fr fg-bad">Versailles est près Paris.</span></td>
+                    <td><span class="fg-fr fg-good">Versailles est près de Paris.</span></td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+     FINAL SUMMARY
+     ====================================================== -->
+
+<section class="fg-summary">
+
+    <h2>خلاصه‌ای که باید از درس ۱۰ به خاطر بسپارید</h2>
+
+    <div class="fg-mini-grid">
+
+        <div class="fg-mini-box">
+            <strong>à</strong>
+            شهر
+        </div>
+
+        <div class="fg-mini-box">
+            <strong>en</strong>
+            کشور مؤنث / قاره / واکه
+        </div>
+
+        <div class="fg-mini-box">
+            <strong>au</strong>
+            کشور مذکر
+        </div>
+
+        <div class="fg-mini-box">
+            <strong>aux</strong>
+            کشور جمع
+        </div>
+
+    </div>
+
+    <div class="fg-table-wrap">
+        <table class="fg-table">
+            <thead>
+                <tr>
+                    <th>ساخت</th>
+                    <th>مفهوم اصلی</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td><span class="fg-fr">dans</span></td>
+                    <td>داخل</td>
+                </tr>
+
+                <tr>
+                    <td><span class="fg-fr">sur</span></td>
+                    <td>روی سطح</td>
+                </tr>
+
+                <tr>
+                    <td><span class="fg-fr">sous</span></td>
+                    <td>زیر</td>
+                </tr>
+
+                <tr>
+                    <td><span class="fg-fr">au-dessus de</span></td>
+                    <td>بالاتر از، بدون الزام تماس</td>
+                </tr>
+
+                <tr>
+                    <td><span class="fg-fr">au-dessous de</span></td>
+                    <td>پایین‌تر از</td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <span class="fg-fr">
+                            dessus / dessous / dedans / dehors
+                        </span>
+                    </td>
+                    <td>قید مکانی؛ معمولاً بدون اسم بعد از خود</td>
+                </tr>
+
+                <tr>
+                    <td><span class="fg-fr">à côté de</span></td>
+                    <td>کنار</td>
+                </tr>
+
+                <tr>
+                    <td><span class="fg-fr">près de</span></td>
+                    <td>نزدیک</td>
+                </tr>
+
+                <tr>
+                    <td><span class="fg-fr">loin de</span></td>
+                    <td>دور از</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <div class="fg-success">
+        <span class="fg-callout-title">قاعده طلایی</span>
+
+        قبل از انتخاب حرف اضافه از خودتان بپرسید:
+
+        <ol class="fg-list">
+            <li>آیا مکان یک شهر است یا کشور؟</li>
+            <li>اگر کشور است، مذکر، مؤنث یا جمع است؟</li>
+            <li>آیا اسم با واکه آغاز می‌شود؟</li>
+            <li>اگر شیء است، داخل چیزی است، روی سطح است یا زیر آن؟</li>
+            <li>
+                آیا بعد از عبارت مکانی اسم می‌آید یا باید از قیدهایی مثل
+                <span class="fg-fr-inline">dessus / dedans</span>
+                استفاده کنم؟
+            </li>
+        </ol>
+    </div>
+
+</section>
+
+
+<div class="fg-source-note">
+    محتوای اصلی درس بر اساس Lesson 10:
+    <span class="fg-fr-inline">LA SITUATION dans l’ESPACE (1)</span>
+    و ساختار آموزشی پروژه Grammar Mastery Platform تنظیم شده است.
+</div>
+
+</div>
