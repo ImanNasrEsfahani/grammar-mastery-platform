@@ -3,7 +3,7 @@ from __future__ import annotations
 from rest_framework.exceptions import MethodNotAllowed
 from rest_framework.views import APIView
 
-from backend.django_adapter import runtime_auth, runtime_dashboard, runtime_learning
+from backend.django_adapter import runtime_auth, runtime_dashboard, runtime_learning, runtime_review
 from backend.errors import APIError
 
 
@@ -11,9 +11,8 @@ class ContractEndpointView(APIView):
     """Route a frozen Stage 21 operation to a bound runtime provider.
 
     Runtime providers are bound incrementally. Auth, dashboard/next action,
-    lesson reads, test creation, and the complete attempt cycle are PostgreSQL-backed. Operations without a
-    production provider continue to fail closed with the Stage 21 dependency
-    error rather than falling through to Django's HTML 404 surface.
+    lesson reads, test creation, the complete attempt cycle, and learner Review
+    are PostgreSQL-backed. Operations without a production provider fail closed.
     """
 
     operations: dict[str, str] = {}
@@ -49,7 +48,7 @@ class ContractEndpointView(APIView):
                 request, attempt_id=kwargs.get("attemptId")
             )
         if operation_id == "submitAttemptAnswer":
-            return runtime_learning.submit_attempt_answer_request(
+            return runtime_review.submit_attempt_answer_request(
                 request, attempt_id=kwargs.get("attemptId")
             )
         if operation_id == "completeAttempt":
@@ -61,11 +60,27 @@ class ContractEndpointView(APIView):
                 request, attempt_id=kwargs.get("attemptId")
             )
         if operation_id == "listReviews":
-            return runtime_learning.list_reviews_request(request)
+            return runtime_review.list_reviews_request(request)
+        if operation_id == "getReviewItem":
+            return runtime_review.get_review_item_request(
+                request, review_id=kwargs.get("reviewId")
+            )
+        if operation_id == "gradeReview":
+            return runtime_review.grade_review_request(
+                request, review_id=kwargs.get("reviewId")
+            )
+        if operation_id == "revealReviewAnswer":
+            return runtime_review.reveal_review_answer_request(
+                request, review_id=kwargs.get("reviewId")
+            )
+        if operation_id == "setReviewMark":
+            return runtime_review.set_review_mark_request(
+                request, review_id=kwargs.get("reviewId")
+            )
         if operation_id == "getDashboard":
-            return runtime_dashboard.dashboard_request(request)
+            return runtime_review.dashboard_request(request)
         if operation_id == "getCurrentNextAction":
-            return runtime_dashboard.next_action_request(request)
+            return runtime_review.next_action_request(request)
 
         raise APIError(
             503,
