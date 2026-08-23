@@ -1,0 +1,417 @@
+<div class="french-grammar-wrapper fg-lesson23" dir="rtl">
+  <style scoped>
+    .fg-lesson23 {
+      --fg-navy:#173b66;
+      --fg-blue:#245f9e;
+      --fg-blue-soft:#eef5ff;
+      --fg-green:#177245;
+      --fg-green-soft:#eefaf3;
+      --fg-red:#b63b37;
+      --fg-red-soft:#fff1ef;
+      --fg-orange:#b76516;
+      --fg-orange-soft:#fff6e9;
+      --fg-ink:#1f2937;
+      --fg-muted:#667085;
+      --fg-line:#d7e0ea;
+      --fg-card:#ffffff;
+      --fg-surface:#f7f9fc;
+      --fg-shadow:0 10px 30px rgba(23,59,102,.08);
+      --fg-radius:18px;
+      font-family: Vazirmatn, Tahoma, Arial, sans-serif;
+      color:var(--fg-ink);
+      line-height:1.9;
+      background:transparent;
+      direction:rtl;
+      text-align:right;
+      box-sizing:border-box;
+    }
+    .fg-lesson23 *, .fg-lesson23 *::before, .fg-lesson23 *::after{box-sizing:border-box;}
+    .fg-lesson23 .fg-container{max-width:1100px;margin:0 auto;padding:18px;}
+    .fg-lesson23 .fg-hero{
+      background:linear-gradient(135deg,#173b66 0%,#245f9e 100%);
+      color:#fff;
+      border-radius:24px;
+      padding:28px;
+      box-shadow:var(--fg-shadow);
+      margin-bottom:22px;
+      overflow:hidden;
+      position:relative;
+    }
+    .fg-lesson23 .fg-hero::after{
+      content:"ALLER";
+      position:absolute;
+      left:20px;
+      bottom:-18px;
+      font:700 76px/1 Arial,sans-serif;
+      color:rgba(255,255,255,.07);
+      direction:ltr;
+    }
+    .fg-lesson23 .fg-eyebrow{font-size:.86rem;opacity:.85;margin-bottom:6px;}
+    .fg-lesson23 h1,.fg-lesson23 h2,.fg-lesson23 h3,.fg-lesson23 h4{margin:0;color:var(--fg-navy);line-height:1.45;}
+    .fg-lesson23 .fg-hero h1{color:#fff;font-size:clamp(1.7rem,4vw,2.6rem);margin-bottom:8px;}
+    .fg-lesson23 .fg-hero p{margin:0;max-width:800px;opacity:.95;}
+    .fg-lesson23 .fg-badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;}
+    .fg-lesson23 .fg-badge{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.2);padding:5px 10px;border-radius:999px;font-size:.86rem;}
+    .fg-lesson23 .fg-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;}
+    .fg-lesson23 .fg-card{
+      background:var(--fg-card);
+      border:1px solid var(--fg-line);
+      border-radius:var(--fg-radius);
+      padding:20px;
+      box-shadow:0 4px 14px rgba(23,59,102,.04);
+      margin-bottom:16px;
+    }
+    .fg-lesson23 .fg-card h2{font-size:1.35rem;margin-bottom:12px;padding-bottom:10px;border-bottom:2px solid var(--fg-blue-soft);}
+    .fg-lesson23 .fg-card h3{font-size:1.08rem;margin-top:18px;margin-bottom:8px;}
+    .fg-lesson23 .fg-section-title{display:flex;align-items:center;gap:10px;margin:30px 0 14px;font-size:1.5rem;color:var(--fg-navy);}
+    .fg-lesson23 .fg-section-title::before{content:"";width:8px;height:28px;border-radius:10px;background:var(--fg-blue);display:inline-block;}
+    .fg-lesson23 .fg-fr{direction:ltr;text-align:left;unicode-bidi:isolate;display:inline-block;font-family:"Segoe UI",Arial,sans-serif;}
+    .fg-lesson23 .fg-fr-block{direction:ltr;text-align:left;unicode-bidi:isolate;display:block;font-family:"Segoe UI",Arial,sans-serif;}
+    .fg-lesson23 .fg-fa{direction:rtl;text-align:right;}
+    .fg-lesson23 .fg-example,.fg-lesson23 .fg-rule,.fg-lesson23 .fg-warning,.fg-lesson23 .fg-tip{
+      border-radius:14px;padding:14px 16px;margin:12px 0;border-right:5px solid transparent;
+    }
+    .fg-lesson23 .fg-example{background:var(--fg-green-soft);border-right-color:var(--fg-green);}
+    .fg-lesson23 .fg-rule{background:var(--fg-blue-soft);border-right-color:var(--fg-blue);}
+    .fg-lesson23 .fg-warning{background:var(--fg-red-soft);border-right-color:var(--fg-red);}
+    .fg-lesson23 .fg-tip{background:var(--fg-orange-soft);border-right-color:var(--fg-orange);}
+    .fg-lesson23 .fg-label{font-weight:800;display:block;margin-bottom:4px;}
+    .fg-lesson23 .fg-example .fg-label{color:var(--fg-green);}
+    .fg-lesson23 .fg-warning .fg-label{color:var(--fg-red);}
+    .fg-lesson23 .fg-tip .fg-label{color:var(--fg-orange);}
+    .fg-lesson23 .fg-rule .fg-label{color:var(--fg-blue);}
+    .fg-lesson23 .fg-table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--fg-line);margin:12px 0;}
+    .fg-lesson23 table{width:100%;border-collapse:collapse;min-width:560px;background:#fff;}
+    .fg-lesson23 th,.fg-lesson23 td{border-bottom:1px solid var(--fg-line);padding:12px 14px;vertical-align:top;text-align:right;}
+    .fg-lesson23 th{background:var(--fg-navy);color:#fff;font-weight:700;}
+    .fg-lesson23 tbody tr:nth-child(even){background:#f8fbff;}
+    .fg-lesson23 tbody tr:last-child td{border-bottom:0;}
+    .fg-lesson23 .fg-fr-cell{direction:ltr;text-align:left;unicode-bidi:isolate;font-family:"Segoe UI",Arial,sans-serif;}
+    .fg-lesson23 ul,.fg-lesson23 ol{margin:8px 0;padding-right:22px;}
+    .fg-lesson23 li{margin:5px 0;}
+    .fg-lesson23 .fg-mini-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:10px;}
+    .fg-lesson23 .fg-mini{border:1px solid var(--fg-line);background:var(--fg-surface);border-radius:12px;padding:12px;}
+    .fg-lesson23 .fg-correct{color:var(--fg-green);font-weight:800;}
+    .fg-lesson23 .fg-wrong{color:var(--fg-red);font-weight:800;}
+    .fg-lesson23 .fg-exercise{border:1px solid #cfe0f2;border-radius:18px;background:#fff;margin:18px 0;overflow:hidden;box-shadow:0 5px 18px rgba(23,59,102,.05);}
+    .fg-lesson23 .fg-exercise-head{background:var(--fg-blue-soft);padding:15px 18px;border-bottom:1px solid #cfe0f2;}
+    .fg-lesson23 .fg-exercise-head h3{margin:0;color:var(--fg-navy);}
+    .fg-lesson23 .fg-exercise-body{padding:18px;}
+    .fg-lesson23 .fg-answer{background:var(--fg-green-soft);border:1px solid #bfe5ce;border-radius:12px;padding:12px 14px;margin:10px 0;}
+    .fg-lesson23 .fg-summary{background:#0f2f52;color:#fff;border-radius:20px;padding:22px;margin-top:28px;}
+    .fg-lesson23 .fg-summary h2{color:#fff;margin-bottom:12px;}
+    .fg-lesson23 .fg-summary table{color:var(--fg-ink);}
+    .fg-lesson23 .fg-note{font-size:.92rem;color:var(--fg-muted);}
+    .fg-lesson23 .fg-divider{height:1px;background:var(--fg-line);margin:18px 0;}
+    @media (max-width:800px){
+      .fg-lesson23 .fg-grid{grid-template-columns:1fr;}
+      .fg-lesson23 .fg-mini-grid{grid-template-columns:1fr 1fr;}
+      .fg-lesson23 .fg-container{padding:10px;}
+      .fg-lesson23 .fg-card{padding:16px;}
+      .fg-lesson23 .fg-hero{padding:22px 18px;}
+      .fg-lesson23 .fg-hero::after{font-size:54px;}
+    }
+    @media (max-width:520px){
+      .fg-lesson23 .fg-mini-grid{grid-template-columns:1fr;}
+      .fg-lesson23 .fg-section-title{font-size:1.25rem;}
+      .fg-lesson23 th,.fg-lesson23 td{padding:10px;}
+      .fg-lesson23 .fg-hero::after{display:none;}
+    }
+  </style>
+
+  <div class="fg-container">
+    <section class="fg-hero">
+      <div class="fg-eyebrow">درس ۲۳ — گرامر فرانسه</div>
+      <h1><span class="fg-fr">Le verbe « aller »</span></h1>
+      <p>آموزش کامل صرف و کاربرد فعل <span class="fg-fr">aller</span>، حروف اضافه مقصد، کشورها و شهرها، <span class="fg-fr">chez</span>، ضمیر <span class="fg-fr">y</span>، وسایل نقلیه و تمرین‌های درس.</p>
+      <div class="fg-badges">
+        <span class="fg-badge">صرف فعل</span><span class="fg-badge">مکان و مقصد</span><span class="fg-badge">حروف اضافه</span><span class="fg-badge">ضمیر y</span><span class="fg-badge">وسایل نقلیه</span>
+      </div>
+    </section>
+
+    <h2 class="fg-section-title">۱. صرف فعل <span class="fg-fr">aller</span> در زمان حال</h2>
+    <section class="fg-card">
+      <p>فعل <span class="fg-fr">aller</span> به معنی «رفتن» است. با اینکه به <span class="fg-fr">-er</span> ختم می‌شود، فعل بی‌قاعده است و باید صرف آن را جداگانه یاد گرفت.</p>
+      <div class="fg-table-wrap">
+        <table>
+          <thead><tr><th>ضمیر</th><th>صرف</th><th>معنی</th></tr></thead>
+          <tbody>
+            <tr><td class="fg-fr-cell">je</td><td class="fg-fr-cell"><strong>vais</strong></td><td>می‌روم</td></tr>
+            <tr><td class="fg-fr-cell">tu</td><td class="fg-fr-cell"><strong>vas</strong></td><td>می‌روی</td></tr>
+            <tr><td class="fg-fr-cell">il / elle / on</td><td class="fg-fr-cell"><strong>va</strong></td><td>می‌رود</td></tr>
+            <tr><td class="fg-fr-cell">nous</td><td class="fg-fr-cell"><strong>allons</strong></td><td>می‌رویم</td></tr>
+            <tr><td class="fg-fr-cell">vous</td><td class="fg-fr-cell"><strong>allez</strong></td><td>می‌روید</td></tr>
+            <tr><td class="fg-fr-cell">ils / elles</td><td class="fg-fr-cell"><strong>vont</strong></td><td>می‌روند</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="fg-example"><span class="fg-label">مثال‌ها</span>
+        <div class="fg-fr-block">Je vais à Paris.</div><div>من به پاریس می‌روم.</div>
+        <div class="fg-fr-block">Nous allons au Maroc.</div><div>ما به مراکش می‌رویم.</div>
+        <div class="fg-fr-block">Ils vont à la piscine.</div><div>آن‌ها به استخر می‌روند.</div>
+      </div>
+      <div class="fg-tip"><span class="fg-label">نکته تلفظ</span>
+        <span class="fg-fr">nous‿allons</span> و <span class="fg-fr">vous‿allez</span> با <span class="fg-fr">liaison</span> تلفظ می‌شوند. در <span class="fg-fr">ils vont</span>، پایان <span class="fg-fr">-nt</span> تلفظ نمی‌شود.
+      </div>
+      <div class="fg-rule"><span class="fg-label">کاربرد بسیار رایج در گفتار</span>
+        در زبان محاوره، <span class="fg-fr">on va</span> بسیار طبیعی‌تر از <span class="fg-fr">nous allons</span> است: <span class="fg-fr">On va au restaurant.</span>
+      </div>
+    </section>
+
+    <h2 class="fg-section-title">۲. ساختار <span class="fg-fr">aller + lieu</span></h2>
+    <section class="fg-card">
+      <div class="fg-rule"><span class="fg-label">فرمول پایه</span><span class="fg-fr-block">Sujet + aller + préposition + lieu</span></div>
+      <div class="fg-example">
+        <div class="fg-fr-block">Je vais à Berlin.</div>
+        <div class="fg-fr-block">Je vais à l’hôtel.</div>
+        <div class="fg-fr-block">Je vais chez des amis.</div>
+      </div>
+    </section>
+
+    <h2 class="fg-section-title">۳. کاربرد <span class="fg-fr">à / au / à la / à l’ / aux</span></h2>
+    <section class="fg-card">
+      <div class="fg-grid">
+        <div>
+          <h3>شهرها</h3>
+          <p>برای بیشتر شهرها از <span class="fg-fr">à</span> استفاده می‌کنیم:</p>
+          <div class="fg-example"><span class="fg-fr-block">à Paris · à Montréal · à Vancouver · à Rome</span></div>
+        </div>
+        <div>
+          <h3>مکان‌های دارای حرف تعریف</h3>
+          <div class="fg-mini-grid">
+            <div class="fg-mini"><strong class="fg-fr">au</strong><br><span class="fg-fr">au cinéma</span></div>
+            <div class="fg-mini"><strong class="fg-fr">à la</strong><br><span class="fg-fr">à la piscine</span></div>
+            <div class="fg-mini"><strong class="fg-fr">à l’</strong><br><span class="fg-fr">à l’école</span></div>
+            <div class="fg-mini"><strong class="fg-fr">aux</strong><br><span class="fg-fr">aux toilettes</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="fg-warning"><span class="fg-label">اشتباه رایج</span>
+        <span class="fg-wrong fg-fr">à le restaurant</span> ❌ &nbsp; ← &nbsp; <span class="fg-correct fg-fr">au restaurant</span> ✅
+      </div>
+    </section>
+
+    <h2 class="fg-section-title">۴. کشورها و مناطق</h2>
+    <section class="fg-card">
+      <div class="fg-table-wrap">
+        <table>
+          <thead><tr><th>نوع کشور</th><th>حرف اضافه</th><th>مثال</th></tr></thead>
+          <tbody>
+            <tr><td>کشور مؤنث</td><td class="fg-fr-cell">en</td><td class="fg-fr-cell">en France</td></tr>
+            <tr><td>کشور مذکر با مصوت</td><td class="fg-fr-cell">en</td><td class="fg-fr-cell">en Iran</td></tr>
+            <tr><td>کشور مذکر با صامت</td><td class="fg-fr-cell">au</td><td class="fg-fr-cell">au Canada</td></tr>
+            <tr><td>کشور جمع</td><td class="fg-fr-cell">aux</td><td class="fg-fr-cell">aux États-Unis</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="fg-tip"><span class="fg-label">استثناهای مهم</span>
+        بعضی کشورها با وجود پایان <span class="fg-fr">-e</span> مذکرند: <span class="fg-fr">au Mexique, au Mozambique, au Cambodge, au Zimbabwe</span>.
+      </div>
+      <div class="fg-warning"><span class="fg-label">دقت کنید</span>
+        <span class="fg-wrong fg-fr">au Angola</span> ❌ &nbsp; ← &nbsp; <span class="fg-correct fg-fr">en Angola</span> ✅
+      </div>
+    </section>
+
+    <h2 class="fg-section-title">۵. کاربرد <span class="fg-fr">chez</span></h2>
+    <section class="fg-card">
+      <p>وقتی مقصد یک شخص، متخصص، خانواده یا محل وابسته به یک شخص باشد، از <span class="fg-fr">chez</span> استفاده می‌کنیم.</p>
+      <div class="fg-example"><span class="fg-fr-block">chez Paul · chez le médecin · chez le dentiste · chez mes parents · chez des amis</span></div>
+      <div class="fg-rule"><span class="fg-label">مقایسه مهم</span>
+        <span class="fg-fr">Je vais à la boucherie.</span> = به قصابی می‌روم.<br>
+        <span class="fg-fr">Je vais chez le boucher.</span> = نزد قصاب می‌روم.
+      </div>
+      <h3>ضمیرهای تأکیدی بعد از <span class="fg-fr">chez</span></h3>
+      <div class="fg-example"><span class="fg-fr-block">chez moi · chez toi · chez lui · chez elle · chez nous · chez vous · chez eux · chez elles</span></div>
+      <div class="fg-warning"><span class="fg-label">اشتباه رایج</span><span class="fg-wrong fg-fr">chez je</span> ❌ &nbsp; ← &nbsp; <span class="fg-correct fg-fr">chez moi</span> ✅</div>
+    </section>
+
+    <h2 class="fg-section-title">۶. تفاوت <span class="fg-fr">à</span> و <span class="fg-fr">dans</span></h2>
+    <section class="fg-card">
+      <div class="fg-grid">
+        <div class="fg-rule"><span class="fg-label"><span class="fg-fr">à</span></span>
+          برای مقصد یا کارکرد معمول مکان: <span class="fg-fr">Je vais à l’école.</span>
+        </div>
+        <div class="fg-rule"><span class="fg-label"><span class="fg-fr">dans</span></span>
+          برای ورود یا حضور در داخل یک فضای مشخص: <span class="fg-fr">Je vais dans une école de langue.</span>
+        </div>
+      </div>
+      <div class="fg-example"><span class="fg-fr">Je suis à l’école.</span> = در مدرسه هستم، به عنوان محل فعالیت.<br><span class="fg-fr">Je suis dans l’école.</span> = داخل ساختمان مدرسه هستم.</div>
+    </section>
+
+    <h2 class="fg-section-title">۷. ضمیر مکانی <span class="fg-fr">y</span></h2>
+    <section class="fg-card">
+      <p>وقتی مکان قبلاً گفته شده و نمی‌خواهیم تکرارش کنیم، از <span class="fg-fr">y</span> استفاده می‌کنیم.</p>
+      <div class="fg-example"><span class="fg-fr-block">Tu vas au cinéma ? — Oui, j’y vais.</span></div>
+      <div class="fg-example"><span class="fg-fr-block">On y va ?</span><div>برویم؟ / به آنجا برویم؟</div><span class="fg-fr-block">Allons-y !</span><div>برویم!</div></div>
+      <div class="fg-rule"><span class="fg-label">جایگاه ضمیر</span>
+        <span class="fg-fr">J’y vais.</span> · <span class="fg-fr">Nous y allons.</span> · <span class="fg-fr">Ils n’y vont pas.</span>
+      </div>
+      <div class="fg-tip"><span class="fg-label">آینده نزدیک</span><span class="fg-fr-block">Je vais y aller.</span> در اینجا <span class="fg-fr">y</span> قبل از مصدر <span class="fg-fr">aller</span> می‌آید.</div>
+      <div class="fg-warning"><span class="fg-label">برای شخص</span>
+        وقتی تأکید روی خود شخص است، <span class="fg-fr">chez lui / chez elle</span> روشن‌تر از <span class="fg-fr">y</span> است.
+      </div>
+    </section>
+
+    <h2 class="fg-section-title">۸. حالت امری فعل <span class="fg-fr">aller</span></h2>
+    <section class="fg-card">
+      <div class="fg-table-wrap"><table><thead><tr><th>شخص</th><th>حالت امری</th></tr></thead><tbody>
+        <tr><td class="fg-fr-cell">tu</td><td class="fg-fr-cell">va</td></tr>
+        <tr><td class="fg-fr-cell">nous</td><td class="fg-fr-cell">allons</td></tr>
+        <tr><td class="fg-fr-cell">vous</td><td class="fg-fr-cell">allez</td></tr>
+      </tbody></table></div>
+      <div class="fg-tip"><span class="fg-label">استثنای مهم</span>
+        حالت عادی: <span class="fg-fr">Va !</span><br>
+        اما قبل از <span class="fg-fr">y</span> و <span class="fg-fr">en</span>، یک <span class="fg-fr">s</span> اضافه می‌شود: <span class="fg-fr">Vas-y !</span>
+      </div>
+      <div class="fg-example"><span class="fg-fr-block">Va chez le médecin !</span><span class="fg-fr-block">Vas-y immédiatement !</span><span class="fg-fr-block">Allons-y !</span><span class="fg-fr-block">Allez-y !</span></div>
+    </section>
+
+    <h2 class="fg-section-title">۹. وسیله نقلیه: <span class="fg-fr">en</span> یا <span class="fg-fr">à</span>؟</h2>
+    <section class="fg-card">
+      <div class="fg-grid">
+        <div>
+          <h3>معمولاً با <span class="fg-fr">en</span></h3>
+          <div class="fg-example"><span class="fg-fr-block">en voiture · en avion · en train · en bus · en métro · en bateau · en taxi · en camion</span></div>
+        </div>
+        <div>
+          <h3>معمولاً با <span class="fg-fr">à</span></h3>
+          <div class="fg-example"><span class="fg-fr-block">à pied · à bicyclette · à vélo · à cheval · à moto · à trottinette · à ski</span></div>
+        </div>
+      </div>
+      <div class="fg-rule"><span class="fg-label">تفاوت مهم</span>
+        <span class="fg-fr">Je vais au travail en voiture.</span> = ماشین وسیله رفت‌وآمد است.<br>
+        <span class="fg-fr">Je suis dans la voiture.</span> = من داخل ماشین هستم.
+      </div>
+      <div class="fg-tip"><span class="fg-label">کاربرد معیار</span>
+        در پاسخ‌های آموزشی رسمی، <span class="fg-fr">à vélo / à bicyclette / à trottinette</span> انتخاب‌های مطمئن‌تری هستند.
+      </div>
+    </section>
+
+    <h2 class="fg-section-title">۱۰. کاربردهای دیگر <span class="fg-fr">aller</span></h2>
+    <section class="fg-card">
+      <h3>پرسیدن حال</h3>
+      <div class="fg-example"><span class="fg-fr-block">Comment allez-vous ?</span><span class="fg-fr-block">Comment ça va ?</span><span class="fg-fr-block">Ça va bien. / Ça ne va pas.</span></div>
+      <h3>آینده نزدیک</h3>
+      <div class="fg-rule"><span class="fg-fr-block">aller conjugué + infinitif</span></div>
+      <div class="fg-example"><span class="fg-fr-block">Je vais travailler.</span><div>قرار است کار کنم.</div><span class="fg-fr-block">Nous allons partir.</span><div>قرار است حرکت کنیم.</div></div>
+      <div class="fg-tip"><span class="fg-label">تمایز ساختاری</span>
+        <span class="fg-fr">Je vais à Paris.</span> → بعد از <span class="fg-fr">aller</span> مکان آمده است.<br>
+        <span class="fg-fr">Je vais partir.</span> → بعد از <span class="fg-fr">aller</span> مصدر آمده و آینده نزدیک ساخته شده است.
+      </div>
+    </section>
+
+    <h2 class="fg-section-title">تمرین‌های درس ۲۳</h2>
+
+    <section class="fg-exercise">
+      <div class="fg-exercise-head"><h3>تمرین ۱ — <span class="fg-fr">Répondez aux questions, selon le modèle.</span></h3></div>
+      <div class="fg-exercise-body">
+        <p>طبق نمونه به پرسش‌ها پاسخ دهید. این تمرین پاسخ شخصی دارد.</p>
+        <div class="fg-answer"><span class="fg-fr-block">Vous allez à la mer ou à la montagne en été ?</span><span class="fg-fr-block"><strong>Je vais à la mer en été.</strong></span></div>
+        <div class="fg-answer"><span class="fg-fr-block">Vous allez au restaurant ou à la cantine à midi ?</span><span class="fg-fr-block"><strong>Je vais au restaurant à midi.</strong></span></div>
+        <div class="fg-answer"><span class="fg-fr-block">Vous allez à la piscine ou au bureau le matin ?</span><span class="fg-fr-block"><strong>Je vais au bureau le matin.</strong></span></div>
+        <div class="fg-answer"><span class="fg-fr-block">Vous allez chez l’épicier ou au supermarché ?</span><span class="fg-fr-block"><strong>Je vais au supermarché.</strong></span></div>
+        <div class="fg-answer"><span class="fg-fr-block">Vous allez dans une école de langue ou chez un professeur ?</span><span class="fg-fr-block"><strong>Je vais dans une école de langue.</strong></span></div>
+        <div class="fg-tip"><span class="fg-label">نکته</span> سؤال با <span class="fg-fr">vous allez</span> مطرح شده، اما وقتی درباره خودتان جواب می‌دهید باید بگویید <span class="fg-fr">je vais</span>.</div>
+      </div>
+    </section>
+
+    <section class="fg-exercise">
+      <div class="fg-exercise-head"><h3>تمرین ۲ — <span class="fg-fr">avoir mal à + aller</span></h3></div>
+      <div class="fg-exercise-body">
+        <div class="fg-answer"><span class="fg-fr-block">Quand j’ai mal à la gorge, je vais chez le médecin.</span></div>
+        <div class="fg-answer"><span class="fg-fr-block">Quand j’ai mal aux dents, je vais chez le dentiste.</span></div>
+        <div class="fg-answer"><span class="fg-fr-block">Quand j’ai mal aux yeux, je vais chez l’ophtalmologue.</span></div>
+        <div class="fg-answer"><span class="fg-fr-block">Quand j’ai mal au dos, je vais chez le kinésithérapeute.</span></div>
+        <div class="fg-rule"><span class="fg-label">قاعده</span><span class="fg-fr">à + les = aux</span> و <span class="fg-fr">à + le = au</span>.</div>
+        <div class="fg-tip"><span class="fg-label">واژگان گفتاری</span><span class="fg-fr">un ophtalmo</span> و <span class="fg-fr">un kiné</span> شکل‌های کوتاه و رایج هستند.</div>
+      </div>
+    </section>
+
+    <section class="fg-exercise">
+      <div class="fg-exercise-head"><h3>تمرین ۳ — کشور + وسیله نقلیه</h3></div>
+      <div class="fg-exercise-body">
+        <div class="fg-answer"><span class="fg-fr-block">Ils vont en Corse en ferry.</span></div>
+        <div class="fg-answer"><span class="fg-fr-block">Vous allez en Belgique en train ?</span></div>
+        <div class="fg-answer"><span class="fg-fr-block">Il va en Angola en bateau.</span></div>
+        <div class="fg-answer"><span class="fg-fr-block">Elles vont au Mexique en avion.</span></div>
+        <div class="fg-answer"><span class="fg-fr-block">Tu vas en Hollande en car ?</span></div>
+        <div class="fg-answer"><span class="fg-fr-block">Nous allons au Portugal en voiture.</span></div>
+        <div class="fg-tip"><span class="fg-label">نکته واژگانی</span><span class="fg-fr">un car</span> یعنی اتوبوس بین‌شهری یا گردشگری؛ ماشین شخصی = <span class="fg-fr">une voiture</span>.</div>
+      </div>
+    </section>
+
+    <section class="fg-exercise">
+      <div class="fg-exercise-head"><h3>تمرین ۴ — <span class="fg-fr">Moyens de transport</span></h3></div>
+      <div class="fg-exercise-body">
+        <div class="fg-grid">
+          <div><h3>با <span class="fg-fr">en</span></h3><p class="fg-fr-block">en voiture, en bus, en camion, en pousse-pousse, en train, en métro, en tuk-tuk, en canoë, en rollers, en stop</p></div>
+          <div><h3>با <span class="fg-fr">à</span></h3><p class="fg-fr-block">à pied, à cheval, à bicyclette, à trottinette, à ski</p></div>
+        </div>
+        <div class="fg-example"><span class="fg-fr-block">On peut voyager en camion, en bus, en train, en voiture, en métro, en canoë, à bicyclette, à cheval ou à pied.</span></div>
+        <div class="fg-tip"><span class="fg-label">عبارت ثابت</span><span class="fg-fr">faire du stop</span> = هیچ‌هایک کردن؛ <span class="fg-fr">voyager en stop</span> = با هیچ‌هایک سفر کردن.</div>
+      </div>
+    </section>
+
+    <section class="fg-exercise">
+      <div class="fg-exercise-head"><h3>تمرین ۵ — تکمیل متن با <span class="fg-fr">aller</span> و حروف اضافه</h3></div>
+      <div class="fg-exercise-body">
+        <h3>بخش ۱</h3>
+        <div class="fg-answer"><span class="fg-fr-block">Ma femme et moi, nous allons au bureau en voiture, mon fils va à l’université en bus et ma fille va à l’école à pied.</span></div>
+        <h3>بخش ۲</h3>
+        <div class="fg-answer"><span class="fg-fr-block">Quand nous allons en Grèce, nous allons d’Athènes à Héraklion en avion, d’Héraklion à Santorin en bateau et nous allons du port au village à cheval, ou plutôt à dos d’âne. Ensuite, nous circulons dans l’île en jeep, à bicyclette ou à pied.</span></div>
+        <div class="fg-rule"><span class="fg-label">نکته‌های مهم</span>
+          <span class="fg-fr">de + le = du</span>، <span class="fg-fr">à + le = au</span>، و قبل از مصوت <span class="fg-fr">de → d’</span>.<br>
+          <span class="fg-fr">à dos d’âne</span> = بر پشت الاغ.
+        </div>
+        <h3>بخش ۳</h3>
+        <div class="fg-answer"><span class="fg-fr-block">L’hiver, les enfants vont à la montagne, dans les Alpes. Au printemps, ils vont à la campagne, en Provence ou dans les Cévennes.</span></div>
+        <div class="fg-tip"><span class="fg-label">مناطق جغرافیایی</span><span class="fg-fr">dans les Alpes / dans les Pyrénées / dans les Cévennes</span> ولی <span class="fg-fr">en Provence / en Bretagne / en Normandie</span>.</div>
+      </div>
+    </section>
+
+    <section class="fg-exercise">
+      <div class="fg-exercise-head"><h3>تمرین ۶ — توصیف رفت‌وآمدهای شخصی</h3></div>
+      <div class="fg-exercise-body">
+        <p>مقصدها و وسایل رفت‌وآمد روزانه و سالانه خود را توصیف کنید.</p>
+        <div class="fg-answer"><span class="fg-fr-block">Dans la journée : À huit heures, je vais au travail en voiture. À midi, je vais au restaurant à pied. Le soir, je vais à la salle de sport en bus.</span></div>
+        <div class="fg-answer"><span class="fg-fr-block">Dans l’année : En juillet, je vais à Kelowna en voiture. En hiver, je vais à Whistler en bus pour faire du ski.</span></div>
+      </div>
+    </section>
+
+    <section class="fg-summary">
+      <h2>خلاصه سریع درس</h2>
+      <div class="fg-table-wrap">
+        <table>
+          <thead><tr><th>کاربرد</th><th>ساختار</th></tr></thead>
+          <tbody>
+            <tr><td>شهر</td><td class="fg-fr-cell">à Paris</td></tr>
+            <tr><td>مکان مذکر</td><td class="fg-fr-cell">au bureau</td></tr>
+            <tr><td>مکان مؤنث</td><td class="fg-fr-cell">à la piscine</td></tr>
+            <tr><td>مکان با مصوت</td><td class="fg-fr-cell">à l’école</td></tr>
+            <tr><td>مکان جمع</td><td class="fg-fr-cell">aux toilettes</td></tr>
+            <tr><td>کشور مؤنث</td><td class="fg-fr-cell">en France</td></tr>
+            <tr><td>کشور مذکر با صامت</td><td class="fg-fr-cell">au Canada</td></tr>
+            <tr><td>کشور مذکر با مصوت</td><td class="fg-fr-cell">en Iran</td></tr>
+            <tr><td>کشور جمع</td><td class="fg-fr-cell">aux États-Unis</td></tr>
+            <tr><td>شخص یا متخصص</td><td class="fg-fr-cell">chez le médecin</td></tr>
+            <tr><td>بیشتر وسایل نقلیه</td><td class="fg-fr-cell">en voiture</td></tr>
+            <tr><td>پیاده / دوچرخه / اسب</td><td class="fg-fr-cell">à pied / à vélo / à cheval</td></tr>
+            <tr><td>جایگزین مکان</td><td class="fg-fr-cell">j’y vais</td></tr>
+            <tr><td>دعوت به رفتن</td><td class="fg-fr-cell">allons-y</td></tr>
+            <tr><td>دستور به یک نفر</td><td class="fg-fr-cell">va / vas-y</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="fg-divider"></div>
+      <div class="fg-warning"><span class="fg-label">اشتباه‌های کلیدی</span>
+        <span class="fg-fr">je alle</span> ❌ → <span class="fg-fr">je vais</span> ✅<br>
+        <span class="fg-fr">à le bureau</span> ❌ → <span class="fg-fr">au bureau</span> ✅<br>
+        <span class="fg-fr">au France</span> ❌ → <span class="fg-fr">en France</span> ✅<br>
+        <span class="fg-fr">au Iran</span> ❌ → <span class="fg-fr">en Iran</span> ✅<br>
+        <span class="fg-fr">au médecin</span> ❌ → <span class="fg-fr">chez le médecin</span> ✅<br>
+        <span class="fg-fr">en pied</span> ❌ → <span class="fg-fr">à pied</span> ✅<br>
+        <span class="fg-fr">va-y</span> ❌ → <span class="fg-fr">vas-y</span> ✅
+      </div>
+    </section>
+  </div>
+</div>

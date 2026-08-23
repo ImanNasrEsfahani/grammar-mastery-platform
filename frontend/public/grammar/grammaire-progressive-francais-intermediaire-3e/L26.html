@@ -1,0 +1,426 @@
+<div class="french-grammar-wrapper">
+  <style scoped>
+    .french-grammar-wrapper{
+      --fg-navy:#173a63;
+      --fg-blue:#245ea8;
+      --fg-blue-soft:#eef5ff;
+      --fg-green:#1f8a5b;
+      --fg-green-soft:#ecf8f2;
+      --fg-red:#b73a3a;
+      --fg-red-soft:#fff0f0;
+      --fg-orange:#c56a1a;
+      --fg-orange-soft:#fff6ea;
+      --fg-ink:#1f2937;
+      --fg-muted:#687386;
+      --fg-border:#d9e2ec;
+      --fg-card:#ffffff;
+      --fg-zebra:#f7f9fc;
+      --fg-shadow:0 10px 30px rgba(23,58,99,.08);
+      --fg-radius:18px;
+      color:var(--fg-ink);
+      font-family:Tahoma,"Segoe UI",Arial,sans-serif;
+      line-height:1.95;
+      direction:rtl;
+      text-align:right;
+      max-width:1180px;
+      margin:0 auto;
+      padding:18px;
+      box-sizing:border-box;
+    }
+    .french-grammar-wrapper *{box-sizing:border-box}
+    .french-grammar-wrapper .fg-hero{
+      background:linear-gradient(135deg,var(--fg-navy),var(--fg-blue));
+      color:#fff;
+      border-radius:24px;
+      padding:28px;
+      box-shadow:var(--fg-shadow);
+      margin-bottom:22px;
+    }
+    .french-grammar-wrapper .fg-hero h1{margin:0 0 8px;font-size:clamp(1.7rem,4vw,2.7rem);line-height:1.35}
+    .french-grammar-wrapper .fg-hero p{margin:0;opacity:.92}
+    .french-grammar-wrapper .fg-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+    .french-grammar-wrapper .fg-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);padding:6px 10px;border-radius:999px;font-size:.9rem}
+    .french-grammar-wrapper .fg-card{background:var(--fg-card);border:1px solid var(--fg-border);border-radius:var(--fg-radius);padding:22px;margin:18px 0;box-shadow:var(--fg-shadow)}
+    .french-grammar-wrapper h2,.french-grammar-wrapper h3,.french-grammar-wrapper h4{color:var(--fg-navy);line-height:1.45}
+    .french-grammar-wrapper h2{font-size:1.5rem;margin:0 0 14px;border-right:5px solid var(--fg-blue);padding-right:12px}
+    .french-grammar-wrapper h3{font-size:1.18rem;margin:22px 0 10px}
+    .french-grammar-wrapper h4{font-size:1.02rem;margin:18px 0 8px}
+    .french-grammar-wrapper p{margin:8px 0}
+    .french-grammar-wrapper ul,.french-grammar-wrapper ol{padding-right:22px}
+    .french-grammar-wrapper li{margin:6px 0}
+    .french-grammar-wrapper .fg-fr{direction:ltr;text-align:left;unicode-bidi:isolate;display:inline-block;font-family:"Segoe UI",Arial,sans-serif}
+    .french-grammar-wrapper .fg-fr-block{direction:ltr;text-align:left;unicode-bidi:isolate;font-family:"Segoe UI",Arial,sans-serif;background:#f8fbff;border:1px solid #dbe8f6;border-radius:12px;padding:12px 14px;margin:10px 0;overflow:auto}
+    .french-grammar-wrapper .fg-callout{border-radius:14px;padding:15px 16px;margin:14px 0;border:1px solid transparent}
+    .french-grammar-wrapper .fg-tip{background:var(--fg-blue-soft);border-color:#c9ddf6}
+    .french-grammar-wrapper .fg-good{background:var(--fg-green-soft);border-color:#bfe7d2}
+    .french-grammar-wrapper .fg-warn{background:var(--fg-orange-soft);border-color:#f0d3ad}
+    .french-grammar-wrapper .fg-error{background:var(--fg-red-soft);border-color:#f2c0c0}
+    .french-grammar-wrapper .fg-callout strong{color:var(--fg-navy)}
+    .french-grammar-wrapper .fg-table-wrap{overflow-x:auto;border:1px solid var(--fg-border);border-radius:14px;margin:12px 0;background:#fff}
+    .french-grammar-wrapper table{width:100%;border-collapse:collapse;min-width:620px;direction:ltr;text-align:left;font-family:"Segoe UI",Arial,sans-serif}
+    .french-grammar-wrapper th,.french-grammar-wrapper td{border:1px solid var(--fg-border);padding:10px 12px;vertical-align:top}
+    .french-grammar-wrapper th{background:var(--fg-navy);color:#fff;font-weight:700}
+    .french-grammar-wrapper tbody tr:nth-child(even){background:var(--fg-zebra)}
+    .french-grammar-wrapper .fg-two-col{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    .french-grammar-wrapper .fg-mini{border:1px solid var(--fg-border);border-radius:14px;padding:14px;background:#fbfdff}
+    .french-grammar-wrapper .fg-rule{font-weight:700;color:var(--fg-blue)}
+    .french-grammar-wrapper .fg-correct{color:var(--fg-green);font-weight:700}
+    .french-grammar-wrapper .fg-wrong{color:var(--fg-red);font-weight:700}
+    .french-grammar-wrapper .fg-kicker{color:var(--fg-muted);font-size:.92rem}
+    .french-grammar-wrapper .fg-divider{height:1px;background:var(--fg-border);margin:22px 0}
+    .french-grammar-wrapper details{border:1px solid var(--fg-border);border-radius:14px;margin:10px 0;background:#fff;overflow:hidden}
+    .french-grammar-wrapper summary{cursor:pointer;padding:14px 16px;font-weight:700;color:var(--fg-navy);background:#f8fbff}
+    .french-grammar-wrapper details>div{padding:14px 16px}
+    .french-grammar-wrapper .fg-answer{border-right:4px solid var(--fg-green);padding-right:12px;margin:10px 0}
+    .french-grammar-wrapper .fg-exercise-title{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}
+    .french-grammar-wrapper .fg-page{font-size:.86rem;color:var(--fg-muted)}
+    @media (max-width:760px){
+      .french-grammar-wrapper{padding:10px;line-height:1.85}
+      .french-grammar-wrapper .fg-card{padding:16px;border-radius:15px}
+      .french-grammar-wrapper .fg-hero{padding:20px;border-radius:18px}
+      .french-grammar-wrapper .fg-two-col{grid-template-columns:1fr}
+      .french-grammar-wrapper h2{font-size:1.28rem}
+      .french-grammar-wrapper table{min-width:560px;font-size:.92rem}
+      .french-grammar-wrapper th,.french-grammar-wrapper td{padding:8px 9px}
+    }
+  </style>
+
+  <section class="fg-hero">
+    <div class="fg-kicker" style="color:#d8e7ff">Grammaire Progressive du Français — Intermédiaire</div>
+    <h1>درس ۲۶: <span class="fg-fr">Les verbes en « -IR », « -RE » et « -OIR » au présent</span></h1>
+    <p>آموزش کامل صرف افعال پرکاربرد گروه سوم در زمان حال، همراه با الگوها، استثناها، نکات ظریف، کاربردهای مهم و پاسخ تشریحی تمرین‌ها.</p>
+    <div class="fg-meta">
+      <span class="fg-badge">درس ۲۶</span>
+      <span class="fg-badge">Présent</span>
+      <span class="fg-badge">Verbes irréguliers</span>
+      <span class="fg-badge">سطح Intermédiaire</span>
+    </div>
+  </section>
+
+  <section class="fg-card">
+    <h2>۱) ایدهٔ اصلی درس: بن فعل را پیدا کنید</h2>
+    <p>در فعل‌های گروه سوم، یک الگوی واحد مثل فعل‌های <span class="fg-fr">-er</span> وجود ندارد. بهترین روش این است که برای هر فعل، سه شکل کلیدی را حفظ کنید:</p>
+    <div class="fg-fr-block">je ... &nbsp;&nbsp; / &nbsp;&nbsp; nous ... &nbsp;&nbsp; / &nbsp;&nbsp; ils ...</div>
+    <p>مثلاً:</p>
+    <div class="fg-fr-block">je viens — nous venons — ils viennent</div>
+    <div class="fg-callout fg-tip"><strong>نکته:</strong> این سه شکل معمولاً تغییر بن را آشکار می‌کنند و کمک می‌کنند بقیهٔ صرف را بازسازی کنید.</div>
+
+    <h3>تلفظ در زمان حال</h3>
+    <ul>
+      <li>در بسیاری از افعال، شکل‌های <span class="fg-fr">je / tu / il</span> یک تلفظ مشابه دارند.</li>
+      <li>حروف پایانی <span class="fg-fr">-s, -t, -d</span> اغلب تلفظ نمی‌شوند.</li>
+      <li>پایان <span class="fg-fr">-ent</span> در <span class="fg-fr">ils/elles</span> تلفظ نمی‌شود.</li>
+    </ul>
+    <div class="fg-fr-block">je finis / tu finis / il finit</div>
+  </section>
+
+  <section class="fg-card">
+    <h2>۲) فعل‌های <span class="fg-fr">-IR</span> با دو بن</h2>
+
+    <h3>الگوی <span class="fg-fr">finir</span></h3>
+    <div class="fg-table-wrap">
+      <table>
+        <thead><tr><th>Pronom</th><th>finir</th></tr></thead>
+        <tbody>
+          <tr><td>je</td><td>finis</td></tr><tr><td>tu</td><td>finis</td></tr><tr><td>il / elle</td><td>finit</td></tr>
+          <tr><td>nous</td><td>finissons</td></tr><tr><td>vous</td><td>finissez</td></tr><tr><td>ils / elles</td><td>finissent</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="fg-fr-block">fin- + s/s/t &nbsp;&nbsp; | &nbsp;&nbsp; finiss- + ons/ez/ent</div>
+    <p>فعل‌های مهم این الگو:</p>
+    <div class="fg-fr-block">choisir, réfléchir, réussir, remplir, grossir, maigrir, rougir, vieillir, ralentir, applaudir, guérir</div>
+    <div class="fg-callout fg-good"><strong>روش تشخیص:</strong> اگر شکل <span class="fg-fr">nous</span> به <span class="fg-fr">-issons</span> ختم شود، فعل معمولاً از نوع <span class="fg-fr">finir</span> است.</div>
+
+    <h3><span class="fg-fr">naître, connaître, paraître</span></h3>
+    <div class="fg-fr-block">je nais — nous naissons — ils naissent<br>je connais — nous connaissons — ils connaissent<br>je parais — nous paraissons — ils paraissent</div>
+    <div class="fg-callout fg-warn"><strong>نکتهٔ املایی:</strong> در املای سنتی: <span class="fg-fr">il connaît</span>.</div>
+
+    <h3>الگوی <span class="fg-fr">dormir / partir / servir</span></h3>
+    <div class="fg-two-col">
+      <div class="fg-mini"><div class="fg-fr-block">je dors<br>nous dormons<br>ils dorment</div></div>
+      <div class="fg-mini"><div class="fg-fr-block">je pars<br>nous partons<br>ils partent</div></div>
+      <div class="fg-mini"><div class="fg-fr-block">je sers<br>nous servons<br>ils servent</div></div>
+      <div class="fg-mini"><div class="fg-fr-block">je sors<br>nous sortons<br>ils sortent</div></div>
+    </div>
+    <p>فعل‌های مشابه: <span class="fg-fr">sortir, sentir, mentir, s’endormir, se servir</span>.</p>
+
+    <h3><span class="fg-fr">vivre</span> و <span class="fg-fr">suivre</span></h3>
+    <div class="fg-two-col">
+      <div class="fg-mini"><div class="fg-fr-block">je vis<br>nous vivons<br>ils vivent</div></div>
+      <div class="fg-mini"><div class="fg-fr-block">je suis<br>nous suivons<br>ils suivent</div></div>
+    </div>
+    <div class="fg-callout fg-tip"><strong>دام مهم:</strong> <span class="fg-fr">je suis</span> هم می‌تواند از <span class="fg-fr">être</span> باشد و هم از <span class="fg-fr">suivre</span>. معنی جمله تعیین‌کننده است.</div>
+
+    <h3>استثنا: <span class="fg-fr">ouvrir, offrir, souffrir, cueillir</span></h3>
+    <p>با اینکه به <span class="fg-fr">-ir</span> ختم می‌شوند، در زمان حال تقریباً مثل افعال <span class="fg-fr">-er</span> صرف می‌شوند.</p>
+    <div class="fg-fr-block">j’ouvre — nous ouvrons — ils ouvrent<br>j’offre — nous offrons — ils offrent<br>je souffre — nous souffrons — ils souffrent<br>je cueille — nous cueillons — ils cueillent</div>
+  </section>
+
+  <section class="fg-card">
+    <h2>۳) فعل‌های <span class="fg-fr">-RE</span> و <span class="fg-fr">-OIR</span></h2>
+
+    <h3><span class="fg-fr">mettre</span></h3>
+    <div class="fg-table-wrap"><table><thead><tr><th>Pronom</th><th>mettre</th></tr></thead><tbody>
+      <tr><td>je</td><td>mets</td></tr><tr><td>tu</td><td>mets</td></tr><tr><td>il / elle</td><td>met</td></tr><tr><td>nous</td><td>mettons</td></tr><tr><td>vous</td><td>mettez</td></tr><tr><td>ils / elles</td><td>mettent</td></tr>
+    </tbody></table></div>
+    <p>خانواده: <span class="fg-fr">permettre, promettre, remettre, admettre, commettre</span>.</p>
+
+    <h3><span class="fg-fr">attendre / vendre / répondre</span></h3>
+    <div class="fg-fr-block">j’attends — tu attends — il attend — nous attendons — vous attendez — ils attendent</div>
+    <div class="fg-callout fg-error"><strong>اشتباه رایج:</strong> <span class="fg-fr fg-wrong">✗ il attends</span> یا <span class="fg-fr fg-wrong">✗ il vendt</span>. شکل درست: <span class="fg-fr fg-correct">il attend / il vend</span>.</div>
+
+    <h3><span class="fg-fr">écrire</span> و <span class="fg-fr">lire</span></h3>
+    <div class="fg-two-col">
+      <div class="fg-mini"><div class="fg-fr-block">j’écris<br>nous écrivons<br>ils écrivent</div></div>
+      <div class="fg-mini"><div class="fg-fr-block">je lis<br>nous lisons<br>ils lisent</div></div>
+    </div>
+
+    <h3><span class="fg-fr">dire</span></h3>
+    <div class="fg-fr-block">je dis — tu dis — il dit — nous disons — vous dites — ils disent</div>
+    <div class="fg-callout fg-warn"><strong>استثنا:</strong> <span class="fg-fr">vous dites</span>، نه <span class="fg-fr fg-wrong">vous disez</span>.</div>
+
+    <h3>افعال <span class="fg-fr">-uire</span></h3>
+    <div class="fg-fr-block">je conduis — nous conduisons — ils conduisent</div>
+    <p>همین الگو در <span class="fg-fr">construire, détruire, traduire, produire, réduire, cuire</span> دیده می‌شود.</p>
+
+    <h3><span class="fg-fr">-aindre / -eindre / -oindre</span></h3>
+    <div class="fg-fr-block">je peins — nous peignons — ils peignent</div>
+    <p>مشابه: <span class="fg-fr">éteindre, atteindre, craindre, joindre, rejoindre, se plaindre</span>.</p>
+
+    <h3>چند فعل مهم دیگر</h3>
+    <div class="fg-table-wrap"><table><thead><tr><th>Verbe</th><th>je</th><th>nous</th><th>ils</th></tr></thead><tbody>
+      <tr><td>savoir</td><td>sais</td><td>savons</td><td>savent</td></tr>
+      <tr><td>croire</td><td>crois</td><td>croyons</td><td>croient</td></tr>
+      <tr><td>voir</td><td>vois</td><td>voyons</td><td>voient</td></tr>
+      <tr><td>valoir</td><td>vaux</td><td>valons</td><td>valent</td></tr>
+      <tr><td>courir</td><td>cours</td><td>courons</td><td>courent</td></tr>
+      <tr><td>rire</td><td>ris</td><td>rions</td><td>rient</td></tr>
+      <tr><td>sourire</td><td>souris</td><td>sourions</td><td>sourient</td></tr>
+    </tbody></table></div>
+  </section>
+
+  <section class="fg-card">
+    <h2>۴) فعل‌های دارای سه بن</h2>
+    <div class="fg-table-wrap"><table><thead><tr><th>Verbe</th><th>je</th><th>tu</th><th>il/elle</th><th>nous</th><th>vous</th><th>ils/elles</th></tr></thead><tbody>
+      <tr><td>prendre</td><td>prends</td><td>prends</td><td>prend</td><td>prenons</td><td>prenez</td><td>prennent</td></tr>
+      <tr><td>boire</td><td>bois</td><td>bois</td><td>boit</td><td>buvons</td><td>buvez</td><td>boivent</td></tr>
+      <tr><td>venir</td><td>viens</td><td>viens</td><td>vient</td><td>venons</td><td>venez</td><td>viennent</td></tr>
+      <tr><td>tenir</td><td>tiens</td><td>tiens</td><td>tient</td><td>tenons</td><td>tenez</td><td>tiennent</td></tr>
+      <tr><td>recevoir</td><td>reçois</td><td>reçois</td><td>reçoit</td><td>recevons</td><td>recevez</td><td>reçoivent</td></tr>
+      <tr><td>devoir</td><td>dois</td><td>dois</td><td>doit</td><td>devons</td><td>devez</td><td>doivent</td></tr>
+      <tr><td>vouloir</td><td>veux</td><td>veux</td><td>veut</td><td>voulons</td><td>voulez</td><td>veulent</td></tr>
+      <tr><td>pouvoir</td><td>peux</td><td>peux</td><td>peut</td><td>pouvons</td><td>pouvez</td><td>peuvent</td></tr>
+    </tbody></table></div>
+    <div class="fg-callout fg-warn"><strong>دام‌ها:</strong> <span class="fg-fr">ils prennent</span> بدون <span class="fg-fr">d</span>، <span class="fg-fr">nous buvons</span> نه <span class="fg-fr">nous boivons</span>، و <span class="fg-fr">je puis</span> شکل رسمی‌تر <span class="fg-fr">je peux</span> است.</div>
+  </section>
+
+  <section class="fg-card">
+    <h2>۵) چهار فعل کاملاً نامنظم</h2>
+    <div class="fg-table-wrap"><table><thead><tr><th>Verbe</th><th>je</th><th>tu</th><th>il/elle</th><th>nous</th><th>vous</th><th>ils/elles</th></tr></thead><tbody>
+      <tr><td>être</td><td>suis</td><td>es</td><td>est</td><td>sommes</td><td>êtes</td><td>sont</td></tr>
+      <tr><td>avoir</td><td>ai</td><td>as</td><td>a</td><td>avons</td><td>avez</td><td>ont</td></tr>
+      <tr><td>aller</td><td>vais</td><td>vas</td><td>va</td><td>allons</td><td>allez</td><td>vont</td></tr>
+      <tr><td>faire</td><td>fais</td><td>fais</td><td>fait</td><td>faisons</td><td>faites</td><td>font</td></tr>
+    </tbody></table></div>
+    <div class="fg-callout fg-warn"><strong>یادآوری:</strong> <span class="fg-fr">vous faites</span> درست است، نه <span class="fg-fr fg-wrong">vous faisez</span>.</div>
+  </section>
+
+  <section class="fg-card">
+    <h2>۶) قواعد املایی پایان فعل‌ها</h2>
+    <div class="fg-two-col">
+      <div class="fg-mini"><div class="fg-rule">eu / au</div><div class="fg-fr-block">je veux / tu peux / il veut / il peut<br>je vaux / il vaut</div></div>
+      <div class="fg-mini"><div class="fg-rule">-tre</div><div class="fg-fr-block">je mets / tu mets / il met</div></div>
+      <div class="fg-mini"><div class="fg-rule">-dre</div><div class="fg-fr-block">je prends / tu prends / il prend<br>je vends / il vend</div></div>
+      <div class="fg-mini"><div class="fg-rule">-indre / -soudre</div><div class="fg-fr-block">je peins / il peint<br>je résous / il résout</div></div>
+    </div>
+  </section>
+
+  <section class="fg-card">
+    <h2>۷) کاربردهای مهم <span class="fg-fr">prendre</span> و <span class="fg-fr">mettre</span></h2>
+    <h3><span class="fg-fr">prendre</span></h3>
+    <div class="fg-fr-block">Je prends mon parapluie.<br>Je prends le métro.<br>Je prends un café.<br>Je prends une douche.<br>Je prends une décision.<br>Je prends des notes.</div>
+    <h3><span class="fg-fr">mettre</span></h3>
+    <div class="fg-fr-block">Je mets une cravate.<br>Je mets un manteau.<br>Je mets une heure pour aller au bureau.</div>
+    <div class="fg-callout fg-tip"><strong>تفاوت کاربردی:</strong> <span class="fg-fr">Je mets une heure...</span> برای شخص؛ اما <span class="fg-fr">Ça prend une heure.</span> برای مدت‌زمان یک کار یا فرایند طبیعی‌تر است.</div>
+  </section>
+
+  <section class="fg-card">
+    <h2>۸) <span class="fg-fr">faire du</span>، <span class="fg-fr">jouer à</span> و <span class="fg-fr">jouer de</span></h2>
+    <div class="fg-two-col">
+      <div class="fg-mini"><h4>ورزش با <span class="fg-fr">faire</span></h4><div class="fg-fr-block">faire du tennis<br>faire du sport<br>faire de la natation</div></div>
+      <div class="fg-mini"><h4>بازی با <span class="fg-fr">jouer à</span></h4><div class="fg-fr-block">jouer au tennis<br>jouer au football<br>jouer aux échecs</div></div>
+      <div class="fg-mini"><h4>ساز با <span class="fg-fr">jouer de</span></h4><div class="fg-fr-block">jouer du piano<br>jouer de la guitare<br>jouer du violoncelle</div></div>
+    </div>
+  </section>
+
+  <section class="fg-card">
+    <h2>۹) عبارت‌های رایج با <span class="fg-fr">faire</span></h2>
+    <div class="fg-fr-block">faire la cuisine<br>faire les courses<br>faire la vaisselle<br>faire le ménage<br>faire des calculs<br>faire du bruit</div>
+  </section>
+
+  <section class="fg-card">
+    <h2>۱۰) ساختار <span class="fg-fr">faire + infinitif</span></h2>
+    <p>وقتی فاعل باعث می‌شود شخص دیگری کاری را انجام دهد:</p>
+    <div class="fg-fr-block">Je répare ma voiture. → خودم تعمیر می‌کنم.<br>Je fais réparer ma voiture. → می‌دهم ماشینم را تعمیر کنند.</div>
+    <div class="fg-fr-block">Je la fais réparer.<br>Je me fais couper les cheveux.<br>Nous faisons isoler sa chambre.</div>
+    <div class="fg-callout fg-warn"><strong>جای ضمیر:</strong> <span class="fg-fr fg-correct">Je la fais réparer.</span> درست است؛ <span class="fg-fr fg-wrong">✗ Je fais la réparer.</span> غلط است.</div>
+    <div class="fg-callout fg-tip"><strong>نکتهٔ پیشرفته:</strong> در <span class="fg-fr">passé composé</span>، <span class="fg-fr">fait</span> پیش از مصدر معمولاً توافق نمی‌کند: <span class="fg-fr">Les voitures que j’ai fait réparer.</span></div>
+  </section>
+
+  <section class="fg-card">
+    <h2>۱۱) <span class="fg-fr">pouvoir</span>، <span class="fg-fr">devoir</span> و <span class="fg-fr">falloir</span></h2>
+    <h3><span class="fg-fr">pouvoir + infinitif</span></h3>
+    <div class="fg-fr-block">Paul peut soulever cent kilos.<br>Vous pouvez rester ici.<br>On ne peut pas fumer ici.</div>
+    <p>برای درخواست مؤدبانه‌تر:</p>
+    <div class="fg-fr-block">Pourriez-vous m’aider ?</div>
+
+    <h3><span class="fg-fr">devoir + infinitif</span></h3>
+    <div class="fg-fr-block">Je dois payer mes impôts.<br>Je dois partir.<br>Il doit être chez lui.<br>Il doit y avoir un accident.</div>
+    <div class="fg-callout fg-tip"><strong>نکته:</strong> <span class="fg-fr">devoir</span> همیشه «باید» نیست؛ گاهی احتمال قوی را می‌رساند: <span class="fg-fr">Il doit être chez lui.</span> = احتمالاً خانه است.</div>
+
+    <h3><span class="fg-fr">falloir</span></h3>
+    <div class="fg-fr-block">Il faut manger pour vivre.<br>Il faut travailler.<br>Il faut partir.</div>
+    <div class="fg-callout fg-error"><strong>فعل بی‌شخص:</strong> در زمان حال فقط <span class="fg-fr">il faut</span> داریم؛ <span class="fg-fr fg-wrong">✗ je faux</span> یا <span class="fg-fr fg-wrong">✗ nous fallons</span> غلط است.</div>
+
+    <h3>تفاوت منفی‌ها</h3>
+    <div class="fg-fr-block">On ne peut pas fumer. — ممنوعیت / عدم امکان<br>On ne doit pas fumer. — نباید / الزام منفی<br>Il ne faut pas fumer. — دستور یا ضرورت عمومی</div>
+  </section>
+
+  <section class="fg-card">
+    <h2>۱۲) <span class="fg-fr">savoir</span> و <span class="fg-fr">connaître</span></h2>
+    <div class="fg-two-col">
+      <div class="fg-mini"><h4><span class="fg-fr">savoir + infinitif / proposition</span></h4><div class="fg-fr-block">Je sais conduire.<br>Je sais nager.<br>Je sais où il habite.<br>Je sais qu’il n’est pas d’accord.</div></div>
+      <div class="fg-mini"><h4><span class="fg-fr">connaître + nom</span></h4><div class="fg-fr-block">Je connais Paul.<br>Je connais Paris.<br>Je connais son adresse.<br>Je connais le code de la route.</div></div>
+    </div>
+    <div class="fg-callout fg-error"><strong>غلط رایج:</strong> <span class="fg-fr fg-wrong">✗ Je connais qu’il habite ici.</span><br>درست: <span class="fg-fr fg-correct">Je sais qu’il habite ici.</span></div>
+    <div class="fg-callout fg-warn"><strong>استثنا:</strong> دربارهٔ مطالب حفظ‌شده می‌توان <span class="fg-fr">savoir + nom</span> داشت: <span class="fg-fr">Il sait sa leçon.</span></div>
+    <h3>تفاوت <span class="fg-fr">savoir</span> و <span class="fg-fr">pouvoir</span></h3>
+    <div class="fg-fr-block">Je sais nager. = شناکردن را بلدم.<br>Je peux nager. = الان می‌توانم / اجازه دارم شنا کنم.</div>
+  </section>
+
+  <section class="fg-card">
+    <h2>۱۳) <span class="fg-fr">vouloir</span></h2>
+    <div class="fg-fr-block">Je veux un café.<br>Je veux partir.<br>Je veux réussir.</div>
+    <div class="fg-callout fg-error"><strong>ساخت مستقیم:</strong> <span class="fg-fr fg-correct">Je veux partir.</span>، نه <span class="fg-fr fg-wrong">✗ Je veux de partir</span> و نه <span class="fg-fr fg-wrong">✗ Je veux à partir</span>.</div>
+    <h3>درخواست مؤدبانه</h3>
+    <div class="fg-fr-block">Je voudrais un café.</div>
+    <h3>پیشنهاد و پذیرش</h3>
+    <div class="fg-fr-block">Voulez-vous un café ?<br>— Je veux bien, merci.</div>
+  </section>
+
+  <section class="fg-card">
+    <h2>۱۴) دام‌های مهم امتحانی</h2>
+    <ol>
+      <li>هر فعل <span class="fg-fr">-ir</span> مثل <span class="fg-fr">finir</span> نیست.</li>
+      <li><span class="fg-fr">ouvrir / offrir</span> در زمان حال شبیه <span class="fg-fr">-er</span> صرف می‌شوند.</li>
+      <li>در سوم‌شخص مفرد فعل‌های <span class="fg-fr">-dre</span>: <span class="fg-fr">il attend / il vend / il perd</span>.</li>
+      <li><span class="fg-fr">ils prennent</span> بدون <span class="fg-fr">d</span>.</li>
+      <li><span class="fg-fr">nous buvons</span>، نه <span class="fg-fr">nous boivons</span>.</li>
+      <li><span class="fg-fr">vous dites</span> و <span class="fg-fr">vous faites</span> را جداگانه حفظ کنید.</li>
+      <li><span class="fg-fr">ils voient / ils croient</span>، نه <span class="fg-fr">voyent / croyent</span>.</li>
+      <li><span class="fg-fr">savoir</span> با فعل یا جمله؛ <span class="fg-fr">connaître</span> با اسم.</li>
+      <li>توانایی آموخته‌شده با <span class="fg-fr">savoir</span>؛ امکان فعلی با <span class="fg-fr">pouvoir</span>.</li>
+      <li>برای درخواست مؤدبانه: <span class="fg-fr">Je voudrais...</span> و <span class="fg-fr">Pourriez-vous...?</span></li>
+      <li>بعد از <span class="fg-fr">vouloir / espérer / souhaiter</span> معمولاً مصدر مستقیم می‌آید.</li>
+      <li><span class="fg-fr">Je mets une heure.</span> ولی <span class="fg-fr">Ça prend une heure.</span></li>
+      <li><span class="fg-fr">faire + infinitif</span>: <span class="fg-fr">Je fais réparer ma voiture.</span></li>
+      <li><span class="fg-fr">il faut</span> ساخت بی‌شخص است.</li>
+      <li><span class="fg-fr">devoir</span> می‌تواند احتمال قوی را نشان دهد.</li>
+    </ol>
+  </section>
+
+  <section class="fg-card">
+    <h2>۱۵) تمرین‌ها و پاسخ تشریحی</h2>
+    <p class="fg-kicker">صفحات تمرین این درس: 109، 111، 113، 114، 115، 117، 119 و 121 کتاب.</p>
+
+    <details open>
+      <summary>صفحه 109 — تمرین 1 تا 5</summary>
+      <div>
+        <div class="fg-answer"><strong>تمرین 1</strong><div class="fg-fr-block">vous salissez<br>elles guérissent<br>vieillissent<br>tu réfléchis<br>nous grossissons<br>les gens applaudissent<br>elles ne rougissent plus / elles ne s’évanouissent pas</div><p>نکته: این‌ها عمدتاً از الگوی <span class="fg-fr">finir</span> هستند و در جمع <span class="fg-fr">-iss-</span> می‌گیرند.</p></div>
+        <div class="fg-answer"><strong>تمرین 2</strong><div class="fg-fr-block">vous vivez / je vis<br>vous partez / je pars<br>vous sortez / je sors<br>vous suivez / je suis<br>vous dormez / je dors</div></div>
+        <div class="fg-answer"><strong>تمرین 3</strong><div class="fg-fr-block">je pars / ils partent<br>je vis / ils vivent<br>nous sortons / ils sortent<br>je suis / ils suivent<br>on se sert / ils se servent</div></div>
+        <div class="fg-answer"><strong>تمرین 4</strong><div class="fg-fr-block">Les feuilles jaunissent.<br>Les raisins mûrissent.<br>Les jours raccourcissent.<br>Le ciel pâlit.<br>Les colchiques fleurissent.<br>L’été finit.</div></div>
+        <div class="fg-answer"><strong>تمرین 5 — پاسخ نمونه</strong><div class="fg-fr-block">Je dors environ sept heures par nuit.<br>Je sors souvent le week-end.<br>Je finis mon travail à dix-huit heures.<br>J’offre des fleurs à ma mère.<br>J’ouvre la fenêtre chaque matin.</div></div>
+      </div>
+    </details>
+
+    <details>
+      <summary>صفحه 111 — تمرین 1 تا 6</summary>
+      <div>
+        <div class="fg-answer"><strong>تمرین 1</strong><div class="fg-fr-block">J’attends depuis un quart d’heure.<br>Mes enfants me battent aux échecs, mais je les bats au scrabble.<br>On entend très mal.<br>Vous mettez du beurre..., moi je mets seulement du fromage.<br>J’achète le nouveau !</div><p>نکته: <span class="fg-fr">je</span> پیش از مصوت به <span class="fg-fr">j’</span> تبدیل می‌شود.</p></div>
+        <div class="fg-answer"><strong>تمرین 2</strong><div class="fg-fr-block">tu mets / tu conduis<br>je grossis / vous maigrissez<br>ils sortent / ils éteignent<br>vous reconnaissez / vous les entendez<br>ils voient / ils ralentissent<br>ils choisissent / ils vous offrent</div></div>
+        <div class="fg-answer"><strong>تمرین 3</strong><div class="fg-fr-block">Les écrivains écrivent.<br>Les lecteurs lisent.<br>Les vendeurs vendent.<br>Les serveurs servent.<br>Les peintres peignent.<br>Les traducteurs traduisent.<br>Les coureurs courent.<br>Les menteurs mentent.</div></div>
+        <div class="fg-answer"><strong>تمرین 4</strong><div class="fg-fr-block">commencent → finissent<br>gagnent → perdent<br>arrivent → partent<br>montent → descendent<br>achètent → vendent<br>allument → éteignent<br>grossissent → maigrissent<br>détruisent → construisent</div></div>
+        <div class="fg-answer"><strong>تمرین 5</strong><div class="fg-fr-block">Laissez dormir l’enfant qui dort.<br>Laissez courir l’enfant qui court.<br>Laissez rire l’enfant qui rit.<br>Laissez croire l’enfant qui croit.<br>Laissez partir l’enfant qui part.</div><p>بعد از <span class="fg-fr">laisser</span> مصدر مستقیم می‌آید.</p></div>
+        <div class="fg-answer"><strong>تمرین 6 — پاسخ نمونه</strong><div class="fg-fr-block">Je ralentis quand la route est dangereuse.<br>Je grossis quand je mange trop.<br>Je ris quand je regarde une comédie.<br>Je perds souvent mes clés.<br>Je crains les examens difficiles.</div></div>
+      </div>
+    </details>
+
+    <details>
+      <summary>صفحه 113 — تمرین 1 تا 3</summary>
+      <div>
+        <div class="fg-answer"><strong>تمرین 1</strong><div class="fg-fr-block">Je prends du chocolat, et vous, qu’est-ce que vous prenez ?<br>Je bois de l’eau, et vous, qu’est-ce que vous buvez ?<br>Je fais des exercices, et vous, qu’est-ce que vous faites ?</div></div>
+        <div class="fg-answer"><strong>تمرین 2 — جمع بستن متن</strong><div class="fg-fr-block">Mes jumeaux veulent faire une petite fête pour leur anniversaire. Ils prennent leur carnet d’adresses et ils choisissent une quinzaine de personnes... Ils reçoivent beaucoup de coups de téléphone... ils sont tout excités... ils attendent une trentaine de personnes et ils doivent tout préparer... Ils descendent... ils veulent mettre un petit mot... ils mettent des disques d’ambiance, ils font des cocktails de fruits et ils attendent les premiers invités.</div><p>نکته: <span class="fg-fr">tout excités</span> یعنی «کاملاً هیجان‌زده»؛ <span class="fg-fr">tous excités</span> یعنی «همه‌شان هیجان‌زده».</p></div>
+        <div class="fg-answer"><strong>تمرین 3 — رستوران</strong><div class="fg-fr-block">Vous prenez un apéritif ?<br>Tu veux quelque chose ?<br>Est-ce que je peux avoir un verre de sauternes ?<br>Vous voulez la carte des vins ?<br>Qu’est-ce que nous prenons ?<br>Tu veux partager avec moi ?<br>Est-ce que je peux avoir des légumes verts ?<br>Qu’est-ce que vous prenez ?</div></div>
+      </div>
+    </details>
+
+    <details>
+      <summary>صفحه 114 — تمرین 1 تا 3</summary>
+      <div>
+        <div class="fg-answer"><strong>تمرین 1 — دستور crêpes</strong><div class="fg-fr-block">Ils prennent un grand saladier.<br>Ils mettent 250 g de farine.<br>Ils font un puits au centre.<br>Ils battent trois œufs avec la farine.<br>Ils mettent un demi-litre de lait petit à petit.<br>Ils font reposer la pâte une heure.<br>Ils prennent une poêle.<br>Ils font chauffer un peu d’huile.<br>Ils mettent une petite louche de pâte.<br>Ils font cuire des deux côtés.<br>Ils mettent du sucre.</div><p>در <span class="fg-fr">faire + infinitif</span> فقط <span class="fg-fr">faire</span> صرف می‌شود.</p></div>
+        <div class="fg-answer"><strong>تمرین 2 — Marie et Laura</strong><div class="fg-fr-block">Elles vont au bureau en bus. Elles attendent parfois... elles mettent trente-cinq minutes... elles ne sont pas pressées... Elles prennent toujours le même bus... elles boivent un café... elles lisent presque entièrement le journal... elles écrivent quelques mots... elles font des calculs... elles prennent des notes... elles descendent à l’Opéra... elles ont envie de regarder... elles ne se sentent pas aussi fatiguées...</div></div>
+        <div class="fg-answer"><strong>تمرین 3</strong><div class="fg-fr-block">Ils peuvent venir quand ils veulent.<br>Ils ne croient que ce qu’ils voient.<br>Elles suivent la mode et elles connaissent les stars.<br>Ils ne boivent pas car ils doivent conduire.<br>Elles savent peindre et elles peignent très bien.</div><p><span class="fg-fr">ne ... que</span> = «فقط» و منفی واقعی نیست.</p></div>
+      </div>
+    </details>
+
+    <details>
+      <summary>صفحه 115 — تمرین 1 تا 4</summary>
+      <div>
+        <div class="fg-answer"><strong>تمرین 1</strong><div class="fg-fr-block">vous prenez<br>prennent<br>apprend<br>apprennent<br>comprenons<br>vient<br>viens<br>reviens<br>vous vous souvenez<br>je ne me souviens pas</div><p><span class="fg-fr">se souvenir de</span> همیشه با <span class="fg-fr">de</span> می‌آید.</p></div>
+        <div class="fg-answer"><strong>تمرین 2 — پاسخ نمونه</strong><div class="fg-fr-block">Oui, quand je vais au bureau, je pars à huit heures.<br>Oui, quand je monte au cinquième étage, je prends l’ascenseur.<br>Oui, quand je prends des notes, j’écris en français.<br>Oui, quand je lis, je mets des lunettes.<br>Oui, quand je bois du café le soir, je prends du décaféiné.<br>Oui, quand je reçois un message, je réponds toujours.<br>Oui, quand je vais au théâtre, j’applaudis longtemps les acteurs.</div></div>
+        <div class="fg-answer"><strong>تمرین 3</strong><div class="fg-fr-block">Je sors peu.<br>Je vis seul.<br>J’entends mal !<br>Je perds mes cheveux.<br>Tu pars en vacances.<br>Tu prends ton sac.<br>Tu descends l’escalier.<br>Tu attends le train.<br>Elle perd tout.<br>Il met un pull.<br>Ils vendent des fruits.<br>Elles attendent le bus.</div></div>
+        <div class="fg-answer"><strong>تمرین 4 — پاسخ نمونه</strong><div class="fg-fr-block">Le matin, j’éteins mon réveil. Je consulte mes messages. Je mets mes pantoufles. Je prends une douche. Je bois un café. Je lis les nouvelles. J’allume la radio. Je fais un peu de gymnastique.</div></div>
+      </div>
+    </details>
+
+    <details>
+      <summary>صفحه 117 — تمرین 1 تا 4</summary>
+      <div>
+        <div class="fg-answer"><strong>تمرین 1</strong><div class="fg-fr-block">je mets un manteau / je prends un parapluie<br>je prends le bus / je mets une heure<br>je prends seulement un café<br>je prends un bain / je mets des vêtements / je mets un CD<br>ça prend trop de temps</div></div>
+        <div class="fg-answer"><strong>تمرین 2</strong><div class="fg-fr-block">fait du sport<br>font du jogging<br>jouent au volley / au foot<br>faisons du tennis<br>faisons du golf<br>jouons aux échecs<br>joue du piano<br>joue de la clarinette<br>joue du violoncelle</div></div>
+        <div class="fg-answer"><strong>تمرین 3</strong><div class="fg-fr-block">Je fais laver mon linge.<br>Je fais faire le ménage.<br>Je fais traduire mes textes.<br>Je fais repeindre mon appartement.<br>Je me fais couper les cheveux.</div><p><span class="fg-fr">je fais faire le ménage</span> درست است؛ تکرار <span class="fg-fr">faire</span> طبیعی و ضروری است.</p></div>
+        <div class="fg-answer"><strong>تمرین 4 — پاسخ نمونه</strong><div class="fg-fr-block">Je fais de la randonnée et je joue parfois au tennis. Je ne joue pas d’un instrument de musique. Je fais souvent la cuisine. Je fais le ménage moi-même. Je mets environ trente minutes pour aller au bureau. Je prends généralement le bus.</div></div>
+      </div>
+    </details>
+
+    <details>
+      <summary>صفحه 119 — تمرین 1 تا 5</summary>
+      <div>
+        <div class="fg-answer"><strong>تمرین 1 — پاسخ نمونه</strong><div class="fg-fr-block">Oui, je peux courir très longtemps.<br>Oui, je peux travailler dans le bruit.<br>Oui, je peux faire mes calculs sans calculatrice.<br>Non, je ne peux pas toucher le plafond de la main.<br>Non, je ne peux pas fumer en classe.</div></div>
+        <div class="fg-answer"><strong>تمرین 2</strong><div class="fg-fr-block">On doit se présenter une heure avant le départ.<br>On doit faire le check-in.<br>On ne peut pas avoir plus de vingt kilos de bagages.<br>On doit passer les contrôles de sécurité.<br>On ne peut pas transporter des objets dangereux.<br>On ne peut pas fumer dans l’avion.<br>On doit attacher sa ceinture au décollage.<br>On peut écouter de la musique.<br>On ne peut pas s’allonger complètement.<br>On peut acheter des produits hors taxes.</div></div>
+        <div class="fg-answer"><strong>تمرین 3 — احتمال با devoir</strong><div class="fg-fr-block">Il doit être minuit passé.<br>Ça doit faire environ quatre euros.<br>Ça doit coûter une fortune.<br>Il doit y avoir un problème avec mon serveur.</div></div>
+        <div class="fg-answer"><strong>تمرین 4</strong><div class="fg-fr-block">Pour pouvoir voter en France, il faut avoir la nationalité française et il faut être majeur. En France, les femmes peuvent voter seulement depuis 1945. Pour être élu, le président de la République doit rassembler la majorité des voix. Pour être valables, les bulletins de vote ne doivent pas porter d’inscription. Certains électeurs peuvent voter par correspondance, mais ils doivent prouver qu’ils ne peuvent pas se déplacer.</div></div>
+        <div class="fg-answer"><strong>تمرین 5 — الگوی پاسخ</strong><div class="fg-fr-block">Dans mon pays, on peut voter à partir de ... ans. Pour conduire une voiture, il faut avoir un permis de conduire. Pour piloter un avion, il faut suivre une formation spéciale. Pour aller à l’université, on doit généralement avoir un diplôme.</div></div>
+      </div>
+    </details>
+
+    <details>
+      <summary>صفحه 121 — تمرین 1 تا 5</summary>
+      <div>
+        <div class="fg-answer"><strong>تمرین 1 — savoir / connaître</strong><div class="fg-fr-block">Maria connaît beaucoup de recettes et elle sait bien cuisiner.<br>Vous connaissez les parents de François ? / Je connais seulement sa sœur.<br>Ma fille ne sait pas conduire. Elle ne connaît pas le code de la route.<br>Mon fils sait nager sous l’eau et il connaît tous les poissons.<br>Vous savez ce que veut dire « avoir la pêche » ? / Je ne connais pas cette expression.<br>Je sais que le train arrive à trois heures, mais je ne connais pas le numéro du quai.<br>Vos parents savent que vous êtes ici ? / Ma mère sait que je suis là.</div></div>
+        <div class="fg-answer"><strong>تمرین 2</strong><div class="fg-fr-block">Je veux être actrice. Je sais danser, je connais la valse, le rock, le tango et le cha-cha-cha. Je sais chanter, je connais au moins cent chansons ! Je veux devenir célèbre... je connais beaucoup de mots anglais. Je veux vivre cent ans et je veux avoir dix enfants !</div></div>
+        <div class="fg-answer"><strong>تمرین 3 — مکالمه تلفنی</strong><div class="fg-fr-block">Je voudrais parler à monsieur Pernod... Est-ce que vous voulez laisser un message ? ... je sais que monsieur Pernod veut acheter une BMW d’occasion. Je connais un bon garage où votre mari peut trouver de bonnes affaires... S’il veut, il peut dire qu’il vient de la part de Jules Porteau... Ah oui, je connais...</div><p><span class="fg-fr">je voudrais</span> مؤدبانه‌تر از <span class="fg-fr">je veux</span> است.</p></div>
+        <div class="fg-answer"><strong>تمرین 4 — savoir / pouvoir</strong><div class="fg-fr-block">Vous savez lire ? ... Vous ne pouvez pas vous baigner dans la rivière... on sait nager... je ne sais pas nager et je ne peux pas vous repêcher.</div></div>
+        <div class="fg-answer"><strong>تمرین 5 — پاسخ نمونه</strong><div class="fg-fr-block">Je sais programmer et créer des applications web. Je sais parler persan et anglais, et je peux communiquer en français. Je sais nager. Je veux améliorer mon français. Je souhaite atteindre le niveau B2.</div></div>
+      </div>
+    </details>
+  </section>
+
+  <section class="fg-card">
+    <h2>جمع‌بندی نهایی</h2>
+    <p>برای این درس، حفظ‌کردن صرف تک‌تک افعال بدون الگو کارآمد نیست. ابتدا فعل را در یکی از خانواده‌های بالا قرار دهید، سپس سه شکل <span class="fg-fr">je / nous / ils</span> را حفظ کنید و در پایان استثناهای پرکاربرد را جداگانه مرور کنید.</p>
+    <div class="fg-callout fg-good"><strong>فرمول مطالعه:</strong> الگو → سه بن اصلی → نکتهٔ املایی → کاربرد معنایی → تمرین در جمله.</div>
+  </section>
+</div>

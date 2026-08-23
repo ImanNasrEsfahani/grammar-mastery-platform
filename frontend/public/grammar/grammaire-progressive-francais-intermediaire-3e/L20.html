@@ -1,0 +1,805 @@
+<div class="fg-lesson20-wrapper" dir="rtl" lang="fa">
+  <style>
+    .fg-lesson20-wrapper {
+      --fg-navy: #12355b;
+      --fg-blue: #1f5f99;
+      --fg-blue-soft: #eef6ff;
+      --fg-green: #16784b;
+      --fg-green-soft: #edf9f3;
+      --fg-red: #b42318;
+      --fg-red-soft: #fff1ef;
+      --fg-orange: #b54708;
+      --fg-orange-soft: #fff7ed;
+      --fg-violet: #6b46c1;
+      --fg-violet-soft: #f5f1ff;
+      --fg-ink: #1f2937;
+      --fg-muted: #667085;
+      --fg-border: #d9e2ec;
+      --fg-surface: #ffffff;
+      --fg-surface-alt: #f8fafc;
+      --fg-shadow: 0 10px 30px rgba(18, 53, 91, 0.08);
+      box-sizing: border-box;
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 18px;
+      color: var(--fg-ink);
+      background: transparent;
+      font-family: Tahoma, "Segoe UI", Arial, sans-serif;
+      line-height: 1.95;
+      direction: rtl;
+      text-align: right;
+    }
+    .fg-lesson20-wrapper *,
+    .fg-lesson20-wrapper *::before,
+    .fg-lesson20-wrapper *::after { box-sizing: border-box; }
+    .fg-lesson20-wrapper h1,
+    .fg-lesson20-wrapper h2,
+    .fg-lesson20-wrapper h3,
+    .fg-lesson20-wrapper h4,
+    .fg-lesson20-wrapper p { margin-top: 0; }
+    .fg-lesson20-wrapper a { color: var(--fg-blue); }
+
+    .fg-hero {
+      position: relative;
+      overflow: hidden;
+      padding: 28px;
+      border: 1px solid #cfe0f1;
+      border-radius: 22px;
+      background: linear-gradient(135deg, #f8fbff 0%, #edf5ff 55%, #f7f5ff 100%);
+      box-shadow: var(--fg-shadow);
+      margin-bottom: 22px;
+    }
+    .fg-hero::after {
+      content: "EN";
+      position: absolute;
+      left: 20px;
+      top: -18px;
+      font: 800 118px/1 Arial, sans-serif;
+      color: rgba(31, 95, 153, 0.06);
+      direction: ltr;
+    }
+    .fg-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 11px;
+      margin-bottom: 10px;
+      border-radius: 999px;
+      background: #dcecff;
+      color: var(--fg-navy);
+      font-size: 13px;
+      font-weight: 800;
+    }
+    .fg-title {
+      margin-bottom: 7px;
+      color: var(--fg-navy);
+      font-size: clamp(28px, 4vw, 46px);
+      line-height: 1.35;
+    }
+    .fg-subtitle {
+      margin-bottom: 0;
+      color: var(--fg-muted);
+      font-size: 16px;
+    }
+    .fg-fr-title {
+      direction: ltr;
+      unicode-bidi: isolate;
+      display: inline-block;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    .fg-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 18px;
+    }
+    .fg-card {
+      background: var(--fg-surface);
+      border: 1px solid var(--fg-border);
+      border-radius: 18px;
+      padding: 22px;
+      box-shadow: 0 4px 18px rgba(16, 24, 40, 0.04);
+    }
+    .fg-card + .fg-card { margin-top: 0; }
+    .fg-section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+      color: var(--fg-navy);
+      font-size: clamp(21px, 2.6vw, 28px);
+      line-height: 1.55;
+    }
+    .fg-section-title .fg-num {
+      flex: 0 0 auto;
+      display: inline-grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: var(--fg-navy);
+      color: #fff;
+      font: 800 15px/1 "Segoe UI", Arial, sans-serif;
+      direction: ltr;
+    }
+    .fg-subheading {
+      margin: 20px 0 10px;
+      color: var(--fg-blue);
+      font-size: 18px;
+    }
+    .fg-muted { color: var(--fg-muted); }
+
+    .fg-fr,
+    .fg-code {
+      direction: ltr;
+      text-align: left;
+      unicode-bidi: isolate;
+      display: inline-block;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+    .fg-example {
+      margin: 12px 0;
+      padding: 14px 16px;
+      border: 1px solid #cfe9dc;
+      border-right: 4px solid var(--fg-green);
+      border-radius: 12px;
+      background: var(--fg-green-soft);
+    }
+    .fg-example .fg-fr {
+      display: block;
+      font-size: 16px;
+      font-weight: 650;
+      color: #125f3f;
+      margin: 3px 0;
+    }
+    .fg-wrong {
+      margin: 10px 0;
+      padding: 12px 14px;
+      border: 1px solid #f2c6c2;
+      border-right: 4px solid var(--fg-red);
+      border-radius: 12px;
+      background: var(--fg-red-soft);
+      color: #7a271a;
+    }
+    .fg-callout {
+      margin: 14px 0;
+      padding: 15px 17px;
+      border-radius: 14px;
+      border: 1px solid;
+    }
+    .fg-callout strong { color: inherit; }
+    .fg-tip { background: var(--fg-blue-soft); border-color: #c8ddf3; color: #194d7a; }
+    .fg-warning { background: var(--fg-orange-soft); border-color: #f3d4ad; color: #8a3a05; }
+    .fg-exception { background: var(--fg-violet-soft); border-color: #d9cff8; color: #553c9a; }
+    .fg-callout-title {
+      display: block;
+      font-weight: 900;
+      margin-bottom: 5px;
+    }
+
+    .fg-formula {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 14px 0;
+      padding: 14px;
+      background: #f6f9fc;
+      border: 1px dashed #b9c9da;
+      border-radius: 12px;
+      color: var(--fg-navy);
+      font-weight: 800;
+    }
+    .fg-chip {
+      display: inline-block;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: #e8f1fb;
+      color: #184d7f;
+      font-size: 13px;
+      font-weight: 800;
+      direction: ltr;
+      unicode-bidi: isolate;
+    }
+
+    .fg-table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      margin: 14px 0 4px;
+      border: 1px solid var(--fg-border);
+      border-radius: 14px;
+      -webkit-overflow-scrolling: touch;
+    }
+    .fg-table {
+      width: 100%;
+      min-width: 670px;
+      border-collapse: collapse;
+      background: #fff;
+      direction: rtl;
+    }
+    .fg-table th,
+    .fg-table td {
+      border-bottom: 1px solid var(--fg-border);
+      border-left: 1px solid var(--fg-border);
+      padding: 12px 14px;
+      vertical-align: top;
+      text-align: right;
+    }
+    .fg-table th:last-child,
+    .fg-table td:last-child { border-left: 0; }
+    .fg-table tr:last-child td { border-bottom: 0; }
+    .fg-table thead th {
+      background: var(--fg-navy);
+      color: #fff;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+    .fg-table tbody tr:nth-child(even) { background: var(--fg-surface-alt); }
+    .fg-table .fg-fr { display: block; }
+
+    .fg-list {
+      margin: 8px 0 0;
+      padding-right: 22px;
+    }
+    .fg-list li { margin: 5px 0; }
+
+    .fg-compare-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin: 14px 0;
+    }
+    .fg-mini-card {
+      border: 1px solid var(--fg-border);
+      border-radius: 14px;
+      padding: 15px;
+      background: #fff;
+    }
+    .fg-mini-card h4 {
+      margin-bottom: 8px;
+      color: var(--fg-navy);
+      font-size: 16px;
+    }
+
+    .fg-exercise {
+      border: 1px solid var(--fg-border);
+      border-radius: 16px;
+      overflow: hidden;
+      margin-top: 16px;
+      background: #fff;
+    }
+    .fg-exercise-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 13px 16px;
+      background: #f2f6fb;
+      border-bottom: 1px solid var(--fg-border);
+    }
+    .fg-exercise-head h3 {
+      margin: 0;
+      color: var(--fg-navy);
+      font-size: 17px;
+    }
+    .fg-exercise-body { padding: 16px; }
+    .fg-answer {
+      margin: 8px 0 12px;
+      padding: 11px 13px;
+      border-radius: 10px;
+      background: var(--fg-green-soft);
+      border: 1px solid #cfe9dc;
+    }
+    .fg-answer-label {
+      color: var(--fg-green);
+      font-weight: 900;
+      margin-left: 6px;
+    }
+    .fg-note-small {
+      margin-top: 8px;
+      color: var(--fg-muted);
+      font-size: 14px;
+    }
+    .fg-divider {
+      height: 1px;
+      margin: 18px 0;
+      background: linear-gradient(90deg, transparent, #cdd8e5, transparent);
+    }
+    .fg-summary {
+      background: linear-gradient(180deg, #ffffff 0%, #f7fbff 100%);
+      border: 1px solid #cfe0f1;
+    }
+
+    @media (max-width: 760px) {
+      .fg-lesson20-wrapper { padding: 10px; line-height: 1.85; }
+      .fg-hero, .fg-card { padding: 17px; border-radius: 15px; }
+      .fg-hero::after { font-size: 82px; left: 8px; }
+      .fg-compare-grid { grid-template-columns: 1fr; }
+      .fg-section-title { align-items: flex-start; }
+      .fg-table { min-width: 600px; font-size: 14px; }
+      .fg-exercise-head { align-items: flex-start; flex-direction: column; }
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .fg-lesson20-wrapper {
+        --fg-ink: #e8eef5;
+        --fg-muted: #aab7c4;
+        --fg-border: #33475b;
+        --fg-surface: #172330;
+        --fg-surface-alt: #1c2b39;
+        --fg-blue-soft: #162b40;
+        --fg-green-soft: #153327;
+        --fg-red-soft: #3a201e;
+        --fg-orange-soft: #39291b;
+        --fg-violet-soft: #2b2440;
+      }
+      .fg-hero { background: linear-gradient(135deg, #172330 0%, #182d42 100%); border-color: #334f69; }
+      .fg-card, .fg-mini-card, .fg-exercise, .fg-table { background: #172330; }
+      .fg-table thead th { background: #0f2d49; }
+      .fg-table tbody tr:nth-child(even) { background: #1c2b39; }
+      .fg-exercise-head { background: #1b2b3a; }
+      .fg-formula { background: #1b2b3a; border-color: #4a6075; }
+      .fg-summary { background: linear-gradient(180deg, #172330 0%, #182d42 100%); }
+      .fg-example .fg-fr { color: #79d6aa; }
+    }
+  </style>
+
+  <section class="fg-hero">
+    <span class="fg-eyebrow">درس ۲۰ • Pronoms</span>
+    <h1 class="fg-title">ضمیر <span class="fg-fr-title" lang="fr">« en »</span></h1>
+    <p class="fg-subtitle">آموزش کامل کاربردها، جایگاه، مقدار، ساختارهای دارای <span class="fg-fr" lang="fr">de</span>، استثناها و تمرین‌های درس</p>
+  </section>
+
+  <div class="fg-layout">
+    <section class="fg-card">
+      <h2 class="fg-section-title"><span class="fg-num">1</span> مفهوم اصلی <span class="fg-fr-title" lang="fr">en</span></h2>
+      <p>ضمیر <span class="fg-fr" lang="fr">en</span> معمولاً جای چیزی را می‌گیرد که با <span class="fg-fr" lang="fr">de</span> معرفی شده است. در فارسی بسته به بافت می‌تواند مفهوم «از آن»، «از آن‌ها»، «دربارهٔ آن»، «مقداری از آن» یا «از آنجا» بدهد، اما اغلب ترجمهٔ مستقلی ندارد.</p>
+      <div class="fg-formula">
+        <span class="fg-fr" lang="fr">de + nom / groupe</span>
+        <span>←</span>
+        <span class="fg-chip">en</span>
+      </div>
+      <div class="fg-example">
+        <span class="fg-fr" lang="fr">Elle parle de son travail.</span>
+        <span class="fg-fr" lang="fr">Elle en parle.</span>
+        <div>او دربارهٔ کارش صحبت می‌کند.</div>
+      </div>
+    </section>
+
+    <section class="fg-card">
+      <h2 class="fg-section-title"><span class="fg-num">2</span> <span class="fg-fr-title" lang="fr">en</span> با <span class="fg-fr-title" lang="fr">du / de la / de l’ / des</span></h2>
+      <p>وقتی اسم با حرف تعریف مقداری یا نامعین معرفی شده باشد، برای جلوگیری از تکرار آن از <span class="fg-fr" lang="fr">en</span> استفاده می‌کنیم.</p>
+      <div class="fg-compare-grid">
+        <div class="fg-mini-card">
+          <h4>مثال‌های مثبت</h4>
+          <div class="fg-example">
+            <span class="fg-fr" lang="fr">Vous mangez de la viande ?</span>
+            <span class="fg-fr" lang="fr">Oui, j’en mange.</span>
+          </div>
+          <div class="fg-example">
+            <span class="fg-fr" lang="fr">Vous buvez du vin ?</span>
+            <span class="fg-fr" lang="fr">Oui, j’en bois.</span>
+          </div>
+          <div class="fg-example">
+            <span class="fg-fr" lang="fr">Vous achetez des surgelés ?</span>
+            <span class="fg-fr" lang="fr">Oui, j’en achète.</span>
+          </div>
+        </div>
+        <div class="fg-mini-card">
+          <h4>ساخت مهم <span class="fg-fr" lang="fr">il y a</span></h4>
+          <div class="fg-example">
+            <span class="fg-fr" lang="fr">Il y a de l’eau ?</span>
+            <span class="fg-fr" lang="fr">Oui, il y en a.</span>
+          </div>
+          <div class="fg-wrong"><span class="fg-fr" lang="fr">✗ Oui, il y a.</span></div>
+          <p class="fg-note-small">در پاسخ، اسم حذف‌شده باید با <span class="fg-fr" lang="fr">en</span> جایگزین شود.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="fg-card">
+      <h2 class="fg-section-title"><span class="fg-num">3</span> تفاوت <span class="fg-fr-title" lang="fr">en</span> با <span class="fg-fr-title" lang="fr">le / la / les</span></h2>
+      <div class="fg-table-wrap">
+        <table class="fg-table">
+          <thead><tr><th>نوع مرجع</th><th>جملهٔ اصلی</th><th>با ضمیر</th><th>نکته</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>اسم مشخص / معین</td>
+              <td><span class="fg-fr" lang="fr">J’aime le chocolat.</span></td>
+              <td><span class="fg-fr" lang="fr">Je l’aime.</span></td>
+              <td><span class="fg-fr" lang="fr">le / la / les</span> جای مرجع مشخص را می‌گیرد.</td>
+            </tr>
+            <tr>
+              <td>مقداری از یک ماده</td>
+              <td><span class="fg-fr" lang="fr">Je mange du chocolat.</span></td>
+              <td><span class="fg-fr" lang="fr">J’en mange.</span></td>
+              <td><span class="fg-fr" lang="fr">en</span> جای ساخت مقداری را می‌گیرد.</td>
+            </tr>
+            <tr>
+              <td>اسم جمع مشخص</td>
+              <td><span class="fg-fr" lang="fr">J’achète les pommes.</span></td>
+              <td><span class="fg-fr" lang="fr">Je les achète.</span></td>
+              <td>سیب‌های مشخص.</td>
+            </tr>
+            <tr>
+              <td>اسم جمع نامعین</td>
+              <td><span class="fg-fr" lang="fr">J’achète des pommes.</span></td>
+              <td><span class="fg-fr" lang="fr">J’en achète.</span></td>
+              <td>چند / مقداری سیب.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="fg-card">
+      <h2 class="fg-section-title"><span class="fg-num">4</span> مقدار، عدد و واحد اندازه‌گیری</h2>
+      <p>اگر در جمله عدد یا مقدار داشته باشیم، <span class="fg-fr" lang="fr">en</span> جای اسم را می‌گیرد اما مقدار در جمله باقی می‌ماند.</p>
+      <div class="fg-example">
+        <span class="fg-fr" lang="fr">Vous avez des enfants ? — Oui, j’en ai deux.</span>
+        <span class="fg-fr" lang="fr">Il y a vingt étudiants ? — Non, il y en a trente.</span>
+        <span class="fg-fr" lang="fr">Vous avez combien de télévisions ? — J’en ai une.</span>
+      </div>
+      <div class="fg-table-wrap">
+        <table class="fg-table">
+          <thead><tr><th>نوع مقدار</th><th>مثال کامل</th><th>با <span class="fg-fr" lang="fr">en</span></th></tr></thead>
+          <tbody>
+            <tr><td>عدد</td><td><span class="fg-fr" lang="fr">J’ai trois voitures.</span></td><td><span class="fg-fr" lang="fr">J’en ai trois.</span></td></tr>
+            <tr><td>واحد اندازه‌گیری</td><td><span class="fg-fr" lang="fr">J’achète cent grammes de viande.</span></td><td><span class="fg-fr" lang="fr">J’en achète cent grammes.</span></td></tr>
+            <tr><td>ظرف / بسته‌بندی</td><td><span class="fg-fr" lang="fr">J’ai une bouteille d’eau.</span></td><td><span class="fg-fr" lang="fr">J’en ai une bouteille.</span></td></tr>
+            <tr><td>قید مقدار</td><td><span class="fg-fr" lang="fr">J’ai beaucoup de travail.</span></td><td><span class="fg-fr" lang="fr">J’en ai beaucoup.</span></td></tr>
+            <tr><td>مقدار کم</td><td><span class="fg-fr" lang="fr">Je bois un peu de café.</span></td><td><span class="fg-fr" lang="fr">J’en bois un peu.</span></td></tr>
+            <tr><td>مقدار زیاد</td><td><span class="fg-fr" lang="fr">Il achète trop de vêtements.</span></td><td><span class="fg-fr" lang="fr">Il en achète trop.</span></td></tr>
+            <tr><td>مقدار کافی</td><td><span class="fg-fr" lang="fr">Nous avons assez de temps.</span></td><td><span class="fg-fr" lang="fr">Nous en avons assez.</span></td></tr>
+            <tr><td>چند مورد نامعین</td><td><span class="fg-fr" lang="fr">Il y a quelques yaourts.</span></td><td><span class="fg-fr" lang="fr">Il y en a quelques-uns.</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="fg-callout fg-tip">
+        <span class="fg-callout-title">نکتهٔ جنس</span>
+        برای اسم مؤنث می‌گوییم: <span class="fg-fr" lang="fr">Il y a quelques pommes. → Il y en a quelques-unes.</span>
+      </div>
+    </section>
+
+    <section class="fg-card">
+      <h2 class="fg-section-title"><span class="fg-num">5</span> چرا <span class="fg-fr-title" lang="fr">un / une</span> را نگه می‌داریم؟</h2>
+      <p><span class="fg-fr" lang="fr">un / une</span> نیز مقدار است؛ یعنی «یک». بنابراین در جملهٔ مثبت، اگر اسم قابل‌شمارش حذف شود، عدد یک باقی می‌ماند.</p>
+      <div class="fg-example">
+        <span class="fg-fr" lang="fr">Vous avez une voiture ? — Oui, j’en ai une.</span>
+        <span class="fg-fr" lang="fr">Vous avez un ordinateur ? — Oui, j’en ai un.</span>
+      </div>
+      <div class="fg-wrong"><span class="fg-fr" lang="fr">✗ Oui, j’en ai.</span> <span>— برای یک اسم قابل‌شمارش، پاسخ معمولاً ناقص است.</span></div>
+      <div class="fg-callout fg-warning">
+        <span class="fg-callout-title">در منفی معمولی</span>
+        <span class="fg-fr" lang="fr">Vous avez une voiture ? — Non, je n’en ai pas.</span><br>
+        عدد «یک» معمولاً حذف می‌شود. اما در تصحیح یا تأکید می‌تواند باقی بماند:
+        <span class="fg-fr" lang="fr">Je n’en ai pas une, j’en ai deux.</span>
+      </div>
+    </section>
+
+    <section class="fg-card">
+      <h2 class="fg-section-title"><span class="fg-num">6</span> جایگاه <span class="fg-fr-title" lang="fr">en</span> در جمله</h2>
+      <div class="fg-table-wrap">
+        <table class="fg-table">
+          <thead><tr><th>ساخت</th><th>الگو</th><th>مثال</th></tr></thead>
+          <tbody>
+            <tr><td>زمان ساده</td><td><span class="fg-fr" lang="fr">sujet + en + verbe</span></td><td><span class="fg-fr" lang="fr">J’en mange. / Elle en parle souvent.</span></td></tr>
+            <tr><td>منفی</td><td><span class="fg-fr" lang="fr">ne + en + verbe + pas</span></td><td><span class="fg-fr" lang="fr">Je n’en mange pas.</span></td></tr>
+            <tr><td>زمان مرکب</td><td><span class="fg-fr" lang="fr">en + auxiliaire + participe passé</span></td><td><span class="fg-fr" lang="fr">J’en ai acheté.</span></td></tr>
+            <tr><td>با مصدر</td><td><span class="fg-fr" lang="fr">verbe conjugué + en + infinitif</span></td><td><span class="fg-fr" lang="fr">Je vais en acheter.</span></td></tr>
+            <tr><td>امر مثبت</td><td><span class="fg-fr" lang="fr">verbe-en</span></td><td><span class="fg-fr" lang="fr">Parlez-en ! / Achetez-en deux !</span></td></tr>
+            <tr><td>امر منفی</td><td><span class="fg-fr" lang="fr">n’ + en + verbe + pas</span></td><td><span class="fg-fr" lang="fr">N’en parlez pas !</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="fg-callout fg-tip">
+        <span class="fg-callout-title">ترتیب ثابت با <span class="fg-fr" lang="fr">il y a</span></span>
+        <span class="fg-fr" lang="fr">Il y en a. → Il n’y en a pas.</span>
+        <br>در این ساخت، ترتیب <span class="fg-fr" lang="fr">y + en</span> ثابت است.
+      </div>
+      <div class="fg-wrong"><span class="fg-fr" lang="fr">✗ J’ai en acheté.</span></div>
+      <div class="fg-wrong"><span class="fg-fr" lang="fr">✗ J’en veux acheter deux.</span></div>
+      <div class="fg-example"><span class="fg-fr" lang="fr">✓ Je veux en acheter deux.</span></div>
+      <div class="fg-example"><span class="fg-fr" lang="fr">Donne-m’en deux.</span><div>دو تا از آن‌ها به من بده.</div></div>
+    </section>
+
+    <section class="fg-card">
+      <h2 class="fg-section-title"><span class="fg-num">7</span> ساختارهای فعل / صفت + <span class="fg-fr-title" lang="fr">de</span></h2>
+      <p>در بسیاری از فعل‌ها، صفت‌ها و عبارت‌های ثابت، <span class="fg-fr" lang="fr">de</span> بخشی از ساخت است. اگر مکمل غیرشخصی حذف شود، اغلب با <span class="fg-fr" lang="fr">en</span> جایگزین می‌شود.</p>
+      <div class="fg-table-wrap">
+        <table class="fg-table">
+          <thead><tr><th>ساخت</th><th>جملهٔ کامل</th><th>با <span class="fg-fr" lang="fr">en</span></th></tr></thead>
+          <tbody>
+            <tr><td><span class="fg-fr" lang="fr">parler de</span></td><td><span class="fg-fr" lang="fr">Elle parle de son travail.</span></td><td><span class="fg-fr" lang="fr">Elle en parle souvent.</span></td></tr>
+            <tr><td><span class="fg-fr" lang="fr">rêver de</span></td><td><span class="fg-fr" lang="fr">Il rêve de son avenir.</span></td><td><span class="fg-fr" lang="fr">Il en rêve.</span></td></tr>
+            <tr><td><span class="fg-fr" lang="fr">s’occuper de</span></td><td><span class="fg-fr" lang="fr">Il s’occupe de la gestion.</span></td><td><span class="fg-fr" lang="fr">Il s’en occupe.</span></td></tr>
+            <tr><td><span class="fg-fr" lang="fr">se souvenir de</span></td><td><span class="fg-fr" lang="fr">Je me souviens de cette histoire.</span></td><td><span class="fg-fr" lang="fr">Je m’en souviens.</span></td></tr>
+            <tr><td><span class="fg-fr" lang="fr">être content de</span></td><td><span class="fg-fr" lang="fr">Il est content de son ordinateur.</span></td><td><span class="fg-fr" lang="fr">Il en est content.</span></td></tr>
+            <tr><td><span class="fg-fr" lang="fr">être fier de</span></td><td><span class="fg-fr" lang="fr">Elle est fière de son résultat.</span></td><td><span class="fg-fr" lang="fr">Elle en est fière.</span></td></tr>
+            <tr><td><span class="fg-fr" lang="fr">avoir peur de</span></td><td><span class="fg-fr" lang="fr">Tu as peur du chômage ?</span></td><td><span class="fg-fr" lang="fr">Oui, j’en ai peur.</span></td></tr>
+            <tr><td><span class="fg-fr" lang="fr">avoir besoin de</span></td><td><span class="fg-fr" lang="fr">J’ai besoin de la photocopieuse.</span></td><td><span class="fg-fr" lang="fr">J’en ai besoin.</span></td></tr>
+            <tr><td><span class="fg-fr" lang="fr">avoir envie de</span></td><td><span class="fg-fr" lang="fr">Il a envie de partir.</span></td><td><span class="fg-fr" lang="fr">Il en a envie.</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="fg-callout fg-tip">
+        <span class="fg-callout-title">یک عبارت کامل هم می‌تواند جایگزین شود</span>
+        <span class="fg-fr" lang="fr">Mes enfants rêvent d’avoir un chien. → Mes enfants en rêvent.</span>
+      </div>
+    </section>
+
+    <section class="fg-card">
+      <h2 class="fg-section-title"><span class="fg-num">8</span> استثنای مهم: شخص مشخص</h2>
+      <p>برای شخص مشخص، در زبان معیار معمولاً به‌جای <span class="fg-fr" lang="fr">en</span> از <span class="fg-fr" lang="fr">de + pronom tonique</span> استفاده می‌کنیم.</p>
+      <div class="fg-example">
+        <span class="fg-fr" lang="fr">Vous parlez de votre père ? — Oui, je parle souvent de lui.</span>
+        <span class="fg-fr" lang="fr">Tu te souviens des Duval ? — Oui, je me souviens d’eux.</span>
+      </div>
+      <div class="fg-table-wrap">
+        <table class="fg-table">
+          <thead><tr><th>شخص</th><th>ساخت با <span class="fg-fr" lang="fr">de</span></th></tr></thead>
+          <tbody>
+            <tr><td>من</td><td><span class="fg-fr" lang="fr">de moi</span></td></tr>
+            <tr><td>تو</td><td><span class="fg-fr" lang="fr">de toi</span></td></tr>
+            <tr><td>او (مذکر/مؤنث)</td><td><span class="fg-fr" lang="fr">de lui / d’elle</span></td></tr>
+            <tr><td>ما / شما</td><td><span class="fg-fr" lang="fr">de nous / de vous</span></td></tr>
+            <tr><td>آن‌ها</td><td><span class="fg-fr" lang="fr">d’eux / d’elles</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="fg-callout fg-exception">
+        <span class="fg-callout-title">مرز مهم</span>
+        اگر افراد نامعین یا از نظر تعداد مطرح باشند، <span class="fg-fr" lang="fr">en</span> کاملاً طبیعی است:
+        <span class="fg-fr" lang="fr">Vous connaissez des ingénieurs ? — Oui, j’en connais plusieurs.</span>
+        <br><span class="fg-fr" lang="fr">Il a trois sœurs ? — Oui, il en a trois.</span>
+      </div>
+    </section>
+
+    <section class="fg-card">
+      <h2 class="fg-section-title"><span class="fg-num">9</span> <span class="fg-fr-title" lang="fr">en</span> برای مبدأ و مکان</h2>
+      <p>وقتی یک مکان با <span class="fg-fr" lang="fr">de</span> معرفی شود و معنای «از آنجا» بدهد، می‌توان از <span class="fg-fr" lang="fr">en</span> استفاده کرد.</p>
+      <div class="fg-example">
+        <span class="fg-fr" lang="fr">Tu viens de la piscine ? — Oui, j’en viens.</span>
+        <span class="fg-fr" lang="fr">Il revient du Canada ? — Oui, il en revient.</span>
+        <span class="fg-fr" lang="fr">Elle sort de la banque ? — Oui, elle en sort.</span>
+      </div>
+      <div class="fg-compare-grid">
+        <div class="fg-mini-card">
+          <h4>مقصد: <span class="fg-fr" lang="fr">y</span></h4>
+          <span class="fg-fr" lang="fr">Je vais à Montréal. → J’y vais.</span>
+        </div>
+        <div class="fg-mini-card">
+          <h4>مبدأ: <span class="fg-fr" lang="fr">en</span></h4>
+          <span class="fg-fr" lang="fr">Je reviens de Montréal. → J’en reviens.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="fg-card">
+      <h2 class="fg-section-title"><span class="fg-num">10</span> <span class="fg-fr-title" lang="fr">en</span> و اسم مفعول گذشته</h2>
+      <p>در کاربرد معمول، وقتی <span class="fg-fr" lang="fr">en</span> مفعول مستقیم را جایگزین می‌کند، اسم مفعول گذشته مطابق آن صرف نمی‌شود.</p>
+      <div class="fg-example">
+        <span class="fg-fr" lang="fr">Des pommes ? J’en ai acheté.</span>
+        <span class="fg-fr" lang="fr">Des lettres ? J’en ai écrit plusieurs.</span>
+      </div>
+      <div class="fg-wrong"><span class="fg-fr" lang="fr">✗ J’en ai achetées.</span></div>
+      <div class="fg-callout fg-warning">این نکته برای نوشتار رسمی و آزمون‌ها مهم است.</div>
+    </section>
+
+    <section class="fg-card">
+      <h2 class="fg-section-title"><span class="fg-num">11</span> عبارت‌های ثابت مهم با <span class="fg-fr-title" lang="fr">en</span></h2>
+      <div class="fg-table-wrap">
+        <table class="fg-table">
+          <thead><tr><th>عبارت</th><th>مثال</th><th>معنی</th></tr></thead>
+          <tbody>
+            <tr><td><span class="fg-fr" lang="fr">s’en aller</span></td><td><span class="fg-fr" lang="fr">Au revoir, je m’en vais.</span></td><td>خداحافظ، دارم می‌روم.</td></tr>
+            <tr><td><span class="fg-fr" lang="fr">en avoir assez</span></td><td><span class="fg-fr" lang="fr">J’en ai assez !</span></td><td>دیگر کافی است / خسته شده‌ام.</td></tr>
+            <tr><td><span class="fg-fr" lang="fr">en avoir marre</span></td><td><span class="fg-fr" lang="fr">J’en ai marre !</span></td><td>دیگر حوصله‌اش را ندارم. (محاوره‌ای)</td></tr>
+            <tr><td><span class="fg-fr" lang="fr">ne plus en pouvoir</span></td><td><span class="fg-fr" lang="fr">Je n’en peux plus.</span></td><td>دیگر تحمل ندارم.</td></tr>
+            <tr><td><span class="fg-fr" lang="fr">en vouloir à quelqu’un</span></td><td><span class="fg-fr" lang="fr">Je lui en veux.</span></td><td>از او دلخور / عصبانی هستم.</td></tr>
+            <tr><td><span class="fg-fr" lang="fr">ne pas s’en faire</span></td><td><span class="fg-fr" lang="fr">Ne vous en faites pas.</span></td><td>نگران نباشید.</td></tr>
+            <tr><td><span class="fg-fr" lang="fr">s’en occuper</span></td><td><span class="fg-fr" lang="fr">Laisse, je m’en occupe.</span></td><td>بگذار، خودم رسیدگی می‌کنم.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="fg-callout fg-exception">در این عبارت‌ها <span class="fg-fr" lang="fr">en</span> را کلمه‌به‌کلمه ترجمه نکنید؛ بخشی از ساخت تثبیت‌شده است.</div>
+    </section>
+
+    <section class="fg-card">
+      <h2 class="fg-section-title"><span class="fg-num">12</span> تلفظ و کوتاه‌شدن</h2>
+      <p><span class="fg-fr" lang="fr">en</span> معمولاً با صدای بینی /ɑ̃/ تلفظ می‌شود. پیش از آن برخی ضمیرها و <span class="fg-fr" lang="fr">ne</span> کوتاه می‌شوند.</p>
+      <div class="fg-table-wrap">
+        <table class="fg-table">
+          <thead><tr><th>شکل کامل</th><th>شکل درست</th></tr></thead>
+          <tbody>
+            <tr><td><span class="fg-fr" lang="fr">je + en</span></td><td><span class="fg-fr" lang="fr">j’en</span></td></tr>
+            <tr><td><span class="fg-fr" lang="fr">me + en</span></td><td><span class="fg-fr" lang="fr">m’en</span></td></tr>
+            <tr><td><span class="fg-fr" lang="fr">te + en</span></td><td><span class="fg-fr" lang="fr">t’en</span></td></tr>
+            <tr><td><span class="fg-fr" lang="fr">se + en</span></td><td><span class="fg-fr" lang="fr">s’en</span></td></tr>
+            <tr><td><span class="fg-fr" lang="fr">ne + en</span></td><td><span class="fg-fr" lang="fr">n’en</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="fg-callout fg-warning">
+        <span class="fg-fr" lang="fr">tu en achètes</span> کوتاه نمی‌شود؛ <span class="fg-fr" lang="fr">t’en</span> فقط وقتی ممکن است که <span class="fg-fr" lang="fr">te</span> ضمیر مفعولی/بازتابی باشد، مثل <span class="fg-fr" lang="fr">Tu t’en occupes.</span>
+      </div>
+    </section>
+
+    <section class="fg-card">
+      <h2 class="fg-section-title"><span class="fg-num">13</span> تمرین‌های صفحهٔ ۹۱</h2>
+
+      <div class="fg-exercise">
+        <div class="fg-exercise-head"><h3>تمرین ۱ — <span class="fg-fr" lang="fr">Répondez aux questions</span></h3><span class="fg-chip">پاسخ نمونه</span></div>
+        <div class="fg-exercise-body">
+          <ol class="fg-list">
+            <li><span class="fg-fr" lang="fr">Vous achetez des surgelés ?</span><div class="fg-answer"><span class="fg-answer-label">پاسخ:</span><span class="fg-fr" lang="fr">Oui, j’en achète parfois. Et vous, vous en achetez ?</span></div></li>
+            <li><span class="fg-fr" lang="fr">Vous mangez des produits bio ?</span><div class="fg-answer"><span class="fg-answer-label">پاسخ:</span><span class="fg-fr" lang="fr">Oui, j’en mange souvent. Et vous, vous en mangez ?</span></div></li>
+            <li><span class="fg-fr" lang="fr">Vous portez des fibres synthétiques ?</span><div class="fg-answer"><span class="fg-answer-label">پاسخ:</span><span class="fg-fr" lang="fr">Non, je n’en porte pas. Et vous, vous en portez ?</span></div></li>
+            <li><span class="fg-fr" lang="fr">Vous consommez de l’alcool ?</span><div class="fg-answer"><span class="fg-answer-label">پاسخ:</span><span class="fg-fr" lang="fr">Non, je n’en consomme pas. Et vous, vous en consommez ?</span></div></li>
+            <li><span class="fg-fr" lang="fr">Vous avez du cholestérol ?</span><div class="fg-answer"><span class="fg-answer-label">پاسخ:</span><span class="fg-fr" lang="fr">Oui, j’en ai un peu. Et vous, vous en avez ?</span></div></li>
+          </ol>
+          <div class="fg-callout fg-tip">در <span class="fg-fr" lang="fr">j’en ai un peu</span>، عبارت <span class="fg-fr" lang="fr">un peu</span> مقدار است و بعد از فعل باقی می‌ماند.</div>
+        </div>
+      </div>
+
+      <div class="fg-exercise">
+        <div class="fg-exercise-head"><h3>تمرین ۲ — <span class="fg-fr" lang="fr">Répondez selon le modèle</span></h3><span class="fg-chip">Abondance</span></div>
+        <div class="fg-exercise-body">
+          <ol class="fg-list">
+            <li><span class="fg-fr" lang="fr">Votre mari a neuf sœurs ? — Non, il en a dix !</span></li>
+            <li><span class="fg-fr" lang="fr">Vos parents ont deux télés ? — Non, ils en ont trois !</span></li>
+            <li><span class="fg-fr" lang="fr">Vos enfants ont un ordinateur ? — Non, ils en ont deux !</span></li>
+            <li><span class="fg-fr" lang="fr">Vous avez trois chats ? — Non, j’en ai quatre !</span></li>
+            <li><span class="fg-fr" lang="fr">Vous avez une carte de crédit ? — Non, j’en ai deux !</span></li>
+          </ol>
+          <div class="fg-callout fg-tip">فاعل پاسخ باید با فاعل سؤال هماهنگ بماند و عدد پس از فعل حفظ شود.</div>
+        </div>
+      </div>
+
+      <div class="fg-exercise">
+        <div class="fg-exercise-head"><h3>تمرین ۳ — <span class="fg-fr" lang="fr">Posez la question et répondez</span></h3><span class="fg-chip">Frigo</span></div>
+        <div class="fg-exercise-body">
+          <ol class="fg-list">
+            <li><span class="fg-fr" lang="fr">Dans le frigo, il y a des tomates ? — Oui, il y en a deux.</span></li>
+            <li><span class="fg-fr" lang="fr">Dans le frigo, il y a de la viande ? — Oui, il y en a cent grammes.</span></li>
+            <li><span class="fg-fr" lang="fr">Dans le frigo, il y a de l’eau ? — Oui, il y en a une bouteille.</span></li>
+            <li><span class="fg-fr" lang="fr">Dans le frigo, il y a des glaçons ? — Oui, il y en a beaucoup.</span></li>
+            <li><span class="fg-fr" lang="fr">Dans le frigo, il y a des yaourts ? — Oui, il y en a quelques-uns.</span></li>
+            <li><span class="fg-fr" lang="fr">Dans le frigo, il y a du lait ? — Non, il n’y en a pas.</span></li>
+            <li><span class="fg-fr" lang="fr">Dans le frigo, il y a du beurre ? — Oui, il y en a un peu.</span></li>
+            <li><span class="fg-fr" lang="fr">Dans le frigo, il y a du coca ? — Non, il n’y en a pas.</span></li>
+          </ol>
+          <div class="fg-callout fg-warning">برای مقدار صفر در مکالمهٔ طبیعی، <span class="fg-fr" lang="fr">Il n’y en a pas.</span> رایج‌تر از <span class="fg-fr" lang="fr">Il y en a zéro.</span> است.</div>
+        </div>
+      </div>
+
+      <div class="fg-exercise">
+        <div class="fg-exercise-head"><h3>تمرین ۴ — <span class="fg-fr" lang="fr">Complétez à la forme négative</span></h3><span class="fg-chip">Négation</span></div>
+        <div class="fg-exercise-body">
+          <ol class="fg-list">
+            <li><span class="fg-fr" lang="fr">J’ai des lunettes, mais ma fille n’en a pas.</span></li>
+            <li><span class="fg-fr" lang="fr">Léa a une voiture, mais son mari n’en a pas.</span></li>
+            <li><span class="fg-fr" lang="fr">Max a de la chance au jeu. Moi, je n’en ai pas.</span></li>
+            <li><span class="fg-fr" lang="fr">Il y a de l’eau sur la Terre, mais sur Mars, il n’y en a pas.</span></li>
+            <li><span class="fg-fr" lang="fr">Je mange de la viande, mais mes amis n’en mangent pas.</span></li>
+            <li><span class="fg-fr" lang="fr">J’ai des cheveux blancs, mais vous n’en avez pas.</span></li>
+          </ol>
+          <div class="fg-callout fg-tip"><span class="fg-fr" lang="fr">une voiture</span> در پاسخ مثبت → <span class="fg-fr" lang="fr">en a une</span>؛ در منفی معمولی → <span class="fg-fr" lang="fr">n’en a pas</span>.</div>
+        </div>
+      </div>
+
+      <div class="fg-exercise">
+        <div class="fg-exercise-head"><h3>تمرین ۵ — <span class="fg-fr" lang="fr">Devinettes</span></h3><span class="fg-chip">واژگان + en</span></div>
+        <div class="fg-exercise-body">
+          <div class="fg-table-wrap">
+            <table class="fg-table">
+              <thead><tr><th>معما</th><th>پاسخ</th></tr></thead>
+              <tbody>
+                <tr><td><span class="fg-fr" lang="fr">J’en bois le matin.</span></td><td><span class="fg-fr" lang="fr">Du thé.</span></td></tr>
+                <tr><td><span class="fg-fr" lang="fr">J’en mets sur mes chaussures.</span></td><td><span class="fg-fr" lang="fr">Du cirage.</span></td></tr>
+                <tr><td><span class="fg-fr" lang="fr">J’en mets sur les frites.</span></td><td><span class="fg-fr" lang="fr">Du ketchup.</span></td></tr>
+                <tr><td><span class="fg-fr" lang="fr">J’en prends à la banque.</span></td><td><span class="fg-fr" lang="fr">De l’argent.</span></td></tr>
+                <tr><td><span class="fg-fr" lang="fr">J’en mets sur mes tartines.</span></td><td><span class="fg-fr" lang="fr">De la confiture.</span></td></tr>
+                <tr><td><span class="fg-fr" lang="fr">J’en prends à la station-service.</span></td><td><span class="fg-fr" lang="fr">De l’essence.</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="fg-card">
+      <h2 class="fg-section-title"><span class="fg-num">14</span> تمرین‌های صفحهٔ ۹۳</h2>
+
+      <div class="fg-exercise">
+        <div class="fg-exercise-head"><h3>تمرین ۱ — <span class="fg-fr" lang="fr">Faites des dialogues</span></h3><span class="fg-chip">parler de</span></div>
+        <div class="fg-exercise-body">
+          <ol class="fg-list">
+            <li><span class="fg-fr" lang="fr">Vous parlez souvent de l’école ? — Oui, j’en parle avec mon fils.</span></li>
+            <li><span class="fg-fr" lang="fr">Vous parlez souvent du travail ? — Oui, j’en parle avec mes collègues.</span></li>
+            <li><span class="fg-fr" lang="fr">Vous parlez souvent du passé ? — Oui, j’en parle avec mon psychanalyste.</span></li>
+            <li><span class="fg-fr" lang="fr">Vous parlez souvent de l’avenir ? — Oui, j’en parle avec mon astrologue.</span></li>
+          </ol>
+          <div class="fg-callout fg-tip">به ادغام‌ها دقت کنید: <span class="fg-fr" lang="fr">de + le = du</span>، اما <span class="fg-fr" lang="fr">de l’école / de l’avenir</span> بدون ادغام باقی می‌ماند.</div>
+        </div>
+      </div>
+
+      <div class="fg-exercise">
+        <div class="fg-exercise-head"><h3>تمرین ۲ — <span class="fg-fr" lang="fr">Complétez les phrases</span></h3><span class="fg-chip">verbes + de</span></div>
+        <div class="fg-exercise-body">
+          <ol class="fg-list">
+            <li><span class="fg-fr" lang="fr">Je me souviens de mon premier amour, et toi ? — Oh oui, je m’en souviens bien. Il s’appelait Steve.</span></li>
+            <li><span class="fg-fr" lang="fr">Mes enfants rêvent d’avoir un chien ! — Tous les enfants en rêvent, je crois !</span></li>
+            <li><span class="fg-fr" lang="fr">Tu as peur du chômage ? — Bien sûr, j’en ai peur, comme tout le monde !</span></li>
+            <li><span class="fg-fr" lang="fr">Vous avez besoin de la photocopieuse ? — Oui, j’en ai besoin, je n’ai pas terminé.</span></li>
+            <li><span class="fg-fr" lang="fr">Paul est content de son nouvel ordinateur ? — Oui, il en est content, je crois.</span></li>
+          </ol>
+          <div class="fg-callout fg-warning">جایگاه درست: <span class="fg-fr" lang="fr">Il en est content.</span> نه <span class="fg-fr" lang="fr">Il est en content.</span></div>
+        </div>
+      </div>
+
+      <div class="fg-exercise">
+        <div class="fg-exercise-head"><h3>تمرین ۳ — <span class="fg-fr" lang="fr">Faites des dialogues</span></h3><span class="fg-chip">مثبت / منفی</span></div>
+        <div class="fg-exercise-body">
+          <ol class="fg-list">
+            <li><span class="fg-fr" lang="fr">Vous mangez de la viande ? — Oui, j’en mange. / Vous en mangez tous les jours ? — Non, je n’en mange pas tous les jours.</span></li>
+            <li><span class="fg-fr" lang="fr">Vous buvez du café ? — Oui, j’en bois. / Vous en buvez le soir ? — Non, je n’en bois pas le soir.</span></li>
+            <li><span class="fg-fr" lang="fr">Vous faites du sport ? — Oui, j’en fais. / Vous en faites régulièrement ? — Non, je n’en fais pas régulièrement.</span></li>
+            <li><span class="fg-fr" lang="fr">Vous mangez des bonbons ? — Oui, j’en mange. / Vous en mangez beaucoup ? — Non, je n’en mange pas beaucoup.</span></li>
+            <li><span class="fg-fr" lang="fr">Vous achetez des revues ? — Oui, j’en achète. / Vous en achetez souvent ? — Non, je n’en achète pas souvent.</span></li>
+          </ol>
+          <div class="fg-callout fg-tip">قید زمان یا مقدار بعد از ساخت منفی باقی می‌ماند: <span class="fg-fr" lang="fr">pas tous les jours / pas le soir / pas beaucoup / pas souvent</span>.</div>
+        </div>
+      </div>
+
+      <div class="fg-exercise">
+        <div class="fg-exercise-head"><h3>تمرین ۴ — <span class="fg-fr" lang="fr">Répondez librement</span></h3><span class="fg-chip">پاسخ نمونه</span></div>
+        <div class="fg-exercise-body">
+          <ol class="fg-list">
+            <li><span class="fg-fr" lang="fr">Est-ce que vous avez une voiture ? — Oui, j’en ai une.</span></li>
+            <li><span class="fg-fr" lang="fr">Avez-vous un garage ? — Non, je n’en ai pas.</span></li>
+            <li><span class="fg-fr" lang="fr">Avez-vous une carte de crédit ? — Oui, j’en ai une.</span></li>
+            <li><span class="fg-fr" lang="fr">Avez-vous une carte de transport ? — Oui, j’en ai une.</span></li>
+            <li><span class="fg-fr" lang="fr">Est-ce que votre professeur a des lunettes ? — Oui, il en a.</span></li>
+            <li><span class="fg-fr" lang="fr">Est-ce que vos voisins ont un chien ? — Oui, ils en ont un.</span></li>
+            <li><span class="fg-fr" lang="fr">Mangez-vous beaucoup de pâtes ? — Oui, j’en mange beaucoup.</span></li>
+            <li><span class="fg-fr" lang="fr">Avez-vous un piano ? — Non, je n’en ai pas.</span></li>
+            <li><span class="fg-fr" lang="fr">Mettez-vous du parfum ? — Oui, j’en mets.</span></li>
+            <li><span class="fg-fr" lang="fr">Portez-vous une montre ? — Oui, j’en porte une.</span></li>
+          </ol>
+          <div class="fg-callout fg-exception">با اسم قابل‌شمارش مفرد، عدد یک باقی می‌ماند: <span class="fg-fr" lang="fr">j’en ai une / ils en ont un / j’en porte une</span>. با ماده یا اسم غیرقابل‌شمارش، معمولاً عددی نمی‌آید: <span class="fg-fr" lang="fr">j’en mets / j’en mange</span>.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="fg-card fg-summary">
+      <h2 class="fg-section-title"><span class="fg-num">15</span> جمع‌بندی سریع درس ۲۰</h2>
+      <div class="fg-table-wrap">
+        <table class="fg-table">
+          <thead><tr><th>ساخت اصلی</th><th>مثال</th></tr></thead>
+          <tbody>
+            <tr><td><span class="fg-fr" lang="fr">du / de la / de l’ / des + nom</span></td><td><span class="fg-fr" lang="fr">Je bois du café → J’en bois.</span></td></tr>
+            <tr><td>عدد یا مقدار</td><td><span class="fg-fr" lang="fr">J’ai trois chats → J’en ai trois.</span></td></tr>
+            <tr><td><span class="fg-fr" lang="fr">un / une</span> در مثبت</td><td><span class="fg-fr" lang="fr">J’ai une voiture → J’en ai une.</span></td></tr>
+            <tr><td><span class="fg-fr" lang="fr">un / une</span> در منفی معمولی</td><td><span class="fg-fr" lang="fr">Je n’en ai pas.</span></td></tr>
+            <tr><td>فعل / صفت + <span class="fg-fr" lang="fr">de</span></td><td><span class="fg-fr" lang="fr">Je parle du projet → J’en parle.</span></td></tr>
+            <tr><td>شخص مشخص</td><td><span class="fg-fr" lang="fr">Je parle de Paul → Je parle de lui.</span></td></tr>
+            <tr><td>مکانِ مبدأ</td><td><span class="fg-fr" lang="fr">Je viens de Montréal → J’en viens.</span></td></tr>
+            <tr><td>منفی</td><td><span class="fg-fr" lang="fr">Je n’en parle pas.</span></td></tr>
+            <tr><td>زمان مرکب</td><td><span class="fg-fr" lang="fr">J’en ai acheté.</span></td></tr>
+            <tr><td>مصدر</td><td><span class="fg-fr" lang="fr">Je vais en acheter.</span></td></tr>
+            <tr><td>امر مثبت</td><td><span class="fg-fr" lang="fr">Achetez-en deux.</span></td></tr>
+            <tr><td>امر منفی</td><td><span class="fg-fr" lang="fr">N’en achetez pas.</span></td></tr>
+            <tr><td>اسم مفعول گذشته</td><td><span class="fg-fr" lang="fr">Des pommes ? J’en ai acheté.</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="fg-callout fg-tip">
+        <span class="fg-callout-title">قاعدهٔ ذهنی سریع</span>
+        ابتدا ببین عبارت حذف‌شونده با <span class="fg-fr" lang="fr">de / du / de la / de l’ / des</span> آمده یا نه؛ سپس آن را با <span class="fg-fr" lang="fr">en</span> جایگزین کن، <span class="fg-fr" lang="fr">en</span> را در جای درستِ ضمیر قرار بده، و اگر عدد یا مقدار وجود دارد آن را حفظ کن.
+      </div>
+    </section>
+  </div>
+</div>

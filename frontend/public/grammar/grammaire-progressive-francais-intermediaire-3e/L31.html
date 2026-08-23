@@ -1,0 +1,973 @@
+<div class="french-grammar-wrapper fg-lesson-31" dir="rtl">
+  <style scoped>
+    .fg-lesson-31 {
+      --fg-navy: #173a63;
+      --fg-blue: #245b91;
+      --fg-blue-soft: #eef5fb;
+      --fg-green: #1f7a4f;
+      --fg-green-soft: #edf8f2;
+      --fg-red: #b33a3a;
+      --fg-red-soft: #fff0f0;
+      --fg-orange: #b96713;
+      --fg-orange-soft: #fff6e9;
+      --fg-purple: #6b4ea0;
+      --fg-purple-soft: #f5f0ff;
+      --fg-border: #d9e2ec;
+      --fg-text: #1f2937;
+      --fg-muted: #667085;
+      --fg-surface: #ffffff;
+      --fg-page: #f6f8fb;
+      --fg-shadow: 0 8px 30px rgba(23, 58, 99, 0.08);
+      box-sizing: border-box;
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 20px;
+      background: var(--fg-page);
+      color: var(--fg-text);
+      font-family: Tahoma, "Segoe UI", Arial, sans-serif;
+      line-height: 1.9;
+    }
+
+    .fg-lesson-31 *,
+    .fg-lesson-31 *::before,
+    .fg-lesson-31 *::after {
+      box-sizing: border-box;
+    }
+
+    .fg-lesson-31 .fg-fr,
+    .fg-lesson-31 [lang="fr"] {
+      direction: ltr;
+      text-align: left;
+      unicode-bidi: isolate;
+      font-family: "Segoe UI", Arial, sans-serif;
+      letter-spacing: 0.01em;
+    }
+
+    .fg-lesson-31 .fg-inline-fr {
+      direction: ltr;
+      text-align: left;
+      unicode-bidi: isolate;
+      display: inline-block;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    .fg-lesson-31 .fg-card {
+      background: var(--fg-surface);
+      border: 1px solid var(--fg-border);
+      border-radius: 18px;
+      padding: 22px;
+      margin: 18px 0;
+      box-shadow: var(--fg-shadow);
+    }
+
+    .fg-lesson-31 .fg-hero {
+      background: linear-gradient(135deg, #173a63, #245b91);
+      color: #fff;
+      border: 0;
+      padding: 28px;
+    }
+
+    .fg-lesson-31 .fg-hero h1 {
+      margin: 0 0 10px;
+      font-size: clamp(1.55rem, 3vw, 2.35rem);
+      line-height: 1.35;
+    }
+
+    .fg-lesson-31 .fg-hero p {
+      margin: 0;
+      opacity: 0.95;
+    }
+
+    .fg-lesson-31 .fg-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .fg-lesson-31 .fg-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.22);
+      font-size: 0.9rem;
+    }
+
+    .fg-lesson-31 h2,
+    .fg-lesson-31 h3,
+    .fg-lesson-31 h4 {
+      color: var(--fg-navy);
+      line-height: 1.45;
+      margin-top: 0;
+    }
+
+    .fg-lesson-31 h2 {
+      font-size: clamp(1.25rem, 2.3vw, 1.65rem);
+      border-right: 4px solid var(--fg-blue);
+      padding-right: 12px;
+      margin-bottom: 16px;
+    }
+
+    .fg-lesson-31 h3 {
+      font-size: 1.15rem;
+      margin: 18px 0 10px;
+    }
+
+    .fg-lesson-31 p {
+      margin: 10px 0;
+    }
+
+    .fg-lesson-31 .fg-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .fg-lesson-31 .fg-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .fg-lesson-31 .fg-mini-card {
+      background: #fff;
+      border: 1px solid var(--fg-border);
+      border-radius: 14px;
+      padding: 16px;
+    }
+
+    .fg-lesson-31 .fg-callout {
+      border-radius: 14px;
+      padding: 16px 18px;
+      margin: 16px 0;
+      border: 1px solid transparent;
+    }
+
+    .fg-lesson-31 .fg-callout strong {
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .fg-lesson-31 .fg-tip {
+      background: var(--fg-blue-soft);
+      border-color: #bfd4e8;
+    }
+
+    .fg-lesson-31 .fg-success {
+      background: var(--fg-green-soft);
+      border-color: #b9dfc9;
+    }
+
+    .fg-lesson-31 .fg-warning {
+      background: var(--fg-orange-soft);
+      border-color: #f1cf9f;
+    }
+
+    .fg-lesson-31 .fg-danger {
+      background: var(--fg-red-soft);
+      border-color: #efb5b5;
+    }
+
+    .fg-lesson-31 .fg-note {
+      background: var(--fg-purple-soft);
+      border-color: #d7c8f3;
+    }
+
+    .fg-lesson-31 .fg-example {
+      background: var(--fg-green-soft);
+      border-right: 4px solid var(--fg-green);
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin: 12px 0;
+    }
+
+    .fg-lesson-31 .fg-example .fg-fr {
+      font-weight: 650;
+      color: #155a3a;
+    }
+
+    .fg-lesson-31 .fg-wrong {
+      color: var(--fg-red);
+      font-weight: 700;
+    }
+
+    .fg-lesson-31 .fg-right {
+      color: var(--fg-green);
+      font-weight: 700;
+    }
+
+    .fg-lesson-31 .fg-formula {
+      display: block;
+      direction: ltr;
+      text-align: center;
+      unicode-bidi: isolate;
+      font-family: "Segoe UI", Arial, sans-serif;
+      font-weight: 800;
+      color: var(--fg-navy);
+      background: #f1f6fb;
+      border: 1px dashed #9eb9d1;
+      border-radius: 12px;
+      padding: 14px;
+      margin: 14px 0;
+    }
+
+    .fg-lesson-31 .fg-table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: 14px 0;
+      border-radius: 12px;
+      border: 1px solid var(--fg-border);
+      background: #fff;
+    }
+
+    .fg-lesson-31 table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 560px;
+      background: #fff;
+    }
+
+    .fg-lesson-31 th,
+    .fg-lesson-31 td {
+      border: 1px solid var(--fg-border);
+      padding: 11px 12px;
+      vertical-align: top;
+    }
+
+    .fg-lesson-31 th {
+      background: #eaf2f9;
+      color: var(--fg-navy);
+      font-weight: 800;
+    }
+
+    .fg-lesson-31 tbody tr:nth-child(even) {
+      background: #f9fbfd;
+    }
+
+    .fg-lesson-31 ul,
+    .fg-lesson-31 ol {
+      padding-right: 22px;
+      margin: 10px 0;
+    }
+
+    .fg-lesson-31 li {
+      margin: 7px 0;
+    }
+
+    .fg-lesson-31 .fg-section-label {
+      display: inline-block;
+      padding: 5px 10px;
+      margin-bottom: 10px;
+      border-radius: 999px;
+      background: var(--fg-blue-soft);
+      color: var(--fg-blue);
+      font-size: 0.84rem;
+      font-weight: 800;
+    }
+
+    .fg-lesson-31 .fg-exercise {
+      border-top: 5px solid var(--fg-blue);
+    }
+
+    .fg-lesson-31 .fg-question {
+      background: #f8fafc;
+      border: 1px solid var(--fg-border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin: 12px 0;
+    }
+
+    .fg-lesson-31 .fg-answer {
+      background: var(--fg-green-soft);
+      border: 1px solid #b9dfc9;
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin: 10px 0 16px;
+    }
+
+    .fg-lesson-31 .fg-compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 14px 0;
+    }
+
+    .fg-lesson-31 .fg-compare > div {
+      border-radius: 12px;
+      padding: 14px;
+      border: 1px solid var(--fg-border);
+      background: #fff;
+    }
+
+    .fg-lesson-31 .fg-summary-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      list-style: none;
+      padding: 0;
+    }
+
+    .fg-lesson-31 .fg-summary-list li {
+      background: #fff;
+      border: 1px solid var(--fg-border);
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin: 0;
+    }
+
+    .fg-lesson-31 .fg-small {
+      font-size: 0.9rem;
+      color: var(--fg-muted);
+    }
+
+    .fg-lesson-31 .fg-divider {
+      height: 1px;
+      background: var(--fg-border);
+      margin: 22px 0;
+    }
+
+    @media (max-width: 820px) {
+      .fg-lesson-31 {
+        padding: 12px;
+      }
+
+      .fg-lesson-31 .fg-grid,
+      .fg-lesson-31 .fg-grid-3,
+      .fg-lesson-31 .fg-compare,
+      .fg-lesson-31 .fg-summary-list {
+        grid-template-columns: 1fr;
+      }
+
+      .fg-lesson-31 .fg-card,
+      .fg-lesson-31 .fg-hero {
+        padding: 18px;
+        border-radius: 14px;
+      }
+
+      .fg-lesson-31 table {
+        min-width: 520px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .fg-lesson-31 {
+        font-size: 15px;
+      }
+
+      .fg-lesson-31 .fg-hero h1 {
+        font-size: 1.5rem;
+      }
+
+      .fg-lesson-31 .fg-badge {
+        font-size: 0.8rem;
+      }
+
+      .fg-lesson-31 table {
+        min-width: 480px;
+      }
+
+      .fg-lesson-31 th,
+      .fg-lesson-31 td {
+        padding: 9px 10px;
+      }
+    }
+  </style>
+
+  <section class="fg-card fg-hero">
+    <h1>درس ۳۱: <span class="fg-inline-fr" lang="fr">Le conditionnel (1)</span></h1>
+    <p>کاربرد شرطی حال برای ادب، توصیه، خواسته و بیان تمایل</p>
+    <div class="fg-badges">
+      <span class="fg-badge">درس ۳۱</span>
+      <span class="fg-badge"><span class="fg-inline-fr" lang="fr">Conditionnel présent</span></span>
+      <span class="fg-badge">سطح متوسط</span>
+      <span class="fg-badge">کاربرد ارتباطی و روزمره</span>
+    </div>
+  </section>
+
+  <section class="fg-card">
+    <span class="fg-section-label">مقدمه</span>
+    <h2>Conditionnel چیست؟</h2>
+    <p>
+      در این درس، <span class="fg-inline-fr" lang="fr">conditionnel présent</span> برای نرم‌تر و مؤدبانه‌تر کردن درخواست،
+      ارائهٔ توصیه و بیان خواسته یا تمایل به‌کار می‌رود.
+    </p>
+
+    <div class="fg-compare">
+      <div>
+        <div class="fg-fr" lang="fr"><strong>Je veux un café.</strong></div>
+        <div>من یک قهوه می‌خواهم.</div>
+        <div class="fg-small">مستقیم و در بعضی موقعیت‌ها کمی آمرانه.</div>
+      </div>
+      <div>
+        <div class="fg-fr" lang="fr"><strong>Je voudrais un café.</strong></div>
+        <div>لطفاً یک قهوه می‌خواهم.</div>
+        <div class="fg-small">مؤدبانه‌تر و طبیعی‌تر در موقعیت‌های رسمی.</div>
+      </div>
+    </div>
+
+    <div class="fg-example">
+      <div class="fg-fr" lang="fr">— Je voudrais parler à monsieur Durand.</div>
+      <div>— می‌خواهم با آقای دوران صحبت کنم.</div>
+      <div class="fg-fr" lang="fr">— Il n’est pas là. Vous devriez rappeler dans un quart d’heure.</div>
+      <div>— اینجا نیست. بهتر است یک ربع دیگر دوباره تماس بگیرید.</div>
+    </div>
+  </section>
+
+  <section class="fg-card">
+    <span class="fg-section-label">ساخت</span>
+    <h2>ساخت <span class="fg-inline-fr" lang="fr">conditionnel présent</span></h2>
+    <div class="fg-formula">radical du futur simple + terminaisons de l’imparfait</div>
+    <p>یعنی ریشه‌ای که در <span class="fg-inline-fr" lang="fr">futur simple</span> استفاده می‌شود را می‌گیریم و شناسه‌های <span class="fg-inline-fr" lang="fr">imparfait</span> را به آن اضافه می‌کنیم.</p>
+
+    <div class="fg-table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>فاعل</th>
+            <th>پایانه</th>
+            <th>نمونه با <span class="fg-inline-fr" lang="fr">parler</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="fg-inline-fr" lang="fr">je</span></td><td><span class="fg-inline-fr" lang="fr">-rais</span></td><td><span class="fg-inline-fr" lang="fr">je parlerais</span></td></tr>
+          <tr><td><span class="fg-inline-fr" lang="fr">tu</span></td><td><span class="fg-inline-fr" lang="fr">-rais</span></td><td><span class="fg-inline-fr" lang="fr">tu parlerais</span></td></tr>
+          <tr><td><span class="fg-inline-fr" lang="fr">il / elle / on</span></td><td><span class="fg-inline-fr" lang="fr">-rait</span></td><td><span class="fg-inline-fr" lang="fr">il parlerait</span></td></tr>
+          <tr><td><span class="fg-inline-fr" lang="fr">nous</span></td><td><span class="fg-inline-fr" lang="fr">-rions</span></td><td><span class="fg-inline-fr" lang="fr">nous parlerions</span></td></tr>
+          <tr><td><span class="fg-inline-fr" lang="fr">vous</span></td><td><span class="fg-inline-fr" lang="fr">-riez</span></td><td><span class="fg-inline-fr" lang="fr">vous parleriez</span></td></tr>
+          <tr><td><span class="fg-inline-fr" lang="fr">ils / elles</span></td><td><span class="fg-inline-fr" lang="fr">-raient</span></td><td><span class="fg-inline-fr" lang="fr">ils parleraient</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="fg-grid-3">
+      <div class="fg-mini-card">
+        <h3><span class="fg-inline-fr" lang="fr">-er</span></h3>
+        <p>مصدر کامل می‌ماند.</p>
+        <div class="fg-fr" lang="fr">parler → je parlerais</div>
+        <div class="fg-fr" lang="fr">aimer → j’aimerais</div>
+      </div>
+      <div class="fg-mini-card">
+        <h3><span class="fg-inline-fr" lang="fr">-ir</span></h3>
+        <p>مصدر کامل می‌ماند.</p>
+        <div class="fg-fr" lang="fr">finir → je finirais</div>
+        <div class="fg-fr" lang="fr">partir → je partirais</div>
+      </div>
+      <div class="fg-mini-card">
+        <h3><span class="fg-inline-fr" lang="fr">-re</span></h3>
+        <p><span class="fg-inline-fr" lang="fr">e</span> پایانی حذف می‌شود.</p>
+        <div class="fg-fr" lang="fr">prendre → je prendrais</div>
+        <div class="fg-fr" lang="fr">attendre → j’attendrais</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="fg-card">
+    <span class="fg-section-label">افعال کلیدی</span>
+    <h2>افعال مهم درس</h2>
+
+    <div class="fg-grid">
+      <div class="fg-mini-card">
+        <h3><span class="fg-inline-fr" lang="fr">vouloir → voudr-</span></h3>
+        <div class="fg-table-wrap">
+          <table>
+            <tbody>
+              <tr><td><span class="fg-inline-fr" lang="fr">je</span></td><td><span class="fg-inline-fr" lang="fr">voudrais</span></td></tr>
+              <tr><td><span class="fg-inline-fr" lang="fr">tu</span></td><td><span class="fg-inline-fr" lang="fr">voudrais</span></td></tr>
+              <tr><td><span class="fg-inline-fr" lang="fr">il/elle/on</span></td><td><span class="fg-inline-fr" lang="fr">voudrait</span></td></tr>
+              <tr><td><span class="fg-inline-fr" lang="fr">nous</span></td><td><span class="fg-inline-fr" lang="fr">voudrions</span></td></tr>
+              <tr><td><span class="fg-inline-fr" lang="fr">vous</span></td><td><span class="fg-inline-fr" lang="fr">voudriez</span></td></tr>
+              <tr><td><span class="fg-inline-fr" lang="fr">ils/elles</span></td><td><span class="fg-inline-fr" lang="fr">voudraient</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="fg-example">
+          <div class="fg-fr" lang="fr">Je voudrais un renseignement.</div>
+          <div>اطلاعاتی می‌خواهم.</div>
+        </div>
+      </div>
+
+      <div class="fg-mini-card">
+        <h3><span class="fg-inline-fr" lang="fr">aimer → aimer-</span></h3>
+        <div class="fg-table-wrap">
+          <table>
+            <tbody>
+              <tr><td><span class="fg-inline-fr" lang="fr">j’</span></td><td><span class="fg-inline-fr" lang="fr">aimerais</span></td></tr>
+              <tr><td><span class="fg-inline-fr" lang="fr">tu</span></td><td><span class="fg-inline-fr" lang="fr">aimerais</span></td></tr>
+              <tr><td><span class="fg-inline-fr" lang="fr">il/elle/on</span></td><td><span class="fg-inline-fr" lang="fr">aimerait</span></td></tr>
+              <tr><td><span class="fg-inline-fr" lang="fr">nous</span></td><td><span class="fg-inline-fr" lang="fr">aimerions</span></td></tr>
+              <tr><td><span class="fg-inline-fr" lang="fr">vous</span></td><td><span class="fg-inline-fr" lang="fr">aimeriez</span></td></tr>
+              <tr><td><span class="fg-inline-fr" lang="fr">ils/elles</span></td><td><span class="fg-inline-fr" lang="fr">aimeraient</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="fg-example">
+          <div class="fg-fr" lang="fr">J’aimerais apprendre le français.</div>
+          <div>دوست دارم فرانسوی یاد بگیرم.</div>
+        </div>
+      </div>
+
+      <div class="fg-mini-card">
+        <h3><span class="fg-inline-fr" lang="fr">devoir → devr-</span></h3>
+        <div class="fg-table-wrap">
+          <table>
+            <tbody>
+              <tr><td><span class="fg-inline-fr" lang="fr">je</span></td><td><span class="fg-inline-fr" lang="fr">devrais</span></td></tr>
+              <tr><td><span class="fg-inline-fr" lang="fr">tu</span></td><td><span class="fg-inline-fr" lang="fr">devrais</span></td></tr>
+              <tr><td><span class="fg-inline-fr" lang="fr">il/elle/on</span></td><td><span class="fg-inline-fr" lang="fr">devrait</span></td></tr>
+              <tr><td><span class="fg-inline-fr" lang="fr">nous</span></td><td><span class="fg-inline-fr" lang="fr">devrions</span></td></tr>
+              <tr><td><span class="fg-inline-fr" lang="fr">vous</span></td><td><span class="fg-inline-fr" lang="fr">devriez</span></td></tr>
+              <tr><td><span class="fg-inline-fr" lang="fr">ils/elles</span></td><td><span class="fg-inline-fr" lang="fr">devraient</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="fg-example">
+          <div class="fg-fr" lang="fr">Vous devriez consulter un médecin.</div>
+          <div>بهتر است با یک پزشک مشورت کنید.</div>
+        </div>
+      </div>
+
+      <div class="fg-mini-card">
+        <h3><span class="fg-inline-fr" lang="fr">pouvoir → pourr-</span></h3>
+        <div class="fg-table-wrap">
+          <table>
+            <tbody>
+              <tr><td><span class="fg-inline-fr" lang="fr">je</span></td><td><span class="fg-inline-fr" lang="fr">pourrais</span></td></tr>
+              <tr><td><span class="fg-inline-fr" lang="fr">tu</span></td><td><span class="fg-inline-fr" lang="fr">pourrais</span></td></tr>
+              <tr><td><span class="fg-inline-fr" lang="fr">il/elle/on</span></td><td><span class="fg-inline-fr" lang="fr">pourrait</span></td></tr>
+              <tr><td><span class="fg-inline-fr" lang="fr">nous</span></td><td><span class="fg-inline-fr" lang="fr">pourrions</span></td></tr>
+              <tr><td><span class="fg-inline-fr" lang="fr">vous</span></td><td><span class="fg-inline-fr" lang="fr">pourriez</span></td></tr>
+              <tr><td><span class="fg-inline-fr" lang="fr">ils/elles</span></td><td><span class="fg-inline-fr" lang="fr">pourraient</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="fg-example">
+          <div class="fg-fr" lang="fr">Pourriez-vous m’aider ?</div>
+          <div>ممکن است به من کمک کنید؟</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="fg-callout fg-warning">
+      <strong>دو بی‌قاعدهٔ بسیار مهم</strong>
+      <div class="fg-fr" lang="fr">faire → fer- → je ferais</div>
+      <div class="fg-fr" lang="fr">aller → ir- → j’irais</div>
+      <p><span class="fg-wrong">✗ j’allerais</span> &nbsp; <span class="fg-right">✓ j’irais</span></p>
+    </div>
+  </section>
+
+  <section class="fg-card">
+    <span class="fg-section-label">کاربرد ۱</span>
+    <h2>درخواست مؤدبانه</h2>
+
+    <h3><span class="fg-inline-fr" lang="fr">Je voudrais…</span></h3>
+    <div class="fg-example">
+      <div class="fg-fr" lang="fr">Je voudrais un café.</div>
+      <div>یک قهوه می‌خواهم.</div>
+    </div>
+    <div class="fg-example">
+      <div class="fg-fr" lang="fr">Je voudrais réserver une table.</div>
+      <div>می‌خواهم یک میز رزرو کنم.</div>
+    </div>
+
+    <div class="fg-formula">Je voudrais + nom / infinitif</div>
+
+    <h3><span class="fg-inline-fr" lang="fr">Est-ce que je pourrais… ?</span></h3>
+    <div class="fg-example">
+      <div class="fg-fr" lang="fr">Est-ce que je pourrais parler à monsieur Bruni ?</div>
+      <div>ممکن است با آقای برونی صحبت کنم؟</div>
+    </div>
+    <div class="fg-example">
+      <div class="fg-fr" lang="fr">Est-ce que je pourrais avoir un peu d’eau ?</div>
+      <div>ممکن است کمی آب داشته باشم؟</div>
+    </div>
+
+    <div class="fg-callout fg-tip">
+      <strong>فرم رسمی‌تر</strong>
+      <div class="fg-fr" lang="fr">Pourrais-je parler au responsable ?</div>
+      <div class="fg-fr" lang="fr">Pourriez-vous répéter ?</div>
+    </div>
+
+    <div class="fg-callout fg-warning">
+      <strong>تفاوت مهم</strong>
+      <div class="fg-fr" lang="fr">Je veux parler au directeur. → مستقیم</div>
+      <div class="fg-fr" lang="fr">Je voudrais parler au directeur. → مؤدبانه</div>
+    </div>
+  </section>
+
+  <section class="fg-card">
+    <span class="fg-section-label">کاربرد ۲</span>
+    <h2>توصیه و پیشنهاد</h2>
+
+    <div class="fg-example">
+      <div class="fg-fr" lang="fr">Vous devriez moderniser votre entreprise.</div>
+      <div>بهتر است شرکتتان را مدرن کنید.</div>
+    </div>
+    <div class="fg-example">
+      <div class="fg-fr" lang="fr">Tu devrais te faire couper les cheveux.</div>
+      <div>بهتر است موهایت را کوتاه کنی.</div>
+    </div>
+
+    <div class="fg-compare">
+      <div>
+        <div class="fg-fr" lang="fr"><strong>Vous devez partir.</strong></div>
+        <div>باید بروید.</div>
+        <div class="fg-small">الزام و اجبار قوی‌تر.</div>
+      </div>
+      <div>
+        <div class="fg-fr" lang="fr"><strong>Vous devriez partir.</strong></div>
+        <div>بهتر است بروید.</div>
+        <div class="fg-small">توصیه و پیشنهاد.</div>
+      </div>
+    </div>
+
+    <h3><span class="fg-inline-fr" lang="fr">À votre place, je…</span></h3>
+    <div class="fg-example">
+      <div class="fg-fr" lang="fr">À votre place, je prendrais quelques jours de congé.</div>
+      <div>اگر جای شما بودم، چند روز مرخصی می‌گرفتم.</div>
+    </div>
+
+    <div class="fg-callout fg-danger">
+      <strong>خطای رایج</strong>
+      <p><span class="fg-wrong">✗ À votre place, vous prendriez…</span></p>
+      <p><span class="fg-right">✓ À votre place, je prendrais…</span></p>
+      <p>چون معنای ساخت این است: «من اگر جای شما بودم…»</p>
+    </div>
+  </section>
+
+  <section class="fg-card">
+    <span class="fg-section-label">کاربرد ۳</span>
+    <h2>بیان خواسته، آرزو و تمایل</h2>
+
+    <div class="fg-grid">
+      <div class="fg-mini-card">
+        <h3><span class="fg-inline-fr" lang="fr">J’aimerais…</span></h3>
+        <div class="fg-example">
+          <div class="fg-fr" lang="fr">J’aimerais savoir dessiner.</div>
+          <div>دوست دارم نقاشی کردن بلد باشم.</div>
+        </div>
+        <div class="fg-example">
+          <div class="fg-fr" lang="fr">J’aimerais voyager davantage.</div>
+          <div>دوست دارم بیشتر سفر کنم.</div>
+        </div>
+      </div>
+      <div class="fg-mini-card">
+        <h3><span class="fg-inline-fr" lang="fr">Je voudrais…</span></h3>
+        <div class="fg-example">
+          <div class="fg-fr" lang="fr">Je voudrais être en vacances.</div>
+          <div>دوست دارم در تعطیلات باشم.</div>
+        </div>
+        <div class="fg-example">
+          <div class="fg-fr" lang="fr">Je voudrais avoir des enfants.</div>
+          <div>دوست دارم فرزند داشته باشم.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="fg-callout fg-note">
+      <strong>تفاوت ظریف</strong>
+      <p><span class="fg-inline-fr" lang="fr">Je voudrais</span> اغلب خواسته‌ای مشخص‌تر یا عملی‌تر را بیان می‌کند.</p>
+      <p><span class="fg-inline-fr" lang="fr">J’aimerais</span> معمولاً ملایم‌تر، شخصی‌تر یا آرزویی‌تر است؛ با این حال مرز میان آن‌ها مطلق نیست.</p>
+    </div>
+  </section>
+
+  <section class="fg-card">
+    <span class="fg-section-label">نکتهٔ ظریف</span>
+    <h2>کاربرد <span class="fg-inline-fr" lang="fr">bien</span> برای بیان تمایل</h2>
+    <p>در این کاربرد، <span class="fg-inline-fr" lang="fr">bien</span> معنای «خوب» ندارد؛ بلکه نزدیک به «با کمال میل / بدم نمی‌آید» است.</p>
+
+    <div class="fg-example">
+      <div class="fg-fr" lang="fr">Je boirais bien un café.</div>
+      <div>بدَم نمی‌آید یک قهوه بنوشم.</div>
+    </div>
+    <div class="fg-example">
+      <div class="fg-fr" lang="fr">J’irais bien au cinéma.</div>
+      <div>بدَم نمی‌آید به سینما بروم.</div>
+    </div>
+    <div class="fg-example">
+      <div class="fg-fr" lang="fr">Je prendrais bien quelques jours de vacances.</div>
+      <div>بدَم نمی‌آید چند روز مرخصی بگیرم.</div>
+    </div>
+
+    <div class="fg-callout fg-tip">
+      <strong>جایگاه <span class="fg-inline-fr" lang="fr">bien</span></strong>
+      <div class="fg-fr" lang="fr">Je prendrais bien un café.</div>
+      <p><span class="fg-wrong">✗ Je bien prendrais…</span></p>
+    </div>
+  </section>
+
+  <section class="fg-card">
+    <span class="fg-section-label">ریشه‌های بی‌قاعده</span>
+    <h2>ریشه‌های مهم <span class="fg-inline-fr" lang="fr">conditionnel</span></h2>
+
+    <div class="fg-table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>مصدر</th>
+            <th>ریشه</th>
+            <th>نمونه</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="fg-inline-fr" lang="fr">avoir</span></td><td><span class="fg-inline-fr" lang="fr">aur-</span></td><td><span class="fg-inline-fr" lang="fr">j’aurais</span></td></tr>
+          <tr><td><span class="fg-inline-fr" lang="fr">être</span></td><td><span class="fg-inline-fr" lang="fr">ser-</span></td><td><span class="fg-inline-fr" lang="fr">je serais</span></td></tr>
+          <tr><td><span class="fg-inline-fr" lang="fr">aller</span></td><td><span class="fg-inline-fr" lang="fr">ir-</span></td><td><span class="fg-inline-fr" lang="fr">j’irais</span></td></tr>
+          <tr><td><span class="fg-inline-fr" lang="fr">faire</span></td><td><span class="fg-inline-fr" lang="fr">fer-</span></td><td><span class="fg-inline-fr" lang="fr">je ferais</span></td></tr>
+          <tr><td><span class="fg-inline-fr" lang="fr">vouloir</span></td><td><span class="fg-inline-fr" lang="fr">voudr-</span></td><td><span class="fg-inline-fr" lang="fr">je voudrais</span></td></tr>
+          <tr><td><span class="fg-inline-fr" lang="fr">pouvoir</span></td><td><span class="fg-inline-fr" lang="fr">pourr-</span></td><td><span class="fg-inline-fr" lang="fr">je pourrais</span></td></tr>
+          <tr><td><span class="fg-inline-fr" lang="fr">devoir</span></td><td><span class="fg-inline-fr" lang="fr">devr-</span></td><td><span class="fg-inline-fr" lang="fr">je devrais</span></td></tr>
+          <tr><td><span class="fg-inline-fr" lang="fr">savoir</span></td><td><span class="fg-inline-fr" lang="fr">saur-</span></td><td><span class="fg-inline-fr" lang="fr">je saurais</span></td></tr>
+          <tr><td><span class="fg-inline-fr" lang="fr">venir</span></td><td><span class="fg-inline-fr" lang="fr">viendr-</span></td><td><span class="fg-inline-fr" lang="fr">je viendrais</span></td></tr>
+          <tr><td><span class="fg-inline-fr" lang="fr">tenir</span></td><td><span class="fg-inline-fr" lang="fr">tiendr-</span></td><td><span class="fg-inline-fr" lang="fr">je tiendrais</span></td></tr>
+          <tr><td><span class="fg-inline-fr" lang="fr">voir</span></td><td><span class="fg-inline-fr" lang="fr">verr-</span></td><td><span class="fg-inline-fr" lang="fr">je verrais</span></td></tr>
+          <tr><td><span class="fg-inline-fr" lang="fr">recevoir</span></td><td><span class="fg-inline-fr" lang="fr">recevr-</span></td><td><span class="fg-inline-fr" lang="fr">je recevrais</span></td></tr>
+          <tr><td><span class="fg-inline-fr" lang="fr">envoyer</span></td><td><span class="fg-inline-fr" lang="fr">enverr-</span></td><td><span class="fg-inline-fr" lang="fr">j’enverrais</span></td></tr>
+          <tr><td><span class="fg-inline-fr" lang="fr">courir</span></td><td><span class="fg-inline-fr" lang="fr">courr-</span></td><td><span class="fg-inline-fr" lang="fr">je courrais</span></td></tr>
+          <tr><td><span class="fg-inline-fr" lang="fr">mourir</span></td><td><span class="fg-inline-fr" lang="fr">mourr-</span></td><td><span class="fg-inline-fr" lang="fr">je mourrais</span></td></tr>
+          <tr><td><span class="fg-inline-fr" lang="fr">falloir</span></td><td><span class="fg-inline-fr" lang="fr">faudr-</span></td><td><span class="fg-inline-fr" lang="fr">il faudrait</span></td></tr>
+          <tr><td><span class="fg-inline-fr" lang="fr">pleuvoir</span></td><td><span class="fg-inline-fr" lang="fr">pleuvr-</span></td><td><span class="fg-inline-fr" lang="fr">il pleuvrait</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="fg-callout fg-warning">
+      <strong>نکته</strong>
+      <p><span class="fg-inline-fr" lang="fr">falloir</span> و <span class="fg-inline-fr" lang="fr">pleuvoir</span> معمولاً در این کاربردها فقط با <span class="fg-inline-fr" lang="fr">il</span> می‌آیند.</p>
+    </div>
+  </section>
+
+  <section class="fg-card">
+    <span class="fg-section-label">اشتباهات رایج</span>
+    <h2>نکته‌های ظریف و دام‌های مهم</h2>
+
+    <div class="fg-callout fg-danger">
+      <strong><span class="fg-inline-fr" lang="fr">Je voudrais</span> و <span class="fg-inline-fr" lang="fr">je voudrai</span> یکی نیستند</strong>
+      <div class="fg-fr" lang="fr">Je voudrais un rendez-vous. → conditionnel</div>
+      <div class="fg-fr" lang="fr">Plus tard, je voudrai peut-être changer de travail. → futur simple</div>
+    </div>
+
+    <div class="fg-callout fg-danger">
+      <strong>املای <span class="fg-inline-fr" lang="fr">pourrais</span></strong>
+      <p><span class="fg-wrong">✗ je pourais</span></p>
+      <p><span class="fg-right">✓ je pourrais</span></p>
+      <p>ریشهٔ آن <span class="fg-inline-fr" lang="fr">pourr-</span> است و دو حرف <span class="fg-inline-fr" lang="fr">r</span> دارد.</p>
+    </div>
+
+    <div class="fg-callout fg-warning">
+      <strong>بعد از <span class="fg-inline-fr" lang="fr">si</span> چه می‌آید؟</strong>
+      <p><span class="fg-wrong">✗ Si j’aurais le temps…</span></p>
+      <p><span class="fg-right">✓ Si j’avais le temps, je voyagerais.</span></p>
+      <div class="fg-formula">si + imparfait → conditionnel présent</div>
+    </div>
+
+    <div class="fg-callout fg-tip">
+      <strong>تلفظ</strong>
+      <p>در بسیاری از فعل‌ها شکل‌های <span class="fg-inline-fr" lang="fr">je / tu / il / ils</span> در گفتار بسیار نزدیک یا یکسان شنیده می‌شوند، اما املای آن‌ها متفاوت است.</p>
+      <p>در تلفظ معیار، پایان <span class="fg-inline-fr" lang="fr">-ai</span> در آینده و <span class="fg-inline-fr" lang="fr">-ais</span> در شرطی می‌تواند تفاوت آوایی داشته باشد؛ هرچند در برخی لهجه‌ها این تفاوت کمتر شنیده می‌شود.</p>
+    </div>
+
+    <div class="fg-callout fg-note">
+      <strong>بعد از <span class="fg-inline-fr" lang="fr">J’aimerais</span> معمولاً مصدر می‌آید</strong>
+      <p><span class="fg-right">✓ J’aimerais voyager.</span></p>
+      <p><span class="fg-wrong">✗ J’aimerais voyage.</span></p>
+    </div>
+  </section>
+
+  <section class="fg-card fg-exercise">
+    <span class="fg-section-label">تمرین ۱</span>
+    <h2>پاسخ مؤدبانه</h2>
+    <p><strong>دستور:</strong> با استفاده از یک فرمول مؤدبانه پاسخ دهید.</p>
+
+    <div class="fg-question">
+      <div class="fg-fr" lang="fr">Vous voulez un ou deux sucres ?</div>
+    </div>
+    <div class="fg-answer">
+      <div class="fg-fr" lang="fr">Je voudrais deux sucres.</div>
+      <div>دو حبه قند می‌خواهم.</div>
+    </div>
+
+    <div class="fg-question">
+      <div class="fg-fr" lang="fr">Vous voulez une brioche ou un croissant ?</div>
+    </div>
+    <div class="fg-answer">
+      <div class="fg-fr" lang="fr">Je voudrais un croissant.</div>
+    </div>
+
+    <div class="fg-question">
+      <div class="fg-fr" lang="fr">Vous voulez faire une pause ou continuer ?</div>
+    </div>
+    <div class="fg-answer">
+      <div class="fg-fr" lang="fr">Je voudrais faire une pause.</div>
+      <div class="fg-small">بعد از <span class="fg-inline-fr" lang="fr">voudrais</span> مصدر بدون تغییر می‌آید.</div>
+    </div>
+
+    <div class="fg-question">
+      <div class="fg-fr" lang="fr">Vous voulez sortir ou rester ici ?</div>
+    </div>
+    <div class="fg-answer">
+      <div class="fg-fr" lang="fr">Je voudrais sortir.</div>
+    </div>
+
+    <div class="fg-question">
+      <div class="fg-fr" lang="fr">Vous voulez écouter un CD ou voir une vidéo ?</div>
+    </div>
+    <div class="fg-answer">
+      <div class="fg-fr" lang="fr">Je voudrais voir une vidéo.</div>
+    </div>
+  </section>
+
+  <section class="fg-card fg-exercise">
+    <span class="fg-section-label">تمرین ۲</span>
+    <h2>ساخت سؤال مؤدبانه</h2>
+    <p><strong>دستور:</strong> با استفاده از یک فرمول مؤدبانه سؤال بسازید.</p>
+
+    <div class="fg-question"><div class="fg-fr" lang="fr">Un peu de pain</div></div>
+    <div class="fg-answer"><div class="fg-fr" lang="fr">Est-ce que je pourrais avoir un peu de pain ?</div></div>
+
+    <div class="fg-question"><div class="fg-fr" lang="fr">Des haricots à la place des frites</div></div>
+    <div class="fg-answer">
+      <div class="fg-fr" lang="fr">Est-ce que je pourrais avoir des haricots à la place des frites ?</div>
+      <div class="fg-small"><span class="fg-inline-fr" lang="fr">à la place de + les frites → à la place des frites</span></div>
+    </div>
+
+    <div class="fg-question"><div class="fg-fr" lang="fr">Une carafe d’eau</div></div>
+    <div class="fg-answer"><div class="fg-fr" lang="fr">Est-ce que je pourrais avoir une carafe d’eau ?</div></div>
+
+    <div class="fg-question"><div class="fg-fr" lang="fr">Le café avec le dessert</div></div>
+    <div class="fg-answer">
+      <div class="fg-fr" lang="fr">Est-ce que je pourrais avoir le café avec le dessert ?</div>
+      <div class="fg-small">فرم طبیعی‌تر در رستوران: <span class="fg-inline-fr" lang="fr">Est-ce que vous pourriez m’apporter le café avec le dessert ?</span></div>
+    </div>
+  </section>
+
+  <section class="fg-card fg-exercise">
+    <span class="fg-section-label">تمرین ۳</span>
+    <h2>توصیه دادن</h2>
+    <p><strong>الگو:</strong></p>
+    <div class="fg-example"><div class="fg-fr" lang="fr">Vous devriez dormir au moins huit heures.</div></div>
+    <div class="fg-example"><div class="fg-fr" lang="fr">À votre place, je dormirais au moins huit heures.</div></div>
+
+    <div class="fg-table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>موضوع</th>
+            <th><span class="fg-inline-fr" lang="fr">Vous devriez…</span></th>
+            <th><span class="fg-inline-fr" lang="fr">À votre place, je…</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>خواب</td><td><span class="fg-inline-fr" lang="fr">Vous devriez dormir au moins huit heures.</span></td><td><span class="fg-inline-fr" lang="fr">À votre place, je dormirais au moins huit heures.</span></td></tr>
+          <tr><td>آب</td><td><span class="fg-inline-fr" lang="fr">Vous devriez boire beaucoup d’eau.</span></td><td><span class="fg-inline-fr" lang="fr">À votre place, je boirais beaucoup d’eau.</span></td></tr>
+          <tr><td>تعطیلات</td><td><span class="fg-inline-fr" lang="fr">Vous devriez partir un mois en vacances.</span></td><td><span class="fg-inline-fr" lang="fr">À votre place, je partirais un mois en vacances.</span></td></tr>
+          <tr><td>ورزش</td><td><span class="fg-inline-fr" lang="fr">Vous devriez faire quinze minutes de gym.</span></td><td><span class="fg-inline-fr" lang="fr">À votre place, je ferais quinze minutes de gym.</span></td></tr>
+          <tr><td>پیاده‌روی</td><td><span class="fg-inline-fr" lang="fr">Vous devriez faire de la marche à pied.</span></td><td><span class="fg-inline-fr" lang="fr">À votre place, je ferais de la marche à pied.</span></td></tr>
+          <tr><td>سبزیجات</td><td><span class="fg-inline-fr" lang="fr">Vous devriez manger des légumes verts.</span></td><td><span class="fg-inline-fr" lang="fr">À votre place, je mangerais des légumes verts.</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="fg-callout fg-warning">
+      <strong>نکتهٔ املایی</strong>
+      <p><span class="fg-inline-fr" lang="fr">manger → je mangerais</span></p>
+      <p><span class="fg-wrong">✗ je mangrais</span></p>
+    </div>
+  </section>
+
+  <section class="fg-card fg-exercise">
+    <span class="fg-section-label">تمرین ۴</span>
+    <h2>بیان آرزو</h2>
+
+    <div class="fg-question"><div class="fg-fr" lang="fr">Dix ans de moins</div></div>
+    <div class="fg-answer">
+      <div class="fg-fr" lang="fr">J’aimerais avoir dix ans de moins.</div>
+      <div class="fg-small">برای سن در فرانسوی از <span class="fg-inline-fr" lang="fr">avoir</span> استفاده می‌شود.</div>
+    </div>
+
+    <div class="fg-question"><div class="fg-fr" lang="fr">Le tour du monde</div></div>
+    <div class="fg-answer">
+      <div class="fg-fr" lang="fr">J’aimerais faire le tour du monde.</div>
+      <div class="fg-small"><span class="fg-inline-fr" lang="fr">faire le tour du monde</span> یک عبارت رایج است.</div>
+    </div>
+
+    <div class="fg-question"><div class="fg-fr" lang="fr">Heureux / heureuse</div></div>
+    <div class="fg-answer">
+      <div class="fg-fr" lang="fr">J’aimerais être heureux !</div>
+      <div class="fg-fr" lang="fr">J’aimerais être heureuse !</div>
+      <div class="fg-small">صفت با جنسیت فاعل هماهنگ می‌شود.</div>
+    </div>
+  </section>
+
+  <section class="fg-card fg-exercise">
+    <span class="fg-section-label">تمرین ۵</span>
+    <h2>بیان تمایل با <span class="fg-inline-fr" lang="fr">bien</span></h2>
+
+    <div class="fg-question"><div class="fg-fr" lang="fr">Prendre</div></div>
+    <div class="fg-answer"><div class="fg-fr" lang="fr">Je prendrais bien un café.</div></div>
+
+    <div class="fg-question"><div class="fg-fr" lang="fr">Manger</div></div>
+    <div class="fg-answer"><div class="fg-fr" lang="fr">Je mangerais bien une pizza.</div></div>
+
+    <div class="fg-question"><div class="fg-fr" lang="fr">Aller</div></div>
+    <div class="fg-answer">
+      <div class="fg-fr" lang="fr">J’irais bien au cinéma.</div>
+      <div class="fg-small"><span class="fg-wrong">✗ j’allerais</span> &nbsp; <span class="fg-right">✓ j’irais</span></div>
+    </div>
+  </section>
+
+  <section class="fg-card fg-exercise">
+    <span class="fg-section-label">تمرین ۶</span>
+    <h2>تکمیل با شکل درست <span class="fg-inline-fr" lang="fr">conditionnel</span></h2>
+
+    <ol>
+      <li>
+        <div class="fg-fr" lang="fr">Bonjour, madame, je <strong>voudrais</strong> une brioche et un croissant.</div>
+        <div class="fg-small">کاربرد: درخواست مؤدبانه.</div>
+      </li>
+      <li>
+        <div class="fg-fr" lang="fr">Tu es trop fatigué : tu <strong>devrais</strong> prendre quelques jours de congé.</div>
+        <div class="fg-small">کاربرد: توصیه.</div>
+      </li>
+      <li>
+        <div class="fg-fr" lang="fr">Est-ce que je <strong>pourrais</strong> parler à Paul ?</div>
+        <div class="fg-small">کاربرد: درخواست مؤدبانه / اجازه گرفتن.</div>
+      </li>
+      <li>
+        <div class="fg-fr" lang="fr">J’ai sommeil ! Je <strong>ferais bien</strong> une sieste…</div>
+        <div class="fg-small"><span class="fg-inline-fr" lang="fr">faire une sieste</span> یعنی چرت زدن.</div>
+      </li>
+      <li>
+        <div class="fg-fr" lang="fr">Plus tard, je <strong>voudrais</strong> avoir des enfants.</div>
+        <div class="fg-small"><span class="fg-inline-fr" lang="fr">j’aimerais avoir des enfants</span> نیز از نظر دستوری و معنایی درست است.</div>
+      </li>
+    </ol>
+  </section>
+
+  <section class="fg-card">
+    <span class="fg-section-label">جمع‌بندی</span>
+    <h2>آنچه باید از درس ۳۱ به خاطر بسپارید</h2>
+
+    <ul class="fg-summary-list">
+      <li><span class="fg-inline-fr" lang="fr">Je voudrais…</span> → درخواست مؤدبانه</li>
+      <li><span class="fg-inline-fr" lang="fr">J’aimerais…</span> → خواسته یا آرزو</li>
+      <li><span class="fg-inline-fr" lang="fr">Est-ce que je pourrais… ?</span> → درخواست مؤدبانه</li>
+      <li><span class="fg-inline-fr" lang="fr">Pourriez-vous… ?</span> → درخواست رسمی و مؤدبانه</li>
+      <li><span class="fg-inline-fr" lang="fr">Tu devrais / Vous devriez…</span> → توصیه</li>
+      <li><span class="fg-inline-fr" lang="fr">À votre place, je…</span> → «اگر جای شما بودم…»</li>
+      <li><span class="fg-inline-fr" lang="fr">Je prendrais bien…</span> → تمایل</li>
+      <li><span class="fg-inline-fr" lang="fr">Je ferais bien…</span> → تمایل</li>
+      <li><span class="fg-inline-fr" lang="fr">J’irais bien…</span> → تمایل</li>
+      <li><span class="fg-inline-fr" lang="fr">-rais, -rais, -rait, -rions, -riez, -raient</span> → پایانه‌ها</li>
+    </ul>
+
+    <div class="fg-callout fg-success">
+      <strong>فرمول طلایی درس</strong>
+      <div class="fg-formula">radical du futur + terminaisons de l’imparfait</div>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,456 @@
+<div class="french-grammar-wrapper fg-lesson35" dir="rtl">
+  <style scoped>
+    .fg-lesson35{
+      --fg-navy:#173f6b;
+      --fg-blue:#2463a8;
+      --fg-blue-2:#eaf3ff;
+      --fg-ink:#1f2937;
+      --fg-muted:#667085;
+      --fg-border:#d9e2ec;
+      --fg-card:#ffffff;
+      --fg-soft:#f7f9fc;
+      --fg-green:#18794e;
+      --fg-green-bg:#ecfdf3;
+      --fg-red:#b42318;
+      --fg-red-bg:#fff1f0;
+      --fg-orange:#b54708;
+      --fg-orange-bg:#fff7ed;
+      --fg-purple:#6941c6;
+      --fg-purple-bg:#f4f3ff;
+      --fg-shadow:0 12px 30px rgba(20,55,90,.08);
+      color:var(--fg-ink);
+      font-family:Tahoma,"Vazirmatn","IRANSans",Arial,sans-serif;
+      line-height:1.9;
+      max-width:1180px;
+      margin:0 auto;
+      padding:18px;
+      background:transparent;
+      box-sizing:border-box;
+    }
+    .fg-lesson35 *{box-sizing:border-box;}
+    .fg-lesson35 .fg-container{width:100%;}
+    .fg-lesson35 .fg-fr,
+    .fg-lesson35 [lang="fr"]{
+      direction:ltr;
+      unicode-bidi:isolate;
+      text-align:left;
+      display:inline-block;
+      font-family:Inter,"Segoe UI",Arial,sans-serif;
+      letter-spacing:.01em;
+    }
+    .fg-lesson35 .fg-fr-block{
+      direction:ltr;
+      unicode-bidi:isolate;
+      text-align:left;
+      display:block;
+      font-family:Inter,"Segoe UI",Arial,sans-serif;
+    }
+    .fg-lesson35 .fg-hero{
+      position:relative;
+      overflow:hidden;
+      border-radius:24px;
+      padding:34px 30px;
+      color:#fff;
+      background:linear-gradient(135deg,#12385f 0%,#1e5e9e 58%,#2b79c2 100%);
+      box-shadow:var(--fg-shadow);
+      margin-bottom:24px;
+    }
+    .fg-lesson35 .fg-hero:after{
+      content:"“ ”";
+      position:absolute;
+      left:24px;
+      bottom:-28px;
+      font:700 128px/1 Georgia,serif;
+      opacity:.09;
+      direction:ltr;
+    }
+    .fg-lesson35 .fg-eyebrow{font-size:.92rem;font-weight:700;opacity:.88;margin-bottom:7px;}
+    .fg-lesson35 .fg-hero h1{margin:0;font-size:clamp(1.9rem,4vw,3.2rem);line-height:1.25;font-weight:800;}
+    .fg-lesson35 .fg-hero p{margin:12px 0 0;max-width:860px;font-size:1.03rem;opacity:.96;}
+    .fg-lesson35 .fg-badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;}
+    .fg-lesson35 .fg-badge{border:1px solid rgba(255,255,255,.32);background:rgba(255,255,255,.12);padding:6px 11px;border-radius:999px;font-size:.86rem;}
+    .fg-lesson35 .fg-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;}
+    .fg-lesson35 .fg-card{
+      background:var(--fg-card);
+      border:1px solid var(--fg-border);
+      border-radius:18px;
+      padding:22px;
+      box-shadow:0 8px 22px rgba(16,51,83,.05);
+      margin-bottom:18px;
+    }
+    .fg-lesson35 .fg-card h2,
+    .fg-lesson35 .fg-card h3{color:var(--fg-navy);margin-top:0;line-height:1.45;}
+    .fg-lesson35 .fg-card h2{font-size:1.45rem;border-bottom:2px solid #e7eef6;padding-bottom:10px;}
+    .fg-lesson35 .fg-card h3{font-size:1.1rem;margin-bottom:7px;}
+    .fg-lesson35 .fg-section-title{display:flex;align-items:center;gap:10px;color:var(--fg-navy);font-size:1.55rem;margin:30px 0 14px;font-weight:800;}
+    .fg-lesson35 .fg-section-title:before{content:"";width:7px;height:30px;border-radius:99px;background:var(--fg-blue);flex:0 0 auto;}
+    .fg-lesson35 .fg-rule{
+      background:var(--fg-blue-2);
+      border:1px solid #bfd8f5;
+      border-right:5px solid var(--fg-blue);
+      border-radius:14px;
+      padding:15px 17px;
+      margin:14px 0;
+    }
+    .fg-lesson35 .fg-tip{background:var(--fg-green-bg);border:1px solid #b7e7cb;border-right:5px solid var(--fg-green);border-radius:14px;padding:14px 16px;margin:14px 0;}
+    .fg-lesson35 .fg-warn{background:var(--fg-orange-bg);border:1px solid #f8d3aa;border-right:5px solid var(--fg-orange);border-radius:14px;padding:14px 16px;margin:14px 0;}
+    .fg-lesson35 .fg-error{background:var(--fg-red-bg);border:1px solid #ffc9c5;border-right:5px solid var(--fg-red);border-radius:14px;padding:14px 16px;margin:14px 0;}
+    .fg-lesson35 .fg-advanced{background:var(--fg-purple-bg);border:1px solid #d8d0ff;border-right:5px solid var(--fg-purple);border-radius:14px;padding:14px 16px;margin:14px 0;}
+    .fg-lesson35 .fg-label{font-weight:800;margin-left:4px;}
+    .fg-lesson35 .fg-example{
+      margin:10px 0;
+      padding:12px 14px;
+      background:#fbfcfe;
+      border:1px solid #e5ebf1;
+      border-radius:12px;
+    }
+    .fg-lesson35 .fg-example .fg-arrow{color:var(--fg-blue);font-weight:800;margin:0 8px;}
+    .fg-lesson35 .fg-correct{color:var(--fg-green);font-weight:700;}
+    .fg-lesson35 .fg-wrong{color:var(--fg-red);font-weight:700;}
+    .fg-lesson35 ul,.fg-lesson35 ol{padding-right:23px;margin-top:8px;}
+    .fg-lesson35 li{margin:5px 0;}
+    .fg-lesson35 .fg-table-wrap{width:100%;overflow-x:auto;border-radius:14px;border:1px solid var(--fg-border);margin:14px 0;background:#fff;}
+    .fg-lesson35 table{width:100%;border-collapse:collapse;min-width:690px;background:#fff;}
+    .fg-lesson35 th,.fg-lesson35 td{border:1px solid var(--fg-border);padding:12px 13px;vertical-align:top;text-align:right;}
+    .fg-lesson35 th{background:#e8f1fb;color:var(--fg-navy);font-weight:800;}
+    .fg-lesson35 tbody tr:nth-child(even){background:#f9fbfd;}
+    .fg-lesson35 .fg-mini-table table{min-width:560px;}
+    .fg-lesson35 .fg-formula{font-size:1.02rem;font-weight:700;color:var(--fg-navy);}
+    .fg-lesson35 .fg-flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:14px 0;}
+    .fg-lesson35 .fg-flow-item{background:#fff;border:1px solid var(--fg-border);border-radius:14px;padding:14px;text-align:center;box-shadow:0 5px 14px rgba(19,54,86,.04);}
+    .fg-lesson35 .fg-flow-item strong{display:block;color:var(--fg-blue);font-size:1.02rem;margin-bottom:4px;}
+    .fg-lesson35 details{border:1px solid var(--fg-border);border-radius:14px;background:#fff;margin:12px 0;overflow:hidden;}
+    .fg-lesson35 summary{cursor:pointer;padding:15px 17px;font-weight:800;color:var(--fg-navy);background:#f7fafc;list-style:none;}
+    .fg-lesson35 summary::-webkit-details-marker{display:none;}
+    .fg-lesson35 summary:before{content:"+";display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:#dcecff;color:var(--fg-blue);margin-left:8px;}
+    .fg-lesson35 details[open] summary:before{content:"−";}
+    .fg-lesson35 .fg-details-body{padding:16px 18px 18px;}
+    .fg-lesson35 .fg-answer{background:var(--fg-green-bg);border-radius:12px;padding:12px 14px;margin:10px 0;border:1px solid #b7e7cb;}
+    .fg-lesson35 .fg-source{font-size:.88rem;color:var(--fg-muted);background:#f7f9fc;border:1px dashed #c9d4df;border-radius:12px;padding:10px 12px;margin-top:12px;}
+    .fg-lesson35 .fg-checklist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px;}
+    .fg-lesson35 .fg-check{border:1px solid var(--fg-border);border-radius:12px;padding:11px 13px;background:#fff;}
+    .fg-lesson35 .fg-footer-summary{background:linear-gradient(180deg,#f4f8fc,#fff);border:1px solid #ceddea;border-radius:18px;padding:20px;margin-top:22px;}
+    .fg-lesson35 code{font-family:inherit;background:transparent;padding:0;color:inherit;}
+    @media (max-width:860px){
+      .fg-lesson35{padding:12px;}
+      .fg-lesson35 .fg-hero{padding:26px 20px;border-radius:18px;}
+      .fg-lesson35 .fg-grid,.fg-lesson35 .fg-checklist{grid-template-columns:1fr;}
+      .fg-lesson35 .fg-flow{grid-template-columns:repeat(2,minmax(0,1fr));}
+      .fg-lesson35 .fg-card{padding:17px;border-radius:15px;}
+    }
+    @media (max-width:520px){
+      .fg-lesson35 .fg-flow{grid-template-columns:1fr;}
+      .fg-lesson35 .fg-section-title{font-size:1.3rem;}
+      .fg-lesson35 .fg-hero p{font-size:.95rem;}
+      .fg-lesson35 th,.fg-lesson35 td{padding:10px;}
+    }
+  </style>
+
+  <div class="fg-container">
+    <section class="fg-hero">
+      <div class="fg-eyebrow">درس ۳۵ — گرامر فرانسه</div>
+      <h1><span class="fg-fr" lang="fr">Le discours indirect au présent</span></h1>
+      <p>آموزش کامل نقل‌قول غیرمستقیم در زمان حال: جملهٔ خبری، سؤال بله/خیر، سؤال با واژهٔ پرسشی، <span class="fg-fr" lang="fr">ce que / ce qui</span>، نقل دستور، تغییر ضمیرها، افعال گزارش‌دهنده و تمرین‌های تشریحی.</p>
+      <div class="fg-badges">
+        <span class="fg-badge">Discours rapporté</span>
+        <span class="fg-badge">que / si</span>
+        <span class="fg-badge">ce que / ce qui</span>
+        <span class="fg-badge">de + infinitif</span>
+        <span class="fg-badge">پرسش غیرمستقیم</span>
+      </div>
+    </section>
+
+    <section class="fg-card">
+      <h2>نقشهٔ کلی درس</h2>
+      <p>این درس نشان می‌دهد چگونه سخن، سؤال یا دستور یک نفر را بدون نقل عینِ جمله و بدون گیومه گزارش کنیم. در ساختار پروژه، هستهٔ درس به پنج زیرموضوع تقسیم می‌شود: گزاره، سؤال بله/خیر، سؤال جزئی، امر و افعال گزارش‌دهنده.</p>
+      <div class="fg-flow">
+        <div class="fg-flow-item"><strong class="fg-fr" lang="fr">Affirmation</strong><span class="fg-fr" lang="fr">que</span></div>
+        <div class="fg-flow-item"><strong class="fg-fr" lang="fr">Oui / Non</strong><span class="fg-fr" lang="fr">si</span></div>
+        <div class="fg-flow-item"><strong class="fg-fr" lang="fr">Question partielle</strong>واژهٔ پرسشی حفظ می‌شود</div>
+        <div class="fg-flow-item"><strong class="fg-fr" lang="fr">Impératif</strong><span class="fg-fr" lang="fr">de + infinitif</span></div>
+      </div>
+      <div class="fg-source">منبع درس: Lesson 35، صفحات چاپی 156–157، صفحات PDF 158–159.</div>
+    </section>
+
+    <h2 class="fg-section-title">۱. نقل مستقیم و نقل غیرمستقیم</h2>
+    <div class="fg-grid">
+      <section class="fg-card">
+        <h3><span class="fg-fr" lang="fr">Discours direct</span> — نقل مستقیم</h3>
+        <p>کلمات گوینده را عیناً نقل می‌کنیم؛ معمولاً دو نقطه، گیومه و ساخت اصلی جمله حفظ می‌شود.</p>
+        <div class="fg-example"><span class="fg-fr-block" lang="fr">Paul dit : « Il pleut. »</span></div>
+        <div class="fg-example"><span class="fg-fr-block" lang="fr">Il demande : « Où allez-vous ? »</span></div>
+      </section>
+      <section class="fg-card">
+        <h3><span class="fg-fr" lang="fr">Discours indirect</span> — نقل غیرمستقیم</h3>
+        <p>معنای سخن را داخل جملهٔ خودمان گزارش می‌کنیم؛ گیومه حذف می‌شود و ساخت جمله ممکن است تغییر کند.</p>
+        <div class="fg-example"><span class="fg-fr-block" lang="fr">Paul dit qu’il pleut.</span></div>
+        <div class="fg-example"><span class="fg-fr-block" lang="fr">Il demande où vous allez.</span></div>
+      </section>
+    </div>
+
+    <section class="fg-card">
+      <h2>« <span class="fg-fr" lang="fr">au présent</span> » دقیقاً یعنی چه؟</h2>
+      <p>یعنی فعلِ گزارش‌دهنده در زمان حال است؛ نه اینکه همهٔ فعل‌های نقل‌شده الزاماً زمان حال باشند.</p>
+      <div class="fg-rule"><span class="fg-label">افعال رایج:</span> <span class="fg-fr" lang="fr">il dit, elle demande, il répond, elle explique, il affirme</span></div>
+      <div class="fg-example"><span class="fg-fr-block" lang="fr">Il dit : « Je travaille. » → Il dit qu’il travaille.</span></div>
+      <div class="fg-example"><span class="fg-fr-block" lang="fr">Il dit : « J’ai terminé. » → Il dit qu’il a terminé.</span></div>
+      <div class="fg-example"><span class="fg-fr-block" lang="fr">Il dit : « Je partirai demain. » → Il dit qu’il partira demain.</span></div>
+      <div class="fg-tip"><span class="fg-label">نکتهٔ کلیدی:</span> وقتی فعل گزارش‌دهنده در زمان حال است، معمولاً زمان فعلِ داخل گفته تغییر نمی‌کند؛ اما ضمیرها و ارجاعات شخصی باید با موقعیت جدید هماهنگ شوند.</div>
+    </section>
+
+    <h2 class="fg-section-title">۲. جملهٔ خبری: <span class="fg-fr" lang="fr">que</span></h2>
+    <section class="fg-card">
+      <div class="fg-rule"><span class="fg-formula fg-fr-block" lang="fr">Sujet + verbe introducteur + que + proposition</span></div>
+      <div class="fg-example"><span class="fg-fr-block" lang="fr">Paul dit : « Il pleut. » → Paul dit qu’il pleut.</span></div>
+      <div class="fg-example"><span class="fg-fr-block" lang="fr">Il pense : « C’est dommage. » → Il pense que c’est dommage.</span></div>
+      <div class="fg-tip"><span class="fg-label">حذف مصوت:</span> <span class="fg-fr" lang="fr">que + il = qu’il</span>، <span class="fg-fr" lang="fr">que + elle = qu’elle</span>، <span class="fg-fr" lang="fr">que + on = qu’on</span>.</div>
+    </section>
+
+    <h2 class="fg-section-title">۳. سؤال بله/خیر: <span class="fg-fr" lang="fr">si</span></h2>
+    <section class="fg-card">
+      <p>هر سؤالی که پاسخ طبیعی آن «بله/خیر» باشد، در نقل غیرمستقیم با <span class="fg-fr" lang="fr">si</span> وارد می‌شود.</p>
+      <div class="fg-example"><span class="fg-fr-block" lang="fr">Est-ce que vous sortez ? → Il demande si vous sortez.</span></div>
+      <div class="fg-example"><span class="fg-fr-block" lang="fr">Vous sortez ? → Il demande si vous sortez.</span></div>
+      <div class="fg-example"><span class="fg-fr-block" lang="fr">Sortez-vous ? → Il demande si vous sortez.</span></div>
+      <div class="fg-example"><span class="fg-fr-block" lang="fr">Il fait froid ? → Il demande s’il fait froid.</span></div>
+      <div class="fg-error"><span class="fg-label">اشتباه رایج:</span><br><span class="fg-wrong fg-fr-block" lang="fr">Il demande si est-ce que vous sortez.</span><span class="fg-wrong fg-fr-block" lang="fr">Il demande si sortez-vous.</span><span class="fg-correct fg-fr-block" lang="fr">Il demande si vous sortez.</span></div>
+      <div class="fg-warn"><span class="fg-label">ظرافت:</span> <span class="fg-fr" lang="fr">si</span> در اینجا معنی «آیا / whether» دارد، نه «اگر». همچنین فقط پیش از <span class="fg-fr" lang="fr">il / ils</span> کوتاه می‌شود: <span class="fg-fr" lang="fr">s’il, s’ils</span>؛ اما می‌گوییم <span class="fg-fr" lang="fr">si elle</span> و <span class="fg-fr" lang="fr">si on</span>.</div>
+    </section>
+
+    <h2 class="fg-section-title">۴. سؤال با واژهٔ پرسشی</h2>
+    <section class="fg-card">
+      <p>واژهٔ پرسشی حفظ می‌شود، اما ترتیب جمله دیگر ساختِ سؤال مستقیم را ندارد.</p>
+      <div class="fg-table-wrap">
+        <table>
+          <thead><tr><th>سؤال مستقیم</th><th>نقل غیرمستقیم</th><th>نکته</th></tr></thead>
+          <tbody>
+            <tr><td><span class="fg-fr" lang="fr">Où allez-vous ?</span></td><td><span class="fg-fr" lang="fr">Il demande où vous allez.</span></td><td>وارونگی حذف می‌شود.</td></tr>
+            <tr><td><span class="fg-fr" lang="fr">Quand partez-vous ?</span></td><td><span class="fg-fr" lang="fr">Il demande quand vous partez.</span></td><td>واژهٔ پرسشی حفظ می‌شود.</td></tr>
+            <tr><td><span class="fg-fr" lang="fr">Pourquoi est-il absent ?</span></td><td><span class="fg-fr" lang="fr">Elle demande pourquoi il est absent.</span></td><td>فاعل ضمیری پیش از فعل می‌آید.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="fg-warn"><span class="fg-label">فاعل اسمی:</span> با فاعل اسمی، ساخت‌هایی مثل <span class="fg-fr" lang="fr">Il demande où se trouve la gare.</span> و <span class="fg-fr" lang="fr">Il demande combien coûte une chambre double.</span> طبیعی‌اند. اما با ضمیر فاعلی وارونگی نداریم: <span class="fg-fr" lang="fr">Il demande où elle se trouve.</span></div>
+    </section>
+
+    <h2 class="fg-section-title">۵. <span class="fg-fr" lang="fr">ce que</span> و <span class="fg-fr" lang="fr">ce qui</span></h2>
+    <section class="fg-card">
+      <div class="fg-grid">
+        <div>
+          <h3><span class="fg-fr" lang="fr">qu’est-ce que / que → ce que</span></h3>
+          <p>وقتی «چه چیزی» مفعول فعل است:</p>
+          <div class="fg-example"><span class="fg-fr-block" lang="fr">Qu’est-ce que vous faites ? → Il demande ce que vous faites.</span></div>
+          <div class="fg-example"><span class="fg-fr-block" lang="fr">Que voulez-vous ? → Il demande ce que vous voulez.</span></div>
+        </div>
+        <div>
+          <h3><span class="fg-fr" lang="fr">qu’est-ce qui → ce qui</span></h3>
+          <p>وقتی «چه چیزی» خودش فاعل فعل است:</p>
+          <div class="fg-example"><span class="fg-fr-block" lang="fr">Qu’est-ce qui se passe ? → Il demande ce qui se passe.</span></div>
+        </div>
+      </div>
+      <div class="fg-table-wrap fg-mini-table">
+        <table>
+          <thead><tr><th>ساخت</th><th>نقش</th><th>مثال</th></tr></thead>
+          <tbody>
+            <tr><td><span class="fg-fr" lang="fr">ce que</span></td><td>مفعول</td><td><span class="fg-fr" lang="fr">Je sais ce que tu fais.</span></td></tr>
+            <tr><td><span class="fg-fr" lang="fr">ce qui</span></td><td>فاعل</td><td><span class="fg-fr" lang="fr">Je sais ce qui se passe.</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="fg-error"><span class="fg-wrong fg-fr-block" lang="fr">Je sais qu’est-ce qu’il veut.</span><span class="fg-correct fg-fr-block" lang="fr">Je sais ce qu’il veut.</span></div>
+    </section>
+
+    <h2 class="fg-section-title">۶. سؤال با <span class="fg-fr" lang="fr">qui</span> و <span class="fg-fr" lang="fr">quel</span></h2>
+    <section class="fg-card">
+      <div class="fg-example"><span class="fg-fr-block" lang="fr">Qui vient ? → Il demande qui vient.</span></div>
+      <div class="fg-example"><span class="fg-fr-block" lang="fr">Qui est-ce que tu vois ? → Il demande qui tu vois.</span></div>
+      <div class="fg-example"><span class="fg-fr-block" lang="fr">Avec qui parles-tu ? → Il demande avec qui tu parles.</span></div>
+      <div class="fg-example"><span class="fg-fr-block" lang="fr">Quel livre choisissez-vous ? → Il demande quel livre vous choisissez.</span></div>
+      <div class="fg-tip">فرم‌های <span class="fg-fr" lang="fr">quel / quelle / quels / quelles</span> با اسم از نظر جنس و شمار هماهنگ می‌شوند.</div>
+    </section>
+
+    <h2 class="fg-section-title">۷. نقل دستور: <span class="fg-fr" lang="fr">de + infinitif</span></h2>
+    <section class="fg-card">
+      <div class="fg-rule"><span class="fg-formula fg-fr-block" lang="fr">verbe introducteur + à quelqu’un + de + infinitif</span></div>
+      <div class="fg-example"><span class="fg-fr-block" lang="fr">Partez ! → Il lui dit de partir.</span></div>
+      <div class="fg-example"><span class="fg-fr-block" lang="fr">Attendez ici ! → Il leur demande d’attendre ici.</span></div>
+      <div class="fg-example"><span class="fg-fr-block" lang="fr">Fermez la porte ! → Elle lui dit de fermer la porte.</span></div>
+      <h3>امر منفی</h3>
+      <div class="fg-rule"><span class="fg-fr" lang="fr">de ne pas + infinitif</span></div>
+      <div class="fg-example"><span class="fg-fr-block" lang="fr">Ne partez pas ! → Il lui dit de ne pas partir.</span></div>
+      <div class="fg-example"><span class="fg-fr-block" lang="fr">Ne faites pas de bruit ! → Elle leur demande de ne pas faire de bruit.</span></div>
+      <h3>ضمیرها کنار مصدر</h3>
+      <div class="fg-example"><span class="fg-fr-block" lang="fr">Faites-le ! → Il lui dit de le faire.</span></div>
+      <div class="fg-example"><span class="fg-fr-block" lang="fr">N’y allez pas ! → Il lui dit de ne pas y aller.</span></div>
+      <div class="fg-example"><span class="fg-fr-block" lang="fr">Asseyez-vous ! → Il lui demande de s’asseoir.</span></div>
+    </section>
+
+    <h2 class="fg-section-title">۸. تغییر ضمیرها و صفات ملکی</h2>
+    <section class="fg-card">
+      <p>در نقل غیرمستقیم، تبدیل ضمیر مکانیکی نیست؛ باید تشخیص دهید گوینده و مخاطب چه کسانی هستند.</p>
+      <div class="fg-example"><span class="fg-fr-block" lang="fr">André : « Je suis en retard pour mon rendez-vous. »</span><span class="fg-fr-block" lang="fr">→ Il dit qu’il est en retard pour son rendez-vous.</span></div>
+      <p>تغییرها: <span class="fg-fr" lang="fr">je → il</span>، <span class="fg-fr" lang="fr">mon → son</span>، <span class="fg-fr" lang="fr">suis → est</span>.</p>
+      <div class="fg-example"><span class="fg-fr-block" lang="fr">Charlie à Sophie : « Tu es libre ? »</span><span class="fg-fr-block" lang="fr">→ Charlie demande à Sophie si elle est libre.</span></div>
+      <div class="fg-warn">مرجع <span class="fg-fr" lang="fr">tu</span> در این مثال Sophie است، بنابراین به <span class="fg-fr" lang="fr">elle</span> تبدیل می‌شود.</div>
+    </section>
+
+    <h2 class="fg-section-title">۹. قیدهای زمان و مکان</h2>
+    <section class="fg-card">
+      <p>در این درس، چون فعل گزارش‌دهنده در زمان حال است، واژه‌هایی مثل <span class="fg-fr" lang="fr">aujourd’hui, demain, ici</span> معمولاً در همان موقعیت زمانی/مکانی حفظ می‌شوند. اگر زمان یا مکان گزارش عوض شود، ممکن است ارجاع نیز عوض شود.</p>
+      <div class="fg-table-wrap fg-mini-table">
+        <table>
+          <thead><tr><th>عبارت اولیه</th><th>گزارش در زمان/مکان متفاوت</th></tr></thead>
+          <tbody>
+            <tr><td><span class="fg-fr" lang="fr">aujourd’hui</span></td><td><span class="fg-fr" lang="fr">ce jour-là</span></td></tr>
+            <tr><td><span class="fg-fr" lang="fr">demain</span></td><td><span class="fg-fr" lang="fr">le lendemain</span></td></tr>
+            <tr><td><span class="fg-fr" lang="fr">hier</span></td><td><span class="fg-fr" lang="fr">la veille</span></td></tr>
+            <tr><td><span class="fg-fr" lang="fr">ici</span></td><td><span class="fg-fr" lang="fr">là</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="fg-advanced"><span class="fg-label">نکتهٔ پیشرفته:</span> تبدیل‌های زمانیِ نظام‌مند وقتی فعل گزارش‌دهنده در گذشته باشد، موضوع درس «نقل غیرمستقیم در گذشته» است و نباید با محور اصلی این درس یکی گرفته شود.</div>
+    </section>
+
+    <h2 class="fg-section-title">۱۰. تکرار <span class="fg-fr" lang="fr">que</span> و <span class="fg-fr" lang="fr">si</span></h2>
+    <section class="fg-card">
+      <p>در چند بند گزارش‌شده، رابط مناسب را برای شفافیت تکرار می‌کنیم.</p>
+      <div class="fg-example"><span class="fg-fr-block" lang="fr">« Je pars et j’emmène ma fille. »</span><span class="fg-fr-block" lang="fr">→ Il dit qu’il part et qu’il emmène sa fille.</span></div>
+      <div class="fg-example"><span class="fg-fr-block" lang="fr">« Tu es prêt ? On y va ? »</span><span class="fg-fr-block" lang="fr">→ Il demande si tu es prêt et si on y va.</span></div>
+    </section>
+
+    <h2 class="fg-section-title">۱۱. افعال گزارش‌دهنده</h2>
+    <section class="fg-card">
+      <div class="fg-table-wrap">
+        <table>
+          <thead><tr><th>کارکرد</th><th>افعال رایج</th><th>ساخت نمونه</th></tr></thead>
+          <tbody>
+            <tr><td>خبر/نظر</td><td><span class="fg-fr" lang="fr">dire, penser, expliquer, répondre, affirmer, déclarer, annoncer, ajouter</span></td><td><span class="fg-fr" lang="fr">Il affirme qu’il viendra.</span></td></tr>
+            <tr><td>سؤال</td><td><span class="fg-fr" lang="fr">demander, vouloir savoir, se demander</span></td><td><span class="fg-fr" lang="fr">Elle demande si le magasin est ouvert.</span></td></tr>
+            <tr><td>درخواست/دستور</td><td><span class="fg-fr" lang="fr">dire à, demander à, conseiller à, ordonner à, interdire à</span></td><td><span class="fg-fr" lang="fr">Il conseille à Paul de se reposer.</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="fg-tip"><span class="fg-label">تفاوت مهم:</span> <span class="fg-fr" lang="fr">dire quelque chose à quelqu’un</span> اما <span class="fg-fr" lang="fr">demander à quelqu’un si… / de…</span>.</div>
+      <div class="fg-advanced"><span class="fg-label">ساخت پیشرفته:</span> <span class="fg-fr" lang="fr">Il demande que Paul vienne.</span> نیز وجود دارد و معمولاً با <span class="fg-fr" lang="fr">subjonctif</span> می‌آید، اما محور اصلی این درس نیست.</div>
+    </section>
+
+    <h2 class="fg-section-title">۱۲. علامت سؤال در نقل غیرمستقیم</h2>
+    <section class="fg-card">
+      <div class="fg-example"><span class="fg-fr-block" lang="fr">Il demande où tu habites.</span></div>
+      <p>چون جملهٔ اصلی خبری است، در پایان علامت سؤال نمی‌آید.</p>
+      <div class="fg-example"><span class="fg-fr-block" lang="fr">Sais-tu où il habite ?</span></div>
+      <p>در اینجا خود جملهٔ اصلی سؤال است؛ بنابراین علامت سؤال لازم است.</p>
+    </section>
+
+    <h2 class="fg-section-title">۱۳. جدول جمع‌بندی تبدیل‌ها</h2>
+    <section class="fg-card">
+      <div class="fg-table-wrap">
+        <table>
+          <thead><tr><th>نوع جملهٔ مستقیم</th><th>ساخت در نقل غیرمستقیم</th><th>مثال کوتاه</th></tr></thead>
+          <tbody>
+            <tr><td>جملهٔ خبری</td><td><span class="fg-fr" lang="fr">que</span></td><td><span class="fg-fr" lang="fr">Il dit qu’il vient.</span></td></tr>
+            <tr><td>سؤال بله/خیر</td><td><span class="fg-fr" lang="fr">si</span></td><td><span class="fg-fr" lang="fr">Il demande si tu viens.</span></td></tr>
+            <tr><td>سؤال با <span class="fg-fr" lang="fr">où/quand/pourquoi…</span></td><td>همان واژهٔ پرسشی، بدون وارونگی</td><td><span class="fg-fr" lang="fr">Il demande où tu vas.</span></td></tr>
+            <tr><td><span class="fg-fr" lang="fr">qu’est-ce que / que</span></td><td><span class="fg-fr" lang="fr">ce que</span></td><td><span class="fg-fr" lang="fr">Il demande ce que tu fais.</span></td></tr>
+            <tr><td><span class="fg-fr" lang="fr">qu’est-ce qui</span></td><td><span class="fg-fr" lang="fr">ce qui</span></td><td><span class="fg-fr" lang="fr">Il demande ce qui se passe.</span></td></tr>
+            <tr><td>امر</td><td><span class="fg-fr" lang="fr">de + infinitif</span></td><td><span class="fg-fr" lang="fr">Il lui dit de venir.</span></td></tr>
+            <tr><td>امر منفی</td><td><span class="fg-fr" lang="fr">de ne pas + infinitif</span></td><td><span class="fg-fr" lang="fr">Il lui dit de ne pas partir.</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <h2 class="fg-section-title">۱۴. اشتباهات رایج</h2>
+    <section class="fg-card">
+      <div class="fg-error"><span class="fg-wrong fg-fr-block" lang="fr">Il demande où vas-tu.</span><span class="fg-correct fg-fr-block" lang="fr">Il demande où tu vas.</span></div>
+      <div class="fg-error"><span class="fg-wrong fg-fr-block" lang="fr">Il demande si est-ce que tu viens.</span><span class="fg-correct fg-fr-block" lang="fr">Il demande si tu viens.</span></div>
+      <div class="fg-error"><span class="fg-wrong fg-fr-block" lang="fr">Je sais qu’est-ce qu’il fait.</span><span class="fg-correct fg-fr-block" lang="fr">Je sais ce qu’il fait.</span></div>
+      <div class="fg-error"><span class="fg-wrong fg-fr-block" lang="fr">Il demande ce qui tu fais.</span><span class="fg-correct fg-fr-block" lang="fr">Il demande ce que tu fais.</span></div>
+      <div class="fg-error"><span class="fg-wrong fg-fr-block" lang="fr">Il demande ce que se passe.</span><span class="fg-correct fg-fr-block" lang="fr">Il demande ce qui se passe.</span></div>
+      <div class="fg-error"><span class="fg-wrong fg-fr-block" lang="fr">Il lui dit que partir.</span><span class="fg-correct fg-fr-block" lang="fr">Il lui dit de partir.</span></div>
+    </section>
+
+    <h2 class="fg-section-title">۱۵. تمرین‌های درس با پاسخ تشریحی</h2>
+    <section class="fg-card">
+      <h2>Exercice 1 — تبدیل به نقل غیرمستقیم</h2>
+
+      <details open>
+        <summary>۱) André چه می‌گوید؟</summary>
+        <div class="fg-details-body">
+          <div class="fg-example"><span class="fg-fr-block" lang="fr">« Je suis en retard pour mon rendez-vous. Je pars tout de suite. J’emporte les dossiers. »</span></div>
+          <div class="fg-answer"><span class="fg-label">پاسخ:</span><span class="fg-fr-block" lang="fr">Il lui dit qu’il est en retard pour son rendez-vous, qu’il part tout de suite et qu’il emporte les dossiers.</span></div>
+          <p><strong>نکته:</strong> <span class="fg-fr" lang="fr">je → il</span>، <span class="fg-fr" lang="fr">mon → son</span> و <span class="fg-fr" lang="fr">que</span> برای هر بند گزارش‌شده تکرار شده است.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>۲) Charlie از Sophie چه می‌پرسد؟</summary>
+        <div class="fg-details-body">
+          <div class="fg-example"><span class="fg-fr-block" lang="fr">« Allô, Sophie ? C’est Charlie ! Tu es libre pour le déjeuner ? Qu’est-ce que tu fais cet après-midi ? »</span></div>
+          <div class="fg-answer"><span class="fg-label">پاسخ:</span><span class="fg-fr-block" lang="fr">Charlie demande à Sophie si elle est libre pour le déjeuner et ce qu’elle fait cet après-midi.</span></div>
+          <p><span class="fg-fr" lang="fr">Tu es libre ?</span> یک سؤال بله/خیر است → <span class="fg-fr" lang="fr">si</span>. عبارت <span class="fg-fr" lang="fr">Qu’est-ce que tu fais ?</span> → <span class="fg-fr" lang="fr">ce qu’elle fait</span>.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>۳) مدیر از منشی چه می‌خواهد؟</summary>
+        <div class="fg-details-body">
+          <div class="fg-example"><span class="fg-fr-block" lang="fr">« Mademoiselle Juliard, avez-vous une liste des hôtels du quartier ? Où se trouve Le Bristol ? Combien coûte une chambre double ? Notez toutes ces informations, s’il vous plaît. »</span></div>
+          <div class="fg-answer"><span class="fg-label">پاسخ پیشنهادی:</span><span class="fg-fr-block" lang="fr">Le directeur demande à sa secrétaire si elle a une liste des hôtels du quartier, où se trouve Le Bristol et combien coûte une chambre double. Il lui demande aussi de noter toutes ces informations.</span></div>
+          <p><strong>نکته:</strong> سؤال بله/خیر با <span class="fg-fr" lang="fr">si</span>، سؤال‌های جزئی با واژهٔ پرسشی، و امر با <span class="fg-fr" lang="fr">de noter</span> گزارش شده‌اند.</p>
+        </div>
+      </details>
+    </section>
+
+    <section class="fg-card">
+      <h2>Exercice 2 — گفت‌وگو با پستچی</h2>
+      <details open><summary>۱) <span class="fg-fr" lang="fr">C’est le facteur ! J’ai un paquet.</span></summary><div class="fg-details-body"><div class="fg-answer"><span class="fg-fr-block" lang="fr">C’est le facteur. Il dit qu’il a un paquet.</span></div><p><span class="fg-fr" lang="fr">j’ai → il a</span>.</p></div></details>
+      <details><summary>۲) <span class="fg-fr" lang="fr">Je n’ai pas le code.</span></summary><div class="fg-details-body"><div class="fg-answer"><span class="fg-fr-block" lang="fr">Il dit qu’il n’a pas le code.</span></div><p>ساخت منفی حفظ می‌شود.</p></div></details>
+      <details><summary>۳) <span class="fg-fr" lang="fr">Vous pouvez ouvrir la porte ?</span></summary><div class="fg-details-body"><div class="fg-answer"><span class="fg-fr-block" lang="fr">Il demande si vous pouvez ouvrir la porte.</span></div><div class="fg-warn">از نظر معنایی، چون این سؤال نقش درخواست مؤدبانه دارد، می‌توان گفت: <span class="fg-fr" lang="fr">Il vous demande d’ouvrir la porte.</span></div></div></details>
+      <details><summary>۴) <span class="fg-fr" lang="fr">L’ascenseur est en panne.</span></summary><div class="fg-details-body"><div class="fg-answer"><span class="fg-fr-block" lang="fr">Il dit que l’ascenseur est en panne.</span></div></div></details>
+      <details><summary>۵) <span class="fg-fr" lang="fr">Quelqu’un peut descendre ?</span></summary><div class="fg-details-body"><div class="fg-answer"><span class="fg-fr-block" lang="fr">Il demande si quelqu’un peut descendre.</span></div></div></details>
+    </section>
+
+    <section class="fg-card">
+      <h2>Exercice 3 — گزارش یک گفت‌وگو</h2>
+      <div class="fg-example"><span class="fg-fr-block" lang="fr">Max : Qu’est-ce que tu fais, samedi ?</span><span class="fg-fr-block" lang="fr">Léa : Je vais au cinéma avec Jules.</span><span class="fg-fr-block" lang="fr">Max : Tu es libre dimanche ?</span><span class="fg-fr-block" lang="fr">Léa : Je vais écouter un concert.</span><span class="fg-fr-block" lang="fr">Max : Où vas-tu ?</span><span class="fg-fr-block" lang="fr">Léa : À l’église Saint-Médard.</span><span class="fg-fr-block" lang="fr">Max : Tu y vas seule ? J’adore le piano.</span><span class="fg-fr-block" lang="fr">Léa : Alors, viens à dix heures pile !</span></div>
+      <div class="fg-answer">
+        <span class="fg-fr-block" lang="fr">Max demande à Léa ce qu’elle fait samedi.</span>
+        <span class="fg-fr-block" lang="fr">Elle lui répond qu’elle va au cinéma avec Jules.</span>
+        <span class="fg-fr-block" lang="fr">Max lui demande si elle est libre dimanche.</span>
+        <span class="fg-fr-block" lang="fr">Elle lui répond qu’elle va écouter un concert.</span>
+        <span class="fg-fr-block" lang="fr">Il lui demande où elle va.</span>
+        <span class="fg-fr-block" lang="fr">Elle lui répond qu’elle va à l’église Saint-Médard.</span>
+        <span class="fg-fr-block" lang="fr">Il lui demande si elle y va seule et lui dit qu’il adore le piano.</span>
+        <span class="fg-fr-block" lang="fr">Elle lui dit alors de venir à dix heures pile.</span>
+      </div>
+      <div class="fg-checklist">
+        <div class="fg-check"><span class="fg-fr" lang="fr">Qu’est-ce que… → ce que…</span></div>
+        <div class="fg-check"><span class="fg-fr" lang="fr">Tu es libre ? → si elle est libre</span></div>
+        <div class="fg-check"><span class="fg-fr" lang="fr">Où vas-tu ? → où elle va</span></div>
+        <div class="fg-check"><span class="fg-fr" lang="fr">Viens ! → de venir</span></div>
+      </div>
+    </section>
+
+    <section class="fg-card">
+      <h2>Exercice 4 — نمونهٔ پاسخ آزاد</h2>
+      <p>یک گفت‌وگو میان مشتری و پیشخدمت را به نقل غیرمستقیم تبدیل کنید.</p>
+      <div class="fg-answer"><span class="fg-fr-block" lang="fr">Un client demande au serveur s’il reste une table près de la fenêtre. Le serveur lui répond qu’une table va se libérer dans cinq minutes et lui demande de patienter. Le client demande ce que contient le plat du jour. Le serveur lui explique que c’est du saumon grillé avec des légumes. Le client dit qu’il prendra ce plat et demande s’il peut avoir de l’eau gazeuse. Le serveur lui répond que oui et lui demande de s’installer.</span></div>
+      <p>در این نمونه هم‌زمان از <span class="fg-fr" lang="fr">si</span>، <span class="fg-fr" lang="fr">que</span>، <span class="fg-fr" lang="fr">ce que</span> و <span class="fg-fr" lang="fr">de + infinitif</span> استفاده شده است.</p>
+    </section>
+
+    <section class="fg-footer-summary">
+      <h2 style="margin-top:0;color:#173f6b;">خلاصهٔ خیلی سریع برای حفظ کردن</h2>
+      <div class="fg-checklist">
+        <div class="fg-check">خبر → <span class="fg-fr" lang="fr">que</span></div>
+        <div class="fg-check">بله/خیر → <span class="fg-fr" lang="fr">si</span></div>
+        <div class="fg-check"><span class="fg-fr" lang="fr">où / quand / pourquoi…</span> → همان واژه، بدون وارونگی</div>
+        <div class="fg-check"><span class="fg-fr" lang="fr">qu’est-ce que → ce que</span></div>
+        <div class="fg-check"><span class="fg-fr" lang="fr">qu’est-ce qui → ce qui</span></div>
+        <div class="fg-check">امر → <span class="fg-fr" lang="fr">de + infinitif</span></div>
+        <div class="fg-check">امر منفی → <span class="fg-fr" lang="fr">de ne pas + infinitif</span></div>
+        <div class="fg-check">ضمیرها → بر اساس گوینده و مخاطب بازتنظیم می‌شوند</div>
+      </div>
+    </section>
+  </div>
+</div>

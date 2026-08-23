@@ -1,0 +1,2050 @@
+<div class="french-grammar-wrapper" dir="rtl">
+  <style>
+    .french-grammar-wrapper {
+      --fg-navy: #173b67;
+      --fg-blue: #2563a9;
+      --fg-blue-soft: #edf5ff;
+      --fg-blue-border: #bdd8f5;
+      --fg-green: #16845b;
+      --fg-green-soft: #ecf9f3;
+      --fg-green-border: #b9e7d2;
+      --fg-red: #c13f3f;
+      --fg-red-soft: #fff1f0;
+      --fg-red-border: #f0c4c0;
+      --fg-orange: #b86516;
+      --fg-orange-soft: #fff6e9;
+      --fg-orange-border: #f3d3a6;
+      --fg-purple: #7048a8;
+      --fg-purple-soft: #f7f1ff;
+      --fg-purple-border: #d9c6f2;
+      --fg-text: #243447;
+      --fg-muted: #627386;
+      --fg-border: #dce5ee;
+      --fg-surface: #ffffff;
+      --fg-surface-alt: #f7f9fc;
+      --fg-shadow: 0 8px 24px rgba(24, 55, 88, 0.08);
+      --fg-radius: 16px;
+
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 18px;
+      box-sizing: border-box;
+      font-family: Tahoma, Arial, "Segoe UI", sans-serif;
+      line-height: 1.95;
+      color: var(--fg-text);
+      direction: rtl;
+      text-align: right;
+    }
+
+    .french-grammar-wrapper *,
+    .french-grammar-wrapper *::before,
+    .french-grammar-wrapper *::after {
+      box-sizing: border-box;
+    }
+
+    .french-grammar-wrapper .fg-hero {
+      position: relative;
+      overflow: hidden;
+      padding: 30px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, #173b67 0%, #225c9b 60%, #3079bb 100%);
+      color: #fff;
+      box-shadow: var(--fg-shadow);
+      margin-bottom: 24px;
+    }
+
+    .french-grammar-wrapper .fg-hero::after {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      left: -70px;
+      top: -80px;
+    }
+
+    .french-grammar-wrapper .fg-hero h1 {
+      margin: 0 0 8px;
+      font-size: clamp(1.7rem, 4vw, 2.5rem);
+      line-height: 1.4;
+    }
+
+    .french-grammar-wrapper .fg-hero p {
+      margin: 8px 0 0;
+      color: rgba(255,255,255,0.9);
+      font-size: 1rem;
+    }
+
+    .french-grammar-wrapper .fg-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .french-grammar-wrapper .fg-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 11px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.13);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #fff;
+      font-size: 0.88rem;
+    }
+
+    .french-grammar-wrapper .fg-section {
+      margin: 26px 0;
+    }
+
+    .french-grammar-wrapper .fg-section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 14px;
+      color: var(--fg-navy);
+      font-size: clamp(1.25rem, 3vw, 1.65rem);
+      line-height: 1.5;
+    }
+
+    .french-grammar-wrapper .fg-section-title::before {
+      content: "";
+      width: 7px;
+      height: 28px;
+      border-radius: 6px;
+      background: var(--fg-blue);
+      flex: 0 0 auto;
+    }
+
+    .french-grammar-wrapper .fg-card {
+      background: var(--fg-surface);
+      border: 1px solid var(--fg-border);
+      border-radius: var(--fg-radius);
+      padding: 20px;
+      margin: 14px 0;
+      box-shadow: 0 3px 14px rgba(23,59,103,0.05);
+    }
+
+    .french-grammar-wrapper .fg-card h3,
+    .french-grammar-wrapper .fg-card h4 {
+      color: var(--fg-navy);
+      margin-top: 0;
+      line-height: 1.55;
+    }
+
+    .french-grammar-wrapper .fg-card h3 {
+      font-size: 1.18rem;
+      margin-bottom: 12px;
+    }
+
+    .french-grammar-wrapper .fg-card h4 {
+      font-size: 1.02rem;
+      margin-bottom: 8px;
+    }
+
+    .french-grammar-wrapper .fg-card p {
+      margin: 8px 0;
+    }
+
+    .french-grammar-wrapper .fg-toc {
+      background: var(--fg-surface-alt);
+      border: 1px solid var(--fg-border);
+      border-radius: var(--fg-radius);
+      padding: 18px 20px;
+      margin: 18px 0 26px;
+    }
+
+    .french-grammar-wrapper .fg-toc-title {
+      font-weight: 800;
+      color: var(--fg-navy);
+      margin-bottom: 10px;
+    }
+
+    .french-grammar-wrapper .fg-toc-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px 18px;
+    }
+
+    .french-grammar-wrapper .fg-toc a {
+      color: var(--fg-blue);
+      text-decoration: none;
+      border-bottom: 1px dashed transparent;
+    }
+
+    .french-grammar-wrapper .fg-toc a:hover {
+      border-bottom-color: var(--fg-blue);
+    }
+
+    .french-grammar-wrapper .fg-fr,
+    .french-grammar-wrapper .fg-fr-line,
+    .french-grammar-wrapper .fg-formula {
+      direction: ltr;
+      unicode-bidi: isolate;
+      text-align: left;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    .french-grammar-wrapper .fg-fr {
+      display: inline-block;
+      background: #f3f7fb;
+      border-radius: 6px;
+      padding: 0 5px;
+      color: #173b67;
+      font-weight: 650;
+    }
+
+    .french-grammar-wrapper .fg-fr-line {
+      display: block;
+      width: 100%;
+      padding: 10px 12px;
+      margin: 7px 0;
+      border-radius: 10px;
+      background: #f8fafc;
+      border-left: 4px solid #9db9d8;
+      line-height: 1.65;
+    }
+
+    .french-grammar-wrapper .fg-formula {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      margin: 10px 0;
+      border: 1px solid var(--fg-blue-border);
+      border-radius: 12px;
+      background: var(--fg-blue-soft);
+      color: #174877;
+      font-weight: 800;
+      text-align: center;
+      overflow-wrap: anywhere;
+    }
+
+    .french-grammar-wrapper .fg-translation {
+      color: var(--fg-muted);
+      margin-top: 2px;
+      padding-right: 10px;
+      border-right: 3px solid #dce5ee;
+    }
+
+    .french-grammar-wrapper .fg-example {
+      background: var(--fg-green-soft);
+      border: 1px solid var(--fg-green-border);
+      border-right: 5px solid var(--fg-green);
+      border-radius: 13px;
+      padding: 13px 15px;
+      margin: 12px 0;
+    }
+
+    .french-grammar-wrapper .fg-example-title {
+      color: var(--fg-green);
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .french-grammar-wrapper .fg-note,
+    .french-grammar-wrapper .fg-warning,
+    .french-grammar-wrapper .fg-danger,
+    .french-grammar-wrapper .fg-tip {
+      border-radius: 13px;
+      padding: 14px 16px;
+      margin: 14px 0;
+    }
+
+    .french-grammar-wrapper .fg-note {
+      background: var(--fg-blue-soft);
+      border: 1px solid var(--fg-blue-border);
+      border-right: 5px solid var(--fg-blue);
+    }
+
+    .french-grammar-wrapper .fg-warning {
+      background: var(--fg-orange-soft);
+      border: 1px solid var(--fg-orange-border);
+      border-right: 5px solid var(--fg-orange);
+    }
+
+    .french-grammar-wrapper .fg-danger {
+      background: var(--fg-red-soft);
+      border: 1px solid var(--fg-red-border);
+      border-right: 5px solid var(--fg-red);
+    }
+
+    .french-grammar-wrapper .fg-tip {
+      background: var(--fg-purple-soft);
+      border: 1px solid var(--fg-purple-border);
+      border-right: 5px solid var(--fg-purple);
+    }
+
+    .french-grammar-wrapper .fg-label {
+      display: block;
+      font-weight: 800;
+      margin-bottom: 5px;
+    }
+
+    .french-grammar-wrapper .fg-note .fg-label { color: var(--fg-blue); }
+    .french-grammar-wrapper .fg-warning .fg-label { color: var(--fg-orange); }
+    .french-grammar-wrapper .fg-danger .fg-label { color: var(--fg-red); }
+    .french-grammar-wrapper .fg-tip .fg-label { color: var(--fg-purple); }
+
+    .french-grammar-wrapper .fg-correct {
+      color: var(--fg-green);
+      font-weight: 800;
+    }
+
+    .french-grammar-wrapper .fg-wrong {
+      color: var(--fg-red);
+      font-weight: 800;
+    }
+
+    .french-grammar-wrapper .fg-table-scroll {
+      width: 100%;
+      overflow-x: auto;
+      margin: 14px 0;
+      border-radius: 13px;
+      border: 1px solid var(--fg-border);
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .french-grammar-wrapper .fg-table {
+      width: 100%;
+      min-width: 650px;
+      border-collapse: collapse;
+      background: #fff;
+      direction: rtl;
+    }
+
+    .french-grammar-wrapper .fg-table th,
+    .french-grammar-wrapper .fg-table td {
+      border: 1px solid #d6e0ea;
+      padding: 12px 14px;
+      vertical-align: top;
+    }
+
+    .french-grammar-wrapper .fg-table th {
+      background: #e8f1fa;
+      color: var(--fg-navy);
+      font-weight: 800;
+    }
+
+    .french-grammar-wrapper .fg-table tbody tr:nth-child(even) {
+      background: #f8fafc;
+    }
+
+    .french-grammar-wrapper .fg-table .fg-cell-fr {
+      direction: ltr;
+      text-align: left;
+      unicode-bidi: isolate;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    .french-grammar-wrapper ul,
+    .french-grammar-wrapper ol {
+      margin: 8px 0;
+      padding-right: 24px;
+    }
+
+    .french-grammar-wrapper li {
+      margin: 6px 0;
+    }
+
+    .french-grammar-wrapper .fg-contrast-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin: 14px 0;
+    }
+
+    .french-grammar-wrapper .fg-mini-card {
+      border-radius: 13px;
+      border: 1px solid var(--fg-border);
+      background: var(--fg-surface-alt);
+      padding: 14px;
+    }
+
+    .french-grammar-wrapper .fg-mini-card strong {
+      color: var(--fg-navy);
+    }
+
+    .french-grammar-wrapper .fg-rule-chip {
+      display: inline-flex;
+      align-items: center;
+      margin: 4px;
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: #eef4fa;
+      color: var(--fg-navy);
+      font-size: 0.9rem;
+      direction: ltr;
+      unicode-bidi: isolate;
+    }
+
+    .french-grammar-wrapper .fg-exercise {
+      border: 1px solid var(--fg-border);
+      border-radius: 15px;
+      margin: 14px 0;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .french-grammar-wrapper .fg-exercise summary {
+      cursor: pointer;
+      list-style: none;
+      padding: 15px 18px;
+      background: #f5f8fb;
+      color: var(--fg-navy);
+      font-weight: 800;
+      border-bottom: 1px solid transparent;
+    }
+
+    .french-grammar-wrapper .fg-exercise[open] summary {
+      border-bottom-color: var(--fg-border);
+    }
+
+    .french-grammar-wrapper .fg-exercise summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .french-grammar-wrapper .fg-exercise summary::before {
+      content: "＋";
+      display: inline-block;
+      margin-left: 8px;
+      color: var(--fg-blue);
+      font-weight: 900;
+    }
+
+    .french-grammar-wrapper .fg-exercise[open] summary::before {
+      content: "−";
+    }
+
+    .french-grammar-wrapper .fg-exercise-body {
+      padding: 16px 18px;
+    }
+
+    .french-grammar-wrapper .fg-answer {
+      background: var(--fg-green-soft);
+      border: 1px solid var(--fg-green-border);
+      border-radius: 10px;
+      padding: 10px 12px;
+      margin: 8px 0 14px;
+    }
+
+    .french-grammar-wrapper .fg-answer::before {
+      content: "✓ پاسخ: ";
+      color: var(--fg-green);
+      font-weight: 900;
+    }
+
+    .french-grammar-wrapper .fg-question {
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px dashed var(--fg-border);
+    }
+
+    .french-grammar-wrapper .fg-question:first-child {
+      border-top: 0;
+      margin-top: 0;
+      padding-top: 0;
+    }
+
+    .french-grammar-wrapper .fg-source {
+      margin-top: 28px;
+      padding: 14px 16px;
+      border-radius: 12px;
+      background: #f6f8fa;
+      border: 1px solid var(--fg-border);
+      color: var(--fg-muted);
+      font-size: 0.92rem;
+    }
+
+    .french-grammar-wrapper .fg-divider {
+      height: 1px;
+      background: linear-gradient(to left, transparent, #d6e0ea, transparent);
+      margin: 26px 0;
+    }
+
+    @media (max-width: 800px) {
+      .french-grammar-wrapper {
+        padding: 12px;
+        line-height: 1.85;
+      }
+
+      .french-grammar-wrapper .fg-hero {
+        padding: 23px 18px;
+      }
+
+      .french-grammar-wrapper .fg-card {
+        padding: 16px;
+      }
+
+      .french-grammar-wrapper .fg-toc-grid,
+      .french-grammar-wrapper .fg-contrast-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .french-grammar-wrapper .fg-table {
+        min-width: 600px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .french-grammar-wrapper {
+        padding: 8px;
+      }
+
+      .french-grammar-wrapper .fg-hero {
+        border-radius: 16px;
+      }
+
+      .french-grammar-wrapper .fg-card,
+      .french-grammar-wrapper .fg-toc {
+        border-radius: 13px;
+      }
+
+      .french-grammar-wrapper .fg-section-title {
+        font-size: 1.22rem;
+      }
+
+      .french-grammar-wrapper .fg-badges {
+        gap: 6px;
+      }
+
+      .french-grammar-wrapper .fg-badge {
+        font-size: 0.8rem;
+      }
+    }
+  </style>
+
+  <section class="fg-hero">
+    <h1>
+      درس ۳۴:
+      <span class="fg-fr" lang="fr" dir="ltr">La négation (2)</span>
+    </h1>
+    <p>
+      آموزش کامل ساختارهای پیشرفتهٔ منفی در زبان فرانسوی، تفاوت‌های معنایی،
+      جایگاه اجزای منفی، نکته‌های ظریف و تمرین‌های درس.
+    </p>
+
+    <div class="fg-badges">
+      <span class="fg-badge">📘 صفحات چاپی ۱۵۲ تا ۱۵۵</span>
+      <span class="fg-badge">🇫🇷 Grammaire Progressive du Français</span>
+      <span class="fg-badge">🎯 ساختار جمله و نفی</span>
+    </div>
+  </section>
+
+  <nav class="fg-toc" aria-label="فهرست درس">
+    <div class="fg-toc-title">فهرست مطالب</div>
+    <div class="fg-toc-grid">
+      <a href="#fg-general">۱. ساختار کلی نفی</a>
+      <a href="#fg-jamais">۲. ne… jamais</a>
+      <a href="#fg-plus">۳. ne… plus</a>
+      <a href="#fg-deja">۴. déjà / pas encore</a>
+      <a href="#fg-aucun">۵. ne… aucun</a>
+      <a href="#fg-rien">۶. ne… rien</a>
+      <a href="#fg-personne">۷. ne… personne</a>
+      <a href="#fg-multiple">۸. چند منفی در یک جمله</a>
+      <a href="#fg-partial">۹. منفی کامل و جزئی</a>
+      <a href="#fg-ni">۱۰. ni… ni</a>
+      <a href="#fg-sans">۱۱. sans</a>
+      <a href="#fg-neque">۱۲. ne… que</a>
+      <a href="#fg-passe">۱۳. جایگاه در زمان مرکب</a>
+      <a href="#fg-register">۱۴. زبان گفتاری و رسمی</a>
+      <a href="#fg-exercises-153">۱۵. تمرین‌های صفحه ۱۵۳</a>
+      <a href="#fg-exercises-155">۱۶. تمرین‌های صفحه ۱۵۵</a>
+      <a href="#fg-summary">۱۷. خلاصهٔ نهایی</a>
+    </div>
+  </nav>
+
+  <section class="fg-section" id="fg-general">
+    <h2 class="fg-section-title">۱. ساختار کلی جملهٔ منفی</h2>
+
+    <div class="fg-card">
+      <p>
+        در زبان فرانسوی معیار و نوشتاری، فعل صرف‌شده معمولاً میان دو بخش
+        ساختار منفی قرار می‌گیرد.
+      </p>
+
+      <div class="fg-formula" lang="fr">
+        Sujet + ne / n’ + verbe + élément négatif
+      </div>
+
+      <div class="fg-example">
+        <span class="fg-example-title">مثال</span>
+
+        <span class="fg-fr-line" lang="fr">Je ne travaille pas.</span>
+        <div class="fg-translation">من کار نمی‌کنم.</div>
+
+        <span class="fg-fr-line" lang="fr">Je ne travaille plus.</span>
+        <div class="fg-translation">من دیگر کار نمی‌کنم.</div>
+
+        <span class="fg-fr-line" lang="fr">Je ne travaille jamais.</span>
+        <div class="fg-translation">من هرگز کار نمی‌کنم.</div>
+      </div>
+
+      <div class="fg-note">
+        <span class="fg-label">نکته</span>
+        قبل از واژه‌ای که با واکه یا
+        <span class="fg-fr" lang="fr">h muet</span>
+        شروع شود،
+        <span class="fg-fr" lang="fr">ne</span>
+        به
+        <span class="fg-fr" lang="fr">n’</span>
+        تبدیل می‌شود.
+        <span class="fg-fr-line" lang="fr">Je n’ai rien.</span>
+        <span class="fg-fr-line" lang="fr">Il n’habite plus ici.</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="fg-section" id="fg-jamais">
+    <h2 class="fg-section-title">
+      ۲.
+      <span class="fg-fr" lang="fr">ne… jamais</span>
+      — هرگز
+    </h2>
+
+    <div class="fg-card">
+      <p>
+        <span class="fg-fr" lang="fr">ne… jamais</span>
+        برای بیان «هیچ‌وقت / هرگز» استفاده می‌شود و معمولاً در برابر
+        <span class="fg-fr" lang="fr">toujours</span>
+        یا
+        <span class="fg-fr" lang="fr">parfois</span>
+        قرار می‌گیرد.
+      </p>
+
+      <div class="fg-example">
+        <span class="fg-fr-line" lang="fr">Je bois toujours du thé.</span>
+        <div class="fg-translation">من همیشه چای می‌نوشم.</div>
+
+        <span class="fg-fr-line" lang="fr">Je ne bois jamais de café.</span>
+        <div class="fg-translation">من هرگز قهوه نمی‌نوشم.</div>
+      </div>
+
+      <div class="fg-warning">
+        <span class="fg-label">
+          تفاوت بسیار مهم:
+          <span class="fg-fr" lang="fr">pas toujours</span>
+          و
+          <span class="fg-fr" lang="fr">jamais</span>
+        </span>
+
+        <span class="fg-fr-line" lang="fr">Je ne travaille pas toujours le samedi.</span>
+        <div class="fg-translation">
+          من همیشه شنبه‌ها کار نمی‌کنم؛ یعنی بعضی شنبه‌ها ممکن است کار کنم.
+        </div>
+
+        <span class="fg-fr-line" lang="fr">Je ne travaille jamais le samedi.</span>
+        <div class="fg-translation">
+          من هیچ‌وقت شنبه‌ها کار نمی‌کنم.
+        </div>
+      </div>
+
+      <div class="fg-contrast-grid">
+        <div class="fg-mini-card">
+          <strong class="fg-fr" lang="fr">pas toujours</strong>
+          <p>نه همیشه / بعضی وقت‌ها نه</p>
+        </div>
+        <div class="fg-mini-card">
+          <strong class="fg-fr" lang="fr">jamais</strong>
+          <p>هرگز / در هیچ زمانی</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="fg-section" id="fg-plus">
+    <h2 class="fg-section-title">
+      ۳.
+      <span class="fg-fr" lang="fr">ne… plus</span>
+      — دیگر نه
+    </h2>
+
+    <div class="fg-card">
+      <p>
+        این ساختار نشان می‌دهد چیزی در گذشته وجود داشته یا انجام می‌شده،
+        اما اکنون دیگر ادامه ندارد.
+      </p>
+
+      <div class="fg-example">
+        <span class="fg-fr-line" lang="fr">Max fume encore.</span>
+        <div class="fg-translation">مکس هنوز سیگار می‌کشد.</div>
+
+        <span class="fg-fr-line" lang="fr">Moi, je ne fume plus.</span>
+        <div class="fg-translation">اما من دیگر سیگار نمی‌کشم.</div>
+      </div>
+
+      <div class="fg-tip">
+        <span class="fg-label">
+          نکتهٔ ظریف دربارهٔ
+          <span class="fg-fr" lang="fr">toujours</span>
+        </span>
+        این کلمه می‌تواند هم «همیشه» و هم «هنوز» معنی بدهد.
+      </div>
+
+      <div class="fg-table-scroll">
+        <table class="fg-table">
+          <thead>
+            <tr>
+              <th>معنی</th>
+              <th>جملهٔ مثبت</th>
+              <th>منفی مناسب</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>همیشه</td>
+              <td class="fg-cell-fr" lang="fr">Il est toujours poli.</td>
+              <td class="fg-cell-fr" lang="fr">Il n’est jamais poli.</td>
+            </tr>
+            <tr>
+              <td>هنوز</td>
+              <td class="fg-cell-fr" lang="fr">Tu habites toujours chez tes parents ?</td>
+              <td class="fg-cell-fr" lang="fr">Je n’habite plus chez mes parents.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="fg-note">
+        <span class="fg-label">تلفظ</span>
+        در
+        <span class="fg-fr" lang="fr">plus</span>
+        با معنای منفی «دیگر نه»،
+        <strong>s</strong>
+        معمولاً تلفظ نمی‌شود.
+      </div>
+
+      <div class="fg-warning">
+        <span class="fg-label">نکتهٔ زبان گفتاری</span>
+        در مکالمه، حذف
+        <span class="fg-fr" lang="fr">ne</span>
+        می‌تواند جمله‌هایی مانند
+        <span class="fg-fr" lang="fr">Je veux plus de café.</span>
+        را بدون توجه به تلفظ مبهم کند. در نوشتار رسمی بهتر است ساختار کامل نوشته شود:
+        <span class="fg-fr-line" lang="fr">Je ne veux plus de café.</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="fg-section" id="fg-deja">
+    <h2 class="fg-section-title">
+      ۴. منفی‌کردن
+      <span class="fg-fr" lang="fr">déjà</span>
+    </h2>
+
+    <div class="fg-card">
+      <p>
+        بسته به منظور جمله، نقطهٔ مقابل
+        <span class="fg-fr" lang="fr">déjà</span>
+        می‌تواند
+        <span class="fg-fr" lang="fr">jamais</span>
+        یا
+        <span class="fg-fr" lang="fr">pas encore</span>
+        باشد.
+      </p>
+
+      <h3>
+        حالت اول:
+        <span class="fg-fr" lang="fr">ne… jamais</span>
+      </h3>
+
+      <p>وقتی دربارهٔ تجربه‌ای تا زمان حال صحبت می‌کنیم:</p>
+
+      <span class="fg-fr-line" lang="fr">Vous êtes déjà allé à Paris ?</span>
+      <span class="fg-fr-line" lang="fr">Non, je ne suis jamais allé à Paris.</span>
+
+      <h3>
+        حالت دوم:
+        <span class="fg-fr" lang="fr">ne… pas encore</span>
+      </h3>
+
+      <p>
+        وقتی اتفاق هنوز رخ نداده اما انتظار داریم بعداً رخ دهد:
+      </p>
+
+      <span class="fg-fr-line" lang="fr">Vous parlez déjà français couramment ?</span>
+      <span class="fg-fr-line" lang="fr">Non, je ne parle pas encore français couramment.</span>
+
+      <div class="fg-table-scroll">
+        <table class="fg-table">
+          <thead>
+            <tr>
+              <th>ساختار</th>
+              <th>معنی دقیق</th>
+              <th>مثال</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="fg-cell-fr" lang="fr">ne… jamais</td>
+              <td>تا این لحظه هیچ‌وقت</td>
+              <td class="fg-cell-fr" lang="fr">Je n’ai jamais passé le TCF.</td>
+            </tr>
+            <tr>
+              <td class="fg-cell-fr" lang="fr">ne… pas encore</td>
+              <td>هنوز نه، ولی ممکن است بعداً</td>
+              <td class="fg-cell-fr" lang="fr">Je n’ai pas encore passé le TCF.</td>
+            </tr>
+            <tr>
+              <td class="fg-cell-fr" lang="fr">ne… plus</td>
+              <td>قبلاً بود، اکنون دیگر نه</td>
+              <td class="fg-cell-fr" lang="fr">Je ne passe plus cet examen.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="fg-section" id="fg-aucun">
+    <h2 class="fg-section-title">
+      ۵.
+      <span class="fg-fr" lang="fr">ne… aucun / aucune</span>
+      — هیچ
+    </h2>
+
+    <div class="fg-card">
+      <p>
+        <span class="fg-fr" lang="fr">aucun / aucune</span>
+        معنی «هیچ / حتی یک مورد هم نه» می‌دهد.
+      </p>
+
+      <div class="fg-example">
+        <span class="fg-fr-line" lang="fr">Je ne connais aucun Français.</span>
+        <div class="fg-translation">من هیچ فرانسوی‌ای را نمی‌شناسم.</div>
+
+        <span class="fg-fr-line" lang="fr">Je n’ai aucune idée.</span>
+        <div class="fg-translation">هیچ ایده‌ای ندارم.</div>
+      </div>
+
+      <div class="fg-table-scroll">
+        <table class="fg-table">
+          <thead>
+            <tr>
+              <th>شکل</th>
+              <th>کاربرد</th>
+              <th>نمونه</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="fg-cell-fr" lang="fr">aucun</td>
+              <td>اسم مذکر</td>
+              <td class="fg-cell-fr" lang="fr">aucun ami</td>
+            </tr>
+            <tr>
+              <td class="fg-cell-fr" lang="fr">aucune</td>
+              <td>اسم مؤنث</td>
+              <td class="fg-cell-fr" lang="fr">aucune solution</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="fg-note">
+        <span class="fg-label">قاعده</span>
+        اسم بعد از
+        <span class="fg-fr" lang="fr">aucun / aucune</span>
+        معمولاً مفرد است:
+        <span class="fg-fr" lang="fr">aucun problème</span>،
+        <span class="fg-fr" lang="fr">aucune expérience</span>.
+      </div>
+
+      <div class="fg-warning">
+        <span class="fg-label">حرف تعریف اضافه نمی‌شود</span>
+        <div>
+          <span class="fg-wrong">✗</span>
+          <span class="fg-fr" lang="fr">aucun un ami</span>
+        </div>
+        <div>
+          <span class="fg-correct">✓</span>
+          <span class="fg-fr" lang="fr">aucun ami</span>
+        </div>
+      </div>
+
+      <h3>وقتی فاعل جمله باشد</h3>
+
+      <span class="fg-fr-line" lang="fr">Aucun étudiant ne comprend.</span>
+      <span class="fg-fr-line" lang="fr">Aucune solution ne fonctionne.</span>
+
+      <div class="fg-danger">
+        <span class="fg-label">اشتباه رایج</span>
+        بعد از
+        <span class="fg-fr" lang="fr">aucun</span>
+        دوباره
+        <span class="fg-fr" lang="fr">pas</span>
+        اضافه نمی‌کنیم.
+      </div>
+    </div>
+  </section>
+
+  <section class="fg-section" id="fg-rien">
+    <h2 class="fg-section-title">
+      ۶.
+      <span class="fg-fr" lang="fr">ne… rien</span>
+      — هیچ‌چیز
+    </h2>
+
+    <div class="fg-card">
+      <p>
+        <span class="fg-fr" lang="fr">rien</span>
+        معمولاً نقطهٔ مقابل
+        <span class="fg-fr" lang="fr">quelque chose</span>
+        است.
+      </p>
+
+      <span class="fg-fr-line" lang="fr">Tu vois quelque chose ?</span>
+      <span class="fg-fr-line" lang="fr">Je ne vois rien.</span>
+
+      <h3>وقتی مفعول باشد</h3>
+      <span class="fg-fr-line" lang="fr">Je ne comprends rien.</span>
+      <span class="fg-fr-line" lang="fr">Elle ne mange rien.</span>
+
+      <h3>وقتی فاعل باشد</h3>
+      <span class="fg-fr-line" lang="fr">Rien ne bouge.</span>
+      <span class="fg-fr-line" lang="fr">Rien ne marche.</span>
+
+      <div class="fg-danger">
+        <span class="fg-label">اشتباه رایج</span>
+        <div>
+          <span class="fg-wrong">✗</span>
+          <span class="fg-fr" lang="fr">Rien ne marche pas.</span>
+        </div>
+        <div>
+          <span class="fg-correct">✓</span>
+          <span class="fg-fr" lang="fr">Rien ne marche.</span>
+        </div>
+      </div>
+
+      <h3>
+        در
+        <span class="fg-fr" lang="fr">passé composé</span>
+      </h3>
+
+      <span class="fg-fr-line" lang="fr">Je n’ai rien compris.</span>
+      <span class="fg-fr-line" lang="fr">Il n’a rien mangé.</span>
+
+      <div class="fg-note">
+        <span class="fg-label">جایگاه</span>
+        <span class="fg-fr" lang="fr">rien</span>
+        معمولاً بین فعل کمکی و
+        <span class="fg-fr" lang="fr">participe passé</span>
+        قرار می‌گیرد.
+      </div>
+
+      <h3>با مصدر</h3>
+      <span class="fg-fr-line" lang="fr">Je préfère ne rien dire.</span>
+      <span class="fg-fr-line" lang="fr">Il promet de ne rien oublier.</span>
+    </div>
+  </section>
+
+  <section class="fg-section" id="fg-personne">
+    <h2 class="fg-section-title">
+      ۷.
+      <span class="fg-fr" lang="fr">ne… personne</span>
+      — هیچ‌کس
+    </h2>
+
+    <div class="fg-card">
+      <p>
+        <span class="fg-fr" lang="fr">personne</span>
+        در ساخت منفی نقطهٔ مقابل
+        <span class="fg-fr" lang="fr">quelqu’un</span>
+        است.
+      </p>
+
+      <span class="fg-fr-line" lang="fr">Tu attends quelqu’un ?</span>
+      <span class="fg-fr-line" lang="fr">Je n’attends personne.</span>
+
+      <h3>وقتی مفعول باشد</h3>
+      <span class="fg-fr-line" lang="fr">Je ne connais personne ici.</span>
+      <span class="fg-fr-line" lang="fr">Elle ne voit personne.</span>
+
+      <h3>وقتی فاعل باشد</h3>
+      <span class="fg-fr-line" lang="fr">Personne ne parle.</span>
+      <span class="fg-fr-line" lang="fr">Personne ne répond.</span>
+
+      <div class="fg-danger">
+        <span class="fg-label">دو اشتباه مهم</span>
+
+        <div>
+          <span class="fg-wrong">✗</span>
+          <span class="fg-fr" lang="fr">Personne ne parle pas.</span>
+        </div>
+
+        <div>
+          <span class="fg-wrong">✗</span>
+          <span class="fg-fr" lang="fr">Je ne connais pas personne.</span>
+        </div>
+
+        <div>
+          <span class="fg-correct">✓</span>
+          <span class="fg-fr" lang="fr">Personne ne parle.</span>
+        </div>
+
+        <div>
+          <span class="fg-correct">✓</span>
+          <span class="fg-fr" lang="fr">Je ne connais personne.</span>
+        </div>
+      </div>
+
+      <h3>
+        در
+        <span class="fg-fr" lang="fr">passé composé</span>
+      </h3>
+
+      <span class="fg-fr-line" lang="fr">Je n’ai vu personne.</span>
+      <span class="fg-fr-line" lang="fr">Elle n’a appelé personne.</span>
+
+      <div class="fg-warning">
+        <span class="fg-label">
+          تفاوت جایگاه
+          <span class="fg-fr" lang="fr">rien</span>
+          و
+          <span class="fg-fr" lang="fr">personne</span>
+        </span>
+
+        <span class="fg-fr-line" lang="fr">Je n’ai rien vu.</span>
+        <span class="fg-fr-line" lang="fr">Je n’ai vu personne.</span>
+      </div>
+
+      <h3>با مصدر</h3>
+      <span class="fg-fr-line" lang="fr">Je préfère ne voir personne.</span>
+      <span class="fg-fr-line" lang="fr">Il est parti sans prévenir personne.</span>
+    </div>
+  </section>
+
+  <section class="fg-section" id="fg-multiple">
+    <h2 class="fg-section-title">۸. چند عنصر منفی در یک جمله</h2>
+
+    <div class="fg-card">
+      <p>
+        در فرانسوی می‌توان چند عنصر منفی را هم‌زمان در یک جمله به‌کار برد.
+      </p>
+
+      <div class="fg-example">
+        <span class="fg-fr-line" lang="fr">Tu ne comprends jamais rien.</span>
+        <div class="fg-translation">تو هیچ‌وقت هیچ‌چیز نمی‌فهمی.</div>
+
+        <span class="fg-fr-line" lang="fr">Il n’y a plus personne.</span>
+        <div class="fg-translation">دیگر هیچ‌کس آنجا نیست.</div>
+
+        <span class="fg-fr-line" lang="fr">Je ne vois plus rien.</span>
+        <div class="fg-translation">دیگر هیچ‌چیز نمی‌بینم.</div>
+
+        <span class="fg-fr-line" lang="fr">Elle ne dit jamais rien à personne.</span>
+        <div class="fg-translation">
+          او هیچ‌وقت به هیچ‌کس هیچ‌چیز نمی‌گوید.
+        </div>
+      </div>
+
+      <div class="fg-note">
+        <span class="fg-label">قاعدهٔ کلیدی</span>
+        وقتی
+        <span class="fg-fr" lang="fr">jamais</span>،
+        <span class="fg-fr" lang="fr">rien</span>،
+        <span class="fg-fr" lang="fr">personne</span>
+        یا
+        <span class="fg-fr" lang="fr">plus</span>
+        نقش منفی را دارند،
+        <span class="fg-fr" lang="fr">pas</span>
+        را اضافه نمی‌کنیم.
+      </div>
+    </div>
+  </section>
+
+  <section class="fg-section" id="fg-partial">
+    <h2 class="fg-section-title">۹. منفی کامل و منفی جزئی</h2>
+
+    <div class="fg-card">
+      <div class="fg-contrast-grid">
+        <div class="fg-mini-card">
+          <span class="fg-fr-line" lang="fr">Je ne connais personne.</span>
+          <p>هیچ‌کس را نمی‌شناسم.</p>
+        </div>
+
+        <div class="fg-mini-card">
+          <span class="fg-fr-line" lang="fr">Je ne connais pas tout le monde.</span>
+          <p>همه را نمی‌شناسم؛ اما ممکن است بعضی‌ها را بشناسم.</p>
+        </div>
+      </div>
+
+      <div class="fg-contrast-grid">
+        <div class="fg-mini-card">
+          <span class="fg-fr-line" lang="fr">Je n’ai aucun ami.</span>
+          <p>هیچ دوستی ندارم.</p>
+        </div>
+
+        <div class="fg-mini-card">
+          <span class="fg-fr-line" lang="fr">Je n’ai pas beaucoup d’amis.</span>
+          <p>دوستان زیادی ندارم، ولی ممکن است چند دوست داشته باشم.</p>
+        </div>
+      </div>
+
+      <div class="fg-warning">
+        <span class="fg-label">برای درک متن و آزمون مهم است</span>
+        «همه نه» لزوماً به معنی «هیچ‌کس» نیست و «زیاد نه» لزوماً به معنی «هیچ» نیست.
+      </div>
+    </div>
+  </section>
+
+  <section class="fg-section" id="fg-ni">
+    <h2 class="fg-section-title">
+      ۱۰.
+      <span class="fg-fr" lang="fr">ni… ni</span>
+      — نه… نه…
+    </h2>
+
+    <div class="fg-card">
+      <div class="fg-formula" lang="fr">
+        ne + verbe + ni + élément 1 + ni + élément 2
+      </div>
+
+      <span class="fg-fr-line" lang="fr">Je ne travaille ni le lundi ni le mardi.</span>
+      <span class="fg-fr-line" lang="fr">Je ne bois ni thé ni café.</span>
+      <span class="fg-fr-line" lang="fr">Elle ne parle ni anglais ni français.</span>
+
+      <h3>حذف article نامعین و partitif</h3>
+
+      <div class="fg-example">
+        <span class="fg-fr-line" lang="fr">Tu as un stylo et un cahier ?</span>
+        <span class="fg-fr-line" lang="fr">Je n’ai ni stylo ni cahier.</span>
+
+        <span class="fg-fr-line" lang="fr">Tu veux du thé ou du café ?</span>
+        <span class="fg-fr-line" lang="fr">Je ne veux ni thé ni café.</span>
+      </div>
+
+      <h3>حرف تعریف معین می‌تواند باقی بماند</h3>
+
+      <span class="fg-fr-line" lang="fr">Je ne travaille ni le lundi ni le mardi.</span>
+      <span class="fg-fr-line" lang="fr">Je n’aime ni le thé ni le café.</span>
+
+      <h3>تکرار حرف اضافه</h3>
+
+      <span class="fg-fr-line" lang="fr">Je ne ressemble ni à mon père ni à ma mère.</span>
+      <span class="fg-fr-line" lang="fr">Il ne parle ni de son travail ni de sa famille.</span>
+
+      <div class="fg-danger">
+        <span class="fg-label">اشتباه رایج</span>
+        <div>
+          <span class="fg-wrong">✗</span>
+          <span class="fg-fr" lang="fr">Je ne bois pas ni thé ni café.</span>
+        </div>
+        <div>
+          <span class="fg-correct">✓</span>
+          <span class="fg-fr" lang="fr">Je ne bois ni thé ni café.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="fg-section" id="fg-sans">
+    <h2 class="fg-section-title">
+      ۱۱.
+      <span class="fg-fr" lang="fr">sans</span>
+      — بدون
+    </h2>
+
+    <div class="fg-card">
+      <p>
+        <span class="fg-fr" lang="fr">sans</span>
+        یک حرف اضافه است و به معنی «بدون» است.
+      </p>
+
+      <span class="fg-fr-line" lang="fr">Il sort avec un imperméable.</span>
+      <span class="fg-fr-line" lang="fr">Il sort sans imperméable.</span>
+
+      <div class="fg-note">
+        <span class="fg-label">قاعده</span>
+        چون
+        <span class="fg-fr" lang="fr">sans</span>
+        خودش مفهوم منفی را منتقل می‌کند، به
+        <span class="fg-fr" lang="fr">ne</span>
+        نیاز ندارد.
+      </div>
+
+      <h3>حذف article نامعین یا partitif</h3>
+
+      <div class="fg-table-scroll">
+        <table class="fg-table">
+          <thead>
+            <tr>
+              <th>با</th>
+              <th>بدون</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="fg-cell-fr" lang="fr">avec un parapluie</td>
+              <td class="fg-cell-fr" lang="fr">sans parapluie</td>
+            </tr>
+            <tr>
+              <td class="fg-cell-fr" lang="fr">avec de l’huile</td>
+              <td class="fg-cell-fr" lang="fr">sans huile</td>
+            </tr>
+            <tr>
+              <td class="fg-cell-fr" lang="fr">avec du sucre</td>
+              <td class="fg-cell-fr" lang="fr">sans sucre</td>
+            </tr>
+            <tr>
+              <td class="fg-cell-fr" lang="fr">avec des papiers</td>
+              <td class="fg-cell-fr" lang="fr">sans papiers</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>برای دو عنصر</h3>
+
+      <span class="fg-fr-line" lang="fr">Il sort sans imperméable ni parapluie.</span>
+      <span class="fg-fr-line" lang="fr">Elle mange sa salade sans huile ni vinaigre.</span>
+
+      <div class="fg-tip">
+        <span class="fg-label">نکته</span>
+        ساختار
+        <span class="fg-fr" lang="fr">sans… ni…</span>
+        معمولاً طبیعی و فشرده است.
+      </div>
+    </div>
+  </section>
+
+  <section class="fg-section" id="fg-neque">
+    <h2 class="fg-section-title">
+      ۱۲.
+      <span class="fg-fr" lang="fr">ne… que</span>
+      — فقط
+    </h2>
+
+    <div class="fg-card">
+      <div class="fg-warning">
+        <span class="fg-label">بسیار مهم</span>
+        <span class="fg-fr" lang="fr">ne… que</span>
+        یک منفی واقعی نیست. این ساختار «محدودیت» ایجاد می‌کند و تقریباً معادل
+        <span class="fg-fr" lang="fr">seulement</span>
+        است.
+      </div>
+
+      <span class="fg-fr-line" lang="fr">Julien n’a que cinq ans.</span>
+      <span class="fg-fr-line" lang="fr">Julien a seulement cinq ans.</span>
+
+      <span class="fg-fr-line" lang="fr">Je ne dors que six heures.</span>
+      <span class="fg-fr-line" lang="fr">Je dors seulement six heures.</span>
+
+      <h3>جایگاه <span class="fg-fr" lang="fr">que</span></h3>
+
+      <p>
+        <span class="fg-fr" lang="fr">que</span>
+        درست قبل از چیزی قرار می‌گیرد که می‌خواهیم آن را محدود کنیم.
+      </p>
+
+      <div class="fg-table-scroll">
+        <table class="fg-table">
+          <thead>
+            <tr>
+              <th>چیزی که محدود می‌شود</th>
+              <th>مثال</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>مبلغ</td>
+              <td class="fg-cell-fr" lang="fr">Ça ne coûte que dix euros.</td>
+            </tr>
+            <tr>
+              <td>زمان</td>
+              <td class="fg-cell-fr" lang="fr">Je ne travaille que le lundi.</td>
+            </tr>
+            <tr>
+              <td>شخص</td>
+              <td class="fg-cell-fr" lang="fr">Je ne connais que Paul.</td>
+            </tr>
+            <tr>
+              <td>مکان</td>
+              <td class="fg-cell-fr" lang="fr">Il ne travaille qu’à Vancouver.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="fg-note">
+        <span class="fg-label">قبل از واکه</span>
+        <span class="fg-fr" lang="fr">que</span>
+        به
+        <span class="fg-fr" lang="fr">qu’</span>
+        تبدیل می‌شود:
+        <span class="fg-fr-line" lang="fr">Je ne bois qu’un café.</span>
+        <span class="fg-fr-line" lang="fr">Elle ne commence qu’à onze heures.</span>
+      </div>
+
+      <h3>Articleها بعد از <span class="fg-fr" lang="fr">que</span></h3>
+
+      <p>
+        چون این ساختار منفی واقعی نیست، articleها به
+        <span class="fg-fr" lang="fr">de</span>
+        تبدیل نمی‌شوند.
+      </p>
+
+      <span class="fg-fr-line" lang="fr">Je ne bois que du thé.</span>
+      <span class="fg-fr-line" lang="fr">Il n’a qu’un ami.</span>
+      <span class="fg-fr-line" lang="fr">Elle ne mange que des légumes.</span>
+
+      <div class="fg-warning">
+        <span class="fg-label">سه جمله‌ای که نباید با هم اشتباه شوند</span>
+
+        <span class="fg-fr-line" lang="fr">Je ne mange que des légumes.</span>
+        <div class="fg-translation">من فقط سبزیجات می‌خورم.</div>
+
+        <span class="fg-fr-line" lang="fr">Je ne mange pas de légumes.</span>
+        <div class="fg-translation">من سبزیجات نمی‌خورم.</div>
+
+        <span class="fg-fr-line" lang="fr">Je ne mange pas que des légumes.</span>
+        <div class="fg-translation">
+          من فقط سبزیجات نمی‌خورم؛ چیزهای دیگری هم می‌خورم.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="fg-section" id="fg-passe">
+    <h2 class="fg-section-title">۱۳. جایگاه عناصر منفی در زمان مرکب</h2>
+
+    <div class="fg-card">
+      <div class="fg-table-scroll">
+        <table class="fg-table">
+          <thead>
+            <tr>
+              <th>عنصر منفی</th>
+              <th>جایگاه معمول</th>
+              <th>مثال</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="fg-cell-fr" lang="fr">jamais</td>
+              <td>قبل از participe passé</td>
+              <td class="fg-cell-fr" lang="fr">Je n’ai jamais visité Paris.</td>
+            </tr>
+            <tr>
+              <td class="fg-cell-fr" lang="fr">plus</td>
+              <td>قبل از participe passé</td>
+              <td class="fg-cell-fr" lang="fr">Je n’ai plus travaillé avec lui.</td>
+            </tr>
+            <tr>
+              <td class="fg-cell-fr" lang="fr">rien</td>
+              <td>قبل از participe passé</td>
+              <td class="fg-cell-fr" lang="fr">Je n’ai rien compris.</td>
+            </tr>
+            <tr>
+              <td class="fg-cell-fr" lang="fr">personne</td>
+              <td>معمولاً بعد از participe passé</td>
+              <td class="fg-cell-fr" lang="fr">Je n’ai vu personne.</td>
+            </tr>
+            <tr>
+              <td class="fg-cell-fr" lang="fr">aucun</td>
+              <td>پیش از اسم مربوط به خود</td>
+              <td class="fg-cell-fr" lang="fr">Je n’ai acheté aucun livre.</td>
+            </tr>
+            <tr>
+              <td class="fg-cell-fr" lang="fr">ne… que</td>
+              <td>que پیش از بخش محدودشده</td>
+              <td class="fg-cell-fr" lang="fr">Je n’ai vu que Paul.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="fg-section" id="fg-register">
+    <h2 class="fg-section-title">۱۴. زبان گفتاری و زبان رسمی</h2>
+
+    <div class="fg-card">
+      <p>
+        در زبان گفتاری فرانسوی،
+        <span class="fg-fr" lang="fr">ne</span>
+        بسیار اوقات حذف می‌شود.
+      </p>
+
+      <div class="fg-table-scroll">
+        <table class="fg-table">
+          <thead>
+            <tr>
+              <th>گفتاری</th>
+              <th>فرم معیار / نوشتاری</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="fg-cell-fr" lang="fr">Je sais pas.</td>
+              <td class="fg-cell-fr" lang="fr">Je ne sais pas.</td>
+            </tr>
+            <tr>
+              <td class="fg-cell-fr" lang="fr">J’ai rien compris.</td>
+              <td class="fg-cell-fr" lang="fr">Je n’ai rien compris.</td>
+            </tr>
+            <tr>
+              <td class="fg-cell-fr" lang="fr">Je vois personne.</td>
+              <td class="fg-cell-fr" lang="fr">Je ne vois personne.</td>
+            </tr>
+            <tr>
+              <td class="fg-cell-fr" lang="fr">Je fume plus.</td>
+              <td class="fg-cell-fr" lang="fr">Je ne fume plus.</td>
+            </tr>
+            <tr>
+              <td class="fg-cell-fr" lang="fr">J’ai que dix euros.</td>
+              <td class="fg-cell-fr" lang="fr">Je n’ai que dix euros.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="fg-tip">
+        <span class="fg-label">برای نوشتار و آزمون</span>
+        در تمرین‌های گرامری، نوشتار رسمی و تولید نوشتاری بهتر است
+        <span class="fg-fr" lang="fr">ne / n’</span>
+        را حفظ کنید.
+      </div>
+    </div>
+  </section>
+
+  <div class="fg-divider"></div>
+
+  <section class="fg-section" id="fg-exercises-153">
+    <h2 class="fg-section-title">۱۵. تمرین‌های صفحهٔ ۱۵۳</h2>
+
+    <details class="fg-exercise" open>
+      <summary>تمرین ۱ — plus / rien / personne</summary>
+      <div class="fg-exercise-body">
+
+        <p>
+          <span class="fg-fr" lang="fr">
+            Répondez aux questions en utilisant « plus », « rien », « personne ».
+          </span>
+        </p>
+
+        <div class="fg-question">
+          <span class="fg-fr-line" lang="fr">
+            Tu as encore ta vieille Alfa Romeo, Juliette ?
+          </span>
+          <div class="fg-answer">
+            <span class="fg-fr" lang="fr">Non, je n’ai plus mon Alfa Romeo.</span>
+          </div>
+        </div>
+
+        <div class="fg-question">
+          <span class="fg-fr-line" lang="fr">
+            Tu habites toujours à Vérone ?
+          </span>
+          <div class="fg-answer">
+            <span class="fg-fr" lang="fr">Non, je n’habite plus à Vérone.</span>
+          </div>
+          <div class="fg-note">
+            <span class="fg-label">نکته</span>
+            <span class="fg-fr" lang="fr">toujours</span>
+            در اینجا «هنوز» است، بنابراین جواب با
+            <span class="fg-fr" lang="fr">plus</span>
+            ساخته می‌شود.
+          </div>
+        </div>
+
+        <div class="fg-question">
+          <span class="fg-fr-line" lang="fr">
+            Tu vois toujours William ?
+          </span>
+          <div class="fg-answer">
+            <span class="fg-fr" lang="fr">Non, je ne vois plus William.</span>
+          </div>
+        </div>
+
+        <div class="fg-question">
+          <span class="fg-fr-line" lang="fr">
+            Tu fais quelque chose ce soir ?
+          </span>
+          <div class="fg-answer">
+            <span class="fg-fr" lang="fr">Non, je ne fais rien ce soir.</span>
+          </div>
+        </div>
+
+        <div class="fg-question">
+          <span class="fg-fr-line" lang="fr">
+            Tu attends quelqu’un ?
+          </span>
+          <div class="fg-answer">
+            <span class="fg-fr" lang="fr">Non, je n’attends personne.</span>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <details class="fg-exercise">
+      <summary>تمرین ۲ — Les faux jumeaux</summary>
+      <div class="fg-exercise-body">
+        <p>
+          هدف تمرین تبدیل ویژگی‌های مثبت
+          <span class="fg-fr" lang="fr">Pierre</span>
+          به ویژگی‌های منفی
+          <span class="fg-fr" lang="fr">Paul</span>
+          است.
+        </p>
+
+        <ol>
+          <li>
+            <span class="fg-fr-line" lang="fr">Paul n’est jamais content.</span>
+          </li>
+          <li>
+            <span class="fg-fr-line" lang="fr">Paul n’aime personne.</span>
+          </li>
+          <li>
+            <span class="fg-fr-line" lang="fr">Paul ne sourit jamais.</span>
+          </li>
+          <li>
+            <span class="fg-fr-line" lang="fr">Paul n’a aucun ami.</span>
+          </li>
+          <li>
+            <span class="fg-fr-line" lang="fr">Paul n’accepte jamais rien.</span>
+          </li>
+          <li>
+            <span class="fg-fr-line" lang="fr">Paul ne croit plus au Père Noël.</span>
+          </li>
+        </ol>
+
+        <div class="fg-tip">
+          <span class="fg-label">تبدیل‌های مهم این تمرین</span>
+          <span class="fg-rule-chip">tout le monde → personne</span>
+          <span class="fg-rule-chip">tout le temps → jamais</span>
+          <span class="fg-rule-chip">beaucoup d’amis → aucun ami</span>
+          <span class="fg-rule-chip">toujours tout → jamais rien</span>
+          <span class="fg-rule-chip">encore → plus</span>
+        </div>
+      </div>
+    </details>
+
+    <details class="fg-exercise">
+      <summary>تمرین ۳ — Répondez à la forme négative</summary>
+      <div class="fg-exercise-body">
+
+        <div class="fg-question">
+          <span class="fg-fr-line" lang="fr">
+            Vous fumez parfois le cigare ?
+          </span>
+          <div class="fg-answer">
+            <span class="fg-fr" lang="fr">Non, je ne fume jamais le cigare.</span>
+          </div>
+        </div>
+
+        <div class="fg-question">
+          <span class="fg-fr-line" lang="fr">
+            Vous allez quelquefois dans des « rave-parties » ?
+          </span>
+          <div class="fg-answer">
+            <span class="fg-fr" lang="fr">
+              Non, je ne vais jamais dans des rave-parties.
+            </span>
+          </div>
+        </div>
+
+        <div class="fg-question">
+          <span class="fg-fr-line" lang="fr">
+            Vous habitez encore chez vos parents ?
+          </span>
+          <div class="fg-answer">
+            <span class="fg-fr" lang="fr">
+              Non, je n’habite plus chez mes parents.
+            </span>
+          </div>
+        </div>
+
+        <div class="fg-question">
+          <span class="fg-fr-line" lang="fr">
+            Vous êtes toujours débutant complet ?
+          </span>
+          <div class="fg-answer">
+            <span class="fg-fr" lang="fr">
+              Non, je ne suis plus débutant complet.
+            </span>
+          </div>
+
+          <div class="fg-note">
+            <span class="fg-label">نکته</span>
+            اینجا نیز
+            <span class="fg-fr" lang="fr">toujours</span>
+            به معنی «هنوز» است.
+          </div>
+        </div>
+
+        <div class="fg-question">
+          <span class="fg-fr-line" lang="fr">
+            Vous parlez déjà français couramment ?
+          </span>
+          <div class="fg-answer">
+            <span class="fg-fr" lang="fr">
+              Non, je ne parle pas encore français couramment.
+            </span>
+          </div>
+
+          <div class="fg-warning">
+            <span class="fg-label">چرا pas encore؟</span>
+            چون منظور این است که زبان‌آموز هنوز روان صحبت نمی‌کند، اما انتظار دارد
+            در آینده به این سطح برسد.
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <details class="fg-exercise">
+      <summary>تمرین ۴ — تبدیل متن به شکل منفی</summary>
+      <div class="fg-exercise-body">
+        <div class="fg-answer">
+          <div class="fg-fr-line" lang="fr">
+            Ça y est ! Je suis en vacances ! Ce soir, je ne rentre pas chez moi.
+            Je ne prépare rien pour dîner. Personne ne me téléphone. Rien ne brûle
+            dans la cuisine. Je ne m’énerve pas. Je ne suis pas fatiguée.
+            Je n’ai pas mal à la tête. Je ne me couche pas tard.
+            Personne ne me dérange. Je n’ai rien à faire. Je n’ai aucun souci.
+          </div>
+        </div>
+
+        <div class="fg-tip">
+          <span class="fg-label">تبدیل‌های کلیدی</span>
+          <span class="fg-rule-chip">quelque chose → rien</span>
+          <span class="fg-rule-chip">quelqu’un → personne</span>
+          <span class="fg-rule-chip">tout le monde → personne</span>
+          <span class="fg-rule-chip">mille soucis → aucun souci</span>
+        </div>
+
+        <div class="fg-note">
+          <span class="fg-label">تطابق جنسیتی</span>
+          در متن، گوینده مؤنث است:
+          <span class="fg-fr" lang="fr">fatiguée</span>.
+          برای گوینده مذکر:
+          <span class="fg-fr" lang="fr">fatigué</span>.
+        </div>
+      </div>
+    </details>
+
+    <details class="fg-exercise">
+      <summary>تمرین ۵ — پاسخ مثبت یا منفی</summary>
+      <div class="fg-exercise-body">
+        <p>
+          این تمرین پاسخ ثابت ندارد و باید بر اساس موقعیت واقعی پاسخ داده شود.
+        </p>
+
+        <div class="fg-question">
+          <span class="fg-fr-line" lang="fr">Il y a quelqu’un devant vous ?</span>
+          <span class="fg-fr-line" lang="fr">Oui, il y a quelqu’un devant moi.</span>
+          <span class="fg-fr-line" lang="fr">Non, il n’y a personne devant moi.</span>
+        </div>
+
+        <div class="fg-question">
+          <span class="fg-fr-line" lang="fr">Il y a quelque chose dans le tiroir ?</span>
+          <span class="fg-fr-line" lang="fr">Oui, il y a quelque chose dans le tiroir.</span>
+          <span class="fg-fr-line" lang="fr">Non, il n’y a rien dans le tiroir.</span>
+        </div>
+
+        <div class="fg-question">
+          <span class="fg-fr-line" lang="fr">Il y a quelqu’un dans le couloir ?</span>
+          <span class="fg-fr-line" lang="fr">Oui, il y a quelqu’un dans le couloir.</span>
+          <span class="fg-fr-line" lang="fr">Non, il n’y a personne dans le couloir.</span>
+        </div>
+
+        <div class="fg-question">
+          <span class="fg-fr-line" lang="fr">Il y a quelque chose sur la table ?</span>
+          <span class="fg-fr-line" lang="fr">Oui, il y a quelque chose sur la table.</span>
+          <span class="fg-fr-line" lang="fr">Non, il n’y a rien sur la table.</span>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <section class="fg-section" id="fg-exercises-155">
+    <h2 class="fg-section-title">۱۶. تمرین‌های صفحهٔ ۱۵۵</h2>
+
+    <details class="fg-exercise" open>
+      <summary>تمرین ۱ — ne… ni… ni</summary>
+      <div class="fg-exercise-body">
+
+        <div class="fg-question">
+          <span class="fg-fr-line" lang="fr">
+            Vous travaillez le samedi et le dimanche ?
+          </span>
+          <div class="fg-answer">
+            <span class="fg-fr" lang="fr">
+              Je ne travaille ni le samedi ni le dimanche.
+            </span>
+          </div>
+        </div>
+
+        <div class="fg-question">
+          <span class="fg-fr-line" lang="fr">
+            Vous connaissez Simon et Gérald Bruni ?
+          </span>
+          <div class="fg-answer">
+            <span class="fg-fr" lang="fr">
+              Je ne connais ni Simon ni Gérald Bruni.
+            </span>
+          </div>
+        </div>
+
+        <div class="fg-question">
+          <span class="fg-fr-line" lang="fr">
+            Vous ressemblez à votre père ou à votre mère ?
+          </span>
+          <div class="fg-answer">
+            <span class="fg-fr" lang="fr">
+              Je ne ressemble ni à mon père ni à ma mère.
+            </span>
+          </div>
+
+          <div class="fg-note">
+            <span class="fg-label">نکته</span>
+            چون
+            <span class="fg-fr" lang="fr">ressembler</span>
+            با
+            <span class="fg-fr" lang="fr">à</span>
+            می‌آید، حرف اضافه برای هر دو بخش تکرار می‌شود.
+          </div>
+        </div>
+
+        <div class="fg-question">
+          <span class="fg-fr-line" lang="fr">
+            Vous buvez du thé ou du café, le matin ?
+          </span>
+          <div class="fg-answer">
+            <span class="fg-fr" lang="fr">
+              Je ne bois ni thé ni café, le matin.
+            </span>
+          </div>
+
+          <div class="fg-tip">
+            <span class="fg-label">نکته</span>
+            <span class="fg-fr" lang="fr">du</span>
+            حذف می‌شود، چون بعد از
+            <span class="fg-fr" lang="fr">ni</span>
+            article partitif معمولاً حذف می‌شود.
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <details class="fg-exercise">
+      <summary>تمرین ۲ — Avec ou sans</summary>
+      <div class="fg-exercise-body">
+
+        <ol>
+          <li>
+            <span class="fg-fr-line" lang="fr">Sans papiers, pas de travail.</span>
+          </li>
+          <li>
+            <span class="fg-fr-line" lang="fr">Sans travail, pas d’argent.</span>
+          </li>
+          <li>
+            <span class="fg-fr-line" lang="fr">Sans argent, pas de logement.</span>
+          </li>
+          <li>
+            <span class="fg-fr-line" lang="fr">Sans logement, pas de papiers.</span>
+          </li>
+        </ol>
+
+        <div class="fg-answer">
+          <span class="fg-fr" lang="fr">
+            Il est difficile de vivre quand on n’a ni papiers, ni travail,
+            ni argent, ni logement.
+          </span>
+        </div>
+
+        <div class="fg-note">
+          <span class="fg-label">نکته</span>
+          بعد از
+          <span class="fg-fr" lang="fr">ni</span>
+          articleهای
+          <span class="fg-fr" lang="fr">des / un / de l’ / un</span>
+          در این ساختار حذف شده‌اند.
+        </div>
+      </div>
+    </details>
+
+    <details class="fg-exercise">
+      <summary>تمرین ۳ — ne… que</summary>
+      <div class="fg-exercise-body">
+
+        <div class="fg-question">
+          <span class="fg-fr-line" lang="fr">
+            Vous travaillez seulement douze heures par semaine ?
+          </span>
+          <div class="fg-answer">
+            <span class="fg-fr" lang="fr">
+              Oui, je ne travaille que douze heures par semaine.
+            </span>
+          </div>
+        </div>
+
+        <div class="fg-question">
+          <span class="fg-fr-line" lang="fr">
+            Vous commencez seulement à onze heures ?
+          </span>
+          <div class="fg-answer">
+            <span class="fg-fr" lang="fr">
+              Oui, je ne commence qu’à onze heures.
+            </span>
+          </div>
+        </div>
+
+        <div class="fg-question">
+          <span class="fg-fr-line" lang="fr">
+            Vous avez seulement deux rendez-vous, lundi ?
+          </span>
+          <div class="fg-answer">
+            <span class="fg-fr" lang="fr">
+              Oui, je n’ai que deux rendez-vous lundi.
+            </span>
+          </div>
+        </div>
+
+        <div class="fg-question">
+          <span class="fg-fr-line" lang="fr">
+            Vous mangez seulement un sandwich à midi ?
+          </span>
+          <div class="fg-answer">
+            <span class="fg-fr" lang="fr">
+              Oui, je ne mange qu’un sandwich à midi.
+            </span>
+          </div>
+        </div>
+
+        <div class="fg-question">
+          <span class="fg-fr-line" lang="fr">
+            Vous buvez seulement un café par jour ?
+          </span>
+          <div class="fg-answer">
+            <span class="fg-fr" lang="fr">
+              Oui, je ne bois qu’un café par jour.
+            </span>
+          </div>
+        </div>
+
+        <div class="fg-warning">
+          <span class="fg-label">نکتهٔ کلیدی</span>
+          <span class="fg-fr" lang="fr">un</span>
+          بعد از
+          <span class="fg-fr" lang="fr">que</span>
+          حفظ می‌شود، زیرا
+          <span class="fg-fr" lang="fr">ne… que</span>
+          منفی واقعی نیست.
+        </div>
+      </div>
+    </details>
+
+    <details class="fg-exercise">
+      <summary>تمرین ۴ — انتخاب ساختار مناسب</summary>
+      <div class="fg-exercise-body">
+
+        <div class="fg-question">
+          <strong>۱.</strong>
+          <div class="fg-answer">
+            <span class="fg-fr" lang="fr">
+              À cause de la grève des transports, nous ne partons ni mardi
+              ni mercredi, nous partons seulement jeudi.
+            </span>
+          </div>
+        </div>
+
+        <div class="fg-question">
+          <strong>۲.</strong>
+          <div class="fg-answer">
+            <span class="fg-fr" lang="fr">
+              Je ne peux pas aller à la piscine : je n’ai pas de maillot !
+            </span>
+          </div>
+
+          <div class="fg-note">
+            <span class="fg-label">قاعده</span>
+            <span class="fg-fr" lang="fr">un maillot</span>
+            در نفی معمولی به
+            <span class="fg-fr" lang="fr">de maillot</span>
+            تبدیل می‌شود.
+          </div>
+        </div>
+
+        <div class="fg-question">
+          <strong>۳.</strong>
+          <div class="fg-answer">
+            <span class="fg-fr" lang="fr">
+              L’eau est froide : elle ne fait que dix-huit degrés !
+            </span>
+          </div>
+        </div>
+
+        <div class="fg-question">
+          <strong>۴.</strong>
+          <div class="fg-answer">
+            <span class="fg-fr" lang="fr">
+              Ma cousine est strictement végétarienne, elle ne mange ni œufs
+              ni poisson : elle ne mange que des légumes.
+            </span>
+          </div>
+
+          <div class="fg-tip">
+            <span class="fg-label">دو ساختار در یک جمله</span>
+            <span class="fg-fr" lang="fr">ne… ni… ni</span>
+            برای حذف دو گروه غذایی و
+            <span class="fg-fr" lang="fr">ne… que</span>
+            برای بیان «فقط سبزیجات».
+          </div>
+        </div>
+
+        <div class="fg-question">
+          <strong>۵.</strong>
+          <div class="fg-answer">
+            <span class="fg-fr" lang="fr">
+              Ce pain est délicieux pour le petit déjeuner,
+              même sans miel ni confiture.
+            </span>
+          </div>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <section class="fg-section" id="fg-summary">
+    <h2 class="fg-section-title">۱۷. خلاصهٔ نهایی درس</h2>
+
+    <div class="fg-card">
+      <div class="fg-table-scroll">
+        <table class="fg-table">
+          <thead>
+            <tr>
+              <th>ساختار</th>
+              <th>معنی</th>
+              <th>نقطهٔ مقابل / مفهوم مرتبط</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="fg-cell-fr" lang="fr">ne… jamais</td>
+              <td>هرگز</td>
+              <td class="fg-cell-fr" lang="fr">toujours / parfois</td>
+            </tr>
+            <tr>
+              <td class="fg-cell-fr" lang="fr">ne… plus</td>
+              <td>دیگر نه</td>
+              <td class="fg-cell-fr" lang="fr">encore / toujours = encore</td>
+            </tr>
+            <tr>
+              <td class="fg-cell-fr" lang="fr">ne… pas encore</td>
+              <td>هنوز نه</td>
+              <td class="fg-cell-fr" lang="fr">déjà</td>
+            </tr>
+            <tr>
+              <td class="fg-cell-fr" lang="fr">ne… aucun(e)</td>
+              <td>هیچ / حتی یک مورد هم نه</td>
+              <td>یک یا چند مورد</td>
+            </tr>
+            <tr>
+              <td class="fg-cell-fr" lang="fr">ne… rien</td>
+              <td>هیچ‌چیز</td>
+              <td class="fg-cell-fr" lang="fr">quelque chose</td>
+            </tr>
+            <tr>
+              <td class="fg-cell-fr" lang="fr">ne… personne</td>
+              <td>هیچ‌کس</td>
+              <td class="fg-cell-fr" lang="fr">quelqu’un</td>
+            </tr>
+            <tr>
+              <td class="fg-cell-fr" lang="fr">ne… ni… ni</td>
+              <td>نه… نه…</td>
+              <td class="fg-cell-fr" lang="fr">et / ou</td>
+            </tr>
+            <tr>
+              <td class="fg-cell-fr" lang="fr">sans</td>
+              <td>بدون</td>
+              <td class="fg-cell-fr" lang="fr">avec</td>
+            </tr>
+            <tr>
+              <td class="fg-cell-fr" lang="fr">ne… que</td>
+              <td>فقط</td>
+              <td class="fg-cell-fr" lang="fr">seulement</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>چهار اشتباه بسیار رایج</h3>
+
+      <div class="fg-danger">
+        <div>
+          <span class="fg-wrong">✗</span>
+          <span class="fg-fr" lang="fr">Je ne connais pas personne.</span>
+        </div>
+        <div>
+          <span class="fg-correct">✓</span>
+          <span class="fg-fr" lang="fr">Je ne connais personne.</span>
+        </div>
+      </div>
+
+      <div class="fg-danger">
+        <div>
+          <span class="fg-wrong">✗</span>
+          <span class="fg-fr" lang="fr">Rien ne marche pas.</span>
+        </div>
+        <div>
+          <span class="fg-correct">✓</span>
+          <span class="fg-fr" lang="fr">Rien ne marche.</span>
+        </div>
+      </div>
+
+      <div class="fg-danger">
+        <div>
+          <span class="fg-wrong">✗</span>
+          <span class="fg-fr" lang="fr">Je ne bois pas ni thé ni café.</span>
+        </div>
+        <div>
+          <span class="fg-correct">✓</span>
+          <span class="fg-fr" lang="fr">Je ne bois ni thé ni café.</span>
+        </div>
+      </div>
+
+      <div class="fg-danger">
+        <div>
+          <span class="fg-wrong">✗</span>
+          <span class="fg-fr" lang="fr">Je ne mange que de légumes.</span>
+        </div>
+        <div>
+          <span class="fg-correct">✓</span>
+          <span class="fg-fr" lang="fr">Je ne mange que des légumes.</span>
+        </div>
+      </div>
+
+      <div class="fg-tip">
+        <span class="fg-label">سه تفاوت زمانی که باید کاملاً مسلط باشید</span>
+
+        <ul>
+          <li>
+            <span class="fg-fr" lang="fr">pas encore</span>
+            = هنوز اتفاق نیفتاده، ولی انتظار می‌رود بعداً رخ دهد.
+          </li>
+          <li>
+            <span class="fg-fr" lang="fr">plus</span>
+            = قبلاً وجود داشته یا انجام می‌شده، ولی اکنون دیگر نه.
+          </li>
+          <li>
+            <span class="fg-fr" lang="fr">jamais</span>
+            = در هیچ زمانی / هرگز.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <aside class="fg-source">
+    <strong>منبع درس:</strong>
+    درس ۳۴
+    <span class="fg-fr" lang="fr">« La négation (2) »</span>
+    از
+    <span class="fg-fr" lang="fr">
+      Grammaire Progressive du Français — Niveau intermédiaire
+    </span>،
+    صفحات چاپی ۱۵۲ تا ۱۵۵.
+  </aside>
+</div>

@@ -1,0 +1,210 @@
+<div class="fg-french-grammar-wrapper" dir="rtl" lang="fa">
+<style scoped>
+.fg-french-grammar-wrapper{--fg-navy:#17365d;--fg-blue:#1f5f99;--fg-blue-soft:#eaf3fb;--fg-green:#18794e;--fg-green-soft:#edf8f2;--fg-red:#b42318;--fg-red-soft:#fff1f0;--fg-orange:#b54708;--fg-orange-soft:#fff5eb;--fg-purple:#6941c6;--fg-purple-soft:#f4f0ff;--fg-ink:#17212b;--fg-muted:#5f6b76;--fg-border:#d8e1ea;--fg-surface:#fff;--fg-alt:#f8fafc;color:var(--fg-ink);font-family:"Vazirmatn","IRANSansX",Tahoma,Arial,sans-serif;line-height:1.9;width:100%;max-width:1180px;margin:0 auto;padding:12px;direction:rtl;text-align:right}
+.fg-french-grammar-wrapper *,.fg-french-grammar-wrapper *:before,.fg-french-grammar-wrapper *:after{box-sizing:border-box}
+.fg-french-grammar-wrapper .fg-fr,.fg-french-grammar-wrapper [lang=fr]{direction:ltr;text-align:left;unicode-bidi:isolate;font-family:Inter,"Segoe UI",Arial,sans-serif}
+.fg-french-grammar-wrapper .fg-fr-inline{direction:ltr;unicode-bidi:isolate;display:inline-block;font-family:Inter,"Segoe UI",Arial,sans-serif}
+.fg-french-grammar-wrapper .fg-hero{position:relative;overflow:hidden;border-radius:24px;padding:34px 30px;margin-bottom:22px;color:#fff;background:radial-gradient(circle at 8% 20%,rgba(255,255,255,.16),transparent 26%),linear-gradient(135deg,#102d50 0%,#1d5d94 58%,#2f75b5 100%);box-shadow:0 10px 30px rgba(22,52,92,.08)}
+.fg-french-grammar-wrapper .fg-hero:after{content:"Y";position:absolute;left:28px;top:-28px;font:800 180px/1 Inter,Arial,sans-serif;color:rgba(255,255,255,.08);pointer-events:none}
+.fg-french-grammar-wrapper .fg-kicker{display:inline-flex;align-items:center;gap:8px;margin-bottom:8px;padding:5px 11px;border-radius:999px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);font-size:.86rem;font-weight:700}
+.fg-french-grammar-wrapper .fg-hero h1{margin:0 0 8px;font-size:clamp(1.65rem,4vw,2.55rem);line-height:1.35;color:#fff}
+.fg-french-grammar-wrapper .fg-hero p{margin:0;max-width:880px;color:rgba(255,255,255,.92)}
+.fg-french-grammar-wrapper .fg-meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.fg-french-grammar-wrapper .fg-meta span{display:inline-flex;padding:6px 10px;border-radius:10px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);font-size:.86rem}
+.fg-french-grammar-wrapper .fg-toc,.fg-french-grammar-wrapper .fg-card,.fg-french-grammar-wrapper .fg-exercise,.fg-french-grammar-wrapper .fg-summary{background:var(--fg-surface);border:1px solid var(--fg-border);border-radius:18px;box-shadow:0 6px 20px rgba(22,52,92,.05)}
+.fg-french-grammar-wrapper .fg-toc{padding:18px;margin-bottom:22px}
+.fg-french-grammar-wrapper .fg-toc strong,.fg-french-grammar-wrapper h2,.fg-french-grammar-wrapper h3{color:var(--fg-navy)}
+.fg-french-grammar-wrapper .fg-toc-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.fg-french-grammar-wrapper .fg-toc a{text-decoration:none;color:var(--fg-blue);background:var(--fg-blue-soft);border:1px solid #cfe2f5;border-radius:999px;padding:7px 12px;font-size:.9rem}
+.fg-french-grammar-wrapper .fg-section{margin:22px 0;scroll-margin-top:20px}
+.fg-french-grammar-wrapper .fg-section-title{display:flex;align-items:center;gap:10px;margin:0 0 13px;font-size:clamp(1.22rem,3vw,1.65rem)}
+.fg-french-grammar-wrapper .fg-num{min-width:34px;height:34px;display:inline-flex;align-items:center;justify-content:center;border-radius:11px;background:var(--fg-navy);color:#fff;font:700 .92rem/1 Inter,Arial,sans-serif}
+.fg-french-grammar-wrapper .fg-card{padding:20px;margin:12px 0}
+.fg-french-grammar-wrapper .fg-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.fg-french-grammar-wrapper .fg-grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.fg-french-grammar-wrapper .fg-mini{border:1px solid var(--fg-border);border-radius:15px;padding:15px;background:var(--fg-alt)}
+.fg-french-grammar-wrapper .fg-callout{border-radius:15px;padding:15px 16px;margin:13px 0;border:1px solid;border-right-width:5px}
+.fg-french-grammar-wrapper .fg-info{background:var(--fg-blue-soft);border-color:#9ec7ec;color:#163d64}
+.fg-french-grammar-wrapper .fg-ok{background:var(--fg-green-soft);border-color:#8fd3b2;color:#145c3e}
+.fg-french-grammar-wrapper .fg-warn{background:var(--fg-orange-soft);border-color:#f3bb7d;color:#7a3908}
+.fg-french-grammar-wrapper .fg-danger{background:var(--fg-red-soft);border-color:#f0a19b;color:#8f1d14}
+.fg-french-grammar-wrapper .fg-purple{background:var(--fg-purple-soft);border-color:#c8b5f4;color:#51329a}
+.fg-french-grammar-wrapper .fg-example{margin:11px 0;padding:13px 15px;border-radius:13px;border:1px solid #b9dec9;background:#f6fcf8}
+.fg-french-grammar-wrapper .fg-example .fg-fr{display:block;font-size:1.01rem;color:#0f5e3b;font-weight:650;margin:1px 0}
+.fg-french-grammar-wrapper .fg-note{display:block;color:var(--fg-muted);font-size:.92rem;margin-top:5px}
+.fg-french-grammar-wrapper .fg-badgood{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.fg-french-grammar-wrapper .fg-bad,.fg-french-grammar-wrapper .fg-good{padding:12px 14px;border-radius:13px;border:1px solid}
+.fg-french-grammar-wrapper .fg-bad{background:var(--fg-red-soft);border-color:#efaaa4}.fg-french-grammar-wrapper .fg-good{background:var(--fg-green-soft);border-color:#9ed7ba}
+.fg-french-grammar-wrapper .fg-bad .fg-fr,.fg-french-grammar-wrapper .fg-good .fg-fr{display:block;font-weight:700}
+.fg-french-grammar-wrapper .fg-table-wrap{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;margin:13px 0;border-radius:14px;border:1px solid var(--fg-border)}
+.fg-french-grammar-wrapper table.fg-table{width:100%;min-width:650px;border-collapse:collapse;background:#fff;font-size:.94rem}
+.fg-french-grammar-wrapper .fg-table th,.fg-french-grammar-wrapper .fg-table td{border:1px solid var(--fg-border);padding:11px 12px;vertical-align:top}
+.fg-french-grammar-wrapper .fg-table th{background:var(--fg-navy);color:#fff;font-weight:700;white-space:nowrap}
+.fg-french-grammar-wrapper .fg-table tbody tr:nth-child(even) td{background:#f7fafc}
+.fg-french-grammar-wrapper .fg-table .fg-fr{display:block}
+.fg-french-grammar-wrapper .fg-rule{direction:ltr;text-align:center;unicode-bidi:isolate;font-family:Inter,"Segoe UI",Arial,sans-serif;background:#102d50;color:#fff;border-radius:14px;padding:14px 16px;margin:13px 0;font-weight:750;overflow-wrap:anywhere}
+.fg-french-grammar-wrapper .fg-chip{display:inline-flex;padding:3px 8px;border-radius:999px;margin:2px 3px;font-size:.84rem;background:var(--fg-blue-soft);color:var(--fg-blue);border:1px solid #cfe2f5}
+.fg-french-grammar-wrapper .fg-exercise{margin:15px 0;overflow:hidden}
+.fg-french-grammar-wrapper .fg-ex-head{padding:17px 18px;background:linear-gradient(90deg,#f3f7fb,#fff);border-bottom:1px solid var(--fg-border)}
+.fg-french-grammar-wrapper .fg-ex-head h3{margin:0 0 4px}.fg-french-grammar-wrapper .fg-ex-body{padding:18px}
+.fg-french-grammar-wrapper details.fg-answer{border:1px solid #cfe2f5;border-radius:13px;background:#fbfdff;margin:10px 0;overflow:hidden}
+.fg-french-grammar-wrapper details.fg-answer summary{cursor:pointer;padding:12px 14px;font-weight:750;color:var(--fg-blue);background:var(--fg-blue-soft);list-style:none}
+.fg-french-grammar-wrapper details.fg-answer summary::-webkit-details-marker{display:none}
+.fg-french-grammar-wrapper details.fg-answer summary:before{content:"＋";display:inline-block;margin-left:7px}.fg-french-grammar-wrapper details.fg-answer[open] summary:before{content:"−"}
+.fg-french-grammar-wrapper .fg-answer-content{padding:13px 14px 15px}
+.fg-french-grammar-wrapper .fg-question{border-right:4px solid var(--fg-blue);background:#f8fbfe;border-radius:10px;padding:11px 13px;margin:10px 0}
+.fg-french-grammar-wrapper .fg-question .fg-fr{display:block;font-weight:700;color:#17365d}
+.fg-french-grammar-wrapper .fg-summary{border:2px solid var(--fg-navy);padding:20px;margin-top:22px}
+.fg-french-grammar-wrapper .fg-source{color:var(--fg-muted);font-size:.86rem;border-top:1px dashed var(--fg-border);margin-top:18px;padding-top:12px}
+@media(max-width:780px){.fg-french-grammar-wrapper{padding:8px}.fg-french-grammar-wrapper .fg-hero{padding:25px 18px;border-radius:18px}.fg-french-grammar-wrapper .fg-hero:after{font-size:130px;left:8px}.fg-french-grammar-wrapper .fg-grid,.fg-french-grammar-wrapper .fg-grid3,.fg-french-grammar-wrapper .fg-badgood{grid-template-columns:1fr}.fg-french-grammar-wrapper .fg-card,.fg-french-grammar-wrapper .fg-ex-body{padding:15px}.fg-french-grammar-wrapper table.fg-table{min-width:590px;font-size:.9rem}}
+@media(max-width:480px){.fg-french-grammar-wrapper .fg-toc a{width:100%;border-radius:10px}.fg-french-grammar-wrapper .fg-meta{display:grid;grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.fg-french-grammar-wrapper *{transition:none!important}}
+</style>
+
+<section class="fg-hero" aria-labelledby="fg-l24-title">
+  <div class="fg-kicker">درس ۲۴ · ضمیر قیدی</div>
+  <h1 id="fg-l24-title"><span class="fg-fr-inline" lang="fr">LE PRONOM « Y »</span></h1>
+  <p>آموزش کامل ضمیر <span class="fg-fr-inline" lang="fr">y</span>: جایگزینی مکان، <span class="fg-fr-inline" lang="fr">à + chose</span>، تفاوت با ضمایر شخصی، جایگاه در جمله، استثناها، عبارت‌های ثابت و تمرین‌های درس.</p>
+  <div class="fg-meta"><span>📘 صفحات چاپی ۱۰۴–۱۰۵</span><span>🧭 محور: Pronoms et référence</span><span>🧩 قواعد + نکات ظریف + تمرین‌ها</span></div>
+</section>
+
+<nav class="fg-toc" aria-label="فهرست درس"><strong>فهرست سریع</strong><div class="fg-toc-links">
+<a href="#fg-meaning">کاربردهای اصلی</a><a href="#fg-place">مکان</a><a href="#fg-a">à + چیز</a><a href="#fg-person">شخص بعد از à</a><a href="#fg-position">جایگاه y</a><a href="#fg-imperative">امر</a><a href="#fg-fixed">عبارت‌های ثابت</a><a href="#fg-compare">مقایسه</a><a href="#fg-errors">خطاها</a><a href="#fg-exercises">تمرین‌ها</a>
+</div></nav>
+
+<section class="fg-section" id="fg-meaning"><h2 class="fg-section-title"><span class="fg-num">1</span> ضمیر <span class="fg-fr-inline" lang="fr">y</span> چیست؟</h2><div class="fg-card">
+<p><span class="fg-fr-inline" lang="fr">y</span> برای جلوگیری از تکرار یک متمم به‌کار می‌رود و در این درس دو کاربرد اصلی دارد.</p>
+<div class="fg-grid"><div class="fg-mini"><h3>جایگزینی مکان</h3><div class="fg-example"><span class="fg-fr" lang="fr">Je vais à Lyon. → J’y vais.</span><span class="fg-note">به لیون می‌روم. → به آنجا می‌روم.</span></div></div>
+<div class="fg-mini"><h3><span class="fg-fr-inline" lang="fr">à + chose</span></h3><div class="fg-example"><span class="fg-fr" lang="fr">Je pense à mon projet. → J’y pense.</span><span class="fg-note">به پروژه‌ام فکر می‌کنم. → به آن فکر می‌کنم.</span></div></div></div>
+<div class="fg-callout fg-info"><strong>تلفظ:</strong> <span class="fg-fr-inline" lang="fr">y</span> تقریباً /i/ تلفظ می‌شود: <span class="fg-fr-inline" lang="fr">J’y vais — Il y pense — Nous y sommes.</span></div>
+</div></section>
+
+<section class="fg-section" id="fg-place"><h2 class="fg-section-title"><span class="fg-num">2</span> کاربرد اول: <span class="fg-fr-inline" lang="fr">y</span> به‌جای مکان</h2><div class="fg-card">
+<p>یک مکان می‌تواند با <span class="fg-chip fg-fr-inline" lang="fr">à</span><span class="fg-chip fg-fr-inline" lang="fr">au</span><span class="fg-chip fg-fr-inline" lang="fr">aux</span><span class="fg-chip fg-fr-inline" lang="fr">en</span><span class="fg-chip fg-fr-inline" lang="fr">dans</span><span class="fg-chip fg-fr-inline" lang="fr">sur</span><span class="fg-chip fg-fr-inline" lang="fr">sous</span><span class="fg-chip fg-fr-inline" lang="fr">chez</span> معرفی شود و سپس با <span class="fg-fr-inline" lang="fr">y</span> جایگزین شود.</p>
+<div class="fg-example"><span class="fg-fr" lang="fr">Paul va à Lyon. → Il y va en voiture.</span></div>
+<div class="fg-example"><span class="fg-fr" lang="fr">Anne habite à Athènes. → Elle y habite depuis un an.</span></div>
+<div class="fg-example"><span class="fg-fr" lang="fr">Je suis chez moi. → J’y suis jusqu’à six heures.</span></div>
+<div class="fg-callout fg-warn"><strong>نکته:</strong> در <span class="fg-fr-inline" lang="fr">Je vais chez le médecin → J’y vais</span>، ضمیر <span class="fg-fr-inline" lang="fr">y</span> جای خودِ شخص را نگرفته؛ کل عبارت مکانی <span class="fg-fr-inline" lang="fr">chez le médecin</span> را گرفته است.</div>
+<div class="fg-callout fg-info"><strong>فقط حرکت نیست:</strong><br><span class="fg-fr-inline" lang="fr">J’y vais.</span> به آنجا می‌روم. · <span class="fg-fr-inline" lang="fr">J’y suis.</span> آنجا هستم. · <span class="fg-fr-inline" lang="fr">J’y travaille.</span> آنجا کار می‌کنم. · <span class="fg-fr-inline" lang="fr">J’y reste.</span> آنجا می‌مانم.</div>
+<div class="fg-callout fg-purple"><strong>زمان و وسیله حذف نمی‌شوند:</strong><br><span class="fg-fr-inline" lang="fr">Je vais à la piscine à 16 heures. → J’y vais à 16 heures.</span><br><span class="fg-fr-inline" lang="fr">Je vais à Rome en avion. → J’y vais en avion.</span></div>
+</div></section>
+
+<section class="fg-section" id="fg-a"><h2 class="fg-section-title"><span class="fg-num">3</span> کاربرد دوم: <span class="fg-fr-inline" lang="fr">y = à + chose</span></h2><div class="fg-card">
+<p>اگر یک فعل یا عبارت با <span class="fg-fr-inline" lang="fr">à</span> به چیز، موضوع، مفهوم یا فعالیت متصل شود، می‌توان متمم را با <span class="fg-fr-inline" lang="fr">y</span> جایگزین کرد.</p>
+<div class="fg-grid"><div class="fg-example"><span class="fg-fr" lang="fr">Je pense à mon pays. → J’y pense.</span></div><div class="fg-example"><span class="fg-fr" lang="fr">Je participe à ce projet. → J’y participe.</span></div><div class="fg-example"><span class="fg-fr" lang="fr">Je m’intéresse à la politique. → Je m’y intéresse.</span></div><div class="fg-example"><span class="fg-fr" lang="fr">Nous répondons à la question. → Nous y répondons.</span></div></div>
+<div class="fg-table-wrap"><table class="fg-table"><thead><tr><th>ساختار</th><th>با y</th><th>معنا</th></tr></thead><tbody>
+<tr><td><span class="fg-fr" lang="fr">penser à quelque chose</span></td><td><span class="fg-fr" lang="fr">y penser</span></td><td>فکر کردن به چیزی</td></tr>
+<tr><td><span class="fg-fr" lang="fr">s’intéresser à quelque chose</span></td><td><span class="fg-fr" lang="fr">s’y intéresser</span></td><td>علاقه‌مند بودن</td></tr>
+<tr><td><span class="fg-fr" lang="fr">participer à quelque chose</span></td><td><span class="fg-fr" lang="fr">y participer</span></td><td>شرکت کردن</td></tr>
+<tr><td><span class="fg-fr" lang="fr">réfléchir à quelque chose</span></td><td><span class="fg-fr" lang="fr">y réfléchir</span></td><td>تأمل کردن</td></tr>
+<tr><td><span class="fg-fr" lang="fr">croire à quelque chose</span></td><td><span class="fg-fr" lang="fr">y croire</span></td><td>باور داشتن</td></tr>
+<tr><td><span class="fg-fr" lang="fr">tenir à quelque chose</span></td><td><span class="fg-fr" lang="fr">y tenir</span></td><td>اهمیت قائل بودن</td></tr>
+<tr><td><span class="fg-fr" lang="fr">renoncer à quelque chose</span></td><td><span class="fg-fr" lang="fr">y renoncer</span></td><td>صرف‌نظر کردن</td></tr>
+<tr><td><span class="fg-fr" lang="fr">faire attention à quelque chose</span></td><td><span class="fg-fr" lang="fr">y faire attention</span></td><td>توجه کردن</td></tr>
+</tbody></table></div>
+<h3>با مصدر</h3><div class="fg-example"><span class="fg-fr" lang="fr">Je pense à partir. → J’y pense.</span></div><div class="fg-example"><span class="fg-fr" lang="fr">Il renonce à acheter cette voiture. → Il y renonce.</span></div><div class="fg-example"><span class="fg-fr" lang="fr">Elle s’habitue à travailler la nuit. → Elle s’y habitue.</span></div>
+</div></section>
+
+<section class="fg-section" id="fg-person"><h2 class="fg-section-title"><span class="fg-num">4</span> استثنای کلیدی: <span class="fg-fr-inline" lang="fr">à + personne</span></h2><div class="fg-card">
+<div class="fg-callout fg-danger"><strong>اصل مهم:</strong> اگر متمم واقعاً شخص باشد، معمولاً از <span class="fg-fr-inline" lang="fr">y</span> استفاده نمی‌کنیم.</div>
+<h3>با <span class="fg-fr-inline" lang="fr">penser à</span> و مشابه آن</h3><div class="fg-badgood"><div class="fg-bad"><span class="fg-fr" lang="fr">✗ Je pense à Paul. → J’y pense.</span></div><div class="fg-good"><span class="fg-fr" lang="fr">✓ Je pense à Paul. → Je pense à lui.</span></div></div>
+<div class="fg-example"><span class="fg-fr" lang="fr">Elle pense à ses parents. → Elle pense à eux.</span></div>
+<h3>افعال ارتباطی</h3><div class="fg-example"><span class="fg-fr" lang="fr">Je parle à Paul. → Je lui parle.</span></div><div class="fg-example"><span class="fg-fr" lang="fr">Je téléphone à Lucie. → Je lui téléphone.</span></div><div class="fg-example"><span class="fg-fr" lang="fr">Je parle à mes collègues. → Je leur parle.</span></div>
+<div class="fg-callout fg-warn"><strong>مقایسه:</strong><br><span class="fg-fr-inline" lang="fr">Je réponds à Paul. → Je lui réponds.</span><br><span class="fg-fr-inline" lang="fr">Je réponds à la question. → J’y réponds.</span></div>
+</div></section>
+
+<section class="fg-section" id="fg-position"><h2 class="fg-section-title"><span class="fg-num">5</span> جایگاه <span class="fg-fr-inline" lang="fr">y</span></h2><div class="fg-card">
+<h3>زمان ساده</h3><div class="fg-rule">Sujet + y + verbe</div><div class="fg-example"><span class="fg-fr" lang="fr">J’y vais. — Nous y pensons. — Elle s’y intéresse.</span></div>
+<h3>فعل انعکاسی</h3><div class="fg-rule">Sujet + me / te / se / nous / vous + y + verbe</div><div class="fg-example"><span class="fg-fr" lang="fr">Je m’y intéresse. — Tu t’y habitues. — Ils s’y connaissent.</span></div>
+<h3>منفی</h3><div class="fg-rule">ne + (pronom réfléchi) + y + verbe + pas / plus / jamais</div><div class="fg-example"><span class="fg-fr" lang="fr">Je n’y vais pas. — Il n’y pense plus. — Elle ne s’y intéresse jamais.</span></div>
+<h3>زمان مرکب</h3><div class="fg-rule">Sujet + y + auxiliaire + participe passé</div><div class="fg-example"><span class="fg-fr" lang="fr">J’y suis allé hier. — Elle y a participé. — Nous y avons pensé.</span></div>
+<div class="fg-callout fg-info"><strong>تطابق:</strong> خودِ <span class="fg-fr-inline" lang="fr">y</span> مفعول مستقیم نیست و تطابق ایجاد نمی‌کند: <span class="fg-fr-inline" lang="fr">Les solutions ? J’y ai pensé.</span> اما با <span class="fg-fr-inline" lang="fr">être</span> قاعدهٔ معمول فاعل برقرار است: <span class="fg-fr-inline" lang="fr">Marie y est allée.</span></div>
+<h3>مصدر</h3><div class="fg-rule">verbe conjugué + y + infinitif</div><div class="fg-example"><span class="fg-fr" lang="fr">Je veux y aller. — Nous devons y réfléchir. — Je ne veux pas y aller. — Je préfère ne pas y aller.</span></div>
+</div></section>
+
+<section class="fg-section" id="fg-imperative"><h2 class="fg-section-title"><span class="fg-num">6</span> حالت امری</h2><div class="fg-card">
+<h3>امر مثبت</h3><div class="fg-example"><span class="fg-fr" lang="fr">Allez-y ! — Pensez-y ! — Retournez-y !</span></div>
+<div class="fg-callout fg-warn"><strong>استثنای مشهور:</strong> <span class="fg-fr-inline" lang="fr">Va !</span> ولی <span class="fg-fr-inline" lang="fr">Vas-y !</span>. پیش از y یک <span class="fg-fr-inline" lang="fr">s</span> برای پیوستگی آوایی ظاهر می‌شود. نمونه: <span class="fg-fr-inline" lang="fr">Penses-y !</span></div>
+<h3>امر منفی</h3><div class="fg-example"><span class="fg-fr" lang="fr">N’y va pas ! — N’y pensez pas ! — Ne t’y intéresse pas !</span></div>
+</div></section>
+
+<section class="fg-section" id="fg-fixed"><h2 class="fg-section-title"><span class="fg-num">7</span> عبارت‌های ثابت با <span class="fg-fr-inline" lang="fr">y</span></h2>
+<div class="fg-grid"><div class="fg-mini"><h3><span class="fg-fr-inline" lang="fr">s’y connaître</span></h3><p>در موضوعی وارد بودن.</p><div class="fg-example"><span class="fg-fr" lang="fr">Je ne m’y connais pas en voitures.</span></div></div>
+<div class="fg-mini"><h3><span class="fg-fr-inline" lang="fr">n’y être pour rien</span></h3><p>تقصیری نداشتن.</p><div class="fg-example"><span class="fg-fr" lang="fr">Je n’y suis pour rien.</span></div></div>
+<div class="fg-mini"><h3><span class="fg-fr-inline" lang="fr">ne pas y manquer</span></h3><p>حتماً انجام دادن.</p><div class="fg-example"><span class="fg-fr" lang="fr">Je n’y manquerai pas !</span></div></div>
+<div class="fg-mini"><h3><span class="fg-fr-inline" lang="fr">Ça y est !</span></h3><p>تمام شد / بالاخره اتفاق افتاد.</p><div class="fg-example"><span class="fg-fr" lang="fr">Ça y est, c’est fini !</span></div></div></div>
+<div class="fg-card"><h3>ساخت‌های پرکاربرد دیگر</h3><div class="fg-table-wrap"><table class="fg-table"><thead><tr><th>فرانسوی</th><th>معنا</th></tr></thead><tbody>
+<tr><td><span class="fg-fr" lang="fr">Il y a un problème.</span></td><td>یک مشکل وجود دارد.</td></tr><tr><td><span class="fg-fr" lang="fr">Je vais y arriver.</span></td><td>از پسش برمی‌آیم.</td></tr><tr><td><span class="fg-fr" lang="fr">Tu dois t’y prendre autrement.</span></td><td>باید روش دیگری در پیش بگیری.</td></tr><tr><td><span class="fg-fr" lang="fr">J’y tiens beaucoup.</span></td><td>برایم مهم است.</td></tr><tr><td><span class="fg-fr" lang="fr">Je n’y crois pas.</span></td><td>باورش نمی‌کنم.</td></tr><tr><td><span class="fg-fr" lang="fr">Il faut y faire attention.</span></td><td>باید به آن توجه کرد.</td></tr>
+</tbody></table></div></div>
+</section>
+
+<section class="fg-section" id="fg-compare"><h2 class="fg-section-title"><span class="fg-num">8</span> مقایسهٔ <span class="fg-fr-inline" lang="fr">y / en / lui / leur</span></h2><div class="fg-card">
+<div class="fg-table-wrap"><table class="fg-table"><thead><tr><th>نوع عبارت</th><th>ضمیر</th><th>نمونه</th></tr></thead><tbody>
+<tr><td>مکان مقصد/حضور</td><td><span class="fg-fr" lang="fr">y</span></td><td><span class="fg-fr" lang="fr">Je vais au Canada. → J’y vais.</span></td></tr>
+<tr><td><span class="fg-fr" lang="fr">à + chose</span></td><td><span class="fg-fr" lang="fr">y</span></td><td><span class="fg-fr" lang="fr">Je pense au projet. → J’y pense.</span></td></tr>
+<tr><td><span class="fg-fr" lang="fr">de + chose / origine</span></td><td><span class="fg-fr" lang="fr">en</span></td><td><span class="fg-fr" lang="fr">Je parle du projet. → J’en parle.</span></td></tr>
+<tr><td><span class="fg-fr" lang="fr">à + personne</span> ارتباطی</td><td><span class="fg-fr" lang="fr">lui / leur</span></td><td><span class="fg-fr" lang="fr">Je parle à Paul. → Je lui parle.</span></td></tr>
+<tr><td><span class="fg-fr" lang="fr">penser à + personne</span></td><td><span class="fg-fr" lang="fr">à lui / à elle / à eux</span></td><td><span class="fg-fr" lang="fr">Je pense à Marie. → Je pense à elle.</span></td></tr>
+</tbody></table></div>
+<div class="fg-grid"><div class="fg-callout fg-ok"><strong>مقصد:</strong> <span class="fg-fr-inline" lang="fr">Je vais à Montréal. → J’y vais.</span></div><div class="fg-callout fg-info"><strong>مبدأ:</strong> <span class="fg-fr-inline" lang="fr">Je reviens de Montréal. → J’en reviens.</span></div></div>
+</div></section>
+
+<section class="fg-section" id="fg-errors"><h2 class="fg-section-title"><span class="fg-num">9</span> اشتباهات رایج</h2><div class="fg-card">
+<div class="fg-badgood"><div class="fg-bad"><span class="fg-fr" lang="fr">✗ Je vais y.</span></div><div class="fg-good"><span class="fg-fr" lang="fr">✓ J’y vais.</span></div></div>
+<div class="fg-badgood"><div class="fg-bad"><span class="fg-fr" lang="fr">✗ Je pense à Paul. → J’y pense.</span></div><div class="fg-good"><span class="fg-fr" lang="fr">✓ Je pense à Paul. → Je pense à lui.</span></div></div>
+<div class="fg-badgood"><div class="fg-bad"><span class="fg-fr" lang="fr">✗ Je parle à lui.</span></div><div class="fg-good"><span class="fg-fr" lang="fr">✓ Je lui parle.</span></div></div>
+<div class="fg-callout fg-warn"><strong>اطلاعات اضافه را حذف نکن:</strong> <span class="fg-fr-inline" lang="fr">Je vais à Madrid vendredi en avion. → J’y vais vendredi en avion.</span></div>
+<div class="fg-callout fg-danger"><strong>y و en:</strong> <span class="fg-fr-inline" lang="fr">à Paris → y</span>؛ <span class="fg-fr-inline" lang="fr">de Paris → en</span>؛ <span class="fg-fr-inline" lang="fr">penser à → y</span>؛ <span class="fg-fr-inline" lang="fr">parler de → en</span>.</div>
+</div></section>
+
+<section class="fg-section" id="fg-exercises"><h2 class="fg-section-title"><span class="fg-num">10</span> تمرین‌های صفحهٔ ۱۰۵ با پاسخ و نکته</h2>
+
+<article class="fg-exercise"><header class="fg-ex-head"><h3>تمرین ۱ — <span class="fg-fr-inline" lang="fr">Répondez aux questions, au choix.</span></h3><p>به سؤال‌ها پاسخ دهید و یکی از دو گزینه را انتخاب کنید.</p></header><div class="fg-ex-body">
+<div class="fg-question"><span class="fg-fr" lang="fr">Modèle : Vous restez à Genève deux ou trois jours ? → J’y reste deux jours.</span></div>
+<div class="fg-question"><span class="fg-fr" lang="fr">1. Vous êtes à Paris pour un ou deux ans ?</span></div><details class="fg-answer"><summary>پاسخ و نکته</summary><div class="fg-answer-content"><div class="fg-example"><span class="fg-fr" lang="fr">J’y suis pour un an.</span></div><p><span class="fg-fr-inline" lang="fr">y = à Paris</span>؛ مدت‌زمان باقی می‌ماند.</p></div></details>
+<div class="fg-question"><span class="fg-fr" lang="fr">2. Vous allez à Madrid jeudi ou vendredi ?</span></div><details class="fg-answer"><summary>پاسخ و نکته</summary><div class="fg-answer-content"><div class="fg-example"><span class="fg-fr" lang="fr">J’y vais jeudi.</span></div><p>روز هفته حذف نمی‌شود.</p></div></details>
+<div class="fg-question"><span class="fg-fr" lang="fr">3. Vous retournez à Londres en mars ou en avril ?</span></div><details class="fg-answer"><summary>پاسخ</summary><div class="fg-answer-content"><div class="fg-example"><span class="fg-fr" lang="fr">J’y retourne en mars.</span></div></div></details>
+<div class="fg-question"><span class="fg-fr" lang="fr">4. Vous allez à l’aéroport en bus ou en taxi ?</span></div><details class="fg-answer"><summary>پاسخ و نکته</summary><div class="fg-answer-content"><div class="fg-example"><span class="fg-fr" lang="fr">J’y vais en bus.</span></div><p>وسیلهٔ نقلیه باقی می‌ماند.</p></div></details>
+<div class="fg-question"><span class="fg-fr" lang="fr">5. Vous êtes chez vous jusqu’à 8 h ou jusqu’à 9 h ?</span></div><details class="fg-answer"><summary>پاسخ</summary><div class="fg-answer-content"><div class="fg-example"><span class="fg-fr" lang="fr">J’y suis jusqu’à 8 h.</span></div></div></details>
+</div></article>
+
+<article class="fg-exercise"><header class="fg-ex-head"><h3>تمرین ۲ — <span class="fg-fr-inline" lang="fr">Répondez en utilisant « y », selon le modèle.</span></h3></header><div class="fg-ex-body">
+<div class="fg-question"><span class="fg-fr" lang="fr">Modèle : Je vais à la piscine à 16 h. Et vous ? → J’y vais aussi à 16 h.</span></div>
+<div class="fg-question"><span class="fg-fr" lang="fr">1. Nous allons au théâtre jeudi soir. Et vous ?</span></div><details class="fg-answer"><summary>پاسخ</summary><div class="fg-answer-content"><div class="fg-example"><span class="fg-fr" lang="fr">Nous y allons aussi jeudi soir.</span></div></div></details>
+<div class="fg-question"><span class="fg-fr" lang="fr">2. Mon frère va en Grèce en juin. Et vos amis ?</span></div><details class="fg-answer"><summary>پاسخ</summary><div class="fg-answer-content"><div class="fg-example"><span class="fg-fr" lang="fr">Ils y vont aussi en juin.</span></div></div></details>
+<div class="fg-question"><span class="fg-fr" lang="fr">3. Mes amis vont aux États-Unis à Noël. Et Max ?</span></div><details class="fg-answer"><summary>پاسخ</summary><div class="fg-answer-content"><div class="fg-example"><span class="fg-fr" lang="fr">Il y va aussi à Noël.</span></div></div></details>
+<div class="fg-question"><span class="fg-fr" lang="fr">4. Nous allons au cinéma samedi. Et Paula ?</span></div><details class="fg-answer"><summary>پاسخ</summary><div class="fg-answer-content"><div class="fg-example"><span class="fg-fr" lang="fr">Elle y va aussi samedi.</span></div></div></details>
+</div></article>
+
+<article class="fg-exercise"><header class="fg-ex-head"><h3>تمرین ۳ — <span class="fg-fr-inline" lang="fr">Arts et Sciences</span></h3><p>بر اساس متن و با استفاده از y پاسخ دهید.</p></header><div class="fg-ex-body">
+<div class="fg-callout fg-info">در متن، Antoine با Isabelle به Louvre می‌رود و به نقاشی علاقه دارد. Gloria به علم و فناوری علاقه‌مند است و همراه François با دوچرخه به La Villette می‌رود.</div>
+<div class="fg-question"><span class="fg-fr" lang="fr">1. Antoine va au Louvre avec qui ?</span></div><details class="fg-answer"><summary>پاسخ و نکته</summary><div class="fg-answer-content"><div class="fg-example"><span class="fg-fr" lang="fr">Il y va avec son amie Isabelle.</span></div><p><span class="fg-fr-inline" lang="fr">y = au Louvre</span>؛ عبارت پاسخِ «با چه کسی؟» باقی می‌ماند.</p></div></details>
+<div class="fg-question"><span class="fg-fr" lang="fr">2. Est-ce que Gloria s’intéresse à la science ?</span></div><details class="fg-answer"><summary>پاسخ</summary><div class="fg-answer-content"><div class="fg-example"><span class="fg-fr" lang="fr">Oui, elle s’y intéresse.</span></div></div></details>
+<div class="fg-question"><span class="fg-fr" lang="fr">3. Est-ce qu’elle s’intéresse à la peinture ?</span></div><details class="fg-answer"><summary>پاسخ و نکته</summary><div class="fg-answer-content"><div class="fg-example"><span class="fg-fr" lang="fr">Non, elle ne s’y intéresse pas.</span></div><p><span class="fg-fr-inline" lang="fr">ne + se + y + verbe + pas</span></p></div></details>
+<div class="fg-question"><span class="fg-fr" lang="fr">4. Antoine va au Louvre en voiture ?</span></div><details class="fg-answer"><summary>پاسخ</summary><div class="fg-answer-content"><div class="fg-example"><span class="fg-fr" lang="fr">Non, il y va à pied.</span></div></div></details>
+<div class="fg-question"><span class="fg-fr" lang="fr">5. Gloria et François vont à La Villette en métro ?</span></div><details class="fg-answer"><summary>پاسخ</summary><div class="fg-answer-content"><div class="fg-example"><span class="fg-fr" lang="fr">Non, ils y vont à bicyclette.</span></div></div></details>
+</div></article>
+
+<article class="fg-exercise"><header class="fg-ex-head"><h3>تمرین ۴ — پاسخ منفی و توضیح آزاد</h3><p><span class="fg-fr-inline" lang="fr">Répondez à la forme négative et imaginez des explications.</span></p></header><div class="fg-ex-body">
+<div class="fg-callout fg-warn">این تمرین پاسخ آزاد دارد؛ جواب‌های زیر نمونه‌های طبیعی‌اند.</div>
+<div class="fg-question"><span class="fg-fr" lang="fr">1. Vous allez à la piscine le samedi ?</span></div><details class="fg-answer" open><summary>پاسخ نمونه</summary><div class="fg-answer-content"><div class="fg-example"><span class="fg-fr" lang="fr">Non, je n’y vais pas le samedi parce qu’il y a trop de monde.</span></div></div></details>
+<div class="fg-question"><span class="fg-fr" lang="fr">2. Vous allez au bureau à pied ?</span></div><details class="fg-answer"><summary>پاسخ نمونه</summary><div class="fg-answer-content"><div class="fg-example"><span class="fg-fr" lang="fr">Non, je n’y vais pas à pied parce que c’est trop loin. J’y vais en bus.</span></div></div></details>
+<div class="fg-question"><span class="fg-fr" lang="fr">3. Vous allez au cinéma en semaine ?</span></div><details class="fg-answer"><summary>پاسخ نمونه</summary><div class="fg-answer-content"><div class="fg-example"><span class="fg-fr" lang="fr">Non, je n’y vais pas en semaine parce que je travaille. J’y vais le week-end.</span></div></div></details>
+<div class="fg-question"><span class="fg-fr" lang="fr">4. Vous allez à la plage à midi ?</span></div><details class="fg-answer"><summary>پاسخ نمونه</summary><div class="fg-answer-content"><div class="fg-example"><span class="fg-fr" lang="fr">Non, je n’y vais pas à midi parce qu’il fait trop chaud. J’y vais en fin d’après-midi.</span></div></div></details>
+</div></article>
+</section>
+
+<section class="fg-summary"><h3>خلاصهٔ نهایی برای حفظ کردن</h3>
+<div class="fg-grid3"><div class="fg-mini"><strong>مکان</strong><div class="fg-example"><span class="fg-fr" lang="fr">à Vancouver → y</span></div></div><div class="fg-mini"><strong><span class="fg-fr-inline" lang="fr">à + chose</span></strong><div class="fg-example"><span class="fg-fr" lang="fr">penser au projet → y penser</span></div></div><div class="fg-mini"><strong><span class="fg-fr-inline" lang="fr">à + personne</span></strong><div class="fg-example"><span class="fg-fr" lang="fr">parler à Paul → lui parler</span></div></div></div>
+<div class="fg-rule">Lieu ou « à + chose » → y</div>
+<div class="fg-table-wrap"><table class="fg-table"><thead><tr><th>حالت</th><th>فرمول</th><th>مثال</th></tr></thead><tbody>
+<tr><td>مثبت</td><td><span class="fg-fr" lang="fr">Sujet + y + verbe</span></td><td><span class="fg-fr" lang="fr">J’y vais.</span></td></tr>
+<tr><td>منفی</td><td><span class="fg-fr" lang="fr">ne + y + verbe + pas</span></td><td><span class="fg-fr" lang="fr">Je n’y vais pas.</span></td></tr>
+<tr><td>زمان مرکب</td><td><span class="fg-fr" lang="fr">y + auxiliaire + participe</span></td><td><span class="fg-fr" lang="fr">J’y suis allé.</span></td></tr>
+<tr><td>مصدر</td><td><span class="fg-fr" lang="fr">verbe + y + infinitif</span></td><td><span class="fg-fr" lang="fr">Je veux y aller.</span></td></tr>
+<tr><td>امر مثبت</td><td><span class="fg-fr" lang="fr">verbe-y</span></td><td><span class="fg-fr" lang="fr">Vas-y !</span></td></tr>
+<tr><td>امر منفی</td><td><span class="fg-fr" lang="fr">N’y + verbe + pas</span></td><td><span class="fg-fr" lang="fr">N’y va pas !</span></td></tr>
+</tbody></table></div>
+<p class="fg-source">این کد یک HTML fragment است و عمداً هیچ تگ ساختاری کلی مانند DOCTYPE، html، head یا body ندارد. همهٔ CSSها با پیشوند <span class="fg-fr-inline">fg-</span> محدود شده‌اند.</p>
+</section>
+</div>

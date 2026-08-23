@@ -1,0 +1,516 @@
+<div class="french-grammar-wrapper fg-lesson-41" dir="rtl">
+  <style scoped>
+    .fg-lesson-41{
+      --fg-navy:#17324d;
+      --fg-blue:#245f9e;
+      --fg-blue-soft:#eef5fb;
+      --fg-green:#1f7a4d;
+      --fg-green-soft:#edf8f2;
+      --fg-orange:#c46a17;
+      --fg-orange-soft:#fff5ea;
+      --fg-red:#b23a3a;
+      --fg-red-soft:#fff0f0;
+      --fg-gray-50:#fafbfc;
+      --fg-gray-100:#f3f5f7;
+      --fg-gray-200:#e6e9ed;
+      --fg-gray-500:#687582;
+      --fg-text:#24313d;
+      --fg-white:#fff;
+      --fg-radius:18px;
+      --fg-shadow:0 10px 30px rgba(23,50,77,.08);
+      font-family:Tahoma,"Vazirmatn","Segoe UI",Arial,sans-serif;
+      color:var(--fg-text);
+      line-height:1.95;
+      background:transparent;
+      box-sizing:border-box;
+    }
+    .fg-lesson-41 *{box-sizing:border-box}
+    .fg-lesson-41 .fg-container{max-width:1100px;margin:0 auto;padding:20px}
+    .fg-lesson-41 .fg-hero{background:linear-gradient(135deg,#17324d,#245f9e);color:#fff;border-radius:24px;padding:32px 28px;box-shadow:var(--fg-shadow);margin-bottom:26px}
+    .fg-lesson-41 .fg-kicker{font-size:.92rem;opacity:.9;margin-bottom:8px}
+    .fg-lesson-41 h1,.fg-lesson-41 h2,.fg-lesson-41 h3,.fg-lesson-41 h4{margin:0;color:var(--fg-navy);line-height:1.5}
+    .fg-lesson-41 .fg-hero h1{color:#fff;font-size:clamp(1.55rem,4vw,2.35rem);margin-bottom:8px}
+    .fg-lesson-41 .fg-hero p{margin:0;opacity:.95}
+    .fg-lesson-41 .fg-section{margin:28px 0}
+    .fg-lesson-41 .fg-section-title{display:flex;align-items:center;gap:10px;margin-bottom:16px;font-size:1.45rem}
+    .fg-lesson-41 .fg-section-title::before{content:"";width:8px;height:32px;border-radius:10px;background:var(--fg-blue);display:inline-block}
+    .fg-lesson-41 .fg-card{background:var(--fg-white);border:1px solid var(--fg-gray-200);border-radius:var(--fg-radius);padding:22px;box-shadow:var(--fg-shadow);margin:16px 0}
+    .fg-lesson-41 .fg-card h3{font-size:1.18rem;margin-bottom:12px}
+    .fg-lesson-41 .fg-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+    .fg-lesson-41 .fg-callout{border-radius:14px;padding:16px 18px;margin:14px 0;border-right:5px solid}
+    .fg-lesson-41 .fg-info{background:var(--fg-blue-soft);border-color:var(--fg-blue)}
+    .fg-lesson-41 .fg-success{background:var(--fg-green-soft);border-color:var(--fg-green)}
+    .fg-lesson-41 .fg-warning{background:var(--fg-orange-soft);border-color:var(--fg-orange)}
+    .fg-lesson-41 .fg-danger{background:var(--fg-red-soft);border-color:var(--fg-red)}
+    .fg-lesson-41 .fg-label{font-weight:700;color:var(--fg-navy)}
+    .fg-lesson-41 .fg-fr{direction:ltr;text-align:left;unicode-bidi:isolate;display:inline-block;font-family:"Segoe UI",Arial,sans-serif}
+    .fg-lesson-41 .fg-fr-block{direction:ltr;text-align:left;unicode-bidi:isolate;font-family:"Segoe UI",Arial,sans-serif;background:var(--fg-gray-50);border:1px solid var(--fg-gray-200);border-radius:12px;padding:13px 15px;margin:10px 0;line-height:1.75}
+    .fg-lesson-41 .fg-example{background:var(--fg-green-soft);border-right:4px solid var(--fg-green);border-radius:12px;padding:13px 15px;margin:10px 0}
+    .fg-lesson-41 .fg-wrong{background:var(--fg-red-soft);border-right:4px solid var(--fg-red);border-radius:12px;padding:13px 15px;margin:10px 0}
+    .fg-lesson-41 .fg-table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:14px;border:1px solid var(--fg-gray-200);margin:14px 0}
+    .fg-lesson-41 table{width:100%;border-collapse:collapse;min-width:700px;background:#fff}
+    .fg-lesson-41 th,.fg-lesson-41 td{border:1px solid var(--fg-gray-200);padding:12px 14px;vertical-align:top}
+    .fg-lesson-41 th{background:var(--fg-navy);color:#fff;font-weight:700}
+    .fg-lesson-41 tbody tr:nth-child(even){background:var(--fg-gray-50)}
+    .fg-lesson-41 ul,.fg-lesson-41 ol{padding-right:22px;margin:10px 0}
+    .fg-lesson-41 li{margin:7px 0}
+    .fg-lesson-41 .fg-rule{font-size:1.04rem;font-weight:700;color:var(--fg-navy);background:#f7faff;border:1px dashed #a9c2dc;border-radius:12px;padding:12px 14px;margin:10px 0}
+    .fg-lesson-41 .fg-chip-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+    .fg-lesson-41 .fg-chip{background:#fff;border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:6px 10px;font-size:.88rem}
+    .fg-lesson-41 .fg-exercise{border-top:4px solid var(--fg-blue)}
+    .fg-lesson-41 .fg-answer{margin-top:12px;padding:14px;border-radius:12px;background:var(--fg-green-soft);border:1px solid #cce9d9}
+    .fg-lesson-41 .fg-note{font-size:.94rem;color:var(--fg-gray-500)}
+    .fg-lesson-41 .fg-divider{height:1px;background:var(--fg-gray-200);margin:22px 0}
+    .fg-lesson-41 .fg-summary{background:linear-gradient(180deg,#f8fbff,#eef5fb);border:1px solid #cfdeed}
+    @media (max-width:820px){
+      .fg-lesson-41 .fg-container{padding:14px}
+      .fg-lesson-41 .fg-grid{grid-template-columns:1fr}
+      .fg-lesson-41 .fg-card{padding:17px}
+      .fg-lesson-41 .fg-hero{padding:24px 18px}
+      .fg-lesson-41 table{min-width:620px}
+    }
+    @media (max-width:520px){
+      .fg-lesson-41{font-size:15px}
+      .fg-lesson-41 .fg-section-title{font-size:1.22rem}
+      .fg-lesson-41 .fg-section-title::before{height:26px}
+      .fg-lesson-41 .fg-card{border-radius:14px}
+    }
+  </style>
+
+  <div class="fg-container">
+    <section class="fg-hero">
+      <div class="fg-kicker">درس ۴۱ · Grammaire Progressive du Français — Niveau intermédiaire</div>
+      <h1><span class="fg-fr">LE TEMPS (3)</span> — بیان زمان (۳)</h1>
+      <p>مرجع زمانی، مدت، ترتیب زمانی و توالی اعمال با <span class="fg-fr">il y a, dans, depuis, pour, pendant, en, après, avant</span></p>
+      <div class="fg-chip-row">
+        <span class="fg-chip"><span class="fg-fr">Durée</span></span>
+        <span class="fg-chip"><span class="fg-fr">Chronologie</span></span>
+        <span class="fg-chip"><span class="fg-fr">Infinitif passé</span></span>
+        <span class="fg-chip"><span class="fg-fr">Avant de</span></span>
+      </div>
+    </section>
+
+    <section class="fg-section">
+      <h2 class="fg-section-title">بخش اول: مبدأ و مدت زمان</h2>
+
+      <div class="fg-grid">
+        <article class="fg-card">
+          <h3>۱) <span class="fg-fr">il y a</span> — «چند وقت پیش»</h3>
+          <div class="fg-rule"><span class="fg-fr">il y a + durée</span></div>
+          <p>برای بیان فاصله‌ی میان اکنون و یک اتفاق پایان‌یافته در گذشته به‌کار می‌رود.</p>
+          <div class="fg-example"><span class="fg-fr">Je suis arrivé en France il y a deux ans.</span><br>دو سال پیش به فرانسه رسیدم.</div>
+          <div class="fg-example"><span class="fg-fr">Le film a commencé il y a une heure.</span><br>فیلم یک ساعت پیش شروع شد.</div>
+          <div class="fg-callout fg-info"><span class="fg-label">نکته:</span> معمولاً فعل اصلی با یک رویداد کامل‌شده در گذشته می‌آید، اغلب در <span class="fg-fr">passé composé</span>.</div>
+        </article>
+
+        <article class="fg-card">
+          <h3>۲) <span class="fg-fr">dans</span> — «چند وقت دیگر»</h3>
+          <div class="fg-rule"><span class="fg-fr">dans + durée</span></div>
+          <p>فاصله‌ی میان اکنون و یک اتفاق آینده را نشان می‌دهد.</p>
+          <div class="fg-example"><span class="fg-fr">Je partirai dans six mois.</span><br>شش ماه دیگر خواهم رفت.</div>
+          <div class="fg-example"><span class="fg-fr">Le film finira dans une heure.</span><br>فیلم یک ساعت دیگر تمام می‌شود.</div>
+          <div class="fg-callout fg-info">می‌تواند با <span class="fg-fr">futur simple</span>، <span class="fg-fr">futur proche</span> یا حال با معنای آینده بیاید.</div>
+        </article>
+      </div>
+
+      <article class="fg-card">
+        <h3>۳) <span class="fg-fr">depuis</span> — از گذشته تا زمان مرجع</h3>
+        <p>برای وضعیتی است که در گذشته شروع شده و در زمان مرجع هنوز ادامه دارد.</p>
+        <div class="fg-grid">
+          <div>
+            <div class="fg-rule"><span class="fg-fr">depuis + durée</span></div>
+            <div class="fg-example"><span class="fg-fr">J’étudie le français depuis trois ans.</span><br>سه سال است که فرانسه می‌خوانم.</div>
+          </div>
+          <div>
+            <div class="fg-rule"><span class="fg-fr">depuis + point de départ</span></div>
+            <div class="fg-example"><span class="fg-fr">J’habite ici depuis 2025.</span><br>از سال ۲۰۲۵ اینجا زندگی می‌کنم.</div>
+          </div>
+        </div>
+        <div class="fg-example"><span class="fg-fr">Je le connais depuis mon arrivée au Canada.</span></div>
+        <div class="fg-example"><span class="fg-fr">Je le connais depuis que je suis arrivé au Canada.</span></div>
+        <div class="fg-callout fg-warning"><span class="fg-label">نکته‌ی ظریف:</span> وقتی عمل تا «الان» ادامه دارد، فرانسوی معمولاً زمان حال می‌خواهد: <span class="fg-fr">J’habite ici depuis deux ans.</span></div>
+        <div class="fg-callout fg-info">ساخت‌های نزدیک به هم: <span class="fg-fr">Ça fait deux ans que j’habite ici.</span> / <span class="fg-fr">Il y a deux ans que j’habite ici.</span></div>
+      </article>
+
+      <article class="fg-card">
+        <h3>۴) <span class="fg-fr">pour</span> — مدت برنامه‌ریزی‌شده یا تعیین‌شده</h3>
+        <p><span class="fg-fr">pour</span> بیشتر روی مدت مورد انتظار، قراردادی یا برنامه‌ریزی‌شده تأکید دارد.</p>
+        <div class="fg-example"><span class="fg-fr">Je suis à Paris pour deux ans.</span></div>
+        <div class="fg-example"><span class="fg-fr">J’ai loué un appartement pour six mois.</span></div>
+        <div class="fg-callout fg-warning">این ساخت الزاماً ثابت نمی‌کند که مدت واقعاً تا انتها طی شده است.</div>
+        <h4><span class="fg-fr">en avoir pour</span></h4>
+        <div class="fg-example"><span class="fg-fr">J’en ai pour cinq minutes.</span><br>تقریباً پنج دقیقه دیگر کار دارم.</div>
+      </article>
+
+      <article class="fg-card">
+        <h3>۵) <span class="fg-fr">pendant</span> — مدت محدود و واقعی</h3>
+        <p>برای دوره‌ای با ابتدا و انتها استفاده می‌شود.</p>
+        <div class="fg-example"><span class="fg-fr">Il a plu pendant huit jours.</span></div>
+        <div class="fg-example"><span class="fg-fr">Je travaillerai pendant deux heures.</span></div>
+        <div class="fg-callout fg-info">برخلاف یک تصور رایج، <span class="fg-fr">pendant</span> فقط مخصوص گذشته نیست.</div>
+      </article>
+
+      <article class="fg-card">
+        <h3>۶) <span class="fg-fr">en</span> — زمان لازم برای کامل‌شدن کار</h3>
+        <p>روی «رسیدن به نتیجه» در یک مدت مشخص تأکید می‌کند.</p>
+        <div class="fg-example"><span class="fg-fr">J’ai repeint la cuisine en deux jours.</span><br>آشپزخانه را ظرف دو روز رنگ کردم.</div>
+        <div class="fg-example"><span class="fg-fr">J’ai lu quinze romans en deux mois.</span><br>در دو ماه پانزده رمان خواندم.</div>
+      </article>
+
+      <article class="fg-card">
+        <h3>تفاوت‌های کلیدی</h3>
+        <div class="fg-table-wrap">
+          <table>
+            <thead><tr><th>ساخت</th><th>پرسش پنهان</th><th>معنی</th><th>نمونه</th></tr></thead>
+            <tbody>
+              <tr><td><span class="fg-fr">il y a deux ans</span></td><td>چه زمانی در گذشته؟</td><td>دو سال پیش</td><td><span class="fg-fr">J’ai commencé il y a deux ans.</span></td></tr>
+              <tr><td><span class="fg-fr">dans deux ans</span></td><td>چه زمانی در آینده؟</td><td>دو سال دیگر</td><td><span class="fg-fr">Je partirai dans deux ans.</span></td></tr>
+              <tr><td><span class="fg-fr">depuis deux ans</span></td><td>چند وقت است ادامه دارد؟</td><td>از دو سال پیش تا حالا</td><td><span class="fg-fr">J’étudie depuis deux ans.</span></td></tr>
+              <tr><td><span class="fg-fr">pendant deux ans</span></td><td>واقعاً چه مدت طول کشید؟</td><td>به مدت دو سال</td><td><span class="fg-fr">J’ai travaillé pendant deux ans.</span></td></tr>
+              <tr><td><span class="fg-fr">pour deux ans</span></td><td>مدت برنامه چقدر است؟</td><td>برای دو سال</td><td><span class="fg-fr">Je pars pour deux ans.</span></td></tr>
+              <tr><td><span class="fg-fr">en deux ans</span></td><td>رسیدن به نتیجه چقدر طول کشید؟</td><td>ظرف دو سال</td><td><span class="fg-fr">Il est devenu bilingue en deux ans.</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="fg-callout fg-danger"><strong>دام رایج:</strong> <span class="fg-fr">en trois jours</span> = انجام کار سه روز طول می‌کشد؛ <span class="fg-fr">dans trois jours</span> = سه روز دیگر.</div>
+      </article>
+    </section>
+
+    <section class="fg-section">
+      <h2 class="fg-section-title">تمرین‌های بخش اول + پاسخ</h2>
+
+      <article class="fg-card fg-exercise">
+        <h3>تمرین ۱ — <span class="fg-fr">il y a / dans</span></h3>
+        <div class="fg-answer">
+          <ol>
+            <li><span class="fg-fr">Les travaux ont commencé il y a trois mois et ils seront finis dans deux semaines.</span></li>
+            <li><span class="fg-fr">J’ai acheté ma voiture il y a quatre ans et je pense la revendre dans un an.</span></li>
+            <li><span class="fg-fr">Lucie présentera dans deux mois la thèse qu’elle a commencée il y a un an.</span></li>
+          </ol>
+        </div>
+        <div class="fg-callout fg-warning"><span class="fg-label">نکته:</span> در <span class="fg-fr">qu’elle a commencée</span>، اسم <span class="fg-fr">la thèse</span> مفعول مستقیم است و از طریق <span class="fg-fr">que</span> قبل از فعل آمده، بنابراین <span class="fg-fr">commencée</span> با آن تطابق می‌کند.</div>
+      </article>
+
+      <article class="fg-card fg-exercise">
+        <h3>تمرین ۲ — <span class="fg-fr">depuis / il y a</span></h3>
+        <div class="fg-answer">
+          <ol>
+            <li><span class="fg-fr">Vous conduisez depuis longtemps ? — J’ai passé le permis il y a deux ans.</span></li>
+            <li><span class="fg-fr">Vous êtes marié depuis vingt-huit ans ! — Oui, j’ai connu ma femme il y a trente ans.</span></li>
+            <li><span class="fg-fr">J’ai créé ma société il y a quinze ans. Max travaille avec moi depuis huit ans.</span></li>
+          </ol>
+        </div>
+      </article>
+
+      <article class="fg-card fg-exercise">
+        <h3>تمرین ۳ — <span class="fg-fr">dans / en</span></h3>
+        <div class="fg-answer">
+          <ol>
+            <li><span class="fg-fr">L’avion part dans dix minutes. Sept voyages en un mois, c’est trop.</span></li>
+            <li><span class="fg-fr">Mozart a écrit 626 œuvres en trente ans et on les écoutera encore dans cent ans.</span></li>
+            <li><span class="fg-fr">La réunion va avoir lieu dans une semaine. Je dois résumer notre stratégie en trois mots.</span></li>
+            <li><span class="fg-fr">Je dois me préparer en cinq minutes. Le train part dans vingt minutes.</span></li>
+          </ol>
+        </div>
+      </article>
+
+      <article class="fg-card fg-exercise">
+        <h3>تمرین ۴ — <span class="fg-fr">pendant / en</span></h3>
+        <div class="fg-answer">
+          <ol>
+            <li><span class="fg-fr">La tour Eiffel a été en travaux pendant deux ans. Elle a été construite en deux ans.</span></li>
+            <li><span class="fg-fr">Max a habité en Russie pendant trois ans. Il est devenu bilingue en trois ans.</span></li>
+            <li><span class="fg-fr">J’ai été malade pendant deux mois. J’ai lu quinze romans en deux mois.</span></li>
+            <li><span class="fg-fr">J’ai travaillé pendant douze heures. J’ai écrit vingt pages en douze heures.</span></li>
+          </ol>
+        </div>
+      </article>
+
+      <article class="fg-card fg-exercise">
+        <h3>تمرین ۵ — جمع‌بندی حروف اضافه‌ی زمان</h3>
+        <div class="fg-answer">
+          <ol>
+            <li><span class="fg-fr">J’ai travaillé à Bruxelles pendant trois ans, de 2006 à 2009.</span></li>
+            <li><span class="fg-fr">Je suis allé à Rome il y a deux ans.</span></li>
+            <li><span class="fg-fr">On se reverra dans un mois.</span></li>
+            <li><span class="fg-fr">Le docteur m’a donné un traitement homéopathique pour six mois, jusqu’à Noël.</span></li>
+            <li><span class="fg-fr">J’ai étudié le latin pendant cinq ans.</span></li>
+            <li><span class="fg-fr">Je n’ai pris que six jours de congé en un an.</span></li>
+            <li><span class="fg-fr">J’ai loué un studio pour un an à partir de demain.</span></li>
+            <li><span class="fg-fr">Il a plu pendant deux jours, sans interruption.</span></li>
+            <li><span class="fg-fr">Je me suis inscrit pour quatre semaines dans une école de langue où je parlerai français tous les jours pendant quatre heures.</span></li>
+            <li><span class="fg-fr">J’en ai pour dix minutes, et je l’ai attendu pendant une heure et demie !</span></li>
+          </ol>
+        </div>
+        <div class="fg-callout fg-warning">در جمله‌ی آخر، <span class="fg-fr">j’en ai pour dix minutes</span> مدت تخمینی است؛ <span class="fg-fr">pendant une heure et demie</span> مدت واقعی.</div>
+      </article>
+
+      <article class="fg-card fg-exercise">
+        <h3>تمرین ۶ — نمونه پاسخ شخصی</h3>
+        <div class="fg-answer">
+          <ol>
+            <li><span class="fg-fr">J’ai la même montre depuis six ans.</span></li>
+            <li><span class="fg-fr">Cette nuit, j’ai dormi pendant neuf heures.</span></li>
+            <li><span class="fg-fr">Mon cours commence dans deux heures.</span></li>
+            <li><span class="fg-fr">J’ai acheté ce livre il y a deux mois.</span></li>
+            <li><span class="fg-fr">J’ai fait l’exercice nº 5 en deux minutes.</span></li>
+            <li><span class="fg-fr">J’ai un bail de location pour trois ans.</span></li>
+          </ol>
+        </div>
+      </article>
+    </section>
+
+    <section class="fg-section">
+      <h2 class="fg-section-title">بخش دوم: ترتیب زمانی — <span class="fg-fr">La chronologie</span></h2>
+
+      <article class="fg-card">
+        <h3>۱) زمان‌سنجی نسبت به «امروز»</h3>
+        <div class="fg-table-wrap">
+          <table>
+            <thead><tr><th>گذشته دورتر</th><th>گذشته</th><th>اکنون</th><th>آینده</th><th>آینده دورتر</th></tr></thead>
+            <tbody>
+              <tr><td><span class="fg-fr">avant-hier</span></td><td><span class="fg-fr">hier</span></td><td><span class="fg-fr">aujourd’hui</span></td><td><span class="fg-fr">demain</span></td><td><span class="fg-fr">après-demain</span></td></tr>
+              <tr><td><span class="fg-fr">la semaine d’avant</span></td><td><span class="fg-fr">la semaine dernière</span></td><td><span class="fg-fr">cette semaine</span></td><td><span class="fg-fr">la semaine prochaine</span></td><td><span class="fg-fr">la semaine d’après</span></td></tr>
+              <tr><td><span class="fg-fr">le mois d’avant</span></td><td><span class="fg-fr">le mois dernier</span></td><td><span class="fg-fr">ce mois-ci</span></td><td><span class="fg-fr">le mois prochain</span></td><td><span class="fg-fr">le mois d’après</span></td></tr>
+              <tr><td><span class="fg-fr">l’année d’avant</span></td><td><span class="fg-fr">l’année dernière</span></td><td><span class="fg-fr">cette année</span></td><td><span class="fg-fr">l’année prochaine</span></td><td><span class="fg-fr">l’année d’après</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="fg-example"><span class="fg-fr">hier matin · ce matin · demain matin</span></div>
+        <div class="fg-example"><span class="fg-fr">hier soir · ce soir · demain soir</span></div>
+      </article>
+
+      <article class="fg-card">
+        <h3>۲) زمان‌سنجی نسبت به یک زمان دیگر</h3>
+        <div class="fg-table-wrap">
+          <table>
+            <thead><tr><th>قبل از زمان مرجع</th><th>زمان مرجع</th><th>بعد از زمان مرجع</th></tr></thead>
+            <tbody>
+              <tr><td><span class="fg-fr">deux jours avant</span></td><td><span class="fg-fr">ce jour-là</span></td><td><span class="fg-fr">deux jours après</span></td></tr>
+              <tr><td><span class="fg-fr">la veille</span></td><td><span class="fg-fr">ce jour-là</span></td><td><span class="fg-fr">le lendemain</span></td></tr>
+              <tr><td><span class="fg-fr">la semaine d’avant</span></td><td><span class="fg-fr">cette semaine-là</span></td><td><span class="fg-fr">la semaine d’après</span></td></tr>
+              <tr><td><span class="fg-fr">le mois d’avant</span></td><td><span class="fg-fr">ce mois-là</span></td><td><span class="fg-fr">le mois d’après</span></td></tr>
+              <tr><td><span class="fg-fr">l’année d’avant</span></td><td><span class="fg-fr">cette année-là</span></td><td><span class="fg-fr">l’année d’après</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="fg-callout fg-info"><strong>فرق کلیدی:</strong> <span class="fg-fr">demain</span> نسبت به امروز است؛ <span class="fg-fr">le lendemain</span> نسبت به یک روز مرجع دیگر.</div>
+        <div class="fg-callout fg-info"><strong>فرق کلیدی:</strong> <span class="fg-fr">hier</span> نسبت به امروز است؛ <span class="fg-fr">la veille</span> نسبت به یک روز مرجع دیگر.</div>
+      </article>
+
+      <article class="fg-card">
+        <h3>سبک رسمی‌تر</h3>
+        <ul>
+          <li><span class="fg-fr">précédent(e)</span> به‌جای <span class="fg-fr">d’avant</span></li>
+          <li><span class="fg-fr">suivant(e)</span> به‌جای <span class="fg-fr">d’après</span></li>
+          <li><span class="fg-fr">plus tôt</span> به‌جای <span class="fg-fr">avant</span></li>
+          <li><span class="fg-fr">plus tard</span> به‌جای <span class="fg-fr">après</span></li>
+        </ul>
+        <div class="fg-example"><span class="fg-fr">l’année précédente · l’année suivante · deux jours plus tôt · trois mois plus tard</span></div>
+      </article>
+    </section>
+
+    <section class="fg-section">
+      <h2 class="fg-section-title">تمرین‌های بخش دوم + پاسخ</h2>
+
+      <article class="fg-card fg-exercise">
+        <h3>تمرین ۱ — <span class="fg-fr">hier / demain / ce jour-là / le lendemain / la veille</span></h3>
+        <div class="fg-answer">
+          <ol>
+            <li><span class="fg-fr">Aujourd’hui, les enfants peuvent se coucher tard : il n’y a pas d’école demain.</span></li>
+            <li><span class="fg-fr">Nous sommes le 20 mars : demain, c’est le printemps !</span></li>
+            <li><span class="fg-fr">Je me suis marié le 13 juin et le lendemain, le 14, nous sommes partis en Grèce.</span></li>
+            <li><span class="fg-fr">Ce soir, nous restons à la maison, mais hier, nous sommes allés au cinéma.</span></li>
+            <li><span class="fg-fr">Je ne révise pas la veille d’un examen, je me couche tôt.</span></li>
+            <li><span class="fg-fr">Je vais avoir quarante ans le 10 janvier : ce jour-là, je ferai une grande fête.</span></li>
+            <li><span class="fg-fr">J’ai rencontré ma femme le 14 juillet 1981 : ce jour-là, tout le monde dansait dans la rue.</span></li>
+          </ol>
+        </div>
+      </article>
+
+      <article class="fg-card fg-exercise">
+        <h3>تمرین ۲ — <span class="fg-fr">matin / année</span></h3>
+        <div class="fg-answer">
+          <p><span class="fg-fr">Hier matin, je suis allée à la bibliothèque. Ce matin, je travaille chez moi. Demain matin, j’irai chez le coiffeur.</span></p>
+          <p><span class="fg-fr">L’année dernière, j’ai visité la Norvège. Cette année, je visite la France. L’année prochaine, je visiterai l’Italie.</span></p>
+        </div>
+      </article>
+
+      <article class="fg-card fg-exercise">
+        <h3>تمرین ۳ — <span class="fg-fr">depuis / pour / pendant</span></h3>
+        <div class="fg-answer fg-fr-block">
+          Chère Julie,<br>
+          Je cherche à te joindre <strong>depuis trois jours</strong> sans succès. Ma société m’envoie au Japon <strong>pour six mois</strong>, jusqu’en février. J’étudie le japonais <strong>depuis plus de trois mois</strong> — hier, j’ai parlé japonais <strong>pendant six heures</strong> !<br><br>
+          J’ai trouvé un sous-locataire <strong>pour cinq mois</strong>, à partir du 1er septembre, mais je suis inquiète <strong>pour les quinze jours qui viennent</strong> : qui va s’occuper de mes plantes ? Elles ont de l’eau <strong>pour huit jours</strong>, mais après ?<br><br>
+          Est-ce que tu peux passer les arroser ? Tu as les clés, mais attention, nous avons un nouveau code <strong>depuis deux jours</strong> : c’est le 867BA. Ce matin, <strong>pendant plus d’une heure</strong>, j’ai appelé tous les copains, mais ils sont tous en vacances ! C’est pour ça que je t’envoie ce mail. Je pense que tu me comprendras — on est copines <strong>depuis si longtemps</strong> !
+        </div>
+      </article>
+
+      <article class="fg-card fg-exercise">
+        <h3>تمرین ۴ — ترکیب زمان‌ها</h3>
+        <div class="fg-answer">
+          <p><span class="fg-fr">Mathilde a étudié le russe à l’école pendant cinq ans. Elle travaille depuis un an dans une compagnie franco-russe. Elle part demain en Russie pour trois mois. En septembre, elle va travailler à Moscou, et le mois suivant, en octobre, elle va aller à Kiev.</span></p>
+          <p><span class="fg-fr">Louis travaille depuis quarante ans et il va prendre sa retraite dans deux ans. L’année suivante — c’est-à-dire dans trois ans — il va déménager à la campagne où il construit lui-même sa maison depuis cinq ans.</span></p>
+          <p><span class="fg-fr">Jean a la même voiture depuis trois ans. Comme il l’a achetée il y a trois ans, il va devoir passer un contrôle technique dans un an. Sa voiture est en excellent état : il a fait 50 000 kilomètres en trois ans.</span></p>
+        </div>
+        <div class="fg-callout fg-warning"><span class="fg-fr">il l’a achetée</span>: چون <span class="fg-fr">l’</span> به <span class="fg-fr">la voiture</span> برمی‌گردد و پیش از فعل آمده، <span class="fg-fr">achetée</span> مؤنث می‌شود.</div>
+      </article>
+    </section>
+
+    <section class="fg-section">
+      <h2 class="fg-section-title">بخش سوم: توالی اعمال — <span class="fg-fr">La succession</span></h2>
+
+      <article class="fg-card">
+        <h3>۱) <span class="fg-fr">après + infinitif passé</span></h3>
+        <p>وقتی فاعل دو عمل یکسان باشد و بخواهیم بگوییم عمل اول کامل شد و سپس عمل دوم رخ داد:</p>
+        <div class="fg-rule"><span class="fg-fr">après + avoir/être + participe passé</span></div>
+        <div class="fg-example"><span class="fg-fr">Après avoir dîné, je suis sorti.</span></div>
+        <div class="fg-grid">
+          <div class="fg-callout fg-info"><strong>با <span class="fg-fr">avoir</span>:</strong><br><span class="fg-fr">après avoir mangé · après avoir fini · après avoir compris</span></div>
+          <div class="fg-callout fg-info"><strong>با <span class="fg-fr">être</span>:</strong><br><span class="fg-fr">après être parti · après être arrivé · après être allé</span></div>
+        </div>
+      </article>
+
+      <article class="fg-card">
+        <h3>افعال ضمیری و ضمایر مفعولی</h3>
+        <div class="fg-example"><span class="fg-fr">Après m’être douché, je suis sorti.</span></div>
+        <div class="fg-example"><span class="fg-fr">Après l’avoir lue, je l’ai rangée.</span></div>
+        <div class="fg-example"><span class="fg-fr">Après lui avoir parlé, je suis parti.</span></div>
+        <div class="fg-callout fg-warning"><span class="fg-label">ترتیب:</span> <span class="fg-fr">après + pronom + avoir/être + participe passé</span></div>
+      </article>
+
+      <article class="fg-card">
+        <h3>تطابق <span class="fg-fr">participe passé</span></h3>
+        <div class="fg-example"><span class="fg-fr">Après être allée au cinéma, Marie est rentrée.</span></div>
+        <div class="fg-example"><span class="fg-fr">Après s’être douchée, Marie est sortie.</span></div>
+        <div class="fg-example"><span class="fg-fr">Après les avoir lues, elle a rangé les lettres.</span></div>
+        <div class="fg-callout fg-danger"><strong>استثنای مهم افعال ضمیری:</strong><br><span class="fg-fr">Après s’être lavé les mains, elle est sortie.</span><br>چون <span class="fg-fr">les mains</span> مفعول مستقیم بعد از فعل است، <span class="fg-fr">lavé</span> تطابق نمی‌گیرد.</div>
+      </article>
+
+      <article class="fg-card">
+        <h3>حالت منفی</h3>
+        <div class="fg-example"><span class="fg-fr">Après ne pas avoir compris, il a posé une question.</span></div>
+        <div class="fg-example"><span class="fg-fr">Après ne pas être venu, il s’est excusé.</span></div>
+        <div class="fg-example"><span class="fg-fr">Après ne pas s’être réveillé à temps, il a raté le train.</span></div>
+      </article>
+
+      <article class="fg-card">
+        <h3>۲) <span class="fg-fr">avant de + infinitif</span></h3>
+        <div class="fg-rule"><span class="fg-fr">avant de + infinitif</span></div>
+        <div class="fg-example"><span class="fg-fr">Avant de sortir, j’ai dîné.</span></div>
+        <div class="fg-example"><span class="fg-fr">Avant de me doucher, j’ai pris le petit déjeuner.</span></div>
+        <div class="fg-callout fg-info">قبل از واکه: <span class="fg-fr">avant d’aller · avant d’arriver · avant d’habiter</span></div>
+      </article>
+
+      <article class="fg-card">
+        <h3>وقتی فاعل‌ها متفاوت‌اند</h3>
+        <div class="fg-callout fg-danger"><strong>قاعده مهم:</strong> ساخت‌های مصدری وقتی طبیعی‌اند که فاعل دو عمل یکی باشد.</div>
+        <div class="fg-example"><span class="fg-fr">Après avoir fini mon travail, je suis sorti.</span></div>
+        <div class="fg-wrong"><span class="fg-fr">Après avoir fini son travail, je suis sorti.</span><br>اگر منظور این باشد که «او» کارش را تمام کرد، این ساخت مبهم/نادرست است.</div>
+        <div class="fg-example"><span class="fg-fr">Après qu’il a fini son travail, je suis sorti.</span></div>
+        <div class="fg-example"><span class="fg-fr">Avant qu’il parte, je vais lui parler.</span></div>
+        <div class="fg-callout fg-warning"><span class="fg-fr">après que + indicatif</span> اما <span class="fg-fr">avant que + subjonctif</span>.</div>
+        <div class="fg-callout fg-info">در نوشتار رسمی ممکن است <span class="fg-fr">ne explétif</span> ببینید: <span class="fg-fr">Avant qu’il ne parte...</span> این <span class="fg-fr">ne</span> منفی‌کننده نیست.</div>
+      </article>
+    </section>
+
+    <section class="fg-section">
+      <h2 class="fg-section-title">تمرین‌های بخش سوم + پاسخ</h2>
+
+      <article class="fg-card fg-exercise">
+        <h3>تمرین ۱ — متن با مصدر گذشته</h3>
+        <div class="fg-answer fg-fr-block">
+          Après <strong>être rentré</strong> chez moi, <strong>j’ai commencé</strong> à faire la cuisine.<br>
+          Après <strong>avoir retiré</strong> le poisson du réfrigérateur, je <strong>l’ai mis</strong> dans une marinade.<br>
+          Après <strong>avoir mis</strong> l’eau à bouillir, <strong>j’ai coupé</strong> les légumes en petits morceaux pour la soupe.<br>
+          Après <strong>avoir mis</strong> le poisson dans le four, je <strong>suis allé</strong> dans le salon.<br>
+          Après <strong>m’être reposé</strong> quelques minutes, <strong>j’ai préparé</strong> la table pour le dîner.
+        </div>
+        <div class="fg-callout fg-info">اگر گوینده زن باشد: <span class="fg-fr">rentrée · allée · reposée</span>.</div>
+      </article>
+
+      <article class="fg-card fg-exercise">
+        <h3>تمرین ۲ — سفرهای کریستف کلمب</h3>
+        <div class="fg-answer">
+          <ol>
+            <li><span class="fg-fr">Après être parti des Canaries, Christophe Colomb a voyagé trente-cinq jours sans voir la terre.</span></li>
+            <li><span class="fg-fr">Après avoir voyagé trente-cinq jours sans voir la terre, il a découvert San Salvador.</span></li>
+            <li><span class="fg-fr">Après avoir découvert San Salvador, il est arrivé à Cuba.</span></li>
+            <li><span class="fg-fr">Après être arrivé à Cuba, il a colonisé l’île.</span></li>
+            <li><span class="fg-fr">Après avoir colonisé l’île, il est rentré en Espagne.</span></li>
+            <li><span class="fg-fr">Après être rentré en Espagne, il a été nommé amiral en 1495.</span></li>
+            <li><span class="fg-fr">Après avoir été nommé amiral, il est reparti.</span></li>
+            <li><span class="fg-fr">Après être reparti, il a découvert les Petites Antilles.</span></li>
+            <li><span class="fg-fr">Après avoir découvert les Petites Antilles, il est retourné en Espagne.</span></li>
+            <li><span class="fg-fr">Après être retourné en Espagne, il a organisé une troisième expédition en 1498.</span></li>
+            <li><span class="fg-fr">Après avoir organisé une troisième expédition, il est mort dans la misère en 1506.</span></li>
+          </ol>
+        </div>
+        <div class="fg-callout fg-warning"><span class="fg-fr">après avoir été nommé</span> = مصدر گذشته‌ی مجهول.</div>
+      </article>
+
+      <article class="fg-card fg-exercise">
+        <h3>تمرین ۳ — زنجیره‌ی اعمال</h3>
+        <div class="fg-answer">
+          <ol>
+            <li><span class="fg-fr">Après avoir fini son travail, il a bu un porto.</span></li>
+            <li><span class="fg-fr">Après avoir bu un porto, il s’est changé.</span></li>
+            <li><span class="fg-fr">Après s’être changé, il est allé au cinéma.</span></li>
+            <li><span class="fg-fr">Après être allé au cinéma, il s’est promené.</span></li>
+            <li><span class="fg-fr">Après s’être promené, il a mangé un steak-frites.</span></li>
+            <li><span class="fg-fr">Après avoir mangé un steak-frites, il s’est douché.</span></li>
+            <li><span class="fg-fr">Après s’être douché, il a lu un magazine.</span></li>
+            <li><span class="fg-fr">Après avoir lu un magazine, il s’est endormi.</span></li>
+          </ol>
+        </div>
+      </article>
+
+      <article class="fg-card fg-exercise">
+        <h3>تمرین ۴ — همان زنجیره با <span class="fg-fr">avant de</span></h3>
+        <div class="fg-answer">
+          <ol>
+            <li><span class="fg-fr">Avant de s’endormir, il a lu un magazine.</span></li>
+            <li><span class="fg-fr">Avant de lire un magazine, il s’est douché.</span></li>
+            <li><span class="fg-fr">Avant de se doucher, il a mangé un steak-frites.</span></li>
+            <li><span class="fg-fr">Avant de manger un steak-frites, il s’est promené.</span></li>
+            <li><span class="fg-fr">Avant de se promener, il est allé au cinéma.</span></li>
+            <li><span class="fg-fr">Avant d’aller au cinéma, il s’est changé.</span></li>
+            <li><span class="fg-fr">Avant de se changer, il a bu un porto.</span></li>
+            <li><span class="fg-fr">Avant de boire un porto, il a fini son travail.</span></li>
+          </ol>
+        </div>
+      </article>
+
+      <article class="fg-card fg-exercise">
+        <h3>تمرین ۵ — جمله‌سازی با <span class="fg-fr">avant de</span></h3>
+        <div class="fg-answer">
+          <ol>
+            <li><span class="fg-fr">Il fait froid : couvre-toi avant de sortir.</span></li>
+            <li><span class="fg-fr">Lave-toi les mains avant de manger.</span></li>
+            <li><span class="fg-fr">Regarde à droite et à gauche avant de traverser.</span></li>
+            <li><span class="fg-fr">Lave-toi les dents avant de te coucher.</span></li>
+            <li><span class="fg-fr">Éteins la lumière avant de quitter la pièce.</span></li>
+            <li><span class="fg-fr">Réfléchis avant de prendre une décision.</span></li>
+          </ol>
+        </div>
+      </article>
+    </section>
+
+    <section class="fg-section">
+      <article class="fg-card fg-summary">
+        <h2 class="fg-section-title">جمع‌بندی سریع درس ۴۱</h2>
+        <ul>
+          <li>چند وقت پیش؟ → <span class="fg-fr">il y a</span></li>
+          <li>چند وقت دیگر؟ → <span class="fg-fr">dans</span></li>
+          <li>از گذشته تا حالا ادامه دارد؟ → <span class="fg-fr">depuis</span></li>
+          <li>مدت برنامه‌ریزی‌شده/قراردادی؟ → <span class="fg-fr">pour</span></li>
+          <li>مدت واقعی یک وضعیت یا فعالیت؟ → <span class="fg-fr">pendant</span></li>
+          <li>مدت لازم برای رسیدن به نتیجه؟ → <span class="fg-fr">en</span></li>
+          <li>بعد از انجام یک کار → <span class="fg-fr">après + infinitif passé</span></li>
+          <li>پیش از انجام یک کار → <span class="fg-fr">avant de + infinitif</span></li>
+          <li>فاعل‌های متفاوت → <span class="fg-fr">après que + indicatif</span> / <span class="fg-fr">avant que + subjonctif</span></li>
+        </ul>
+      </article>
+    </section>
+  </div>
+</div>

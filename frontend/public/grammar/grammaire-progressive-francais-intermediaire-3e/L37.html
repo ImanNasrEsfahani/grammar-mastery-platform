@@ -1,0 +1,2119 @@
+<div class="fg-french-grammar-wrapper" dir="rtl">
+  <style scoped>
+    .fg-french-grammar-wrapper {
+      --fg-primary: #123b67;
+      --fg-primary-2: #1d5d9b;
+      --fg-primary-soft: #eef6ff;
+      --fg-surface: #ffffff;
+      --fg-surface-alt: #f7f9fc;
+      --fg-text: #172033;
+      --fg-muted: #64748b;
+      --fg-border: #d8e2ee;
+
+      --fg-green: #137a53;
+      --fg-green-bg: #ecfdf5;
+      --fg-green-border: #9ddfc5;
+
+      --fg-red: #b42318;
+      --fg-red-bg: #fff1f0;
+      --fg-red-border: #f4b5ae;
+
+      --fg-orange: #b45309;
+      --fg-orange-bg: #fff7ed;
+      --fg-orange-border: #fdba74;
+
+      --fg-purple: #6d28d9;
+      --fg-purple-bg: #f5f3ff;
+
+      --fg-shadow: 0 8px 28px rgba(18, 59, 103, 0.08);
+      --fg-radius: 18px;
+
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      color: var(--fg-text);
+      font-family:
+        Vazirmatn,
+        IRANSans,
+        Tahoma,
+        Arial,
+        sans-serif;
+      line-height: 1.95;
+      box-sizing: border-box;
+      direction: rtl;
+      text-align: right;
+    }
+
+    .fg-french-grammar-wrapper *,
+    .fg-french-grammar-wrapper *::before,
+    .fg-french-grammar-wrapper *::after {
+      box-sizing: border-box;
+    }
+
+    .fg-french-grammar-wrapper .fg-fr {
+      direction: ltr;
+      unicode-bidi: isolate;
+      text-align: left;
+      display: inline-block;
+      font-family:
+        "Segoe UI",
+        Inter,
+        Arial,
+        sans-serif;
+    }
+
+    .fg-french-grammar-wrapper .fg-fr-block {
+      direction: ltr;
+      unicode-bidi: isolate;
+      text-align: left;
+      font-family:
+        "Segoe UI",
+        Inter,
+        Arial,
+        sans-serif;
+    }
+
+    .fg-french-grammar-wrapper .fg-page {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .fg-french-grammar-wrapper .fg-hero {
+      position: relative;
+      overflow: hidden;
+      padding: 34px;
+      border-radius: 24px;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(255,255,255,.22), transparent 28%),
+        linear-gradient(135deg, #0d2f55 0%, #174e85 60%, #256aa8 100%);
+      color: #fff;
+      box-shadow: var(--fg-shadow);
+    }
+
+    .fg-french-grammar-wrapper .fg-hero::after {
+      content: "à · de · Ø";
+      position: absolute;
+      left: 24px;
+      bottom: -20px;
+      font-size: clamp(54px, 9vw, 110px);
+      line-height: 1;
+      font-weight: 800;
+      opacity: 0.08;
+      direction: ltr;
+    }
+
+    .fg-french-grammar-wrapper .fg-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      padding: 6px 12px;
+      border: 1px solid rgba(255,255,255,.28);
+      border-radius: 999px;
+      background: rgba(255,255,255,.12);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .fg-french-grammar-wrapper .fg-hero h1 {
+      margin: 0 0 10px;
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.35;
+      color: #fff;
+    }
+
+    .fg-french-grammar-wrapper .fg-hero-title-fr {
+      display: block;
+      margin-top: 7px;
+      direction: ltr;
+      text-align: right;
+      unicode-bidi: isolate;
+      font-family: "Segoe UI", Inter, Arial, sans-serif;
+      font-size: .62em;
+      font-weight: 600;
+      opacity: .9;
+    }
+
+    .fg-french-grammar-wrapper .fg-hero p {
+      margin: 0;
+      max-width: 860px;
+      color: rgba(255,255,255,.9);
+      font-size: 15px;
+    }
+
+    .fg-french-grammar-wrapper .fg-summary-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .fg-french-grammar-wrapper .fg-summary-item {
+      padding: 14px 16px;
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 14px;
+      background: rgba(255,255,255,.1);
+      backdrop-filter: blur(4px);
+    }
+
+    .fg-french-grammar-wrapper .fg-summary-item strong {
+      display: block;
+      margin-bottom: 3px;
+      font-size: 17px;
+      direction: ltr;
+      text-align: center;
+      font-family: "Segoe UI", Inter, Arial, sans-serif;
+    }
+
+    .fg-french-grammar-wrapper .fg-summary-item span {
+      display: block;
+      text-align: center;
+      font-size: 13px;
+      color: rgba(255,255,255,.82);
+    }
+
+    .fg-french-grammar-wrapper .fg-card {
+      padding: 26px;
+      border: 1px solid var(--fg-border);
+      border-radius: var(--fg-radius);
+      background: var(--fg-surface);
+      box-shadow: var(--fg-shadow);
+    }
+
+    .fg-french-grammar-wrapper .fg-card h2 {
+      margin: 0 0 18px;
+      color: var(--fg-primary);
+      font-size: clamp(21px, 2.7vw, 28px);
+      line-height: 1.45;
+    }
+
+    .fg-french-grammar-wrapper .fg-card h3 {
+      margin: 26px 0 12px;
+      color: var(--fg-primary-2);
+      font-size: 19px;
+    }
+
+    .fg-french-grammar-wrapper .fg-card h4 {
+      margin: 20px 0 9px;
+      color: #334155;
+      font-size: 16px;
+    }
+
+    .fg-french-grammar-wrapper .fg-card p {
+      margin: 10px 0;
+    }
+
+    .fg-french-grammar-wrapper .fg-rule-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .fg-french-grammar-wrapper .fg-rule-number {
+      flex: 0 0 auto;
+      display: inline-grid;
+      place-items: center;
+      min-width: 34px;
+      height: 34px;
+      padding: 0 8px;
+      border-radius: 10px;
+      background: var(--fg-primary);
+      color: #fff;
+      font-size: 14px;
+    }
+
+    .fg-french-grammar-wrapper .fg-formula {
+      margin: 18px 0;
+      padding: 18px;
+      border: 1px solid #bfd8f3;
+      border-radius: 14px;
+      background: var(--fg-primary-soft);
+      direction: ltr;
+      text-align: center;
+      font-family: "Segoe UI", Inter, Arial, sans-serif;
+      font-size: clamp(18px, 2.7vw, 24px);
+      font-weight: 750;
+      color: #103d68;
+    }
+
+    .fg-french-grammar-wrapper .fg-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .fg-french-grammar-wrapper .fg-mini-card {
+      padding: 18px;
+      border: 1px solid var(--fg-border);
+      border-radius: 14px;
+      background: var(--fg-surface-alt);
+    }
+
+    .fg-french-grammar-wrapper .fg-mini-card h4 {
+      margin-top: 0;
+      color: var(--fg-primary);
+    }
+
+    .fg-french-grammar-wrapper .fg-example {
+      margin: 12px 0;
+      padding: 14px 16px;
+      border-right: 4px solid var(--fg-green);
+      border-radius: 11px;
+      background: var(--fg-green-bg);
+    }
+
+    .fg-french-grammar-wrapper .fg-example .fg-fr-block {
+      color: #075d3f;
+      font-size: 17px;
+      font-weight: 650;
+    }
+
+    .fg-french-grammar-wrapper .fg-example small {
+      display: block;
+      margin-top: 5px;
+      color: #476456;
+    }
+
+    .fg-french-grammar-wrapper .fg-wrong {
+      margin: 12px 0;
+      padding: 14px 16px;
+      border-right: 4px solid var(--fg-red);
+      border-radius: 11px;
+      background: var(--fg-red-bg);
+    }
+
+    .fg-french-grammar-wrapper .fg-wrong .fg-fr-block {
+      color: var(--fg-red);
+      font-weight: 700;
+    }
+
+    .fg-french-grammar-wrapper .fg-callout {
+      margin: 18px 0;
+      padding: 18px;
+      border-radius: 14px;
+      border: 1px solid;
+    }
+
+    .fg-french-grammar-wrapper .fg-callout strong {
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .fg-french-grammar-wrapper .fg-callout-info {
+      border-color: #b8d7f5;
+      background: #f2f8ff;
+      color: #123b67;
+    }
+
+    .fg-french-grammar-wrapper .fg-callout-warning {
+      border-color: var(--fg-orange-border);
+      background: var(--fg-orange-bg);
+      color: #7c3e07;
+    }
+
+    .fg-french-grammar-wrapper .fg-callout-danger {
+      border-color: var(--fg-red-border);
+      background: var(--fg-red-bg);
+      color: #8e1f17;
+    }
+
+    .fg-french-grammar-wrapper .fg-callout-success {
+      border-color: var(--fg-green-border);
+      background: var(--fg-green-bg);
+      color: #0c6243;
+    }
+
+    .fg-french-grammar-wrapper .fg-table-wrap {
+      width: 100%;
+      margin: 16px 0;
+      overflow-x: auto;
+      border: 1px solid var(--fg-border);
+      border-radius: 14px;
+      background: #fff;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .fg-french-grammar-wrapper table {
+      width: 100%;
+      min-width: 620px;
+      border-collapse: collapse;
+      direction: rtl;
+    }
+
+    .fg-french-grammar-wrapper th,
+    .fg-french-grammar-wrapper td {
+      padding: 13px 15px;
+      border: 1px solid var(--fg-border);
+      vertical-align: top;
+      text-align: right;
+    }
+
+    .fg-french-grammar-wrapper th {
+      background: var(--fg-primary);
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .fg-french-grammar-wrapper tbody tr:nth-child(even) td {
+      background: #f8fbff;
+    }
+
+    .fg-french-grammar-wrapper td:first-child {
+      font-family: "Segoe UI", Inter, Arial, sans-serif;
+      direction: ltr;
+      text-align: left;
+      font-weight: 650;
+      color: #123b67;
+    }
+
+    .fg-french-grammar-wrapper .fg-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin: 14px 0;
+    }
+
+    .fg-french-grammar-wrapper .fg-pill {
+      padding: 7px 11px;
+      border-radius: 999px;
+      border: 1px solid #c8dcf1;
+      background: #f1f7fd;
+      color: #144b7a;
+      font-family: "Segoe UI", Inter, Arial, sans-serif;
+      direction: ltr;
+      font-size: 14px;
+      font-weight: 650;
+    }
+
+    .fg-french-grammar-wrapper .fg-comparison {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin: 16px 0;
+    }
+
+    .fg-french-grammar-wrapper .fg-comparison > div {
+      padding: 17px;
+      border-radius: 14px;
+      border: 1px solid var(--fg-border);
+      background: var(--fg-surface-alt);
+    }
+
+    .fg-french-grammar-wrapper .fg-comparison .fg-good-side {
+      border-top: 4px solid var(--fg-green);
+    }
+
+    .fg-french-grammar-wrapper .fg-comparison .fg-alert-side {
+      border-top: 4px solid var(--fg-orange);
+    }
+
+    .fg-french-grammar-wrapper .fg-exercise {
+      margin-top: 20px;
+      overflow: hidden;
+      border: 1px solid var(--fg-border);
+      border-radius: 16px;
+      background: #fff;
+    }
+
+    .fg-french-grammar-wrapper .fg-exercise-title {
+      padding: 16px 18px;
+      background: linear-gradient(90deg, #f3f8fe, #edf5fd);
+      color: var(--fg-primary);
+      font-weight: 800;
+      border-bottom: 1px solid var(--fg-border);
+    }
+
+    .fg-french-grammar-wrapper .fg-exercise-body {
+      padding: 20px;
+    }
+
+    .fg-french-grammar-wrapper .fg-answer {
+      margin: 14px 0;
+      padding: 15px;
+      border: 1px solid #bce6d3;
+      border-radius: 12px;
+      background: #f1fcf7;
+    }
+
+    .fg-french-grammar-wrapper .fg-answer-number {
+      display: inline-grid;
+      place-items: center;
+      min-width: 27px;
+      height: 27px;
+      margin-left: 7px;
+      border-radius: 50%;
+      background: var(--fg-green);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .fg-french-grammar-wrapper .fg-analysis {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px dashed #b9d7c8;
+      color: #475569;
+      font-size: 14px;
+    }
+
+    .fg-french-grammar-wrapper .fg-text-complete {
+      padding: 20px;
+      border-radius: 14px;
+      background: #f8fafc;
+      border: 1px solid var(--fg-border);
+      direction: ltr;
+      unicode-bidi: isolate;
+      text-align: left;
+      font-family: "Segoe UI", Inter, Arial, sans-serif;
+      line-height: 2;
+    }
+
+    .fg-french-grammar-wrapper .fg-checklist {
+      margin: 14px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .fg-french-grammar-wrapper .fg-checklist li {
+      position: relative;
+      padding: 7px 30px 7px 0;
+    }
+
+    .fg-french-grammar-wrapper .fg-checklist li::before {
+      content: "✓";
+      position: absolute;
+      right: 0;
+      top: 7px;
+      display: inline-grid;
+      place-items: center;
+      width: 21px;
+      height: 21px;
+      border-radius: 50%;
+      background: var(--fg-green-bg);
+      color: var(--fg-green);
+      font-weight: 900;
+    }
+
+    .fg-french-grammar-wrapper .fg-memory-box {
+      padding: 24px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #111f38, #173e68);
+      color: #fff;
+    }
+
+    .fg-french-grammar-wrapper .fg-memory-box h2 {
+      margin-top: 0;
+      color: #fff;
+    }
+
+    .fg-french-grammar-wrapper .fg-memory-columns {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .fg-french-grammar-wrapper .fg-memory-col {
+      padding: 16px;
+      border-radius: 13px;
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.14);
+    }
+
+    .fg-french-grammar-wrapper .fg-memory-col h3 {
+      margin: 0 0 10px;
+      color: #fff;
+      text-align: center;
+      font-size: 22px;
+      direction: ltr;
+    }
+
+    .fg-french-grammar-wrapper .fg-memory-col ul {
+      margin: 0;
+      padding: 0 19px 0 0;
+    }
+
+    .fg-french-grammar-wrapper .fg-memory-col li {
+      margin: 5px 0;
+    }
+
+    .fg-french-grammar-wrapper .fg-final-formulas {
+      display: grid;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .fg-french-grammar-wrapper .fg-final-formula {
+      padding: 13px 16px;
+      border-radius: 11px;
+      background: rgba(255,255,255,.12);
+      direction: ltr;
+      text-align: center;
+      unicode-bidi: isolate;
+      font-family: "Segoe UI", Inter, Arial, sans-serif;
+      font-weight: 700;
+    }
+
+    .fg-french-grammar-wrapper .fg-note-label {
+      display: inline-block;
+      margin-left: 5px;
+      padding: 2px 8px;
+      border-radius: 7px;
+      background: var(--fg-purple-bg);
+      color: var(--fg-purple);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .fg-french-grammar-wrapper .fg-section-divider {
+      height: 1px;
+      margin: 22px 0;
+      border: 0;
+      background: linear-gradient(90deg, transparent, var(--fg-border), transparent);
+    }
+
+    @media (max-width: 820px) {
+      .fg-french-grammar-wrapper .fg-summary-grid,
+      .fg-french-grammar-wrapper .fg-memory-columns {
+        grid-template-columns: 1fr;
+      }
+
+      .fg-french-grammar-wrapper .fg-grid-2,
+      .fg-french-grammar-wrapper .fg-comparison {
+        grid-template-columns: 1fr;
+      }
+
+      .fg-french-grammar-wrapper .fg-card,
+      .fg-french-grammar-wrapper .fg-hero {
+        padding: 20px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .fg-french-grammar-wrapper {
+        line-height: 1.85;
+      }
+
+      .fg-french-grammar-wrapper .fg-card {
+        padding: 17px;
+        border-radius: 14px;
+      }
+
+      .fg-french-grammar-wrapper .fg-hero {
+        padding: 20px 17px 22px;
+        border-radius: 18px;
+      }
+
+      .fg-french-grammar-wrapper .fg-example,
+      .fg-french-grammar-wrapper .fg-callout,
+      .fg-french-grammar-wrapper .fg-wrong {
+        padding: 13px;
+      }
+
+      .fg-french-grammar-wrapper table {
+        min-width: 560px;
+      }
+
+      .fg-french-grammar-wrapper th,
+      .fg-french-grammar-wrapper td {
+        padding: 11px;
+        font-size: 13px;
+      }
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .fg-french-grammar-wrapper {
+        --fg-surface: #111827;
+        --fg-surface-alt: #172033;
+        --fg-text: #e5edf7;
+        --fg-muted: #aab8ca;
+        --fg-border: #334155;
+        --fg-primary-soft: #10243a;
+        --fg-shadow: 0 8px 28px rgba(0,0,0,.22);
+      }
+
+      .fg-french-grammar-wrapper .fg-card,
+      .fg-french-grammar-wrapper .fg-exercise,
+      .fg-french-grammar-wrapper .fg-table-wrap {
+        background: #111827;
+      }
+
+      .fg-french-grammar-wrapper tbody tr:nth-child(even) td {
+        background: #162033;
+      }
+
+      .fg-french-grammar-wrapper .fg-mini-card,
+      .fg-french-grammar-wrapper .fg-comparison > div,
+      .fg-french-grammar-wrapper .fg-text-complete {
+        background: #172033;
+      }
+
+      .fg-french-grammar-wrapper .fg-exercise-title {
+        background: #15243a;
+      }
+
+      .fg-french-grammar-wrapper .fg-card h3,
+      .fg-french-grammar-wrapper .fg-card h2 {
+        color: #8ec5ff;
+      }
+
+      .fg-french-grammar-wrapper .fg-card h4 {
+        color: #d4dfec;
+      }
+    }
+  </style>
+
+  <div class="fg-page">
+
+    <section class="fg-hero">
+      <div class="fg-kicker">درس ۳۷ · سطح متوسط</div>
+
+      <h1>
+        حروف اضافه و افعال
+        <span class="fg-hero-title-fr">Les prépositions et les verbes</span>
+      </h1>
+
+      <p>
+        در این درس یاد می‌گیریم چرا بعضی فعل‌ها پیش از مصدر
+        <span class="fg-fr">à</span>،
+        بعضی <span class="fg-fr">de</span>
+        و بعضی هیچ حرف اضافه‌ای نمی‌گیرند؛ همچنین ساخت‌های مهم با صفت،
+        اسم، ضمیر، نفی و استثناهای پرتکرار را بررسی می‌کنیم.
+      </p>
+
+      <div class="fg-summary-grid">
+        <div class="fg-summary-item">
+          <strong>verbe + de + infinitif</strong>
+          <span>مانند décider de</span>
+        </div>
+
+        <div class="fg-summary-item">
+          <strong>verbe + à + infinitif</strong>
+          <span>مانند réussir à</span>
+        </div>
+
+        <div class="fg-summary-item">
+          <strong>verbe + Ø + infinitif</strong>
+          <span>مانند espérer</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="fg-card">
+      <h2 class="fg-rule-title">
+        <span class="fg-rule-number">۱</span>
+        ساختار اصلی درس
+      </h2>
+
+      <p>
+        وقتی در فرانسه دو فعل پشت سر هم قرار می‌گیرند، فعل اول معمولاً صرف
+        می‌شود و فعل دوم به صورت مصدر می‌آید. مهم‌ترین سؤال این است که میان
+        این دو فعل آیا باید <span class="fg-fr">à</span>،
+        <span class="fg-fr">de</span> یا هیچ حرف اضافه‌ای قرار گیرد.
+      </p>
+
+      <div class="fg-formula">
+        verbe conjugué + à / de / Ø + infinitif
+      </div>
+
+      <div class="fg-grid-2">
+        <div class="fg-mini-card">
+          <h4>با <span class="fg-fr">de</span></h4>
+          <div class="fg-example">
+            <div class="fg-fr-block">Je décide de partir.</div>
+            <small>تصمیم می‌گیرم بروم.</small>
+          </div>
+        </div>
+
+        <div class="fg-mini-card">
+          <h4>با <span class="fg-fr">à</span></h4>
+          <div class="fg-example">
+            <div class="fg-fr-block">Je commence à travailler.</div>
+            <small>شروع به کار می‌کنم.</small>
+          </div>
+        </div>
+
+        <div class="fg-mini-card">
+          <h4>بدون حرف اضافه</h4>
+          <div class="fg-example">
+            <div class="fg-fr-block">J’espère réussir.</div>
+            <small>امیدوارم موفق شوم.</small>
+          </div>
+        </div>
+
+        <div class="fg-mini-card">
+          <h4>قاعدهٔ طلایی</h4>
+          <p>
+            حرف اضافه را از ترجمهٔ فارسی حدس نزنید. ترکیب فعل و حرف اضافه
+            را باید به‌صورت یک واحد یاد گرفت.
+          </p>
+        </div>
+      </div>
+
+      <div class="fg-callout fg-callout-warning">
+        <strong>نکتهٔ بسیار مهم</strong>
+        <span class="fg-fr">décider de</span>،
+        <span class="fg-fr">réussir à</span> و
+        <span class="fg-fr">espérer Ø</span>
+        سه الگوی مستقل‌اند. حرف اضافه بخشی از ساختمان فعل است.
+      </div>
+    </section>
+
+    <section class="fg-card">
+      <h2 class="fg-rule-title">
+        <span class="fg-rule-number">۲</span>
+        فعل‌هایی که با <span class="fg-fr">de</span> می‌آیند
+      </h2>
+
+      <div class="fg-table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>ساختار فرانسوی</th>
+              <th>معنی</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>accepter de faire</td>
+              <td>پذیرفتن انجام کاری</td>
+            </tr>
+            <tr>
+              <td>arrêter de faire</td>
+              <td>دست از انجام کاری برداشتن</td>
+            </tr>
+            <tr>
+              <td>décider de faire</td>
+              <td>تصمیم گرفتن کاری انجام داد</td>
+            </tr>
+            <tr>
+              <td>essayer de faire</td>
+              <td>تلاش کردن برای انجام کاری</td>
+            </tr>
+            <tr>
+              <td>finir de faire</td>
+              <td>تمام کردن انجام کاری</td>
+            </tr>
+            <tr>
+              <td>oublier de faire</td>
+              <td>فراموش کردن انجام کاری</td>
+            </tr>
+            <tr>
+              <td>refuser de faire</td>
+              <td>رد کردن یا نپذیرفتن انجام کاری</td>
+            </tr>
+            <tr>
+              <td>regretter de faire</td>
+              <td>متأسف بودن از انجام کاری</td>
+            </tr>
+            <tr>
+              <td>rêver de faire</td>
+              <td>رؤیای انجام کاری را داشتن</td>
+            </tr>
+            <tr>
+              <td>se dépêcher de faire</td>
+              <td>برای انجام کاری عجله کردن</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="fg-example">
+        <div class="fg-fr-block">Elle a décidé de reprendre ses études.</div>
+        <small>او تصمیم گرفته تحصیلاتش را از سر بگیرد.</small>
+      </div>
+
+      <div class="fg-example">
+        <div class="fg-fr-block">Il a oublié de payer ses impôts.</div>
+        <small>او فراموش کرده مالیاتش را بپردازد.</small>
+      </div>
+    </section>
+
+    <section class="fg-card">
+      <h2>
+        تفاوت ظریف
+        <span class="fg-fr">arrêter de</span>
+        و
+        <span class="fg-fr">s’arrêter pour</span>
+      </h2>
+
+      <div class="fg-comparison">
+        <div class="fg-good-side">
+          <h4><span class="fg-fr">arrêter de + infinitif</span></h4>
+          <p>یعنی دست از انجام همان کار برداشتن.</p>
+
+          <div class="fg-example">
+            <div class="fg-fr-block">Il arrête de fumer.</div>
+            <small>او سیگار کشیدن را ترک می‌کند.</small>
+          </div>
+        </div>
+
+        <div class="fg-alert-side">
+          <h4><span class="fg-fr">s’arrêter pour + infinitif</span></h4>
+          <p>یعنی توقف کردن تا کار دیگری انجام شود.</p>
+
+          <div class="fg-example">
+            <div class="fg-fr-block">Il s’arrête pour fumer.</div>
+            <small>او توقف می‌کند تا سیگار بکشد.</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="fg-callout fg-callout-danger">
+        <strong>دام معنایی</strong>
+        دو جمله از نظر ظاهری شبیه‌اند، اما معنایشان تقریباً مخالف یکدیگر است.
+      </div>
+    </section>
+
+    <section class="fg-card">
+      <h2 class="fg-rule-title">
+        <span class="fg-rule-number">۳</span>
+        فعل‌هایی که با <span class="fg-fr">à</span> می‌آیند
+      </h2>
+
+      <div class="fg-table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>ساختار فرانسوی</th>
+              <th>معنی</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>apprendre à faire</td>
+              <td>یاد گرفتن انجام کاری</td>
+            </tr>
+            <tr>
+              <td>aider quelqu’un à faire</td>
+              <td>کمک کردن به کسی برای انجام کاری</td>
+            </tr>
+            <tr>
+              <td>arriver à faire</td>
+              <td>توانستن یا موفق شدن پس از تلاش</td>
+            </tr>
+            <tr>
+              <td>chercher à faire</td>
+              <td>در پی انجام کاری بودن</td>
+            </tr>
+            <tr>
+              <td>commencer à faire</td>
+              <td>شروع به انجام کاری کردن</td>
+            </tr>
+            <tr>
+              <td>continuer à faire</td>
+              <td>ادامه دادن کاری</td>
+            </tr>
+            <tr>
+              <td>hésiter à faire</td>
+              <td>برای انجام کاری تردید کردن</td>
+            </tr>
+            <tr>
+              <td>inviter quelqu’un à faire</td>
+              <td>دعوت کردن کسی به انجام کاری</td>
+            </tr>
+            <tr>
+              <td>réussir à faire</td>
+              <td>موفق شدن به انجام کاری</td>
+            </tr>
+            <tr>
+              <td>se mettre à faire</td>
+              <td>شروع کردن یک فعالیت</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="fg-example">
+        <div class="fg-fr-block">J’apprends à conduire.</div>
+        <small>رانندگی یاد می‌گیرم.</small>
+      </div>
+
+      <div class="fg-example">
+        <div class="fg-fr-block">Ils hésitent à vendre leur magasin.</div>
+        <small>برای فروختن مغازه‌شان تردید دارند.</small>
+      </div>
+
+      <div class="fg-example">
+        <div class="fg-fr-block">Il se met à pleuvoir.</div>
+        <small>باران شروع به باریدن می‌کند.</small>
+      </div>
+    </section>
+
+    <section class="fg-card">
+      <h2>
+        تفاوت
+        <span class="fg-fr">arriver à</span>
+        و
+        <span class="fg-fr">réussir à</span>
+      </h2>
+
+      <p>
+        هر دو می‌توانند مفهوم «موفق شدن به انجام کاری» داشته باشند، اما تأکید
+        آن‌ها کاملاً یکسان نیست.
+      </p>
+
+      <div class="fg-grid-2">
+        <div class="fg-mini-card">
+          <h4><span class="fg-fr">réussir à</span></h4>
+          <p>بیشتر روی موفقیت و نتیجهٔ نهایی تأکید می‌کند.</p>
+
+          <div class="fg-example">
+            <div class="fg-fr-block">J’ai réussi à réparer l’ordinateur.</div>
+            <small>موفق شدم کامپیوتر را تعمیر کنم.</small>
+          </div>
+        </div>
+
+        <div class="fg-mini-card">
+          <h4><span class="fg-fr">arriver à</span></h4>
+          <p>
+            اغلب نشان می‌دهد انجام کار دشوار بوده یا شخص تلاش کرده تا به
+            نتیجه برسد.
+          </p>
+
+          <div class="fg-example">
+            <div class="fg-fr-block">Je n’arrive pas à ouvrir cette porte.</div>
+            <small>هر کاری می‌کنم نمی‌توانم این در را باز کنم.</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="fg-callout fg-callout-info">
+        <strong>ساخت بسیار رایج در مکالمه</strong>
+        <span class="fg-fr">Je n’arrive pas à comprendre.</span>
+        یعنی «هر کاری می‌کنم نمی‌توانم بفهمم».
+      </div>
+    </section>
+
+    <section class="fg-card">
+      <h2>
+        تفاوت
+        <span class="fg-fr">essayer de</span>
+        و
+        <span class="fg-fr">chercher à</span>
+      </h2>
+
+      <div class="fg-comparison">
+        <div class="fg-good-side">
+          <h4><span class="fg-fr">essayer de</span></h4>
+          <p>تلاش عملی برای انجام یک کار.</p>
+
+          <div class="fg-example">
+            <div class="fg-fr-block">J’essaie de dormir.</div>
+            <small>سعی می‌کنم بخوابم.</small>
+          </div>
+        </div>
+
+        <div class="fg-alert-side">
+          <h4><span class="fg-fr">chercher à</span></h4>
+          <p>در پی انجام کاری بودن؛ اغلب کمی رسمی‌تر است.</p>
+
+          <div class="fg-example">
+            <div class="fg-fr-block">Il cherche à améliorer son français.</div>
+            <small>او در تلاش است زبان فرانسه‌اش را بهتر کند.</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="fg-card">
+      <h2 class="fg-rule-title">
+        <span class="fg-rule-number">۴</span>
+        فعل‌هایی که بدون حرف اضافه می‌آیند
+      </h2>
+
+      <h3>افعال علاقه و سلیقه</h3>
+
+      <div class="fg-pills">
+        <span class="fg-pill">aimer</span>
+        <span class="fg-pill">adorer</span>
+        <span class="fg-pill">détester</span>
+        <span class="fg-pill">préférer</span>
+      </div>
+
+      <div class="fg-example">
+        <div class="fg-fr-block">J’adore voyager seul.</div>
+        <small>عاشق تنها سفر کردن هستم.</small>
+      </div>
+
+      <div class="fg-wrong">
+        <div class="fg-fr-block">✗ J’adore de voyager.</div>
+      </div>
+
+      <h3>امید، قصد و برنامه</h3>
+
+      <div class="fg-pills">
+        <span class="fg-pill">espérer</span>
+        <span class="fg-pill">penser</span>
+      </div>
+
+      <div class="fg-example">
+        <div class="fg-fr-block">J’espère partir demain.</div>
+        <small>امیدوارم فردا بروم.</small>
+      </div>
+
+      <div class="fg-wrong">
+        <div class="fg-fr-block">✗ J’espère de partir.</div>
+      </div>
+    </section>
+
+    <section class="fg-card">
+      <h2>سه ساخت متفاوت با <span class="fg-fr">penser</span></h2>
+
+      <div class="fg-table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>ساختار</th>
+              <th>کاربرد</th>
+              <th>مثال</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>penser + infinitif</td>
+              <td>قصد یا برنامه داشتن</td>
+              <td>
+                <span class="fg-fr">Je pense partir demain.</span>
+              </td>
+            </tr>
+            <tr>
+              <td>penser à + infinitif</td>
+              <td>به فکر انجام کاری بودن / فراموش نکردن</td>
+              <td>
+                <span class="fg-fr">Pense à fermer la porte.</span>
+              </td>
+            </tr>
+            <tr>
+              <td>penser à + nom</td>
+              <td>به شخص یا چیزی فکر کردن</td>
+              <td>
+                <span class="fg-fr">Je pense à ma famille.</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="fg-card">
+      <h2 class="fg-rule-title">
+        <span class="fg-rule-number">۵</span>
+        بعد از بسیاری از صفت‌ها: <span class="fg-fr">de + infinitif</span>
+      </h2>
+
+      <div class="fg-formula">
+        être + adjectif + de + infinitif
+      </div>
+
+      <div class="fg-table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>ساختار</th>
+              <th>معنی</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>être content de</td>
+              <td>خوشحال بودن از</td>
+            </tr>
+            <tr>
+              <td>être heureux de</td>
+              <td>خوشحال بودن از</td>
+            </tr>
+            <tr>
+              <td>être pressé de</td>
+              <td>مشتاق یا عجول بودن برای</td>
+            </tr>
+            <tr>
+              <td>être satisfait de</td>
+              <td>راضی بودن از</td>
+            </tr>
+            <tr>
+              <td>être fier de</td>
+              <td>افتخار کردن به</td>
+            </tr>
+            <tr>
+              <td>être triste de</td>
+              <td>ناراحت بودن از</td>
+            </tr>
+            <tr>
+              <td>être désolé de</td>
+              <td>متأسف بودن از</td>
+            </tr>
+            <tr>
+              <td>être surpris de</td>
+              <td>متعجب بودن از</td>
+            </tr>
+            <tr>
+              <td>être ravi de</td>
+              <td>بسیار خوشحال بودن از</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="fg-example">
+        <div class="fg-fr-block">Je suis content d’être ici.</div>
+        <small>خوشحالم که اینجا هستم.</small>
+      </div>
+
+      <div class="fg-example">
+        <div class="fg-fr-block">Je suis désolé d’être en retard.</div>
+        <small>متأسفم که دیر کرده‌ام.</small>
+      </div>
+
+      <div class="fg-callout fg-callout-info">
+        <strong>حذف واکه در <span class="fg-fr">de</span></strong>
+        پیش از واژه‌ای که با واکه یا
+        <span class="fg-fr">h muet</span>
+        آغاز شود:
+        <span class="fg-fr">de → d’</span>.
+        مانند:
+        <span class="fg-fr">d’être</span>،
+        <span class="fg-fr">d’avoir</span>،
+        <span class="fg-fr">d’aller</span>.
+      </div>
+    </section>
+
+    <section class="fg-card">
+      <h2 class="fg-rule-title">
+        <span class="fg-rule-number">۶</span>
+        استثناهای مهم صفت‌ها
+      </h2>
+
+      <p>
+        همهٔ صفت‌ها با <span class="fg-fr">de</span> نمی‌آیند.
+        دو ساخت بسیار مهم با <span class="fg-fr">à</span> هستند:
+      </p>
+
+      <div class="fg-grid-2">
+        <div class="fg-mini-card">
+          <h4><span class="fg-fr">être prêt à</span></h4>
+          <div class="fg-example">
+            <div class="fg-fr-block">Je suis prêt à partir.</div>
+            <small>آماده‌ام بروم.</small>
+          </div>
+        </div>
+
+        <div class="fg-mini-card">
+          <h4><span class="fg-fr">être habitué à</span></h4>
+          <div class="fg-example">
+            <div class="fg-fr-block">Je suis habitué à travailler tard.</div>
+            <small>عادت دارم تا دیروقت کار کنم.</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="fg-card">
+      <h2 class="fg-rule-title">
+        <span class="fg-rule-number">۷</span>
+        عبارت‌های مهم با <span class="fg-fr">avoir</span>
+      </h2>
+
+      <div class="fg-grid-2">
+        <div class="fg-mini-card">
+          <h4>با <span class="fg-fr">de</span></h4>
+
+          <ul class="fg-checklist">
+            <li><span class="fg-fr">avoir envie de</span> — میل داشتن</li>
+            <li><span class="fg-fr">avoir peur de</span> — ترسیدن از</li>
+            <li><span class="fg-fr">avoir l’habitude de</span> — عادت داشتن</li>
+          </ul>
+        </div>
+
+        <div class="fg-mini-card">
+          <h4>با <span class="fg-fr">à</span></h4>
+
+          <ul class="fg-checklist">
+            <li><span class="fg-fr">avoir du mal à</span> — مشکل داشتن در</li>
+            <li><span class="fg-fr">avoir tendance à</span> — تمایل داشتن به</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="fg-example">
+        <div class="fg-fr-block">J’ai envie de voyager.</div>
+        <small>دلم می‌خواهد سفر کنم.</small>
+      </div>
+
+      <div class="fg-example">
+        <div class="fg-fr-block">J’ai du mal à comprendre.</div>
+        <small>در فهمیدن مشکل دارم.</small>
+      </div>
+    </section>
+
+    <section class="fg-card">
+      <h2 class="fg-rule-title">
+        <span class="fg-rule-number">۸</span>
+        دام مهم: <span class="fg-fr">obliger</span>
+      </h2>
+
+      <div class="fg-comparison">
+        <div class="fg-good-side">
+          <h4><span class="fg-fr">obliger quelqu’un à faire</span></h4>
+          <div class="fg-example">
+            <div class="fg-fr-block">On oblige Paul à travailler.</div>
+            <small>پل را مجبور می‌کنند کار کند.</small>
+          </div>
+        </div>
+
+        <div class="fg-alert-side">
+          <h4><span class="fg-fr">être obligé de faire</span></h4>
+          <div class="fg-example">
+            <div class="fg-fr-block">Paul est obligé de travailler.</div>
+            <small>پل مجبور است کار کند.</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="fg-callout fg-callout-warning">
+        <strong>نکتهٔ آزمونی</strong>
+        حالت معلوم با <span class="fg-fr">à</span> ولی ساخت
+        <span class="fg-fr">être obligé</span>
+        با <span class="fg-fr">de</span> می‌آید.
+      </div>
+    </section>
+
+    <section class="fg-card">
+      <h2 class="fg-rule-title">
+        <span class="fg-rule-number">۹</span>
+        جایگاه ضمیر پیش از مصدر
+      </h2>
+
+      <div class="fg-formula">
+        verbe 1 + à / de + pronom + infinitif
+      </div>
+
+      <div class="fg-example">
+        <div class="fg-fr-block">J’essaie de m’intéresser à autre chose.</div>
+        <small>سعی می‌کنم به چیز دیگری علاقه‌مند شوم.</small>
+      </div>
+
+      <div class="fg-example">
+        <div class="fg-fr-block">Il accepte de me donner des conseils.</div>
+        <small>او می‌پذیرد به من راهنمایی بدهد.</small>
+      </div>
+
+      <div class="fg-example">
+        <div class="fg-fr-block">N’oublie pas de l’appeler.</div>
+        <small>فراموش نکن به او تلفن کنی.</small>
+      </div>
+
+      <div class="fg-callout fg-callout-info">
+        ضمیر متعلق به فعل دوم است؛ بنابراین درست قبل از مصدر قرار می‌گیرد.
+      </div>
+    </section>
+
+    <section class="fg-card">
+      <h2 class="fg-rule-title">
+        <span class="fg-rule-number">۱۰</span>
+        منفی کردن مصدر
+      </h2>
+
+      <div class="fg-formula">
+        de / à + ne pas + infinitif
+      </div>
+
+      <div class="fg-example">
+        <div class="fg-fr-block">Je décide de ne pas partir.</div>
+        <small>تصمیم می‌گیرم نروم.</small>
+      </div>
+
+      <div class="fg-example">
+        <div class="fg-fr-block">Il essaie de ne pas faire de bruit.</div>
+        <small>سعی می‌کند سروصدا نکند.</small>
+      </div>
+
+      <div class="fg-example">
+        <div class="fg-fr-block">Elle préfère ne pas répondre.</div>
+        <small>ترجیح می‌دهد پاسخ ندهد.</small>
+      </div>
+    </section>
+
+    <section class="fg-card">
+      <h2 class="fg-rule-title">
+        <span class="fg-rule-number">۱۱</span>
+        تکرار حرف اضافه با چند مصدر
+      </h2>
+
+      <p>
+        وقتی چند مصدر با
+        <span class="fg-fr">et</span>
+        به هم متصل می‌شوند، در ساخت‌های دقیق بهتر است حرف اضافه برای هر
+        مصدر دوباره آورده شود.
+      </p>
+
+      <div class="fg-example">
+        <div class="fg-fr-block">
+          Je rêve d’aller en Chine et de rester un an au Tibet.
+        </div>
+      </div>
+
+      <div class="fg-example">
+        <div class="fg-fr-block">
+          J’ai envie d’habiter à la campagne et de faire de la poterie.
+        </div>
+      </div>
+
+      <div class="fg-example">
+        <div class="fg-fr-block">
+          J’ai peur de vieillir et d’être seul.
+        </div>
+      </div>
+
+      <div class="fg-callout fg-callout-success">
+        اما با فعل‌های بدون حرف اضافه:
+        <span class="fg-fr">J’aime lire et écrire.</span>
+      </div>
+    </section>
+
+    <section class="fg-card">
+      <h2 class="fg-rule-title">
+        <span class="fg-rule-number">۱۲</span>
+        مصدر به‌عنوان فاعل
+      </h2>
+
+      <p>
+        وقتی خود مصدر نقش فاعل جمله را داشته باشد، پیش از آن حرف اضافه
+        نمی‌آید.
+      </p>
+
+      <div class="fg-example">
+        <div class="fg-fr-block">Voyager est enrichissant.</div>
+        <small>سفر کردن آموزنده است.</small>
+      </div>
+
+      <div class="fg-example">
+        <div class="fg-fr-block">Marcher est bon pour la santé.</div>
+        <small>پیاده‌روی برای سلامتی مفید است.</small>
+      </div>
+
+      <div class="fg-example">
+        <div class="fg-fr-block">
+          Marcher, courir, bouger est bon pour la santé.
+        </div>
+      </div>
+    </section>
+
+    <section class="fg-card">
+      <h2 class="fg-rule-title">
+        <span class="fg-rule-number">۱۳</span>
+        نکتهٔ ظریف دربارهٔ <span class="fg-fr">continuer</span>
+      </h2>
+
+      <div class="fg-example">
+        <div class="fg-fr-block">Je continue à travailler.</div>
+      </div>
+
+      <p>
+        در این درس ساخت اصلی
+        <span class="fg-fr">continuer à + infinitif</span>
+        است.
+      </p>
+
+      <div class="fg-callout fg-callout-warning">
+        <strong>نکتهٔ تکمیلی</strong>
+        در زبان فرانسه ساخت
+        <span class="fg-fr">continuer de + infinitif</span>
+        نیز صحیح است. برای تمرین‌های همین درس، ساخت
+        <span class="fg-fr">continuer à</span>
+        را مبنا قرار دهید.
+      </div>
+    </section>
+
+    <section class="fg-card">
+      <h2 class="fg-rule-title">
+        <span class="fg-rule-number">۱۴</span>
+        همهٔ <span class="fg-fr">à</span> و <span class="fg-fr">de</span>ها مربوط به مصدر نیستند
+      </h2>
+
+      <div class="fg-table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>ساختار</th>
+              <th>معنی</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>changer de métier</td>
+              <td>شغل عوض کردن</td>
+            </tr>
+            <tr>
+              <td>jouer de la guitare</td>
+              <td>گیتار زدن</td>
+            </tr>
+            <tr>
+              <td>faire de la musique</td>
+              <td>موسیقی کار کردن</td>
+            </tr>
+            <tr>
+              <td>faire du parapente</td>
+              <td>پاراگلایدرسواری کردن</td>
+            </tr>
+            <tr>
+              <td>téléphoner à quelqu’un</td>
+              <td>به کسی تلفن کردن</td>
+            </tr>
+            <tr>
+              <td>s’intéresser à quelque chose</td>
+              <td>به چیزی علاقه‌مند بودن</td>
+            </tr>
+            <tr>
+              <td>se servir de quelque chose</td>
+              <td>از چیزی استفاده کردن</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="fg-callout fg-callout-info">
+        برای تشخیص درست، همیشه ببینید حرف اضافه به کدام فعل، اسم یا متمم
+        تعلق دارد.
+      </div>
+    </section>
+
+    <section class="fg-card">
+      <h2>تمرین‌های درس — صفحهٔ ۱۶۱</h2>
+
+      <div class="fg-exercise">
+        <div class="fg-exercise-title">
+          تمرین ۱ — Complétez avec « à » ou « de »
+        </div>
+
+        <div class="fg-exercise-body">
+
+          <div class="fg-answer">
+            <span class="fg-answer-number">1</span>
+            <span class="fg-fr">
+              Arrête de regarder la télé, et commence à ranger tes affaires !
+            </span>
+            <div class="fg-analysis">
+              <span class="fg-fr">arrêter de</span> +
+              <span class="fg-fr">commencer à</span>
+            </div>
+          </div>
+
+          <div class="fg-answer">
+            <span class="fg-answer-number">2</span>
+            <span class="fg-fr">
+              Je finis de lire le courrier et je me mets à travailler.
+            </span>
+            <div class="fg-analysis">
+              <span class="fg-fr">finir de</span> +
+              <span class="fg-fr">se mettre à</span>
+            </div>
+          </div>
+
+          <div class="fg-answer">
+            <span class="fg-answer-number">3</span>
+            <span class="fg-fr">
+              J’ai oublié de payer mes impôts et j’ai peur de payer une amende.
+            </span>
+            <div class="fg-analysis">
+              <span class="fg-fr">oublier de</span> +
+              <span class="fg-fr">avoir peur de</span>
+            </div>
+          </div>
+
+          <div class="fg-answer">
+            <span class="fg-answer-number">4</span>
+            <span class="fg-fr">
+              J’accepte de travailler tard, mais je refuse de travailler le samedi.
+            </span>
+            <div class="fg-analysis">
+              <span class="fg-fr">accepter de</span> +
+              <span class="fg-fr">refuser de</span>
+            </div>
+          </div>
+
+          <div class="fg-answer">
+            <span class="fg-answer-number">5</span>
+            <span class="fg-fr">
+              Marie apprend à conduire ; elle a du mal à faire les créneaux.
+            </span>
+            <div class="fg-analysis">
+              <span class="fg-fr">apprendre à</span> +
+              <span class="fg-fr">avoir du mal à</span>
+            </div>
+          </div>
+
+          <div class="fg-answer">
+            <span class="fg-answer-number">6</span>
+            <span class="fg-fr">
+              J’ai décidé de reprendre mes études. Paul m’aide à travailler.
+            </span>
+            <div class="fg-analysis">
+              <span class="fg-fr">décider de</span> +
+              <span class="fg-fr">aider quelqu’un à</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="fg-exercise">
+        <div class="fg-exercise-title">
+          تمرین ۲ — صفت + de + infinitif
+        </div>
+
+        <div class="fg-exercise-body">
+          <div class="fg-answer">
+            <span class="fg-answer-number">1</span>
+            <span class="fg-fr">Je suis désolé(e) d’être en retard.</span>
+          </div>
+
+          <div class="fg-answer">
+            <span class="fg-answer-number">2</span>
+            <span class="fg-fr">
+              Je suis furieux / furieuse d’avoir une contravention.
+            </span>
+          </div>
+
+          <div class="fg-answer">
+            <span class="fg-answer-number">3</span>
+            <span class="fg-fr">
+              Je suis surpris(e) de recevoir une lettre de Bernd.
+            </span>
+          </div>
+
+          <div class="fg-answer">
+            <span class="fg-answer-number">4</span>
+            <span class="fg-fr">
+              Je suis heureux / heureuse de partir en voyage.
+            </span>
+          </div>
+
+          <div class="fg-answer">
+            <span class="fg-answer-number">5</span>
+            <span class="fg-fr">
+              Je suis ravi(e) d’être invité(e) chez Lucia.
+            </span>
+            <div class="fg-analysis">
+              <span class="fg-note-label">تطابق</span>
+              <span class="fg-fr">ravi / ravie</span> و
+              <span class="fg-fr">invité / invitée</span>
+              با جنس شخص هماهنگ می‌شوند.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fg-exercise">
+        <div class="fg-exercise-title">
+          تمرین ۳ — هدف و امید
+        </div>
+
+        <div class="fg-exercise-body">
+
+          <div class="fg-answer">
+            <span class="fg-answer-number">1</span>
+            <div class="fg-fr-block">Trouver du travail est mon objectif.</div>
+            <div class="fg-fr-block">J’espère trouver du travail.</div>
+          </div>
+
+          <div class="fg-answer">
+            <span class="fg-answer-number">2</span>
+            <div class="fg-fr-block">Vivre un an en France est mon objectif.</div>
+            <div class="fg-fr-block">J’espère vivre un an en France.</div>
+          </div>
+
+          <div class="fg-answer">
+            <span class="fg-answer-number">3</span>
+            <div class="fg-fr-block">
+              Perfectionner mon français est mon objectif.
+            </div>
+            <div class="fg-fr-block">
+              J’espère perfectionner mon français.
+            </div>
+          </div>
+
+          <div class="fg-callout fg-callout-warning">
+            پس از <span class="fg-fr">espérer</span> حرف اضافه نمی‌آید.
+          </div>
+        </div>
+      </div>
+
+      <div class="fg-exercise">
+        <div class="fg-exercise-title">
+          تمرین ۴ — Le boulanger
+        </div>
+
+        <div class="fg-exercise-body">
+
+          <div class="fg-text-complete">
+            Le boulanger finit de travailler à 6 heures, la boulangère commence
+            à travailler à 8 heures et tous les deux sont obligés de travailler
+            le samedi et le dimanche ! Ils ont envie de changer de métier, mais
+            ils hésitent à vendre leur petit magasin. Leur fille aînée les aide
+            parfois à servir les clients, mais elle rêve de devenir médecin et
+            elle ne doit pas négliger ses études. Le boulanger espère trouver un
+            apprenti, mais beaucoup de jeunes refusent de travailler pendant le
+            week-end. La boulangère est parfois triste de voir si peu son mari,
+            mais elle adore voir beaucoup de monde et elle est fière de vendre
+            un bon pain artisanal.
+          </div>
+
+          <div class="fg-pills">
+            <span class="fg-pill">finir de</span>
+            <span class="fg-pill">commencer à</span>
+            <span class="fg-pill">être obligé de</span>
+            <span class="fg-pill">avoir envie de</span>
+            <span class="fg-pill">hésiter à</span>
+            <span class="fg-pill">aider à</span>
+            <span class="fg-pill">rêver de</span>
+            <span class="fg-pill">espérer Ø</span>
+            <span class="fg-pill">refuser de</span>
+            <span class="fg-pill">être fier de</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="fg-card">
+      <h2>تمرین‌های درس — صفحهٔ ۱۶۲</h2>
+
+      <div class="fg-exercise">
+        <div class="fg-exercise-title">
+          تمرین ۱ — تبدیل عبارت اسمی به ساخت فعلی
+        </div>
+
+        <div class="fg-exercise-body">
+          <div class="fg-answer">
+            <span class="fg-answer-number">1</span>
+            <span class="fg-fr">
+              J’ai décidé de faire des économies et d’acheter un bateau.
+            </span>
+          </div>
+
+          <div class="fg-answer">
+            <span class="fg-answer-number">2</span>
+            <span class="fg-fr">
+              J’espère trouver un bon travail et être vite autonome.
+            </span>
+          </div>
+
+          <div class="fg-answer">
+            <span class="fg-answer-number">3</span>
+            <span class="fg-fr">
+              J’ai envie d’habiter à la campagne et de faire de la poterie.
+            </span>
+          </div>
+
+          <div class="fg-answer">
+            <span class="fg-answer-number">4</span>
+            <span class="fg-fr">
+              J’ai peur de vieillir et d’être seul(e).
+            </span>
+          </div>
+
+          <div class="fg-callout fg-callout-info">
+            در ساخت‌هایی که حرف اضافه دارند، حرف اضافه پیش از مصدر دوم نیز
+            معمولاً تکرار می‌شود:
+            <span class="fg-fr">de faire... et d’acheter...</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="fg-exercise">
+        <div class="fg-exercise-title">
+          تمرین ۲ — Stress
+        </div>
+
+        <div class="fg-exercise-body">
+          <div class="fg-text-complete">
+            Depuis quelque temps, j’ai du mal à trouver un équilibre. Je
+            n’arrive pas à me détendre. Je commence à avoir des insomnies. Mais
+            je refuse de rester dans cette situation. Alors, je décide de
+            changer. J’arrête de travailler autant. J’essaie de m’intéresser à
+            d’autres choses. Je fais de la musique, je joue de la guitare et
+            j’apprends à faire du parapente. Je téléphone à mes amis et je les
+            invite à dîner de temps en temps. Je commence enfin à prendre du
+            temps pour moi-même. Je réussis à être plus détendu. J’espère
+            continuer comme ça.
+          </div>
+
+          <div class="fg-callout fg-callout-warning">
+            <strong>نکتهٔ خیلی مهم</strong>
+            در
+            <span class="fg-fr">J’essaie de m’intéresser à d’autres choses</span>
+            دو حرف اضافهٔ متفاوت وجود دارد:
+            <span class="fg-fr">essayer de</span>
+            و
+            <span class="fg-fr">s’intéresser à</span>.
+          </div>
+        </div>
+      </div>
+
+      <div class="fg-exercise">
+        <div class="fg-exercise-title">
+          تمرین ۳ — تبدیل اسم به فعل
+        </div>
+
+        <div class="fg-exercise-body">
+          <div class="fg-answer">
+            <span class="fg-answer-number">1</span>
+            <span class="fg-fr">Il arrête de faire du judo.</span>
+          </div>
+
+          <div class="fg-answer">
+            <span class="fg-answer-number">2</span>
+            <span class="fg-fr">Il finit d’écrire ses devoirs.</span>
+          </div>
+
+          <div class="fg-answer">
+            <span class="fg-answer-number">3</span>
+            <span class="fg-fr">
+              Il continue à suivre ses cours de russe.
+            </span>
+          </div>
+
+          <div class="fg-answer">
+            <span class="fg-answer-number">4</span>
+            <span class="fg-fr">
+              Il essaie de se servir du nouvel ordinateur.
+            </span>
+            <div class="fg-analysis">
+              <span class="fg-fr">essayer de</span> +
+              <span class="fg-fr">se servir de</span> +
+              <span class="fg-fr">de + le = du</span>
+            </div>
+          </div>
+
+          <div class="fg-answer">
+            <span class="fg-answer-number">5</span>
+            <span class="fg-fr">Il aime écouter le jazz.</span>
+            <div class="fg-analysis">
+              پس از <span class="fg-fr">aimer</span> حرف اضافه نمی‌آید.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fg-exercise">
+        <div class="fg-exercise-title">
+          تمرین ۴ — نمونه پاسخ آزاد
+        </div>
+
+        <div class="fg-exercise-body">
+          <div class="fg-answer">
+            <div class="fg-fr-block">
+              Je commence à travailler à neuf heures et je finis de travailler
+              à dix-sept heures.
+            </div>
+          </div>
+
+          <div class="fg-answer">
+            <div class="fg-fr-block">
+              J’accepte de vous aider, mais je refuse de faire tout le travail.
+            </div>
+          </div>
+
+          <div class="fg-answer">
+            <div class="fg-fr-block">
+              J’essaie de résoudre le problème et je réussis à trouver la
+              solution.
+            </div>
+          </div>
+
+          <div class="fg-answer">
+            <div class="fg-fr-block">
+              J’adore cuisiner, mais je déteste faire la vaisselle.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="fg-card">
+      <h2>تمرین‌های درس — صفحهٔ ۱۶۳</h2>
+
+      <div class="fg-exercise">
+        <div class="fg-exercise-title">
+          تمرین ۱ — Stage d’informatique
+        </div>
+
+        <div class="fg-exercise-body">
+          <div class="fg-text-complete">
+            Je suis très satisfait de mon stage d’informatique, maintenant je
+            réussis à taper tout ce que je veux. Quand j’ai un problème, je
+            téléphone à mon professeur qui accepte de me donner quelques
+            conseils. Je continue aussi à travailler seul avec un manuel et
+            j’arrive à comprendre l’essentiel. J’aime apprendre des choses
+            nouvelles. L’informatique, c’est comme un jeu et parfois je suis si
+            absorbé que j’oublie de regarder l’heure. Mais j’ai du mal à
+            travailler sur mon écran : je crois que je vais être obligé de
+            porter des lunettes.
+          </div>
+
+          <div class="fg-pills">
+            <span class="fg-pill">satisfait de</span>
+            <span class="fg-pill">réussir à</span>
+            <span class="fg-pill">téléphoner à</span>
+            <span class="fg-pill">accepter de</span>
+            <span class="fg-pill">continuer à</span>
+            <span class="fg-pill">arriver à</span>
+            <span class="fg-pill">aimer Ø</span>
+            <span class="fg-pill">oublier de</span>
+            <span class="fg-pill">avoir du mal à</span>
+            <span class="fg-pill">être obligé de</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="fg-exercise">
+        <div class="fg-exercise-title">
+          تمرین ۲ — Cher Julien
+        </div>
+
+        <div class="fg-exercise-body">
+          <div class="fg-text-complete">
+            Je suis content de voir que tu commences à prendre tes études au
+            sérieux. Si tu continues à avoir de bons résultats, je veux bien
+            t’acheter une petite voiture. J’espère trouver une bonne occasion
+            chez « Ringard », le nouveau garagiste.
+
+            <br><br>
+
+            Je n’en parle pas encore à ta mère : elle a peur de tout ce qui
+            roule — et elle ne veut pas voir son fils grandir… Mais n’oublie pas
+            de l’appeler pour la Fête des mères. Elle est si heureuse d’avoir de
+            tes nouvelles.
+
+            <br><br>
+
+            Grosses bises. Bon courage. Papa.
+          </div>
+
+          <div class="fg-callout fg-callout-info">
+            در
+            <span class="fg-fr">N’oublie pas de l’appeler</span>
+            ضمیر
+            <span class="fg-fr">l’</span>
+            پیش از مصدر
+            <span class="fg-fr">appeler</span>
+            قرار می‌گیرد.
+          </div>
+        </div>
+      </div>
+
+      <div class="fg-exercise">
+        <div class="fg-exercise-title">
+          تمرین ۳ — Changer de vie
+        </div>
+
+        <div class="fg-exercise-body">
+          <div class="fg-text-complete">
+            Selon une enquête récente de l’INSEE, près d’un million de Français
+            ne sont pas satisfaits de leur emploi actuel et souhaitent changer
+            de cadre de vie. Ils rêvent de trouver une activité et un lieu de
+            vie plus agréables. Certains hésitent à tout quitter, mais d’autres
+            choisissent de bouleverser leurs habitudes et décident de partir
+            ailleurs, souvent en fait parce qu’ils ont peur de perdre bientôt
+            leur emploi ou parce qu’ils sont déjà au chômage. Alors, des
+            informaticiens décident de devenir restaurateurs, des comptables,
+            libraires ou des dentistes, menuisiers. Soit ils continuent à être
+            salariés ailleurs, au Québec, en Amérique du Sud, aux États-Unis ou
+            en Australie, soit ils décident de créer leur propre entreprise à
+            l’étranger. Ils essayent en tout cas de trouver un mode de vie qui
+            les motive et qui leur convient.
+          </div>
+
+          <h3>ساخت‌های کلیدی متن</h3>
+
+          <div class="fg-pills">
+            <span class="fg-pill">être satisfait de</span>
+            <span class="fg-pill">souhaiter Ø</span>
+            <span class="fg-pill">changer de</span>
+            <span class="fg-pill">rêver de</span>
+            <span class="fg-pill">hésiter à</span>
+            <span class="fg-pill">choisir de</span>
+            <span class="fg-pill">décider de</span>
+            <span class="fg-pill">avoir peur de</span>
+            <span class="fg-pill">continuer à</span>
+            <span class="fg-pill">essayer de</span>
+          </div>
+
+          <h3>حروف اضافهٔ مکان در همان متن</h3>
+
+          <div class="fg-table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>عبارت</th>
+                  <th>توضیح</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>au Québec</td>
+                  <td><span class="fg-fr">à + le = au</span></td>
+                </tr>
+                <tr>
+                  <td>en Amérique du Sud</td>
+                  <td>نام قاره</td>
+                </tr>
+                <tr>
+                  <td>aux États-Unis</td>
+                  <td><span class="fg-fr">à + les = aux</span></td>
+                </tr>
+                <tr>
+                  <td>en Australie</td>
+                  <td>کشور مؤنث</td>
+                </tr>
+                <tr>
+                  <td>à l’étranger</td>
+                  <td>در خارج از کشور</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="fg-exercise">
+        <div class="fg-exercise-title">
+          تمرین ۴ — افعال و ساخت‌های مهم متن
+        </div>
+
+        <div class="fg-exercise-body">
+          <div class="fg-table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>ساختار فرانسوی</th>
+                  <th>معنی</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>être satisfait de</td>
+                  <td>راضی بودن از</td>
+                </tr>
+                <tr>
+                  <td>souhaiter faire</td>
+                  <td>خواستن انجام کاری</td>
+                </tr>
+                <tr>
+                  <td>changer de</td>
+                  <td>تغییر دادن</td>
+                </tr>
+                <tr>
+                  <td>rêver de</td>
+                  <td>رؤیای چیزی را داشتن</td>
+                </tr>
+                <tr>
+                  <td>hésiter à</td>
+                  <td>تردید داشتن</td>
+                </tr>
+                <tr>
+                  <td>choisir de</td>
+                  <td>انتخاب کردن</td>
+                </tr>
+                <tr>
+                  <td>décider de</td>
+                  <td>تصمیم گرفتن</td>
+                </tr>
+                <tr>
+                  <td>avoir peur de</td>
+                  <td>ترسیدن</td>
+                </tr>
+                <tr>
+                  <td>continuer à</td>
+                  <td>ادامه دادن</td>
+                </tr>
+                <tr>
+                  <td>essayer de</td>
+                  <td>تلاش کردن</td>
+                </tr>
+                <tr>
+                  <td>convenir à quelqu’un</td>
+                  <td>برای کسی مناسب بودن</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="fg-callout fg-callout-warning">
+            در عبارت
+            <span class="fg-fr">un mode de vie qui les motive et qui leur convient</span>:
+            فعل
+            <span class="fg-fr">motiver</span>
+            مفعول مستقیم می‌گیرد
+            (<span class="fg-fr">les</span>)،
+            اما
+            <span class="fg-fr">convenir à quelqu’un</span>
+            مفعول غیرمستقیم می‌گیرد
+            (<span class="fg-fr">leur</span>).
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="fg-memory-box">
+      <h2>جمع‌بندی سریع برای حفظ کردن</h2>
+
+      <div class="fg-memory-columns">
+        <div class="fg-memory-col">
+          <h3>à</h3>
+          <ul>
+            <li><span class="fg-fr">commencer à</span></li>
+            <li><span class="fg-fr">se mettre à</span></li>
+            <li><span class="fg-fr">continuer à</span></li>
+            <li><span class="fg-fr">arriver à</span></li>
+            <li><span class="fg-fr">réussir à</span></li>
+            <li><span class="fg-fr">apprendre à</span></li>
+            <li><span class="fg-fr">hésiter à</span></li>
+          </ul>
+        </div>
+
+        <div class="fg-memory-col">
+          <h3>de</h3>
+          <ul>
+            <li><span class="fg-fr">décider de</span></li>
+            <li><span class="fg-fr">arrêter de</span></li>
+            <li><span class="fg-fr">finir de</span></li>
+            <li><span class="fg-fr">accepter de</span></li>
+            <li><span class="fg-fr">refuser de</span></li>
+            <li><span class="fg-fr">oublier de</span></li>
+            <li><span class="fg-fr">essayer de</span></li>
+          </ul>
+        </div>
+
+        <div class="fg-memory-col">
+          <h3>Ø</h3>
+          <ul>
+            <li><span class="fg-fr">aimer</span></li>
+            <li><span class="fg-fr">adorer</span></li>
+            <li><span class="fg-fr">détester</span></li>
+            <li><span class="fg-fr">préférer</span></li>
+            <li><span class="fg-fr">vouloir</span></li>
+            <li><span class="fg-fr">espérer</span></li>
+            <li><span class="fg-fr">souhaiter</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="fg-final-formulas">
+        <div class="fg-final-formula">
+          Je décide de partir.
+        </div>
+
+        <div class="fg-final-formula">
+          Je commence à travailler.
+        </div>
+
+        <div class="fg-final-formula">
+          J’espère réussir.
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>

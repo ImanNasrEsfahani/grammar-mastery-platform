@@ -1,0 +1,236 @@
+<div class="fg-french-grammar-wrapper" dir="rtl" lang="fa">
+  <style scoped>
+    .fg-french-grammar-wrapper{--fg-navy:#123b66;--fg-blue:#1f5f99;--fg-blue-soft:#edf5fc;--fg-green:#16784a;--fg-green-soft:#edf9f2;--fg-red:#b5362f;--fg-red-soft:#fff1ef;--fg-orange:#b86a13;--fg-orange-soft:#fff6e9;--fg-text:#213042;--fg-muted:#627083;--fg-border:#d7e0ea;--fg-surface:#ffffff;--fg-surface-alt:#f7f9fc;--fg-shadow:0 10px 30px rgba(18,59,102,.08);font-family:Tahoma,"Vazirmatn","IRANSansX",Arial,sans-serif;color:var(--fg-text);background:transparent;line-height:1.95;box-sizing:border-box}
+    .fg-french-grammar-wrapper *{box-sizing:border-box}
+    .fg-french-grammar-wrapper .fg-shell{max-width:1100px;margin:0 auto;padding:18px}
+    .fg-french-grammar-wrapper .fg-hero{background:linear-gradient(135deg,#123b66 0%,#1f5f99 100%);color:#fff;border-radius:24px;padding:28px;box-shadow:var(--fg-shadow);margin-bottom:22px;overflow:hidden;position:relative}
+    .fg-french-grammar-wrapper .fg-hero:after{content:"49";position:absolute;left:26px;top:-22px;font:700 120px/1 Arial,sans-serif;color:rgba(255,255,255,.08)}
+    .fg-french-grammar-wrapper .fg-kicker{font-size:.9rem;opacity:.85;margin-bottom:6px}
+    .fg-french-grammar-wrapper h1,.fg-french-grammar-wrapper h2,.fg-french-grammar-wrapper h3,.fg-french-grammar-wrapper h4{margin:0;color:var(--fg-navy);line-height:1.5}
+    .fg-french-grammar-wrapper .fg-hero h1{color:#fff;font-size:clamp(1.7rem,3.8vw,2.6rem)}
+    .fg-french-grammar-wrapper .fg-hero p{margin:10px 0 0;color:#eaf3ff}
+    .fg-french-grammar-wrapper .fg-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+    .fg-french-grammar-wrapper .fg-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 11px;border-radius:999px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);font-size:.82rem}
+    .fg-french-grammar-wrapper .fg-card{background:var(--fg-surface);border:1px solid var(--fg-border);border-radius:20px;padding:22px;margin:18px 0;box-shadow:var(--fg-shadow)}
+    .fg-french-grammar-wrapper .fg-card h2{font-size:1.38rem;margin-bottom:14px;border-bottom:2px solid var(--fg-blue-soft);padding-bottom:9px}
+    .fg-french-grammar-wrapper .fg-card h3{font-size:1.08rem;margin:18px 0 8px}
+    .fg-french-grammar-wrapper p{margin:8px 0 12px}
+    .fg-french-grammar-wrapper ul,.fg-french-grammar-wrapper ol{padding-right:1.25rem;margin:8px 0 14px}
+    .fg-french-grammar-wrapper li{margin:6px 0}
+    .fg-french-grammar-wrapper .fg-fr{direction:ltr;text-align:left;unicode-bidi:isolate;display:inline-block;font-family:"Segoe UI",Arial,sans-serif;font-weight:600;color:#173d63}
+    .fg-french-grammar-wrapper .fg-fr-block{direction:ltr;text-align:left;unicode-bidi:isolate;font-family:"Segoe UI",Arial,sans-serif;background:#f5f8fb;border:1px solid #dfe8f0;border-left:4px solid var(--fg-blue);border-radius:12px;padding:12px 14px;margin:10px 0;overflow-wrap:anywhere}
+    .fg-french-grammar-wrapper .fg-example{background:var(--fg-green-soft);border:1px solid #cdebd9;border-right:5px solid var(--fg-green);border-radius:14px;padding:13px 15px;margin:10px 0}
+    .fg-french-grammar-wrapper .fg-warning{background:var(--fg-red-soft);border:1px solid #f0cbc7;border-right:5px solid var(--fg-red);border-radius:14px;padding:13px 15px;margin:10px 0}
+    .fg-french-grammar-wrapper .fg-note{background:var(--fg-orange-soft);border:1px solid #f0d8b4;border-right:5px solid var(--fg-orange);border-radius:14px;padding:13px 15px;margin:10px 0}
+    .fg-french-grammar-wrapper .fg-rule{background:var(--fg-blue-soft);border:1px solid #cfe0ef;border-right:5px solid var(--fg-blue);border-radius:14px;padding:14px 16px;margin:12px 0}
+    .fg-french-grammar-wrapper .fg-label{display:inline-block;font-size:.78rem;font-weight:700;padding:3px 8px;border-radius:999px;margin-bottom:7px}
+    .fg-french-grammar-wrapper .fg-label-green{background:#d9f2e4;color:#0d6039}.fg-french-grammar-wrapper .fg-label-red{background:#f8d9d5;color:#8d2924}.fg-french-grammar-wrapper .fg-label-blue{background:#dcebf7;color:#174d78}.fg-french-grammar-wrapper .fg-label-orange{background:#f7e4c8;color:#87500d}
+    .fg-french-grammar-wrapper .fg-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    .fg-french-grammar-wrapper .fg-mini{background:var(--fg-surface-alt);border:1px solid var(--fg-border);border-radius:14px;padding:14px}
+    .fg-french-grammar-wrapper .fg-table-wrap{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;margin:14px 0}
+    .fg-french-grammar-wrapper table{width:100%;border-collapse:collapse;min-width:620px;background:#fff;border:1px solid #bfcbd7;border-radius:12px;overflow:hidden}
+    .fg-french-grammar-wrapper th,.fg-french-grammar-wrapper td{border:1px solid #cbd5df;padding:10px 12px;vertical-align:top}
+    .fg-french-grammar-wrapper th{background:#dfeaf4;color:#143e65;font-weight:800}
+    .fg-french-grammar-wrapper tbody tr:nth-child(even){background:#f7f9fc}
+    .fg-french-grammar-wrapper .fg-correct{color:var(--fg-green);font-weight:800}
+    .fg-french-grammar-wrapper .fg-wrong{color:var(--fg-red);font-weight:800}
+    .fg-french-grammar-wrapper .fg-exercise{border:1px solid var(--fg-border);border-radius:18px;overflow:hidden;margin:16px 0;background:#fff}
+    .fg-french-grammar-wrapper .fg-exercise-head{background:#edf4fb;padding:14px 16px;border-bottom:1px solid var(--fg-border)}
+    .fg-french-grammar-wrapper .fg-exercise-body{padding:16px}
+    .fg-french-grammar-wrapper .fg-answer{background:#eef9f2;border-right:4px solid var(--fg-green);border-radius:10px;padding:11px 13px;margin-top:10px}
+    .fg-french-grammar-wrapper .fg-source{font-size:.86rem;color:var(--fg-muted);background:#f5f7fa;border-radius:12px;padding:10px 12px;margin-top:18px}
+    .fg-french-grammar-wrapper .fg-divider{height:1px;background:var(--fg-border);margin:20px 0}
+    .fg-french-grammar-wrapper .fg-summary-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+    .fg-french-grammar-wrapper .fg-summary-item{border:1px solid var(--fg-border);border-radius:12px;padding:12px;background:#fff}
+    @media (max-width:760px){.fg-french-grammar-wrapper .fg-shell{padding:10px}.fg-french-grammar-wrapper .fg-hero{padding:20px;border-radius:18px}.fg-french-grammar-wrapper .fg-card{padding:16px;border-radius:16px}.fg-french-grammar-wrapper .fg-grid,.fg-french-grammar-wrapper .fg-summary-grid{grid-template-columns:1fr}.fg-french-grammar-wrapper table{min-width:560px}.fg-french-grammar-wrapper th,.fg-french-grammar-wrapper td{padding:9px 10px;font-size:.92rem}}
+    @media (prefers-color-scheme:dark){.fg-french-grammar-wrapper{--fg-text:#e7edf4;--fg-muted:#aeb9c6;--fg-border:#334456;--fg-surface:#172330;--fg-surface-alt:#1d2b39;--fg-blue-soft:#1c3145;--fg-green-soft:#173326;--fg-red-soft:#3b2220;--fg-orange-soft:#3d2e1a}.fg-french-grammar-wrapper .fg-card,.fg-french-grammar-wrapper table,.fg-french-grammar-wrapper .fg-summary-item{background:#172330}.fg-french-grammar-wrapper tbody tr:nth-child(even){background:#1d2b39}.fg-french-grammar-wrapper th{background:#21384c;color:#dcecff}.fg-french-grammar-wrapper .fg-fr{color:#b9d7f2}.fg-french-grammar-wrapper .fg-fr-block{background:#1c2936;border-color:#33485b}.fg-french-grammar-wrapper .fg-exercise{background:#172330}.fg-french-grammar-wrapper .fg-exercise-head{background:#1d3042}.fg-french-grammar-wrapper .fg-source{background:#1d2b39}}
+  </style>
+
+  <div class="fg-shell">
+    <section class="fg-hero">
+      <div class="fg-kicker">Grammaire Progressive du Français — Niveau intermédiaire</div>
+      <h1><span class="fg-fr">Le conditionnel (2)</span> — درس ۴۹</h1>
+      <p>کاربردهای پیشرفتهٔ شرطی: واقعیت خیالی، احتمال احتیاطی، خبر تأییدنشده و حسرت در گذشته.</p>
+      <div class="fg-meta">
+        <span class="fg-badge">صفحهٔ کتاب: ۲۳۰</span>
+        <span class="fg-badge">تمرین‌ها: صفحهٔ ۲۳۱</span>
+        <span class="fg-badge">ارتباط: درس ۳۱ و درس ۵۰</span>
+      </div>
+    </section>
+
+    <section class="fg-card">
+      <h2>۱. ساخت <span class="fg-fr">conditionnel présent</span></h2>
+      <div class="fg-rule"><span class="fg-label fg-label-blue">فرمول</span><br>ریشهٔ <span class="fg-fr">futur simple</span> + پایانه‌های <span class="fg-fr">imparfait</span></div>
+      <div class="fg-table-wrap"><table><thead><tr><th>ضمیر</th><th>پایانه</th><th><span class="fg-fr">parler</span></th></tr></thead><tbody>
+        <tr><td><span class="fg-fr">je</span></td><td><span class="fg-fr">-ais</span></td><td><span class="fg-fr">je parlerais</span></td></tr>
+        <tr><td><span class="fg-fr">tu</span></td><td><span class="fg-fr">-ais</span></td><td><span class="fg-fr">tu parlerais</span></td></tr>
+        <tr><td><span class="fg-fr">il / elle / on</span></td><td><span class="fg-fr">-ait</span></td><td><span class="fg-fr">il parlerait</span></td></tr>
+        <tr><td><span class="fg-fr">nous</span></td><td><span class="fg-fr">-ions</span></td><td><span class="fg-fr">nous parlerions</span></td></tr>
+        <tr><td><span class="fg-fr">vous</span></td><td><span class="fg-fr">-iez</span></td><td><span class="fg-fr">vous parleriez</span></td></tr>
+        <tr><td><span class="fg-fr">ils / elles</span></td><td><span class="fg-fr">-aient</span></td><td><span class="fg-fr">ils parleraient</span></td></tr>
+      </tbody></table></div>
+      <h3>افعال پایان‌یافته به <span class="fg-fr">-re</span></h3>
+      <p>در این افعال، <span class="fg-fr">e</span> نهایی پیش از افزودن پایانه حذف می‌شود.</p>
+      <div class="fg-example"><span class="fg-fr-block">prendre → prendr- → je prendrais<br>attendre → attendr- → j’attendrais<br>vendre → vendr- → je vendrais</span></div>
+      <h3>ریشه‌های بی‌قاعدهٔ مهم</h3>
+      <div class="fg-table-wrap"><table><thead><tr><th>مصدر</th><th>ریشه</th><th>نمونه</th></tr></thead><tbody>
+        <tr><td><span class="fg-fr">être</span></td><td><span class="fg-fr">ser-</span></td><td><span class="fg-fr">je serais</span></td></tr>
+        <tr><td><span class="fg-fr">avoir</span></td><td><span class="fg-fr">aur-</span></td><td><span class="fg-fr">j’aurais</span></td></tr>
+        <tr><td><span class="fg-fr">aller</span></td><td><span class="fg-fr">ir-</span></td><td><span class="fg-fr">j’irais</span></td></tr>
+        <tr><td><span class="fg-fr">faire</span></td><td><span class="fg-fr">fer-</span></td><td><span class="fg-fr">je ferais</span></td></tr>
+        <tr><td><span class="fg-fr">venir</span></td><td><span class="fg-fr">viendr-</span></td><td><span class="fg-fr">je viendrais</span></td></tr>
+        <tr><td><span class="fg-fr">voir</span></td><td><span class="fg-fr">verr-</span></td><td><span class="fg-fr">je verrais</span></td></tr>
+        <tr><td><span class="fg-fr">savoir</span></td><td><span class="fg-fr">saur-</span></td><td><span class="fg-fr">je saurais</span></td></tr>
+        <tr><td><span class="fg-fr">pouvoir</span></td><td><span class="fg-fr">pourr-</span></td><td><span class="fg-fr">je pourrais</span></td></tr>
+        <tr><td><span class="fg-fr">vouloir</span></td><td><span class="fg-fr">voudr-</span></td><td><span class="fg-fr">je voudrais</span></td></tr>
+        <tr><td><span class="fg-fr">devoir</span></td><td><span class="fg-fr">devr-</span></td><td><span class="fg-fr">je devrais</span></td></tr>
+        <tr><td><span class="fg-fr">falloir</span></td><td><span class="fg-fr">faudr-</span></td><td><span class="fg-fr">il faudrait</span></td></tr>
+      </tbody></table></div>
+      <div class="fg-note"><span class="fg-label fg-label-orange">نکتهٔ تلفظ</span><br>پایان‌های <span class="fg-fr">-ais</span>، <span class="fg-fr">-ait</span> و <span class="fg-fr">-aient</span> معمولاً تقریباً یکسان شنیده می‌شوند؛ بنابراین ضمیر و بافت جمله برای تشخیص شخص بسیار مهم‌اند.</div>
+    </section>
+
+    <section class="fg-card">
+      <h2>۲. ساخت <span class="fg-fr">conditionnel passé</span></h2>
+      <div class="fg-rule"><span class="fg-label fg-label-blue">فرمول</span><br><span class="fg-fr">avoir / être</span> در <span class="fg-fr">conditionnel présent</span> + <span class="fg-fr">participe passé</span></div>
+      <div class="fg-grid">
+        <div class="fg-mini"><h3><span class="fg-fr">avec avoir</span></h3><div class="fg-fr-block">j’aurais parlé<br>tu aurais parlé<br>il aurait parlé<br>nous aurions parlé<br>vous auriez parlé<br>ils auraient parlé</div></div>
+        <div class="fg-mini"><h3><span class="fg-fr">avec être</span></h3><div class="fg-fr-block">je serais allé(e)<br>elle serait allée<br>nous serions partis<br>elles seraient venues</div></div>
+      </div>
+      <div class="fg-example"><span class="fg-label fg-label-green">مثال</span><div class="fg-fr-block">J’aurais voulu partir.<br>Nous aurions acheté cette maison.<br>Elle serait allée plus tôt.</div></div>
+      <div class="fg-note"><span class="fg-label fg-label-orange">تطابق</span><br>با <span class="fg-fr">être</span>، اسم مفعول با فاعل از نظر جنس و شمار تطابق می‌کند: <span class="fg-fr">allé / allée / allés / allées</span>.</div>
+      <div class="fg-note">در افعال ضمیری نیز فعل کمکی معمولاً <span class="fg-fr">être</span> است. تطابق بسته به نقش <span class="fg-fr">se</span> می‌تواند متفاوت باشد: <span class="fg-fr">Elles se seraient vues</span> ولی <span class="fg-fr">Elles se seraient parlé</span>.</div>
+    </section>
+
+    <section class="fg-card">
+      <h2>۳. تصور یک واقعیت دیگر</h2>
+      <p>یکی از کاربردهای اصلی <span class="fg-fr">conditionnel</span> این است که وضعیتی را بیان کنیم که واقعی نیست، بلکه آن را تصور می‌کنیم.</p>
+      <div class="fg-example"><div class="fg-fr-block">Sans toi, je serais perdu.<br>Je ferais n’importe quoi.</div><p>بدون تو سردرگم می‌بودم. / هر کاری می‌کردم.</p></div>
+      <h3>واقعیت خیالی در گذشته</h3>
+      <div class="fg-example"><div class="fg-fr-block">Sans mon psy, j’aurais raté ma vie.</div><p>اگر روان‌درمانگرم نبود، زندگی‌ام را خراب کرده بودم.</p></div>
+      <div class="fg-rule"><strong>تفاوت:</strong> <span class="fg-fr">Je serais perdu</span> = وضعیت خیالی حال/آینده؛ <span class="fg-fr">J’aurais été perdu</span> = نتیجهٔ خیالی مربوط به گذشته.</div>
+    </section>
+
+    <section class="fg-card">
+      <h2>۴. جمله‌های شرطی با <span class="fg-fr">si</span></h2>
+      <div class="fg-grid">
+        <div class="fg-mini"><h3>فرض غیرواقعی حال یا آینده</h3><div class="fg-rule"><span class="fg-fr">si + imparfait → conditionnel présent</span></div><div class="fg-fr-block">Si j’avais plus de temps, je voyagerais davantage.</div></div>
+        <div class="fg-mini"><h3>فرض غیرواقعی گذشته</h3><div class="fg-rule"><span class="fg-fr">si + plus-que-parfait → conditionnel passé</span></div><div class="fg-fr-block">Si j’avais étudié davantage, j’aurais réussi.</div></div>
+      </div>
+      <div class="fg-warning"><span class="fg-label fg-label-red">اشتباه بسیار رایج</span><br><span class="fg-wrong fg-fr">Si j’aurais le temps, je viendrais.</span><br><span class="fg-correct fg-fr">Si j’avais le temps, je viendrais.</span></div>
+      <div class="fg-note"><strong>استثنای ظاهری:</strong> وقتی <span class="fg-fr">si</span> به معنی «آیا / whether» باشد و جملهٔ شرطی نسازد، conditionnel ممکن است بعد از آن بیاید: <span class="fg-fr">Je ne sais pas s’il accepterait cette proposition.</span></div>
+      <div class="fg-note">بعد از <span class="fg-fr">comme si</span> معمولاً <span class="fg-fr">imparfait</span> یا <span class="fg-fr">plus-que-parfait</span> می‌آید: <span class="fg-fr">Il parle comme s’il savait tout.</span></div>
+    </section>
+
+    <section class="fg-card">
+      <h2>۵. ساختار <span class="fg-fr">au cas où</span></h2>
+      <div class="fg-rule"><span class="fg-fr">au cas où + conditionnel</span></div>
+      <p>این ساختار یک احتمال احتیاطی یا پیشگیرانه را بیان می‌کند: «در صورتی که…»، «برای احتیاط اگر…»، «مبادا…».</p>
+      <div class="fg-example"><div class="fg-fr-block">Au cas où vous auriez des problèmes, téléphonez-moi.<br>Prends un parapluie au cas où il pleuvrait.<br>Note mon numéro au cas où tu aurais besoin de moi.</div></div>
+      <div class="fg-note">خودِ <span class="fg-fr">au cas où</span> مفهوم احتمال را دارد؛ معمولاً نیازی نیست <span class="fg-fr">peut-être</span> را دوباره به همان بند اضافه کنیم.</div>
+      <div class="fg-grid"><div class="fg-mini"><div class="fg-fr-block">Si vous avez un problème, appelez-moi.</div><p>شرط مستقیم.</p></div><div class="fg-mini"><div class="fg-fr-block">Au cas où vous auriez un problème, appelez-moi.</div><p>احتمال احتیاطی و پیشگیرانه.</p></div></div>
+    </section>
+
+    <section class="fg-card">
+      <h2>۶. خبر تأییدنشده</h2>
+      <p>در خبرها و گزارش‌ها، conditionnel می‌تواند نشان دهد اطلاعات هنوز قطعی یا رسماً تأیید نشده است.</p>
+      <div class="fg-example"><div class="fg-fr-block">Le ministre serait malade.<br>Le président devrait se rendre à Tokyo.<br>L’accident d’avion aurait fait deux cents victimes.<br>Le directeur aurait démissionné.</div></div>
+      <div class="fg-note"><span class="fg-fr">devrait</span> همیشه خبر تأییدنشده نیست. در <span class="fg-fr">Vous devriez dormir davantage.</span> معنی توصیه دارد؛ در بافت خبری می‌تواند انتظار یا پیش‌بینی غیرقطعی را برساند.</div>
+    </section>
+
+    <section class="fg-card">
+      <h2>۷. پشیمانی، حسرت و فرصت از دست‌رفته</h2>
+      <div class="fg-summary-grid">
+        <div class="fg-summary-item"><strong><span class="fg-fr">j’aurais aimé / voulu + infinitif</span></strong><p>آرزوی تحقق‌نیافته.</p><div class="fg-fr-block">J’aurais aimé faire du piano.</div></div>
+        <div class="fg-summary-item"><strong><span class="fg-fr">j’aurais dû + infinitif</span></strong><p>کاری که بهتر بود انجام شود.</p><div class="fg-fr-block">J’aurais dû travailler plus.</div></div>
+        <div class="fg-summary-item"><strong><span class="fg-fr">j’aurais pu + infinitif</span></strong><p>امکان یا فرصت استفاده‌نشده.</p><div class="fg-fr-block">J’aurais pu réussir.</div></div>
+        <div class="fg-summary-item"><strong><span class="fg-fr">il aurait fallu + infinitif</span></strong><p>کاری که لازم بود انجام شود.</p><div class="fg-fr-block">Il aurait fallu partir plus tôt.</div></div>
+      </div>
+      <div class="fg-warning"><span class="fg-label fg-label-red">ساخت مصدر</span><br><span class="fg-wrong fg-fr">J’aurais dû travaillé.</span><br><span class="fg-correct fg-fr">J’aurais dû travailler.</span></div>
+    </section>
+
+    <section class="fg-card">
+      <h2>۸. <span class="fg-fr">sans</span> و <span class="fg-fr">sinon</span></h2>
+      <div class="fg-example"><div class="fg-fr-block">Sans toi, je serais perdu.<br>Sans ton aide, je n’aurais pas réussi.<br>Heureusement que le train avait du retard, sinon je l’aurais raté.</div></div>
+      <p><span class="fg-fr">sans</span> می‌تواند یک شرط ضمنی بسازد، بدون آنکه <span class="fg-fr">si</span> نوشته شود. <span class="fg-fr">sinon</span> نیز نتیجه‌ای را نشان می‌دهد که «در غیر این صورت» ممکن بود رخ دهد.</p>
+    </section>
+
+    <section class="fg-card">
+      <h2>۹. جای ضمایر در <span class="fg-fr">conditionnel passé</span></h2>
+      <p>ضمیر مفعولی پیش از فعل کمکی می‌آید.</p>
+      <div class="fg-fr-block">Je vous aurais appelé.<br>Je l’aurais raté.<br>Je lui aurais téléphoné.<br>J’y serais allé.<br>Je ne vous en aurais pas servi.</div>
+      <div class="fg-rule">ساخت منفی: <span class="fg-fr">ne + pronoms + auxiliaire + pas + participe passé</span></div>
+      <h3>تطابق با مفعول مستقیمِ مقدم</h3>
+      <div class="fg-example"><div class="fg-fr-block">Marie ? Je l’aurais appelée.<br>Paul ? Je l’aurais appelé.<br>Les filles ? Je les aurais appelées.</div></div>
+      <div class="fg-note">با مفعول غیرمستقیم تطابق نداریم: <span class="fg-fr">Je lui aurais téléphoné.</span> با <span class="fg-fr">en</span> نیز معمولاً تطابق انجام نمی‌شود: <span class="fg-fr">J’en aurais acheté.</span></div>
+    </section>
+
+    <section class="fg-card">
+      <h2>تمرین‌های صفحهٔ ۲۳۱</h2>
+
+      <article class="fg-exercise">
+        <div class="fg-exercise-head"><strong>تمرین ۱ — <span class="fg-fr">Mettez au conditionnel, pour reconstituer le texte de Georges Perec.</span></strong></div>
+        <div class="fg-exercise-body"><p>فعل‌های متن را به conditionnel تبدیل کنید.</p>
+          <div class="fg-answer"><strong>پاسخ:</strong><div class="fg-fr-block">Bien sûr, on connaîtrait tout le monde et les histoires de tout le monde. Tous les mercredis, le charcutier de Dampierre klaxonnerait devant chez vous pour vous apporter les andouillettes.<br><br>Tous les lundis, madame Blaise viendrait laver. On irait avec les enfants cueillir des mûres…<br><br>On serait attentif au passage du car de sept heures. On aimerait aller s’asseoir sur le banc du village…<br><br>On saurait reconnaître les oiseaux à leur chant. On attendrait le retour des saisons.</div></div>
+          <div class="fg-note">نکته‌ها: <span class="fg-fr">connaître → connaîtr-</span>، <span class="fg-fr">venir → viendr-</span>، <span class="fg-fr">aller → ir-</span>، <span class="fg-fr">être → ser-</span>، <span class="fg-fr">savoir → saur-</span>. مصدرهای وابسته مانند <span class="fg-fr">apporter, laver, cueillir, s’asseoir</span> به شکل مصدر باقی می‌مانند.</div>
+        </div>
+      </article>
+
+      <article class="fg-exercise">
+        <div class="fg-exercise-head"><strong>تمرین ۲ — <span class="fg-fr">Transformez avec « au cas où », selon le modèle.</span></strong></div>
+        <div class="fg-exercise-body">
+          <div class="fg-fr-block">Appelez-moi si vous avez un problème. → Appelez-moi au cas où vous auriez un problème.</div>
+          <ol>
+            <li><div class="fg-fr-block">Avertissez-moi si vous quittez votre appartement.</div><div class="fg-answer"><span class="fg-fr">Avertissez-moi au cas où vous quitteriez votre appartement.</span></div></li>
+            <li><div class="fg-fr-block">Achète une pizza. Il y aura peut-être des invités.</div><div class="fg-answer"><span class="fg-fr">Achète une pizza au cas où il y aurait des invités.</span></div></li>
+            <li><div class="fg-fr-block">Prenez un gros pull : il fera peut-être froid.</div><div class="fg-answer"><span class="fg-fr">Prenez un gros pull au cas où il ferait froid.</span></div></li>
+            <li><div class="fg-fr-block">Racontez tout à Pierre, s’il demande des explications.</div><div class="fg-answer"><span class="fg-fr">Racontez tout à Pierre au cas où il demanderait des explications.</span></div></li>
+            <li><div class="fg-fr-block">Regardez la règle de grammaire, si vous avez des doutes.</div><div class="fg-answer"><span class="fg-fr">Regardez la règle de grammaire au cas où vous auriez des doutes.</span></div></li>
+          </ol>
+          <div class="fg-note">در تبدیل به <span class="fg-fr">au cas où</span>، فعل بند احتمال به conditionnel می‌رود؛ جملهٔ امری اصلی تغییر نمی‌کند.</div>
+        </div>
+      </article>
+
+      <article class="fg-exercise">
+        <div class="fg-exercise-head"><strong>تمرین ۳ — <span class="fg-fr">Complétez avec un conditionnel passé et un ou plusieurs pronoms compléments.</span></strong></div>
+        <div class="fg-exercise-body">
+          <div class="fg-fr-block">J’ai perdu votre numéro de téléphone, sinon je vous aurais appelé.</div>
+          <ol>
+            <li><div class="fg-fr-block">Je ne savais pas qu’il y avait une fête dans le quartier, sinon…</div><div class="fg-answer"><span class="fg-fr">… j’y serais allé.</span> <span>برای گویندهٔ زن: </span><span class="fg-fr">allée</span></div></li>
+            <li><div class="fg-fr-block">Heureusement que le train avait un peu de retard, sinon…</div><div class="fg-answer"><span class="fg-fr">… je l’aurais raté.</span></div></li>
+            <li><div class="fg-fr-block">J’ai oublié que c’était l’anniversaire de Marie, sinon…</div><div class="fg-answer"><span class="fg-fr">… je lui aurais téléphoné.</span></div></li>
+            <li><div class="fg-fr-block">Je ne savais pas que vous n’aimiez pas le fromage, sinon…</div><div class="fg-answer"><span class="fg-fr">… je ne vous en aurais pas servi.</span></div></li>
+            <li><div class="fg-fr-block">Heureusement que le chauffeur a évité mon chien, sinon…</div><div class="fg-answer"><span class="fg-fr">… il l’aurait écrasé.</span></div></li>
+          </ol>
+          <div class="fg-note">نکتهٔ کلیدی تمرین، جای ضمایر و انتخاب فعل کمکی است: <span class="fg-fr">y + être</span> در <span class="fg-fr">j’y serais allé</span>؛ <span class="fg-fr">l’ + avoir</span> در <span class="fg-fr">je l’aurais raté</span>؛ و ترکیب <span class="fg-fr">vous + en + aurais</span> در <span class="fg-fr">je ne vous en aurais pas servi</span>.</div>
+        </div>
+      </article>
+
+      <article class="fg-exercise">
+        <div class="fg-exercise-head"><strong>تمرین ۴ — <span class="fg-fr">Monsieur Dupont est vieux et il a des regrets. Exprimez-les. Continuez librement.</span></strong></div>
+        <div class="fg-exercise-body">
+          <p>عبارت‌های پیشنهادی: <span class="fg-fr">voyager, parler plusieurs langues, être un artiste, acheter une maison, profiter davantage de la vie, avoir des enfants, faire des économies, être plus tolérant</span>.</p>
+          <div class="fg-answer"><div class="fg-fr-block">J’aurais aimé voyager, parler plusieurs langues, être un artiste, acheter une maison et avoir des enfants.<br><br>J’aurais dû profiter davantage de la vie, faire des économies et être plus tolérant.</div></div>
+          <div class="fg-note"><span class="fg-fr">j’aurais aimé / voulu</span> بیشتر بر آرزو و خواستهٔ تحقق‌نیافته تأکید می‌کند؛ <span class="fg-fr">j’aurais dû</span> بر تصمیم بهتر یا وظیفه‌ای که انجام نشده است.</div>
+        </div>
+      </article>
+    </section>
+
+    <section class="fg-card">
+      <h2>جمع‌بندی نهایی</h2>
+      <div class="fg-table-wrap"><table><thead><tr><th>کاربرد</th><th>ساختار / مثال</th></tr></thead><tbody>
+        <tr><td>وضعیت خیالی حال</td><td><span class="fg-fr">Sans toi, je serais perdu.</span></td></tr>
+        <tr><td>نتیجهٔ خیالی گذشته</td><td><span class="fg-fr">Sans toi, j’aurais échoué.</span></td></tr>
+        <tr><td>احتمال احتیاطی</td><td><span class="fg-fr">au cas où + conditionnel</span></td></tr>
+        <tr><td>خبر تأییدنشدهٔ حال</td><td><span class="fg-fr">Le ministre serait malade.</span></td></tr>
+        <tr><td>خبر تأییدنشدهٔ گذشته</td><td><span class="fg-fr">Il aurait démissionné.</span></td></tr>
+        <tr><td>آرزوی تحقق‌نیافته</td><td><span class="fg-fr">J’aurais aimé voyager.</span></td></tr>
+        <tr><td>کار لازم ولی انجام‌نشده</td><td><span class="fg-fr">J’aurais dû travailler.</span></td></tr>
+        <tr><td>فرصت ازدست‌رفته</td><td><span class="fg-fr">J’aurais pu réussir.</span></td></tr>
+        <tr><td>شرط غیرواقعی حال</td><td><span class="fg-fr">si + imparfait → conditionnel présent</span></td></tr>
+        <tr><td>شرط غیرواقعی گذشته</td><td><span class="fg-fr">si + plus-que-parfait → conditionnel passé</span></td></tr>
+      </tbody></table></div>
+      <div class="fg-warning"><span class="fg-label fg-label-red">سه دام مهم</span><ul><li><span class="fg-wrong fg-fr">Si j’aurais…</span> ← در شرط معمولی غلط است.</li><li><span class="fg-fr">au cas où</span> در ساخت معیار این درس با conditionnel می‌آید.</li><li>بعد از <span class="fg-fr">dû, pu, voulu, aimé</span> وقتی فعل دیگری می‌آید، آن فعل مصدر می‌ماند.</li></ul></div>
+      <div class="fg-source">منبع آموزشی این صفحه: درس ۴۹ کتاب <span class="fg-fr">Grammaire Progressive du Français — Niveau intermédiaire</span>، صفحهٔ چاپی ۲۳۰ و تمرین‌های صفحهٔ ۲۳۱. ساختار صفحه برای درج داخل یک بخش موجود طراحی شده و شامل تگ‌های کلی سند مانند <span class="fg-fr">html/head/body</span> نیست.</div>
+    </section>
+  </div>
+</div>

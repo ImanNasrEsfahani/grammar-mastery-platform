@@ -1,0 +1,2146 @@
+<div class="french-grammar-wrapper">
+  <style scoped>
+    .french-grammar-wrapper,
+    .french-grammar-wrapper * {
+      box-sizing: border-box;
+    }
+
+    .french-grammar-wrapper {
+      --fg-navy: #173b67;
+      --fg-blue: #2563a6;
+      --fg-blue-soft: #edf5ff;
+      --fg-sky: #dbeafe;
+      --fg-green: #16835b;
+      --fg-green-soft: #eaf8f1;
+      --fg-red: #c83d4d;
+      --fg-red-soft: #fff0f2;
+      --fg-orange: #d97706;
+      --fg-orange-soft: #fff7e7;
+      --fg-purple: #6d4cc3;
+      --fg-purple-soft: #f3efff;
+      --fg-border: #d8e0ea;
+      --fg-text: #243247;
+      --fg-muted: #65758b;
+      --fg-bg: #f7f9fc;
+      --fg-card: #ffffff;
+      --fg-shadow: 0 10px 28px rgba(28, 52, 84, 0.08);
+
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 22px;
+      direction: rtl;
+      text-align: right;
+      font-family:
+        Vazirmatn,
+        IRANSans,
+        Tahoma,
+        Arial,
+        sans-serif;
+      color: var(--fg-text);
+      background: var(--fg-bg);
+      line-height: 2;
+      border-radius: 24px;
+    }
+
+    .french-grammar-wrapper .fg-ltr {
+      direction: ltr;
+      unicode-bidi: isolate;
+      text-align: left;
+      display: inline-block;
+      font-family:
+        "Segoe UI",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+    }
+
+    .french-grammar-wrapper .fg-fr-block {
+      direction: ltr;
+      unicode-bidi: isolate;
+      text-align: left;
+      font-family:
+        "Segoe UI",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+    }
+
+    .french-grammar-wrapper .fg-hero {
+      position: relative;
+      overflow: hidden;
+      padding: 32px;
+      margin-bottom: 22px;
+      background:
+        linear-gradient(
+          135deg,
+          rgba(23, 59, 103, 0.98),
+          rgba(37, 99, 166, 0.95)
+        );
+      color: #fff;
+      border-radius: 24px;
+      box-shadow: var(--fg-shadow);
+    }
+
+    .french-grammar-wrapper .fg-hero::after {
+      content: "";
+      position: absolute;
+      width: 230px;
+      height: 230px;
+      left: -80px;
+      top: -80px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .french-grammar-wrapper .fg-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 13px;
+      margin-bottom: 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.14);
+      font-size: 0.88rem;
+      font-weight: 800;
+    }
+
+    .french-grammar-wrapper .fg-title {
+      margin: 0;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      line-height: 1.5;
+      font-weight: 900;
+    }
+
+    .french-grammar-wrapper .fg-subtitle {
+      margin: 10px 0 0;
+      max-width: 850px;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 1rem;
+    }
+
+    .french-grammar-wrapper .fg-section {
+      margin: 24px 0;
+    }
+
+    .french-grammar-wrapper .fg-section-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 16px;
+      color: var(--fg-navy);
+      font-size: clamp(1.25rem, 2.5vw, 1.7rem);
+      font-weight: 900;
+      line-height: 1.6;
+    }
+
+    .french-grammar-wrapper .fg-section-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+      min-width: 42px;
+      height: 42px;
+      padding: 0 10px;
+      border-radius: 13px;
+      background: var(--fg-navy);
+      color: #fff;
+      font-size: 1rem;
+    }
+
+    .french-grammar-wrapper .fg-card {
+      padding: 22px;
+      margin-bottom: 16px;
+      background: var(--fg-card);
+      border: 1px solid var(--fg-border);
+      border-radius: 18px;
+      box-shadow: var(--fg-shadow);
+    }
+
+    .french-grammar-wrapper .fg-card h3,
+    .french-grammar-wrapper .fg-card h4 {
+      margin-top: 0;
+      color: var(--fg-navy);
+    }
+
+    .french-grammar-wrapper .fg-card h3 {
+      font-size: 1.15rem;
+    }
+
+    .french-grammar-wrapper .fg-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .french-grammar-wrapper .fg-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .french-grammar-wrapper .fg-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .french-grammar-wrapper .fg-formula {
+      padding: 18px 20px;
+      margin: 16px 0;
+      overflow-x: auto;
+      border: 2px dashed #9dbbe0;
+      border-radius: 16px;
+      background: var(--fg-blue-soft);
+      color: var(--fg-navy);
+      text-align: center;
+      font-weight: 900;
+    }
+
+    .french-grammar-wrapper .fg-formula .fg-ltr {
+      display: inline-block;
+      font-size: 1.08rem;
+    }
+
+    .french-grammar-wrapper .fg-example {
+      margin: 12px 0;
+      padding: 14px 16px;
+      border-right: 4px solid var(--fg-green);
+      background: var(--fg-green-soft);
+      border-radius: 12px;
+    }
+
+    .french-grammar-wrapper .fg-example .fg-fr {
+      display: block;
+      direction: ltr;
+      unicode-bidi: isolate;
+      text-align: left;
+      font-family:
+        "Segoe UI",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+      color: #0c6747;
+      font-weight: 800;
+      line-height: 1.75;
+    }
+
+    .french-grammar-wrapper .fg-example .fg-fa {
+      display: block;
+      margin-top: 5px;
+      color: #3d4c60;
+    }
+
+    .french-grammar-wrapper .fg-note,
+    .french-grammar-wrapper .fg-warning,
+    .french-grammar-wrapper .fg-tip,
+    .french-grammar-wrapper .fg-exception {
+      margin: 16px 0;
+      padding: 16px 18px;
+      border-radius: 14px;
+    }
+
+    .french-grammar-wrapper .fg-note {
+      background: var(--fg-blue-soft);
+      border-right: 5px solid var(--fg-blue);
+    }
+
+    .french-grammar-wrapper .fg-tip {
+      background: var(--fg-green-soft);
+      border-right: 5px solid var(--fg-green);
+    }
+
+    .french-grammar-wrapper .fg-warning {
+      background: var(--fg-orange-soft);
+      border-right: 5px solid var(--fg-orange);
+    }
+
+    .french-grammar-wrapper .fg-exception {
+      background: var(--fg-red-soft);
+      border-right: 5px solid var(--fg-red);
+    }
+
+    .french-grammar-wrapper .fg-callout-title {
+      display: block;
+      margin-bottom: 4px;
+      font-weight: 900;
+      color: var(--fg-navy);
+    }
+
+    .french-grammar-wrapper .fg-table-wrap {
+      width: 100%;
+      margin: 16px 0;
+      overflow-x: auto;
+      border: 1px solid var(--fg-border);
+      border-radius: 15px;
+      background: #fff;
+    }
+
+    .french-grammar-wrapper .fg-table {
+      width: 100%;
+      min-width: 620px;
+      border-collapse: collapse;
+      direction: rtl;
+      background: #fff;
+    }
+
+    .french-grammar-wrapper .fg-table th,
+    .french-grammar-wrapper .fg-table td {
+      padding: 12px 14px;
+      border: 1px solid var(--fg-border);
+      vertical-align: top;
+    }
+
+    .french-grammar-wrapper .fg-table th {
+      background: var(--fg-navy);
+      color: #fff;
+      font-weight: 800;
+    }
+
+    .french-grammar-wrapper .fg-table tbody tr:nth-child(even) {
+      background: #f7faff;
+    }
+
+    .french-grammar-wrapper .fg-table tbody tr:hover {
+      background: #eef5ff;
+    }
+
+    .french-grammar-wrapper .fg-correct {
+      color: var(--fg-green);
+      font-weight: 900;
+    }
+
+    .french-grammar-wrapper .fg-wrong {
+      color: var(--fg-red);
+      font-weight: 900;
+    }
+
+    .french-grammar-wrapper .fg-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 10px;
+      margin: 2px;
+      border-radius: 999px;
+      font-size: 0.83rem;
+      font-weight: 800;
+      line-height: 1.7;
+    }
+
+    .french-grammar-wrapper .fg-badge-blue {
+      color: #154b7c;
+      background: #e4f1ff;
+    }
+
+    .french-grammar-wrapper .fg-badge-green {
+      color: #116344;
+      background: #e5f7ef;
+    }
+
+    .french-grammar-wrapper .fg-badge-orange {
+      color: #8b5205;
+      background: #fff2d9;
+    }
+
+    .french-grammar-wrapper .fg-mini-title {
+      display: block;
+      margin: 18px 0 8px;
+      color: var(--fg-blue);
+      font-weight: 900;
+      font-size: 1.03rem;
+    }
+
+    .french-grammar-wrapper .fg-list {
+      margin: 10px 0;
+      padding-right: 22px;
+    }
+
+    .french-grammar-wrapper .fg-list li {
+      margin: 7px 0;
+    }
+
+    .french-grammar-wrapper .fg-pattern {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      direction: ltr;
+      margin: 14px 0;
+    }
+
+    .french-grammar-wrapper .fg-pattern-item {
+      padding: 8px 12px;
+      border-radius: 10px;
+      background: #fff;
+      border: 1px solid #bed1e7;
+      color: var(--fg-navy);
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .french-grammar-wrapper .fg-pattern-arrow {
+      color: var(--fg-blue);
+      font-weight: 900;
+    }
+
+    .french-grammar-wrapper .fg-compare {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .french-grammar-wrapper .fg-compare-box {
+      padding: 18px;
+      border-radius: 15px;
+      border: 1px solid var(--fg-border);
+      background: #fff;
+    }
+
+    .french-grammar-wrapper .fg-compare-box h4 {
+      margin: 0 0 10px;
+      color: var(--fg-navy);
+    }
+
+    .french-grammar-wrapper .fg-summary {
+      padding: 25px;
+      border-radius: 20px;
+      background:
+        linear-gradient(
+          135deg,
+          #102f54,
+          #205b94
+        );
+      color: #fff;
+      box-shadow: var(--fg-shadow);
+    }
+
+    .french-grammar-wrapper .fg-summary h2 {
+      margin-top: 0;
+      color: #fff;
+    }
+
+    .french-grammar-wrapper .fg-summary-row {
+      display: grid;
+      grid-template-columns: 170px 1fr;
+      gap: 14px;
+      align-items: center;
+      padding: 11px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+    }
+
+    .french-grammar-wrapper .fg-summary-row:last-child {
+      border-bottom: 0;
+    }
+
+    .french-grammar-wrapper .fg-summary-label {
+      font-weight: 900;
+      color: #dbeafe;
+    }
+
+    .french-grammar-wrapper .fg-summary-code {
+      display: inline-block;
+      direction: ltr;
+      unicode-bidi: isolate;
+      text-align: left;
+      padding: 6px 10px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.12);
+      font-family:
+        "Segoe UI",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    @media (max-width: 850px) {
+      .french-grammar-wrapper {
+        padding: 14px;
+        border-radius: 16px;
+      }
+
+      .french-grammar-wrapper .fg-hero {
+        padding: 24px 18px;
+        border-radius: 18px;
+      }
+
+      .french-grammar-wrapper .fg-grid,
+      .french-grammar-wrapper .fg-grid-3,
+      .french-grammar-wrapper .fg-compare {
+        grid-template-columns: 1fr;
+      }
+
+      .french-grammar-wrapper .fg-card {
+        padding: 17px;
+      }
+
+      .french-grammar-wrapper .fg-summary-row {
+        grid-template-columns: 1fr;
+        gap: 3px;
+      }
+    }
+
+    @media (max-width: 540px) {
+      .french-grammar-wrapper {
+        padding: 10px;
+        line-height: 1.9;
+      }
+
+      .french-grammar-wrapper .fg-title {
+        font-size: 1.65rem;
+      }
+
+      .french-grammar-wrapper .fg-section-title {
+        align-items: flex-start;
+        font-size: 1.17rem;
+      }
+
+      .french-grammar-wrapper .fg-section-number {
+        min-width: 36px;
+        height: 36px;
+        border-radius: 10px;
+      }
+
+      .french-grammar-wrapper .fg-table {
+        min-width: 560px;
+      }
+
+      .french-grammar-wrapper .fg-table th,
+      .french-grammar-wrapper .fg-table td {
+        padding: 10px;
+        font-size: 0.92rem;
+      }
+
+      .french-grammar-wrapper .fg-pattern {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .french-grammar-wrapper .fg-pattern-arrow {
+        text-align: center;
+        transform: rotate(90deg);
+      }
+    }
+  </style>
+
+  <section class="fg-hero">
+    <span class="fg-kicker">درس ۳۹ · زمان‌های آینده</span>
+
+    <h1 class="fg-title">
+      <span class="fg-ltr" lang="fr">Le futur proche</span>
+      — آینده نزدیک
+    </h1>
+
+    <p class="fg-subtitle">
+      در این درس ساخت و کاربرد آینده نزدیک، جایگاه ضمیرها و قیدها،
+      منفی‌سازی و ساخت سؤال را به‌صورت کامل و مرحله‌به‌مرحله یاد می‌گیریم.
+    </p>
+  </section>
+
+  <section class="fg-section">
+    <h2 class="fg-section-title">
+      <span class="fg-section-number">۱</span>
+      ساختار
+      <span class="fg-ltr" lang="fr">futur proche</span>
+    </h2>
+
+    <div class="fg-card">
+      <p>
+        آینده نزدیک با فعل
+        <span class="fg-ltr" lang="fr">aller</span>
+        در زمان حال و سپس مصدر فعل اصلی ساخته می‌شود.
+      </p>
+
+      <div class="fg-formula">
+        <span class="fg-ltr" lang="fr">
+          Sujet + aller au présent + infinitif
+        </span>
+      </div>
+
+      <div class="fg-pattern">
+        <span class="fg-pattern-item">Je</span>
+        <span class="fg-pattern-arrow">+</span>
+        <span class="fg-pattern-item">vais</span>
+        <span class="fg-pattern-arrow">+</span>
+        <span class="fg-pattern-item">partir</span>
+      </div>
+
+      <div class="fg-table-wrap">
+        <table class="fg-table">
+          <thead>
+            <tr>
+              <th>فاعل</th>
+              <th>
+                <span class="fg-ltr" lang="fr">aller</span>
+              </th>
+              <th>مثال</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="fg-ltr" lang="fr">je</span></td>
+              <td><span class="fg-ltr" lang="fr">vais</span></td>
+              <td><span class="fg-ltr" lang="fr">Je vais partir.</span></td>
+            </tr>
+            <tr>
+              <td><span class="fg-ltr" lang="fr">tu</span></td>
+              <td><span class="fg-ltr" lang="fr">vas</span></td>
+              <td><span class="fg-ltr" lang="fr">Tu vas travailler.</span></td>
+            </tr>
+            <tr>
+              <td>
+                <span class="fg-ltr" lang="fr">il / elle / on</span>
+              </td>
+              <td><span class="fg-ltr" lang="fr">va</span></td>
+              <td><span class="fg-ltr" lang="fr">Elle va venir.</span></td>
+            </tr>
+            <tr>
+              <td><span class="fg-ltr" lang="fr">nous</span></td>
+              <td><span class="fg-ltr" lang="fr">allons</span></td>
+              <td>
+                <span class="fg-ltr" lang="fr">Nous allons déménager.</span>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="fg-ltr" lang="fr">vous</span></td>
+              <td><span class="fg-ltr" lang="fr">allez</span></td>
+              <td>
+                <span class="fg-ltr" lang="fr">Vous allez voyager.</span>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="fg-ltr" lang="fr">ils / elles</span></td>
+              <td><span class="fg-ltr" lang="fr">vont</span></td>
+              <td>
+                <span class="fg-ltr" lang="fr">Ils vont finir.</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="fg-example">
+        <span class="fg-fr" lang="fr">Je vais partir.</span>
+        <span class="fg-fa">قرار است بروم.</span>
+      </div>
+
+      <div class="fg-example">
+        <span class="fg-fr" lang="fr">Tu vas déjeuner ?</span>
+        <span class="fg-fa">می‌خواهی ناهار بخوری؟</span>
+      </div>
+
+      <div class="fg-example">
+        <span class="fg-fr" lang="fr">Nous allons déménager.</span>
+        <span class="fg-fa">قرار است اسباب‌کشی کنیم.</span>
+      </div>
+
+      <div class="fg-warning">
+        <span class="fg-callout-title">نکته بسیار مهم</span>
+        فقط
+        <span class="fg-ltr" lang="fr">aller</span>
+        صرف می‌شود. فعل دوم همیشه به صورت مصدر باقی می‌ماند.
+      </div>
+
+      <div class="fg-grid">
+        <div class="fg-example">
+          <span class="fg-fr fg-wrong" lang="fr">
+            Nous allons visitons.
+          </span>
+          <span class="fg-fa">✗ نادرست</span>
+        </div>
+
+        <div class="fg-example">
+          <span class="fg-fr fg-correct" lang="fr">
+            Nous allons visiter.
+          </span>
+          <span class="fg-fa">✓ درست</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="fg-section">
+    <h2 class="fg-section-title">
+      <span class="fg-section-number">۲</span>
+      کاربردهای
+      <span class="fg-ltr" lang="fr">futur proche</span>
+    </h2>
+
+    <div class="fg-grid">
+      <div class="fg-card">
+        <h3>اتفاقی که در شرف وقوع است</h3>
+
+        <p>
+          وقتی نشانه‌های یک اتفاق همین حالا وجود دارند، آینده نزدیک بسیار طبیعی است.
+        </p>
+
+        <div class="fg-example">
+          <span class="fg-fr" lang="fr">
+            Vite ! Le train va partir !
+          </span>
+          <span class="fg-fa">
+            زود باش! قطار الان حرکت می‌کند.
+          </span>
+        </div>
+
+        <div class="fg-example">
+          <span class="fg-fr" lang="fr">
+            Regarde ! Il va pleuvoir !
+          </span>
+          <span class="fg-fa">
+            نگاه کن! الان باران می‌بارد.
+          </span>
+        </div>
+
+        <div class="fg-example">
+          <span class="fg-fr" lang="fr">
+            Attention ! Tu vas tomber !
+          </span>
+          <span class="fg-fa">
+            مواظب باش! الان می‌افتی.
+          </span>
+        </div>
+      </div>
+
+      <div class="fg-card">
+        <h3>برنامه یا تصمیم آینده</h3>
+
+        <p>
+          برای برنامه، قصد یا تصمیمی که از قبل وجود دارد نیز
+          <span class="fg-ltr" lang="fr">futur proche</span>
+          بسیار رایج است.
+        </p>
+
+        <div class="fg-example">
+          <span class="fg-fr" lang="fr">
+            Je vais partir en septembre.
+          </span>
+          <span class="fg-fa">
+            قرار است در سپتامبر بروم.
+          </span>
+        </div>
+
+        <div class="fg-example">
+          <span class="fg-fr" lang="fr">
+            Nous allons visiter Montréal l’année prochaine.
+          </span>
+          <span class="fg-fa">
+            قرار است سال آینده از مونترال دیدن کنیم.
+          </span>
+        </div>
+
+        <div class="fg-example">
+          <span class="fg-fr" lang="fr">
+            Je vais rester six ou sept ans en France.
+          </span>
+          <span class="fg-fa">
+            قرار است شش یا هفت سال در فرانسه بمانم.
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="fg-note">
+      <span class="fg-callout-title">نکته ظریف</span>
+      عبارت «آینده نزدیک» به این معنی نیست که اتفاق الزاماً باید چند دقیقه
+      یا چند روز دیگر رخ دهد. در زبان فرانسه، وقتی برنامه یا قصد مشخص باشد،
+      این ساخت حتی می‌تواند درباره ماه‌ها یا سال‌های بعد استفاده شود.
+    </div>
+  </section>
+
+  <section class="fg-section">
+    <h2 class="fg-section-title">
+      <span class="fg-section-number">۳</span>
+      تفاوت
+      <span class="fg-ltr" lang="fr">futur proche</span>
+      و
+      <span class="fg-ltr" lang="fr">futur simple</span>
+    </h2>
+
+    <div class="fg-compare">
+      <div class="fg-compare-box">
+        <h4>
+          <span class="fg-ltr" lang="fr">Futur proche</span>
+        </h4>
+
+        <ul class="fg-list">
+          <li>برنامه یا تصمیم مشخص</li>
+          <li>اتفاقی که نشانه‌هایش اکنون دیده می‌شود</li>
+          <li>اتفاقی که به‌زودی رخ می‌دهد</li>
+          <li>بسیار رایج در گفت‌وگوی روزمره</li>
+        </ul>
+
+        <div class="fg-example">
+          <span class="fg-fr" lang="fr">
+            Je vais changer de travail.
+          </span>
+          <span class="fg-fa">
+            تصمیم دارم شغلم را عوض کنم.
+          </span>
+        </div>
+      </div>
+
+      <div class="fg-compare-box">
+        <h4>
+          <span class="fg-ltr" lang="fr">Futur simple</span>
+        </h4>
+
+        <ul class="fg-list">
+          <li>پیش‌بینی خنثی‌تر</li>
+          <li>قول یا تعهد</li>
+          <li>کاربرد رسمی‌تر و نوشتاری‌تر</li>
+          <li>بیان آینده به عنوان یک واقعیت</li>
+        </ul>
+
+        <div class="fg-example">
+          <span class="fg-fr" lang="fr">
+            Un jour, je changerai de travail.
+          </span>
+          <span class="fg-fa">
+            یک روز شغلم را عوض خواهم کرد.
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="fg-tip">
+      <span class="fg-callout-title">در زبان واقعی</span>
+      مرز این دو زمان همیشه کاملاً قطعی نیست. در زبان گفتاری،
+      <span class="fg-ltr" lang="fr">futur proche</span>
+      بسیار پرکاربرد است و حتی ممکن است برای آینده نسبتاً دور نیز استفاده شود.
+    </div>
+  </section>
+
+  <section class="fg-section">
+    <h2 class="fg-section-title">
+      <span class="fg-section-number">۴</span>
+      وقتی خود فعل اصلی
+      <span class="fg-ltr" lang="fr">aller</span>
+      است
+    </h2>
+
+    <div class="fg-card">
+      <p>
+        اگر فعل اصلی جمله نیز
+        <span class="fg-ltr" lang="fr">aller</span>
+        باشد، این فعل دو بار ظاهر می‌شود و این کاملاً صحیح است.
+      </p>
+
+      <div class="fg-example">
+        <span class="fg-fr" lang="fr">
+          Je vais aller en Grèce.
+        </span>
+        <span class="fg-fa">
+          قرار است به یونان بروم.
+        </span>
+      </div>
+
+      <div class="fg-example">
+        <span class="fg-fr" lang="fr">
+          Nous allons aller en Espagne.
+        </span>
+        <span class="fg-fa">
+          قرار است به اسپانیا برویم.
+        </span>
+      </div>
+
+      <div class="fg-note">
+        <span class="fg-callout-title">مقایسه</span>
+
+        <div class="fg-fr-block" lang="fr">
+          Je vais en Grèce.
+          <br>
+          Je vais aller en Grèce.
+        </div>
+
+        <p>
+          جمله اول می‌تواند «به یونان می‌روم» باشد؛ جمله دوم به‌طور مشخص
+          قصد یا برنامه آینده را بیان می‌کند.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="fg-section">
+    <h2 class="fg-section-title">
+      <span class="fg-section-number">۵</span>
+      عبارت‌های زمانی
+    </h2>
+
+    <div class="fg-card">
+      <div class="fg-table-wrap">
+        <table class="fg-table">
+          <thead>
+            <tr>
+              <th>زمان فعلی</th>
+              <th>زمان آینده</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <span class="fg-ltr" lang="fr">aujourd’hui</span>
+                — امروز
+              </td>
+              <td>
+                <span class="fg-ltr" lang="fr">demain</span>
+                — فردا
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span class="fg-ltr" lang="fr">cette semaine</span>
+                — این هفته
+              </td>
+              <td>
+                <span class="fg-ltr" lang="fr">la semaine prochaine</span>
+                — هفته آینده
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span class="fg-ltr" lang="fr">ce mois-ci</span>
+                — این ماه
+              </td>
+              <td>
+                <span class="fg-ltr" lang="fr">le mois prochain</span>
+                — ماه آینده
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span class="fg-ltr" lang="fr">cette année</span>
+                — امسال
+              </td>
+              <td>
+                <span class="fg-ltr" lang="fr">l’année prochaine</span>
+                — سال آینده
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="fg-warning">
+        <span class="fg-callout-title">
+          تطابق
+          <span class="fg-ltr" lang="fr">prochain / prochaine</span>
+        </span>
+
+        <span class="fg-ltr" lang="fr">mois</span>
+        مذکر است:
+        <span class="fg-ltr" lang="fr">le mois prochain</span>
+
+        <br>
+
+        <span class="fg-ltr" lang="fr">semaine</span>
+        مؤنث است:
+        <span class="fg-ltr" lang="fr">la semaine prochaine</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="fg-section">
+    <h2 class="fg-section-title">
+      <span class="fg-section-number">۶</span>
+      جایگاه ضمیر مفعولی
+    </h2>
+
+    <div class="fg-card">
+      <p>
+        در
+        <span class="fg-ltr" lang="fr">futur proche</span>
+        ضمیر مفعولی درست قبل از مصدر فعل اصلی قرار می‌گیرد.
+      </p>
+
+      <div class="fg-formula">
+        <span class="fg-ltr" lang="fr">
+          Sujet + aller + pronom + infinitif
+        </span>
+      </div>
+
+      <div class="fg-example">
+        <span class="fg-fr" lang="fr">
+          Je vais inviter Paul. → Je vais l’inviter.
+        </span>
+      </div>
+
+      <div class="fg-example">
+        <span class="fg-fr" lang="fr">
+          Je vais inviter mes amis. → Je vais les inviter.
+        </span>
+      </div>
+
+      <div class="fg-example">
+        <span class="fg-fr" lang="fr">
+          Je vais téléphoner à Marie. → Je vais lui téléphoner.
+        </span>
+      </div>
+
+      <div class="fg-example">
+        <span class="fg-fr" lang="fr">
+          Je vais téléphoner à mes parents. → Je vais leur téléphoner.
+        </span>
+      </div>
+
+      <div class="fg-grid">
+        <div class="fg-exception">
+          <span class="fg-callout-title">✗ نادرست</span>
+          <span class="fg-ltr fg-wrong" lang="fr">
+            Je le vais inviter.
+          </span>
+        </div>
+
+        <div class="fg-tip">
+          <span class="fg-callout-title">✓ درست</span>
+          <span class="fg-ltr fg-correct" lang="fr">
+            Je vais l’inviter.
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="fg-section">
+    <h2 class="fg-section-title">
+      <span class="fg-section-number">۷</span>
+      افعال ضمیری
+    </h2>
+
+    <div class="fg-card">
+      <p>
+        ضمیر انعکاسی نیز قبل از مصدر قرار می‌گیرد.
+      </p>
+
+      <div class="fg-example">
+        <span class="fg-fr" lang="fr">
+          Je vais me coucher.
+        </span>
+        <span class="fg-fa">قرار است بخوابم.</span>
+      </div>
+
+      <div class="fg-example">
+        <span class="fg-fr" lang="fr">
+          Tu vas te lever tôt.
+        </span>
+        <span class="fg-fa">قرار است زود بیدار شوی.</span>
+      </div>
+
+      <div class="fg-example">
+        <span class="fg-fr" lang="fr">
+          Elle va se préparer.
+        </span>
+        <span class="fg-fa">قرار است آماده شود.</span>
+      </div>
+
+      <div class="fg-example">
+        <span class="fg-fr" lang="fr">
+          Nous allons nous reposer.
+        </span>
+        <span class="fg-fa">قرار است استراحت کنیم.</span>
+      </div>
+
+      <div class="fg-grid">
+        <div class="fg-exception">
+          <span class="fg-callout-title">✗ نادرست</span>
+          <span class="fg-ltr fg-wrong" lang="fr">
+            Je me vais coucher.
+          </span>
+        </div>
+
+        <div class="fg-tip">
+          <span class="fg-callout-title">✓ درست</span>
+          <span class="fg-ltr fg-correct" lang="fr">
+            Je vais me coucher.
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="fg-section">
+    <h2 class="fg-section-title">
+      <span class="fg-section-number">۸</span>
+      ضمیر
+      <span class="fg-ltr" lang="fr">y</span>
+    </h2>
+
+    <div class="fg-card">
+      <p>
+        ضمیر
+        <span class="fg-ltr" lang="fr">y</span>
+        معمولاً جای یک مکان یا مکمل دارای
+        <span class="fg-ltr" lang="fr">à</span>
+        را می‌گیرد.
+      </p>
+
+      <div class="fg-example">
+        <span class="fg-fr" lang="fr">
+          Je vais aller au bureau. → Je vais y aller.
+        </span>
+      </div>
+
+      <div class="fg-example">
+        <span class="fg-fr" lang="fr">
+          Elle va aller à la piscine. → Elle va y aller.
+        </span>
+      </div>
+
+      <span class="fg-mini-title">
+        ساخت مهم
+        <span class="fg-ltr" lang="fr">il va y avoir</span>
+      </span>
+
+      <div class="fg-formula">
+        <span class="fg-ltr" lang="fr">
+          Il va y avoir + nom
+        </span>
+      </div>
+
+      <div class="fg-example">
+        <span class="fg-fr" lang="fr">
+          Il va y avoir du brouillard demain.
+        </span>
+        <span class="fg-fa">
+          فردا مه خواهد بود.
+        </span>
+      </div>
+
+      <div class="fg-example">
+        <span class="fg-fr" lang="fr">
+          Il va y avoir des embouteillages.
+        </span>
+        <span class="fg-fa">
+          قرار است ترافیک باشد.
+        </span>
+      </div>
+
+      <div class="fg-example">
+        <span class="fg-fr" lang="fr">
+          Il va y avoir une fête.
+        </span>
+        <span class="fg-fa">
+          قرار است جشنی برگزار شود.
+        </span>
+      </div>
+
+      <div class="fg-exception">
+        <span class="fg-callout-title">اشتباه رایج</span>
+
+        <span class="fg-ltr fg-wrong" lang="fr">
+          Il va avoir une fête.
+        </span>
+
+        با
+
+        <span class="fg-ltr fg-correct" lang="fr">
+          Il va y avoir une fête.
+        </span>
+
+        یکسان نیست. در ساخت «وجود داشتن»،
+        <span class="fg-ltr" lang="fr">y</span>
+        باید حفظ شود.
+      </div>
+    </div>
+  </section>
+
+  <section class="fg-section">
+    <h2 class="fg-section-title">
+      <span class="fg-section-number">۹</span>
+      ضمیر
+      <span class="fg-ltr" lang="fr">en</span>
+    </h2>
+
+    <div class="fg-card">
+      <p>
+        برای جایگزینی مقدار یا اسمی که با
+        <span class="fg-ltr" lang="fr">de</span>
+        ارتباط دارد، معمولاً از
+        <span class="fg-ltr" lang="fr">en</span>
+        استفاده می‌شود.
+      </p>
+
+      <div class="fg-example">
+        <span class="fg-fr" lang="fr">
+          Elle va acheter deux baguettes.
+          <br>
+          Elle va en acheter deux.
+        </span>
+      </div>
+
+      <div class="fg-example">
+        <span class="fg-fr" lang="fr">
+          Vous allez boire du café ?
+          <br>
+          Vous allez en boire ?
+        </span>
+      </div>
+
+      <div class="fg-tip">
+        <span class="fg-callout-title">نکته</span>
+        اگر مقدار یا عدد مشخصی وجود داشته باشد، بعد از فعل باقی می‌ماند:
+
+        <br>
+
+        <span class="fg-ltr" lang="fr">
+          Elle va en acheter deux.
+        </span>
+
+        <br>
+
+        <span class="fg-ltr" lang="fr">
+          Nous allons en prendre beaucoup.
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <section class="fg-section">
+    <h2 class="fg-section-title">
+      <span class="fg-section-number">۱۰</span>
+      ترتیب چند ضمیر
+    </h2>
+
+    <div class="fg-card">
+      <p>
+        وقتی بیش از یک ضمیر داریم، ترتیب آن‌ها اهمیت دارد.
+      </p>
+
+      <div class="fg-example">
+        <span class="fg-fr" lang="fr">
+          Ils vont abîmer tes DVD.
+          <br>
+          Ils vont te les abîmer.
+        </span>
+        <span class="fg-fa">
+          آن‌ها قرار است دی‌وی‌دی‌هایت را خراب کنند.
+        </span>
+      </div>
+
+      <div class="fg-example">
+        <span class="fg-fr" lang="fr">
+          Je vais donner le livre à Paul.
+          <br>
+          Je vais le lui donner.
+        </span>
+      </div>
+
+      <div class="fg-tip">
+        <span class="fg-callout-title">
+          نمونه مهم
+        </span>
+
+        <span class="fg-ltr" lang="fr">
+          Ils vont te les abîmer.
+        </span>
+
+        <br>
+
+        <span class="fg-ltr" lang="fr">
+          Ils ne vont pas me les abîmer.
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <section class="fg-section">
+    <h2 class="fg-section-title">
+      <span class="fg-section-number">۱۱</span>
+      جایگاه قیدهای کوتاه
+    </h2>
+
+    <div class="fg-card">
+      <p>
+        قیدهایی مانند
+        <span class="fg-ltr" lang="fr">beaucoup</span>،
+        <span class="fg-ltr" lang="fr">bien</span>
+        و
+        <span class="fg-ltr" lang="fr">mal</span>
+        معمولاً بین
+        <span class="fg-ltr" lang="fr">aller</span>
+        و مصدر قرار می‌گیرند.
+      </p>
+
+      <div class="fg-formula">
+        <span class="fg-ltr" lang="fr">
+          aller + adverbe + infinitif
+        </span>
+      </div>
+
+      <div class="fg-example">
+        <span class="fg-fr" lang="fr">
+          Je vais beaucoup travailler.
+        </span>
+        <span class="fg-fa">
+          قرار است خیلی کار کنم.
+        </span>
+      </div>
+
+      <div class="fg-example">
+        <span class="fg-fr" lang="fr">
+          Je vais bien dormir.
+        </span>
+        <span class="fg-fa">
+          قرار است خوب بخوابم.
+        </span>
+      </div>
+
+      <div class="fg-example">
+        <span class="fg-fr" lang="fr">
+          Ça va mal finir.
+        </span>
+        <span class="fg-fa">
+          عاقبت بدی خواهد داشت.
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <section class="fg-section">
+    <h2 class="fg-section-title">
+      <span class="fg-section-number">۱۲</span>
+      قیدهای زمان، مکان و
+      <span class="fg-ltr" lang="fr">-ment</span>
+    </h2>
+
+    <div class="fg-card">
+      <p>
+        قیدهای زمان، مکان و بسیاری از قیدهایی که به
+        <span class="fg-ltr" lang="fr">-ment</span>
+        ختم می‌شوند معمولاً بعد از مصدر قرار می‌گیرند.
+      </p>
+
+      <div class="fg-example">
+        <span class="fg-fr" lang="fr">
+          Tu vas dîner dehors.
+        </span>
+        <span class="fg-fa">
+          قرار است بیرون شام بخوری.
+        </span>
+      </div>
+
+      <div class="fg-example">
+        <span class="fg-fr" lang="fr">
+          Vous allez rentrer tard.
+        </span>
+        <span class="fg-fa">
+          قرار است دیر برگردید.
+        </span>
+      </div>
+
+      <div class="fg-example">
+        <span class="fg-fr" lang="fr">
+          Il va conduire prudemment.
+        </span>
+        <span class="fg-fa">
+          قرار است بااحتیاط رانندگی کند.
+        </span>
+      </div>
+
+      <div class="fg-example">
+        <span class="fg-fr" lang="fr">
+          Nous allons conduire lentement.
+        </span>
+        <span class="fg-fa">
+          قرار است آهسته رانندگی کنیم.
+        </span>
+      </div>
+
+      <div class="fg-note">
+        <span class="fg-callout-title">مقایسه مهم</span>
+
+        <span class="fg-ltr" lang="fr">
+          Nous allons beaucoup travailler.
+        </span>
+
+        <br>
+
+        <span class="fg-ltr" lang="fr">
+          Nous allons travailler lentement.
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <section class="fg-section">
+    <h2 class="fg-section-title">
+      <span class="fg-section-number">۱۳</span>
+      نکته ظریف درباره جایگاه قید
+    </h2>
+
+    <div class="fg-card">
+      <p>
+        جایگاه قید می‌تواند به نوع قید و چیزی که قید آن را توصیف می‌کند وابسته باشد.
+      </p>
+
+      <div class="fg-example">
+        <span class="fg-fr" lang="fr">
+          Je vais vraiment partir.
+        </span>
+        <span class="fg-fa">
+          واقعاً قصد دارم بروم.
+        </span>
+      </div>
+
+      <div class="fg-example">
+        <span class="fg-fr" lang="fr">
+          Je vais partir immédiatement.
+        </span>
+        <span class="fg-fa">
+          قرار است فوراً بروم.
+        </span>
+      </div>
+
+      <div class="fg-warning">
+        <span class="fg-callout-title">
+          قاعده عملی برای این درس
+        </span>
+
+        <ul class="fg-list">
+          <li>
+            قیدهای کوتاه مقدار و کیفیت:
+            معمولاً بین دو فعل.
+          </li>
+          <li>
+            قیدهای زمان، مکان و بسیاری از قیدهای
+            <span class="fg-ltr" lang="fr">-ment</span>:
+            معمولاً بعد از مصدر.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="fg-section">
+    <h2 class="fg-section-title">
+      <span class="fg-section-number">۱۴</span>
+      منفی‌کردن
+      <span class="fg-ltr" lang="fr">futur proche</span>
+    </h2>
+
+    <div class="fg-card">
+      <p>
+        در ساخت منفی،
+        <span class="fg-ltr" lang="fr">ne ... pas</span>
+        دور فعل صرف‌شده یعنی
+        <span class="fg-ltr" lang="fr">aller</span>
+        قرار می‌گیرد.
+      </p>
+
+      <div class="fg-formula">
+        <span class="fg-ltr" lang="fr">
+          Sujet + ne + aller + pas + infinitif
+        </span>
+      </div>
+
+      <div class="fg-example">
+        <span class="fg-fr" lang="fr">
+          Je vais partir.
+          <br>
+          Je ne vais pas partir.
+        </span>
+      </div>
+
+      <div class="fg-example">
+        <span class="fg-fr" lang="fr">
+          Nous allons déménager.
+          <br>
+          Nous n’allons pas déménager.
+        </span>
+      </div>
+
+      <div class="fg-example">
+        <span class="fg-fr" lang="fr">
+          Elle va venir.
+          <br>
+          Elle ne va pas venir.
+        </span>
+      </div>
+
+      <div class="fg-table-wrap">
+        <table class="fg-table">
+          <thead>
+            <tr>
+              <th>ساخت</th>
+              <th>وضعیت</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <span class="fg-ltr" lang="fr">
+                  Je vais ne pas partir.
+                </span>
+              </td>
+              <td class="fg-wrong">✗ نادرست در الگوی معمول این درس</td>
+            </tr>
+            <tr>
+              <td>
+                <span class="fg-ltr" lang="fr">
+                  Je ne vais partir pas.
+                </span>
+              </td>
+              <td class="fg-wrong">✗ نادرست</td>
+            </tr>
+            <tr>
+              <td>
+                <span class="fg-ltr" lang="fr">
+                  Je ne vais pas partir.
+                </span>
+              </td>
+              <td class="fg-correct">✓ درست</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="fg-section">
+    <h2 class="fg-section-title">
+      <span class="fg-section-number">۱۵</span>
+      منفی‌های دیگر
+    </h2>
+
+    <div class="fg-card">
+      <div class="fg-grid-3">
+        <div class="fg-example">
+          <span class="fg-fr" lang="fr">
+            Je ne vais plus le voir.
+          </span>
+          <span class="fg-fa">
+            دیگر قرار نیست او را ببینم.
+          </span>
+        </div>
+
+        <div class="fg-example">
+          <span class="fg-fr" lang="fr">
+            Je ne vais rien lui dire.
+          </span>
+          <span class="fg-fa">
+            قرار نیست چیزی به او بگویم.
+          </span>
+        </div>
+
+        <div class="fg-example">
+          <span class="fg-fr" lang="fr">
+            Je ne vais jamais accepter.
+          </span>
+          <span class="fg-fa">
+            هرگز قبول نخواهم کرد.
+          </span>
+        </div>
+      </div>
+
+      <div class="fg-note">
+        <span class="fg-callout-title">جایگاه</span>
+
+        <span class="fg-badge fg-badge-blue">
+          <span class="fg-ltr" lang="fr">ne vais plus</span>
+        </span>
+
+        <span class="fg-badge fg-badge-blue">
+          <span class="fg-ltr" lang="fr">ne vais rien</span>
+        </span>
+
+        <span class="fg-badge fg-badge-blue">
+          <span class="fg-ltr" lang="fr">ne vais jamais</span>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <section class="fg-section">
+    <h2 class="fg-section-title">
+      <span class="fg-section-number">۱۶</span>
+      <span class="fg-ltr" lang="fr">personne</span>
+      و
+      <span class="fg-ltr" lang="fr">aucun</span>
+    </h2>
+
+    <div class="fg-card">
+      <p>
+        وقتی
+        <span class="fg-ltr" lang="fr">personne</span>
+        یا
+        <span class="fg-ltr" lang="fr">aucun</span>
+        نقش مفعولی دارند، معمولاً بعد از مصدر دیده می‌شوند.
+      </p>
+
+      <div class="fg-example">
+        <span class="fg-fr" lang="fr">
+          Je ne vais inviter personne.
+        </span>
+        <span class="fg-fa">
+          قرار نیست کسی را دعوت کنم.
+        </span>
+      </div>
+
+      <div class="fg-example">
+        <span class="fg-fr" lang="fr">
+          Je ne vais accepter aucune invitation.
+        </span>
+        <span class="fg-fa">
+          قرار نیست هیچ دعوتی را قبول کنم.
+        </span>
+      </div>
+
+      <div class="fg-note">
+        <span class="fg-callout-title">
+          مقایسه جایگاه
+        </span>
+
+        <div class="fg-fr-block" lang="fr">
+          Je ne vais rien dire.
+          <br>
+          Je ne vais voir personne.
+          <br>
+          Je ne vais accepter aucune proposition.
+        </div>
+      </div>
+
+      <div class="fg-warning">
+        <span class="fg-callout-title">
+          اگر
+          <span class="fg-ltr" lang="fr">personne</span>
+          فاعل باشد
+        </span>
+
+        <span class="fg-ltr" lang="fr">
+          Personne ne va venir.
+        </span>
+
+        <br>
+
+        یعنی: هیچ‌کس قرار نیست بیاید.
+      </div>
+    </div>
+  </section>
+
+  <section class="fg-section">
+    <h2 class="fg-section-title">
+      <span class="fg-section-number">۱۷</span>
+      منفی همراه با ضمیر
+    </h2>
+
+    <div class="fg-card">
+      <p>
+        حتی در جمله منفی، ضمیر مفعولی همچنان قبل از مصدر باقی می‌ماند.
+      </p>
+
+      <div class="fg-example">
+        <span class="fg-fr" lang="fr">
+          Je vais les inviter.
+          <br>
+          Je ne vais pas les inviter.
+        </span>
+      </div>
+
+      <div class="fg-example">
+        <span class="fg-fr" lang="fr">
+          Je vais lui téléphoner.
+          <br>
+          Je ne vais pas lui téléphoner.
+        </span>
+      </div>
+
+      <div class="fg-example">
+        <span class="fg-fr" lang="fr">
+          Je vais me coucher.
+          <br>
+          Je ne vais pas me coucher.
+        </span>
+      </div>
+
+      <div class="fg-formula">
+        <span class="fg-ltr" lang="fr">
+          Sujet + ne + aller + pas + pronom + infinitif
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <section class="fg-section">
+    <h2 class="fg-section-title">
+      <span class="fg-section-number">۱۸</span>
+      حذف
+      <span class="fg-ltr" lang="fr">ne</span>
+      در گفتار
+    </h2>
+
+    <div class="fg-card">
+      <p>
+        در زبان گفتاری روزمره، فرانسوی‌زبان‌ها اغلب
+        <span class="fg-ltr" lang="fr">ne</span>
+        را حذف می‌کنند.
+      </p>
+
+      <div class="fg-grid">
+        <div class="fg-warning">
+          <span class="fg-callout-title">گفتاری</span>
+          <span class="fg-ltr" lang="fr">
+            Je vais pas venir.
+          </span>
+        </div>
+
+        <div class="fg-tip">
+          <span class="fg-callout-title">استاندارد و نوشتاری</span>
+          <span class="fg-ltr" lang="fr">
+            Je ne vais pas venir.
+          </span>
+        </div>
+      </div>
+
+      <div class="fg-note">
+        برای نوشتار، تمرین‌های رسمی و آزمون، بهتر است
+        <span class="fg-ltr" lang="fr">ne</span>
+        را حفظ کنید.
+      </div>
+    </div>
+  </section>
+
+  <section class="fg-section">
+    <h2 class="fg-section-title">
+      <span class="fg-section-number">۱۹</span>
+      سؤال با آهنگ صدا
+    </h2>
+
+    <div class="fg-card">
+      <p>
+        ساده‌ترین شکل پرسشی در زبان گفتاری این است که ترتیب جمله را حفظ کنیم
+        و فقط آهنگ صدا را پرسشی کنیم.
+      </p>
+
+      <div class="fg-example">
+        <span class="fg-fr" lang="fr">
+          Vous allez partir demain ?
+        </span>
+        <span class="fg-fa">
+          فردا قرار است بروید؟
+        </span>
+      </div>
+
+      <div class="fg-example">
+        <span class="fg-fr" lang="fr">
+          Tu vas travailler ce soir ?
+        </span>
+        <span class="fg-fa">
+          امشب قرار است کار کنی؟
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <section class="fg-section">
+    <h2 class="fg-section-title">
+      <span class="fg-section-number">۲۰</span>
+      سؤال با
+      <span class="fg-ltr" lang="fr">est-ce que</span>
+    </h2>
+
+    <div class="fg-card">
+      <p>
+        ساخت
+        <span class="fg-ltr" lang="fr">est-ce que</span>
+        روشی بسیار رایج، واضح و مطمئن برای پرسش است.
+      </p>
+
+      <div class="fg-example">
+        <span class="fg-fr" lang="fr">
+          Est-ce que vous allez partir demain ?
+        </span>
+      </div>
+
+      <div class="fg-example">
+        <span class="fg-fr" lang="fr">
+          Est-ce qu’elle va venir ?
+        </span>
+      </div>
+
+      <div class="fg-example">
+        <span class="fg-fr" lang="fr">
+          Est-ce qu’ils vont travailler ?
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <section class="fg-section">
+    <h2 class="fg-section-title">
+      <span class="fg-section-number">۲۱</span>
+      سؤال با وارونگی
+    </h2>
+
+    <div class="fg-card">
+      <p>
+        در وارونگی، فقط فعل صرف‌شده
+        <span class="fg-ltr" lang="fr">aller</span>
+        با ضمیر فاعلی جابه‌جا می‌شود.
+      </p>
+
+      <div class="fg-example">
+        <span class="fg-fr" lang="fr">
+          Allez-vous partir le matin ?
+        </span>
+      </div>
+
+      <div class="fg-example">
+        <span class="fg-fr" lang="fr">
+          Allez-vous prendre l’avion ?
+        </span>
+      </div>
+
+      <div class="fg-example">
+        <span class="fg-fr" lang="fr">
+          Vas-tu venir ?
+        </span>
+      </div>
+
+      <div class="fg-example">
+        <span class="fg-fr" lang="fr">
+          Vont-ils rester ?
+        </span>
+      </div>
+
+      <div class="fg-grid">
+        <div class="fg-exception">
+          <span class="fg-callout-title">✗ نادرست</span>
+          <span class="fg-ltr fg-wrong" lang="fr">
+            Allez partir-vous ?
+          </span>
+        </div>
+
+        <div class="fg-tip">
+          <span class="fg-callout-title">✓ درست</span>
+          <span class="fg-ltr fg-correct" lang="fr">
+            Allez-vous partir ?
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="fg-section">
+    <h2 class="fg-section-title">
+      <span class="fg-section-number">۲۲</span>
+      وارونگی با فاعل اسمی و
+      <span class="fg-ltr" lang="fr">-t-</span>
+    </h2>
+
+    <div class="fg-card">
+      <p>
+        اگر فاعل یک اسم باشد، اسم در جای خود می‌ماند و بعد از فعل یک ضمیر
+        فاعلی متناسب اضافه می‌شود.
+      </p>
+
+      <div class="fg-example">
+        <span class="fg-fr" lang="fr">
+          Vos parents vont-ils partir avec vous ?
+        </span>
+      </div>
+
+      <div class="fg-example">
+        <span class="fg-fr" lang="fr">
+          Jean va-t-il vous accompagner ?
+        </span>
+      </div>
+
+      <div class="fg-example">
+        <span class="fg-fr" lang="fr">
+          Marie va-t-elle venir ?
+        </span>
+      </div>
+
+      <div class="fg-note">
+        <span class="fg-callout-title">
+          نقش
+          <span class="fg-ltr" lang="fr">-t-</span>
+        </span>
+
+        در ساخت‌هایی مانند
+
+        <span class="fg-ltr" lang="fr">va-t-il</span>،
+        <span class="fg-ltr" lang="fr">va-t-elle</span>
+        و
+        <span class="fg-ltr" lang="fr">va-t-on</span>
+
+        حرف
+        <span class="fg-ltr" lang="fr">t</span>
+        فقط برای روان‌تر شدن تلفظ بین دو صدادار اضافه می‌شود و معنای مستقلی ندارد.
+      </div>
+
+      <div class="fg-table-wrap">
+        <table class="fg-table">
+          <thead>
+            <tr>
+              <th>ساخت</th>
+              <th>وضعیت</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <span class="fg-ltr" lang="fr">
+                  Jean va-il venir ?
+                </span>
+              </td>
+              <td class="fg-wrong">✗ نادرست</td>
+            </tr>
+            <tr>
+              <td>
+                <span class="fg-ltr" lang="fr">
+                  Jean va-t-il venir ?
+                </span>
+              </td>
+              <td class="fg-correct">✓ درست</td>
+            </tr>
+            <tr>
+              <td>
+                <span class="fg-ltr" lang="fr">
+                  Vont-ils venir ?
+                </span>
+              </td>
+              <td class="fg-correct">✓ درست</td>
+            </tr>
+            <tr>
+              <td>
+                <span class="fg-ltr" lang="fr">
+                  Vont-t-ils venir ?
+                </span>
+              </td>
+              <td class="fg-wrong">✗ نادرست</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="fg-warning">
+        اگر فعل خودش با صدای
+        <span class="fg-ltr" lang="fr">t</span>
+        پایان پیدا کند، دیگر
+        <span class="fg-ltr" lang="fr">-t-</span>
+        اضافه نمی‌کنیم.
+      </div>
+    </div>
+  </section>
+
+  <section class="fg-section">
+    <h2 class="fg-section-title">
+      <span class="fg-section-number">!</span>
+      اشتباه‌های بسیار رایج
+    </h2>
+
+    <div class="fg-card">
+      <div class="fg-table-wrap">
+        <table class="fg-table">
+          <thead>
+            <tr>
+              <th>نادرست</th>
+              <th>درست</th>
+              <th>دلیل</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <span class="fg-ltr fg-wrong" lang="fr">
+                  Je vais partirai.
+                </span>
+              </td>
+              <td>
+                <span class="fg-ltr fg-correct" lang="fr">
+                  Je vais partir.
+                </span>
+              </td>
+              <td>فعل دوم باید مصدر باشد.</td>
+            </tr>
+
+            <tr>
+              <td>
+                <span class="fg-ltr fg-wrong" lang="fr">
+                  Je le vais inviter.
+                </span>
+              </td>
+              <td>
+                <span class="fg-ltr fg-correct" lang="fr">
+                  Je vais l’inviter.
+                </span>
+              </td>
+              <td>ضمیر قبل از مصدر قرار می‌گیرد.</td>
+            </tr>
+
+            <tr>
+              <td>
+                <span class="fg-ltr fg-wrong" lang="fr">
+                  Je me vais coucher.
+                </span>
+              </td>
+              <td>
+                <span class="fg-ltr fg-correct" lang="fr">
+                  Je vais me coucher.
+                </span>
+              </td>
+              <td>ضمیر انعکاسی قبل از مصدر است.</td>
+            </tr>
+
+            <tr>
+              <td>
+                <span class="fg-ltr fg-wrong" lang="fr">
+                  Je ne vais les inviter pas.
+                </span>
+              </td>
+              <td>
+                <span class="fg-ltr fg-correct" lang="fr">
+                  Je ne vais pas les inviter.
+                </span>
+              </td>
+              <td>
+                <span class="fg-ltr" lang="fr">ne ... pas</span>
+                دور
+                <span class="fg-ltr" lang="fr">aller</span>
+                می‌آید.
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                <span class="fg-ltr fg-wrong" lang="fr">
+                  Il va avoir une fête.
+                </span>
+              </td>
+              <td>
+                <span class="fg-ltr fg-correct" lang="fr">
+                  Il va y avoir une fête.
+                </span>
+              </td>
+              <td>
+                در ساخت وجود داشتن باید
+                <span class="fg-ltr" lang="fr">y</span>
+                حفظ شود.
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                <span class="fg-ltr fg-wrong" lang="fr">
+                  Jean va-il venir ?
+                </span>
+              </td>
+              <td>
+                <span class="fg-ltr fg-correct" lang="fr">
+                  Jean va-t-il venir ?
+                </span>
+              </td>
+              <td>
+                بین
+                <span class="fg-ltr" lang="fr">va</span>
+                و
+                <span class="fg-ltr" lang="fr">il</span>
+                حرف میانجی
+                <span class="fg-ltr" lang="fr">-t-</span>
+                می‌آید.
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                <span class="fg-ltr fg-wrong" lang="fr">
+                  Allez partir-vous ?
+                </span>
+              </td>
+              <td>
+                <span class="fg-ltr fg-correct" lang="fr">
+                  Allez-vous partir ?
+                </span>
+              </td>
+              <td>فقط فعل صرف‌شده وارونه می‌شود.</td>
+            </tr>
+
+            <tr>
+              <td>
+                <span class="fg-ltr fg-wrong" lang="fr">
+                  Nous allons travaillons.
+                </span>
+              </td>
+              <td>
+                <span class="fg-ltr fg-correct" lang="fr">
+                  Nous allons travailler.
+                </span>
+              </td>
+              <td>فعل اصلی همیشه مصدر باقی می‌ماند.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="fg-section">
+    <div class="fg-summary">
+      <h2>خلاصه نهایی درس ۳۹</h2>
+
+      <div class="fg-summary-row">
+        <span class="fg-summary-label">ساخت اصلی</span>
+        <span class="fg-summary-code">
+          aller au présent + infinitif
+        </span>
+      </div>
+
+      <div class="fg-summary-row">
+        <span class="fg-summary-label">مثبت</span>
+        <span class="fg-summary-code">
+          Je vais le faire.
+        </span>
+      </div>
+
+      <div class="fg-summary-row">
+        <span class="fg-summary-label">منفی</span>
+        <span class="fg-summary-code">
+          Je ne vais pas le faire.
+        </span>
+      </div>
+
+      <div class="fg-summary-row">
+        <span class="fg-summary-label">پرسش ساده</span>
+        <span class="fg-summary-code">
+          Est-ce que tu vas le faire ?
+        </span>
+      </div>
+
+      <div class="fg-summary-row">
+        <span class="fg-summary-label">وارونگی</span>
+        <span class="fg-summary-code">
+          Vas-tu le faire ?
+        </span>
+      </div>
+
+      <div class="fg-summary-row">
+        <span class="fg-summary-label">فعل ضمیری</span>
+        <span class="fg-summary-code">
+          Je vais me préparer.
+        </span>
+      </div>
+
+      <div class="fg-summary-row">
+        <span class="fg-summary-label">ضمیر مکان</span>
+        <span class="fg-summary-code">
+          Je vais y aller.
+        </span>
+      </div>
+
+      <div class="fg-summary-row">
+        <span class="fg-summary-label">ضمیر مقدار</span>
+        <span class="fg-summary-code">
+          Je vais en acheter deux.
+        </span>
+      </div>
+
+      <div class="fg-summary-row">
+        <span class="fg-summary-label">وجود داشتن در آینده</span>
+        <span class="fg-summary-code">
+          Il va y avoir un problème.
+        </span>
+      </div>
+    </div>
+  </section>
+</div>

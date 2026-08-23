@@ -1,0 +1,499 @@
+<div class="french-grammar-wrapper fg-wrapper" dir="rtl">
+  <style scoped>
+    .fg-wrapper {
+      --fg-navy: #163b65;
+      --fg-blue: #1f5f99;
+      --fg-blue-soft: #eef6fc;
+      --fg-green: #1f7a4f;
+      --fg-green-soft: #eef9f3;
+      --fg-red: #b9382f;
+      --fg-red-soft: #fff1ef;
+      --fg-orange: #b96a17;
+      --fg-orange-soft: #fff7ea;
+      --fg-purple: #6f42c1;
+      --fg-purple-soft: #f6f1ff;
+      --fg-border: #d9e2ec;
+      --fg-text: #1f2937;
+      --fg-muted: #5f6b7a;
+      --fg-bg: #f7f9fc;
+      --fg-card: #ffffff;
+      --fg-shadow: 0 10px 30px rgba(22, 59, 101, 0.08);
+      font-family: Tahoma, Arial, "Segoe UI", sans-serif;
+      color: var(--fg-text);
+      background: transparent;
+      line-height: 1.95;
+      font-size: 16px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .fg-wrapper *, .fg-wrapper *::before, .fg-wrapper *::after { box-sizing: border-box; }
+    .fg-wrapper .fg-container { max-width: 1180px; margin: 0 auto; padding: 20px; }
+
+    .fg-wrapper .fg-hero {
+      background: linear-gradient(135deg, #163b65 0%, #1f5f99 100%);
+      color: #fff;
+      border-radius: 24px;
+      padding: 30px;
+      box-shadow: var(--fg-shadow);
+      margin-bottom: 22px;
+      position: relative;
+      overflow: hidden;
+    }
+    .fg-wrapper .fg-hero::after {
+      content: "46";
+      position: absolute;
+      left: 18px;
+      top: -30px;
+      font-size: 150px;
+      font-weight: 800;
+      opacity: 0.08;
+      direction: ltr;
+    }
+    .fg-wrapper .fg-eyebrow { font-size: 13px; opacity: .85; margin-bottom: 6px; }
+    .fg-wrapper .fg-title { margin: 0 0 10px; font-size: 30px; line-height: 1.45; font-weight: 800; }
+    .fg-wrapper .fg-subtitle { margin: 0; font-size: 16px; opacity: .92; }
+
+    .fg-wrapper .fg-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; margin: 18px 0 24px; }
+    .fg-wrapper .fg-mini-card, .fg-wrapper .fg-card {
+      background: var(--fg-card);
+      border: 1px solid var(--fg-border);
+      border-radius: 18px;
+      box-shadow: var(--fg-shadow);
+    }
+    .fg-wrapper .fg-mini-card { padding: 18px; }
+    .fg-wrapper .fg-card { padding: 24px; margin: 18px 0; }
+    .fg-wrapper .fg-card h2, .fg-wrapper .fg-card h3 { color: var(--fg-navy); margin-top: 0; }
+    .fg-wrapper .fg-card h2 { font-size: 24px; border-bottom: 2px solid #e7eef6; padding-bottom: 10px; }
+    .fg-wrapper .fg-card h3 { font-size: 19px; margin-top: 24px; }
+
+    .fg-wrapper .fg-fr {
+      direction: ltr;
+      text-align: left;
+      unicode-bidi: isolate;
+      display: inline-block;
+      font-family: "Segoe UI", Arial, sans-serif;
+      font-weight: 600;
+    }
+    .fg-wrapper .fg-fr-block {
+      direction: ltr;
+      text-align: left;
+      unicode-bidi: isolate;
+      display: block;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f8fbff;
+      border: 1px solid #d9e8f6;
+      border-left: 4px solid var(--fg-blue);
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin: 8px 0;
+      line-height: 1.75;
+    }
+
+    .fg-wrapper .fg-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-left: 6px;
+      margin-bottom: 5px;
+    }
+    .fg-wrapper .fg-badge-blue { background: var(--fg-blue-soft); color: var(--fg-blue); }
+    .fg-wrapper .fg-badge-green { background: var(--fg-green-soft); color: var(--fg-green); }
+    .fg-wrapper .fg-badge-orange { background: var(--fg-orange-soft); color: var(--fg-orange); }
+
+    .fg-wrapper .fg-callout { border-radius: 14px; padding: 16px 18px; margin: 16px 0; border: 1px solid; }
+    .fg-wrapper .fg-callout strong { display: inline-block; margin-bottom: 4px; }
+    .fg-wrapper .fg-info { background: var(--fg-blue-soft); border-color: #bdd8ef; color: #173b5c; }
+    .fg-wrapper .fg-success { background: var(--fg-green-soft); border-color: #bfe3ce; color: #175b3c; }
+    .fg-wrapper .fg-warning { background: var(--fg-orange-soft); border-color: #efd5a9; color: #7f4a11; }
+    .fg-wrapper .fg-danger { background: var(--fg-red-soft); border-color: #efc2bd; color: #8d2c25; }
+    .fg-wrapper .fg-purple { background: var(--fg-purple-soft); border-color: #d8c7f7; color: #5e3b99; }
+
+    .fg-wrapper .fg-table-wrap { width: 100%; overflow-x: auto; margin: 14px 0; border-radius: 12px; }
+    .fg-wrapper table { width: 100%; border-collapse: collapse; min-width: 640px; background: #fff; }
+    .fg-wrapper th, .fg-wrapper td { border: 1px solid #cfd9e4; padding: 11px 12px; vertical-align: top; }
+    .fg-wrapper th { background: var(--fg-navy); color: #fff; text-align: center; font-weight: 700; }
+    .fg-wrapper tbody tr:nth-child(even) { background: #f8fafc; }
+    .fg-wrapper td { text-align: right; }
+    .fg-wrapper td.fg-ltr, .fg-wrapper th.fg-ltr { direction: ltr; text-align: left; unicode-bidi: isolate; }
+
+    .fg-wrapper .fg-timeline { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 20px 0; }
+    .fg-wrapper .fg-time { border-radius: 16px; padding: 18px; text-align: center; border: 1px solid var(--fg-border); background: #fff; }
+    .fg-wrapper .fg-time .fg-arrow { font-size: 24px; color: var(--fg-blue); font-weight: 800; direction: ltr; }
+    .fg-wrapper .fg-time strong { color: var(--fg-navy); display: block; margin: 8px 0; }
+
+    .fg-wrapper .fg-example { padding: 13px 15px; border-radius: 12px; margin: 10px 0; background: #fbfcfe; border: 1px solid #e2e8f0; }
+    .fg-wrapper .fg-fa { display: block; margin-top: 6px; color: var(--fg-muted); }
+    .fg-wrapper .fg-correct { color: var(--fg-green); font-weight: 700; }
+    .fg-wrapper .fg-wrong { color: var(--fg-red); font-weight: 700; text-decoration: line-through; text-decoration-thickness: 1px; }
+
+    .fg-wrapper .fg-exercise { margin-top: 20px; border-top: 1px dashed #cbd5e1; padding-top: 20px; }
+    .fg-wrapper .fg-question { background: #f8fafc; border: 1px solid #dde6ef; border-radius: 12px; padding: 14px 16px; margin: 10px 0; }
+    .fg-wrapper .fg-answer { background: var(--fg-green-soft); border: 1px solid #bfe3ce; border-radius: 12px; padding: 14px 16px; margin: 8px 0; }
+    .fg-wrapper .fg-note { background: #fffdf7; border-right: 4px solid var(--fg-orange); padding: 12px 14px; border-radius: 10px; margin-top: 10px; }
+
+    .fg-wrapper .fg-summary-list { margin: 0; padding-right: 20px; }
+    .fg-wrapper .fg-summary-list li { margin: 7px 0; }
+    .fg-wrapper .fg-divider { height: 1px; background: linear-gradient(to left, transparent, #d5dee8, transparent); margin: 28px 0; }
+
+    .fg-wrapper .fg-quick { display: grid; grid-template-columns: 1fr; gap: 10px; }
+    .fg-wrapper .fg-quick-row { display: grid; grid-template-columns: 220px 1fr; gap: 14px; align-items: start; border: 1px solid #e0e7ef; border-radius: 12px; padding: 12px 14px; background: #fff; }
+
+    @media (max-width: 900px) {
+      .fg-wrapper .fg-grid, .fg-wrapper .fg-timeline { grid-template-columns: 1fr; }
+      .fg-wrapper .fg-title { font-size: 26px; }
+      .fg-wrapper .fg-quick-row { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .fg-wrapper { font-size: 15px; }
+      .fg-wrapper .fg-container { padding: 12px; }
+      .fg-wrapper .fg-hero { padding: 22px 18px; border-radius: 18px; }
+      .fg-wrapper .fg-card { padding: 17px; border-radius: 15px; }
+      .fg-wrapper .fg-title { font-size: 22px; }
+      .fg-wrapper .fg-card h2 { font-size: 20px; }
+      .fg-wrapper .fg-card h3 { font-size: 17px; }
+    }
+  </style>
+
+  <div class="fg-container">
+    <section class="fg-hero">
+      <div class="fg-eyebrow">Grammaire Progressive du Français — Niveau intermédiaire</div>
+      <h1 class="fg-title">درس ۴۶: سه ساخت کلیدی برای «تازه انجام شدن»، «در حال انجام بودن» و «در آستانه انجام بودن»</h1>
+      <p class="fg-subtitle"><span class="fg-fr">VENIR DE</span> · <span class="fg-fr">ÊTRE EN TRAIN DE</span> · <span class="fg-fr">ÊTRE SUR LE POINT DE</span></p>
+    </section>
+
+    <section class="fg-grid">
+      <div class="fg-mini-card">
+        <span class="fg-badge fg-badge-green">گذشتهٔ بسیار نزدیک</span>
+        <div class="fg-fr-block">Je viens de finir.</div>
+        <div>تازه تمام کرده‌ام.</div>
+      </div>
+      <div class="fg-mini-card">
+        <span class="fg-badge fg-badge-blue">همین حالا</span>
+        <div class="fg-fr-block">Je suis en train de finir.</div>
+        <div>در حال تمام‌کردن هستم.</div>
+      </div>
+      <div class="fg-mini-card">
+        <span class="fg-badge fg-badge-orange">آیندهٔ بسیار نزدیک</span>
+        <div class="fg-fr-block">Je suis sur le point de finir.</div>
+        <div>در آستانهٔ تمام‌کردن هستم.</div>
+      </div>
+    </section>
+
+    <section class="fg-card">
+      <h2>۱) تصویر کلی درس</h2>
+      <div class="fg-example">
+        <span class="fg-fr">Nous venons de quitter l’Angleterre.</span>
+        <span class="fg-fa">ما تازه انگلستان را ترک کرده‌ایم.</span>
+      </div>
+      <div class="fg-example">
+        <span class="fg-fr">Nous sommes en train de survoler la Manche.</span>
+        <span class="fg-fa">ما در حال پرواز بر فراز کانال مانش هستیم.</span>
+      </div>
+      <div class="fg-example">
+        <span class="fg-fr">Nous sommes sur le point d’arriver en France.</span>
+        <span class="fg-fa">ما در آستانهٔ رسیدن به فرانسه هستیم.</span>
+      </div>
+
+      <div class="fg-timeline">
+        <div class="fg-time">
+          <div class="fg-arrow">←</div>
+          <strong>قبل از اکنون</strong>
+          <span class="fg-fr">venir de + infinitif</span>
+        </div>
+        <div class="fg-time">
+          <div class="fg-arrow">●</div>
+          <strong>همین اکنون</strong>
+          <span class="fg-fr">être en train de + infinitif</span>
+        </div>
+        <div class="fg-time">
+          <div class="fg-arrow">→</div>
+          <strong>بلافاصله بعد از اکنون</strong>
+          <span class="fg-fr">être sur le point de + infinitif</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="fg-card">
+      <h2>۲) <span class="fg-fr">VENIR DE + infinitif</span> — گذشتهٔ بسیار نزدیک</h2>
+      <div class="fg-callout fg-info"><strong>کاربرد:</strong> برای کاری که همین چند لحظه پیش تمام شده است.</div>
+      <div class="fg-fr-block">Sujet + venir conjugué + de + infinitif</div>
+
+      <div class="fg-example">
+        <span class="fg-fr">Paul est là ? — Non, il vient de sortir.</span>
+        <span class="fg-fa">پل اینجاست؟ — نه، همین الان بیرون رفت.</span>
+      </div>
+
+      <h3>صرف <span class="fg-fr">venir</span> در زمان حال</h3>
+      <div class="fg-table-wrap">
+        <table>
+          <thead><tr><th>فاعل</th><th class="fg-ltr">Venir</th><th>مثال</th></tr></thead>
+          <tbody>
+            <tr><td>je</td><td class="fg-ltr">viens</td><td class="fg-ltr">Je viens de manger.</td></tr>
+            <tr><td>tu</td><td class="fg-ltr">viens</td><td class="fg-ltr">Tu viens de rentrer.</td></tr>
+            <tr><td>il / elle / on</td><td class="fg-ltr">vient</td><td class="fg-ltr">Elle vient de téléphoner.</td></tr>
+            <tr><td>nous</td><td class="fg-ltr">venons</td><td class="fg-ltr">Nous venons d’arriver.</td></tr>
+            <tr><td>vous</td><td class="fg-ltr">venez</td><td class="fg-ltr">Vous venez de commencer.</td></tr>
+            <tr><td>ils / elles</td><td class="fg-ltr">viennent</td><td class="fg-ltr">Ils viennent de partir.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>تأکید با <span class="fg-fr">juste</span></h3>
+      <div class="fg-example"><span class="fg-fr">Jean vient juste de partir.</span><span class="fg-fa">ژان همین چند لحظه پیش رفت.</span></div>
+      <div class="fg-example"><span class="fg-fr">Il vient tout juste de partir.</span><span class="fg-fa">او واقعاً همین الان رفت.</span></div>
+      <div class="fg-callout fg-warning"><strong>جای درست <span class="fg-fr">juste</span>:</strong> میان فعل صرف‌شده و <span class="fg-fr">de</span>.</div>
+
+      <h3>حذف <span class="fg-fr">e</span> در <span class="fg-fr">de</span></h3>
+      <p>اگر مصدر با واکه یا <span class="fg-fr">h muet</span> شروع شود، <span class="fg-fr">de</span> به <span class="fg-fr">d’</span> تبدیل می‌شود:</p>
+      <div class="fg-fr-block">venir d’arriver · venir d’écouter · venir d’habiter</div>
+
+      <h3>نکتهٔ ظریف: زمان دقیق را معمولاً با آن قاطی نکن</h3>
+      <div class="fg-callout fg-warning">
+        <div><span class="fg-correct">✓</span> <span class="fg-fr">Jean vient de sortir.</span></div>
+        <div><span class="fg-correct">✓</span> <span class="fg-fr">Jean est sorti il y a cinq minutes.</span></div>
+        <div><span class="fg-wrong">Jean vient de sortir il y a cinq minutes.</span></div>
+      </div>
+      <p><span class="fg-fr">venir de</span> روی «تازگی اتفاق» تأکید می‌کند؛ <span class="fg-fr">il y a cinq minutes</span> روی «فاصلهٔ زمانی دقیق».</p>
+
+      <h3>جای ضمیر مفعولی</h3>
+      <div class="fg-example"><span class="fg-fr">Je viens de voir Paul. → Je viens de le voir.</span></div>
+      <div class="fg-example"><span class="fg-fr">Elle vient de lui téléphoner.</span></div>
+      <div class="fg-example"><span class="fg-fr">Nous venons de les rencontrer.</span></div>
+      <div class="fg-callout fg-danger"><strong>دام:</strong> <span class="fg-wrong">Je le viens de voir.</span> → <span class="fg-correct fg-fr">Je viens de le voir.</span></div>
+
+      <h3>افعال انعکاسی</h3>
+      <div class="fg-fr-block">Je viens de me réveiller. · Elle vient de se lever. · Ils viennent de se coucher.</div>
+
+      <h3>منفی‌کردن</h3>
+      <div class="fg-fr-block">Je ne viens pas de manger. · Je ne viens pas de le voir.</div>
+      <p>منفی‌ساز دور فعل صرف‌شدهٔ <span class="fg-fr">venir</span> قرار می‌گیرد.</p>
+
+      <h3>کاربرد در گذشته</h3>
+      <div class="fg-example"><span class="fg-fr">Je venais de sortir quand tu as appelé.</span><span class="fg-fa">وقتی زنگ زدی، تازه بیرون رفته بودم.</span></div>
+      <div class="fg-callout fg-danger"><strong>غلط رایج:</strong> <span class="fg-wrong">Je suis venu de finir.</span> → <span class="fg-correct fg-fr">Je venais de finir.</span></div>
+
+      <h3>دو معنای متفاوت <span class="fg-fr">venir de</span></h3>
+      <div class="fg-quick">
+        <div class="fg-quick-row"><span class="fg-fr">Je viens de manger.</span><span>بعد از <span class="fg-fr">de</span> مصدر آمده: «تازه غذا خورده‌ام».</span></div>
+        <div class="fg-quick-row"><span class="fg-fr">Je viens de Montréal.</span><span>بعد از <span class="fg-fr">de</span> نام مکان آمده: «از مونترال می‌آیم / اهل مونترال هستم».</span></div>
+      </div>
+    </section>
+
+    <section class="fg-card">
+      <h2>۳) <span class="fg-fr">ÊTRE EN TRAIN DE + infinitif</span> — عمل در حال انجام</h2>
+      <div class="fg-callout fg-info"><strong>کاربرد:</strong> وقتی می‌خواهیم تأکید کنیم عمل دقیقاً در همین لحظه در جریان است.</div>
+      <div class="fg-fr-block">Sujet + être conjugué + en train de + infinitif</div>
+
+      <div class="fg-example"><span class="fg-fr">Je suis en train de dîner.</span><span class="fg-fa">من در حال شام خوردن هستم.</span></div>
+
+      <h3>صرف ساختار در زمان حال</h3>
+      <div class="fg-table-wrap">
+        <table>
+          <thead><tr><th>فاعل</th><th class="fg-ltr">Structure</th></tr></thead>
+          <tbody>
+            <tr><td>je</td><td class="fg-ltr">je suis en train de</td></tr>
+            <tr><td>tu</td><td class="fg-ltr">tu es en train de</td></tr>
+            <tr><td>il / elle</td><td class="fg-ltr">il est / elle est en train de</td></tr>
+            <tr><td>nous</td><td class="fg-ltr">nous sommes en train de</td></tr>
+            <tr><td>vous</td><td class="fg-ltr">vous êtes en train de</td></tr>
+            <tr><td>ils / elles</td><td class="fg-ltr">ils sont / elles sont en train de</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>تفاوت با زمان حال ساده</h3>
+      <div class="fg-example"><span class="fg-fr">Je travaille à Tekdoon.</span><span class="fg-fa">من در Tekdoon کار می‌کنم؛ یک وضعیت عمومی یا شغلی.</span></div>
+      <div class="fg-example"><span class="fg-fr">Je suis en train de travailler sur le site de Tekdoon.</span><span class="fg-fa">الان دقیقاً در حال کار روی سایت هستم.</span></div>
+      <div class="fg-callout fg-purple"><strong>نکته:</strong> برخلاف انگلیسی، لازم نیست هر «Present Continuous» را در فرانسه با <span class="fg-fr">être en train de</span> بسازیم. زمان حال ساده اغلب کافی است.</div>
+
+      <h3>در گذشته</h3>
+      <div class="fg-example"><span class="fg-fr">J’étais en train de dîner quand le téléphone a sonné.</span><span class="fg-fa">داشتم شام می‌خوردم که تلفن زنگ زد.</span></div>
+      <p>این ساختار برای برجسته‌کردن عملی که در جریان بوده و اتفاق دیگری آن را قطع کرده، بسیار طبیعی است.</p>
+
+      <h3>افعال حالتی</h3>
+      <div class="fg-callout fg-danger"><strong>غیرطبیعی:</strong> <span class="fg-wrong">Je suis en train de savoir.</span></div>
+      <div class="fg-callout fg-success"><strong>طبیعی:</strong> <span class="fg-fr">Je sais.</span></div>
+      <p>اما اگر فعل به‌صورت «فرایند» دیده شود، ساختار می‌تواند طبیعی شود:</p>
+      <div class="fg-fr-block">Je suis en train de comprendre.</div>
+
+      <h3>ضمیرها و افعال انعکاسی</h3>
+      <div class="fg-fr-block">Je suis en train de le faire. · Elle est en train de lui parler. · Je suis en train de me préparer.</div>
+
+      <h3>منفی‌کردن</h3>
+      <div class="fg-fr-block">Je ne suis pas en train de dormir.</div>
+      <p>منفی‌ساز دور فعل <span class="fg-fr">être</span> قرار می‌گیرد.</p>
+
+      <div class="fg-callout fg-warning"><strong>نکتهٔ ثابت:</strong> عبارت <span class="fg-fr">en train de</span> تغییر نمی‌کند و واژهٔ <span class="fg-fr">train</span> در اینجا بخشی از یک ساخت ثابت است.</div>
+    </section>
+
+    <section class="fg-card">
+      <h2>۴) <span class="fg-fr">ÊTRE SUR LE POINT DE + infinitif</span> — عمل قریب‌الوقوع</h2>
+      <div class="fg-callout fg-info"><strong>کاربرد:</strong> وقتی عمل هنوز شروع نشده، اما بسیار نزدیک است.</div>
+      <div class="fg-fr-block">Sujet + être conjugué + sur le point de + infinitif</div>
+      <div class="fg-example"><span class="fg-fr">Nous sommes sur le point d’atterrir.</span><span class="fg-fa">ما در آستانهٔ فرود آمدن هستیم.</span></div>
+
+      <h3>صرف در زمان حال</h3>
+      <div class="fg-table-wrap">
+        <table>
+          <thead><tr><th>فاعل</th><th class="fg-ltr">Structure</th></tr></thead>
+          <tbody>
+            <tr><td>je</td><td class="fg-ltr">je suis sur le point de</td></tr>
+            <tr><td>tu</td><td class="fg-ltr">tu es sur le point de</td></tr>
+            <tr><td>il / elle</td><td class="fg-ltr">il est / elle est sur le point de</td></tr>
+            <tr><td>nous</td><td class="fg-ltr">nous sommes sur le point de</td></tr>
+            <tr><td>vous</td><td class="fg-ltr">vous êtes sur le point de</td></tr>
+            <tr><td>ils / elles</td><td class="fg-ltr">ils sont / elles sont sur le point de</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>تفاوت با <span class="fg-fr">futur proche</span></h3>
+      <div class="fg-example"><span class="fg-fr">Je vais partir.</span><span class="fg-fa">به‌زودی می‌روم / قصد دارم بروم.</span></div>
+      <div class="fg-example"><span class="fg-fr">Je suis sur le point de partir.</span><span class="fg-fa">همین الان در آستانهٔ راه افتادن هستم.</span></div>
+      <div class="fg-callout fg-success"><strong>قاعدهٔ ذهنی:</strong> <span class="fg-fr">aller + infinitif</span> = آیندهٔ نزدیک؛ <span class="fg-fr">sur le point de</span> = لحظهٔ تقریباً بلافاصله قبل از شروع عمل.</div>
+
+      <h3>در گذشته</h3>
+      <div class="fg-example"><span class="fg-fr">J’étais sur le point de sortir quand il a commencé à pleuvoir.</span><span class="fg-fa">در آستانهٔ بیرون رفتن بودم که باران شروع شد.</span></div>
+      <p>در گذشته، این ساختار اغلب عملی را نشان می‌دهد که نزدیک به وقوع بوده اما ممکن است به‌علت اتفاق دیگری رخ نداده باشد.</p>
+
+      <h3>تفاوت با <span class="fg-fr">être prêt à</span></h3>
+      <div class="fg-quick">
+        <div class="fg-quick-row"><span class="fg-fr">Je suis prêt à partir.</span><span>آمادهٔ رفتن هستم؛ ممکن است هنوز نروم.</span></div>
+        <div class="fg-quick-row"><span class="fg-fr">Je suis sur le point de partir.</span><span>همین الان تقریباً دارم راه می‌افتم.</span></div>
+      </div>
+
+      <h3>ضمیرها و افعال انعکاسی</h3>
+      <div class="fg-fr-block">Je suis sur le point de le faire. · Elle est sur le point de lui répondre. · Il est sur le point de se lever.</div>
+    </section>
+
+    <section class="fg-card">
+      <h2>۵) مقایسهٔ سه ساخت</h2>
+      <div class="fg-table-wrap">
+        <table>
+          <thead><tr><th>ساختار</th><th>وضعیت عمل</th><th>مثال</th><th>معنی</th></tr></thead>
+          <tbody>
+            <tr><td class="fg-ltr">venir de + infinitif</td><td>تازه تمام شده</td><td class="fg-ltr">Je viens de manger.</td><td>تازه غذا خورده‌ام.</td></tr>
+            <tr><td class="fg-ltr">être en train de + infinitif</td><td>در جریان است</td><td class="fg-ltr">Je suis en train de manger.</td><td>در حال غذا خوردن هستم.</td></tr>
+            <tr><td class="fg-ltr">être sur le point de + infinitif</td><td>هنوز شروع نشده، اما بسیار نزدیک است</td><td class="fg-ltr">Je suis sur le point de manger.</td><td>در آستانهٔ غذا خوردن هستم.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="fg-card">
+      <h2>۶) تمرین‌های درس ۴۶ با پاسخ و تحلیل</h2>
+
+      <div class="fg-exercise">
+        <h3>تمرین ۱ — تبدیل با <span class="fg-fr">en train de</span></h3>
+        <div class="fg-callout fg-info"><strong>صورت سؤال:</strong> جمله‌ها را مطابق نمونه با <span class="fg-fr">en train de</span> بازنویسی کنید.</div>
+
+        <div class="fg-question"><span class="fg-fr">N’entrez pas dans la chambre, Paul fait la sieste.</span></div>
+        <div class="fg-answer"><strong>پاسخ:</strong> <span class="fg-fr">N’entrez pas dans la chambre, Paul est en train de faire la sieste.</span></div>
+        <div class="fg-note">نکته: <span class="fg-fr">faire la sieste</span> یک عبارت ثابت به معنی «خواب نیمروزی داشتن» است.</div>
+
+        <div class="fg-question"><span class="fg-fr">Ne dérange pas Marie : elle fait des calculs compliqués.</span></div>
+        <div class="fg-answer"><strong>پاسخ:</strong> <span class="fg-fr">Ne dérange pas Marie : elle est en train de faire des calculs compliqués.</span></div>
+        <div class="fg-note">فقط <span class="fg-fr">être</span> صرف می‌شود و فعل اصلی به صورت مصدر باقی می‌ماند.</div>
+
+        <div class="fg-question"><span class="fg-fr">Ne parlez pas, s’il vous plaît, nous enregistrons la conférence.</span></div>
+        <div class="fg-answer"><strong>پاسخ:</strong> <span class="fg-fr">Ne parlez pas, s’il vous plaît, nous sommes en train d’enregistrer la conférence.</span></div>
+        <div class="fg-note"><span class="fg-fr">de + enregistrer → d’enregistrer</span></div>
+
+        <div class="fg-question"><span class="fg-fr">Approche la lampe, s’il te plaît, je retire une épine de mon pouce.</span></div>
+        <div class="fg-answer"><strong>پاسخ:</strong> <span class="fg-fr">Approche la lampe, s’il te plaît, je suis en train de retirer une épine de mon pouce.</span></div>
+      </div>
+
+      <div class="fg-exercise">
+        <h3>تمرین ۲ — تبدیل با <span class="fg-fr">venir (juste) de</span></h3>
+
+        <div class="fg-question"><span class="fg-fr">Il y a longtemps que tu es rentré ?</span></div>
+        <div class="fg-answer"><strong>پاسخ:</strong> <span class="fg-fr">Non, je viens juste de rentrer.</span></div>
+
+        <div class="fg-question"><span class="fg-fr">Le match est commencé depuis longtemps ?</span></div>
+        <div class="fg-answer"><strong>پاسخ:</strong> <span class="fg-fr">Non, il vient juste de commencer.</span></div>
+
+        <div class="fg-question"><span class="fg-fr">Ma femme n’a pas appelé ?</span></div>
+        <div class="fg-answer"><strong>پاسخ:</strong> <span class="fg-fr">Si, elle vient juste d’appeler.</span></div>
+        <div class="fg-note">نکتهٔ مهم: برای پاسخ مثبت به سؤال منفی از <span class="fg-fr">si</span> استفاده می‌شود.</div>
+
+        <div class="fg-question"><span class="fg-fr">Il y a longtemps que les enfants sont couchés ?</span></div>
+        <div class="fg-answer"><strong>پاسخ:</strong> <span class="fg-fr">Non, ils viennent juste de se coucher.</span></div>
+        <div class="fg-note">در فعل انعکاسی، ضمیر قبل از مصدر می‌آید: <span class="fg-fr">de se coucher</span>.</div>
+
+        <div class="fg-question"><span class="fg-fr">Tu as acheté ce canapé récemment ?</span></div>
+        <div class="fg-answer"><strong>پاسخ:</strong> <span class="fg-fr">Oui, je viens juste de l’acheter.</span></div>
+        <div class="fg-note">ضمیر <span class="fg-fr">l’</span> قبل از مصدر <span class="fg-fr">acheter</span> قرار می‌گیرد.</div>
+      </div>
+
+      <div class="fg-exercise">
+        <h3>تمرین ۳ — تبدیل با <span class="fg-fr">être sur le point de</span></h3>
+
+        <div class="fg-question"><span class="fg-fr">La nuit va tomber.</span></div>
+        <div class="fg-answer"><strong>پاسخ:</strong> <span class="fg-fr">La nuit est sur le point de tomber.</span></div>
+
+        <div class="fg-question"><span class="fg-fr">Les magasins vont fermer.</span></div>
+        <div class="fg-answer"><strong>پاسخ:</strong> <span class="fg-fr">Les magasins sont sur le point de fermer.</span></div>
+
+        <div class="fg-question"><span class="fg-fr">Les lumières vont s’allumer.</span></div>
+        <div class="fg-answer"><strong>پاسخ:</strong> <span class="fg-fr">Les lumières sont sur le point de s’allumer.</span></div>
+        <div class="fg-note"><span class="fg-fr">allumer quelque chose</span> = چیزی را روشن‌کردن؛ <span class="fg-fr">s’allumer</span> = روشن‌شدن.</div>
+      </div>
+
+      <div class="fg-exercise">
+        <h3>تمرین ۴ — انتخاب میان سه ساخت</h3>
+
+        <div class="fg-question"><span class="fg-fr">Rappelle-moi plus tard, je __________ sortir.</span></div>
+        <div class="fg-answer"><strong>پاسخ هدف:</strong> <span class="fg-fr">Je suis sur le point de sortir.</span></div>
+        <div class="fg-note">اگر عمل عملاً شروع شده باشد، <span class="fg-fr">Je suis en train de sortir</span> هم می‌تواند طبیعی باشد؛ اما برای «در آستانهٔ بیرون رفتن» پاسخ هدف <span class="fg-fr">sur le point de</span> است.</div>
+
+        <div class="fg-question"><span class="fg-fr">Qu’est-ce qu’Antoine __________ faire ? — Il dessine un mouton !</span></div>
+        <div class="fg-answer"><strong>پاسخ:</strong> <span class="fg-fr">Qu’est-ce qu’Antoine est en train de faire ?</span></div>
+
+        <div class="fg-question"><span class="fg-fr">Vous __________ écouter La Truite de Schubert. Ainsi s’achève notre programme musical.</span></div>
+        <div class="fg-answer"><strong>پاسخ:</strong> <span class="fg-fr">Vous venez d’écouter La Truite de Schubert.</span></div>
+        <div class="fg-note">گوینده بعد از پایان موسیقی صحبت می‌کند؛ پس عمل تازه تمام شده است.</div>
+
+        <div class="fg-question"><span class="fg-fr">Où sont les enfants ? — Ils __________ regarder la télévision.</span></div>
+        <div class="fg-answer"><strong>پاسخ:</strong> <span class="fg-fr">Ils sont en train de regarder la télévision.</span></div>
+
+        <div class="fg-question"><span class="fg-fr">Il faut arroser les fleurs ? — Non, je __________ arroser. Regarde, la terre est trempée.</span></div>
+        <div class="fg-answer"><strong>پاسخ:</strong> <span class="fg-fr">Non, je viens de les arroser.</span></div>
+        <div class="fg-note">خیس‌بودن خاک نتیجهٔ عملی است که همین الان تمام شده؛ <span class="fg-fr">les</span> هم قبل از مصدر می‌آید.</div>
+
+        <div class="fg-question"><span class="fg-fr">Ne vous appuyez pas contre le mur : on __________ repeindre l’entrée.</span></div>
+        <div class="fg-answer"><strong>پاسخ مناسب:</strong> <span class="fg-fr">On vient de repeindre l’entrée.</span></div>
+        <div class="fg-note">هشدار دربارهٔ دیوار نشان می‌دهد رنگ‌کاری به‌تازگی تمام شده و احتمالاً رنگ هنوز خیس است.</div>
+      </div>
+    </section>
+
+    <section class="fg-card">
+      <h2>۷) دام‌ها و اشتباهات رایج</h2>
+      <div class="fg-callout fg-danger"><strong>۱. صرف‌کردن فعل دوم:</strong><br><span class="fg-wrong">Je suis en train de travaille.</span><br><span class="fg-correct fg-fr">Je suis en train de travailler.</span></div>
+      <div class="fg-callout fg-danger"><strong>۲. ساخت غلط گذشته:</strong><br><span class="fg-wrong">J’ai venu de finir.</span><br><span class="fg-correct fg-fr">Je venais de finir.</span></div>
+      <div class="fg-callout fg-danger"><strong>۳. جای اشتباه ضمیر:</strong><br><span class="fg-wrong">Je le viens de voir.</span><br><span class="fg-correct fg-fr">Je viens de le voir.</span></div>
+      <div class="fg-callout fg-warning"><strong>۴. یکی دانستن <span class="fg-fr">aller</span> و <span class="fg-fr">sur le point de</span>:</strong><br><span class="fg-fr">Je vais appeler Marie.</span> = به‌زودی/قصد دارم زنگ بزنم.<br><span class="fg-fr">Je suis sur le point d’appeler Marie.</span> = تقریباً همین الان می‌خواهم زنگ بزنم.</div>
+      <div class="fg-callout fg-purple"><strong>۵. استفادهٔ بیش از حد از <span class="fg-fr">en train de</span>:</strong> در بسیاری از موقعیت‌ها زمان حال ساده کاملاً طبیعی است؛ این ساخت برای تأکید بر «در جریان بودن همین لحظه» است.</div>
+    </section>
+
+    <section class="fg-card">
+      <h2>۸) جمع‌بندی نهایی</h2>
+      <ul class="fg-summary-list">
+        <li><strong>تازه انجام دادم:</strong> <span class="fg-fr">venir de + infinitif</span></li>
+        <li><strong>دارم انجام می‌دهم:</strong> <span class="fg-fr">être en train de + infinitif</span></li>
+        <li><strong>الان در آستانهٔ انجامش هستم:</strong> <span class="fg-fr">être sur le point de + infinitif</span></li>
+      </ul>
+      <div class="fg-divider"></div>
+      <div class="fg-callout fg-success">
+        <strong>فرمول ذهنی سریع:</strong><br>
+        <span class="fg-fr">Je viens de…</span> = همین الان تمام شد<br>
+        <span class="fg-fr">Je suis en train de…</span> = همین الان در جریان است<br>
+        <span class="fg-fr">Je suis sur le point de…</span> = همین الان قرار است شروع شود
+      </div>
+    </section>
+  </div>
+</div>

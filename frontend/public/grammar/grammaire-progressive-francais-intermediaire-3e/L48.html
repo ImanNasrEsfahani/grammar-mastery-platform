@@ -1,0 +1,2117 @@
+<div class="french-grammar-wrapper" dir="rtl">
+
+  <style>
+    .french-grammar-wrapper {
+      --fg-navy: #173b67;
+      --fg-blue: #1f5f99;
+      --fg-blue-soft: #eaf3fb;
+      --fg-blue-lighter: #f6f9fc;
+      --fg-green: #13795b;
+      --fg-green-soft: #eaf8f2;
+      --fg-red: #bd3f42;
+      --fg-red-soft: #fff0f0;
+      --fg-orange: #b76014;
+      --fg-orange-soft: #fff5e8;
+      --fg-purple: #6a4bb4;
+      --fg-purple-soft: #f4f0ff;
+      --fg-text: #263442;
+      --fg-muted: #657487;
+      --fg-border: #d7e0e9;
+      --fg-white: #ffffff;
+      --fg-shadow: 0 8px 26px rgba(25, 54, 84, 0.08);
+
+      direction: rtl;
+      text-align: right;
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      color: var(--fg-text);
+      font-family: Tahoma, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.95;
+      box-sizing: border-box;
+    }
+
+    .french-grammar-wrapper *,
+    .french-grammar-wrapper *::before,
+    .french-grammar-wrapper *::after {
+      box-sizing: border-box;
+    }
+
+    .french-grammar-wrapper .fg-fr,
+    .french-grammar-wrapper [lang="fr"] {
+      direction: ltr;
+      unicode-bidi: isolate;
+      text-align: left;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    .french-grammar-wrapper .fg-inline-fr {
+      direction: ltr;
+      unicode-bidi: isolate;
+      display: inline-block;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    .french-grammar-wrapper .fg-page {
+      background: #f7f9fc;
+      border: 1px solid var(--fg-border);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: var(--fg-shadow);
+    }
+
+    .french-grammar-wrapper .fg-hero {
+      position: relative;
+      padding: 42px 38px;
+      color: #fff;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(255,255,255,.15), transparent 28%),
+        linear-gradient(135deg, #12355a 0%, #185b91 58%, #2879b6 100%);
+      overflow: hidden;
+    }
+
+    .french-grammar-wrapper .fg-hero::after {
+      content: "48";
+      position: absolute;
+      left: 22px;
+      bottom: -48px;
+      font-size: 190px;
+      line-height: 1;
+      font-weight: 800;
+      color: rgba(255,255,255,.07);
+      direction: ltr;
+    }
+
+    .french-grammar-wrapper .fg-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 12px;
+      margin-bottom: 12px;
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: 999px;
+      background: rgba(255,255,255,.1);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .french-grammar-wrapper .fg-hero h1 {
+      margin: 0 0 10px;
+      color: #fff;
+      font-size: clamp(30px, 5vw, 50px);
+      line-height: 1.25;
+    }
+
+    .french-grammar-wrapper .fg-hero-subtitle {
+      margin: 0;
+      max-width: 800px;
+      color: rgba(255,255,255,.92);
+      font-size: 17px;
+    }
+
+    .french-grammar-wrapper .fg-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .french-grammar-wrapper .fg-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.13);
+      border: 1px solid rgba(255,255,255,.18);
+      color: #fff;
+      font-size: 13px;
+    }
+
+    .french-grammar-wrapper .fg-content {
+      padding: 30px;
+    }
+
+    .french-grammar-wrapper .fg-section {
+      margin: 0 0 26px;
+      padding: 28px;
+      border: 1px solid var(--fg-border);
+      border-radius: 18px;
+      background: var(--fg-white);
+      box-shadow: 0 4px 16px rgba(30, 60, 90, .045);
+    }
+
+    .french-grammar-wrapper .fg-section:last-child {
+      margin-bottom: 0;
+    }
+
+    .french-grammar-wrapper .fg-section-title {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      margin: 0 0 20px;
+      padding-bottom: 13px;
+      border-bottom: 2px solid var(--fg-blue-soft);
+      color: var(--fg-navy);
+      font-size: clamp(21px, 3vw, 27px);
+      line-height: 1.45;
+    }
+
+    .french-grammar-wrapper .fg-number {
+      flex: 0 0 auto;
+      width: 34px;
+      height: 34px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      color: #fff;
+      background: var(--fg-blue);
+      direction: ltr;
+      font-weight: 800;
+      font-size: 15px;
+    }
+
+    .french-grammar-wrapper .fg-subtitle {
+      margin: 25px 0 10px;
+      color: var(--fg-blue);
+      font-size: 19px;
+    }
+
+    .french-grammar-wrapper p {
+      margin: 9px 0;
+    }
+
+    .french-grammar-wrapper ul,
+    .french-grammar-wrapper ol {
+      margin: 10px 0;
+      padding-right: 24px;
+    }
+
+    .french-grammar-wrapper li {
+      margin: 7px 0;
+    }
+
+    .french-grammar-wrapper strong {
+      color: #183b5c;
+    }
+
+    .french-grammar-wrapper .fg-callout {
+      margin: 18px 0;
+      padding: 17px 19px;
+      border-radius: 14px;
+      border-right: 5px solid;
+    }
+
+    .french-grammar-wrapper .fg-callout strong:first-child {
+      display: inline-block;
+      margin-bottom: 5px;
+    }
+
+    .french-grammar-wrapper .fg-callout-info {
+      border-color: var(--fg-blue);
+      background: var(--fg-blue-soft);
+    }
+
+    .french-grammar-wrapper .fg-callout-success {
+      border-color: var(--fg-green);
+      background: var(--fg-green-soft);
+    }
+
+    .french-grammar-wrapper .fg-callout-warning {
+      border-color: var(--fg-orange);
+      background: var(--fg-orange-soft);
+    }
+
+    .french-grammar-wrapper .fg-callout-danger {
+      border-color: var(--fg-red);
+      background: var(--fg-red-soft);
+    }
+
+    .french-grammar-wrapper .fg-callout-purple {
+      border-color: var(--fg-purple);
+      background: var(--fg-purple-soft);
+    }
+
+    .french-grammar-wrapper .fg-example {
+      margin: 13px 0;
+      padding: 16px 18px;
+      border: 1px solid #cae5da;
+      border-radius: 13px;
+      background: #f5fcf9;
+    }
+
+    .french-grammar-wrapper .fg-example .fg-fr {
+      display: block;
+      color: #0b6047;
+      font-weight: 700;
+      font-size: 17px;
+      line-height: 1.7;
+    }
+
+    .french-grammar-wrapper .fg-translation {
+      display: block;
+      margin-top: 5px;
+      color: #4e5f6d;
+      font-size: 14px;
+    }
+
+    .french-grammar-wrapper .fg-formula {
+      margin: 18px 0;
+      padding: 19px 20px;
+      border: 2px solid #b9d4eb;
+      border-radius: 15px;
+      background: linear-gradient(135deg, #f5faff, #edf6fd);
+      text-align: center;
+    }
+
+    .french-grammar-wrapper .fg-formula-main {
+      display: block;
+      margin-top: 7px;
+      color: var(--fg-navy);
+      font-size: clamp(18px, 3vw, 24px);
+      font-weight: 800;
+      direction: ltr;
+      unicode-bidi: isolate;
+    }
+
+    .french-grammar-wrapper .fg-timeline {
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      gap: 0;
+      margin: 22px 0;
+      direction: ltr;
+    }
+
+    .french-grammar-wrapper .fg-time-item {
+      flex: 1;
+      min-width: 0;
+      padding: 13px 10px;
+      text-align: center;
+      border: 1px solid #cbd9e5;
+      background: #fff;
+    }
+
+    .french-grammar-wrapper .fg-time-item:first-child {
+      border-radius: 12px 0 0 12px;
+    }
+
+    .french-grammar-wrapper .fg-time-item:last-child {
+      border-radius: 0 12px 12px 0;
+    }
+
+    .french-grammar-wrapper .fg-time-arrow {
+      display: flex;
+      align-items: center;
+      padding: 0 7px;
+      color: var(--fg-blue);
+      font-size: 22px;
+    }
+
+    .french-grammar-wrapper .fg-time-label {
+      display: block;
+      margin-bottom: 3px;
+      color: var(--fg-muted);
+      font-size: 12px;
+    }
+
+    .french-grammar-wrapper .fg-time-value {
+      display: block;
+      font-weight: 700;
+      color: var(--fg-navy);
+    }
+
+    .french-grammar-wrapper .fg-grid-2,
+    .french-grammar-wrapper .fg-grid-3 {
+      display: grid;
+      gap: 16px;
+      margin: 16px 0;
+    }
+
+    .french-grammar-wrapper .fg-grid-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .french-grammar-wrapper .fg-grid-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .french-grammar-wrapper .fg-mini-card {
+      padding: 17px;
+      border: 1px solid var(--fg-border);
+      border-radius: 14px;
+      background: var(--fg-blue-lighter);
+    }
+
+    .french-grammar-wrapper .fg-mini-card h4 {
+      margin: 0 0 8px;
+      color: var(--fg-navy);
+      font-size: 17px;
+    }
+
+    .french-grammar-wrapper .fg-table-wrap {
+      width: 100%;
+      margin: 16px 0;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border-radius: 13px;
+      border: 1px solid var(--fg-border);
+      background: #fff;
+    }
+
+    .french-grammar-wrapper table {
+      width: 100%;
+      min-width: 570px;
+      border-collapse: collapse;
+      margin: 0;
+      direction: rtl;
+    }
+
+    .french-grammar-wrapper th,
+    .french-grammar-wrapper td {
+      padding: 12px 14px;
+      border: 1px solid var(--fg-border);
+      vertical-align: top;
+    }
+
+    .french-grammar-wrapper th {
+      color: #fff;
+      background: var(--fg-navy);
+      font-weight: 700;
+    }
+
+    .french-grammar-wrapper tbody tr:nth-child(even) td {
+      background: #f6f9fc;
+    }
+
+    .french-grammar-wrapper td.fg-fr,
+    .french-grammar-wrapper th.fg-fr {
+      direction: ltr;
+      text-align: left;
+    }
+
+    .french-grammar-wrapper .fg-correct {
+      color: var(--fg-green);
+      font-weight: 700;
+    }
+
+    .french-grammar-wrapper .fg-wrong {
+      color: var(--fg-red);
+      font-weight: 700;
+      text-decoration: line-through;
+      text-decoration-thickness: 1px;
+    }
+
+    .french-grammar-wrapper .fg-compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      margin: 16px 0;
+    }
+
+    .french-grammar-wrapper .fg-compare-card {
+      padding: 17px;
+      border-radius: 14px;
+      border: 1px solid var(--fg-border);
+      background: #fff;
+    }
+
+    .french-grammar-wrapper .fg-compare-card.fg-a {
+      border-top: 4px solid var(--fg-blue);
+    }
+
+    .french-grammar-wrapper .fg-compare-card.fg-b {
+      border-top: 4px solid var(--fg-purple);
+    }
+
+    .french-grammar-wrapper .fg-answer {
+      margin-top: 14px;
+      border: 1px solid #cce5d9;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #fbfffd;
+    }
+
+    .french-grammar-wrapper .fg-answer summary {
+      cursor: pointer;
+      list-style: none;
+      padding: 13px 16px;
+      color: var(--fg-green);
+      background: var(--fg-green-soft);
+      font-weight: 800;
+      user-select: none;
+    }
+
+    .french-grammar-wrapper .fg-answer summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .french-grammar-wrapper .fg-answer summary::before {
+      content: "＋";
+      display: inline-block;
+      margin-left: 7px;
+      direction: ltr;
+    }
+
+    .french-grammar-wrapper .fg-answer[open] summary::before {
+      content: "−";
+    }
+
+    .french-grammar-wrapper .fg-answer-body {
+      padding: 15px 17px;
+    }
+
+    .french-grammar-wrapper .fg-question {
+      margin: 20px 0;
+      padding: 18px;
+      border: 1px solid var(--fg-border);
+      border-radius: 15px;
+      background: #fff;
+    }
+
+    .french-grammar-wrapper .fg-question-label {
+      display: inline-block;
+      padding: 3px 10px;
+      margin-bottom: 8px;
+      border-radius: 999px;
+      color: var(--fg-blue);
+      background: var(--fg-blue-soft);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .french-grammar-wrapper .fg-rule-list {
+      counter-reset: fg-rule;
+      list-style: none;
+      padding: 0;
+    }
+
+    .french-grammar-wrapper .fg-rule-list li {
+      position: relative;
+      padding: 12px 50px 12px 14px;
+      margin: 9px 0;
+      border: 1px solid #e1e7ee;
+      border-radius: 11px;
+      background: #fbfcfe;
+    }
+
+    .french-grammar-wrapper .fg-rule-list li::before {
+      counter-increment: fg-rule;
+      content: counter(fg-rule);
+      position: absolute;
+      right: 12px;
+      top: 12px;
+      width: 27px;
+      height: 27px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      color: #fff;
+      background: var(--fg-blue);
+      direction: ltr;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .french-grammar-wrapper .fg-note-tag {
+      display: inline-block;
+      margin: 2px 3px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      color: var(--fg-purple);
+      background: var(--fg-purple-soft);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .french-grammar-wrapper .fg-divider {
+      height: 1px;
+      margin: 24px 0;
+      background: linear-gradient(to left, transparent, #cfd9e3, transparent);
+    }
+
+    .french-grammar-wrapper .fg-footer-summary {
+      padding: 28px;
+      border-radius: 18px;
+      color: #fff;
+      background: linear-gradient(135deg, #14395f, #1b659d);
+    }
+
+    .french-grammar-wrapper .fg-footer-summary h3 {
+      margin: 0 0 12px;
+      color: #fff;
+      font-size: 24px;
+    }
+
+    .french-grammar-wrapper .fg-footer-summary .fg-fr {
+      color: #fff;
+    }
+
+    @media (max-width: 820px) {
+      .french-grammar-wrapper .fg-content {
+        padding: 18px;
+      }
+
+      .french-grammar-wrapper .fg-hero {
+        padding: 30px 22px;
+      }
+
+      .french-grammar-wrapper .fg-section {
+        padding: 21px 18px;
+      }
+
+      .french-grammar-wrapper .fg-grid-2,
+      .french-grammar-wrapper .fg-grid-3,
+      .french-grammar-wrapper .fg-compare {
+        grid-template-columns: 1fr;
+      }
+
+      .french-grammar-wrapper .fg-timeline {
+        flex-direction: column;
+      }
+
+      .french-grammar-wrapper .fg-time-arrow {
+        justify-content: center;
+        transform: rotate(90deg);
+        padding: 4px;
+      }
+
+      .french-grammar-wrapper .fg-time-item:first-child,
+      .french-grammar-wrapper .fg-time-item:last-child {
+        border-radius: 10px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .french-grammar-wrapper {
+        font-size: 15px;
+      }
+
+      .french-grammar-wrapper .fg-page {
+        border-radius: 14px;
+      }
+
+      .french-grammar-wrapper .fg-content {
+        padding: 11px;
+      }
+
+      .french-grammar-wrapper .fg-section {
+        padding: 17px 13px;
+        border-radius: 14px;
+      }
+
+      .french-grammar-wrapper .fg-section-title {
+        font-size: 20px;
+      }
+
+      .french-grammar-wrapper .fg-hero h1 {
+        font-size: 30px;
+      }
+
+      .french-grammar-wrapper .fg-hero-subtitle {
+        font-size: 15px;
+      }
+
+      .french-grammar-wrapper th,
+      .french-grammar-wrapper td {
+        padding: 10px;
+        font-size: 14px;
+      }
+    }
+  </style>
+
+  <article class="fg-page">
+
+    <header class="fg-hero">
+      <div class="fg-eyebrow">درس ۴۸ · زمان‌های آینده</div>
+
+      <h1>
+        <span class="fg-fr" lang="fr">Le futur antérieur</span>
+      </h1>
+
+      <p class="fg-hero-subtitle">
+        آیندهٔ پیشین در زبان فرانسه؛ ساخت، کاربرد، ترتیب زمانی، افعال کمکی،
+        تطابق اسم مفعول، نکته‌های ظریف، استثناها و تمرین‌های کامل درس.
+      </p>
+
+      <div class="fg-meta">
+        <span class="fg-badge">📘 صفحهٔ آموزشی: ۲۲۸</span>
+        <span class="fg-badge">✍️ تمرین‌ها: صفحهٔ ۲۲۹</span>
+        <span class="fg-badge">🎯 موضوع: Temps du futur</span>
+      </div>
+    </header>
+
+    <div class="fg-content">
+
+      <!-- 1 -->
+      <section class="fg-section">
+        <h2 class="fg-section-title">
+          <span class="fg-number">1</span>
+          مفهوم اصلی
+          <span class="fg-inline-fr" lang="fr">futur antérieur</span>
+        </h2>
+
+        <p>
+          مهم‌ترین کاربرد این زمان، نشان‌دادن عملی است که
+          <strong>در آینده، قبل از یک عمل آیندهٔ دیگر کامل می‌شود.</strong>
+        </p>
+
+        <div class="fg-example">
+          <span class="fg-fr" lang="fr">Je me marierai quand j’aurai terminé mes études.</span>
+          <span class="fg-translation">وقتی تحصیلاتم را تمام کرده باشم، ازدواج خواهم کرد.</span>
+        </div>
+
+        <p>
+          در این جمله دو اتفاق آینده داریم:
+        </p>
+
+        <ol>
+          <li>ابتدا تحصیلات تمام می‌شود.</li>
+          <li>بعد از آن ازدواج انجام می‌شود.</li>
+        </ol>
+
+        <div class="fg-timeline">
+          <div class="fg-time-item">
+            <span class="fg-time-label">اکنون</span>
+            <span class="fg-time-value">Maintenant</span>
+          </div>
+
+          <div class="fg-time-arrow">→</div>
+
+          <div class="fg-time-item">
+            <span class="fg-time-label">عمل اول کامل می‌شود</span>
+            <span class="fg-time-value fg-fr" lang="fr">j’aurai terminé</span>
+          </div>
+
+          <div class="fg-time-arrow">→</div>
+
+          <div class="fg-time-item">
+            <span class="fg-time-label">عمل دوم</span>
+            <span class="fg-time-value fg-fr" lang="fr">je me marierai</span>
+          </div>
+        </div>
+
+        <div class="fg-callout fg-callout-success">
+          <strong>قاعدهٔ طلایی:</strong><br>
+          اگر در آینده دو عمل داشته باشیم، عملی که
+          <strong>اول تمام می‌شود</strong>
+          معمولاً به
+          <span class="fg-inline-fr" lang="fr">futur antérieur</span>
+          و عمل بعدی به
+          <span class="fg-inline-fr" lang="fr">futur simple</span>
+          می‌رود.
+        </div>
+      </section>
+
+      <!-- 2 -->
+      <section class="fg-section">
+        <h2 class="fg-section-title">
+          <span class="fg-number">2</span>
+          تفاوت
+          <span class="fg-inline-fr" lang="fr">futur simple</span>
+          و
+          <span class="fg-inline-fr" lang="fr">futur antérieur</span>
+        </h2>
+
+        <div class="fg-compare">
+          <div class="fg-compare-card fg-a">
+            <h3 class="fg-subtitle fg-fr" lang="fr">Futur simple</h3>
+
+            <div class="fg-example">
+              <span class="fg-fr" lang="fr">Je finirai mes études.</span>
+              <span class="fg-translation">تحصیلاتم را تمام خواهم کرد.</span>
+            </div>
+
+            <p>
+              فقط می‌گوید عمل در آینده اتفاق خواهد افتاد.
+            </p>
+          </div>
+
+          <div class="fg-compare-card fg-b">
+            <h3 class="fg-subtitle fg-fr" lang="fr">Futur antérieur</h3>
+
+            <div class="fg-example">
+              <span class="fg-fr" lang="fr">J’aurai fini mes études avant septembre.</span>
+              <span class="fg-translation">تا پیش از سپتامبر تحصیلاتم را تمام کرده خواهم بود.</span>
+            </div>
+
+            <p>
+              تأکید می‌کند عمل تا یک نقطهٔ آینده
+              <strong>کاملاً پایان یافته است.</strong>
+            </p>
+          </div>
+        </div>
+
+        <div class="fg-callout fg-callout-info">
+          در فارسی همیشه لازم نیست
+          <span class="fg-inline-fr" lang="fr">futur antérieur</span>
+          را تحت‌اللفظی با «کرده خواهم بود» ترجمه کنیم.
+          مثلاً:
+          <div class="fg-example">
+            <span class="fg-fr" lang="fr">Quand j’aurai fini, je partirai.</span>
+            <span class="fg-translation">طبیعی‌تر: وقتی کارم تمام شد، می‌روم / خواهم رفت.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3 -->
+      <section class="fg-section">
+        <h2 class="fg-section-title">
+          <span class="fg-number">3</span>
+          ساخت
+          <span class="fg-inline-fr" lang="fr">futur antérieur</span>
+        </h2>
+
+        <div class="fg-formula">
+          <span>فرمول اصلی</span>
+          <span class="fg-formula-main" lang="fr">
+            avoir / être au futur simple + participe passé
+          </span>
+        </div>
+
+        <div class="fg-grid-2">
+          <div class="fg-mini-card">
+            <h4 class="fg-fr" lang="fr">Avec avoir</h4>
+            <p class="fg-fr" lang="fr">J’aurai dîné.</p>
+            <p class="fg-fr" lang="fr">Nous aurons fini.</p>
+          </div>
+
+          <div class="fg-mini-card">
+            <h4 class="fg-fr" lang="fr">Avec être</h4>
+            <p class="fg-fr" lang="fr">Il sera parti.</p>
+            <p class="fg-fr" lang="fr">Je me serai couché.</p>
+          </div>
+        </div>
+
+        <div class="fg-callout fg-callout-warning">
+          <strong>خیلی مهم:</strong>
+          فقط فعل کمکی
+          <span class="fg-inline-fr" lang="fr">avoir / être</span>
+          در
+          <span class="fg-inline-fr" lang="fr">futur simple</span>
+          صرف می‌شود. فعل اصلی باید
+          <span class="fg-inline-fr" lang="fr">participe passé</span>
+          باشد.
+        </div>
+      </section>
+
+      <!-- 4 -->
+      <section class="fg-section">
+        <h2 class="fg-section-title">
+          <span class="fg-number">4</span>
+          صرف
+          <span class="fg-inline-fr" lang="fr">avoir</span>
+          در آینده
+        </h2>
+
+        <div class="fg-table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>ضمیر</th>
+                <th class="fg-fr" lang="fr">avoir au futur simple</th>
+                <th>نمونه</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="fg-fr">je</td>
+                <td class="fg-fr">j’aurai</td>
+                <td class="fg-fr">j’aurai fini</td>
+              </tr>
+              <tr>
+                <td class="fg-fr">tu</td>
+                <td class="fg-fr">tu auras</td>
+                <td class="fg-fr">tu auras mangé</td>
+              </tr>
+              <tr>
+                <td class="fg-fr">il / elle / on</td>
+                <td class="fg-fr">il / elle / on aura</td>
+                <td class="fg-fr">il aura pris</td>
+              </tr>
+              <tr>
+                <td class="fg-fr">nous</td>
+                <td class="fg-fr">nous aurons</td>
+                <td class="fg-fr">nous aurons fait</td>
+              </tr>
+              <tr>
+                <td class="fg-fr">vous</td>
+                <td class="fg-fr">vous aurez</td>
+                <td class="fg-fr">vous aurez écrit</td>
+              </tr>
+              <tr>
+                <td class="fg-fr">ils / elles</td>
+                <td class="fg-fr">ils / elles auront</td>
+                <td class="fg-fr">ils auront compris</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="fg-example">
+          <span class="fg-fr" lang="fr">Nous aurons terminé avant midi.</span>
+          <span class="fg-translation">تا پیش از ظهر کار را تمام کرده خواهیم بود.</span>
+        </div>
+      </section>
+
+      <!-- 5 -->
+      <section class="fg-section">
+        <h2 class="fg-section-title">
+          <span class="fg-number">5</span>
+          صرف
+          <span class="fg-inline-fr" lang="fr">être</span>
+          در آینده
+        </h2>
+
+        <div class="fg-table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>ضمیر</th>
+                <th class="fg-fr" lang="fr">être au futur simple</th>
+                <th>نمونه</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="fg-fr">je</td>
+                <td class="fg-fr">je serai</td>
+                <td class="fg-fr">je serai parti(e)</td>
+              </tr>
+              <tr>
+                <td class="fg-fr">tu</td>
+                <td class="fg-fr">tu seras</td>
+                <td class="fg-fr">tu seras arrivé(e)</td>
+              </tr>
+              <tr>
+                <td class="fg-fr">il / elle / on</td>
+                <td class="fg-fr">il / elle / on sera</td>
+                <td class="fg-fr">elle sera arrivée</td>
+              </tr>
+              <tr>
+                <td class="fg-fr">nous</td>
+                <td class="fg-fr">nous serons</td>
+                <td class="fg-fr">nous serons revenus</td>
+              </tr>
+              <tr>
+                <td class="fg-fr">vous</td>
+                <td class="fg-fr">vous serez</td>
+                <td class="fg-fr">vous serez parti(e)(s)</td>
+              </tr>
+              <tr>
+                <td class="fg-fr">ils / elles</td>
+                <td class="fg-fr">ils / elles seront</td>
+                <td class="fg-fr">elles seront arrivées</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 6 -->
+      <section class="fg-section">
+        <h2 class="fg-section-title">
+          <span class="fg-number">6</span>
+          چه زمانی
+          <span class="fg-inline-fr" lang="fr">avoir</span>
+          و چه زمانی
+          <span class="fg-inline-fr" lang="fr">être</span>؟
+        </h2>
+
+        <p>
+          انتخاب فعل کمکی همان قاعده‌ای را دنبال می‌کند که در
+          <span class="fg-inline-fr" lang="fr">passé composé</span>
+          می‌شناسیم.
+        </p>
+
+        <h3 class="fg-subtitle">بیشتر فعل‌ها با <span class="fg-inline-fr">avoir</span></h3>
+
+        <div class="fg-example">
+          <span class="fg-fr" lang="fr">J’aurai mangé.</span>
+          <span class="fg-fr" lang="fr">Tu auras terminé.</span>
+          <span class="fg-fr" lang="fr">Nous aurons compris.</span>
+        </div>
+
+        <h3 class="fg-subtitle">فعل‌های مهم با <span class="fg-inline-fr">être</span></h3>
+
+        <div class="fg-table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>مصدر</th>
+                <th>نمونه در futur antérieur</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="fg-fr">aller</td><td class="fg-fr">je serai allé(e)</td></tr>
+              <tr><td class="fg-fr">venir</td><td class="fg-fr">je serai venu(e)</td></tr>
+              <tr><td class="fg-fr">partir</td><td class="fg-fr">je serai parti(e)</td></tr>
+              <tr><td class="fg-fr">arriver</td><td class="fg-fr">je serai arrivé(e)</td></tr>
+              <tr><td class="fg-fr">entrer</td><td class="fg-fr">je serai entré(e)</td></tr>
+              <tr><td class="fg-fr">sortir</td><td class="fg-fr">je serai sorti(e)</td></tr>
+              <tr><td class="fg-fr">naître</td><td class="fg-fr">je serai né(e)</td></tr>
+              <tr><td class="fg-fr">mourir</td><td class="fg-fr">je serai mort(e)</td></tr>
+              <tr><td class="fg-fr">tomber</td><td class="fg-fr">je serai tombé(e)</td></tr>
+              <tr><td class="fg-fr">rester</td><td class="fg-fr">je serai resté(e)</td></tr>
+              <tr><td class="fg-fr">retourner</td><td class="fg-fr">je serai retourné(e)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="fg-callout fg-callout-purple">
+          <strong>افعال ضمیری همیشه با être:</strong>
+          <div class="fg-example">
+            <span class="fg-fr" lang="fr">Je me serai levé.</span>
+            <span class="fg-fr" lang="fr">Elle se sera couchée.</span>
+            <span class="fg-fr" lang="fr">Ils se seront préparés.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7 -->
+      <section class="fg-section">
+        <h2 class="fg-section-title">
+          <span class="fg-number">7</span>
+          تطابق
+          <span class="fg-inline-fr" lang="fr">participe passé</span>
+        </h2>
+
+        <h3 class="fg-subtitle">با être</h3>
+
+        <p>
+          اسم مفعول معمولاً از نظر جنس و تعداد با فاعل تطابق می‌کند.
+        </p>
+
+        <div class="fg-table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>فاعل</th>
+                <th>مثال</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>مذکر مفرد</td><td class="fg-fr">Il sera parti.</td></tr>
+              <tr><td>مؤنث مفرد</td><td class="fg-fr">Elle sera partie.</td></tr>
+              <tr><td>مذکر / گروه مختلط</td><td class="fg-fr">Ils seront partis.</td></tr>
+              <tr><td>مؤنث جمع</td><td class="fg-fr">Elles seront parties.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="fg-example">
+          <span class="fg-fr" lang="fr">Quand Marie sera arrivée, nous commencerons.</span>
+          <span class="fg-translation">وقتی ماری رسیده باشد، شروع خواهیم کرد.</span>
+        </div>
+
+        <h3 class="fg-subtitle">با avoir</h3>
+
+        <p>
+          معمولاً با فاعل تطابق نداریم:
+        </p>
+
+        <div class="fg-example">
+          <span class="fg-fr" lang="fr">Elle aura terminé son travail.</span>
+        </div>
+
+        <div class="fg-callout fg-callout-warning">
+          <strong>نکتهٔ پیشرفته:</strong>
+          اگر مفعول مستقیم
+          <span class="fg-inline-fr" lang="fr">COD</span>
+          قبل از فعل آمده باشد، قواعد عمومی تطابق با
+          <span class="fg-inline-fr" lang="fr">avoir</span>
+          همچنان اجرا می‌شود.
+          <div class="fg-example">
+            <span class="fg-fr" lang="fr">Les lettres que j’aurai écrites seront envoyées demain.</span>
+            <span class="fg-translation">
+              چون «les lettres» مفعول مستقیم و قبل از فعل است،
+              «écrites» مؤنث جمع شده است.
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8 -->
+      <section class="fg-section">
+        <h2 class="fg-section-title">
+          <span class="fg-number">8</span>
+          کاربرد اصلی: تقدم یک اتفاق آینده
+        </h2>
+
+        <div class="fg-example">
+          <span class="fg-fr" lang="fr">Je vais dîner et je vais sortir.</span>
+          <span class="fg-translation">می‌خواهم شام بخورم و بیرون بروم.</span>
+        </div>
+
+        <p>
+          برای اینکه مشخص کنیم شام خوردن باید کاملاً تمام شود و بعد بیرون رفتن انجام شود:
+        </p>
+
+        <div class="fg-example">
+          <span class="fg-fr" lang="fr">Quand j’aurai dîné, je sortirai.</span>
+          <span class="fg-translation">وقتی شامم را خورده باشم، بیرون خواهم رفت.</span>
+        </div>
+
+        <div class="fg-grid-2">
+          <div class="fg-mini-card">
+            <strong>عمل اول</strong>
+            <p class="fg-fr">j’aurai dîné</p>
+            <p>فutur antérieur</p>
+          </div>
+
+          <div class="fg-mini-card">
+            <strong>عمل دوم</strong>
+            <p class="fg-fr">je sortirai</p>
+            <p>futur simple</p>
+          </div>
+        </div>
+
+        <div class="fg-example">
+          <span class="fg-fr" lang="fr">Quand tu auras terminé, tu pourras partir.</span>
+          <span class="fg-translation">وقتی کارت را تمام کرده باشی، می‌توانی بروی.</span>
+        </div>
+
+        <div class="fg-example">
+          <span class="fg-fr" lang="fr">Nous sortirons dès que la pluie se sera arrêtée.</span>
+          <span class="fg-translation">به‌محض اینکه باران بند آمده باشد، بیرون خواهیم رفت.</span>
+        </div>
+
+        <div class="fg-example">
+          <span class="fg-fr" lang="fr">Après qu’elle aura reçu les résultats, elle prendra une décision.</span>
+          <span class="fg-translation">بعد از اینکه نتایج را دریافت کرده باشد، تصمیم خواهد گرفت.</span>
+        </div>
+      </section>
+
+      <!-- 9 -->
+      <section class="fg-section">
+        <h2 class="fg-section-title">
+          <span class="fg-number">9</span>
+          کلمات پرکاربرد
+        </h2>
+
+        <div class="fg-table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>عبارت فرانسوی</th>
+                <th>معنی</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="fg-fr">quand</td><td>وقتی که</td></tr>
+              <tr><td class="fg-fr">lorsque</td><td>هنگامی که</td></tr>
+              <tr><td class="fg-fr">dès que</td><td>به‌محض اینکه</td></tr>
+              <tr><td class="fg-fr">aussitôt que</td><td>همین‌که / بلافاصله پس از اینکه</td></tr>
+              <tr><td class="fg-fr">après que</td><td>بعد از اینکه</td></tr>
+              <tr><td class="fg-fr">une fois que</td><td>وقتی که / پس از اینکه</td></tr>
+              <tr><td class="fg-fr">avant</td><td>پیش از</td></tr>
+              <tr><td class="fg-fr">d’ici</td><td>از حالا تا / تا آن زمان</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="fg-example">
+          <span class="fg-fr" lang="fr">Dès que j’aurai reçu votre réponse, je vous contacterai.</span>
+          <span class="fg-translation">به‌محض اینکه پاسختان را دریافت کرده باشم، با شما تماس خواهم گرفت.</span>
+        </div>
+
+        <div class="fg-example">
+          <span class="fg-fr" lang="fr">Une fois que nous aurons signé le contrat, le projet commencera.</span>
+          <span class="fg-translation">وقتی قرارداد را امضا کرده باشیم، پروژه آغاز خواهد شد.</span>
+        </div>
+
+        <div class="fg-example">
+          <span class="fg-fr" lang="fr">D’ici vendredi, j’aurai terminé le rapport.</span>
+          <span class="fg-translation">تا جمعه گزارش را تمام کرده خواهم بود.</span>
+        </div>
+      </section>
+
+      <!-- 10 -->
+      <section class="fg-section">
+        <h2 class="fg-section-title">
+          <span class="fg-number">10</span>
+          تفاوت ظریف بعد از
+          <span class="fg-inline-fr" lang="fr">quand</span>
+        </h2>
+
+        <div class="fg-compare">
+          <div class="fg-compare-card fg-a">
+            <h4 class="fg-fr" lang="fr">Quand tu finiras ton travail...</h4>
+            <p>
+              تمرکز بر رخ‌دادن عمل در آینده است و تأکید کمتری بر «کامل‌شدن قبلی» دارد.
+            </p>
+          </div>
+
+          <div class="fg-compare-card fg-b">
+            <h4 class="fg-fr" lang="fr">Quand tu auras fini ton travail...</h4>
+            <p>
+              تأکید می‌کند کار باید
+              <strong>کاملاً پایان یافته باشد</strong>
+              و سپس عمل بعدی انجام شود.
+            </p>
+          </div>
+        </div>
+
+        <div class="fg-callout fg-callout-info">
+          در بسیاری از موقعیت‌ها هر دو ساخت ممکن‌اند، اما
+          <span class="fg-inline-fr" lang="fr">futur antérieur</span>
+          رابطهٔ «ابتدا تکمیل عمل اول، سپس عمل دوم» را روشن‌تر می‌کند.
+        </div>
+      </section>
+
+      <!-- 11 -->
+      <section class="fg-section">
+        <h2 class="fg-section-title">
+          <span class="fg-number">11</span>
+          جملهٔ اصلی الزاماً
+          <span class="fg-inline-fr" lang="fr">futur simple</span>
+          نیست
+        </h2>
+
+        <p>
+          جملهٔ اصلی می‌تواند
+          <span class="fg-inline-fr" lang="fr">impératif</span>
+          باشد.
+        </p>
+
+        <div class="fg-example">
+          <span class="fg-fr" lang="fr">Revenez me voir quand vous aurez terminé votre traitement.</span>
+          <span class="fg-translation">وقتی درمانتان را تمام کردید، دوباره نزد من بیایید.</span>
+        </div>
+
+        <div class="fg-formula">
+          <span class="fg-formula-main" lang="fr">
+            impératif + quand + futur antérieur
+          </span>
+        </div>
+
+        <div class="fg-example">
+          <span class="fg-fr" lang="fr">Appelez-moi quand vous aurez reçu le document.</span>
+          <span class="fg-translation">وقتی مدرک را دریافت کردید، با من تماس بگیرید.</span>
+        </div>
+
+        <div class="fg-example">
+          <span class="fg-fr" lang="fr">Éteignez l’ordinateur quand vous aurez enregistré les données.</span>
+          <span class="fg-translation">وقتی داده‌ها را ذخیره کردید، کامپیوتر را خاموش کنید.</span>
+        </div>
+      </section>
+
+      <!-- 12 -->
+      <section class="fg-section">
+        <h2 class="fg-section-title">
+          <span class="fg-number">12</span>
+          ضمیرها، نفی و قیدها
+        </h2>
+
+        <h3 class="fg-subtitle">ضمیر مفعولی</h3>
+
+        <p>ضمیر قبل از فعل کمکی قرار می‌گیرد:</p>
+
+        <div class="fg-example">
+          <span class="fg-fr" lang="fr">Je l’aurai terminé demain.</span>
+          <span class="fg-fr" lang="fr">Nous les aurons envoyés avant midi.</span>
+        </div>
+
+        <h3 class="fg-subtitle">فعل ضمیری</h3>
+
+        <div class="fg-example">
+          <span class="fg-fr" lang="fr">Je me serai préparé.</span>
+          <span class="fg-fr" lang="fr">Elle se sera levée.</span>
+        </div>
+
+        <h3 class="fg-subtitle">نفی</h3>
+
+        <p>
+          <span class="fg-inline-fr">ne ... pas</span>
+          اطراف فعل کمکی قرار می‌گیرد:
+        </p>
+
+        <div class="fg-example">
+          <span class="fg-fr" lang="fr">Je n’aurai pas terminé.</span>
+          <span class="fg-fr" lang="fr">Ils ne seront pas partis.</span>
+        </div>
+
+        <h3 class="fg-subtitle">قیدهایی مثل <span class="fg-inline-fr">déjà</span></h3>
+
+        <div class="fg-example">
+          <span class="fg-fr" lang="fr">J’aurai déjà terminé.</span>
+          <span class="fg-fr" lang="fr">Elle sera déjà partie.</span>
+        </div>
+      </section>
+
+      <!-- 13 -->
+      <section class="fg-section">
+        <h2 class="fg-section-title">
+          <span class="fg-number">13</span>
+          نکتهٔ بسیار مهم دربارهٔ
+          <span class="fg-inline-fr" lang="fr">si</span>
+        </h2>
+
+        <div class="fg-callout fg-callout-danger">
+          بعد از
+          <span class="fg-inline-fr" lang="fr">si</span>
+          شرطی، معمولاً
+          <span class="fg-inline-fr" lang="fr">futur simple</span>
+          یا
+          <span class="fg-inline-fr" lang="fr">futur antérieur</span>
+          نمی‌آید.
+        </div>
+
+        <p class="fg-wrong fg-fr" lang="fr">Si tu auras fini, tu pourras partir.</p>
+        <p class="fg-correct fg-fr" lang="fr">Si tu as fini, tu pourras partir.</p>
+
+        <p>یا:</p>
+
+        <p class="fg-correct fg-fr" lang="fr">Si tu finis tôt, tu pourras partir.</p>
+
+        <div class="fg-divider"></div>
+
+        <p>اما با <span class="fg-inline-fr">quand</span>:</p>
+
+        <div class="fg-example">
+          <span class="fg-fr" lang="fr">Quand tu auras fini, tu pourras partir.</span>
+        </div>
+
+        <div class="fg-grid-2">
+          <div class="fg-mini-card">
+            <h4 class="fg-fr">si</h4>
+            <p>اگر؛ وقوع عمل شرطی یا نامطمئن است.</p>
+          </div>
+
+          <div class="fg-mini-card">
+            <h4 class="fg-fr">quand</h4>
+            <p>وقتی؛ وقوع عمل آینده به‌عنوان یک مرحله در نظر گرفته می‌شود.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 14 -->
+      <section class="fg-section">
+        <h2 class="fg-section-title">
+          <span class="fg-number">14</span>
+          تفاوت
+          <span class="fg-inline-fr">après que</span>
+          و
+          <span class="fg-inline-fr">avant que</span>
+        </h2>
+
+        <h3 class="fg-subtitle fg-fr">Après que</h3>
+
+        <p>
+          بعد از
+          <span class="fg-inline-fr">après que</span>
+          از
+          <span class="fg-inline-fr">indicatif</span>
+          استفاده می‌شود.
+        </p>
+
+        <div class="fg-example">
+          <span class="fg-fr" lang="fr">Après que tu auras signé, nous enverrons le dossier.</span>
+          <span class="fg-translation">بعد از اینکه امضا کرده باشی، پرونده را ارسال خواهیم کرد.</span>
+        </div>
+
+        <h3 class="fg-subtitle fg-fr">Avant que</h3>
+
+        <p>
+          بعد از
+          <span class="fg-inline-fr">avant que</span>
+          معمولاً
+          <span class="fg-inline-fr">subjonctif</span>
+          می‌آید.
+        </p>
+
+        <p class="fg-correct fg-fr">Nous partirons avant qu’il ait terminé.</p>
+        <p class="fg-wrong fg-fr">Nous partirons avant qu’il aura terminé.</p>
+      </section>
+
+      <!-- 15 -->
+      <section class="fg-section">
+        <h2 class="fg-section-title">
+          <span class="fg-number">15</span>
+          کامل‌شدن تا یک مهلت آینده
+        </h2>
+
+        <p>
+          لازم نیست همیشه دو فعل آیندهٔ صریح وجود داشته باشند. یک
+          <strong>نقطهٔ زمانی آینده</strong>
+          نیز می‌تواند مرجع باشد.
+        </p>
+
+        <div class="fg-example">
+          <span class="fg-fr" lang="fr">J’aurai terminé avant lundi.</span>
+          <span class="fg-translation">تا قبل از دوشنبه تمام کرده خواهم بود.</span>
+        </div>
+
+        <div class="fg-example">
+          <span class="fg-fr" lang="fr">En 2030, ils auront construit le nouveau métro.</span>
+          <span class="fg-translation">تا سال ۲۰۳۰ متروی جدید را ساخته خواهند بود.</span>
+        </div>
+
+        <div class="fg-example">
+          <span class="fg-fr" lang="fr">À ton retour, j’aurai préparé le dîner.</span>
+          <span class="fg-translation">تا وقتی برگردی، شام را آماده کرده خواهم بود.</span>
+        </div>
+      </section>
+
+      <!-- 16 -->
+      <section class="fg-section">
+        <h2 class="fg-section-title">
+          <span class="fg-number">16</span>
+          کاربرد پیشرفته: حدس دربارهٔ گذشته
+        </h2>
+
+        <p>
+          در زبان رسمی‌تر،
+          <span class="fg-inline-fr">futur antérieur</span>
+          می‌تواند حدس یا احتمال دربارهٔ یک اتفاق گذشته را بیان کند.
+        </p>
+
+        <div class="fg-example">
+          <span class="fg-fr" lang="fr">Il aura oublié notre rendez-vous.</span>
+          <span class="fg-translation">احتمالاً قرارمان را فراموش کرده است.</span>
+        </div>
+
+        <div class="fg-example">
+          <span class="fg-fr" lang="fr">Elle sera déjà partie.</span>
+          <span class="fg-translation">احتمالاً تا حالا رفته است.</span>
+        </div>
+
+        <div class="fg-callout fg-callout-warning">
+          این کاربرد بیشتر در زبان رسمی، نوشتاری یا گزارش‌گونه دیده می‌شود.
+          در گفتار روزمره می‌توان گفت:
+          <div class="fg-example">
+            <span class="fg-fr" lang="fr">Il a probablement oublié.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 17 -->
+      <section class="fg-section">
+        <h2 class="fg-section-title">
+          <span class="fg-number">17</span>
+          ارتباط با زمان‌های دیگر
+        </h2>
+
+        <div class="fg-table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>زمان</th>
+                <th>مثال</th>
+                <th>مفهوم</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="fg-fr">Imparfait</td>
+                <td class="fg-fr">J’habitais à Rome.</td>
+                <td>وضعیت یا عادت گذشته</td>
+              </tr>
+              <tr>
+                <td class="fg-fr">Passé composé</td>
+                <td class="fg-fr">J’ai déménagé il y a six mois.</td>
+                <td>اتفاق کامل‌شده در گذشته</td>
+              </tr>
+              <tr>
+                <td class="fg-fr">Présent</td>
+                <td class="fg-fr">J’habite à Paris.</td>
+                <td>وضعیت فعلی</td>
+              </tr>
+              <tr>
+                <td class="fg-fr">Futur proche</td>
+                <td class="fg-fr">Je vais déménager dans six mois.</td>
+                <td>برنامه یا آیندهٔ نزدیک</td>
+              </tr>
+              <tr>
+                <td class="fg-fr">Futur simple</td>
+                <td class="fg-fr">J’habiterai à Tokyo.</td>
+                <td>عمل یا وضعیت آینده</td>
+              </tr>
+              <tr>
+                <td class="fg-fr">Plus-que-parfait</td>
+                <td class="fg-fr">J’avais fini mes études quand j’ai déménagé.</td>
+                <td>عملی مقدم بر یک عمل گذشته</td>
+              </tr>
+              <tr>
+                <td class="fg-fr">Futur antérieur</td>
+                <td class="fg-fr">Tu me rejoindras quand j’aurai déménagé.</td>
+                <td>عملی مقدم بر یک عمل آینده</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="fg-callout fg-callout-success">
+          <strong>رابطهٔ مهم برای حفظ‌کردن:</strong>
+          <ul>
+            <li>
+              عمل مقدم نسبت به گذشته →
+              <span class="fg-inline-fr">plus-que-parfait</span>
+            </li>
+            <li>
+              عمل مقدم نسبت به آینده →
+              <span class="fg-inline-fr">futur antérieur</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 18 -->
+      <section class="fg-section">
+        <h2 class="fg-section-title">
+          <span class="fg-number">18</span>
+          اسم مفعول‌های مهم
+        </h2>
+
+        <div class="fg-table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>مصدر</th>
+                <th class="fg-fr">Participe passé</th>
+                <th>نمونه</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="fg-fr">faire</td><td class="fg-fr">fait</td><td class="fg-fr">j’aurai fait</td></tr>
+              <tr><td class="fg-fr">prendre</td><td class="fg-fr">pris</td><td class="fg-fr">j’aurai pris</td></tr>
+              <tr><td class="fg-fr">écrire</td><td class="fg-fr">écrit</td><td class="fg-fr">j’aurai écrit</td></tr>
+              <tr><td class="fg-fr">mettre</td><td class="fg-fr">mis</td><td class="fg-fr">j’aurai mis</td></tr>
+              <tr><td class="fg-fr">voir</td><td class="fg-fr">vu</td><td class="fg-fr">j’aurai vu</td></tr>
+              <tr><td class="fg-fr">lire</td><td class="fg-fr">lu</td><td class="fg-fr">j’aurai lu</td></tr>
+              <tr><td class="fg-fr">dire</td><td class="fg-fr">dit</td><td class="fg-fr">j’aurai dit</td></tr>
+              <tr><td class="fg-fr">recevoir</td><td class="fg-fr">reçu</td><td class="fg-fr">j’aurai reçu</td></tr>
+              <tr><td class="fg-fr">comprendre</td><td class="fg-fr">compris</td><td class="fg-fr">j’aurai compris</td></tr>
+              <tr><td class="fg-fr">apprendre</td><td class="fg-fr">appris</td><td class="fg-fr">j’aurai appris</td></tr>
+              <tr><td class="fg-fr">ouvrir</td><td class="fg-fr">ouvert</td><td class="fg-fr">j’aurai ouvert</td></tr>
+              <tr><td class="fg-fr">offrir</td><td class="fg-fr">offert</td><td class="fg-fr">j’aurai offert</td></tr>
+              <tr><td class="fg-fr">boire</td><td class="fg-fr">bu</td><td class="fg-fr">j’aurai bu</td></tr>
+              <tr><td class="fg-fr">devoir</td><td class="fg-fr">dû</td><td class="fg-fr">j’aurai dû</td></tr>
+              <tr><td class="fg-fr">pouvoir</td><td class="fg-fr">pu</td><td class="fg-fr">j’aurai pu</td></tr>
+              <tr><td class="fg-fr">vouloir</td><td class="fg-fr">voulu</td><td class="fg-fr">j’aurai voulu</td></tr>
+              <tr><td class="fg-fr">savoir</td><td class="fg-fr">su</td><td class="fg-fr">j’aurai su</td></tr>
+              <tr><td class="fg-fr">avoir</td><td class="fg-fr">eu</td><td class="fg-fr">j’aurai eu</td></tr>
+              <tr><td class="fg-fr">être</td><td class="fg-fr">été</td><td class="fg-fr">j’aurai été</td></tr>
+              <tr><td class="fg-fr">venir</td><td class="fg-fr">venu</td><td class="fg-fr">je serai venu(e)</td></tr>
+              <tr><td class="fg-fr">naître</td><td class="fg-fr">né</td><td class="fg-fr">je serai né(e)</td></tr>
+              <tr><td class="fg-fr">mourir</td><td class="fg-fr">mort</td><td class="fg-fr">je serai mort(e)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- COMMON ERRORS -->
+      <section class="fg-section">
+        <h2 class="fg-section-title">
+          <span class="fg-number">!</span>
+          اشتباهات رایج
+        </h2>
+
+        <ol class="fg-rule-list">
+          <li>
+            استفاده از مصدر به‌جای اسم مفعول:
+            <div>
+              <span class="fg-wrong fg-inline-fr">J’aurai finir.</span>
+              &nbsp;
+              <span class="fg-correct fg-inline-fr">J’aurai fini.</span>
+            </div>
+          </li>
+
+          <li>
+            صرف‌کردن فعل اصلی در آینده:
+            <div>
+              <span class="fg-wrong fg-inline-fr">J’aurai finirai.</span>
+              &nbsp;
+              <span class="fg-correct fg-inline-fr">J’aurai fini.</span>
+            </div>
+          </li>
+
+          <li>
+            فراموش‌کردن ساخت آینده بعد از
+            <span class="fg-inline-fr">quand</span>
+            در یک رابطهٔ کاملاً آینده:
+            <div class="fg-correct fg-fr">Quand j’aurai fini, je partirai.</div>
+          </li>
+
+          <li>
+            آوردن آینده بعد از
+            <span class="fg-inline-fr">si</span>:
+            <div>
+              <span class="fg-wrong fg-inline-fr">Si tu auras terminé...</span>
+              &nbsp;
+              <span class="fg-correct fg-inline-fr">Si tu as terminé...</span>
+            </div>
+          </li>
+
+          <li>
+            فراموش‌کردن تطابق با
+            <span class="fg-inline-fr">être</span>:
+            <div>
+              <span class="fg-wrong fg-inline-fr">Elle sera parti.</span>
+              &nbsp;
+              <span class="fg-correct fg-inline-fr">Elle sera partie.</span>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <!-- EXERCISE 1 -->
+      <section class="fg-section">
+        <h2 class="fg-section-title">
+          <span class="fg-number">E1</span>
+          تمرین ۱
+        </h2>
+
+        <div class="fg-callout fg-callout-info">
+          <strong class="fg-fr" lang="fr">Mettez au futur simple et au futur antérieur, selon le modèle.</strong>
+          <br>
+          فعل‌ها را مطابق نمونه یکی در
+          <span class="fg-inline-fr">futur simple</span>
+          و دیگری در
+          <span class="fg-inline-fr">futur antérieur</span>
+          قرار دهید.
+        </div>
+
+        <div class="fg-question">
+          <span class="fg-question-label">نمونه</span>
+
+          <p class="fg-fr" lang="fr">
+            Terminer le pot-au-feu / faire des crêpes
+          </p>
+
+          <div class="fg-example">
+            <span class="fg-fr" lang="fr">
+              Je ferai des crêpes quand j’aurai terminé le pot-au-feu.
+            </span>
+            <span class="fg-translation">
+              وقتی پوتوفو را تمام کرده باشم، کرپ درست خواهم کرد.
+            </span>
+          </div>
+        </div>
+
+        <div class="fg-question">
+          <span class="fg-question-label">سؤال ۲</span>
+          <p class="fg-fr" lang="fr">
+            Télécharger le premier épisode / télécharger le deuxième épisode de la série
+          </p>
+
+          <details class="fg-answer">
+            <summary>نمایش پاسخ و توضیح</summary>
+            <div class="fg-answer-body">
+              <div class="fg-example">
+                <span class="fg-fr">
+                  Tu téléchargeras le deuxième épisode de la série quand tu auras téléchargé le premier épisode.
+                </span>
+                <span class="fg-translation">
+                  وقتی قسمت اول را دانلود کرده باشی، قسمت دوم سریال را دانلود خواهی کرد.
+                </span>
+              </div>
+              <p>
+                قسمت اول ابتدا کامل می‌شود:
+                <span class="fg-inline-fr">tu auras téléchargé</span>.
+                سپس قسمت دوم:
+                <span class="fg-inline-fr">tu téléchargeras</span>.
+              </p>
+            </div>
+          </details>
+        </div>
+
+        <div class="fg-question">
+          <span class="fg-question-label">سؤال ۳</span>
+          <p class="fg-fr" lang="fr">Passer le permis / acheter une voiture</p>
+
+          <details class="fg-answer">
+            <summary>نمایش پاسخ و نکته</summary>
+            <div class="fg-answer-body">
+              <div class="fg-example">
+                <span class="fg-fr">
+                  Anne achètera une voiture quand elle aura passé le permis.
+                </span>
+              </div>
+
+              <p>
+                فعل
+                <span class="fg-inline-fr">acheter</span>
+                در آینده تغییر املایی دارد:
+              </p>
+
+              <p class="fg-fr">j’achèterai · tu achèteras · elle achètera</p>
+
+              <p>
+                اسم مفعول
+                <span class="fg-inline-fr">passer</span>
+                برابر است با
+                <span class="fg-inline-fr">passé</span>.
+              </p>
+            </div>
+          </details>
+        </div>
+
+        <div class="fg-question">
+          <span class="fg-question-label">سؤال ۴</span>
+          <p class="fg-fr" lang="fr">
+            Faire l’exercice nº 2 / faire l’exercice nº 3
+          </p>
+
+          <details class="fg-answer">
+            <summary>نمایش پاسخ و نکته</summary>
+            <div class="fg-answer-body">
+              <div class="fg-example">
+                <span class="fg-fr">
+                  Nous ferons l’exercice nº 3 quand nous aurons fait l’exercice nº 2.
+                </span>
+              </div>
+
+              <div class="fg-callout fg-callout-warning">
+                <span class="fg-inline-fr">faire</span>
+                دو فرم مهم دارد:
+                <br>
+                futur simple →
+                <span class="fg-inline-fr">ferons</span>
+                <br>
+                participe passé →
+                <span class="fg-inline-fr">fait</span>
+              </div>
+
+              <p class="fg-wrong fg-fr">nous aurons faire</p>
+              <p class="fg-wrong fg-fr">nous aurons fais</p>
+              <p class="fg-correct fg-fr">nous aurons fait</p>
+            </div>
+          </details>
+        </div>
+
+        <div class="fg-question">
+          <span class="fg-question-label">سؤال ۵</span>
+          <p class="fg-fr" lang="fr">Finir le stage / passer un examen</p>
+
+          <details class="fg-answer">
+            <summary>نمایش پاسخ و توضیح</summary>
+            <div class="fg-answer-body">
+              <div class="fg-example">
+                <span class="fg-fr">
+                  Ils passeront un examen quand ils auront fini le stage.
+                </span>
+              </div>
+
+              <p>
+                پایان دوره عمل اول است:
+                <span class="fg-inline-fr">ils auront fini</span>.
+                امتحان دادن بعداً انجام می‌شود:
+                <span class="fg-inline-fr">ils passeront</span>.
+              </p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- EXERCISE 2 -->
+      <section class="fg-section">
+        <h2 class="fg-section-title">
+          <span class="fg-number">E2</span>
+          تمرین ۲
+        </h2>
+
+        <div class="fg-callout fg-callout-info">
+          <strong class="fg-fr">Faites des phrases, selon le modèle.</strong>
+          <br>
+          دو دستور متوالی را به یک جمله با
+          <span class="fg-inline-fr">quand + futur antérieur</span>
+          تبدیل کنید.
+        </div>
+
+        <div class="fg-question">
+          <span class="fg-question-label">نمونه</span>
+
+          <p class="fg-fr">
+            Terminez votre traitement et revenez me voir.
+          </p>
+
+          <div class="fg-example">
+            <span class="fg-fr">
+              Revenez me voir quand vous aurez terminé votre traitement.
+            </span>
+          </div>
+
+          <p>
+            عمل دوم همچنان
+            <span class="fg-inline-fr">impératif</span>
+            است:
+            <span class="fg-inline-fr">Revenez</span>.
+            عمل اول به
+            <span class="fg-inline-fr">futur antérieur</span>
+            تبدیل می‌شود.
+          </p>
+        </div>
+
+        <div class="fg-question">
+          <span class="fg-question-label">سؤال ۱</span>
+
+          <p class="fg-fr">
+            Réfléchissez à ma proposition et téléphonez-moi.
+          </p>
+
+          <details class="fg-answer">
+            <summary>نمایش پاسخ</summary>
+            <div class="fg-answer-body">
+              <div class="fg-example">
+                <span class="fg-fr">
+                  Téléphonez-moi quand vous aurez réfléchi à ma proposition.
+                </span>
+                <span class="fg-translation">
+                  وقتی دربارهٔ پیشنهاد من فکر کرده باشید، به من تلفن بزنید.
+                </span>
+              </div>
+
+              <p>
+                ساخت مهم:
+                <span class="fg-inline-fr">réfléchir à quelque chose</span>.
+                اسم مفعول:
+                <span class="fg-inline-fr">réfléchi</span>.
+              </p>
+            </div>
+          </details>
+        </div>
+
+        <div class="fg-question">
+          <span class="fg-question-label">سؤال ۲</span>
+
+          <p class="fg-fr">
+            Parlez à votre banquier et tenez-moi au courant.
+          </p>
+
+          <details class="fg-answer">
+            <summary>نمایش پاسخ</summary>
+            <div class="fg-answer-body">
+              <div class="fg-example">
+                <span class="fg-fr">
+                  Tenez-moi au courant quand vous aurez parlé à votre banquier.
+                </span>
+              </div>
+
+              <p>
+                عبارت مهم:
+                <span class="fg-inline-fr">tenir quelqu’un au courant</span>
+                = کسی را در جریان گذاشتن / نگه داشتن.
+              </p>
+            </div>
+          </details>
+        </div>
+
+        <div class="fg-question">
+          <span class="fg-question-label">سؤال ۳</span>
+
+          <p class="fg-fr">
+            Terminez votre travail et venez dans mon bureau.
+          </p>
+
+          <details class="fg-answer">
+            <summary>نمایش پاسخ</summary>
+            <div class="fg-answer-body">
+              <div class="fg-example">
+                <span class="fg-fr">
+                  Venez dans mon bureau quand vous aurez terminé votre travail.
+                </span>
+              </div>
+
+              <p>
+                ابتدا:
+                <span class="fg-inline-fr">vous aurez terminé</span>
+                <br>
+                سپس:
+                <span class="fg-inline-fr">venez</span>
+              </p>
+            </div>
+          </details>
+        </div>
+
+        <div class="fg-question">
+          <span class="fg-question-label">سؤال ۴</span>
+
+          <p class="fg-fr">
+            Enregistrez les données et éteignez l’ordinateur.
+          </p>
+
+          <details class="fg-answer">
+            <summary>نمایش پاسخ</summary>
+            <div class="fg-answer-body">
+              <div class="fg-example">
+                <span class="fg-fr">
+                  Éteignez l’ordinateur quand vous aurez enregistré les données.
+                </span>
+              </div>
+
+              <ul>
+                <li>
+                  <span class="fg-inline-fr">enregistrer les données</span>
+                  = ذخیره‌کردن داده‌ها
+                </li>
+                <li>
+                  <span class="fg-inline-fr">éteindre l’ordinateur</span>
+                  = خاموش‌کردن کامپیوتر
+                </li>
+              </ul>
+            </div>
+          </details>
+        </div>
+
+        <div class="fg-question">
+          <span class="fg-question-label">سؤال ۵</span>
+
+          <p class="fg-fr">
+            Prenez une décision et écrivez-moi.
+          </p>
+
+          <details class="fg-answer">
+            <summary>نمایش پاسخ و نکته</summary>
+            <div class="fg-answer-body">
+              <div class="fg-example">
+                <span class="fg-fr">
+                  Écrivez-moi quand vous aurez pris une décision.
+                </span>
+              </div>
+
+              <p>
+                اسم مفعول
+                <span class="fg-inline-fr">prendre</span>
+                برابر
+                <span class="fg-inline-fr">pris</span>
+                است.
+              </p>
+
+              <p class="fg-wrong fg-fr">vous aurez prendu</p>
+              <p class="fg-correct fg-fr">vous aurez pris</p>
+
+              <p>
+                عبارت ثابت:
+                <span class="fg-inline-fr">prendre une décision</span>
+                = تصمیم‌گرفتن.
+              </p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- EXERCISE 3 -->
+      <section class="fg-section">
+        <h2 class="fg-section-title">
+          <span class="fg-number">E3</span>
+          تمرین ۳
+        </h2>
+
+        <div class="fg-callout fg-callout-info">
+          <strong class="fg-fr">
+            Faites des phrases avec un futur simple et un futur antérieur, puis donnez vos motifs d’espoir.
+          </strong>
+          <br>
+          با
+          <span class="fg-inline-fr">futur simple</span>
+          و
+          <span class="fg-inline-fr">futur antérieur</span>
+          جمله بسازید و سپس دلایل امید خود را بیان کنید.
+        </div>
+
+        <div class="fg-question">
+          <span class="fg-question-label">جملهٔ ۱</span>
+
+          <p class="fg-fr">
+            On supprimera les frontières et on voyagera sans visa.
+          </p>
+
+          <details class="fg-answer">
+            <summary>نمایش پاسخ</summary>
+            <div class="fg-answer-body">
+              <div class="fg-example">
+                <span class="fg-fr">
+                  Quand on aura supprimé les frontières, on voyagera sans visa.
+                </span>
+                <span class="fg-translation">
+                  وقتی مرزها را حذف کرده باشیم، بدون ویزا سفر خواهیم کرد.
+                </span>
+              </div>
+            </div>
+          </details>
+        </div>
+
+        <div class="fg-question">
+          <span class="fg-question-label">جملهٔ ۲</span>
+
+          <p class="fg-fr">
+            On remplacera le pétrole par l’énergie solaire et la couche d’ozone se reconstituera.
+          </p>
+
+          <details class="fg-answer">
+            <summary>نمایش پاسخ و نکته</summary>
+            <div class="fg-answer-body">
+              <div class="fg-example">
+                <span class="fg-fr">
+                  Quand on aura remplacé le pétrole par l’énergie solaire, la couche d’ozone se reconstituera.
+                </span>
+              </div>
+
+              <p>
+                ساخت مهم:
+                <span class="fg-inline-fr">remplacer A par B</span>
+                = A را با B جایگزین‌کردن.
+              </p>
+            </div>
+          </details>
+        </div>
+
+        <div class="fg-question">
+          <span class="fg-question-label">جملهٔ ۳</span>
+
+          <p class="fg-fr">
+            On interrompra la destruction des forêts et la nature revivra.
+          </p>
+
+          <details class="fg-answer">
+            <summary>نمایش پاسخ و نکته</summary>
+            <div class="fg-answer-body">
+              <div class="fg-example">
+                <span class="fg-fr">
+                  Quand on aura interrompu la destruction des forêts, la nature revivra.
+                </span>
+              </div>
+
+              <p>
+                اسم مفعول
+                <span class="fg-inline-fr">interrompre</span>
+                برابر
+                <span class="fg-inline-fr">interrompu</span>
+                است.
+              </p>
+            </div>
+          </details>
+        </div>
+
+        <h3 class="fg-subtitle">نمونه‌های بیشتر برای motifs d’espoir</h3>
+
+        <div class="fg-example">
+          <span class="fg-fr">
+            Quand les pays auront mieux coopéré, ils résoudront davantage de problèmes mondiaux.
+          </span>
+          <span class="fg-translation">
+            وقتی کشورها همکاری بهتری کرده باشند، مشکلات جهانی بیشتری را حل خواهند کرد.
+          </span>
+        </div>
+
+        <div class="fg-example">
+          <span class="fg-fr">
+            Quand on aura développé des transports propres, les villes deviendront plus respirables.
+          </span>
+          <span class="fg-translation">
+            وقتی حمل‌ونقل پاک را توسعه داده باشیم، شهرها قابل‌تنفس‌تر خواهند شد.
+          </span>
+        </div>
+
+        <div class="fg-example">
+          <span class="fg-fr">
+            Quand les chercheurs auront trouvé de nouveaux traitements, beaucoup de maladies reculeront.
+          </span>
+          <span class="fg-translation">
+            وقتی پژوهشگران درمان‌های جدیدی پیدا کرده باشند، بسیاری از بیماری‌ها کاهش خواهند یافت.
+          </span>
+        </div>
+
+        <div class="fg-example">
+          <span class="fg-fr">
+            Quand l’éducation sera devenue accessible à tous, les inégalités diminueront.
+          </span>
+          <span class="fg-translation">
+            وقتی آموزش برای همه در دسترس شده باشد، نابرابری‌ها کاهش خواهند یافت.
+          </span>
+        </div>
+
+        <div class="fg-callout fg-callout-warning">
+          در جملهٔ آخر،
+          <span class="fg-inline-fr">devenir</span>
+          با
+          <span class="fg-inline-fr">être</span>
+          صرف شده است:
+          <span class="fg-inline-fr">sera devenue</span>.
+          چون
+          <span class="fg-inline-fr">l’éducation</span>
+          مؤنث است،
+          <span class="fg-inline-fr">devenue</span>
+          نیز مؤنث نوشته می‌شود.
+        </div>
+      </section>
+
+      <!-- FINAL MEMORY -->
+      <section class="fg-section">
+        <h2 class="fg-section-title">
+          <span class="fg-number">✓</span>
+          روش سریع تشخیص در آزمون
+        </h2>
+
+        <ol class="fg-rule-list">
+          <li>آیا جمله دربارهٔ آینده است؟</li>
+          <li>آیا دو اتفاق یا یک اتفاق + یک نقطهٔ مرجع آینده داریم؟</li>
+          <li>کدام عمل باید اول کاملاً تمام شود؟</li>
+          <li>
+            همان عمل را به
+            <span class="fg-inline-fr">futur antérieur</span>
+            ببرید.
+          </li>
+          <li>
+            عمل بعدی معمولاً
+            <span class="fg-inline-fr">futur simple</span>
+            یا
+            <span class="fg-inline-fr">impératif</span>
+            خواهد بود.
+          </li>
+          <li>
+            سپس بررسی کنید فعل با
+            <span class="fg-inline-fr">avoir</span>
+            است یا
+            <span class="fg-inline-fr">être</span>.
+          </li>
+          <li>
+            اگر
+            <span class="fg-inline-fr">être</span>
+            است، تطابق
+            <span class="fg-inline-fr">participe passé</span>
+            را فراموش نکنید.
+          </li>
+        </ol>
+      </section>
+
+      <!-- FINAL SUMMARY -->
+      <section class="fg-footer-summary">
+        <h3>فرمول حفظی درس ۴۸</h3>
+
+        <p>
+          هر وقت دو اتفاق در آینده دارید، از خودتان بپرسید:
+          <strong style="color:#fff;">«کدام اتفاق باید اول کاملاً تمام شود؟»</strong>
+        </p>
+
+        <div class="fg-formula" style="background:rgba(255,255,255,.11); border-color:rgba(255,255,255,.26);">
+          <span style="color:#fff;">عملی که اول کامل می‌شود:</span>
+          <span class="fg-formula-main" style="color:#fff;" lang="fr">
+            avoir / être au futur simple + participe passé
+          </span>
+        </div>
+
+        <p class="fg-fr" lang="fr">
+          Quand vous aurez terminé, vous partirez.
+        </p>
+
+        <p>
+          وقتی تمام کرده باشید، خواهید رفت.
+        </p>
+
+        <p class="fg-fr" lang="fr">
+          Quand vous aurez terminé, partez.
+        </p>
+
+        <p>
+          وقتی تمام کردید، بروید.
+        </p>
+      </section>
+
+    </div>
+  </article>
+</div>

@@ -1,0 +1,319 @@
+<div class="french-grammar-wrapper fg-root" dir="rtl">
+  <style scoped>
+    .french-grammar-wrapper{--fg-navy:#12355b;--fg-blue:#1f5f99;--fg-blue-soft:#edf5fc;--fg-green:#15803d;--fg-green-soft:#ecfdf3;--fg-red:#b42318;--fg-red-soft:#fff1f0;--fg-orange:#b54708;--fg-orange-soft:#fff7ed;--fg-ink:#1f2937;--fg-muted:#64748b;--fg-line:#d9e2ec;--fg-card:#ffffff;--fg-bg:#f7fafc;--fg-purple:#6d4aff;--fg-shadow:0 10px 30px rgba(18,53,91,.08);font-family:Tahoma,"Vazirmatn","Segoe UI",Arial,sans-serif;color:var(--fg-ink);background:var(--fg-bg);line-height:1.95;border-radius:24px;overflow:hidden}
+    .french-grammar-wrapper *{box-sizing:border-box}
+    .french-grammar-wrapper .fg-shell{max-width:1120px;margin:0 auto;padding:26px}
+    .french-grammar-wrapper .fg-hero{background:linear-gradient(135deg,#0f2f53,#1f5f99);color:#fff;padding:34px;border-radius:22px;box-shadow:var(--fg-shadow);margin-bottom:22px}
+    .french-grammar-wrapper .fg-eyebrow{font-size:.82rem;opacity:.82;letter-spacing:.03em;margin-bottom:6px}
+    .french-grammar-wrapper .fg-hero h1{margin:0;font-size:clamp(1.65rem,4vw,2.55rem);line-height:1.45;color:#fff}
+    .french-grammar-wrapper .fg-hero p{margin:12px 0 0;max-width:850px;opacity:.94}
+    .french-grammar-wrapper .fg-badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+    .french-grammar-wrapper .fg-badge{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.24);padding:5px 10px;border-radius:999px;font-size:.82rem}
+    .french-grammar-wrapper .fg-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+    .french-grammar-wrapper .fg-card{background:var(--fg-card);border:1px solid var(--fg-line);border-radius:18px;padding:22px;box-shadow:var(--fg-shadow);margin:16px 0}
+    .french-grammar-wrapper .fg-card h2,.french-grammar-wrapper .fg-card h3{color:var(--fg-navy);margin-top:0;line-height:1.5}
+    .french-grammar-wrapper .fg-card h2{font-size:1.35rem;border-bottom:2px solid #e8eef5;padding-bottom:10px}
+    .french-grammar-wrapper .fg-card h3{font-size:1.05rem;margin-top:20px}
+    .french-grammar-wrapper .fg-fr{direction:ltr;text-align:left;unicode-bidi:isolate;display:inline-block;font-family:"Segoe UI",Arial,sans-serif}
+    .french-grammar-wrapper .fg-fr-block{direction:ltr;text-align:left;unicode-bidi:isolate;font-family:"Segoe UI",Arial,sans-serif;background:#f8fbff;border-left:4px solid var(--fg-blue);padding:11px 14px;border-radius:10px;margin:10px 0;line-height:1.75}
+    .french-grammar-wrapper .fg-correct{background:var(--fg-green-soft);border-right:4px solid var(--fg-green);padding:12px 14px;border-radius:12px;margin:10px 0}
+    .french-grammar-wrapper .fg-wrong{background:var(--fg-red-soft);border-right:4px solid var(--fg-red);padding:12px 14px;border-radius:12px;margin:10px 0}
+    .french-grammar-wrapper .fg-tip{background:var(--fg-blue-soft);border-right:4px solid var(--fg-blue);padding:14px 16px;border-radius:12px;margin:14px 0}
+    .french-grammar-wrapper .fg-warning{background:var(--fg-orange-soft);border-right:4px solid var(--fg-orange);padding:14px 16px;border-radius:12px;margin:14px 0}
+    .french-grammar-wrapper .fg-kicker{font-weight:700;color:var(--fg-navy)}
+    .french-grammar-wrapper ul,.french-grammar-wrapper ol{padding-right:24px;margin:8px 0}
+    .french-grammar-wrapper li{margin:5px 0}
+    .french-grammar-wrapper .fg-table-wrap{width:100%;overflow-x:auto;border:1px solid var(--fg-line);border-radius:14px;margin:14px 0;background:#fff;-webkit-overflow-scrolling:touch}
+    .french-grammar-wrapper table{width:100%;border-collapse:collapse;min-width:640px;font-size:.94rem}
+    .french-grammar-wrapper th,.french-grammar-wrapper td{border:1px solid var(--fg-line);padding:11px 12px;vertical-align:top}
+    .french-grammar-wrapper th{background:var(--fg-navy);color:#fff;font-weight:700}
+    .french-grammar-wrapper tbody tr:nth-child(even){background:#f8fbfd}
+    .french-grammar-wrapper .fg-formula{background:#0f2741;color:#fff;border-radius:13px;padding:14px 16px;margin:12px 0;text-align:center;font-weight:700}
+    .french-grammar-wrapper .fg-formula .fg-fr{color:#fff}
+    .french-grammar-wrapper .fg-mini{font-size:.9rem;color:var(--fg-muted)}
+    .french-grammar-wrapper .fg-section-title{display:flex;align-items:center;gap:10px;margin:28px 0 8px;color:var(--fg-navy)}
+    .french-grammar-wrapper .fg-num{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;background:var(--fg-navy);color:#fff;font-weight:700;flex:none}
+    .french-grammar-wrapper .fg-answer{border:1px solid #ccebd5;background:#fbfffc;border-radius:14px;padding:15px;margin:12px 0}
+    .french-grammar-wrapper .fg-answer strong{color:var(--fg-green)}
+    .french-grammar-wrapper .fg-divider{height:1px;background:var(--fg-line);margin:24px 0}
+    .french-grammar-wrapper .fg-two-col{columns:2;column-gap:28px}
+    .french-grammar-wrapper .fg-highlight{color:var(--fg-purple);font-weight:700}
+    .french-grammar-wrapper .fg-footer{background:#eef4f8;border-top:1px solid var(--fg-line);padding:20px 26px;color:#475569;font-size:.9rem}
+    @media(max-width:760px){.french-grammar-wrapper .fg-shell{padding:14px}.french-grammar-wrapper .fg-hero{padding:24px 18px;border-radius:16px}.french-grammar-wrapper .fg-grid{grid-template-columns:1fr}.french-grammar-wrapper .fg-card{padding:17px;border-radius:15px}.french-grammar-wrapper .fg-two-col{columns:1}.french-grammar-wrapper table{min-width:560px;font-size:.88rem}.french-grammar-wrapper th,.french-grammar-wrapper td{padding:9px}.french-grammar-wrapper .fg-fr-block{overflow-wrap:anywhere}}
+  </style>
+
+  <div class="fg-shell">
+    <section class="fg-hero">
+      <div class="fg-eyebrow">Grammaire Progressive du Français — Niveau intermédiaire</div>
+      <h1>درس ۲۷: <span class="fg-fr">Les verbes pronominaux</span></h1>
+      <p>افعال ضمیری در زبان فرانسوی؛ از افعال بازتابی و متقابل تا افعال واژگانی، جایگاه ضمیر، نفی، سؤال، امر، مصدر و نکات مهم <span class="fg-fr">passé composé</span>.</p>
+      <div class="fg-badges">
+        <span class="fg-badge">صفحات کتاب: 122–123</span>
+        <span class="fg-badge">بازتابی</span>
+        <span class="fg-badge">متقابل</span>
+        <span class="fg-badge">افعال ضمیری واژگانی</span>
+        <span class="fg-badge">نفی و جایگاه ضمیر</span>
+      </div>
+    </section>
+
+    <section class="fg-card">
+      <h2>۱) فعل ضمیری چیست؟</h2>
+      <p>فعل ضمیری فعلی است که در حالت مصدر همراه با <span class="fg-fr">se</span> دیده می‌شود. هنگام صرف، این ضمیر با فاعل تغییر می‌کند.</p>
+      <div class="fg-fr-block">se coucher · se lever · se préparer · se souvenir de · s’intéresser à · s’endormir</div>
+      <div class="fg-table-wrap">
+        <table>
+          <thead><tr><th>فاعل</th><th>ضمیر ضمیری</th><th>مثال</th></tr></thead>
+          <tbody>
+            <tr><td><span class="fg-fr">je</span></td><td><span class="fg-fr">me / m’</span></td><td><span class="fg-fr">Je me couche.</span></td></tr>
+            <tr><td><span class="fg-fr">tu</span></td><td><span class="fg-fr">te / t’</span></td><td><span class="fg-fr">Tu te couches.</span></td></tr>
+            <tr><td><span class="fg-fr">il / elle / on</span></td><td><span class="fg-fr">se / s’</span></td><td><span class="fg-fr">Elle se couche.</span></td></tr>
+            <tr><td><span class="fg-fr">nous</span></td><td><span class="fg-fr">nous</span></td><td><span class="fg-fr">Nous nous couchons.</span></td></tr>
+            <tr><td><span class="fg-fr">vous</span></td><td><span class="fg-fr">vous</span></td><td><span class="fg-fr">Vous vous couchez.</span></td></tr>
+            <tr><td><span class="fg-fr">ils / elles</span></td><td><span class="fg-fr">se / s’</span></td><td><span class="fg-fr">Ils se couchent.</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="fg-wrong"><span class="fg-fr">Je se couche.</span> ❌</div>
+      <div class="fg-correct"><span class="fg-fr">Je me couche.</span> ✅</div>
+      <div class="fg-tip"><span class="fg-kicker">نکته:</span> در <span class="fg-fr">Nous nous préparons</span>، واژهٔ اول <span class="fg-fr">nous</span> فاعل و واژهٔ دوم ضمیر فعل است.</div>
+    </section>
+
+    <section class="fg-card">
+      <h2>۲) جای ضمیر در جمله</h2>
+      <p>در زمان حال، ضمیر ضمیری بلافاصله پیش از فعل صرف‌شده قرار می‌گیرد.</p>
+      <div class="fg-fr-block">Je me prépare. · Tu t’habilles. · Elle se repose. · Nous nous amusons. · Vous vous arrêtez. · Ils s’intéressent à la musique.</div>
+      <h3>حذف مصوت پیش از واکه یا <span class="fg-fr">h muet</span></h3>
+      <div class="fg-grid">
+        <div class="fg-tip"><span class="fg-fr">me → m’</span><br><span class="fg-fr">te → t’</span><br><span class="fg-fr">se → s’</span></div>
+        <div class="fg-fr-block">Je m’appelle Léo.<br>Tu t’intéresses au sport.<br>Elle s’habille en noir.<br>On s’amuse beaucoup.</div>
+      </div>
+      <p><span class="fg-fr">nous</span> و <span class="fg-fr">vous</span> کوتاه نمی‌شوند: <span class="fg-fr">Nous nous amusons. / Vous vous intéressez à l’art.</span></p>
+      <div class="fg-warning"><span class="fg-kicker">استثنای تلفظی:</span> پیش از <span class="fg-fr">h aspiré</span> حذف مصوت انجام نمی‌شود؛ مانند <span class="fg-fr">Je me hâte.</span></div>
+    </section>
+
+    <section class="fg-card">
+      <h2>۳) افعال بازتابی — <span class="fg-fr">Les verbes réfléchis</span></h2>
+      <p>در این کاربرد، فاعل عملی را روی خودش انجام می‌دهد.</p>
+      <div class="fg-grid">
+        <div class="fg-fr-block">Je lave ma fille.<br><small>دخترم را می‌شویم.</small></div>
+        <div class="fg-fr-block">Je me lave.<br><small>خودم را می‌شویم.</small></div>
+      </div>
+      <div class="fg-fr-block">Elle se regarde dans la glace.<br>Paul se prépare.<br>Les enfants s’habillent.</div>
+      <h3>اعضای بدن و حرف تعریف</h3>
+      <p>وقتی مالک عضو بدن از جمله روشن است، معمولاً به‌جای صفت ملکی از حرف تعریف استفاده می‌شود.</p>
+      <div class="fg-correct"><span class="fg-fr">Je me lave les mains. · Je me brosse les dents.</span> ✅</div>
+      <div class="fg-wrong"><span class="fg-fr">Je me lave mes mains.</span> ❌ در کاربرد عادی</div>
+      <div class="fg-tip"><span class="fg-kicker">نکتهٔ پیشرفته:</span> در <span class="fg-fr">Je me lave</span>، ضمیر <span class="fg-fr">me</span> مفعول مستقیم است؛ اما در <span class="fg-fr">Je me lave les mains</span>، عبارت <span class="fg-fr">les mains</span> مفعول مستقیم است. این تفاوت در تطابق <span class="fg-fr">participe passé</span> اهمیت دارد.</div>
+    </section>
+
+    <section class="fg-card">
+      <h2>۴) افعال متقابل — <span class="fg-fr">Les verbes réciproques</span></h2>
+      <p>فاعل جمع است و افراد گروه عمل را نسبت به یکدیگر انجام می‌دهند.</p>
+      <div class="fg-fr-block">Nous nous connaissons bien.<br>Les enfants se battent.<br>Ils s’aiment.<br>Elles se téléphonent.</div>
+      <p>برای روشن‌تر کردن معنای متقابل می‌توان از <span class="fg-fr">l’un l’autre</span>، <span class="fg-fr">les uns les autres</span> یا <span class="fg-fr">mutuellement</span> استفاده کرد.</p>
+      <div class="fg-warning"><span class="fg-fr">Ils se regardent.</span> می‌تواند «خودشان را نگاه می‌کنند» یا «یکدیگر را نگاه می‌کنند» معنی دهد. برای رفع ابهام: <span class="fg-fr">Ils se regardent l’un l’autre.</span></div>
+    </section>
+
+    <section class="fg-card">
+      <h2>۵) افعال ضمیری واژگانی یا اصطلاحی</h2>
+      <p>در بسیاری از افعال، <span class="fg-fr">se</span> معنای واقعی «خود» یا «یکدیگر» ندارد و بخشی از خودِ فعل است.</p>
+      <div class="fg-table-wrap">
+        <table>
+          <thead><tr><th>فعل</th><th>معنی</th></tr></thead>
+          <tbody>
+            <tr><td><span class="fg-fr">se promener</span></td><td>قدم زدن</td></tr>
+            <tr><td><span class="fg-fr">s’arrêter</span></td><td>توقف کردن</td></tr>
+            <tr><td><span class="fg-fr">s’amuser</span></td><td>خوش گذراندن</td></tr>
+            <tr><td><span class="fg-fr">s’ennuyer</span></td><td>حوصله‌اش سر رفتن</td></tr>
+            <tr><td><span class="fg-fr">s’intéresser à</span></td><td>علاقه‌مند بودن به</td></tr>
+            <tr><td><span class="fg-fr">s’occuper de</span></td><td>رسیدگی کردن به</td></tr>
+            <tr><td><span class="fg-fr">se moquer de</span></td><td>مسخره کردن</td></tr>
+            <tr><td><span class="fg-fr">se souvenir de</span></td><td>به یاد آوردن</td></tr>
+            <tr><td><span class="fg-fr">se tromper</span></td><td>اشتباه کردن</td></tr>
+            <tr><td><span class="fg-fr">s’améliorer</span></td><td>بهتر شدن</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>تغییر معنی با حذف ضمیر</h3>
+      <div class="fg-grid">
+        <div class="fg-fr-block">J’arrête la voiture.<br><small>ماشین را متوقف می‌کنم.</small><br><br>La voiture s’arrête.<br><small>ماشین متوقف می‌شود.</small></div>
+        <div class="fg-fr-block">Il trompe ses clients.<br><small>مشتریانش را فریب می‌دهد.</small><br><br>Il se trompe.<br><small>اشتباه می‌کند.</small></div>
+        <div class="fg-fr-block">Ce cours m’ennuie.<br><small>این کلاس مرا کسل می‌کند.</small><br><br>Je m’ennuie.<br><small>حوصله‌ام سر رفته است.</small></div>
+        <div class="fg-fr-block">J’améliore mon français.<br><small>فرانسوی‌ام را بهتر می‌کنم.</small><br><br>Mon français s’améliore.<br><small>فرانسوی من بهتر می‌شود.</small></div>
+      </div>
+    </section>
+
+    <section class="fg-card">
+      <h2>۶) حروف اضافهٔ ثابت</h2>
+      <p>در بعضی افعال، حرف اضافه بخشی از ساخت فعل است و باید همراه خود فعل حفظ شود.</p>
+      <div class="fg-table-wrap">
+        <table>
+          <thead><tr><th>ساخت</th><th>مثال</th><th>نکته</th></tr></thead>
+          <tbody>
+            <tr><td><span class="fg-fr">s’intéresser à</span></td><td><span class="fg-fr">Je m’intéresse à la politique.</span></td><td><span class="fg-fr">à + les = aux</span></td></tr>
+            <tr><td><span class="fg-fr">se souvenir de</span></td><td><span class="fg-fr">Je me souviens de mes rêves.</span></td><td><span class="fg-fr">Je m’en souviens.</span></td></tr>
+            <tr><td><span class="fg-fr">s’occuper de</span></td><td><span class="fg-fr">Elle s’occupe des enfants.</span></td><td><span class="fg-fr">Elle s’en occupe.</span></td></tr>
+            <tr><td><span class="fg-fr">se moquer de</span></td><td><span class="fg-fr">Ils se moquent de lui.</span></td><td>حرف اضافه حذف نمی‌شود.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="fg-warning"><span class="fg-kicker">تفاوت مهم:</span> <span class="fg-fr">se souvenir de quelque chose</span> ولی <span class="fg-fr">se rappeler quelque chose</span>. بنابراین <span class="fg-fr">Je m’en souviens</span> و <span class="fg-fr">Je me le rappelle</span>.</div>
+    </section>
+
+    <section class="fg-card">
+      <h2>۷) منفی کردن افعال ضمیری</h2>
+      <div class="fg-formula"><span class="fg-fr">Sujet + ne + pronom réfléchi + verbe + pas</span></div>
+      <div class="fg-fr-block">Je ne me lève pas tôt.<br>Tu ne t’énerves pas facilement.<br>Il ne s’intéresse pas au cricket.<br>Nous ne nous connaissons pas.<br>Vous ne vous arrêtez pas à midi.<br>Elles ne s’ennuient pas en classe.</div>
+      <div class="fg-wrong"><span class="fg-fr">Je me ne lève pas. · Je ne me pas lève.</span> ❌</div>
+      <div class="fg-tip">در <span class="fg-fr">Je ne m’appelle pas Marc</span>، <span class="fg-fr">ne</span> به <span class="fg-fr">n’</span> تبدیل نمی‌شود، چون واژهٔ بعدی ضمیر <span class="fg-fr">me</span> است.</div>
+      <h3>منفی‌های دیگر</h3>
+      <div class="fg-fr-block">Je ne me lève jamais tôt.<br>Elle ne se souvient plus de lui.<br>Nous ne nous disputons jamais.<br>Il ne s’intéresse à rien.</div>
+    </section>
+
+    <section class="fg-card">
+      <h2>۸) سؤال ساختن با فعل ضمیری</h2>
+      <div class="fg-grid">
+        <div><h3>محاوره‌ای</h3><div class="fg-fr-block">Tu te lèves tôt ?<br>Vous vous ennuyez en classe ?</div></div>
+        <div><h3><span class="fg-fr">Est-ce que</span></h3><div class="fg-fr-block">Est-ce que tu te lèves tôt ?<br>Est-ce que vous vous intéressez au sport ?</div></div>
+      </div>
+      <h3>وارونگی</h3>
+      <div class="fg-fr-block">Te lèves-tu tôt ?<br>T’intéresses-tu à la politique ?<br>Vous ennuyez-vous en classe ?<br>Se lève-t-il tôt ?</div>
+      <div class="fg-tip">در وارونگی، ضمیر ضمیری قبل از فعل باقی می‌ماند و ضمیر فاعلی پس از فعل می‌آید: <span class="fg-fr">Vous vous ennuyez → Vous ennuyez-vous ?</span></div>
+    </section>
+
+    <section class="fg-card">
+      <h2>۹) فعل ضمیری همراه با مصدر</h2>
+      <p>وقتی پیش از فعل ضمیری یک فعل صرف‌شده مانند <span class="fg-fr">aller, devoir, pouvoir, vouloir</span> وجود دارد، ضمیر درست پیش از مصدر قرار می‌گیرد.</p>
+      <div class="fg-fr-block">Je vais me coucher.<br>Tu dois te préparer.<br>Elle veut s’habiller.<br>Nous pouvons nous arrêter.<br>Vous allez vous amuser.<br>Ils doivent se lever tôt.</div>
+      <div class="fg-wrong"><span class="fg-fr">Je vais se coucher.</span> ❌</div>
+      <div class="fg-correct"><span class="fg-fr">Je vais me coucher.</span> ✅</div>
+    </section>
+
+    <section class="fg-card">
+      <h2>۱۰) امر با افعال ضمیری</h2>
+      <h3>امر مثبت</h3>
+      <div class="fg-fr-block">Lève-toi !<br>Préparons-nous !<br>Asseyez-vous !</div>
+      <p>در امر مثبت، ضمیر بعد از فعل می‌آید و <span class="fg-fr">te → toi</span> و <span class="fg-fr">me → moi</span>.</p>
+      <h3>امر منفی</h3>
+      <div class="fg-fr-block">Ne te lève pas !<br>Ne nous arrêtons pas ici !<br>Ne vous inquiétez pas !</div>
+    </section>
+
+    <section class="fg-card">
+      <h2>۱۱) <span class="fg-fr">Passé composé</span> و تطابق <span class="fg-fr">participe passé</span></h2>
+      <p>افعال ضمیری در <span class="fg-fr">passé composé</span> با <span class="fg-fr">être</span> صرف می‌شوند، اما تطابق همیشه خودکار نیست.</p>
+      <h3>وقتی <span class="fg-fr">se</span> مفعول مستقیم است</h3>
+      <div class="fg-correct"><span class="fg-fr">Elle s’est lavée. · Ils se sont rencontrés.</span></div>
+      <h3>وقتی مفعول مستقیم بعد از فعل آمده است</h3>
+      <div class="fg-warning"><span class="fg-fr">Elle s’est lavé les mains. · Elles se sont brossé les dents.</span><br>در اینجا <span class="fg-fr">les mains / les dents</span> مفعول مستقیم‌اند، پس <span class="fg-fr">lavé / brossé</span> با فاعل تطابق نمی‌گیرند.</div>
+      <h3>وقتی <span class="fg-fr">se</span> مفعول غیرمستقیم است</h3>
+      <div class="fg-fr-block">Ils se sont parlé.<br>Elles se sont téléphoné.<br>Ils se sont écrit.<br>Elles se sont souri.<br>Ils se sont ressemblé.</div>
+      <div class="fg-tip"><span class="fg-fr">Ils se sont vus.</span> تطابق دارد، چون <span class="fg-fr">voir quelqu’un</span> مفعول مستقیم می‌گیرد؛ اما <span class="fg-fr">Ils se sont parlé.</span> تطابق ندارد، چون <span class="fg-fr">parler à quelqu’un</span> مفعول غیرمستقیم می‌گیرد.</div>
+    </section>
+
+    <section class="fg-card">
+      <h2>۱۲) صرف‌های دشوار مرتبط با درس</h2>
+      <div class="fg-table-wrap"><table><thead><tr><th>مصدر</th><th><span class="fg-fr">je</span></th><th><span class="fg-fr">nous</span></th><th>نکته</th></tr></thead><tbody>
+        <tr><td><span class="fg-fr">s’appeler</span></td><td><span class="fg-fr">je m’appelle</span></td><td><span class="fg-fr">nous nous appelons</span></td><td>در بیشتر اشخاص دو <span class="fg-fr">l</span></td></tr>
+        <tr><td><span class="fg-fr">se lever</span></td><td><span class="fg-fr">je me lève</span></td><td><span class="fg-fr">nous nous levons</span></td><td><span class="fg-fr">e → è</span></td></tr>
+        <tr><td><span class="fg-fr">s’arrêter</span></td><td><span class="fg-fr">je m’arrête</span></td><td><span class="fg-fr">nous nous arrêtons</span></td><td>accent حفظ می‌شود</td></tr>
+        <tr><td><span class="fg-fr">s’ennuyer</span></td><td><span class="fg-fr">je m’ennuie</span></td><td><span class="fg-fr">nous nous ennuyons</span></td><td><span class="fg-fr">y → i</span> در بعضی اشخاص</td></tr>
+        <tr><td><span class="fg-fr">s’endormir</span></td><td><span class="fg-fr">je m’endors</span></td><td><span class="fg-fr">nous nous endormons</span></td><td>مانند <span class="fg-fr">dormir</span></td></tr>
+        <tr><td><span class="fg-fr">se souvenir</span></td><td><span class="fg-fr">je me souviens</span></td><td><span class="fg-fr">nous nous souvenons</span></td><td>نامنظم</td></tr>
+      </tbody></table></div>
+      <h3>صرف کامل <span class="fg-fr">s’endormir</span></h3>
+      <div class="fg-fr-block">je m’endors · tu t’endors · il/elle/on s’endort · nous nous endormons · vous vous endormez · ils/elles s’endorment</div>
+      <h3>صرف کامل <span class="fg-fr">se souvenir</span></h3>
+      <div class="fg-fr-block">je me souviens · tu te souviens · il/elle/on se souvient · nous nous souvenons · vous vous souvenez · ils/elles se souviennent</div>
+    </section>
+
+    <section class="fg-card">
+      <h2>۱۳) چهار فعل مهم مرتبط با خواب</h2>
+      <div class="fg-table-wrap"><table><thead><tr><th>فعل</th><th>معنی دقیق</th><th>مثال</th></tr></thead><tbody>
+        <tr><td><span class="fg-fr">se coucher</span></td><td>به رختخواب رفتن</td><td><span class="fg-fr">Je me couche à onze heures.</span></td></tr>
+        <tr><td><span class="fg-fr">s’endormir</span></td><td>به خواب رفتن</td><td><span class="fg-fr">Je m’endors rapidement.</span></td></tr>
+        <tr><td><span class="fg-fr">se réveiller</span></td><td>از خواب بیدار شدن</td><td><span class="fg-fr">Je me réveille à sept heures.</span></td></tr>
+        <tr><td><span class="fg-fr">se lever</span></td><td>از تخت بلند شدن</td><td><span class="fg-fr">Je me lève à sept heures et demie.</span></td></tr>
+      </tbody></table></div>
+      <div class="fg-tip"><span class="fg-fr">Je me réveille à sept heures, mais je me lève à sept heures et demie.</span><br>یعنی ساعت ۷ بیدار می‌شوم، اما ساعت ۷:۳۰ از تخت بلند می‌شوم.</div>
+    </section>
+
+    <div class="fg-section-title"><span class="fg-num">✓</span><h2>تمرین‌های صفحهٔ ۱۲۳ با پاسخ و نکته</h2></div>
+
+    <section class="fg-card">
+      <h2>تمرین ۱ — پاسخ شخصی</h2>
+      <p class="fg-mini">این تمرین پاسخ آزاد دارد؛ نمونه‌های زیر از نظر ساخت دستوری صحیح‌اند.</p>
+      <div class="fg-answer"><strong>۱.</strong> <span class="fg-fr">Le matin, je me réveille tôt.</span><br>تبدیل <span class="fg-fr">vous vous réveillez</span> به <span class="fg-fr">je me réveille</span>.</div>
+      <div class="fg-answer"><strong>۲.</strong> <span class="fg-fr">Je me prépare vite.</span><br>گزینهٔ دیگر: <span class="fg-fr">Je me prépare lentement.</span></div>
+      <div class="fg-answer"><strong>۳.</strong> <span class="fg-fr">Je me couche après minuit.</span><br>گزینهٔ دیگر: <span class="fg-fr">Je me couche avant minuit.</span></div>
+      <div class="fg-answer"><strong>۴.</strong> <span class="fg-fr">Je m’endors facilement.</span><br>در مکالمه طبیعی‌تر: <span class="fg-fr">J’ai du mal à m’endormir.</span></div>
+      <div class="fg-answer"><strong>۵.</strong> <span class="fg-fr">Je me souviens quelquefois de mes rêves.</span><br>نکته: <span class="fg-fr">se souvenir de</span>.</div>
+    </section>
+
+    <section class="fg-card">
+      <h2>تمرین ۲ — تکمیل آزاد</h2>
+      <div class="fg-answer"><strong>۱.</strong> <span class="fg-fr">Il se lève tôt.</span></div>
+      <div class="fg-answer"><strong>۲.</strong> <span class="fg-fr">Ils se couchent à dix heures.</span><br>پایان <span class="fg-fr">-ent</span> تلفظ نمی‌شود.</div>
+      <div class="fg-answer"><strong>۳.</strong> <span class="fg-fr">Il se parfume avec « Boss ».</span></div>
+      <div class="fg-answer"><strong>۴.</strong> <span class="fg-fr">Elle s’habille toujours en rouge.</span><br>برای رنگ لباس، <span class="fg-fr">s’habiller en + couleur</span> ساخت رایج است.</div>
+    </section>
+
+    <section class="fg-card">
+      <h2>تمرین ۳ — تبدیل به شکل منفی</h2>
+      <div class="fg-formula"><span class="fg-fr">ne + pronom réfléchi + verbe + pas</span></div>
+      <div class="fg-answer"><strong>۱.</strong> <span class="fg-fr">Non, je ne m’intéresse pas au cricket.</span><br><span class="fg-fr">s’intéresser à</span> و <span class="fg-fr">à + le = au</span>.</div>
+      <div class="fg-answer"><strong>۲.</strong> <span class="fg-fr">Non, je ne m’énerve pas facilement.</span></div>
+      <div class="fg-answer"><strong>۳.</strong> <span class="fg-fr">Non, je ne m’ennuie pas en classe.</span></div>
+      <div class="fg-answer"><strong>۴.</strong> <span class="fg-fr">Non, nous ne nous arrêtons pas à midi.</span><br>دو <span class="fg-fr">nous</span> ضروری‌اند: اولی فاعل، دومی ضمیر فعل.</div>
+    </section>
+
+    <section class="fg-card">
+      <h2>تمرین ۴ — انتخاب فعل مناسب</h2>
+      <div class="fg-answer"><strong>۱.</strong> <span class="fg-fr">Je m’intéresse beaucoup à la politique.</span></div>
+      <div class="fg-answer"><strong>۲.</strong> <span class="fg-fr">Mon mari se parfume tous les jours avec « Parfum d’Homme ».</span></div>
+      <div class="fg-answer"><strong>۳.</strong> <span class="fg-fr">Les étudiants se trompent souvent quand ils parlent français.</span><br><span class="fg-fr">se tromper</span> = اشتباه کردن، ولی <span class="fg-fr">tromper quelqu’un</span> = فریب دادن.</div>
+      <div class="fg-answer"><strong>۴.</strong> <span class="fg-fr">Vous vous énervez rarement.</span><br><span class="fg-fr">rarement</span> معمولاً پس از فعل صرف‌شده می‌آید.</div>
+      <div class="fg-answer"><strong>۵.</strong> <span class="fg-fr">Elle se regarde souvent dans la glace.</span><br><span class="fg-fr">la glace</span> در این بافت یعنی «آینه».</div>
+    </section>
+
+    <section class="fg-card">
+      <h2>تمرین ۵ — ضمیرها و منفی‌های جاافتاده</h2>
+      <div class="fg-tip"><span class="fg-kicker">ترتیب پاسخ جای خالی‌ها:</span> <span class="fg-fr">s’ · nous · nous · nous · s’ · ne se · ne me · ne me · se · s’</span></div>
+      <div class="fg-answer"><strong>۱.</strong> <span class="fg-fr">Mon père s’appelle Max.</span></div>
+      <div class="fg-answer"><strong>۲.</strong> <span class="fg-fr">Nous nous ressemblons beaucoup.</span><br>در گذشته: <span class="fg-fr">Nous nous sommes ressemblé.</span> بدون <span class="fg-fr">s</span> روی <span class="fg-fr">ressemblé</span>.</div>
+      <div class="fg-answer"><strong>۳.</strong> <span class="fg-fr">Nous nous habillons souvent de la même manière.</span></div>
+      <div class="fg-answer"><strong>۴.</strong> <span class="fg-fr">Nous nous intéressons aux mêmes choses.</span></div>
+      <div class="fg-answer"><strong>۵.</strong> <span class="fg-fr">On s’énerve quand on parle de politique.</span><br><span class="fg-fr">on</span> از نظر صرف سوم‌شخص مفرد است.</div>
+      <div class="fg-answer"><strong>۶.</strong> <span class="fg-fr">On ne se fâche pas vraiment.</span></div>
+      <div class="fg-answer"><strong>۷.</strong> <span class="fg-fr">Je ne me laisse pas convaincre facilement.</span><br>ساخت <span class="fg-fr">se laisser + infinitif</span>.</div>
+      <div class="fg-answer"><strong>۸.</strong> <span class="fg-fr">Parfois, je ne me contrôle plus.</span><br><span class="fg-fr">ne…plus</span> = دیگر ... نمی.</div>
+      <div class="fg-answer"><strong>۹.</strong> <span class="fg-fr">On se bagarre beaucoup.</span></div>
+      <div class="fg-answer"><strong>۱۰.</strong> <span class="fg-fr">On s’amuse aussi beaucoup.</span></div>
+    </section>
+
+    <section class="fg-card">
+      <h2>تمرین ۶ — افعال متقابل دربارهٔ عاشق‌ها</h2>
+      <p>پاسخ آزاد است. نمونه‌های طبیعی:</p>
+      <div class="fg-fr-block">Ils s’aiment. · Ils se disputent. · Ils s’embrassent. · Ils se regardent. · Ils se parlent. · Ils se téléphonent. · Ils s’écrivent. · Ils se comprennent. · Ils se retrouvent. · Ils se réconcilient.</div>
+      <div class="fg-grid">
+        <div class="fg-correct"><span class="fg-kicker">تطابق:</span><br><span class="fg-fr">Ils se sont aimés.<br>Ils se sont embrassés.<br>Ils se sont regardés.<br>Ils se sont retrouvés.</span></div>
+        <div class="fg-warning"><span class="fg-kicker">بدون تطابق:</span><br><span class="fg-fr">Ils se sont parlé.<br>Ils se sont téléphoné.<br>Ils se sont écrit.</span></div>
+      </div>
+    </section>
+
+    <section class="fg-card">
+      <h2>جمع‌بندی سریع درس</h2>
+      <div class="fg-table-wrap"><table><thead><tr><th>کاربرد</th><th>مثال</th><th>معنی</th></tr></thead><tbody>
+        <tr><td>بازتابی</td><td><span class="fg-fr">Je me lave.</span></td><td>خودم را می‌شویم.</td></tr>
+        <tr><td>متقابل</td><td><span class="fg-fr">Nous nous parlons.</span></td><td>با یکدیگر صحبت می‌کنیم.</td></tr>
+        <tr><td>واژگانی</td><td><span class="fg-fr">Je me souviens de lui.</span></td><td>او را به یاد می‌آورم.</td></tr>
+        <tr><td>منفی</td><td><span class="fg-fr">Je ne me lève pas.</span></td><td>بلند نمی‌شوم.</td></tr>
+        <tr><td>با مصدر</td><td><span class="fg-fr">Je vais me lever.</span></td><td>می‌خواهم/قرار است بلند شوم.</td></tr>
+        <tr><td>امر</td><td><span class="fg-fr">Lève-toi !</span></td><td>بلند شو!</td></tr>
+        <tr><td>گذشته</td><td><span class="fg-fr">Je me suis levé(e).</span></td><td>بلند شدم.</td></tr>
+      </tbody></table></div>
+      <div class="fg-warning"><span class="fg-kicker">مهم‌ترین دام پیشرفته:</span> استفاده از <span class="fg-fr">être</span> در <span class="fg-fr">passé composé</span> به‌معنی تطابق خودکار <span class="fg-fr">participe passé</span> نیست: <span class="fg-fr">Elles se sont lavées / Elles se sont lavé les mains / Elles se sont parlé.</span></div>
+    </section>
+  </div>
+
+  <div class="fg-footer">درس ۲۷ — <span class="fg-fr">Les verbes pronominaux</span> · طراحی شده برای نمایش درون یک Section/Div موجود با CSS ایزوله و پشتیبانی کامل از RTL/LTR.</div>
+</div>

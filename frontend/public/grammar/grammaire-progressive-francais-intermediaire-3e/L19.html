@@ -1,0 +1,921 @@
+<div class="fg-lesson19" lang="fa" dir="rtl">
+  <style>
+    .fg-lesson19,
+    .fg-lesson19 * { box-sizing: border-box; }
+
+    .fg-lesson19 {
+      --fg-navy: #173B67;
+      --fg-blue: #245EA8;
+      --fg-blue-soft: #EEF5FF;
+      --fg-green: #167A53;
+      --fg-green-soft: #EAF8F1;
+      --fg-red: #B93838;
+      --fg-red-soft: #FFF0F0;
+      --fg-orange: #B76018;
+      --fg-orange-soft: #FFF6EA;
+      --fg-purple: #6446A3;
+      --fg-purple-soft: #F4F0FF;
+      --fg-ink: #1F2937;
+      --fg-muted: #64748B;
+      --fg-line: #D9E2EC;
+      --fg-surface: #FFFFFF;
+      --fg-surface-2: #F8FAFC;
+      --fg-radius: 18px;
+      --fg-shadow: 0 10px 30px rgba(15, 42, 77, 0.08);
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      color: var(--fg-ink);
+      font-family: Tahoma, "Segoe UI", Arial, sans-serif;
+      line-height: 1.95;
+      font-size: 16px;
+      background: transparent;
+    }
+
+    .fg-lesson19 .fg-fr {
+      direction: ltr;
+      text-align: left;
+      unicode-bidi: isolate;
+      display: inline-block;
+      font-family: "Segoe UI", Arial, sans-serif;
+      line-height: 1.65;
+    }
+
+    .fg-lesson19 .fg-block-fr {
+      direction: ltr;
+      text-align: left;
+      unicode-bidi: isolate;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    .fg-lesson19 .fg-hero {
+      position: relative;
+      overflow: hidden;
+      padding: 32px;
+      border: 1px solid #CADAF0;
+      border-radius: 24px;
+      background:
+        radial-gradient(circle at 8% 10%, rgba(36, 94, 168, .12), transparent 28%),
+        linear-gradient(135deg, #F7FAFF 0%, #EDF5FF 100%);
+      box-shadow: var(--fg-shadow);
+      margin-bottom: 24px;
+    }
+
+    .fg-lesson19 .fg-hero::before {
+      content: "19";
+      position: absolute;
+      left: 26px;
+      bottom: -35px;
+      font-size: 150px;
+      line-height: 1;
+      font-weight: 800;
+      color: rgba(23, 59, 103, .055);
+      direction: ltr;
+    }
+
+    .fg-lesson19 .fg-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: #DCEAFF;
+      color: var(--fg-navy);
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+
+    .fg-lesson19 h1,
+    .fg-lesson19 h2,
+    .fg-lesson19 h3,
+    .fg-lesson19 h4 {
+      margin-top: 0;
+      color: var(--fg-navy);
+      line-height: 1.5;
+    }
+
+    .fg-lesson19 h1 {
+      font-size: clamp(28px, 4vw, 44px);
+      margin-bottom: 8px;
+    }
+
+    .fg-lesson19 h2 {
+      font-size: clamp(22px, 3vw, 30px);
+      margin-bottom: 14px;
+    }
+
+    .fg-lesson19 h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .fg-lesson19 p { margin: 0 0 12px; }
+
+    .fg-lesson19 .fg-subtitle {
+      color: var(--fg-muted);
+      font-size: 17px;
+      max-width: 850px;
+      margin-bottom: 18px;
+    }
+
+    .fg-lesson19 .fg-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+    }
+
+    .fg-lesson19 .fg-chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 6px 11px;
+      border-radius: 10px;
+      border: 1px solid #D2E0F0;
+      background: rgba(255,255,255,.78);
+      color: #35506F;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .fg-lesson19 .fg-section {
+      margin: 22px 0;
+      padding: 24px;
+      border: 1px solid var(--fg-line);
+      border-radius: var(--fg-radius);
+      background: var(--fg-surface);
+      box-shadow: 0 5px 18px rgba(30, 64, 100, .045);
+    }
+
+    .fg-lesson19 .fg-section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid #E7EEF7;
+      margin-bottom: 18px;
+    }
+
+    .fg-lesson19 .fg-num {
+      width: 38px;
+      height: 38px;
+      flex: 0 0 38px;
+      border-radius: 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--fg-navy);
+      color: #fff;
+      font-weight: 800;
+      direction: ltr;
+    }
+
+    .fg-lesson19 .fg-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .fg-lesson19 .fg-card {
+      padding: 18px;
+      border: 1px solid var(--fg-line);
+      border-radius: 15px;
+      background: var(--fg-surface-2);
+    }
+
+    .fg-lesson19 .fg-card h3 {
+      margin-bottom: 8px;
+      font-size: 18px;
+    }
+
+    .fg-lesson19 .fg-rule {
+      margin: 13px 0;
+      padding: 14px 16px;
+      border-radius: 13px;
+      background: var(--fg-blue-soft);
+      border-right: 4px solid var(--fg-blue);
+      color: #173D6C;
+      font-weight: 700;
+    }
+
+    .fg-lesson19 .fg-example {
+      margin: 12px 0 6px;
+      padding: 14px 16px;
+      border-radius: 13px;
+      background: var(--fg-green-soft);
+      border-right: 4px solid var(--fg-green);
+    }
+
+    .fg-lesson19 .fg-example .fg-fr {
+      color: #11633F;
+      font-weight: 750;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .fg-lesson19 .fg-note,
+    .fg-lesson19 .fg-warning,
+    .fg-lesson19 .fg-error,
+    .fg-lesson19 .fg-exception {
+      margin: 14px 0;
+      padding: 15px 17px;
+      border-radius: 14px;
+    }
+
+    .fg-lesson19 .fg-note {
+      background: var(--fg-blue-soft);
+      border: 1px solid #CFE1FB;
+    }
+
+    .fg-lesson19 .fg-warning {
+      background: var(--fg-orange-soft);
+      border: 1px solid #F4D7B7;
+    }
+
+    .fg-lesson19 .fg-error {
+      background: var(--fg-red-soft);
+      border: 1px solid #F1C7C7;
+    }
+
+    .fg-lesson19 .fg-exception {
+      background: var(--fg-purple-soft);
+      border: 1px solid #DCCFF8;
+    }
+
+    .fg-lesson19 .fg-label {
+      display: inline-block;
+      margin-bottom: 5px;
+      font-weight: 800;
+      color: var(--fg-navy);
+    }
+
+    .fg-lesson19 .fg-error .fg-label { color: var(--fg-red); }
+    .fg-lesson19 .fg-warning .fg-label { color: var(--fg-orange); }
+    .fg-lesson19 .fg-exception .fg-label { color: var(--fg-purple); }
+
+    .fg-lesson19 .fg-table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      margin: 14px 0;
+      border: 1px solid var(--fg-line);
+      border-radius: 14px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .fg-lesson19 table {
+      width: 100%;
+      min-width: 650px;
+      border-collapse: collapse;
+      background: #fff;
+      direction: rtl;
+    }
+
+    .fg-lesson19 th,
+    .fg-lesson19 td {
+      padding: 12px 14px;
+      border: 1px solid var(--fg-line);
+      vertical-align: top;
+      text-align: right;
+    }
+
+    .fg-lesson19 th {
+      background: var(--fg-navy);
+      color: #fff;
+      font-weight: 750;
+    }
+
+    .fg-lesson19 tbody tr:nth-child(even) td {
+      background: #F7FAFD;
+    }
+
+    .fg-lesson19 td.fg-ltr-cell,
+    .fg-lesson19 th.fg-ltr-cell {
+      direction: ltr;
+      text-align: left;
+      unicode-bidi: isolate;
+    }
+
+    .fg-lesson19 .fg-list {
+      margin: 8px 0 0;
+      padding: 0 20px 0 0;
+    }
+
+    .fg-lesson19 .fg-list li { margin: 7px 0; }
+
+    .fg-lesson19 .fg-good {
+      color: var(--fg-green);
+      font-weight: 800;
+    }
+
+    .fg-lesson19 .fg-bad {
+      color: var(--fg-red);
+      font-weight: 800;
+    }
+
+    .fg-lesson19 .fg-compare {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .fg-lesson19 .fg-compare > div {
+      padding: 16px;
+      border: 1px solid var(--fg-line);
+      border-radius: 14px;
+      background: #fff;
+    }
+
+    .fg-lesson19 .fg-summary {
+      margin-top: 24px;
+      padding: 24px;
+      border-radius: 18px;
+      color: #fff;
+      background: linear-gradient(135deg, #173B67, #245EA8);
+      box-shadow: var(--fg-shadow);
+    }
+
+    .fg-lesson19 .fg-summary h2,
+    .fg-lesson19 .fg-summary h3 {
+      color: #fff;
+    }
+
+    .fg-lesson19 .fg-summary-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .fg-lesson19 .fg-summary-item {
+      padding: 13px;
+      border-radius: 12px;
+      background: rgba(255,255,255,.11);
+      border: 1px solid rgba(255,255,255,.2);
+    }
+
+    .fg-lesson19 .fg-source {
+      margin-top: 18px;
+      padding: 13px 15px;
+      border-radius: 12px;
+      background: #F5F7FA;
+      border: 1px dashed #C7D2DF;
+      color: #566579;
+      font-size: 13px;
+    }
+
+    @media (max-width: 760px) {
+      .fg-lesson19 { font-size: 15px; }
+      .fg-lesson19 .fg-hero,
+      .fg-lesson19 .fg-section,
+      .fg-lesson19 .fg-summary { padding: 18px; }
+      .fg-lesson19 .fg-grid,
+      .fg-lesson19 .fg-compare,
+      .fg-lesson19 .fg-summary-grid { grid-template-columns: 1fr; }
+      .fg-lesson19 .fg-section-title { align-items: flex-start; }
+      .fg-lesson19 .fg-hero::before { font-size: 100px; }
+      .fg-lesson19 table { min-width: 560px; }
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .fg-lesson19 {
+        --fg-ink: #E8EEF6;
+        --fg-muted: #B2C0D0;
+        --fg-line: #33475F;
+        --fg-surface: #152235;
+        --fg-surface-2: #1B2B40;
+        --fg-blue-soft: #193555;
+        --fg-green-soft: #153A2E;
+        --fg-red-soft: #402526;
+        --fg-orange-soft: #3E3122;
+        --fg-purple-soft: #2D2944;
+      }
+
+      .fg-lesson19 .fg-hero {
+        background:
+          radial-gradient(circle at 8% 10%, rgba(77, 145, 225, .18), transparent 28%),
+          linear-gradient(135deg, #17263A 0%, #122033 100%);
+        border-color: #38516D;
+      }
+
+      .fg-lesson19 .fg-kicker { background: #234265; color: #DDEBFF; }
+      .fg-lesson19 .fg-chip { background: #1C3048; color: #CDDBEB; border-color: #36506C; }
+      .fg-lesson19 h1,
+      .fg-lesson19 h2,
+      .fg-lesson19 h3,
+      .fg-lesson19 h4 { color: #D9E9FF; }
+      .fg-lesson19 .fg-card,
+      .fg-lesson19 table { background: var(--fg-surface); }
+      .fg-lesson19 tbody tr:nth-child(even) td { background: #1A2A3E; }
+      .fg-lesson19 th { background: #1E4F83; }
+      .fg-lesson19 .fg-source { background: #17263A; color: #B9C6D6; border-color: #445A73; }
+      .fg-lesson19 .fg-example .fg-fr { color: #88D8B6; }
+      .fg-lesson19 .fg-rule { color: #DCEBFF; }
+      .fg-lesson19 .fg-label { color: #DCEBFF; }
+      .fg-lesson19 .fg-error .fg-label { color: #FF9E9E; }
+      .fg-lesson19 .fg-warning .fg-label { color: #FFC27F; }
+      .fg-lesson19 .fg-exception .fg-label { color: #C8B5FF; }
+      .fg-lesson19 .fg-compare > div { background: #17263A; }
+    }
+  </style>
+
+  <section class="fg-hero">
+    <div class="fg-kicker">درس ۱۹ · Grammaire Progressive du Français</div>
+    <h1><span class="fg-fr">L’EXPRESSION de la QUANTITÉ</span></h1>
+    <p class="fg-subtitle">
+      بیان مقدار و کمیت در فرانسه: از <span class="fg-fr">partitif</span> و مقدار نامعین
+      تا ساخت <span class="fg-fr">quantité + de</span>، نفی، دو کاربرد <span class="fg-fr">des</span>
+      و ساخت‌های <span class="fg-fr">sans / besoin de / envie de</span>.
+    </p>
+    <div class="fg-meta">
+      <span class="fg-chip">صفحات کتاب: ۸۶ تا ۸۹</span>
+      <span class="fg-chip">PDF: ۸۸ تا ۹۱</span>
+      <span class="fg-chip">دسته: Quantité et nombres</span>
+      <span class="fg-chip">زیرموضوع: Expression de la quantité</span>
+    </div>
+  </section>
+
+  <section class="fg-section">
+    <div class="fg-section-title">
+      <span class="fg-num">1</span>
+      <div>
+        <h2>ایدهٔ اصلی درس: «چه مقدار؟»</h2>
+        <p>در فرانسه باید میان «مقدار نامعین»، «مقدار بیان‌شده» و «نبودن مقدار» تفاوت بگذاری.</p>
+      </div>
+    </div>
+
+    <div class="fg-grid">
+      <div class="fg-card">
+        <h3><span class="fg-fr">Quantité indéterminée</span></h3>
+        <p>مقدار دقیق را نمی‌گویی؛ فقط بخشی نامعین از یک ماده، چیز یا مفهوم را بیان می‌کنی.</p>
+        <div class="fg-example">
+          <span class="fg-fr">Je bois du café.</span>
+          من مقداری قهوه می‌نوشم.
+        </div>
+      </div>
+
+      <div class="fg-card">
+        <h3><span class="fg-fr">Quantité exprimée</span></h3>
+        <p>مقدار را با عدد، واحد یا واژهٔ کمیت مشخص می‌کنی.</p>
+        <div class="fg-example">
+          <span class="fg-fr">Je bois deux tasses de café.</span>
+          من دو فنجان قهوه می‌نوشم.
+        </div>
+      </div>
+    </div>
+
+    <div class="fg-rule">
+      نقشهٔ ذهنی ساده:
+      <span class="fg-fr">partitif → quantité indéterminée</span>
+      &nbsp; | &nbsp;
+      <span class="fg-fr">quantité + de → quantité exprimée</span>
+      &nbsp; | &nbsp;
+      <span class="fg-fr">négation → de / d’</span>
+    </div>
+  </section>
+
+  <section class="fg-section">
+    <div class="fg-section-title">
+      <span class="fg-num">2</span>
+      <div>
+        <h2><span class="fg-fr">Le partitif</span> — مقدار نامعین</h2>
+        <p>وقتی فقط «مقداری از چیزی» را می‌خواهی و مقدار دقیق مهم نیست، از ساخت‌های partitif استفاده می‌شود.</p>
+      </div>
+    </div>
+
+    <div class="fg-table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>حالت</th>
+            <th class="fg-ltr-cell">Forme</th>
+            <th class="fg-ltr-cell">Exemple</th>
+            <th>معنی تقریبی</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>مذکر مفرد</td>
+            <td class="fg-ltr-cell">du</td>
+            <td class="fg-ltr-cell">du pain</td>
+            <td>مقداری نان</td>
+          </tr>
+          <tr>
+            <td>مؤنث مفرد</td>
+            <td class="fg-ltr-cell">de la</td>
+            <td class="fg-ltr-cell">de la confiture</td>
+            <td>مقداری مربا</td>
+          </tr>
+          <tr>
+            <td>پیش از واکه / h muet</td>
+            <td class="fg-ltr-cell">de l’</td>
+            <td class="fg-ltr-cell">de l’eau</td>
+            <td>مقداری آب</td>
+          </tr>
+          <tr>
+            <td>جمع نامعین</td>
+            <td class="fg-ltr-cell">des</td>
+            <td class="fg-ltr-cell">des légumes</td>
+            <td>مقداری / چند سبزی</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="fg-note">
+      <span class="fg-label">نکتهٔ معنایی مهم</span>
+      <p>
+        <span class="fg-fr">article défini</span> معمولاً به کلِ نوع، یک چیز معین یا یک مفهوم کلی اشاره می‌کند؛
+        ولی <span class="fg-fr">partitif</span> بخشی نامعین از آن را می‌رساند.
+      </p>
+      <div class="fg-compare">
+        <div>
+          <span class="fg-fr fg-good">J’aime le café.</span>
+          <p>قهوه را به‌طور کلی دوست دارم.</p>
+        </div>
+        <div>
+          <span class="fg-fr fg-good">Je bois du café.</span>
+          <p>مقداری قهوه می‌نوشم.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="fg-section">
+    <div class="fg-section-title">
+      <span class="fg-num">3</span>
+      <div>
+        <h2>دو نقش متفاوت <span class="fg-fr">des</span></h2>
+        <p>ظاهر کلمه یکی است، اما از نظر دستوری ممکن است دو ساخت کاملاً متفاوت باشد.</p>
+      </div>
+    </div>
+
+    <div class="fg-grid">
+      <div class="fg-card">
+        <h3><span class="fg-fr">des = article indéfini pluriel</span></h3>
+        <p>برای اسم جمع نامعین.</p>
+        <div class="fg-example">
+          <span class="fg-fr">J’achète des pommes.</span>
+          چند سیب / سیب‌هایی می‌خرم.
+        </div>
+      </div>
+
+      <div class="fg-card">
+        <h3><span class="fg-fr">des = de + les</span></h3>
+        <p>ترکیب حرف اضافهٔ <span class="fg-fr">de</span> با article معین جمع <span class="fg-fr">les</span>.</p>
+        <div class="fg-example">
+          <span class="fg-fr">Je parle des voisins.</span>
+          دربارهٔ همسایه‌ها صحبت می‌کنم.
+        </div>
+      </div>
+    </div>
+
+    <div class="fg-warning">
+      <span class="fg-label">دام رایج</span>
+      <p>
+        فقط با دیدن <span class="fg-fr">des</span> نمی‌توان نقش آن را تشخیص داد.
+        باید ببینی آیا خود فعل/ساخت به <span class="fg-fr">de</span> نیاز دارد یا
+        <span class="fg-fr">des</span> صرفاً تعیین‌کنندهٔ یک اسم جمع نامعین است.
+      </p>
+    </div>
+  </section>
+
+  <section class="fg-section">
+    <div class="fg-section-title">
+      <span class="fg-num">4</span>
+      <div>
+        <h2><span class="fg-fr">Quantité + de</span> — وقتی مقدار را بیان می‌کنیم</h2>
+        <p>بعد از یک مقدار دقیق، واحد اندازه‌گیری یا واژهٔ کمیت، ساخت اصلی به صورت <span class="fg-fr">de + nom</span> است.</p>
+      </div>
+    </div>
+
+    <div class="fg-rule">
+      <span class="fg-fr">quantité + de + nom</span>
+    </div>
+
+    <div class="fg-table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>نوع کمیت</th>
+            <th class="fg-ltr-cell">Structure</th>
+            <th class="fg-ltr-cell">Exemple</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>مقدار زیاد</td>
+            <td class="fg-ltr-cell">beaucoup de</td>
+            <td class="fg-ltr-cell">beaucoup de travail</td>
+          </tr>
+          <tr>
+            <td>مقدار کم</td>
+            <td class="fg-ltr-cell">peu de</td>
+            <td class="fg-ltr-cell">peu de temps</td>
+          </tr>
+          <tr>
+            <td>کمی</td>
+            <td class="fg-ltr-cell">un peu de</td>
+            <td class="fg-ltr-cell">un peu d’eau</td>
+          </tr>
+          <tr>
+            <td>کافی</td>
+            <td class="fg-ltr-cell">assez de</td>
+            <td class="fg-ltr-cell">assez d’argent</td>
+          </tr>
+          <tr>
+            <td>بیش از حد</td>
+            <td class="fg-ltr-cell">trop de</td>
+            <td class="fg-ltr-cell">trop de sucre</td>
+          </tr>
+          <tr>
+            <td>واحد اندازه‌گیری</td>
+            <td class="fg-ltr-cell">un kilo de / un litre de</td>
+            <td class="fg-ltr-cell">un kilo de pommes</td>
+          </tr>
+          <tr>
+            <td>ظرف / بخش</td>
+            <td class="fg-ltr-cell">une tasse de / une tranche de</td>
+            <td class="fg-ltr-cell">une tasse de thé</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="fg-note">
+      <span class="fg-label">قاعدهٔ کلیدی</span>
+      <p>
+        بعد از واژهٔ کمیت، <span class="fg-fr">de</span> مستقل از مذکر/مؤنث یا مفرد/جمع بودن اسم می‌آید.
+        پیش از واکه به <span class="fg-fr">d’</span> تبدیل می‌شود:
+        <span class="fg-fr">beaucoup d’eau</span>.
+      </p>
+    </div>
+  </section>
+
+  <section class="fg-section">
+    <div class="fg-section-title">
+      <span class="fg-num">5</span>
+      <div>
+        <h2>تمایز ظریف <span class="fg-fr">peu de</span> و <span class="fg-fr">un peu de</span></h2>
+        <p>هر دو به «کم بودن» مربوط‌اند، اما نگاه گوینده متفاوت است.</p>
+      </div>
+    </div>
+
+    <div class="fg-compare">
+      <div>
+        <h3><span class="fg-fr">peu de</span></h3>
+        <p>روی کمبود تأکید دارد؛ اغلب برداشت «کم، ناکافی یا کمتر از انتظار» ایجاد می‌کند.</p>
+        <div class="fg-example">
+          <span class="fg-fr">J’ai peu de temps.</span>
+          وقت کمی دارم.
+        </div>
+      </div>
+      <div>
+        <h3><span class="fg-fr">un peu de</span></h3>
+        <p>وجود مقدار کوچکی را به‌صورت خنثی یا مثبت بیان می‌کند.</p>
+        <div class="fg-example">
+          <span class="fg-fr">J’ai un peu de temps.</span>
+          کمی وقت دارم.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="fg-section">
+    <div class="fg-section-title">
+      <span class="fg-num">6</span>
+      <div>
+        <h2>نفی و مقدار: <span class="fg-fr">de / d’</span></h2>
+        <p>اگر نفی به معنی «مقدار صفر» باشد، article نامعین یا partitif معمولاً به <span class="fg-fr">de / d’</span> تبدیل می‌شود.</p>
+      </div>
+    </div>
+
+    <div class="fg-grid">
+      <div class="fg-card">
+        <div class="fg-example">
+          <span class="fg-fr">J’ai du café.</span>
+          قهوه دارم.
+        </div>
+        <div class="fg-error">
+          <span class="fg-label">در نفی صفر</span>
+          <span class="fg-fr">Je n’ai pas de café.</span>
+        </div>
+      </div>
+
+      <div class="fg-card">
+        <div class="fg-example">
+          <span class="fg-fr">Elle achète des fruits.</span>
+          میوه می‌خرد.
+        </div>
+        <div class="fg-error">
+          <span class="fg-label">در نفی صفر</span>
+          <span class="fg-fr">Elle n’achète pas de fruits.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="fg-exception">
+      <span class="fg-label">استثنای ظریف: نفیِ تصحیحی / تقابلی</span>
+      <p>
+        وقتی هدف این نیست که بگویی «هیچ مقداری وجود ندارد»، بلکه یک چیز را در برابر چیز دیگری تصحیح می‌کنی،
+        partitif می‌تواند باقی بماند.
+      </p>
+      <div class="fg-example">
+        <span class="fg-fr">Ce n’est pas du thé, c’est du café.</span>
+        این چای نیست؛ قهوه است.
+      </div>
+    </div>
+
+    <div class="fg-note">
+      <span class="fg-label">یادآوری مهم دربارهٔ être</span>
+      <p>
+        قاعدهٔ تبدیل به <span class="fg-fr">de</span> را مکانیکی به هر جملهٔ منفی تعمیم نده.
+        با <span class="fg-fr">être</span> معمولاً تعیین‌کنندهٔ اصلی حفظ می‌شود:
+        <span class="fg-fr">Ce n’est pas un problème.</span>
+      </p>
+    </div>
+  </section>
+
+  <section class="fg-section">
+    <div class="fg-section-title">
+      <span class="fg-num">7</span>
+      <div>
+        <h2><span class="fg-fr">sans</span> و article</h2>
+        <p><span class="fg-fr">sans</span> مستقیماً نبودن یا فقدان چیزی را بیان می‌کند و معمولاً partitif پس از آن نمی‌آید.</p>
+      </div>
+    </div>
+
+    <div class="fg-example">
+      <span class="fg-fr">Je prends mon café sans sucre.</span>
+      قهوه‌ام را بدون شکر می‌خورم/می‌نوشم.
+    </div>
+
+    <div class="fg-warning">
+      <span class="fg-label">دام ساختاری</span>
+      <p>
+        چون <span class="fg-fr">sans</span> خودش مفهوم نبودن را دارد،
+        در ساخت سادهٔ نامعین معمولاً نمی‌گوییم
+        <span class="fg-fr fg-bad">sans du sucre</span>.
+      </p>
+    </div>
+  </section>
+
+  <section class="fg-section">
+    <div class="fg-section-title">
+      <span class="fg-num">8</span>
+      <div>
+        <h2><span class="fg-fr">avoir besoin de / avoir envie de</span></h2>
+        <p>در این ساخت‌ها، <span class="fg-fr">de</span> بخشی از خودِ عبارت است؛ پس partitif دیگری بعد از آن اضافه نمی‌کنیم.</p>
+      </div>
+    </div>
+
+    <div class="fg-grid">
+      <div class="fg-card">
+        <div class="fg-example">
+          <span class="fg-fr">J’ai besoin de temps.</span>
+          به زمان نیاز دارم.
+        </div>
+      </div>
+      <div class="fg-card">
+        <div class="fg-example">
+          <span class="fg-fr">J’ai envie de chocolat.</span>
+          هوس شکلات کرده‌ام.
+        </div>
+      </div>
+    </div>
+
+    <div class="fg-error">
+      <span class="fg-label">اشتباه رایج</span>
+      <p>
+        <span class="fg-fr fg-bad">J’ai besoin du temps</span>
+        را به‌صورت خودکار به معنی «به زمان نیاز دارم» نساز.
+        <span class="fg-fr">du</span> ممکن است در بافت دیگری همان <span class="fg-fr">de + le</span> باشد و معنای مشخص‌تری بدهد؛
+        برای نیاز کلی ساخت پایه <span class="fg-fr">avoir besoin de + nom</span> است.
+      </p>
+    </div>
+  </section>
+
+  <section class="fg-section">
+    <div class="fg-section-title">
+      <span class="fg-num">9</span>
+      <div>
+        <h2>تله‌های رایج که باید فوری تشخیص بدهی</h2>
+        <p>این بخش چند تمایز عملی برای جلوگیری از خطا در جمله‌سازی و تست است.</p>
+      </div>
+    </div>
+
+    <div class="fg-table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>موضوع</th>
+            <th class="fg-ltr-cell">Correct</th>
+            <th class="fg-ltr-cell">Incorrect / piège</th>
+            <th>دلیل</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>قید با فعل</td>
+            <td class="fg-ltr-cell">Il travaille beaucoup.</td>
+            <td class="fg-ltr-cell">Il travaille très.</td>
+            <td><span class="fg-fr">beaucoup</span> می‌تواند مقدار/شدت فعل را بیان کند؛ <span class="fg-fr">très</span> با صفت/قید می‌آید.</td>
+          </tr>
+          <tr>
+            <td>کمیت با اسم</td>
+            <td class="fg-ltr-cell">beaucoup de livres</td>
+            <td class="fg-ltr-cell">très de livres</td>
+            <td>برای اسم از ساخت کمیت + <span class="fg-fr">de</span> استفاده می‌شود.</td>
+          </tr>
+          <tr>
+            <td>شدت در برابر افراط</td>
+            <td class="fg-ltr-cell">très grand</td>
+            <td class="fg-ltr-cell">trop grand ≠ très grand</td>
+            <td><span class="fg-fr">trop</span> یعنی «بیش از حد»، نه صرفاً «خیلی».</td>
+          </tr>
+          <tr>
+            <td>پیش از واکه</td>
+            <td class="fg-ltr-cell">beaucoup d’eau</td>
+            <td class="fg-ltr-cell">beaucoup de eau</td>
+            <td><span class="fg-fr">de</span> پیش از واکه به <span class="fg-fr">d’</span> کوتاه می‌شود.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="fg-section">
+    <div class="fg-section-title">
+      <span class="fg-num">10</span>
+      <div>
+        <h2>روش تصمیم‌گیری سریع در آزمون</h2>
+        <p>برای انتخاب article یا <span class="fg-fr">de</span>، این ترتیب ذهنی را اجرا کن.</p>
+      </div>
+    </div>
+
+    <ol class="fg-list">
+      <li>
+        آیا مقدار دقیق/واژهٔ کمیت داری؟
+        <strong>بله →</strong>
+        معمولاً <span class="fg-fr">quantité + de + nom</span>.
+      </li>
+      <li>
+        اگر مقدار بیان نشده، آیا بخشی نامعین از ماده/چیز را می‌گویی؟
+        <strong>بله →</strong>
+        <span class="fg-fr">du / de la / de l’ / des</span>.
+      </li>
+      <li>
+        آیا جمله منفی است و معنای «صفر» می‌دهد؟
+        <strong>بله →</strong>
+        معمولاً <span class="fg-fr">de / d’</span>.
+      </li>
+      <li>
+        آیا <span class="fg-fr">des</span> می‌بینی؟
+        بررسی کن که article نامعین جمع است یا <span class="fg-fr">de + les</span>.
+      </li>
+      <li>
+        آیا ساخت ثابت <span class="fg-fr">besoin de / envie de</span> یا <span class="fg-fr">sans</span> داری؟
+        از اضافه‌کردن partitif به‌صورت مکانیکی خودداری کن.
+      </li>
+    </ol>
+  </section>
+
+  <section class="fg-summary">
+    <h2>خلاصهٔ طلایی درس ۱۹</h2>
+    <div class="fg-summary-grid">
+      <div class="fg-summary-item">
+        <h3><span class="fg-fr">Partitif</span></h3>
+        <span class="fg-fr">du / de la / de l’ / des</span>
+        <p>برای مقدار نامعین.</p>
+      </div>
+      <div class="fg-summary-item">
+        <h3><span class="fg-fr">Quantité</span></h3>
+        <span class="fg-fr">quantité + de + nom</span>
+        <p>برای مقدار بیان‌شده.</p>
+      </div>
+      <div class="fg-summary-item">
+        <h3><span class="fg-fr">Négation</span></h3>
+        <span class="fg-fr">pas de / pas d’</span>
+        <p>برای مقدار صفر، با استثنای تصحیح تقابلی.</p>
+      </div>
+      <div class="fg-summary-item">
+        <h3><span class="fg-fr">des</span></h3>
+        <p>ممکن است article نامعین جمع یا <span class="fg-fr">de + les</span> باشد.</p>
+      </div>
+      <div class="fg-summary-item">
+        <h3><span class="fg-fr">sans</span></h3>
+        <p>معمولاً بدون partitif برای بیان نبودن چیزی.</p>
+      </div>
+      <div class="fg-summary-item">
+        <h3><span class="fg-fr">besoin / envie</span></h3>
+        <span class="fg-fr">avoir besoin de / avoir envie de</span>
+        <p><span class="fg-fr">de</span> جزو ساخت است.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="fg-source">
+    مبنای محتوایی این صفحه: درس ۱۹ «L’EXPRESSION de la QUANTITÉ»، صفحات چاپی ۸۶ تا ۸۹
+    (صفحات ۸۸ تا ۹۱ فایل PDF). ساختار آموزشی بر اساس زیرموضوع‌های استخراج‌شدهٔ L19-S01 تا L19-S06 تنظیم شده است.
+  </div>
+</div>

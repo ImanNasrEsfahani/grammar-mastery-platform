@@ -1,0 +1,1051 @@
+<div class="french-grammar-wrapper fg-theme-light" dir="rtl">
+  <style scoped>
+    .french-grammar-wrapper,
+    .french-grammar-wrapper * {
+      box-sizing: border-box;
+    }
+
+    .french-grammar-wrapper {
+      --fg-navy: #173b67;
+      --fg-blue: #235c9f;
+      --fg-blue-soft: #eef5fc;
+      --fg-teal: #0f6f70;
+      --fg-green: #157347;
+      --fg-green-soft: #eaf7ef;
+      --fg-red: #b42318;
+      --fg-red-soft: #fff0ee;
+      --fg-orange: #b45309;
+      --fg-orange-soft: #fff7e8;
+      --fg-purple: #6d3fa0;
+      --fg-purple-soft: #f7f0ff;
+      --fg-text: #1f2937;
+      --fg-muted: #617083;
+      --fg-border: #d9e2ec;
+      --fg-card: #ffffff;
+      --fg-page: #f7f9fc;
+      --fg-shadow: 0 10px 30px rgba(23, 59, 103, 0.08);
+      --fg-radius: 18px;
+      color: var(--fg-text);
+      background: var(--fg-page);
+      font-family: Tahoma, "Segoe UI", Arial, sans-serif;
+      line-height: 1.9;
+      border-radius: 22px;
+      padding: 24px;
+      max-width: 1180px;
+      margin: 0 auto;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .french-grammar-wrapper .fg-shell {
+      display: grid;
+      gap: 20px;
+    }
+
+    .french-grammar-wrapper .fg-hero {
+      position: relative;
+      overflow: hidden;
+      border-radius: 24px;
+      padding: 30px;
+      color: #fff;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(255,255,255,.15), transparent 35%),
+        linear-gradient(135deg, #173b67 0%, #235c9f 58%, #2c74b3 100%);
+      box-shadow: var(--fg-shadow);
+    }
+
+    .french-grammar-wrapper .fg-hero::after {
+      content: "51";
+      position: absolute;
+      left: 22px;
+      bottom: -24px;
+      font-size: 120px;
+      line-height: 1;
+      font-weight: 800;
+      opacity: .08;
+      direction: ltr;
+    }
+
+    .french-grammar-wrapper .fg-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 12px;
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 999px;
+      background: rgba(255,255,255,.10);
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+
+    .french-grammar-wrapper .fg-hero h1 {
+      margin: 0 0 8px;
+      font-size: clamp(28px, 5vw, 48px);
+      line-height: 1.25;
+      letter-spacing: -.3px;
+    }
+
+    .french-grammar-wrapper .fg-hero .fg-fr-title {
+      display: block;
+      direction: ltr;
+      text-align: left;
+      font-family: "Segoe UI", Arial, sans-serif;
+      font-weight: 800;
+      margin-top: 5px;
+    }
+
+    .french-grammar-wrapper .fg-hero p {
+      margin: 0;
+      color: rgba(255,255,255,.9);
+      max-width: 900px;
+    }
+
+    .french-grammar-wrapper .fg-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 14px;
+      background: #fff;
+      border: 1px solid var(--fg-border);
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(23,59,103,.05);
+    }
+
+    .french-grammar-wrapper .fg-nav a {
+      color: var(--fg-navy);
+      text-decoration: none;
+      background: var(--fg-blue-soft);
+      border: 1px solid #d6e7f8;
+      padding: 7px 11px;
+      border-radius: 999px;
+      font-size: 13px;
+      transition: .2s ease;
+    }
+
+    .french-grammar-wrapper .fg-nav a:hover {
+      background: #dfeeff;
+      transform: translateY(-1px);
+    }
+
+    .french-grammar-wrapper .fg-card {
+      background: var(--fg-card);
+      border: 1px solid var(--fg-border);
+      border-radius: var(--fg-radius);
+      padding: 24px;
+      box-shadow: var(--fg-shadow);
+    }
+
+    .french-grammar-wrapper .fg-card h2,
+    .french-grammar-wrapper .fg-card h3 {
+      color: var(--fg-navy);
+      margin-top: 0;
+      line-height: 1.5;
+    }
+
+    .french-grammar-wrapper .fg-card h2 {
+      font-size: clamp(22px, 3vw, 30px);
+      border-bottom: 2px solid #e9f0f7;
+      padding-bottom: 10px;
+      margin-bottom: 18px;
+    }
+
+    .french-grammar-wrapper .fg-card h3 {
+      font-size: 19px;
+      margin: 26px 0 10px;
+    }
+
+    .french-grammar-wrapper .fg-section-number {
+      display: inline-grid;
+      place-items: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      color: #fff;
+      background: var(--fg-blue);
+      font-size: 15px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+
+    .french-grammar-wrapper .fg-fr {
+      direction: ltr;
+      text-align: left;
+      unicode-bidi: isolate;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    .french-grammar-wrapper .fg-fr-inline {
+      direction: ltr;
+      text-align: left;
+      unicode-bidi: isolate;
+      display: inline-block;
+      font-family: "Segoe UI", Arial, sans-serif;
+      font-weight: 600;
+    }
+
+    .french-grammar-wrapper .fg-example {
+      direction: ltr;
+      text-align: left;
+      unicode-bidi: isolate;
+      background: var(--fg-green-soft);
+      border-left: 4px solid var(--fg-green);
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin: 12px 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: #174f36;
+    }
+
+    .french-grammar-wrapper .fg-example + .fg-translation {
+      margin-top: -4px;
+    }
+
+    .french-grammar-wrapper .fg-translation {
+      color: var(--fg-muted);
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+
+    .french-grammar-wrapper .fg-callout {
+      border-radius: 14px;
+      padding: 16px 18px;
+      margin: 16px 0;
+      border: 1px solid transparent;
+    }
+
+    .french-grammar-wrapper .fg-callout strong {
+      display: inline-block;
+      margin-bottom: 4px;
+    }
+
+    .french-grammar-wrapper .fg-callout--tip {
+      background: var(--fg-blue-soft);
+      border-color: #cfe3f7;
+      color: #173b67;
+    }
+
+    .french-grammar-wrapper .fg-callout--good {
+      background: var(--fg-green-soft);
+      border-color: #cbead7;
+      color: #14532d;
+    }
+
+    .french-grammar-wrapper .fg-callout--warn {
+      background: var(--fg-orange-soft);
+      border-color: #f4d9a9;
+      color: #7a3c00;
+    }
+
+    .french-grammar-wrapper .fg-callout--danger {
+      background: var(--fg-red-soft);
+      border-color: #f4c7c1;
+      color: #842029;
+    }
+
+    .french-grammar-wrapper .fg-callout--purple {
+      background: var(--fg-purple-soft);
+      border-color: #e5d4f8;
+      color: #5a3286;
+    }
+
+    .french-grammar-wrapper .fg-two-col {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin: 16px 0;
+    }
+
+    .french-grammar-wrapper .fg-mini-card {
+      border: 1px solid var(--fg-border);
+      border-radius: 14px;
+      padding: 16px;
+      background: #fbfdff;
+    }
+
+    .french-grammar-wrapper .fg-mini-card h4 {
+      margin: 0 0 8px;
+      color: var(--fg-navy);
+      font-size: 16px;
+    }
+
+    .french-grammar-wrapper .fg-list {
+      margin: 10px 0;
+      padding-right: 20px;
+    }
+
+    .french-grammar-wrapper .fg-list li {
+      margin: 5px 0;
+    }
+
+    .french-grammar-wrapper .fg-table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      margin: 16px 0;
+      border-radius: 14px;
+      border: 1px solid var(--fg-border);
+      background: #fff;
+    }
+
+    .french-grammar-wrapper table {
+      width: 100%;
+      min-width: 640px;
+      border-collapse: collapse;
+      direction: rtl;
+      text-align: right;
+      font-size: 14px;
+    }
+
+    .french-grammar-wrapper th,
+    .french-grammar-wrapper td {
+      padding: 12px 14px;
+      border: 1px solid var(--fg-border);
+      vertical-align: top;
+    }
+
+    .french-grammar-wrapper th {
+      background: #e9f1fa;
+      color: var(--fg-navy);
+      font-weight: 800;
+    }
+
+    .french-grammar-wrapper tbody tr:nth-child(even) {
+      background: #f8fbfe;
+    }
+
+    .french-grammar-wrapper .fg-table-fr {
+      direction: ltr;
+      text-align: left;
+      unicode-bidi: isolate;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    .french-grammar-wrapper .fg-rule {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      background: #f9fbfd;
+      border: 1px solid var(--fg-border);
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin: 10px 0;
+    }
+
+    .french-grammar-wrapper .fg-rule-badge {
+      flex: 0 0 auto;
+      min-width: 32px;
+      height: 32px;
+      display: grid;
+      place-items: center;
+      border-radius: 9px;
+      background: var(--fg-navy);
+      color: #fff;
+      font-weight: 800;
+      font-size: 13px;
+    }
+
+    .french-grammar-wrapper .fg-compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border: 1px solid var(--fg-border);
+      border-radius: 14px;
+      overflow: hidden;
+      margin: 16px 0;
+    }
+
+    .french-grammar-wrapper .fg-compare > div {
+      padding: 16px;
+    }
+
+    .french-grammar-wrapper .fg-compare > div:first-child {
+      background: #f0f8f4;
+      border-left: 1px solid var(--fg-border);
+    }
+
+    .french-grammar-wrapper .fg-compare > div:last-child {
+      background: #f4f8fc;
+    }
+
+    .french-grammar-wrapper .fg-compare h4 {
+      margin: 0 0 8px;
+      color: var(--fg-navy);
+    }
+
+    .french-grammar-wrapper .fg-summary-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .french-grammar-wrapper .fg-summary-item {
+      border: 1px solid var(--fg-border);
+      border-radius: 12px;
+      padding: 14px;
+      background: #fff;
+    }
+
+    .french-grammar-wrapper .fg-summary-item strong {
+      color: var(--fg-navy);
+    }
+
+    .french-grammar-wrapper .fg-footer-note {
+      text-align: center;
+      color: var(--fg-muted);
+      font-size: 13px;
+      padding: 2px 10px 8px;
+    }
+
+    @media (max-width: 820px) {
+      .french-grammar-wrapper {
+        padding: 14px;
+        border-radius: 16px;
+      }
+
+      .french-grammar-wrapper .fg-card,
+      .french-grammar-wrapper .fg-hero {
+        padding: 18px;
+      }
+
+      .french-grammar-wrapper .fg-two-col,
+      .french-grammar-wrapper .fg-summary-grid,
+      .french-grammar-wrapper .fg-compare {
+        grid-template-columns: 1fr;
+      }
+
+      .french-grammar-wrapper .fg-compare > div:first-child {
+        border-left: 0;
+        border-bottom: 1px solid var(--fg-border);
+      }
+
+      .french-grammar-wrapper .fg-hero::after {
+        font-size: 84px;
+      }
+
+      .french-grammar-wrapper table {
+        min-width: 560px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .french-grammar-wrapper {
+        padding: 10px;
+        line-height: 1.85;
+      }
+
+      .french-grammar-wrapper .fg-card,
+      .french-grammar-wrapper .fg-hero {
+        padding: 15px;
+        border-radius: 14px;
+      }
+
+      .french-grammar-wrapper .fg-nav {
+        padding: 10px;
+      }
+
+      .french-grammar-wrapper .fg-nav a {
+        font-size: 12px;
+      }
+
+      .french-grammar-wrapper .fg-card h2 {
+        font-size: 21px;
+      }
+
+      .french-grammar-wrapper table {
+        min-width: 520px;
+        font-size: 13px;
+      }
+
+      .french-grammar-wrapper th,
+      .french-grammar-wrapper td {
+        padding: 10px;
+      }
+    }
+  </style>
+
+  <div class="fg-shell">
+
+    <section class="fg-hero" aria-labelledby="fg-title">
+      <div class="fg-eyebrow">Grammaire Progressive du Français · Niveau intermédiaire</div>
+      <h1 id="fg-title">
+        درس ۵۱
+        <span class="fg-fr-title">LE SUBJONCTIF</span>
+      </h1>
+      <p>
+        راهنمای جامع و مرحله‌به‌مرحله برای درک، ساخت و کاربرد Subjonctif؛ همراه با نکته‌های ظریف،
+        استثناها، تفاوت با Indicatif و مثال‌های کاربردی.
+      </p>
+    </section>
+
+    <nav class="fg-nav" aria-label="فهرست درس">
+      <a href="#fg-what">Subjonctif چیست؟</a>
+      <a href="#fg-ilfaut">Il faut que</a>
+      <a href="#fg-form">ساخت و صرف</a>
+      <a href="#fg-irregular">بی‌قاعده‌ها</a>
+      <a href="#fg-indicatif">Indicatif یا Subjonctif؟</a>
+      <a href="#fg-ne">ne explétif</a>
+      <a href="#fg-relative">وجود نامطمئن</a>
+      <a href="#fg-past">Subjonctif passé</a>
+      <a href="#fg-conjunctions">حروف ربط</a>
+      <a href="#fg-summary">جمع‌بندی</a>
+    </nav>
+
+    <section class="fg-card" id="fg-what">
+      <h2><span class="fg-section-number">۱</span> Subjonctif اصلاً چیست؟</h2>
+
+      <p>
+        مهم‌ترین ایده این درس این است که <span class="fg-fr-inline">Indicatif</span> معمولاً برای
+        بیان واقعیت، دانسته یا گزارشی نسبتاً قطعی به‌کار می‌رود؛ در حالی که
+        <span class="fg-fr-inline">Subjonctif</span> اغلب نگاه ذهنی گوینده به یک رویداد را نشان می‌دهد:
+        خواسته، احساس، ترس، الزام، شک، ارزیابی، هدف یا چیزی که هنوز تحققش قطعی نیست.
+      </p>
+
+      <div class="fg-compare">
+        <div>
+          <h4>واقعیت / گزارش → Indicatif</h4>
+          <div class="fg-example">Paul est absent.</div>
+          <div class="fg-translation">پل غایب است.</div>
+        </div>
+        <div>
+          <h4>خواسته / نگاه ذهنی → Subjonctif</h4>
+          <div class="fg-example">J’aimerais qu’il soit là.</div>
+          <div class="fg-translation">دوست داشتم / می‌خواستم که او اینجا باشد.</div>
+        </div>
+      </div>
+
+      <div class="fg-callout fg-callout--tip">
+        <strong>ایدهٔ کلیدی:</strong>
+        در جملهٔ دوم، «بودنِ پل» یک واقعیت گزارش‌شده نیست؛ یک خواسته است. به همین دلیل
+        <span class="fg-fr-inline">soit</span> به صورت Subjonctif آمده است.
+      </div>
+
+      <div class="fg-two-col">
+        <div class="fg-mini-card">
+          <h4>چهار مفهوم اصلی</h4>
+          <ul class="fg-list">
+            <li><span class="fg-fr-inline">désir</span> — خواسته</li>
+            <li><span class="fg-fr-inline">sentiment</span> — احساس</li>
+            <li><span class="fg-fr-inline">attente</span> — انتظار</li>
+            <li><span class="fg-fr-inline">obligation</span> — الزام</li>
+          </ul>
+        </div>
+        <div class="fg-mini-card">
+          <h4>سؤال ذهنی سریع</h4>
+          <p>
+            آیا دارم «واقعیت» را گزارش می‌کنم، یا دارم دربارهٔ آن نظر، خواسته، احساس، ترس، شک یا الزام بیان می‌کنم؟
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="fg-card" id="fg-ilfaut">
+      <h2><span class="fg-section-number">۲</span> ساختار بسیار مهم <span class="fg-fr-inline">Il faut que</span></h2>
+
+      <div class="fg-callout fg-callout--good">
+        <strong>فرمول اصلی:</strong>
+        <span class="fg-fr-inline">Il faut que + sujet + subjonctif</span>
+      </div>
+
+      <div class="fg-example">Il faut que je parte.</div>
+      <div class="fg-translation">باید بروم.</div>
+
+      <div class="fg-example">Il faut que tu travailles.</div>
+      <div class="fg-translation">باید کار کنی.</div>
+
+      <div class="fg-example">Il faut que nous soyons prêts.</div>
+      <div class="fg-translation">باید آماده باشیم.</div>
+
+      <h3>فرق با <span class="fg-fr-inline">Il faut + infinitif</span></h3>
+
+      <div class="fg-compare">
+        <div>
+          <h4>الزام کلی</h4>
+          <div class="fg-example">Il faut manger pour vivre.</div>
+          <div class="fg-translation">برای زنده ماندن باید غذا خورد.</div>
+        </div>
+        <div>
+          <h4>الزام برای شخص مشخص</h4>
+          <div class="fg-example">Il faut que je mange tôt.</div>
+          <div class="fg-translation">باید زود غذا بخورم.</div>
+        </div>
+      </div>
+
+      <h3>حالت منفی</h3>
+      <div class="fg-example">Il ne faut pas rester.</div>
+      <div class="fg-example">Il ne faut pas que je reste.</div>
+    </section>
+
+    <section class="fg-card" id="fg-form">
+      <h2><span class="fg-section-number">۳</span> ساختن Subjonctif</h2>
+
+      <p>
+        برای بسیاری از افعال، از شکل <span class="fg-fr-inline">ils</span> در
+        <span class="fg-fr-inline">présent de l’indicatif</span> شروع می‌کنیم،
+        پایان <span class="fg-fr-inline">-ent</span> را حذف می‌کنیم و پایان‌های Subjonctif را اضافه می‌کنیم.
+      </p>
+
+      <div class="fg-table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>شخص</th>
+              <th>پایان</th>
+              <th>نمونه با <span class="fg-table-fr">partir</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>je</td><td class="fg-table-fr">-e</td><td class="fg-table-fr">que je parte</td></tr>
+            <tr><td>tu</td><td class="fg-table-fr">-es</td><td class="fg-table-fr">que tu partes</td></tr>
+            <tr><td>il / elle / on</td><td class="fg-table-fr">-e</td><td class="fg-table-fr">qu’il parte</td></tr>
+            <tr><td>nous</td><td class="fg-table-fr">-ions</td><td class="fg-table-fr">que nous partions</td></tr>
+            <tr><td>vous</td><td class="fg-table-fr">-iez</td><td class="fg-table-fr">que vous partiez</td></tr>
+            <tr><td>ils / elles</td><td class="fg-table-fr">-ent</td><td class="fg-table-fr">qu’ils partent</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="fg-callout fg-callout--warn">
+        <strong>نکتهٔ ظریف: افعال دو ریشه‌ای</strong><br>
+        بعضی افعال برای <span class="fg-fr-inline">je/tu/il/ils</span> یک ریشه و برای
+        <span class="fg-fr-inline">nous/vous</span> ریشه‌ای دیگر دارند.
+      </div>
+
+      <h3>مثال: <span class="fg-fr-inline">boire</span></h3>
+      <p>
+        از <span class="fg-fr-inline">ils boivent</span> ریشهٔ
+        <span class="fg-fr-inline">boiv-</span> را می‌گیریم، اما برای
+        <span class="fg-fr-inline">nous/vous</span> به ریشهٔ
+        <span class="fg-fr-inline">buv-</span> برمی‌گردیم.
+      </p>
+
+      <div class="fg-table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>گروه</th>
+              <th>صرف</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>je / tu / il / ils</td>
+              <td class="fg-table-fr">que je boive, que tu boives, qu’il boive, qu’ils boivent</td>
+            </tr>
+            <tr>
+              <td>nous / vous</td>
+              <td class="fg-table-fr">que nous buvions, que vous buviez</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>مثال: <span class="fg-fr-inline">prendre</span></h3>
+      <div class="fg-example">que je prenne</div>
+      <div class="fg-example">que nous prenions</div>
+
+      <div class="fg-callout fg-callout--tip">
+        <strong>دام رایج:</strong>
+        این تفاوت ریشه در افعالی مانند <span class="fg-fr-inline">prendre</span>،
+        <span class="fg-fr-inline">venir</span> و <span class="fg-fr-inline">boire</span>
+        باعث اشتباه زیادی می‌شود.
+      </div>
+    </section>
+
+    <section class="fg-card" id="fg-irregular">
+      <h2><span class="fg-section-number">۴</span> افعال بی‌قاعدهٔ مهم</h2>
+
+      <div class="fg-table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>فعل</th>
+              <th>je</th>
+              <th>nous</th>
+              <th>ils</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="fg-table-fr">être</td>
+              <td class="fg-table-fr">que je sois</td>
+              <td class="fg-table-fr">que nous soyons</td>
+              <td class="fg-table-fr">qu’ils soient</td>
+            </tr>
+            <tr>
+              <td class="fg-table-fr">avoir</td>
+              <td class="fg-table-fr">que j’aie</td>
+              <td class="fg-table-fr">que nous ayons</td>
+              <td class="fg-table-fr">qu’ils aient</td>
+            </tr>
+            <tr>
+              <td class="fg-table-fr">aller</td>
+              <td class="fg-table-fr">que j’aille</td>
+              <td class="fg-table-fr">que nous allions</td>
+              <td class="fg-table-fr">qu’ils aillent</td>
+            </tr>
+            <tr>
+              <td class="fg-table-fr">faire</td>
+              <td class="fg-table-fr">que je fasse</td>
+              <td class="fg-table-fr">que nous fassions</td>
+              <td class="fg-table-fr">qu’ils fassent</td>
+            </tr>
+            <tr>
+              <td class="fg-table-fr">pouvoir</td>
+              <td class="fg-table-fr">que je puisse</td>
+              <td class="fg-table-fr">que nous puissions</td>
+              <td class="fg-table-fr">qu’ils puissent</td>
+            </tr>
+            <tr>
+              <td class="fg-table-fr">savoir</td>
+              <td class="fg-table-fr">que je sache</td>
+              <td class="fg-table-fr">que nous sachions</td>
+              <td class="fg-table-fr">qu’ils sachent</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>چند فعل بسیار پرکاربرد دیگر</h3>
+      <div class="fg-two-col">
+        <div class="fg-mini-card">
+          <div class="fg-fr">vouloir → que je veuille / que nous voulions</div>
+          <div class="fg-fr">venir → que je vienne / que nous venions</div>
+          <div class="fg-fr">devoir → que je doive / que nous devions</div>
+        </div>
+        <div class="fg-mini-card">
+          <div class="fg-fr">recevoir → que je reçoive / que nous recevions</div>
+          <div class="fg-fr">falloir → qu’il faille</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="fg-card" id="fg-indicatif">
+      <h2><span class="fg-section-number">۵</span> Indicatif یا Subjonctif؟</h2>
+
+      <h3>افعال «عینی / فکری» → معمولاً Indicatif</h3>
+      <div class="fg-two-col">
+        <div class="fg-mini-card">
+          <div class="fg-fr">Je constate que...</div>
+          <div class="fg-fr">J’observe que...</div>
+          <div class="fg-fr">Je remarque que...</div>
+        </div>
+        <div class="fg-mini-card">
+          <div class="fg-fr">Je pense que...</div>
+          <div class="fg-fr">Je crois que...</div>
+          <div class="fg-fr">Je suppose que...</div>
+        </div>
+      </div>
+
+      <div class="fg-example">Je pense qu’il est en retard.</div>
+
+      <h3>افعال خواسته، ترس، اراده و احساس → Subjonctif</h3>
+      <div class="fg-two-col">
+        <div class="fg-mini-card">
+          <div class="fg-fr">Je désire que...</div>
+          <div class="fg-fr">J’aimerais que...</div>
+          <div class="fg-fr">Je souhaite que...</div>
+        </div>
+        <div class="fg-mini-card">
+          <div class="fg-fr">J’ai peur que...</div>
+          <div class="fg-fr">Je crains que...</div>
+          <div class="fg-fr">Je veux que...</div>
+        </div>
+      </div>
+
+      <div class="fg-example">Je veux qu’il revienne.</div>
+
+      <div class="fg-callout fg-callout--danger">
+        <strong>استثنای بسیار مهم: <span class="fg-fr-inline">espérer</span></strong><br>
+        برای سطح این درس، قاعدهٔ امن این است:
+        <span class="fg-fr-inline">espérer + indicatif</span>
+      </div>
+
+      <div class="fg-example">J’espère que vous viendrez demain.</div>
+      <div class="fg-example">J’espère qu’il fera beau.</div>
+
+      <div class="fg-callout fg-callout--danger">
+        <strong>اشتباه رایج:</strong>
+        <span class="fg-fr-inline">J’espère qu’il fasse beau.</span>
+        را در دستور معیار این سطح به‌کار نبر.
+      </div>
+
+      <h3>منفی شدن <span class="fg-fr-inline">penser / croire</span></h3>
+
+      <div class="fg-example">Je pense qu’il est malade.</div>
+      <div class="fg-example">Je ne pense pas qu’il soit malade.</div>
+
+      <div class="fg-example">Je crois qu’il a la grippe.</div>
+      <div class="fg-example">Je ne crois pas qu’il ait la grippe.</div>
+
+      <p>
+        منفی شدن فکر یا باور، درجهٔ قطعیت را کاهش می‌دهد و به همین دلیل Subjonctif بسیار طبیعی می‌شود.
+      </p>
+
+      <h3>سؤال رسمی با inversion</h3>
+      <div class="fg-example">Pensez-vous que cet homme soit coupable ?</div>
+
+      <p>
+        در زبان روزمره، ساخت‌هایی مانند
+        <span class="fg-fr-inline">Vous pensez qu’il est coupable ?</span>
+        ممکن است با Indicatif هم شنیده شوند. نوع سؤال و میزان قطعیت مهم است.
+      </p>
+
+      <h3>قضاوت با صفت</h3>
+      <div class="fg-example">Je trouve que Max a du talent.</div>
+      <div class="fg-example">Je trouve normal qu’il ait du succès.</div>
+
+      <div class="fg-callout fg-callout--tip">
+        <strong>الگو:</strong>
+        <span class="fg-fr-inline">Je trouve que + indicatif</span> برای مشاهده/نظر مستقیم؛
+        اما <span class="fg-fr-inline">Je trouve + adjectif + que + subjonctif</span>
+        برای داوری یا ارزیابی.
+      </div>
+    </section>
+
+    <section class="fg-card" id="fg-ne">
+      <h2><span class="fg-section-number">۶</span> <span class="fg-fr-inline">ne stylistique / ne explétif</span></h2>
+
+      <div class="fg-example">J’ai peur que Paul ne soit malade.</div>
+      <div class="fg-translation">می‌ترسم پل بیمار باشد.</div>
+
+      <div class="fg-callout fg-callout--warn">
+        <strong>این <span class="fg-fr-inline">ne</span> منفی نیست.</strong><br>
+        جمله معنی «می‌ترسم پل بیمار نباشد» نمی‌دهد؛ این
+        <span class="fg-fr-inline">ne</span> فقط یک عنصر سبکی/دستوری است.
+      </div>
+
+      <p>این ساخت مخصوصاً پس از موارد زیر دیده می‌شود:</p>
+      <ul class="fg-list">
+        <li><span class="fg-fr-inline">craindre que</span></li>
+        <li><span class="fg-fr-inline">avoir peur que</span></li>
+        <li><span class="fg-fr-inline">avant que</span></li>
+        <li><span class="fg-fr-inline">à moins que</span></li>
+      </ul>
+
+      <p>
+        در زبان گفتاری امروزی، این <span class="fg-fr-inline">ne</span> اغلب حذف می‌شود.
+      </p>
+    </section>
+
+    <section class="fg-card">
+      <h2><span class="fg-section-number">۷</span> ساختارهای غیرشخصی و درجهٔ قطعیت</h2>
+
+      <h3>ارزیابی، الزام یا توصیه → Subjonctif</h3>
+      <div class="fg-example">Il faut que vous veniez.</div>
+      <div class="fg-example">Il vaut mieux que vous partiez.</div>
+      <div class="fg-example">Il est important que vous veniez.</div>
+      <div class="fg-example">Il est dommage qu’il parte.</div>
+
+      <h3>قطعیت → Indicatif</h3>
+      <div class="fg-example">Il est évident qu’il partira.</div>
+      <div class="fg-example">Il est clair qu’il est prêt.</div>
+      <div class="fg-example">Il est certain qu’il viendra.</div>
+
+      <h3><span class="fg-fr-inline">probable</span> و <span class="fg-fr-inline">possible</span></h3>
+
+      <div class="fg-compare">
+        <div>
+          <h4>احتمال نسبتاً زیاد</h4>
+          <div class="fg-example">Il est probable que Paul partira.</div>
+          <div class="fg-translation">معمولاً Indicatif</div>
+        </div>
+        <div>
+          <h4>امکان / عدم قطعیت</h4>
+          <div class="fg-example">Il est possible que Paul parte.</div>
+          <div class="fg-translation">Subjonctif</div>
+        </div>
+      </div>
+
+      <div class="fg-callout fg-callout--purple">
+        <strong>جفتی که ارزش حفظ کردن دارد:</strong><br>
+        <span class="fg-fr-inline">probable → indicatif</span><br>
+        <span class="fg-fr-inline">possible → subjonctif</span>
+      </div>
+    </section>
+
+    <section class="fg-card" id="fg-relative">
+      <h2><span class="fg-section-number">۸</span> Subjonctif و «وجود نامطمئن»</h2>
+
+      <p>
+        در جمله‌های موصولی، اگر چیزی مشخص و موجود باشد، Indicatif طبیعی است؛ اما اگر دنبال چیزی هستیم
+        که هنوز معلوم نیست اصلاً وجود دارد یا نه، Subjonctif می‌تواند به‌کار رود.
+      </p>
+
+      <div class="fg-compare">
+        <div>
+          <h4>وجود معلوم / مشخص</h4>
+          <div class="fg-example">Je cherche une maison qui a un grand jardin.</div>
+          <div class="fg-translation">دنبال خانه‌ای هستم که می‌دانم باغ بزرگی دارد.</div>
+        </div>
+        <div>
+          <h4>وجود نامطمئن</h4>
+          <div class="fg-example">Je cherche une maison qui ait un grand jardin.</div>
+          <div class="fg-translation">دنبال خانه‌ای هستم که باغ بزرگی داشته باشد؛ معلوم نیست چنین خانه‌ای پیدا شود.</div>
+        </div>
+      </div>
+
+      <div class="fg-callout fg-callout--tip">
+        این تفاوت برای سطح B1+/B2 بسیار مهم است: Subjonctif فقط «صرف فعل» نیست؛
+        درجهٔ واقعیت و قطعیتِ مرجع را هم نشان می‌دهد.
+      </div>
+    </section>
+
+    <section class="fg-card" id="fg-past">
+      <h2><span class="fg-section-number">۹</span> Subjonctif présent یا passé؟</h2>
+
+      <h3>عمل همزمان یا هنوز انجام‌نشده → Subjonctif présent</h3>
+      <div class="fg-example">J’attends qu’il soit là.</div>
+      <div class="fg-example">J’ai attendu qu’il soit là.</div>
+      <div class="fg-example">J’attendrai qu’il soit là.</div>
+
+      <div class="fg-callout fg-callout--tip">
+        حتی اگر فعل اصلی گذشته یا آینده باشد، در فرانسهٔ امروز معمولاً برای عمل همزمان/بعدی
+        همان Subjonctif présent استفاده می‌شود.
+      </div>
+
+      <h3>عمل کامل‌شده → Subjonctif passé</h3>
+
+      <div class="fg-callout fg-callout--good">
+        <strong>ساخت:</strong>
+        <span class="fg-fr-inline">être / avoir au subjonctif + participe passé</span>
+      </div>
+
+      <div class="fg-example">Je regrette qu’il soit parti.</div>
+      <div class="fg-translation">متأسفم که رفته است.</div>
+
+      <div class="fg-example">Je suis contente qu’il ait trouvé un emploi.</div>
+      <div class="fg-translation">خوشحالم که کار پیدا کرده است.</div>
+
+      <div class="fg-two-col">
+        <div class="fg-mini-card">
+          <h4>با avoir</h4>
+          <div class="fg-fr">qu’il ait fait</div>
+          <div class="fg-fr">qu’elle ait compris</div>
+        </div>
+        <div class="fg-mini-card">
+          <h4>با être</h4>
+          <div class="fg-fr">qu’il soit arrivé</div>
+          <div class="fg-fr">qu’elle soit partie</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="fg-card" id="fg-conjunctions">
+      <h2><span class="fg-section-number">۱۰</span> حروف ربطی که Subjonctif می‌گیرند</h2>
+
+      <h3>هدف</h3>
+      <div class="fg-rule"><span class="fg-rule-badge">A</span><div><span class="fg-fr-inline">pour que</span> — برای اینکه</div></div>
+      <div class="fg-rule"><span class="fg-rule-badge">B</span><div><span class="fg-fr-inline">afin que</span> — برای اینکه</div></div>
+
+      <div class="fg-example">Je vous prête mes clés pour que vous puissiez rentrer.</div>
+
+      <h3>ترس</h3>
+      <div class="fg-rule"><span class="fg-rule-badge">A</span><div><span class="fg-fr-inline">de peur que</span></div></div>
+      <div class="fg-rule"><span class="fg-rule-badge">B</span><div><span class="fg-fr-inline">de crainte que</span></div></div>
+
+      <div class="fg-example">Nous avons accepté de peur qu’il ne parte.</div>
+
+      <h3>زمان و انتظار</h3>
+      <div class="fg-rule"><span class="fg-rule-badge">A</span><div><span class="fg-fr-inline">jusqu’à ce que</span></div></div>
+      <div class="fg-rule"><span class="fg-rule-badge">B</span><div><span class="fg-fr-inline">en attendant que</span></div></div>
+      <div class="fg-rule"><span class="fg-rule-badge">C</span><div><span class="fg-fr-inline">avant que</span></div></div>
+
+      <div class="fg-example">Je resterai jusqu’à ce qu’il revienne.</div>
+      <div class="fg-example">Rentrons avant qu’il ne pleuve.</div>
+
+      <div class="fg-callout fg-callout--danger">
+        <strong>استثنای مهم: <span class="fg-fr-inline">après que</span></strong><br>
+        در دستور معیار این سطح:
+        <span class="fg-fr-inline">après que + indicatif</span>
+      </div>
+
+      <div class="fg-example">Il est sorti après qu’il a fini son discours.</div>
+
+      <p>
+        در زبان واقعی ممکن است بعد از <span class="fg-fr-inline">après que</span> نیز Subjonctif شنیده شود،
+        اما برای دستور معیار و آزمون بهتر است Indicatif را مبنا قرار دهی.
+      </p>
+
+      <h3>Concession / مانع</h3>
+      <div class="fg-example">Bien qu’il soit tard, nous continuons.</div>
+      <div class="fg-example">Nous partirons à moins qu’il y ait une grève.</div>
+
+      <h3>شرط</h3>
+      <div class="fg-example">Tu peux sortir à condition que tu me dises où tu vas.</div>
+      <div class="fg-example">Pourvu qu’il fasse beau !</div>
+    </section>
+
+    <section class="fg-card" id="fg-summary">
+      <h2><span class="fg-section-number">۱۱</span> جمع‌بندی سریع و کاربردی</h2>
+
+      <div class="fg-table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>ساختار</th>
+              <th>حالت معمول</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="fg-table-fr">je pense que</td><td>Indicatif</td></tr>
+            <tr><td class="fg-table-fr">je crois que</td><td>Indicatif</td></tr>
+            <tr><td class="fg-table-fr">je suppose que</td><td>Indicatif</td></tr>
+            <tr><td class="fg-table-fr">j’imagine que</td><td>Indicatif</td></tr>
+            <tr><td class="fg-table-fr">j’espère que</td><td><strong>Indicatif</strong></td></tr>
+            <tr><td class="fg-table-fr">je ne pense pas que</td><td>Subjonctif</td></tr>
+            <tr><td class="fg-table-fr">je ne crois pas que</td><td>Subjonctif</td></tr>
+            <tr><td class="fg-table-fr">je veux que</td><td>Subjonctif</td></tr>
+            <tr><td class="fg-table-fr">j’aimerais que</td><td>Subjonctif</td></tr>
+            <tr><td class="fg-table-fr">je souhaite que</td><td>Subjonctif</td></tr>
+            <tr><td class="fg-table-fr">j’ai peur que</td><td>Subjonctif</td></tr>
+            <tr><td class="fg-table-fr">je regrette que</td><td>Subjonctif</td></tr>
+            <tr><td class="fg-table-fr">je suis content que</td><td>Subjonctif</td></tr>
+            <tr><td class="fg-table-fr">il faut que</td><td>Subjonctif</td></tr>
+            <tr><td class="fg-table-fr">il est important que</td><td>Subjonctif</td></tr>
+            <tr><td class="fg-table-fr">il est dommage que</td><td>Subjonctif</td></tr>
+            <tr><td class="fg-table-fr">il est possible que</td><td>Subjonctif</td></tr>
+            <tr><td class="fg-table-fr">il est certain que</td><td>Indicatif</td></tr>
+            <tr><td class="fg-table-fr">il est évident que</td><td>Indicatif</td></tr>
+            <tr><td class="fg-table-fr">il est probable que</td><td>Indicatif</td></tr>
+            <tr><td class="fg-table-fr">pour que</td><td>Subjonctif</td></tr>
+            <tr><td class="fg-table-fr">afin que</td><td>Subjonctif</td></tr>
+            <tr><td class="fg-table-fr">avant que</td><td>Subjonctif</td></tr>
+            <tr><td class="fg-table-fr">jusqu’à ce que</td><td>Subjonctif</td></tr>
+            <tr><td class="fg-table-fr">bien que</td><td>Subjonctif</td></tr>
+            <tr><td class="fg-table-fr">à moins que</td><td>Subjonctif</td></tr>
+            <tr><td class="fg-table-fr">à condition que</td><td>Subjonctif</td></tr>
+            <tr><td class="fg-table-fr">pourvu que</td><td>Subjonctif</td></tr>
+            <tr><td class="fg-table-fr">après que</td><td><strong>Indicatif</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="fg-callout fg-callout--purple">
+        <strong>روش تصمیم‌گیری سریع:</strong><br>
+        وقتی <span class="fg-fr-inline">que</span> دیدی، فوراً Subjonctif نگذار.
+        اول بپرس: «آیا این واقعیت/دانسته است، یا خواسته/احساس/ترس/الزام/شک/هدف/قضاوت/عدم‌قطعیت؟»
+      </div>
+
+      <div class="fg-summary-grid">
+        <div class="fg-summary-item">
+          <strong>واقعیت</strong>
+          <div class="fg-example">Je sais qu’il vient.</div>
+          <div>→ Indicatif</div>
+        </div>
+        <div class="fg-summary-item">
+          <strong>خواسته</strong>
+          <div class="fg-example">Je veux qu’il vienne.</div>
+          <div>→ Subjonctif</div>
+        </div>
+        <div class="fg-summary-item">
+          <strong>باور منفی</strong>
+          <div class="fg-example">Je ne crois pas qu’il vienne.</div>
+          <div>→ Subjonctif</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="fg-footer-note">
+      درس ۵۱ — Le Subjonctif · طراحی شده برای نمایش داخل یک Section/Div موجود و بدون تگ‌های ساختاری کل سند.
+    </div>
+  </div>
+</div>

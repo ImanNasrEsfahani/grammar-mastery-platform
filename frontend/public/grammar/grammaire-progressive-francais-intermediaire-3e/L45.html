@@ -1,0 +1,877 @@
+<div class="french-grammar-wrapper fg-root" dir="rtl">
+  <style scoped>
+    .french-grammar-wrapper{
+      --fg-navy:#12355b;
+      --fg-blue:#1f5f99;
+      --fg-blue-soft:#edf5fc;
+      --fg-green:#15803d;
+      --fg-green-soft:#ecfdf3;
+      --fg-red:#b42318;
+      --fg-red-soft:#fff1f0;
+      --fg-orange:#b54708;
+      --fg-orange-soft:#fff7ed;
+      --fg-purple:#6d4aff;
+      --fg-ink:#1f2937;
+      --fg-muted:#64748b;
+      --fg-line:#d9e2ec;
+      --fg-card:#ffffff;
+      --fg-bg:#f7fafc;
+      --fg-shadow:0 10px 30px rgba(18,53,91,.08);
+      font-family:Tahoma,"Vazirmatn","Segoe UI",Arial,sans-serif;
+      color:var(--fg-ink);
+      background:var(--fg-bg);
+      line-height:1.95;
+      border-radius:24px;
+      overflow:hidden;
+      direction:rtl;
+      text-align:right;
+    }
+    .french-grammar-wrapper *{box-sizing:border-box}
+    .french-grammar-wrapper .fg-shell{max-width:1120px;margin:0 auto;padding:26px}
+    .french-grammar-wrapper .fg-hero{
+      background:linear-gradient(135deg,#0f2f53,#1f5f99);
+      color:#fff;
+      padding:34px;
+      border-radius:22px;
+      box-shadow:var(--fg-shadow);
+      margin-bottom:22px;
+    }
+    .french-grammar-wrapper .fg-eyebrow{font-size:.82rem;opacity:.82;letter-spacing:.03em;margin-bottom:6px}
+    .french-grammar-wrapper .fg-hero h1{margin:0;font-size:clamp(1.65rem,4vw,2.55rem);line-height:1.45;color:#fff}
+    .french-grammar-wrapper .fg-hero p{margin:12px 0 0;max-width:900px;opacity:.95}
+    .french-grammar-wrapper .fg-badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+    .french-grammar-wrapper .fg-badge{
+      background:rgba(255,255,255,.14);
+      border:1px solid rgba(255,255,255,.24);
+      padding:5px 10px;
+      border-radius:999px;
+      font-size:.82rem;
+    }
+    .french-grammar-wrapper .fg-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+    .french-grammar-wrapper .fg-grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+    .french-grammar-wrapper .fg-card{
+      background:var(--fg-card);
+      border:1px solid var(--fg-line);
+      border-radius:18px;
+      padding:22px;
+      box-shadow:var(--fg-shadow);
+      margin:16px 0;
+    }
+    .french-grammar-wrapper .fg-card h2,
+    .french-grammar-wrapper .fg-card h3{
+      color:var(--fg-navy);
+      margin-top:0;
+      line-height:1.5;
+    }
+    .french-grammar-wrapper .fg-card h2{
+      font-size:1.35rem;
+      border-bottom:2px solid #e8eef5;
+      padding-bottom:10px;
+    }
+    .french-grammar-wrapper .fg-card h3{font-size:1.05rem;margin-top:20px}
+    .french-grammar-wrapper .fg-fr{
+      direction:ltr;
+      text-align:left;
+      unicode-bidi:isolate;
+      display:inline-block;
+      font-family:"Segoe UI",Arial,sans-serif;
+    }
+    .french-grammar-wrapper .fg-fr-block{
+      direction:ltr;
+      text-align:left;
+      unicode-bidi:isolate;
+      font-family:"Segoe UI",Arial,sans-serif;
+      background:#f8fbff;
+      border-left:4px solid var(--fg-blue);
+      padding:11px 14px;
+      border-radius:10px;
+      margin:10px 0;
+      line-height:1.75;
+    }
+    .french-grammar-wrapper .fg-correct{
+      background:var(--fg-green-soft);
+      border-right:4px solid var(--fg-green);
+      padding:12px 14px;
+      border-radius:12px;
+      margin:10px 0;
+    }
+    .french-grammar-wrapper .fg-wrong{
+      background:var(--fg-red-soft);
+      border-right:4px solid var(--fg-red);
+      padding:12px 14px;
+      border-radius:12px;
+      margin:10px 0;
+    }
+    .french-grammar-wrapper .fg-tip{
+      background:var(--fg-blue-soft);
+      border-right:4px solid var(--fg-blue);
+      padding:14px 16px;
+      border-radius:12px;
+      margin:14px 0;
+    }
+    .french-grammar-wrapper .fg-warning{
+      background:var(--fg-orange-soft);
+      border-right:4px solid var(--fg-orange);
+      padding:14px 16px;
+      border-radius:12px;
+      margin:14px 0;
+    }
+    .french-grammar-wrapper .fg-kicker{font-weight:700;color:var(--fg-navy)}
+    .french-grammar-wrapper .fg-table-wrap{
+      width:100%;
+      overflow-x:auto;
+      border:1px solid var(--fg-line);
+      border-radius:14px;
+      margin:14px 0;
+      background:#fff;
+      -webkit-overflow-scrolling:touch;
+    }
+    .french-grammar-wrapper table{width:100%;border-collapse:collapse;min-width:680px;font-size:.94rem}
+    .french-grammar-wrapper th,
+    .french-grammar-wrapper td{border:1px solid var(--fg-line);padding:11px 12px;vertical-align:top}
+    .french-grammar-wrapper th{background:var(--fg-navy);color:#fff;font-weight:700}
+    .french-grammar-wrapper tbody tr:nth-child(even){background:#f8fbfd}
+    .french-grammar-wrapper .fg-formula{
+      background:#0f2741;
+      color:#fff;
+      border-radius:13px;
+      padding:14px 16px;
+      margin:12px 0;
+      text-align:center;
+      font-weight:700;
+    }
+    .french-grammar-wrapper .fg-formula .fg-fr{color:#fff}
+    .french-grammar-wrapper .fg-mini{font-size:.9rem;color:var(--fg-muted)}
+    .french-grammar-wrapper .fg-section-title{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin:28px 0 8px;
+      color:var(--fg-navy);
+    }
+    .french-grammar-wrapper .fg-num{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-width:34px;
+      height:34px;
+      padding:0 9px;
+      border-radius:10px;
+      background:var(--fg-navy);
+      color:#fff;
+      font-weight:700;
+      flex:none;
+    }
+    .french-grammar-wrapper .fg-answer{
+      border:1px solid #ccebd5;
+      background:#fbfffc;
+      border-radius:14px;
+      padding:15px;
+      margin:12px 0;
+    }
+    .french-grammar-wrapper .fg-answer strong{color:var(--fg-green)}
+    .french-grammar-wrapper .fg-divider{height:1px;background:var(--fg-line);margin:24px 0}
+    .french-grammar-wrapper .fg-step{
+      display:grid;
+      grid-template-columns:46px minmax(0,1fr);
+      gap:12px;
+      align-items:start;
+      margin:12px 0;
+    }
+    .french-grammar-wrapper .fg-step-n{
+      width:38px;height:38px;border-radius:50%;
+      background:var(--fg-blue);color:#fff;
+      display:flex;align-items:center;justify-content:center;
+      font-weight:700;margin-top:3px;
+    }
+    .french-grammar-wrapper .fg-pair{
+      display:grid;grid-template-columns:1fr 52px 1fr;gap:10px;align-items:center;margin:12px 0;
+    }
+    .french-grammar-wrapper .fg-arrow{font-size:1.45rem;color:var(--fg-blue);font-weight:700;text-align:center}
+    .french-grammar-wrapper .fg-note-title{font-weight:800;color:var(--fg-orange)}
+    .french-grammar-wrapper .fg-footer{
+      background:#eef4f8;
+      border-top:1px solid var(--fg-line);
+      padding:20px 26px;
+      color:#475569;
+      font-size:.9rem;
+    }
+    .french-grammar-wrapper ul,
+    .french-grammar-wrapper ol{padding-right:24px;margin:8px 0}
+    .french-grammar-wrapper li{margin:5px 0}
+    @media(max-width:860px){
+      .french-grammar-wrapper .fg-grid-3{grid-template-columns:1fr}
+      .french-grammar-wrapper .fg-pair{grid-template-columns:1fr}
+      .french-grammar-wrapper .fg-arrow{transform:rotate(90deg)}
+    }
+    @media(max-width:760px){
+      .french-grammar-wrapper .fg-shell{padding:14px}
+      .french-grammar-wrapper .fg-hero{padding:24px 18px;border-radius:16px}
+      .french-grammar-wrapper .fg-grid{grid-template-columns:1fr}
+      .french-grammar-wrapper .fg-card{padding:17px;border-radius:15px}
+      .french-grammar-wrapper table{min-width:590px;font-size:.88rem}
+      .french-grammar-wrapper th,
+      .french-grammar-wrapper td{padding:9px}
+      .french-grammar-wrapper .fg-fr-block{overflow-wrap:anywhere}
+      .french-grammar-wrapper .fg-step{grid-template-columns:38px minmax(0,1fr);gap:9px}
+    }
+  </style>
+
+  <div class="fg-shell">
+
+    <section class="fg-hero">
+      <div class="fg-eyebrow">Grammaire Progressive du Français — Niveau intermédiaire</div>
+      <h1>درس ۴۵: <span class="fg-fr">Le discours indirect au passé</span></h1>
+      <p>
+        گفتار غیرمستقیم در گذشته؛ تبدیل گفته‌ها، افکار، خبرها و پرسش‌ها به روایت غیرمستقیم،
+        با تمرکز بر <span class="fg-fr">concordance des temps</span>، تغییر ضمیرها،
+        قیدهای زمان و کاربرد <span class="fg-fr">imparfait, plus-que-parfait</span> و
+        <span class="fg-fr">conditionnel présent</span>.
+      </p>
+      <div class="fg-badges">
+        <span class="fg-badge">درس 45</span>
+        <span class="fg-badge">صفحات چاپی: 216–219</span>
+        <span class="fg-badge">Discours rapporté</span>
+        <span class="fg-badge">Concordance des temps</span>
+        <span class="fg-badge">Futur dans le passé</span>
+      </div>
+    </section>
+
+    <section class="fg-card">
+      <h2>۱) گفتار مستقیم و گفتار غیرمستقیم</h2>
+      <p>
+        در <span class="fg-fr">discours direct</span> حرف شخص را تقریباً همان‌طور که گفته شده نقل می‌کنیم.
+        در <span class="fg-fr">discours indirect</span> همان پیام را داخل جملهٔ خودمان قرار می‌دهیم.
+      </p>
+
+      <div class="fg-pair">
+        <div class="fg-fr-block">Paul a dit : « Je suis fatigué. »</div>
+        <div class="fg-arrow">←</div>
+        <div class="fg-fr-block">Paul a dit qu’il était fatigué.</div>
+      </div>
+
+      <div class="fg-tip">
+        <span class="fg-kicker">در تبدیل چه چیزهایی ممکن است عوض شوند؟</span>
+        <ul>
+          <li>گیومه و دو نقطه حذف می‌شوند.</li>
+          <li>برای جملهٔ خبری معمولاً <span class="fg-fr">que</span> می‌آید.</li>
+          <li>ضمیرها و صفات ملکی با زاویهٔ دید جدید هماهنگ می‌شوند.</li>
+          <li>اگر فعل گزارش‌دهنده در گذشته باشد، زمان فعل جملهٔ نقل‌شده معمولاً به گذشته منتقل می‌شود.</li>
+          <li>بعضی قیدهای زمان و مکان نیز ممکن است تغییر کنند.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="fg-card">
+      <h2>۲) قاعدهٔ اصلی: <span class="fg-fr">La concordance des temps</span></h2>
+      <p>
+        وقتی فعل معرفی‌کننده مانند <span class="fg-fr">dire, expliquer, annoncer, penser, croire</span>
+        در گذشته باشد، زمان جملهٔ وابسته غالباً یک مرحله به عقب می‌رود.
+      </p>
+
+      <div class="fg-table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>زمان در گفتهٔ اصلی</th>
+              <th>گفتار غیرمستقیم پس از فعل گذشته</th>
+              <th>تبدیل نمونه</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="fg-fr">présent</span></td>
+              <td><span class="fg-fr">imparfait</span></td>
+              <td><span class="fg-fr">il est → il était</span></td>
+            </tr>
+            <tr>
+              <td><span class="fg-fr">passé composé</span></td>
+              <td><span class="fg-fr">plus-que-parfait</span></td>
+              <td><span class="fg-fr">il a écrit → il avait écrit</span></td>
+            </tr>
+            <tr>
+              <td><span class="fg-fr">futur proche</span></td>
+              <td><span class="fg-fr">aller à l’imparfait + infinitif</span></td>
+              <td><span class="fg-fr">il va partir → il allait partir</span></td>
+            </tr>
+            <tr>
+              <td><span class="fg-fr">futur simple</span></td>
+              <td><span class="fg-fr">conditionnel présent</span></td>
+              <td><span class="fg-fr">il partira → il partirait</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="fg-grid">
+        <div class="fg-correct">
+          <span class="fg-fr">Il dit : « Je suis écrivain. »</span><br>
+          <span class="fg-fr">Il m’a dit qu’il était écrivain.</span>
+        </div>
+        <div class="fg-correct">
+          <span class="fg-fr">Il dit : « J’ai écrit plusieurs romans. »</span><br>
+          <span class="fg-fr">Il m’a dit qu’il avait écrit plusieurs romans.</span>
+        </div>
+        <div class="fg-correct">
+          <span class="fg-fr">Il dit : « Je vais te donner mes livres. »</span><br>
+          <span class="fg-fr">Il m’a dit qu’il allait me donner ses livres.</span>
+        </div>
+        <div class="fg-correct">
+          <span class="fg-fr">Il dit : « Je te donnerai mes livres. »</span><br>
+          <span class="fg-fr">Il m’a dit qu’il me donnerait ses livres.</span>
+        </div>
+      </div>
+
+      <div class="fg-warning">
+        <span class="fg-kicker">نکتهٔ بسیار مهم:</span>
+        <span class="fg-fr">conditionnel présent</span> در این درس لزوماً «شرطی» نیست.
+        در جمله‌ای مثل <span class="fg-fr">Il a dit qu’il viendrait</span>،
+        شکل <span class="fg-fr">viendrait</span> نقش <strong>آینده از دید یک نقطه در گذشته</strong>
+        را دارد؛ یعنی <span class="fg-fr">le futur dans le passé</span>.
+      </div>
+    </section>
+
+    <section class="fg-card">
+      <h2>۳) زمان‌هایی که معمولاً تغییر ظاهری نمی‌کنند</h2>
+      <div class="fg-table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>زمان اولیه</th>
+              <th>بعد از فعل گزارش‌دهنده در گذشته</th>
+              <th>مثال</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="fg-fr">imparfait</span></td>
+              <td><span class="fg-fr">imparfait</span></td>
+              <td><span class="fg-fr">« J’étais malade. » → Elle a dit qu’elle était malade.</span></td>
+            </tr>
+            <tr>
+              <td><span class="fg-fr">plus-que-parfait</span></td>
+              <td><span class="fg-fr">plus-que-parfait</span></td>
+              <td><span class="fg-fr">« J’avais terminé. » → Il a dit qu’il avait terminé.</span></td>
+            </tr>
+            <tr>
+              <td><span class="fg-fr">conditionnel</span></td>
+              <td><span class="fg-fr">conditionnel</span></td>
+              <td><span class="fg-fr">« Je voudrais partir. » → Elle a dit qu’elle voudrait partir.</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="fg-tip">
+        علت این است که این زمان‌ها از قبل در ناحیهٔ «گذشته» یا «فرض/آینده در گذشته» قرار دارند و در بسیاری از
+        کاربردهای استاندارد نیاز به یک عقب‌گرد دیگر ندارند.
+      </div>
+    </section>
+
+    <section class="fg-card">
+      <h2>۴) <span class="fg-fr">imparfait</span> همیشه «گذشتهٔ واقعی» نیست</h2>
+      <p>
+        در گفتار غیرمستقیم، <span class="fg-fr">imparfait</span> ممکن است فقط نتیجهٔ هماهنگی زمان‌ها باشد.
+        بنابراین نباید همیشه آن را به معنی «دیگر تمام شده» تفسیر کرد.
+      </p>
+      <div class="fg-fr-block">Il m’a dit qu’il était allemand.</div>
+      <p>
+        این جمله می‌تواند به‌سادگی یعنی «او به من گفت که آلمانی است.»
+        عبارت <span class="fg-fr">était</span> به‌خاطر فعل گذشتهٔ
+        <span class="fg-fr">a dit</span> آمده است، نه لزوماً چون آن شخص دیگر آلمانی نیست.
+      </p>
+      <div class="fg-fr-block">Il m’a dit qu’il viendrait en mars.</div>
+      <p>
+        اینجا <span class="fg-fr">viendrait</span> آینده‌ای را بیان می‌کند که از نقطهٔ زمانیِ گذشته دیده می‌شود.
+      </p>
+    </section>
+
+    <section class="fg-card">
+      <h2>۵) استثنای مهم: حقیقتی که هنوز معتبر است</h2>
+      <p>
+        وقتی محتوای جمله یک حقیقت عمومی یا واقعیتی است که در لحظهٔ گزارش هنوز معتبر است،
+        زمان حال می‌تواند حفظ شود.
+      </p>
+      <div class="fg-correct">
+        <span class="fg-fr">Le professeur a expliqué que la Terre tourne autour du Soleil.</span>
+      </div>
+      <div class="fg-correct">
+        <span class="fg-fr">J’ai appris que l’eau bout à 100 degrés.</span>
+      </div>
+      <div class="fg-warning">
+        <span class="fg-note-title">در تمرین‌های آموزشی دقت کن:</span>
+        اگر دستور صریحاً می‌گوید «متن را به گذشته ببرید» یا هدف تمرین سنجش
+        <span class="fg-fr">concordance des temps</span> است، معمولاً باید همان تبدیل خواسته‌شده را انجام دهی،
+        حتی اگر در گفتار واقعی حفظ زمان حال هم ممکن باشد.
+      </div>
+    </section>
+
+    <section class="fg-card">
+      <h2>۶) تفاوت <span class="fg-fr">dire</span> با <span class="fg-fr">croire / penser</span></h2>
+      <div class="fg-grid">
+        <div>
+          <h3><span class="fg-fr">dire</span></h3>
+          <p>معمولاً یک رویداد گفتاری مشخص است و اغلب در <span class="fg-fr">passé composé</span> می‌آید.</p>
+          <div class="fg-fr-block">On m’a dit que…</div>
+        </div>
+        <div>
+          <h3><span class="fg-fr">croire / penser</span></h3>
+          <p>اغلب حالت ذهنی یا باورِ ادامه‌دار را بیان می‌کنند و طبیعی است در <span class="fg-fr">imparfait</span> بیایند.</p>
+          <div class="fg-fr-block">Je pensais qu’elle habitait à Paris.<br>Je croyais qu’il était anglais.</div>
+        </div>
+      </div>
+      <div class="fg-tip">
+        مقایسه:
+        <span class="fg-fr">J’ai pensé à toi hier.</span> = دیروز به تو فکر کردم؛ یک رویداد مشخص.<br>
+        <span class="fg-fr">Je pensais que tu étais à Montréal.</span> = فکر می‌کردم در مونترال هستی؛ یک باور یا تصور.
+      </div>
+    </section>
+
+    <section class="fg-card">
+      <h2>۷) تغییر ضمیرها و صفات ملکی</h2>
+      <p>
+        تبدیل ضمیرها مکانیکی نیست. باید ببینی <strong>چه کسی</strong> حرف زده،
+        <strong>به چه کسی</strong> گفته و حالا <strong>چه کسی</strong> دارد آن را گزارش می‌کند.
+      </p>
+
+      <div class="fg-pair">
+        <div class="fg-fr-block">Thérèse a dit : « Je vais voir mon père. »</div>
+        <div class="fg-arrow">←</div>
+        <div class="fg-fr-block">Thérèse a dit qu’elle allait voir son père.</div>
+      </div>
+
+      <div class="fg-table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>در گفتار مستقیم</th>
+              <th>ممکن است در گزارش تبدیل شود به</th>
+              <th>چرا؟</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><span class="fg-fr">je</span></td><td><span class="fg-fr">il / elle</span></td><td>گوینده دیگر شخصِ «من» در جملهٔ گزارش‌کننده نیست.</td></tr>
+            <tr><td><span class="fg-fr">mon / ma / mes</span></td><td><span class="fg-fr">son / sa / ses</span></td><td>مالک از زاویهٔ دید جدید بیان می‌شود.</td></tr>
+            <tr><td><span class="fg-fr">vous</span></td><td><span class="fg-fr">nous / ils / elles / vous</span></td><td>بستگی به مخاطبان اصلی و گزارش‌کننده دارد.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="fg-warning">
+        مثال مهم: اگر کسی به من و دوستانم بگوید
+        <span class="fg-fr">« Je vous rejoindrai. »</span>
+        و من بعداً برای همان گروه گزارش کنم، طبیعی است بگویم:
+        <span class="fg-fr">Il a dit qu’il nous rejoindrait.</span>
+      </div>
+    </section>
+
+    <section class="fg-card">
+      <h2>۸) تغییر قیدهای زمان و مکان</h2>
+      <p>
+        این تغییرها به فاصلهٔ زمانی و مکانی بین لحظهٔ گفتن و لحظهٔ گزارش بستگی دارند.
+        بنابراین همیشه اجباری و مکانیکی نیستند.
+      </p>
+      <div class="fg-table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>گفتار مستقیم</th>
+              <th>گزارش از یک نقطهٔ زمانی دیگر</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><span class="fg-fr">aujourd’hui</span></td><td><span class="fg-fr">ce jour-là</span></td></tr>
+            <tr><td><span class="fg-fr">hier</span></td><td><span class="fg-fr">la veille</span></td></tr>
+            <tr><td><span class="fg-fr">demain</span></td><td><span class="fg-fr">le lendemain</span></td></tr>
+            <tr><td><span class="fg-fr">avant-hier</span></td><td><span class="fg-fr">l’avant-veille</span></td></tr>
+            <tr><td><span class="fg-fr">après-demain</span></td><td><span class="fg-fr">le surlendemain</span></td></tr>
+            <tr><td><span class="fg-fr">ce matin</span></td><td><span class="fg-fr">ce matin-là</span></td></tr>
+            <tr><td><span class="fg-fr">la semaine prochaine</span></td><td><span class="fg-fr">la semaine suivante</span></td></tr>
+            <tr><td><span class="fg-fr">la semaine dernière</span></td><td><span class="fg-fr">la semaine précédente</span></td></tr>
+            <tr><td><span class="fg-fr">mardi prochain</span></td><td><span class="fg-fr">le mardi suivant</span></td></tr>
+            <tr><td><span class="fg-fr">ici</span></td><td><span class="fg-fr">là</span></td></tr>
+            <tr><td><span class="fg-fr">maintenant</span></td><td><span class="fg-fr">à ce moment-là</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="fg-tip">
+        اگر گزارش هنوز در همان روز/هفته/مکان انجام شود، ممکن است عبارت اصلی کاملاً طبیعی باقی بماند.
+        برای مثال <span class="fg-fr">mardi prochain</span> را فقط وقتی به
+        <span class="fg-fr">le mardi suivant</span> تبدیل کن که چارچوب زمانی واقعاً جابه‌جا شده باشد
+        یا تمرین مشخصاً چنین تبدیلی بخواهد.
+      </div>
+    </section>
+
+    <section class="fg-card">
+      <h2>۹) گزارش کردن سؤال‌ها</h2>
+
+      <h3>الف) سؤال بله/خیر: <span class="fg-fr">si</span></h3>
+      <div class="fg-pair">
+        <div class="fg-fr-block">Elle m’a demandé : « Tu es prêt ? »</div>
+        <div class="fg-arrow">←</div>
+        <div class="fg-fr-block">Elle m’a demandé si j’étais prêt.</div>
+      </div>
+
+      <div class="fg-wrong">
+        <span class="fg-fr">Elle m’a demandé si étais-je prêt.</span> ❌
+      </div>
+      <div class="fg-correct">
+        <span class="fg-fr">Elle m’a demandé si j’étais prêt.</span> ✅
+      </div>
+      <p>
+        در سؤال غیرمستقیم، ترتیب جمله خبری است؛ دیگر
+        <span class="fg-fr">est-ce que</span> یا وارونگی فاعل و فعل نداریم.
+      </p>
+
+      <h3>ب) سؤال با واژهٔ پرسشی</h3>
+      <div class="fg-fr-block">
+        « Pourquoi tu pars ? » → Elle a demandé pourquoi je partais.<br>
+        « Où habites-tu ? » → Il m’a demandé où j’habitais.
+      </div>
+
+      <h3>ج) <span class="fg-fr">qu’est-ce que / qu’est-ce qui</span></h3>
+      <div class="fg-fr-block">
+        Qu’est-ce que tu fais ? → Il m’a demandé ce que je faisais.<br>
+        Qu’est-ce qui se passe ? → Il m’a demandé ce qui se passait.
+      </div>
+    </section>
+
+    <section class="fg-card">
+      <h2>۱۰) گزارش دستور و درخواست</h2>
+      <p>
+        برای دستور، توصیه یا درخواست معمولاً از
+        <span class="fg-fr">de + infinitif</span> استفاده می‌کنیم.
+      </p>
+      <div class="fg-pair">
+        <div class="fg-fr-block">Il m’a dit : « Ferme la porte. »</div>
+        <div class="fg-arrow">←</div>
+        <div class="fg-fr-block">Il m’a dit de fermer la porte.</div>
+      </div>
+      <div class="fg-pair">
+        <div class="fg-fr-block">Il m’a dit : « Ne pars pas. »</div>
+        <div class="fg-arrow">←</div>
+        <div class="fg-fr-block">Il m’a dit de ne pas partir.</div>
+      </div>
+      <div class="fg-formula">
+        <span class="fg-fr">dire / demander / conseiller à quelqu’un de + infinitif</span>
+      </div>
+    </section>
+
+    <section class="fg-card">
+      <h2>۱۱) روش سریع تبدیل جمله در امتحان</h2>
+      <div class="fg-step">
+        <div class="fg-step-n">1</div>
+        <div><strong>فعل گزارش‌دهنده را پیدا کن.</strong> اگر گذشته است، احتمال <span class="fg-fr">backshift</span> را بررسی کن.</div>
+      </div>
+      <div class="fg-step">
+        <div class="fg-step-n">2</div>
+        <div><strong>نوع جمله را تشخیص بده.</strong> خبری → <span class="fg-fr">que</span>؛ بله/خیر → <span class="fg-fr">si</span>؛ پرسشی → واژهٔ پرسشی؛ دستور → <span class="fg-fr">de + infinitif</span>.</div>
+      </div>
+      <div class="fg-step">
+        <div class="fg-step-n">3</div>
+        <div><strong>ضمیرها و ملکی‌ها را از نو محاسبه کن.</strong> از زاویهٔ دید گزارش‌کننده.</div>
+      </div>
+      <div class="fg-step">
+        <div class="fg-step-n">4</div>
+        <div><strong>زمان فعل را تبدیل کن.</strong> <span class="fg-fr">présent → imparfait</span>، <span class="fg-fr">passé composé → plus-que-parfait</span>، <span class="fg-fr">futur → conditionnel</span>.</div>
+      </div>
+      <div class="fg-step">
+        <div class="fg-step-n">5</div>
+        <div><strong>قید زمان/مکان را کنترل کن.</strong> فقط اگر چارچوب زمانی یا مکانی عوض شده باشد.</div>
+      </div>
+      <div class="fg-step">
+        <div class="fg-step-n">6</div>
+        <div><strong>جملهٔ نهایی را از نظر معنا بخوان.</strong> تبدیل باید علاوه بر شکل دستوری، از نظر ارجاع و معنی هم درست باشد.</div>
+      </div>
+    </section>
+
+    <section class="fg-card">
+      <h2>۱۲) اشتباهات رایج و دام‌های مهم</h2>
+      <div class="fg-wrong"><span class="fg-fr">Il a dit qu’il est fatigué.</span> ❌ در تمرین استانداردِ تبدیلِ گذشته</div>
+      <div class="fg-correct"><span class="fg-fr">Il a dit qu’il était fatigué.</span> ✅</div>
+
+      <div class="fg-wrong"><span class="fg-fr">Elle a demandé si étais-je prêt.</span> ❌</div>
+      <div class="fg-correct"><span class="fg-fr">Elle a demandé si j’étais prêt.</span> ✅</div>
+
+      <div class="fg-wrong"><span class="fg-fr">Il a dit qu’il viendra.</span> ❌ اگر آینده نسبت به یک فعل گذشته گزارش می‌شود</div>
+      <div class="fg-correct"><span class="fg-fr">Il a dit qu’il viendrait.</span> ✅</div>
+
+      <div class="fg-warning">
+        <span class="fg-kicker">دام معنایی:</span>
+        تبدیل ضمیر را فقط بر اساس جدول انجام نده.
+        مثلاً <span class="fg-fr">vous</span> ممکن است در گزارش به
+        <span class="fg-fr">nous</span>، <span class="fg-fr">ils</span> یا حتی همان
+        <span class="fg-fr">vous</span> تبدیل شود.
+      </div>
+
+      <div class="fg-warning">
+        <span class="fg-kicker">دام زمانی:</span>
+        تغییر <span class="fg-fr">aujourd’hui → ce jour-là</span> و مانند آن فقط وقتی لازم است که مرجع زمان جابه‌جا شده باشد.
+      </div>
+    </section>
+
+    <div class="fg-section-title">
+      <span class="fg-num">✓</span>
+      <h2>تمرین‌های درس ۴۵ — پاسخ تشریحی</h2>
+    </div>
+
+    <section class="fg-card">
+      <h2>تمرین صفحهٔ ۲۱۷ — تبدیل خبرها به گفتار غیرمستقیم</h2>
+      <p class="fg-mini">
+        در این بخش، هدف اصلی تشخیص تبدیل زمان‌ها پس از فعل گزارش‌دهنده در گذشته است.
+      </p>
+
+      <div class="fg-answer">
+        <strong>۱.</strong>
+        <span class="fg-fr">Oui, on m’a dit qu’il était en panne.</span><br>
+        نکته: <span class="fg-fr">est → était</span>.
+      </div>
+
+      <div class="fg-answer">
+        <strong>۲.</strong>
+        <span class="fg-fr">Oui, on m’a dit qu’à midi, il y avait du couscous à la cantine.</span><br>
+        نکته: <span class="fg-fr">il y a → il y avait</span>.
+      </div>
+
+      <div class="fg-answer">
+        <strong>۳.</strong>
+        <span class="fg-fr">Oui, on m’a dit qu’on avait volé le vélo du professeur.</span><br>
+        نکته: <span class="fg-fr">passé composé → plus-que-parfait</span>.
+      </div>
+
+      <div class="fg-answer">
+        <strong>۴.</strong>
+        <span class="fg-fr">Oui, je savais que la secrétaire avait démissionné.</span><br>
+        نکته: رویدادِ استعفا قبل از دانستن قرار می‌گیرد، پس <span class="fg-fr">plus-que-parfait</span>.
+      </div>
+
+      <div class="fg-answer">
+        <strong>۵.</strong>
+        <span class="fg-fr">Oui, on m’a dit que Monsieur Bidois allait prendre sa retraite.</span><br>
+        نکته: <span class="fg-fr">va prendre → allait prendre</span>.
+      </div>
+
+      <div class="fg-answer">
+        <strong>۶.</strong>
+        <span class="fg-fr">Oui, on m’a dit que l’école allait fermer cet été-là.</span><br>
+        نکته: اگر گزارش هنوز در همان تابستان باشد، <span class="fg-fr">cet été</span> نیز ممکن است.
+      </div>
+
+      <div class="fg-answer">
+        <strong>۷.</strong>
+        <span class="fg-fr">Oui, je savais que nous ferions une fête de fin d’année.</span><br>
+        نکته: <span class="fg-fr">futur simple → conditionnel présent</span>.
+      </div>
+
+      <div class="fg-answer">
+        <strong>۸.</strong>
+        <span class="fg-fr">Oui, on m’a dit qu’il y aurait un orchestre cubain et qu’on danserait.</span><br>
+        نکته: <span class="fg-fr">aura → aurait</span> و <span class="fg-fr">dansera → danserait</span>.
+      </div>
+    </section>
+
+    <section class="fg-card">
+      <h2>تمرین صفحهٔ ۲۱۷ — بازنویسی گفت‌وگوها</h2>
+
+      <h3>گفت‌وگوی Thérèse</h3>
+      <div class="fg-answer">
+        <span class="fg-fr">Elle a dit qu’elle était dans le train et qu’elle allait à Nice voir son père. Elle a dit qu’elle avait signé tous les contrats et qu’elle reviendrait le mardi suivant.</span>
+      </div>
+      <div class="fg-tip">
+        زنجیرهٔ تبدیل:
+        <span class="fg-fr">je → elle</span>،
+        <span class="fg-fr">suis → était</span>،
+        <span class="fg-fr">vais → allait</span>،
+        <span class="fg-fr">mon père → son père</span>،
+        <span class="fg-fr">ai signé → avait signé</span>،
+        <span class="fg-fr">reviendrai → reviendrait</span>.
+      </div>
+
+      <h3>گفت‌وگوی Arnaud</h3>
+      <div class="fg-answer">
+        <span class="fg-fr">Arnaud a dit qu’il venait de rentrer, qu’il allait se changer et qu’il nous rejoindrait devant le cinéma. Il a ajouté que, s’il arrivait en retard, il nous attendrait à la sortie.</span>
+      </div>
+      <div class="fg-warning">
+        در جملهٔ شرطیِ نقل‌شده:
+        <span class="fg-fr">si j’arrive → s’il arrivait</span> و
+        <span class="fg-fr">je vous attendrai → il nous attendrait</span>.
+        شکل نهایی شبیه شرط فرضی است، اما در متن اصلی می‌تواند صرفاً شرط واقعی دربارهٔ آینده بوده باشد.
+      </div>
+
+      <h3>گفت‌وگوی دانشجو</h3>
+      <div class="fg-answer">
+        <span class="fg-fr">Il a dit qu’il était étudiant, qu’il avait perdu ses lunettes ce matin-là, qu’il les avait peut-être oubliées en salle 11 et qu’il rappellerait dans l’après-midi.</span>
+      </div>
+      <div class="fg-tip">
+        در <span class="fg-fr">les avait oubliées</span>، ضمیر مستقیم
+        <span class="fg-fr">les</span> قبل از فعل قرار دارد و به
+        <span class="fg-fr">lunettes</span> مؤنث جمع اشاره می‌کند؛ بنابراین
+        <span class="fg-fr">oubliées</span> با آن تطابق می‌گیرد.
+      </div>
+    </section>
+
+    <section class="fg-card">
+      <h2>تمرین صفحهٔ ۲۱۸ — «نمی‌دانستم که...»</h2>
+      <div class="fg-answer">
+        <strong>۱.</strong>
+        <span class="fg-fr">Non, on ne m’avait pas dit qu’il était parti en croisière en Égypte.</span>
+      </div>
+      <div class="fg-answer">
+        <strong>۲.</strong>
+        <span class="fg-fr">Non, je ne savais pas qu’il était tombé malade pendant le voyage.</span>
+      </div>
+      <div class="fg-answer">
+        <strong>۳.</strong>
+        <span class="fg-fr">Non, je ne savais pas qu’un docteur chinois l’avait guéri avec des algues.</span>
+      </div>
+      <div class="fg-answer">
+        <strong>۴.</strong>
+        <span class="fg-fr">Non, je ne savais pas qu’il était devenu l’associé d’un grand armateur.</span>
+      </div>
+      <div class="fg-answer">
+        <strong>۵.</strong>
+        <span class="fg-fr">Non, on ne m’avait pas dit qu’il allait épouser une princesse arabe.</span>
+      </div>
+      <div class="fg-tip">
+        افعال حرکتی/تغییر حالت مانند <span class="fg-fr">partir, tomber, devenir</span>
+        در زمان‌های مرکب با <span class="fg-fr">être</span> ساخته می‌شوند؛ در
+        <span class="fg-fr">plus-que-parfait</span> نیز همان منطق حفظ می‌شود:
+        <span class="fg-fr">était parti, était tombé, était devenu</span>.
+      </div>
+    </section>
+
+    <section class="fg-card">
+      <h2>تمرین صفحهٔ ۲۱۸ — بردن متن به گذشته</h2>
+
+      <div class="fg-answer">
+        <strong>۱.</strong>
+        <span class="fg-fr">J’ai lu dans une revue que les chiens voyaient seulement en noir et blanc.</span><br>
+        نکته: <span class="fg-fr">voient → voyaient</span>.
+      </div>
+
+      <div class="fg-answer">
+        <strong>۲.</strong>
+        <span class="fg-fr">J’ai lu dans un magazine que les petites filles étaient plus douées pour les langues, mais que les petits garçons savaient mieux se situer dans l’espace.</span>
+      </div>
+
+      <div class="fg-answer">
+        <strong>۳.</strong>
+        <span class="fg-fr">J’ai lu dans le journal que beaucoup d’animaux et de plantes disparaîtraient d’ici vingt ans et qu’il fallait les protéger de toute urgence.</span><br>
+        نکته: <span class="fg-fr">disparaîtront → disparaîtraient</span> و
+        <span class="fg-fr">il faut → il fallait</span>.
+      </div>
+
+      <div class="fg-answer">
+        <strong>۴.</strong>
+        <span class="fg-fr">J’ai lu dans un magazine qu’il y avait un marché noir des armes nucléaires et que n’importe qui pourrait bientôt s’acheter une bombe atomique.</span><br>
+        نکته: <span class="fg-fr">il y a → il y avait</span> و
+        <span class="fg-fr">pourra → pourrait</span>.
+      </div>
+
+      <div class="fg-warning">
+        اگر جمله واقعاً یک حقیقت عمومی و هنوز معتبر باشد، حفظ زمان حال گاهی ممکن است؛
+        ولی در تمرینی که صریحاً «بردن متن به گذشته» را می‌سنجد، پاسخ مورد انتظار معمولاً همان
+        <span class="fg-fr">backshift</span> است.
+      </div>
+    </section>
+
+    <section class="fg-card">
+      <h2>تمرین آزاد صفحهٔ ۲۱۸ — گزارش خبر</h2>
+      <p>این تمرین پاسخ یگانه ندارد. الگوهای مناسب:</p>
+      <div class="fg-fr-block">
+        J’ai lu dans le journal qu’une équipe scientifique avait découvert une nouvelle méthode pour recycler les batteries.<br><br>
+        J’ai entendu aux informations qu’une grande ville allait interdire les voitures les plus polluantes.
+      </div>
+      <div class="fg-tip">
+        برای ساخت پاسخ خوب، یک فعل گزارش‌دهندهٔ گذشته انتخاب کن، بعد زمان خبر را نسبت به همان نقطهٔ گذشته تنظیم کن.
+      </div>
+    </section>
+
+    <section class="fg-card">
+      <h2>تمرین صفحهٔ ۲۱۹ — تعریف خواب‌ها با گفتار غیرمستقیم</h2>
+
+      <div class="fg-answer">
+        <strong>۱.</strong>
+        <span class="fg-fr">J’ai rêvé que j’étais un oiseau, que je volais au-dessus de la ville et que je voyais l’intérieur des maisons.</span>
+      </div>
+
+      <div class="fg-answer">
+        <strong>۲.</strong>
+        <span class="fg-fr">J’ai rêvé que je devais prendre l’avion, mais que l’aéroport avait disparu et que je me retrouvais au milieu du désert.</span>
+      </div>
+
+      <div class="fg-answer">
+        <strong>۳.</strong>
+        <span class="fg-fr">J’ai rêvé que j’avais acheté un réveil, mais qu’il se transformait en machine à remonter le temps et que je me retrouvais à l’époque préhistorique.</span>
+      </div>
+
+      <div class="fg-answer">
+        <strong>۴.</strong>
+        <span class="fg-fr">J’ai rêvé que je devais participer à un match de boxe et que j’étais un peu nerveux parce que mon adversaire était un type énorme. Mais je savais qu’il avait un point faible et que je gagnerais.</span>
+      </div>
+
+      <div class="fg-tip">
+        دقت کن که داخل یک خواب هم می‌توان ترتیب زمانی داشت:
+        اتفاقی که پیش از رویداد اصلی خواب رخ داده است معمولاً با
+        <span class="fg-fr">plus-que-parfait</span> بیان می‌شود؛
+        مانند <span class="fg-fr">j’avais acheté</span>.
+      </div>
+
+      <h3>نمونهٔ آزاد</h3>
+      <div class="fg-fr-block">J’ai rêvé que je marchais sur la Lune et que je pouvais respirer sans combinaison.</div>
+    </section>
+
+    <section class="fg-card">
+      <h2>تمرین صفحهٔ ۲۱۹ — بازسازی روایت در گذشته</h2>
+      <p>
+        این نوع تمرین می‌خواهد روایت مستقیم را به یک روایت گذشته با ساخت‌های مناسب گفتار غیرمستقیم تبدیل کنی.
+        برای مثال شروع طبیعی می‌تواند چنین باشد:
+      </p>
+      <div class="fg-fr-block">
+        Le soir, Marie est venue me chercher et elle m’a demandé si je voulais me marier avec elle.
+      </div>
+      <div class="fg-tip">
+        نکتهٔ کلیدی این تمرین، ترکیب چند مهارت است:
+        <span class="fg-fr">demander si + imparfait</span>،
+        تغییر ضمیرها و حفظ منطق زمانی روایت.
+      </div>
+    </section>
+
+    <section class="fg-card">
+      <h2>۱۳) جمع‌بندی نهایی درس</h2>
+      <div class="fg-table-wrap">
+        <table>
+          <thead>
+            <tr><th>اگر در گفتار مستقیم ببینی</th><th>بعد از فعل گزارش‌دهنده در گذشته معمولاً می‌شود</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><span class="fg-fr">présent</span></td><td><span class="fg-fr">imparfait</span></td></tr>
+            <tr><td><span class="fg-fr">passé composé</span></td><td><span class="fg-fr">plus-que-parfait</span></td></tr>
+            <tr><td><span class="fg-fr">futur proche</span></td><td><span class="fg-fr">allait + infinitif</span></td></tr>
+            <tr><td><span class="fg-fr">futur simple</span></td><td><span class="fg-fr">conditionnel présent</span></td></tr>
+            <tr><td><span class="fg-fr">imparfait</span></td><td><span class="fg-fr">imparfait</span></td></tr>
+            <tr><td><span class="fg-fr">plus-que-parfait</span></td><td><span class="fg-fr">plus-que-parfait</span></td></tr>
+            <tr><td><span class="fg-fr">question oui/non</span></td><td><span class="fg-fr">si + ordre déclaratif</span></td></tr>
+            <tr><td><span class="fg-fr">ordre / demande</span></td><td><span class="fg-fr">de + infinitif</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="fg-correct">
+        <strong>قانون طلایی:</strong>
+        ابتدا معنی و زاویهٔ دید را مشخص کن؛ بعد زمان، ضمیر و قید را تبدیل کن.
+        اگر فقط زمان فعل را عوض کنی ولی مرجع ضمیر یا زمان را اشتباه بگذاری، جمله از نظر گرامری ممکن است ظاهراً درست باشد اما از نظر معنا غلط می‌شود.
+      </div>
+    </section>
+
+  </div>
+
+  <div class="fg-footer">
+    درس ۴۵ — <span class="fg-fr">Le discours indirect au passé</span> |
+    محتوای آموزشی برای استفاده داخل صفحهٔ موجود طراحی شده و عمداً فاقد
+    <span class="fg-fr">&lt;html&gt;</span>،
+    <span class="fg-fr">&lt;head&gt;</span>،
+    <span class="fg-fr">&lt;body&gt;</span> و
+    <span class="fg-fr">&lt;!DOCTYPE&gt;</span> است.
+  </div>
+</div>

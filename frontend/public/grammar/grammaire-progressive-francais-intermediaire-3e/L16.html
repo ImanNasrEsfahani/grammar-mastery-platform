@@ -1,0 +1,833 @@
+<div class="french-grammar-wrapper fg-lesson16" dir="rtl" data-lesson="16">
+  <style>
+    .fg-lesson16 {
+      --fg-navy: #123b6d;
+      --fg-blue: #1f5fa8;
+      --fg-blue-soft: #eaf3ff;
+      --fg-ink: #1f2937;
+      --fg-muted: #64748b;
+      --fg-border: #d8e2ee;
+      --fg-surface: #ffffff;
+      --fg-surface-alt: #f7f9fc;
+      --fg-green: #147d52;
+      --fg-green-soft: #eaf8f1;
+      --fg-orange: #b95f09;
+      --fg-orange-soft: #fff4e5;
+      --fg-red: #b42318;
+      --fg-red-soft: #fff0ef;
+      --fg-purple: #6b4eff;
+      --fg-shadow: 0 12px 30px rgba(18, 59, 109, 0.08);
+      --fg-radius-lg: 20px;
+      --fg-radius-md: 14px;
+      --fg-radius-sm: 10px;
+      width: 100%;
+      color: var(--fg-ink);
+      background: transparent;
+      direction: rtl;
+      text-align: right;
+      font-family: Vazirmatn, IRANSans, "Segoe UI", Tahoma, Arial, sans-serif;
+      line-height: 1.9;
+      font-size: 16px;
+    }
+
+    .fg-lesson16,
+    .fg-lesson16 * {
+      box-sizing: border-box;
+    }
+
+    .fg-lesson16 .fg-shell {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 18px;
+    }
+
+    .fg-lesson16 .fg-hero {
+      position: relative;
+      overflow: hidden;
+      padding: 30px;
+      border: 1px solid #cfe0f5;
+      border-radius: var(--fg-radius-lg);
+      background: linear-gradient(135deg, #f8fbff 0%, #edf5ff 60%, #f7fbff 100%);
+      box-shadow: var(--fg-shadow);
+      margin-bottom: 22px;
+    }
+
+    .fg-lesson16 .fg-hero::after {
+      content: "16";
+      position: absolute;
+      left: 22px;
+      top: -24px;
+      font: 800 124px/1 "Segoe UI", Arial, sans-serif;
+      color: rgba(18, 59, 109, 0.055);
+      direction: ltr;
+    }
+
+    .fg-lesson16 .fg-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: var(--fg-navy);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .fg-lesson16 .fg-hero h2,
+    .fg-lesson16 .fg-section-title,
+    .fg-lesson16 .fg-card h3,
+    .fg-lesson16 .fg-card h4 {
+      margin: 0;
+      color: var(--fg-navy);
+    }
+
+    .fg-lesson16 .fg-hero h2 {
+      font-size: clamp(24px, 4vw, 38px);
+      line-height: 1.45;
+      margin-bottom: 8px;
+    }
+
+    .fg-lesson16 .fg-subtitle {
+      margin: 0 0 16px;
+      color: var(--fg-muted);
+      font-size: 15px;
+    }
+
+    .fg-lesson16 .fg-fr,
+    .fg-lesson16 .fg-fr-inline {
+      direction: ltr;
+      text-align: left;
+      unicode-bidi: isolate;
+      display: inline-block;
+      font-family: "Segoe UI", Inter, Arial, sans-serif;
+      letter-spacing: 0.01em;
+    }
+
+    .fg-lesson16 .fg-fr-block {
+      direction: ltr;
+      text-align: left;
+      unicode-bidi: plaintext;
+      font-family: "Segoe UI", Inter, Arial, sans-serif;
+    }
+
+    .fg-lesson16 .fg-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 16px;
+    }
+
+    .fg-lesson16 .fg-chip {
+      border: 1px solid #cfe0f5;
+      background: rgba(255, 255, 255, 0.85);
+      color: var(--fg-navy);
+      border-radius: 999px;
+      padding: 7px 11px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .fg-lesson16 .fg-section {
+      margin: 28px 0;
+    }
+
+    .fg-lesson16 .fg-section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 24px;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #dceafb;
+    }
+
+    .fg-lesson16 .fg-section-no {
+      flex: 0 0 auto;
+      width: 34px;
+      height: 34px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      background: var(--fg-navy);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 800;
+      direction: ltr;
+    }
+
+    .fg-lesson16 .fg-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .fg-lesson16 .fg-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .fg-lesson16 .fg-card {
+      background: var(--fg-surface);
+      border: 1px solid var(--fg-border);
+      border-radius: var(--fg-radius-md);
+      padding: 20px;
+      box-shadow: 0 7px 22px rgba(31, 95, 168, 0.055);
+    }
+
+    .fg-lesson16 .fg-card h3 {
+      font-size: 19px;
+      margin-bottom: 10px;
+    }
+
+    .fg-lesson16 .fg-card h4 {
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    .fg-lesson16 .fg-card p {
+      margin: 8px 0;
+    }
+
+    .fg-lesson16 .fg-rule {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 16px;
+      margin: 14px 0;
+      border-radius: var(--fg-radius-md);
+      background: var(--fg-blue-soft);
+      border: 1px dashed #9fc3eb;
+      color: var(--fg-navy);
+      font-weight: 800;
+    }
+
+    .fg-lesson16 .fg-rule .fg-token {
+      direction: ltr;
+      unicode-bidi: isolate;
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 10px;
+      border-radius: 8px;
+      background: #fff;
+      border: 1px solid #c9dcf3;
+      font-family: "Segoe UI", Inter, Arial, sans-serif;
+    }
+
+    .fg-lesson16 .fg-callout {
+      margin: 14px 0;
+      padding: 14px 16px;
+      border-radius: var(--fg-radius-md);
+      border: 1px solid transparent;
+      border-right-width: 5px;
+    }
+
+    .fg-lesson16 .fg-callout strong {
+      display: inline-block;
+      margin-bottom: 4px;
+    }
+
+    .fg-lesson16 .fg-info {
+      background: var(--fg-blue-soft);
+      border-color: #9fc3eb;
+      color: #173f70;
+    }
+
+    .fg-lesson16 .fg-success {
+      background: var(--fg-green-soft);
+      border-color: #87cfad;
+      color: #125c3e;
+    }
+
+    .fg-lesson16 .fg-warning {
+      background: var(--fg-orange-soft);
+      border-color: #f0b56c;
+      color: #82420b;
+    }
+
+    .fg-lesson16 .fg-danger {
+      background: var(--fg-red-soft);
+      border-color: #ef9a94;
+      color: #842019;
+    }
+
+    .fg-lesson16 .fg-example {
+      margin: 10px 0;
+      padding: 12px 14px;
+      background: #fbfdff;
+      border: 1px solid #dce7f3;
+      border-radius: var(--fg-radius-sm);
+    }
+
+    .fg-lesson16 .fg-example .fg-label {
+      display: inline-block;
+      color: var(--fg-green);
+      font-size: 12px;
+      font-weight: 800;
+      margin-left: 8px;
+    }
+
+    .fg-lesson16 .fg-example .fg-fr-block {
+      margin-top: 5px;
+      font-size: 16px;
+      font-weight: 650;
+      color: #203249;
+    }
+
+    .fg-lesson16 .fg-wrong,
+    .fg-lesson16 .fg-right {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin: 6px 0;
+    }
+
+    .fg-lesson16 .fg-wrong::before {
+      content: "✕";
+      color: var(--fg-red);
+      font-weight: 900;
+      direction: ltr;
+    }
+
+    .fg-lesson16 .fg-right::before {
+      content: "✓";
+      color: var(--fg-green);
+      font-weight: 900;
+      direction: ltr;
+    }
+
+    .fg-lesson16 .fg-table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: 14px 0;
+      border-radius: var(--fg-radius-md);
+      border: 1px solid var(--fg-border);
+      background: #fff;
+    }
+
+    .fg-lesson16 .fg-table {
+      width: 100%;
+      min-width: 650px;
+      border-collapse: collapse;
+      direction: rtl;
+      background: #fff;
+    }
+
+    .fg-lesson16 .fg-table th,
+    .fg-lesson16 .fg-table td {
+      border: 1px solid #d9e3ee;
+      padding: 12px 14px;
+      vertical-align: middle;
+      text-align: right;
+    }
+
+    .fg-lesson16 .fg-table thead th {
+      background: var(--fg-navy);
+      color: #fff;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .fg-lesson16 .fg-table tbody tr:nth-child(even) {
+      background: var(--fg-surface-alt);
+    }
+
+    .fg-lesson16 .fg-table td.fg-fr-cell,
+    .fg-lesson16 .fg-table th.fg-fr-cell {
+      direction: ltr;
+      text-align: left;
+      unicode-bidi: isolate;
+      font-family: "Segoe UI", Inter, Arial, sans-serif;
+    }
+
+    .fg-lesson16 .fg-mini-table {
+      min-width: 520px;
+    }
+
+    .fg-lesson16 .fg-code {
+      direction: ltr;
+      unicode-bidi: isolate;
+      display: inline-block;
+      padding: 2px 7px;
+      border-radius: 7px;
+      background: #eef3f8;
+      color: #173f70;
+      border: 1px solid #d5e0ea;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.93em;
+    }
+
+    .fg-lesson16 .fg-list {
+      margin: 10px 0 0;
+      padding: 0 22px 0 0;
+    }
+
+    .fg-lesson16 .fg-list li {
+      margin: 6px 0;
+    }
+
+    .fg-lesson16 .fg-pattern {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 14px;
+      align-items: start;
+      padding: 16px 0;
+      border-bottom: 1px dashed #d6e0eb;
+    }
+
+    .fg-lesson16 .fg-pattern:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .fg-lesson16 .fg-pattern-name {
+      direction: ltr;
+      text-align: left;
+      unicode-bidi: isolate;
+      font-family: "Segoe UI", Inter, Arial, sans-serif;
+      font-weight: 800;
+      color: var(--fg-navy);
+      background: #eef5ff;
+      border: 1px solid #cfe0f5;
+      padding: 8px 10px;
+      border-radius: 9px;
+    }
+
+    .fg-lesson16 .fg-summary {
+      border: 1px solid #b9d5f5;
+      background: linear-gradient(180deg, #f8fbff 0%, #f2f7fd 100%);
+      border-radius: var(--fg-radius-lg);
+      padding: 22px;
+      margin-top: 28px;
+    }
+
+    .fg-lesson16 .fg-summary h3 {
+      color: var(--fg-navy);
+      margin: 0 0 8px;
+      font-size: 21px;
+    }
+
+    .fg-lesson16 .fg-footnote {
+      color: var(--fg-muted);
+      font-size: 13px;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 860px) {
+      .fg-lesson16 .fg-grid,
+      .fg-lesson16 .fg-grid-3 {
+        grid-template-columns: 1fr;
+      }
+
+      .fg-lesson16 .fg-hero {
+        padding: 24px 20px;
+      }
+
+      .fg-lesson16 .fg-pattern {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .fg-lesson16 .fg-pattern-name {
+        width: fit-content;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .fg-lesson16 {
+        font-size: 15px;
+      }
+
+      .fg-lesson16 .fg-shell {
+        padding: 10px;
+      }
+
+      .fg-lesson16 .fg-hero,
+      .fg-lesson16 .fg-card,
+      .fg-lesson16 .fg-summary {
+        border-radius: 14px;
+      }
+
+      .fg-lesson16 .fg-hero {
+        padding: 21px 16px;
+      }
+
+      .fg-lesson16 .fg-hero::after {
+        font-size: 88px;
+        left: 10px;
+      }
+
+      .fg-lesson16 .fg-section-title {
+        font-size: 20px;
+      }
+
+      .fg-lesson16 .fg-card {
+        padding: 16px;
+      }
+
+      .fg-lesson16 .fg-table {
+        min-width: 590px;
+        font-size: 14px;
+      }
+
+      .fg-lesson16 .fg-table th,
+      .fg-lesson16 .fg-table td {
+        padding: 10px;
+      }
+
+      .fg-lesson16 .fg-rule {
+        justify-content: flex-start;
+      }
+    }
+  </style>
+
+  <div class="fg-shell">
+    <section class="fg-hero" aria-labelledby="fg-l16-title">
+      <span class="fg-badge">درس ۱۶ · صرف فعل در زمان حال</span>
+      <h2 id="fg-l16-title"><span class="fg-fr">Les verbes en « -ER » au présent</span></h2>
+      <p class="fg-subtitle">صرف فعل‌های گروه اول در زمان حال، تلفظ پایان فعل، تغییرات املایی مهم، استثناها و خطاهای رایج.</p>
+      <div class="fg-chips" aria-label="موضوعات درس">
+        <span class="fg-chip">صرف پایه</span>
+        <span class="fg-chip">تلفظ</span>
+        <span class="fg-chip">حذف <span class="fg-fr">je → j’</span></span>
+        <span class="fg-chip"><span class="fg-fr">-ger / -cer</span></span>
+        <span class="fg-chip">تغییرات ریشه</span>
+        <span class="fg-chip"><span class="fg-fr">-yer</span></span>
+      </div>
+    </section>
+
+    <section class="fg-section" aria-labelledby="fg-l16-s1">
+      <h3 class="fg-section-title" id="fg-l16-s1"><span class="fg-section-no">1</span> قاعدهٔ اصلی فعل‌های <span class="fg-fr">-ER</span></h3>
+
+      <div class="fg-card">
+        <p>بیشتر فعل‌هایی که مصدرشان به <span class="fg-fr">-er</span> ختم می‌شود، در «گروه اول» قرار می‌گیرند؛ مانند <span class="fg-fr">parler, travailler, aimer, habiter, regarder, écouter, étudier, commencer</span>.</p>
+
+        <div class="fg-rule" aria-label="قاعده صرف فعل های er">
+          <span class="fg-token">infinitif - er</span>
+          <span>← ریشهٔ فعل</span>
+          <span>+</span>
+          <span>شناسهٔ مناسب فاعل</span>
+        </div>
+
+        <div class="fg-table-wrap">
+          <table class="fg-table" aria-label="صرف فعل parler در زمان حال">
+            <thead>
+              <tr>
+                <th>ضمیر</th>
+                <th>شناسه</th>
+                <th class="fg-fr-cell">parler</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="fg-fr-cell">je</td><td class="fg-fr-cell">-e</td><td class="fg-fr-cell">je parle</td></tr>
+              <tr><td class="fg-fr-cell">tu</td><td class="fg-fr-cell">-es</td><td class="fg-fr-cell">tu parles</td></tr>
+              <tr><td class="fg-fr-cell">il / elle / on</td><td class="fg-fr-cell">-e</td><td class="fg-fr-cell">il parle</td></tr>
+              <tr><td class="fg-fr-cell">nous</td><td class="fg-fr-cell">-ons</td><td class="fg-fr-cell">nous parlons</td></tr>
+              <tr><td class="fg-fr-cell">vous</td><td class="fg-fr-cell">-ez</td><td class="fg-fr-cell">vous parlez</td></tr>
+              <tr><td class="fg-fr-cell">ils / elles</td><td class="fg-fr-cell">-ent</td><td class="fg-fr-cell">ils parlent</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="fg-example">
+          <span class="fg-label">مثال با dîner</span>
+          <div class="fg-fr-block">Je dîne tôt. — Tu dînes tard. — Elle dîne à neuf heures.<br>Nous dînons au restaurant. — Vous dînez chez Pierre. — Ils dînent à dix heures.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="fg-section" aria-labelledby="fg-l16-s2">
+      <h3 class="fg-section-title" id="fg-l16-s2"><span class="fg-section-no">2</span> استثنای مهم: <span class="fg-fr">aller</span></h3>
+      <div class="fg-grid">
+        <div class="fg-card">
+          <h3><span class="fg-fr">aller</span> شبیه <span class="fg-fr">-er</span>ها نیست</h3>
+          <p>با اینکه مصدر <span class="fg-fr">aller</span> به <span class="fg-fr">-er</span> ختم می‌شود، فعل گروه سوم و بی‌قاعده است؛ بنابراین با الگوی بالا صرف نمی‌شود.</p>
+          <div class="fg-table-wrap">
+            <table class="fg-table fg-mini-table" aria-label="صرف aller">
+              <thead><tr><th>ضمیر</th><th class="fg-fr-cell">aller</th></tr></thead>
+              <tbody>
+                <tr><td class="fg-fr-cell">je</td><td class="fg-fr-cell">je vais</td></tr>
+                <tr><td class="fg-fr-cell">tu</td><td class="fg-fr-cell">tu vas</td></tr>
+                <tr><td class="fg-fr-cell">il / elle / on</td><td class="fg-fr-cell">il va</td></tr>
+                <tr><td class="fg-fr-cell">nous</td><td class="fg-fr-cell">nous allons</td></tr>
+                <tr><td class="fg-fr-cell">vous</td><td class="fg-fr-cell">vous allez</td></tr>
+                <tr><td class="fg-fr-cell">ils / elles</td><td class="fg-fr-cell">ils vont</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="fg-card">
+          <h3>خطای رایج</h3>
+          <div class="fg-callout fg-danger">
+            <strong>ظاهر مصدر کافی نیست.</strong>
+            <div class="fg-wrong"><span class="fg-fr">je alle</span></div>
+            <div class="fg-right"><span class="fg-fr">je vais</span></div>
+          </div>
+          <p>پس هنگام تشخیص گروه فعل، <span class="fg-fr">aller</span> را جداگانه به‌عنوان یک فعل بی‌قاعده حفظ کنید.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="fg-section" aria-labelledby="fg-l16-s3">
+      <h3 class="fg-section-title" id="fg-l16-s3"><span class="fg-section-no">3</span> تلفظ پایان فعل‌ها</h3>
+      <div class="fg-card">
+        <p>در نوشتار، شکل‌های <span class="fg-fr">parle, parles, parlent</span> متفاوت‌اند، اما در تلفظ معمولاً یکسان شنیده می‌شوند. پایان‌های <span class="fg-fr">-e, -es, -ent</span> تلفظ نمی‌شوند.</p>
+
+        <div class="fg-grid-3">
+          <div class="fg-example"><span class="fg-label">je</span><div class="fg-fr-block">je parle → /paʁl/</div></div>
+          <div class="fg-example"><span class="fg-label">tu</span><div class="fg-fr-block">tu parles → /paʁl/</div></div>
+          <div class="fg-example"><span class="fg-label">ils</span><div class="fg-fr-block">ils parlent → /paʁl/</div></div>
+        </div>
+
+        <div class="fg-callout fg-info">
+          <strong>دو شکل شنیداریِ واضح:</strong>
+          <div class="fg-fr-block">nous parlons → /paʁlɔ̃/<br>vous parlez → /paʁle/</div>
+        </div>
+
+        <div class="fg-callout fg-warning">
+          <strong>نکتهٔ ظریف:</strong>
+          <p>در <span class="fg-fr">ils parlent</span>، پایان <span class="fg-fr">-ent</span> هرگز مثل یک هجای مستقل تلفظ نمی‌شود.</p>
+          <div class="fg-wrong"><span class="fg-fr">/paʁlɑ̃/</span></div>
+          <div class="fg-right"><span class="fg-fr">/paʁl/</span></div>
+        </div>
+
+        <p>وقتی فعل با مصوت آغاز شود، در بعضی ترکیب‌ها liaison شنیده می‌شود:</p>
+        <div class="fg-example"><div class="fg-fr-block">ils aiment → /il.zɛm/<br>elles habitent → /ɛl.za.bit/</div></div>
+        <p>اما در فعل‌هایی مثل <span class="fg-fr">ils parlent</span> و <span class="fg-fr">ils travaillent</span> چنین liaisonی وجود ندارد.</p>
+      </div>
+    </section>
+
+    <section class="fg-section" aria-labelledby="fg-l16-s4">
+      <h3 class="fg-section-title" id="fg-l16-s4"><span class="fg-section-no">4</span> حذف <span class="fg-fr">e</span> در <span class="fg-fr">je</span> و فعل‌های <span class="fg-fr">-ier</span></h3>
+      <div class="fg-grid">
+        <div class="fg-card">
+          <h3><span class="fg-fr">je → j’</span></h3>
+          <p>پیش از فعلِ آغازشده با مصوت یا <span class="fg-fr">h muet</span>، ضمیر <span class="fg-fr">je</span> به <span class="fg-fr">j’</span> کوتاه می‌شود.</p>
+          <div class="fg-example"><div class="fg-fr-block">j’aime · j’habite · j’écoute · j’étudie · j’arrive</div></div>
+          <div class="fg-callout fg-warning">
+            <strong>استثنا با <span class="fg-fr">h aspiré</span>:</strong>
+            <div class="fg-fr-block">je hais · je hurle · je hoche la tête</div>
+          </div>
+        </div>
+
+        <div class="fg-card">
+          <h3>فعل‌های <span class="fg-fr">-ier</span></h3>
+          <p>در فعل‌هایی مانند <span class="fg-fr">étudier, apprécier, copier, crier</span>، حرف <span class="fg-fr">i</span> جزئی از ریشه است و نباید حذف شود.</p>
+          <div class="fg-table-wrap">
+            <table class="fg-table fg-mini-table" aria-label="صرف étudier">
+              <thead><tr><th>ضمیر</th><th class="fg-fr-cell">étudier</th></tr></thead>
+              <tbody>
+                <tr><td class="fg-fr-cell">j’</td><td class="fg-fr-cell">j’étudie</td></tr>
+                <tr><td class="fg-fr-cell">tu</td><td class="fg-fr-cell">tu étudies</td></tr>
+                <tr><td class="fg-fr-cell">il / elle / on</td><td class="fg-fr-cell">il étudie</td></tr>
+                <tr><td class="fg-fr-cell">nous</td><td class="fg-fr-cell">nous étudions</td></tr>
+                <tr><td class="fg-fr-cell">vous</td><td class="fg-fr-cell">vous étudiez</td></tr>
+                <tr><td class="fg-fr-cell">ils / elles</td><td class="fg-fr-cell">ils étudient</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="fg-section" aria-labelledby="fg-l16-s5">
+      <h3 class="fg-section-title" id="fg-l16-s5"><span class="fg-section-no">5</span> منفی‌کردن فعل در زمان حال</h3>
+      <div class="fg-card">
+        <div class="fg-rule">
+          <span class="fg-token">sujet</span>
+          <span>+</span>
+          <span class="fg-token">ne / n’</span>
+          <span>+</span>
+          <span class="fg-token">verbe</span>
+          <span>+</span>
+          <span class="fg-token">pas</span>
+        </div>
+
+        <div class="fg-grid">
+          <div class="fg-example">
+            <span class="fg-label">مثال</span>
+            <div class="fg-fr-block">Je parle français.<br>Je ne parle pas français.</div>
+          </div>
+          <div class="fg-example">
+            <span class="fg-label">پیش از واکه</span>
+            <div class="fg-fr-block">J’aime le café.<br>Je n’aime pas le café.</div>
+          </div>
+        </div>
+
+        <div class="fg-callout fg-info">
+          <strong>گفتار و نوشتار:</strong>
+          <p>در گفتار روزمرهٔ فرانسوی، <span class="fg-fr">ne</span> اغلب حذف می‌شود: <span class="fg-fr">Je parle pas.</span> اما در نوشتار رسمی و موقعیت‌های امتحانی، ساخت کامل <span class="fg-fr">ne…pas</span> انتخاب امن‌تری است.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="fg-section" aria-labelledby="fg-l16-s6">
+      <h3 class="fg-section-title" id="fg-l16-s6"><span class="fg-section-no">6</span> تغییرات املایی برای حفظ تلفظ</h3>
+      <div class="fg-card">
+        <div class="fg-pattern">
+          <div class="fg-pattern-name">-ger → -geons</div>
+          <div>
+            <p>برای حفظ صدای نرم <span class="fg-fr">/ʒ/</span>، در شکل <span class="fg-fr">nous</span> یک <span class="fg-fr">e</span> پیش از <span class="fg-fr">-ons</span> می‌آید.</p>
+            <div class="fg-example"><div class="fg-fr-block">manger → nous mangeons<br>voyager → nous voyageons<br>partager → nous partageons</div></div>
+            <div class="fg-wrong"><span class="fg-fr">nous mangons</span></div>
+            <div class="fg-right"><span class="fg-fr">nous mangeons</span></div>
+            <p class="fg-footnote">در فعل‌های <span class="fg-fr">-guer</span> مثل <span class="fg-fr">naviguer</span> و <span class="fg-fr">fatiguer</span>، حرف <span class="fg-fr">u</span> باقی می‌ماند: <span class="fg-fr">nous naviguons, nous fatiguons</span>.</p>
+          </div>
+        </div>
+
+        <div class="fg-pattern">
+          <div class="fg-pattern-name">-cer → -çons</div>
+          <div>
+            <p>در شکل <span class="fg-fr">nous</span>، برای حفظ صدای <span class="fg-fr">/s/</span>، حرف <span class="fg-fr">c</span> به <span class="fg-fr">ç</span> تبدیل می‌شود.</p>
+            <div class="fg-example"><div class="fg-fr-block">commencer → nous commençons<br>placer → nous plaçons<br>annoncer → nous annonçons</div></div>
+            <div class="fg-wrong"><span class="fg-fr">nous commencons</span></div>
+            <div class="fg-right"><span class="fg-fr">nous commençons</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="fg-section" aria-labelledby="fg-l16-s7">
+      <h3 class="fg-section-title" id="fg-l16-s7"><span class="fg-section-no">7</span> تغییر واکهٔ ریشه: <span class="fg-fr">e / é → è</span></h3>
+      <div class="fg-grid">
+        <div class="fg-card">
+          <h3><span class="fg-fr">acheter / lever</span></h3>
+          <p>در بعضی شکل‌ها، برای حفظ تلفظ، واکهٔ ریشه به <span class="fg-fr">è</span> تبدیل می‌شود.</p>
+          <div class="fg-table-wrap">
+            <table class="fg-table fg-mini-table" aria-label="صرف acheter">
+              <thead><tr><th>ضمیر</th><th class="fg-fr-cell">acheter</th></tr></thead>
+              <tbody>
+                <tr><td class="fg-fr-cell">je</td><td class="fg-fr-cell">j’achète</td></tr>
+                <tr><td class="fg-fr-cell">tu</td><td class="fg-fr-cell">tu achètes</td></tr>
+                <tr><td class="fg-fr-cell">il / elle / on</td><td class="fg-fr-cell">il achète</td></tr>
+                <tr><td class="fg-fr-cell">nous</td><td class="fg-fr-cell">nous achetons</td></tr>
+                <tr><td class="fg-fr-cell">vous</td><td class="fg-fr-cell">vous achetez</td></tr>
+                <tr><td class="fg-fr-cell">ils / elles</td><td class="fg-fr-cell">ils achètent</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="fg-example"><div class="fg-fr-block">lever → je lève / nous levons / ils lèvent</div></div>
+        </div>
+
+        <div class="fg-card">
+          <h3><span class="fg-fr">préférer / espérer</span></h3>
+          <p>در این خانواده، <span class="fg-fr">é</span> در بعضی شکل‌ها به <span class="fg-fr">è</span> تبدیل می‌شود.</p>
+          <div class="fg-example"><div class="fg-fr-block">je préfère<br>nous préférons<br>ils préfèrent</div></div>
+          <div class="fg-example"><div class="fg-fr-block">j’espère<br>nous espérons<br>ils espèrent</div></div>
+          <div class="fg-callout fg-info">
+            <strong>الگوی کاربردی:</strong>
+            <p>شکل‌های <span class="fg-fr">je, tu, il/elle/on, ils/elles</span> اغلب تغییر ریشه را نشان می‌دهند، درحالی‌که <span class="fg-fr">nous</span> و <span class="fg-fr">vous</span> شکل پایه را حفظ می‌کنند.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="fg-section" aria-labelledby="fg-l16-s8">
+      <h3 class="fg-section-title" id="fg-l16-s8"><span class="fg-section-no">8</span> دوبرابرشدن صامت: <span class="fg-fr">appeler / jeter</span></h3>
+      <div class="fg-card">
+        <div class="fg-grid">
+          <div>
+            <h3><span class="fg-fr">appeler</span></h3>
+            <div class="fg-example"><div class="fg-fr-block">j’appelle<br>tu appelles<br>il appelle<br>nous appelons<br>vous appelez<br>ils appellent</div></div>
+          </div>
+          <div>
+            <h3><span class="fg-fr">jeter</span></h3>
+            <div class="fg-example"><div class="fg-fr-block">je jette<br>tu jettes<br>il jette<br>nous jetons<br>vous jetez<br>ils jettent</div></div>
+          </div>
+        </div>
+
+        <div class="fg-callout fg-warning">
+          <strong>استثنای مهم:</strong>
+          <p>همهٔ فعل‌های مشابه، صامت را دوبرابر نمی‌کنند. بعضی فعل‌ها به‌جای آن تغییر واکه دارند:</p>
+          <div class="fg-fr-block">acheter → j’achète<br>geler → je gèle<br>renouveler → je renouvelle</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="fg-section" aria-labelledby="fg-l16-s9">
+      <h3 class="fg-section-title" id="fg-l16-s9"><span class="fg-section-no">9</span> فعل‌های <span class="fg-fr">-yer</span></h3>
+      <div class="fg-card">
+        <p>در بسیاری از فعل‌های <span class="fg-fr">-yer</span>، حرف <span class="fg-fr">y</span> در شکل‌های <span class="fg-fr">je, tu, il/elle/on, ils/elles</span> به <span class="fg-fr">i</span> تبدیل می‌شود؛ اما در <span class="fg-fr">nous</span> و <span class="fg-fr">vous</span> باقی می‌ماند.</p>
+
+        <div class="fg-grid">
+          <div>
+            <h3><span class="fg-fr">envoyer</span></h3>
+            <div class="fg-example"><div class="fg-fr-block">j’envoie<br>tu envoies<br>il envoie<br>nous envoyons<br>vous envoyez<br>ils envoient</div></div>
+          </div>
+          <div>
+            <h3><span class="fg-fr">essuyer</span></h3>
+            <div class="fg-example"><div class="fg-fr-block">j’essuie<br>nous essuyons<br>ils essuient</div></div>
+          </div>
+        </div>
+
+        <div class="fg-callout fg-info">
+          <strong>فعل‌های <span class="fg-fr">-ayer</span>:</strong>
+          <p>در فعل‌هایی مثل <span class="fg-fr">payer</span> و <span class="fg-fr">essayer</span> هر دو شکل رایج و پذیرفته‌اند:</p>
+          <div class="fg-fr-block">je paie / je paye<br>j’essaie / j’essaye<br>nous payons · vous payez<br>nous essayons · vous essayez</div>
+        </div>
+
+        <div class="fg-callout fg-warning">
+          <strong>تفاوت را حفظ کنید:</strong>
+          <p>در <span class="fg-fr">-oyer</span> و <span class="fg-fr">-uyer</span> معمولاً تغییر <span class="fg-fr">y → i</span> لازم است؛ در <span class="fg-fr">-ayer</span> دو گونهٔ نوشتاری می‌تواند پذیرفته باشد.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="fg-section" aria-labelledby="fg-l16-s10">
+      <h3 class="fg-section-title" id="fg-l16-s10"><span class="fg-section-no">10</span> هماهنگی فاعل و فعل و نقش <span class="fg-fr">on</span></h3>
+      <div class="fg-grid">
+        <div class="fg-card">
+          <h3>فعل باید با فاعل هماهنگ شود</h3>
+          <div class="fg-example"><div class="fg-fr-block">Mon fils aime la musique.<br>Mes enfants aiment la musique.<br>Ma sœur travaille.<br>Ma sœur et moi travaillons.<br>Mes amis travaillent.</div></div>
+        </div>
+        <div class="fg-card">
+          <h3><span class="fg-fr">on</span> همیشه فعل مفرد می‌گیرد</h3>
+          <p>حتی وقتی <span class="fg-fr">on</span> در گفتار به معنی «ما» باشد، صرف فعل همچنان سوم‌شخص مفرد است.</p>
+          <div class="fg-right"><span class="fg-fr">On travaille demain.</span></div>
+          <div class="fg-right"><span class="fg-fr">On mange au restaurant.</span></div>
+          <div class="fg-wrong"><span class="fg-fr">On travaillons.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="fg-summary" aria-labelledby="fg-l16-summary">
+      <h3 id="fg-l16-summary">جمع‌بندی سریع درس ۱۶</h3>
+      <p>برای مرور، این شکل‌ها را به‌عنوان الگوهای کلیدی به خاطر بسپارید:</p>
+      <div class="fg-table-wrap">
+        <table class="fg-table" aria-label="جدول جمع بندی الگوهای مهم درس 16">
+          <thead>
+            <tr>
+              <th>نوع فعل</th>
+              <th class="fg-fr-cell">Forme clé</th>
+              <th>نکته</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="fg-fr-cell">parler</td><td class="fg-fr-cell">je parle / nous parlons</td><td>الگوی پایهٔ گروه اول</td></tr>
+            <tr><td class="fg-fr-cell">étudier</td><td class="fg-fr-cell">j’étudie / nous étudions</td><td>حفظ <span class="fg-fr">i</span> ریشه</td></tr>
+            <tr><td class="fg-fr-cell">manger</td><td class="fg-fr-cell">nous mangeons</td><td><span class="fg-fr">-ger → -geons</span></td></tr>
+            <tr><td class="fg-fr-cell">commencer</td><td class="fg-fr-cell">nous commençons</td><td><span class="fg-fr">-cer → -çons</span></td></tr>
+            <tr><td class="fg-fr-cell">acheter</td><td class="fg-fr-cell">j’achète / nous achetons</td><td><span class="fg-fr">e → è</span></td></tr>
+            <tr><td class="fg-fr-cell">préférer</td><td class="fg-fr-cell">je préfère / nous préférons</td><td><span class="fg-fr">é → è</span></td></tr>
+            <tr><td class="fg-fr-cell">appeler</td><td class="fg-fr-cell">j’appelle / nous appelons</td><td>دوبرابرشدن <span class="fg-fr">l</span></td></tr>
+            <tr><td class="fg-fr-cell">jeter</td><td class="fg-fr-cell">je jette / nous jetons</td><td>دوبرابرشدن <span class="fg-fr">t</span></td></tr>
+            <tr><td class="fg-fr-cell">envoyer</td><td class="fg-fr-cell">j’envoie / nous envoyons</td><td><span class="fg-fr">y → i</span></td></tr>
+            <tr><td class="fg-fr-cell">payer</td><td class="fg-fr-cell">je paie / je paye / nous payons</td><td>دو شکل ممکن در <span class="fg-fr">-ayer</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="fg-callout fg-success">
+        <strong>قاعدهٔ طلایی تلفظ:</strong>
+        <p>در فعل‌های <span class="fg-fr">-er</span>، شکل‌های <span class="fg-fr">je, tu, il/elle/on, ils/elles</span> اغلب از نظر شنیداری یکسان‌اند، اما املای آن‌ها متفاوت است؛ بنابراین در نوشتار، شناسه را از روی فاعل انتخاب کنید.</p>
+      </div>
+    </section>
+  </div>
+</div>
