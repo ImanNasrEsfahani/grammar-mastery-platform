@@ -36,6 +36,9 @@ const copy = {
     queued: "پاسخ شما محفوظ است و پس از اتصال دوباره ارسال می‌شود.",
     explanation: "توضیح پاسخ",
     requestId: "شناسه پیگیری",
+    themeChange: "تغییر پوسته",
+    enableDarkTheme: "فعال‌کردن حالت تاریک",
+    enableLightTheme: "فعال‌کردن حالت روشن",
   },
   en: {
     productName: "French Grammar Mastery",
@@ -59,6 +62,9 @@ const copy = {
     queued: "Your answer is safe and will retry when the connection returns.",
     explanation: "Explanation",
     requestId: "Request ID",
+    themeChange: "Change theme",
+    enableDarkTheme: "Enable dark theme",
+    enableLightTheme: "Enable light theme",
   },
 } as const;
 
