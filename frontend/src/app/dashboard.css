@@ -1,0 +1,862 @@
+/*
+ * Grammar Mastery dashboard layout hotfix v1.0
+ *
+ * This stylesheet intentionally targets only the dashboard classes introduced by
+ * DashboardClient.tsx. It restores the missing responsive layout without changing
+ * API/data behavior or the shared design system in globals.css.
+ */
+
+.dashboard-reference-layout {
+  --dashboard-gap: clamp(0.85rem, 1.8vw, 1.35rem);
+  display: grid;
+  gap: var(--dashboard-gap);
+  min-inline-size: 0;
+}
+
+.dashboard-reference-layout > *,
+.dashboard-welcome > *,
+.dashboard-content-grid > *,
+.dashboard-kpis > * {
+  min-inline-size: 0;
+}
+
+.dashboard-reference-layout h1,
+.dashboard-reference-layout h2,
+.dashboard-reference-layout h3,
+.dashboard-reference-layout p,
+.dashboard-reference-layout blockquote {
+  overflow-wrap: anywhere;
+}
+
+.dashboard-reference-layout h2 {
+  margin: 0;
+  font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+  line-height: 1.35;
+}
+
+.dashboard-reference-layout progress {
+  inline-size: 100%;
+  block-size: 0.55rem;
+  accent-color: var(--primary);
+}
+
+/* Hero / welcome ---------------------------------------------------------- */
+.dashboard-welcome {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+  overflow: hidden;
+  position: relative;
+  background:
+    radial-gradient(circle at 12% 12%, rgba(40, 86, 199, 0.10), transparent 35%),
+    linear-gradient(135deg, var(--surface) 0%, #f7f9ff 100%);
+}
+
+.dashboard-welcome::after {
+  content: "";
+  position: absolute;
+  inline-size: 13rem;
+  block-size: 13rem;
+  border-radius: 999px;
+  inset-inline-end: -6.5rem;
+  inset-block-end: -7rem;
+  background: rgba(40, 86, 199, 0.055);
+  pointer-events: none;
+}
+
+.dashboard-welcome-copy,
+.dashboard-level-card,
+.dashboard-today-card {
+  position: relative;
+  z-index: 1;
+}
+
+.dashboard-welcome-copy {
+  display: grid;
+  align-content: start;
+  gap: 0.65rem;
+}
+
+.dashboard-welcome-copy h1 {
+  margin: 0;
+  font-size: clamp(1.75rem, 5.5vw, 2.75rem);
+  line-height: 1.1;
+}
+
+.dashboard-welcome-copy > p:last-child {
+  margin: 0;
+  max-inline-size: 58ch;
+  color: var(--muted);
+}
+
+.dashboard-level-card,
+.dashboard-today-card {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: 0 10px 30px rgba(34, 53, 90, 0.07);
+}
+
+.dashboard-level-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas:
+    "label ring"
+    "level ring"
+    "link ring";
+  align-items: center;
+  gap: 0.25rem 0.85rem;
+  padding: 1rem;
+}
+
+.dashboard-level-card > span {
+  grid-area: label;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 750;
+}
+
+.dashboard-level-card > strong {
+  grid-area: level;
+  font-size: clamp(1.15rem, 4vw, 1.55rem);
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+.dashboard-level-card > a {
+  grid-area: link;
+  width: fit-content;
+  color: var(--primary-strong);
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+/* Safe, bounded overall mastery ring. This explicitly cancels SVG's default
+ * black fill, which caused the giant black circle when the styles were absent. */
+.overall-ring-wrap {
+  grid-area: ring;
+  inline-size: clamp(82px, 21vw, 112px);
+  aspect-ratio: 1;
+  position: relative;
+  display: grid;
+  place-items: center;
+  color: var(--primary);
+  flex: 0 0 auto;
+}
+
+.overall-ring {
+  inline-size: 100%;
+  block-size: 100%;
+  display: block;
+  transform: rotate(-90deg);
+  overflow: visible;
+}
+
+.overall-ring circle {
+  fill: none !important;
+  stroke-width: 9;
+  vector-effect: non-scaling-stroke;
+}
+
+.overall-ring-track {
+  stroke: #e2e8f4;
+}
+
+.overall-ring-value {
+  stroke: currentColor;
+  stroke-linecap: round;
+}
+
+.overall-ring-wrap > span {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  line-height: 1.1;
+  pointer-events: none;
+}
+
+.overall-ring-wrap strong {
+  display: block;
+  color: var(--ink);
+  font-size: clamp(1rem, 4vw, 1.35rem);
+}
+
+.overall-ring-wrap small {
+  display: block;
+  margin-block-start: 0.25rem;
+  color: var(--muted);
+  font-size: 0.66rem;
+  font-weight: 700;
+}
+
+.dashboard-today-card {
+  display: grid;
+  align-content: start;
+  gap: 0.85rem;
+  padding: 1rem;
+}
+
+.dashboard-today-card > p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.dashboard-section-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.8rem;
+}
+
+.dashboard-section-heading > div {
+  min-inline-size: 0;
+}
+
+.dashboard-section-heading .eyebrow + h2 {
+  margin-block-start: 0.25rem;
+}
+
+.dashboard-icon-badge {
+  flex: 0 0 auto;
+  inline-size: 2.15rem;
+  block-size: 2.15rem;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: #eef3ff;
+  color: var(--primary-strong);
+  font-size: 0.95rem;
+  font-weight: 900;
+}
+
+.dashboard-icon-badge.success {
+  background: var(--success-soft);
+  color: var(--success);
+}
+
+.dashboard-action-facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.55rem;
+}
+
+.dashboard-action-facts > span {
+  min-inline-size: 0;
+  border-radius: 12px;
+  padding: 0.65rem 0.7rem;
+  background: var(--surface-soft);
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.35;
+}
+
+.dashboard-action-facts strong {
+  display: block;
+  color: var(--ink);
+  font-size: 1rem;
+}
+
+.dashboard-main-cta {
+  inline-size: 100%;
+}
+
+/* KPI cards --------------------------------------------------------------- */
+.dashboard-kpis {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.dashboard-metric {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.9rem;
+  box-shadow: 0 10px 28px rgba(34, 53, 90, 0.065);
+}
+
+.dashboard-metric-icon {
+  inline-size: 2.35rem;
+  block-size: 2.35rem;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: #eef3ff;
+  color: var(--primary-strong);
+  font-size: 1.05rem;
+}
+
+.dashboard-metric > span:last-child {
+  min-inline-size: 0;
+  display: grid;
+  gap: 0.08rem;
+}
+
+.dashboard-metric strong {
+  color: var(--ink);
+  font-size: clamp(1.15rem, 3.5vw, 1.55rem);
+  line-height: 1.05;
+}
+
+.dashboard-metric b {
+  color: var(--ink);
+  font-size: 0.82rem;
+  line-height: 1.25;
+}
+
+.dashboard-metric small {
+  color: var(--muted);
+  font-size: 0.7rem;
+  line-height: 1.3;
+}
+
+.dashboard-metric-danger {
+  border-color: #f0b4ae;
+  background: linear-gradient(180deg, var(--surface), var(--danger-soft));
+}
+
+.dashboard-metric-danger .dashboard-metric-icon {
+  background: var(--danger-soft);
+  color: var(--danger);
+}
+
+/* Main dashboard card grid ------------------------------------------------ */
+.dashboard-content-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--dashboard-gap);
+  align-items: stretch;
+}
+
+.dashboard-content-grid > .surface {
+  min-block-size: 100%;
+  box-shadow: 0 12px 34px rgba(34, 53, 90, 0.07);
+}
+
+.dashboard-focus-card,
+.dashboard-mastery-map,
+.dashboard-resume-card,
+.dashboard-review-card,
+.dashboard-weekly-card,
+.dashboard-daily-goal {
+  padding: clamp(1rem, 2vw, 1.35rem);
+}
+
+.dashboard-content-grid .button {
+  inline-size: 100%;
+  margin-block-start: auto;
+}
+
+.button-danger-soft {
+  background: var(--danger-soft);
+  color: var(--danger);
+  border: 1px solid #f0b4ae;
+}
+
+.button-danger-soft:hover:not(:disabled) {
+  background: #ffe6e2;
+}
+
+/* Focus card -------------------------------------------------------------- */
+.focus-highlight {
+  display: grid;
+  gap: 0.8rem;
+  border: 1px solid #efd0cb;
+  border-radius: 15px;
+  padding: 0.9rem;
+  background: linear-gradient(135deg, #fff7f5, var(--surface));
+}
+
+.focus-priority {
+  width: fit-content;
+  border-radius: 999px;
+  padding: 0.25rem 0.6rem;
+  background: var(--danger-soft);
+  color: var(--danger);
+  font-size: 0.72rem;
+  font-weight: 850;
+}
+
+.focus-highlight > strong {
+  min-inline-size: 0;
+  font-size: 1.05rem;
+  unicode-bidi: plaintext;
+  overflow-wrap: anywhere;
+}
+
+.focus-scores {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+}
+
+.score-dial {
+  display: grid;
+  justify-items: center;
+  gap: 0.35rem;
+  color: var(--primary);
+}
+
+.score-dial > span {
+  inline-size: 68px;
+  block-size: 68px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  padding: 7px;
+}
+
+.score-dial i {
+  inline-size: 100%;
+  block-size: 100%;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--ink);
+  font-style: normal;
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
+.score-dial small {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 750;
+}
+
+.score-dial-warning {
+  color: var(--warning);
+}
+
+/* Mastery map ------------------------------------------------------------- */
+.dashboard-mastery-map {
+  gap: 0.8rem;
+}
+
+.mastery-map-row {
+  display: grid;
+  grid-template-columns: minmax(90px, 0.8fr) minmax(90px, 1.4fr) auto;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.mastery-map-label {
+  min-inline-size: 0;
+  font-size: 0.82rem;
+  font-weight: 750;
+  unicode-bidi: plaintext;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mastery-map-row progress {
+  min-inline-size: 0;
+}
+
+.mastery-map-row > strong {
+  min-inline-size: 3ch;
+  text-align: end;
+  color: var(--primary-strong);
+  font-size: 0.78rem;
+}
+
+.dashboard-text-link {
+  width: fit-content;
+  margin-block-start: auto;
+  color: var(--primary-strong);
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+/* Resume / review / daily ------------------------------------------------- */
+.dashboard-resume-card > p,
+.dashboard-review-card > p,
+.dashboard-weekly-card > p,
+.dashboard-daily-goal > p {
+  margin: 0;
+}
+
+.dashboard-resume-card > progress,
+.dashboard-daily-goal > progress {
+  margin-block: 0.25rem 0.35rem;
+}
+
+.review-due-count {
+  display: flex;
+  align-items: baseline;
+  gap: 0.55rem;
+}
+
+.review-due-count strong {
+  color: var(--danger);
+  font-size: clamp(1.7rem, 6vw, 2.35rem);
+  line-height: 1;
+}
+
+.review-due-count span {
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 750;
+}
+
+.dashboard-review-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.dashboard-review-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.7rem;
+  padding-block: 0.45rem;
+  border-block-end: 1px solid var(--line);
+  font-size: 0.82rem;
+}
+
+.dashboard-review-list li > span {
+  min-inline-size: 0;
+  unicode-bidi: plaintext;
+  overflow-wrap: anywhere;
+}
+
+.dashboard-review-list li > strong {
+  flex: 0 0 auto;
+  color: var(--primary-strong);
+}
+
+.daily-goal-copy strong {
+  color: var(--primary-strong);
+  font-size: 1.35rem;
+}
+
+/* Weekly chart ------------------------------------------------------------ */
+.weekly-bars {
+  min-block-size: 152px;
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  align-items: end;
+  gap: clamp(0.2rem, 1vw, 0.5rem);
+  padding-block-start: 0.4rem;
+}
+
+.weekly-bar-item {
+  min-inline-size: 0;
+  display: grid;
+  grid-template-rows: auto 96px auto;
+  justify-items: center;
+  gap: 0.3rem;
+}
+
+.weekly-bar-value {
+  color: var(--muted);
+  font-size: 0.66rem;
+  font-weight: 800;
+}
+
+.weekly-bar-track {
+  inline-size: min(18px, 72%);
+  block-size: 96px;
+  border-radius: 999px;
+  display: flex;
+  align-items: end;
+  overflow: hidden;
+  background: #e7ecf5;
+}
+
+.weekly-bar-track > span {
+  inline-size: 100%;
+  border-radius: inherit;
+  background: linear-gradient(180deg, #5f84e2, var(--primary));
+}
+
+.weekly-bar-item small {
+  max-inline-size: 100%;
+  color: var(--muted);
+  font-size: 0.62rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Empty states ------------------------------------------------------------ */
+.dashboard-empty-state {
+  min-block-size: 88px;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 0.3rem;
+  border: 1px dashed #c8d0df;
+  border-radius: 13px;
+  padding: 0.85rem;
+  background: var(--surface-soft);
+  color: var(--muted);
+  text-align: center;
+}
+
+.dashboard-empty-state > span {
+  color: #93a0b7;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+}
+
+.dashboard-empty-state p {
+  margin: 0;
+  font-size: 0.82rem;
+}
+
+/* Achievements ------------------------------------------------------------ */
+.dashboard-achievements {
+  display: grid;
+  gap: 1rem;
+  padding: clamp(1rem, 2.2vw, 1.4rem);
+}
+
+.achievement-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.7rem;
+}
+
+.achievement-card {
+  min-inline-size: 0;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 0.8rem;
+  background: var(--surface-soft);
+}
+
+.achievement-card > span {
+  inline-size: 2.25rem;
+  block-size: 2.25rem;
+  display: grid;
+  place-items: center;
+  border-radius: 11px;
+  background: #eef3ff;
+}
+
+.achievement-card > div {
+  min-inline-size: 0;
+  display: grid;
+  gap: 0.1rem;
+}
+
+.achievement-card strong {
+  color: var(--ink);
+  font-size: 1.05rem;
+}
+
+.achievement-card small {
+  min-inline-size: 0;
+  color: var(--muted);
+  font-size: 0.74rem;
+  unicode-bidi: plaintext;
+  overflow-wrap: anywhere;
+}
+
+.dashboard-quote {
+  margin: 0;
+  padding: 0.35rem 0.15rem;
+  color: var(--muted);
+  text-align: center;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(0.82rem, 2vw, 0.95rem);
+  font-style: italic;
+}
+
+/* Mobile refinements ------------------------------------------------------ */
+@media (max-width: 420px) {
+  .dashboard-reference-layout {
+    --dashboard-gap: 0.75rem;
+  }
+
+  .dashboard-welcome,
+  .dashboard-focus-card,
+  .dashboard-mastery-map,
+  .dashboard-resume-card,
+  .dashboard-review-card,
+  .dashboard-weekly-card,
+  .dashboard-daily-goal,
+  .dashboard-achievements {
+    padding: 0.9rem;
+  }
+
+  .dashboard-kpis {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .dashboard-metric {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .dashboard-action-facts {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .mastery-map-row {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.4rem 0.6rem;
+  }
+
+  .mastery-map-row progress {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+
+  .weekly-bars {
+    gap: 0.15rem;
+  }
+
+  .weekly-bar-track {
+    inline-size: min(14px, 70%);
+  }
+}
+
+/* Tablet ------------------------------------------------------------------ */
+@media (min-width: 640px) {
+  .dashboard-welcome {
+    grid-template-columns: minmax(0, 1.15fr) minmax(220px, 0.85fr);
+  }
+
+  .dashboard-welcome-copy {
+    align-self: center;
+  }
+
+  .dashboard-today-card {
+    grid-column: 1 / -1;
+  }
+
+  .dashboard-kpis {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .dashboard-metric {
+    grid-template-columns: minmax(0, 1fr);
+    align-content: start;
+  }
+
+  .dashboard-metric-icon {
+    margin-block-end: 0.15rem;
+  }
+
+  .dashboard-content-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .dashboard-focus-card,
+  .dashboard-mastery-map {
+    min-block-size: 320px;
+  }
+
+  .achievement-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Desktop ----------------------------------------------------------------- */
+@media (min-width: 960px) {
+  .dashboard-welcome {
+    grid-template-columns: minmax(0, 1.2fr) minmax(190px, 0.72fr) minmax(0, 1fr);
+    align-items: stretch;
+  }
+
+  .dashboard-today-card {
+    grid-column: auto;
+  }
+
+  .dashboard-level-card {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "label"
+      "level"
+      "ring"
+      "link";
+    justify-items: center;
+    text-align: center;
+    gap: 0.4rem;
+  }
+
+  .dashboard-level-card > a {
+    width: auto;
+  }
+
+  .overall-ring-wrap {
+    inline-size: 118px;
+    margin-block: 0.15rem;
+  }
+
+  .dashboard-main-cta {
+    inline-size: fit-content;
+    min-inline-size: 9rem;
+  }
+
+  .dashboard-metric {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .dashboard-content-grid {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+
+  .dashboard-focus-card {
+    grid-column: span 5;
+  }
+
+  .dashboard-mastery-map {
+    grid-column: span 7;
+  }
+
+  .dashboard-resume-card,
+  .dashboard-review-card,
+  .dashboard-weekly-card,
+  .dashboard-daily-goal {
+    grid-column: span 6;
+  }
+}
+
+@media (min-width: 1180px) {
+  .dashboard-resume-card,
+  .dashboard-review-card,
+  .dashboard-weekly-card,
+  .dashboard-daily-goal {
+    grid-column: span 3;
+  }
+}
+
+/* Accessibility / high-contrast ------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  .dashboard-reference-layout *,
+  .dashboard-reference-layout *::before,
+  .dashboard-reference-layout *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+@media (forced-colors: active) {
+  .dashboard-level-card,
+  .dashboard-today-card,
+  .focus-highlight,
+  .dashboard-empty-state,
+  .achievement-card {
+    border: 1px solid CanvasText;
+  }
+
+  .overall-ring-track,
+  .overall-ring-value {
+    stroke: CanvasText;
+  }
+}
