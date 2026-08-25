@@ -3,6 +3,7 @@
 import Link from "next/link";
 import {useEffect, useRef, useState} from "react";
 import {LogoutButton} from "@/components/navigation/LogoutButton";
+import {ThemeToggle} from "@/components/navigation/ThemeToggle";
 import type {Locale} from "@/lib/i18n";
 import {t} from "@/lib/i18n";
 
@@ -39,6 +40,7 @@ export function AppHeader({locale, authenticated}: {locale: Locale; authenticate
 
   const accountActions = (
     <>
+      <ThemeToggle locale={locale} />
       <Link className="locale-switch" href={`/${otherLocale}/dashboard`} hrefLang={otherLocale} prefetch={authenticated}>
         {otherLocale === "fa" ? "فارسی" : "English"}
       </Link>
