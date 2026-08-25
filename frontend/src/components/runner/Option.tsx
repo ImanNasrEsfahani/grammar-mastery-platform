@@ -1,5 +1,5 @@
-import { memo } from "react";
-import type { AttemptOption } from "@/lib/api/types";
+import {memo} from "react";
+import type {AttemptOption} from "@/lib/api/types";
 
 export type OptionState = "idle" | "selected" | "correct" | "incorrect" | "muted";
 
@@ -11,6 +11,8 @@ export const Option = memo(function Option({
   onSelect,
   correctLabel,
   incorrectLabel,
+  textDirection = "auto",
+  textLanguage,
 }: {
   option: AttemptOption;
   index: number;
@@ -19,6 +21,8 @@ export const Option = memo(function Option({
   onSelect: (optionId: string) => void;
   correctLabel: string;
   incorrectLabel: string;
+  textDirection?: "ltr" | "rtl" | "auto";
+  textLanguage?: string;
 }) {
   const status = state === "correct" ? correctLabel : state === "incorrect" ? incorrectLabel : null;
   return (
@@ -31,7 +35,7 @@ export const Option = memo(function Option({
       data-option-index={index + 1}
     >
       <span className="option-key" aria-hidden="true">{index + 1}</span>
-      <bdi dir="auto" className="option-text">{option.text}</bdi>
+      <bdi dir={textDirection} lang={textLanguage} className="option-text">{option.text}</bdi>
       {status ? <span className="option-status"><span aria-hidden="true">{state === "correct" ? "✓" : "×"}</span>{status}</span> : null}
     </button>
   );

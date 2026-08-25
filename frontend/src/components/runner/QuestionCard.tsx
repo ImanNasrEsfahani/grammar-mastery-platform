@@ -1,6 +1,20 @@
-import { forwardRef, memo } from "react";
-import type { AnswerFeedback, AttemptQuestion } from "@/lib/api/types";
-import { Option, type OptionState } from "./Option";
+import {forwardRef, memo} from "react";
+import type {AnswerFeedback, AttemptQuestion} from "@/lib/api/types";
+import type {Locale} from "@/lib/i18n";
+import {Option, type OptionState} from "./Option";
+
+type QuestionActions = {
+  bookmarked: boolean;
+  bookmarkLabel: string;
+  reportLabel: string;
+  onBookmark: () => void;
+  onReport: () => void;
+};
+
+const difficultyCopy = {
+  fa: {EASY: "آسان", MEDIUM: "متوسط", HARD: "سخت", VERY_HARD: "خیلی سخت"},
+  en: {EASY: "Easy", MEDIUM: "Medium", HARD: "Hard", VERY_HARD: "Very hard"},
+} as const;
 
 export const QuestionCard = memo(forwardRef<HTMLHeadingElement, {
   question: AttemptQuestion;
@@ -9,7 +23,9 @@ export const QuestionCard = memo(forwardRef<HTMLHeadingElement, {
   locked: boolean;
   onSelect: (optionId: string) => void;
   labels: {correct: string; incorrect: string; selectAnswer: string};
-}>(function QuestionCard({question, selectedOptionId, feedback, locked, onSelect, labels}, headingRef) {
+  uiLocale?: Locale;
+  actions?: QuestionActions;
+}>(function QuestionCard({question, selectedOptionId, feedback, locked, onSelect, labels, uiLocale = "en", actions}, headingRef) {
   function optionState(optionId: string): OptionState {
     if (feedback) {
       if (optionId === feedback.correct_option_id) return "correct";
@@ -21,13 +37,16 @@ export const QuestionCard = memo(forwardRef<HTMLHeadingElement, {
 
   const stemDirection = question.stem_locale === "fa-IR" ? "rtl" : "ltr";
   const stemLanguage = question.stem_locale === "fa-IR" ? "fa" : "fr";
+  const difficulty = difficultyCopy[uiLocale][question.difficulty];
+  const readableType = question.question_type.replaceAll("_", " ").toLowerCase();
+  const questionId = question.question_revision_id.slice(0, 8).toUpperCase();
 
   return (
     <section className="surface question-card" aria-labelledby="question-heading">
       <div className="question-meta">
-        <span>{question.question_type}</span>
-        <span aria-hidden="true">·</span>
-        <span>{question.difficulty.replaceAll("_", " ")}</span>
+        <span className="difficulty-pill"><span className="difficulty-dot" aria-hidden="true" />{difficulty}</span>
+        <span>{readableType}</span>
+        <span className="question-id" dir="ltr">ID: {questionId}</span>
       </div>
       <h1 id="question-heading" ref={headingRef} tabIndex={-1} dir={stemDirection} lang={stemLanguage} className="question-stem">
         {question.stem}
@@ -44,9 +63,23 @@ export const QuestionCard = memo(forwardRef<HTMLHeadingElement, {
             onSelect={onSelect}
             correctLabel={labels.correct}
             incorrectLabel={labels.incorrect}
+            textDirection={stemDirection}
+            textLanguage={stemLanguage}
           />
         ))}
       </div>
+      {actions ? (
+        <div className="question-actions">
+          <button className="question-action-button" type="button" aria-pressed={actions.bookmarked} onClick={actions.onBookmark}>
+            <span className="question-action-icon" aria-hidden="true">{actions.bookmarked ? "★" : "☆"}</span>
+            <span>{actions.bookmarkLabel}</span>
+          </button>
+          <button className="question-action-button" type="button" onClick={actions.onReport}>
+            <span className="question-action-icon" aria-hidden="true">⚑</span>
+            <span>{actions.reportLabel}</span>
+          </button>
+        </div>
+      ) : null}
     </section>
   );
 }));

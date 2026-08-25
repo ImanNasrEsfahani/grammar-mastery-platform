@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import {usePathname} from "next/navigation";
 import {useEffect, useRef, useState} from "react";
 import {LogoutButton} from "@/components/navigation/LogoutButton";
 import {ThemeToggle} from "@/components/navigation/ThemeToggle";
@@ -10,8 +11,12 @@ import {t} from "@/lib/i18n";
 export function AppHeader({locale, authenticated}: {locale: Locale; authenticated: boolean}) {
   const labels = t(locale);
   const otherLocale = locale === "fa" ? "en" : "fa";
+  const pathname = usePathname();
   const headerRef = useRef<HTMLElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const segments = pathname.split("/").filter(Boolean);
+  const isFocusedAttempt = segments.length === 3 && segments[1] === "attempts";
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -28,6 +33,8 @@ export function AppHeader({locale, authenticated}: {locale: Locale; authenticate
       document.removeEventListener("pointerdown", closeOutside);
     };
   }, [menuOpen]);
+
+  if (isFocusedAttempt) return null;
 
   const navigation = (
     <ul className="nav-list">
