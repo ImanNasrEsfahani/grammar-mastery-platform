@@ -1,0 +1,129 @@
+.authHeader {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  padding: 22px 30px 0;
+  background: transparent;
+  direction: ltr;
+}
+
+.authHeaderInner {
+  width: min(1380px, calc(100vw - 2rem));
+  min-height: 64px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border: 1px solid #d7e2f2;
+  border-radius: 19px;
+  background: rgba(255,255,255,.92);
+  box-shadow: 0 8px 26px rgba(29,58,105,.025);
+  backdrop-filter: blur(10px);
+}
+
+:global(html[data-theme="dark"]) .authHeaderInner {
+  border-color: #294f71;
+  background: rgba(7,27,47,.92);
+  box-shadow: 0 8px 26px rgba(0,0,0,.12);
+}
+
+.authBrand {
+  display: inline-flex;
+  align-items: center;
+  gap: .75rem;
+  color: #10285b;
+  text-decoration: none;
+}
+
+:global(html[data-theme="dark"]) .authBrand {
+  color: #e1ad4d;
+}
+
+.authBrandMark {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  color: #2f6cf6;
+}
+
+:global(html[data-theme="dark"]) .authBrandMark {
+  color: #e1ad4d;
+}
+
+.authBrandMark svg {
+  width: 28px;
+  height: 28px;
+}
+
+.authBrandLabel {
+  display: grid;
+  line-height: .92;
+  letter-spacing: .02em;
+}
+
+.authBrandLabel strong {
+  font-size: 1.1rem;
+  font-weight: 900;
+}
+
+.authBrandLabel small {
+  margin-top: .14rem;
+  font-size: .72rem;
+  font-weight: 900;
+  letter-spacing: .045em;
+}
+
+.authHeaderActions {
+  display: flex;
+  align-items: center;
+  gap: .35rem;
+}
+
+.authHeaderActions :global(.theme-toggle) {
+  width: 40px;
+  min-width: 40px;
+  min-height: 40px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.authHeaderActions :global(.theme-toggle-label) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+.authLocaleSwitch {
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  padding: 0 .75rem;
+  border-radius: 10px;
+  color: #10285b;
+  font-size: .92rem;
+  font-weight: 850;
+  text-decoration: none;
+}
+
+:global(html[data-theme="dark"]) .authLocaleSwitch {
+  color: #f7f9ff;
+}
+
+.authLocaleSwitch:hover {
+  background: rgba(47,108,246,.08);
+}
+
+@media (max-width: 640px) {
+  .authHeader { padding: 10px 8px 0; }
+  .authHeaderInner { width: 100%; padding: 0 12px; border-radius: 15px; }
+  .authBrandLabel strong { font-size: .98rem; }
+  .authBrandLabel small { font-size: .64rem; }
+}

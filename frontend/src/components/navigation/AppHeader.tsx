@@ -7,6 +7,16 @@ import {LogoutButton} from "@/components/navigation/LogoutButton";
 import {ThemeToggle} from "@/components/navigation/ThemeToggle";
 import type {Locale} from "@/lib/i18n";
 import {t} from "@/lib/i18n";
+import styles from "./AppHeader.module.css";
+
+function AuthBrandMark() {
+  return (
+    <svg viewBox="0 0 28 28" fill="none" aria-hidden="true">
+      <path d="M5 5.5h7.8c1.5 0 2.7.6 3.2 1.6.6-1 1.8-1.6 3.3-1.6H23v16h-4.2c-1.8 0-3.1.6-3.8 1.6-.7-1-2-1.6-3.8-1.6H5v-16Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+      <path d="M15 7.2v15.1" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+    </svg>
+  );
+}
 
 export function AppHeader({locale, authenticated}: {locale: Locale; authenticated: boolean}) {
   const labels = t(locale);
@@ -17,6 +27,7 @@ export function AppHeader({locale, authenticated}: {locale: Locale; authenticate
 
   const segments = pathname.split("/").filter(Boolean);
   const isFocusedAttempt = segments.length === 3 && segments[1] === "attempts";
+  const isAuthSurface = ["login", "register", "forgot-password", "reset-password"].includes(segments[1] ?? "");
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -35,6 +46,29 @@ export function AppHeader({locale, authenticated}: {locale: Locale; authenticate
   }, [menuOpen]);
 
   if (isFocusedAttempt) return null;
+
+  if (isAuthSurface) {
+    const routeTail = segments.slice(1).join("/") || "login";
+    return (
+      <header className={styles.authHeader} ref={headerRef}>
+        <div className={styles.authHeaderInner}>
+          <Link className={styles.authBrand} href={`/${locale}/login`}>
+            <span className={styles.authBrandMark}><AuthBrandMark /></span>
+            <span className={styles.authBrandLabel} aria-label="Grammar Mastery">
+              <strong>GRAMMAR</strong>
+              <small>MASTERY</small>
+            </span>
+          </Link>
+          <div className={styles.authHeaderActions}>
+            <ThemeToggle locale={locale} />
+            <Link className={styles.authLocaleSwitch} href={`/${otherLocale}/${routeTail}`} hrefLang={otherLocale}>
+              {otherLocale.toUpperCase()} <span aria-hidden="true">▾</span>
+            </Link>
+          </div>
+        </div>
+      </header>
+    );
+  }
 
   const navigation = (
     <ul className="nav-list">
