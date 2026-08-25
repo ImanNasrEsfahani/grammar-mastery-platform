@@ -1,0 +1,13 @@
+Target: frontend/src/components/navigation/AppHeader.tsx
+
+After:
+  const isFocusedAttempt = segments.length === 3 && segments[1] === "attempts";
+
+Add:
+  const isStandaloneRegister = segments.length === 2 && segments[1] === "register";
+
+Replace:
+  if (isFocusedAttempt) return null;
+
+With:
+  if (isFocusedAttempt || isStandaloneRegister) return null;
