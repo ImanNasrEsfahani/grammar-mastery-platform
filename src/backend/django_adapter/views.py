@@ -3,7 +3,13 @@ from __future__ import annotations
 from rest_framework.exceptions import MethodNotAllowed
 from rest_framework.views import APIView
 
-from backend.django_adapter import runtime_auth, runtime_dashboard, runtime_learning, runtime_review
+from backend.django_adapter import (
+    runtime_attempt_result,
+    runtime_auth,
+    runtime_dashboard,
+    runtime_learning,
+    runtime_review,
+)
 from backend.errors import APIError
 
 
@@ -56,7 +62,7 @@ class ContractEndpointView(APIView):
                 request, attempt_id=kwargs.get("attemptId")
             )
         if operation_id == "getAttemptResult":
-            return runtime_learning.attempt_result_request(
+            return runtime_attempt_result.attempt_result_request(
                 request, attempt_id=kwargs.get("attemptId")
             )
         if operation_id == "listReviews":
