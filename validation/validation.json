@@ -1,0 +1,16 @@
+{
+  "package": "profile_rebuild_v1_0",
+  "status": "STATIC_PASS_FULL_REPO_VALIDATE_NOT_RUN",
+  "checks": {
+    "profile_route_placeholder_removed": true,
+    "dashboard_runtime_reused": true,
+    "next_action_runtime_reused": true,
+    "light_dark_css_present": true,
+    "responsive_breakpoints_present": true,
+    "rtl_ltr_handling_present": true,
+    "offline_safe_snapshot_present": true,
+    "backend_contract_changed": false,
+    "github_commit_or_push_performed": false
+  },
+  "environment_note": "Node 22 is installed here while frontend/package.json requires Node >=24; npm run validate was not claimed."
+}
