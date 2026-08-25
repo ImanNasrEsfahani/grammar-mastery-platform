@@ -7,6 +7,7 @@ from backend.django_adapter import (
     runtime_attempt_result,
     runtime_auth,
     runtime_dashboard,
+    runtime_history,
     runtime_learning,
     runtime_review,
 )
@@ -14,11 +15,11 @@ from backend.errors import APIError
 
 
 class ContractEndpointView(APIView):
-    """Route a frozen Stage 21 operation to a bound runtime provider.
+    """Route a frozen Stage 21 operation or an explicitly additive UI provider.
 
-    Runtime providers are bound incrementally. Auth, dashboard/next action,
-    lesson reads, test creation, the complete attempt cycle, and learner Review
-    are PostgreSQL-backed. Operations without a production provider fail closed.
+    Runtime providers are bound incrementally. The History provider is additive
+    and intentionally stays outside ROUTE_OPERATION_IDS so the frozen Stage 21
+    operation set remains byte-for-byte contract compatible.
     """
 
     operations: dict[str, str] = {}
@@ -87,6 +88,8 @@ class ContractEndpointView(APIView):
             return runtime_review.dashboard_request(request)
         if operation_id == "getCurrentNextAction":
             return runtime_review.next_action_request(request)
+        if operation_id == "listHistory":
+            return runtime_history.history_request(request)
 
         raise APIError(
             503,
