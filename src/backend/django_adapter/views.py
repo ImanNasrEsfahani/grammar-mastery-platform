@@ -10,6 +10,7 @@ from backend.django_adapter import (
     runtime_history,
     runtime_learning,
     runtime_review,
+    runtime_search,
 )
 from backend.errors import APIError
 
@@ -17,9 +18,9 @@ from backend.errors import APIError
 class ContractEndpointView(APIView):
     """Route a frozen Stage 21 operation or an explicitly additive UI provider.
 
-    Runtime providers are bound incrementally. The History provider is additive
-    and intentionally stays outside ROUTE_OPERATION_IDS so the frozen Stage 21
-    operation set remains byte-for-byte contract compatible.
+    Runtime providers are bound incrementally. History and Grammar Search are
+    additive learner surfaces and intentionally stay outside ROUTE_OPERATION_IDS
+    so the frozen Stage 21 operation set remains contract compatible.
     """
 
     operations: dict[str, str] = {}
@@ -90,6 +91,8 @@ class ContractEndpointView(APIView):
             return runtime_review.next_action_request(request)
         if operation_id == "listHistory":
             return runtime_history.history_request(request)
+        if operation_id == "searchGrammar":
+            return runtime_search.grammar_search_request(request)
 
         raise APIError(
             503,

@@ -124,6 +124,17 @@ urlpatterns.append(
     )
 )
 
+# Grammar Search is another additive learner UI provider. Like History it stays
+# outside the frozen Stage 21 OpenAPI operation set; no existing contract route
+# or operationId is changed.
+urlpatterns.append(
+    path(
+        "search",
+        _view({"GET": "searchGrammar"}, {"GET": USER}),
+        name="searchGrammar",
+    )
+)
+
 
 ROUTE_OPERATION_IDS = frozenset(
     operation_id

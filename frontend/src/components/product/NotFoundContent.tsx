@@ -58,9 +58,9 @@ export function NotFoundContent() {
               <Link className="button button-primary" href={`/${locale}/dashboard`}>{isFa ? "بازگشت به داشبورد" : "Back to dashboard"}</Link>
               <Link className="button button-secondary" href={`/${locale}/lessons`}>{isFa ? "رفتن به درس‌ها" : "Browse lessons"}</Link>
             </div>
-            <Link className="not-found-search-shortcut" href={`/${locale}/lessons`}>
+            <Link className="not-found-search-shortcut" href={`/${locale}/search`}>
               <span aria-hidden="true">⌕</span>
-              <span>{isFa ? "پیدا کردن موضوع گرامری در نقشه درس‌ها" : "Find a grammar topic in the lesson map"}</span>
+              <span>{isFa ? "جستجوی سراسری درس، زیرموضوع، قاعده و دسته گرامری" : "Search lessons, subtopics, rules, and grammar categories"}</span>
             </Link>
             <div className="not-found-shortcuts">
               <span>{isFa ? "میانبرها:" : "Shortcuts:"}</span>
