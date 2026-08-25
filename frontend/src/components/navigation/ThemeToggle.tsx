@@ -3,49 +3,17 @@
 import {useEffect, useState} from "react";
 import type {Locale} from "@/lib/i18n";
 import {t} from "@/lib/i18n";
-
-type Theme = "light" | "dark";
-
-const STORAGE_KEY = "gmp-theme";
-const THEME_EVENT = "gmp-theme-change";
-
-function isTheme(value: unknown): value is Theme {
-  return value === "light" || value === "dark";
-}
-
-function systemTheme(): Theme {
-  return typeof window.matchMedia === "function" && window.matchMedia("(prefers-color-scheme: dark)").matches
-    ? "dark"
-    : "light";
-}
-
-function storedTheme(): Theme | null {
-  try {
-    const value = window.localStorage.getItem(STORAGE_KEY);
-    return isTheme(value) ? value : null;
-  } catch {
-    return null;
-  }
-}
-
-function currentTheme(): Theme {
-  const applied = document.documentElement.dataset.theme;
-  if (isTheme(applied)) return applied;
-  return storedTheme() ?? systemTheme();
-}
-
-function applyTheme(theme: Theme, persist: boolean) {
-  document.documentElement.dataset.theme = theme;
-  document.documentElement.style.colorScheme = theme;
-  if (persist) {
-    try {
-      window.localStorage.setItem(STORAGE_KEY, theme);
-    } catch {
-      // Theme switching must still work when storage is unavailable.
-    }
-  }
-  window.dispatchEvent(new CustomEvent<Theme>(THEME_EVENT, {detail: theme}));
-}
+import {
+  THEME_EVENT,
+  THEME_STORAGE_KEY,
+  applyThemePreference,
+  currentTheme,
+  currentThemePreference,
+  isTheme,
+  isThemePreference,
+  systemTheme,
+  type Theme,
+} from "@/lib/theme";
 
 function ThemeIcon({target}: {target: Theme}) {
   if (target === "dark") {
@@ -74,15 +42,18 @@ export function ThemeToggle({locale}: {locale: Locale}) {
       setTheme(isTheme(next) ? next : currentTheme());
     };
     const handleStorage = (event: StorageEvent) => {
-      if (event.key !== STORAGE_KEY) return;
-      const next = isTheme(event.newValue) ? event.newValue : systemTheme();
-      applyTheme(next, false);
+      if (event.key !== THEME_STORAGE_KEY) return;
+      const preference = isThemePreference(event.newValue) ? event.newValue : "system";
+      applyThemePreference(preference, false);
+      setTheme(currentTheme());
     };
-
-    const media = typeof window.matchMedia === "function" ? window.matchMedia("(prefers-color-scheme: dark)") : null;
+    const media = typeof window.matchMedia === "function"
+      ? window.matchMedia("(prefers-color-scheme: dark)")
+      : null;
     const handleSystemTheme = () => {
-      if (storedTheme()) return;
-      applyTheme(systemTheme(), false);
+      if (currentThemePreference() !== "system") return;
+      applyThemePreference("system", false);
+      setTheme(systemTheme());
     };
 
     syncFromDocument();
@@ -109,7 +80,7 @@ export function ThemeToggle({locale}: {locale: Locale}) {
       aria-pressed={activeTheme === "dark"}
       title={actionLabel}
       onClick={() => {
-        applyTheme(targetTheme, true);
+        applyThemePreference(targetTheme, true);
         setTheme(targetTheme);
       }}
     >

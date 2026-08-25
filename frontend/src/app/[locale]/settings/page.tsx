@@ -1,8 +1,14 @@
-import { notFound } from "next/navigation";
-import { UnavailableSurface } from "@/components/product/UnavailableSurface";
-import { isLocale } from "@/lib/i18n";
+import {cookies} from "next/headers";
+import {notFound} from "next/navigation";
+import {SettingsClient} from "@/components/settings/SettingsClient";
+import {isLocale} from "@/lib/i18n";
 
 export default async function SettingsPage({params}: {params: Promise<{locale: string}>}) {
-  const {locale} = await params; if (!isLocale(locale)) notFound();
-  return <UnavailableSurface locale={locale} title={locale === "fa" ? "تنظیمات" : "Settings"} description={locale === "fa" ? "مدیریت زبان، منطقه زمانی و ترجیحات تمرین." : "Manage language, timezone and practice preferences."} />;
+  const {locale} = await params;
+  if (!isLocale(locale)) notFound();
+
+  const cookieStore = await cookies();
+  const authenticated = Boolean(cookieStore.get("gmp_access_token")?.value);
+
+  return <SettingsClient locale={locale} authenticated={authenticated} />;
 }
