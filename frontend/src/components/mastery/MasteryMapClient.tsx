@@ -555,13 +555,14 @@ function nodeMatches(display: string, french: string, nodeBand: MasteryBand, que
 }
 
 function bandClass(band: MasteryBand): string {
-  return {
+  const className = {
     STRONG: styles.bandStrong,
     DEVELOPING: styles.bandDeveloping,
     WEAK: styles.bandWeak,
     UNCERTAIN: styles.bandUncertain,
     NO_EVIDENCE: styles.bandNoEvidence,
   }[band];
+  return className ?? "";
 }
 
 function bandIcon(band: MasteryBand): string {
