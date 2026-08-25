@@ -8,8 +8,16 @@ export const metadata: Metadata = {
   referrer: "no-referrer",
 };
 
-export default async function ForgotPasswordPage({params}: {params: Promise<{locale: string}>}) {
+export default async function ResetPasswordPage({
+  params,
+  searchParams,
+}: {
+  params: Promise<{locale: string}>;
+  searchParams: Promise<{token?: string | string[]}>;
+}) {
   const {locale} = await params;
   if (!isLocale(locale)) notFound();
-  return <PasswordRecoveryClient locale={locale} mode="request" />;
+  const query = await searchParams;
+  const token = typeof query.token === "string" ? query.token : null;
+  return <PasswordRecoveryClient locale={locale} mode="reset" token={token} />;
 }
