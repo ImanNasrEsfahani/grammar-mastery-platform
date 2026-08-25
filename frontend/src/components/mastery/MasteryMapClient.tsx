@@ -581,5 +581,5 @@ function bandLabel(band: MasteryBand, isFa: boolean): string {
 }
 
 function humanize(value: string): string {
-  return value.toLocaleLowerCase().split("_").map((part) => part ? part[0].toLocaleUpperCase() + part.slice(1) : part).join(" ");
+  return value.toLocaleLowerCase().split("_").map((part) => part ? part.charAt(0).toLocaleUpperCase() + part.slice(1) : part).join(" ");
 }
