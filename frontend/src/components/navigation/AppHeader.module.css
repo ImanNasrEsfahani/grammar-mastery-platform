@@ -121,9 +121,46 @@
   background: rgba(47,108,246,.08);
 }
 
+.authPrimaryLink {
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem;
+  border: 1px solid #2f6cf6;
+  border-radius: 10px;
+  color: #1f5cf0;
+  background: transparent;
+  font-size: .88rem;
+  font-weight: 850;
+  text-decoration: none;
+}
+
+.authPrimaryLink:hover {
+  color: #fff;
+  background: #2f6cf6;
+}
+
+:global(html[data-theme="dark"]) .authPrimaryLink {
+  color: #72a0ff;
+  border-color: #3e7dff;
+}
+
+:global(html[data-theme="dark"]) .authPrimaryLink:hover {
+  color: #fff;
+  background: #2f6cf6;
+}
+
 @media (max-width: 640px) {
   .authHeader { padding: 10px 8px 0; }
   .authHeaderInner { width: 100%; padding: 0 12px; border-radius: 15px; }
   .authBrandLabel strong { font-size: .98rem; }
   .authBrandLabel small { font-size: .64rem; }
+  .authPrimaryLink { padding-inline: .7rem; }
+}
+
+@media (max-width: 430px) {
+  .authHeaderActions { gap: .1rem; }
+  .authLocaleSwitch { padding-inline: .45rem; }
+  .authPrimaryLink { min-width: 40px; padding-inline: .55rem; font-size: .8rem; }
 }

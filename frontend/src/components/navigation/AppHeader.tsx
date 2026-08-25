@@ -27,6 +27,7 @@ export function AppHeader({locale, authenticated}: {locale: Locale; authenticate
 
   const segments = pathname.split("/").filter(Boolean);
   const isFocusedAttempt = segments.length === 3 && segments[1] === "attempts";
+  const isServiceUnavailableSurface = segments[1] === "error";
   const isAuthSurface = ["login", "register", "forgot-password", "reset-password"].includes(segments[1] ?? "");
 
   useEffect(() => {
@@ -47,12 +48,13 @@ export function AppHeader({locale, authenticated}: {locale: Locale; authenticate
 
   if (isFocusedAttempt) return null;
 
-  if (isAuthSurface) {
+  if (isAuthSurface || isServiceUnavailableSurface) {
     const routeTail = segments.slice(1).join("/") || "login";
+    const brandHref = isServiceUnavailableSurface && authenticated ? `/${locale}/dashboard` : `/${locale}/login`;
     return (
       <header className={styles.authHeader} ref={headerRef}>
         <div className={styles.authHeaderInner}>
-          <Link className={styles.authBrand} href={`/${locale}/login`}>
+          <Link className={styles.authBrand} href={brandHref}>
             <span className={styles.authBrandMark}><AuthBrandMark /></span>
             <span className={styles.authBrandLabel} aria-label="Grammar Mastery">
               <strong>GRAMMAR</strong>
@@ -64,6 +66,11 @@ export function AppHeader({locale, authenticated}: {locale: Locale; authenticate
             <Link className={styles.authLocaleSwitch} href={`/${otherLocale}/${routeTail}`} hrefLang={otherLocale}>
               {otherLocale.toUpperCase()} <span aria-hidden="true">▾</span>
             </Link>
+            {isServiceUnavailableSurface ? (
+              <Link className={styles.authPrimaryLink} href={authenticated ? `/${locale}/dashboard` : `/${locale}/login`}>
+                {authenticated ? labels.dashboard : labels.login}
+              </Link>
+            ) : null}
           </div>
         </div>
       </header>
