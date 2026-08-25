@@ -130,7 +130,24 @@ beforeEach(() => {
   window.sessionStorage.clear();
 });
 
-test("renders the full review workspace and explains a graduated review", async () => {
+test("renders the complete review workspace with progress and priority", async () => {
+  vi.mocked(apiRequest)
+    .mockResolvedValueOnce(itemPayload())
+    .mockResolvedValueOnce(queuePayload());
+
+  render(<ReviewRunnerClient locale="fa" reviewId={reviewId} />);
+
+  expect(await screen.findByText("Le livre ______ j’ai acheté est très intéressant.")).toBeInTheDocument();
+  expect(await screen.findByText("Les pronoms relatifs (que/dont)")).toBeInTheDocument();
+  expect(screen.getByText(/پاسخ قبلی/)).toHaveTextContent("que");
+  expect(screen.getByRole("heading", {name: "پیشرفت جلسه"})).toBeInTheDocument();
+  expect(screen.getByRole("heading", {name: "اولویت مرور"})).toBeInTheDocument();
+  expect(screen.getAllByText("بالا").length).toBeGreaterThan(0);
+  expect(screen.getByText(/3 تکرار ثبت شده/)).toBeInTheDocument();
+  expect(screen.getByText(/تحلیل پس از پاسخ/)).toBeInTheDocument();
+});
+
+test("reveals misconception, related rule and mastery impact only after grading", async () => {
   vi.mocked(apiRequest)
     .mockResolvedValueOnce(itemPayload())
     .mockResolvedValueOnce(queuePayload())
@@ -139,21 +156,25 @@ test("renders the full review workspace and explains a graduated review", async 
   const user = userEvent.setup();
   render(<ReviewRunnerClient locale="fa" reviewId={reviewId} />);
 
-  expect(await screen.findByText("Le livre ______ j’ai acheté est très intéressant.")).toBeInTheDocument();
-  expect(await screen.findByText("Les pronoms relatifs (que/dont)")).toBeInTheDocument();
-  expect(screen.getByText(/پاسخ قبلی/)).toHaveTextContent("que");
+  await screen.findByText("Le livre ______ j’ai acheté est très intéressant.");
+  expect(screen.queryByRole("heading", {name: "اشتباه محتمل شما"})).not.toBeInTheDocument();
 
   await user.click(screen.getByText("dont"));
   await user.click(screen.getByRole("button", {name: "ثبت پاسخ"}));
 
   expect(await screen.findByText("درست پاسخ دادید")).toBeInTheDocument();
   expect(screen.getByText(/از صف مرور فعال خارج شد/)).toBeInTheDocument();
+  expect(screen.getByRole("heading", {name: "اشتباه محتمل شما"})).toBeInTheDocument();
   expect(screen.getByText("que ↔ dont")).toBeInTheDocument();
+  expect(screen.getByRole("heading", {name: "قاعده مرتبط"})).toBeInTheDocument();
   expect(screen.getByText("dont replaces de + noun.")).toBeInTheDocument();
+  expect(screen.getByRole("heading", {name: "اثر بر تسلط"})).toBeInTheDocument();
+  expect(screen.getByText(/30/)).toBeInTheDocument();
+  expect(screen.getByText(/60/)).toBeInTheDocument();
   expect(screen.getByText(/امتیاز آزمون اصلی بازنویسی نمی‌شود/)).toBeInTheDocument();
 });
 
-test("supports keyboard selection and repeat-in-session without a page reload", async () => {
+test("supports keyboard selection and repeat-in-session with visible queue confirmation", async () => {
   vi.mocked(apiRequest)
     .mockResolvedValueOnce(itemPayload())
     .mockResolvedValueOnce(queuePayload())
@@ -169,10 +190,13 @@ test("supports keyboard selection and repeat-in-session without a page reload", 
   expect(await screen.findByText("نیاز به مرور دوباره")).toBeInTheDocument();
   const repeat = screen.getByRole("button", {name: "تکرار در همین جلسه"});
   await user.click(repeat);
-  expect(screen.getByRole("button", {name: "تکرار این جلسه لغو شود"})).toHaveAttribute("aria-pressed", "true");
+
+  expect(screen.getByRole("button", {name: "لغو تکرار در همین جلسه"})).toHaveAttribute("aria-pressed", "true");
+  expect(screen.getByText(/برای انتهای صف اضافه شد/)).toBeInTheDocument();
 
   await waitFor(() => {
     const stored = window.sessionStorage.getItem("gmp-review-session-v1:fa");
     expect(stored).toContain(reviewId);
+    expect(stored).toContain("repeat_requested_ids");
   });
 });
