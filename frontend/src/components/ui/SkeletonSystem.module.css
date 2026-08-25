@@ -1,0 +1,480 @@
+.block {
+  display: block;
+  max-inline-size: 100%;
+  flex: 0 0 auto;
+  position: relative;
+  overflow: hidden;
+  background: var(--skeleton-base, #e7edf6);
+}
+
+.block::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-110%);
+  background: linear-gradient(90deg, transparent 0%, var(--skeleton-highlight, rgba(255, 255, 255, 0.72)) 48%, transparent 100%);
+  animation: skeleton-shimmer 1.55s ease-in-out infinite;
+}
+
+.page,
+.runnerShell {
+  --skeleton-base: #e4ebf5;
+  --skeleton-highlight: rgba(255, 255, 255, 0.7);
+  inline-size: 100%;
+}
+
+.page {
+  display: grid;
+  gap: 1.35rem;
+  padding-block-end: 2.5rem;
+}
+
+.pageHeading {
+  display: grid;
+  gap: 0.7rem;
+  min-block-size: 4.3rem;
+  align-content: center;
+}
+
+.toolbar {
+  min-block-size: 4.65rem;
+  padding: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 1.15rem;
+  background: var(--surface);
+}
+
+.toolbarActions {
+  display: flex;
+  gap: 0.7rem;
+  flex: 0 0 auto;
+}
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.cardSkeleton {
+  min-block-size: 7.4rem;
+  padding: 1.15rem;
+  display: grid;
+  align-content: center;
+  gap: 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.cardSkeletonCompact {
+  min-block-size: 5.7rem;
+}
+
+.mainSurface,
+.settingsPanel,
+.settingsNav,
+.runnerMain,
+.runnerAside {
+  border: 1px solid var(--line);
+  border-radius: 1.1rem;
+  background: var(--surface);
+}
+
+.mainSurface {
+  padding: 1rem;
+  min-inline-size: 0;
+}
+
+.list {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.listRow {
+  min-block-size: 4.8rem;
+  padding: 0.9rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 0.95rem;
+  background: var(--surface-soft);
+}
+
+.listRowDense {
+  min-block-size: 3.75rem;
+  padding-block: 0.65rem;
+}
+
+.listIdentity {
+  min-inline-size: 0;
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.listText {
+  min-inline-size: 0;
+  flex: 1 1 auto;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.tableWrap {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  background: var(--surface);
+}
+
+.tableRow {
+  display: grid;
+  grid-template-columns: repeat(var(--skeleton-columns, 4), minmax(0, 1fr));
+  gap: 1rem;
+  min-block-size: 3.45rem;
+  padding: 0.9rem 1rem;
+  align-items: center;
+  border-block-start: 1px solid var(--line);
+}
+
+.tableHead {
+  border-block-start: 0;
+  min-block-size: 3rem;
+  background: var(--surface-soft);
+}
+
+.chart {
+  min-block-size: 18rem;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 1rem;
+}
+
+.chartCompact {
+  min-block-size: 11rem;
+}
+
+.chartHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.chartHeading {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.chartPlot {
+  min-block-size: 11rem;
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.85rem;
+  background: var(--surface-soft);
+}
+
+.chartCompact .chartPlot {
+  min-block-size: 6.5rem;
+}
+
+.chartGridLine {
+  position: absolute;
+  inset-inline: 0.75rem;
+  block-size: 1px;
+  background: var(--line);
+}
+
+.chartGridLine:nth-child(1) { inset-block-start: 25%; }
+.chartGridLine:nth-child(2) { inset-block-start: 50%; }
+.chartGridLine:nth-child(3) { inset-block-start: 75%; }
+
+.chartBars {
+  position: absolute;
+  inset: 0.85rem 1rem;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  gap: 0.7rem;
+  align-items: end;
+}
+
+.chartBar {
+  align-self: end;
+}
+
+.chartLegend {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.twoColumn,
+.dashboardGrid,
+.chartGrid,
+.builderGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.85fr) minmax(16rem, 0.75fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+.dashboardGrid,
+.chartGrid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.sideStack {
+  display: grid;
+  gap: 1rem;
+}
+
+.settingsLayout {
+  display: grid;
+  grid-template-columns: minmax(11rem, 0.34fr) minmax(0, 1fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+.settingsNav {
+  min-block-size: 22rem;
+  padding: 1.15rem;
+  display: grid;
+  gap: 1.15rem;
+  align-content: start;
+}
+
+.settingsPanel {
+  min-block-size: 28rem;
+  padding: 1.2rem;
+  display: grid;
+  align-content: start;
+  gap: 1rem;
+}
+
+.settingsRow {
+  min-block-size: 4.6rem;
+  padding-block: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border-block-start: 1px solid var(--line);
+}
+
+.settingsText {
+  flex: 1 1 auto;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.runnerShell {
+  display: grid;
+  gap: 1rem;
+  min-block-size: min(40rem, 76vh);
+}
+
+.runnerProgress {
+  min-block-size: 3.7rem;
+  padding: 0.85rem 1rem;
+  display: grid;
+  gap: 0.65rem;
+  align-content: center;
+  border-block-end: 1px solid var(--line);
+}
+
+.runnerWorkspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(15rem, 0.3fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+.runnerMain {
+  min-block-size: 32rem;
+  padding: clamp(1rem, 2.4vw, 2rem);
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+}
+
+.runnerOptions {
+  display: grid;
+  gap: 0.8rem;
+  margin-block-start: 0.4rem;
+}
+
+.runnerOption {
+  min-block-size: 4rem;
+  padding: 0.8rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 0.95rem;
+  background: var(--surface-soft);
+}
+
+.runnerFooter {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-block-start: 0.35rem;
+}
+
+.runnerAside {
+  min-block-size: 20rem;
+  padding: 1.2rem;
+  display: grid;
+  gap: 1rem;
+  justify-items: start;
+  align-content: start;
+}
+
+.loadingCard {
+  --skeleton-base: #e4ebf5;
+  --skeleton-highlight: rgba(255, 255, 255, 0.7);
+  inline-size: 100%;
+}
+
+.buttonLoading,
+.inlineSpinner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+}
+
+.inlineSpinner {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.spinner {
+  inline-size: 1.05rem;
+  block-size: 1.05rem;
+  flex: 0 0 auto;
+  border: 2px solid currentColor;
+  border-inline-end-color: transparent;
+  border-radius: 50%;
+  animation: skeleton-spin 0.8s linear infinite;
+}
+
+.progressive {
+  position: relative;
+}
+
+.progressiveFeedback {
+  margin-block-start: 0.9rem;
+  padding: 0.85rem 1rem;
+  min-block-size: 3.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 0.9rem;
+  background: var(--surface);
+  color: var(--muted);
+}
+
+.progressiveFeedback strong {
+  color: var(--ink);
+  font-size: 0.92rem;
+  font-weight: 750;
+}
+
+.retryButton {
+  margin-inline-start: 0.7rem;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: var(--primary);
+  font: inherit;
+  font-weight: 750;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 0.18rem;
+}
+
+.retryButton:disabled {
+  cursor: wait;
+  opacity: 0.58;
+}
+
+.visuallyHidden {
+  position: absolute !important;
+  inline-size: 1px;
+  block-size: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+:global(html[data-theme="dark"]) .page,
+:global(html[data-theme="dark"]) .runnerShell,
+:global(html[data-theme="dark"]) .loadingCard {
+  --skeleton-base: #1e3a56;
+  --skeleton-highlight: rgba(126, 162, 255, 0.14);
+}
+
+@keyframes skeleton-shimmer {
+  0% { transform: translateX(-110%); }
+  55%, 100% { transform: translateX(110%); }
+}
+
+@keyframes skeleton-spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 900px) {
+  .cardGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .twoColumn,
+  .builderGrid,
+  .settingsLayout,
+  .runnerWorkspace { grid-template-columns: 1fr; }
+  .dashboardGrid,
+  .chartGrid { grid-template-columns: 1fr; }
+  .settingsNav { min-block-size: auto; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .runnerAside { display: none; }
+}
+
+@media (max-width: 640px) {
+  .page { gap: 1rem; }
+  .toolbar { align-items: stretch; flex-direction: column; }
+  .toolbarActions { inline-size: 100%; }
+  .toolbarActions > * { flex: 1 1 0; }
+  .cardGrid { grid-template-columns: 1fr; }
+  .cardGrid > :nth-child(n + 4) { display: none; }
+  .listRow { align-items: flex-start; }
+  .listRow > :last-child { display: none; }
+  .settingsNav { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .settingsRow { align-items: flex-start; }
+  .tableRow { min-inline-size: 34rem; }
+  .tableWrap { overflow-x: hidden; }
+  .chart { min-block-size: 15rem; }
+  .runnerMain { min-block-size: 28rem; }
+  .runnerFooter > :first-child { display: none; }
+  .runnerFooter > :last-child { inline-size: 100% !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .block::after { display: none; animation: none; }
+  .spinner { animation-duration: 1.8s; }
+}
+
+@media (forced-colors: active) {
+  .block { background: CanvasText; opacity: 0.16; }
+  .block::after { display: none; }
+  .spinner { border-color: ButtonText; border-inline-end-color: transparent; }
+}

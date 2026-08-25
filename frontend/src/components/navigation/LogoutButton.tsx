@@ -2,6 +2,7 @@
 
 import {useState} from "react";
 import {useRouter} from "next/navigation";
+import {LoadingButtonContent} from "@/components/ui/SkeletonSystem";
 import type {Locale} from "@/lib/i18n";
 
 export function LogoutButton({locale, label}: {locale: Locale; label: string}) {
@@ -31,7 +32,7 @@ export function LogoutButton({locale, label}: {locale: Locale; label: string}) {
       disabled={busy}
       aria-busy={busy}
     >
-      {busy ? (locale === "fa" ? "در حال خروج…" : "Logging out…") : label}
+      {busy ? <LoadingButtonContent label={locale === "fa" ? "در حال خروج…" : "Logging out…"} /> : label}
     </button>
   );
 }
