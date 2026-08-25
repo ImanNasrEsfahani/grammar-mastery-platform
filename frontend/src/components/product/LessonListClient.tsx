@@ -37,11 +37,11 @@ function toApiError(caught: unknown) {
 
 function statusMeta(band: MasteryBand, isFa: boolean) {
   const labels: Record<MasteryBand, {fa: string; en: string; icon: string; className: string}> = {
-    STRONG: {fa: "مسلط", en: "Strong", icon: "✓", className: styles.statusStrong},
-    DEVELOPING: {fa: "در حال یادگیری", en: "Developing", icon: "↗", className: styles.statusDeveloping},
-    WEAK: {fa: "نیازمند تمرین", en: "Needs practice", icon: "!", className: styles.statusWeak},
-    UNCERTAIN: {fa: "شواهد ناکافی", en: "Uncertain", icon: "?", className: styles.statusUncertain},
-    NO_EVIDENCE: {fa: "شروع‌نشده", en: "Not started", icon: "○", className: styles.statusNoEvidence},
+    STRONG: {fa: "مسلط", en: "Strong", icon: "✓", className: styles.statusStrong ?? ""},
+    DEVELOPING: {fa: "در حال یادگیری", en: "Developing", icon: "↗", className: styles.statusDeveloping ?? ""},
+    WEAK: {fa: "نیازمند تمرین", en: "Needs practice", icon: "!", className: styles.statusWeak ?? ""},
+    UNCERTAIN: {fa: "شواهد ناکافی", en: "Uncertain", icon: "?", className: styles.statusUncertain ?? ""},
+    NO_EVIDENCE: {fa: "شروع‌نشده", en: "Not started", icon: "○", className: styles.statusNoEvidence ?? ""},
   };
   const item = labels[band];
   return {...item, label: isFa ? item.fa : item.en};
