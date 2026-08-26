@@ -1,0 +1,27 @@
+/*
+ * Mobile header direction
+ *
+ * The locale layout already sets dir="rtl" for Persian and dir="ltr" for English.
+ * CSS Grid line 1 follows inline-start, so the hamburger naturally becomes:
+ *   - Persian (RTL): right
+ *   - English (LTR): left
+ * The brand is placed at inline-end, which produces the exact opposite position.
+ */
+@media (max-width: 767px) {
+  .app-frame .header-inner {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+  }
+
+  .app-frame .header-inner > .mobile-menu-toggle {
+    grid-column: 1;
+    justify-self: start;
+    margin-inline-start: 0;
+  }
+
+  .app-frame .header-inner > .brand {
+    grid-column: 3;
+    justify-self: end;
+  }
+}

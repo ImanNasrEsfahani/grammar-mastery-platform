@@ -4,6 +4,7 @@ import "./fonts.css";
 import "./dashboard.css";
 import "./theme-menu.css";
 import "./settings.css";
+import "./mobile-header-direction.css";
 
 export const metadata: Metadata = {
   title: {
