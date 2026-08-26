@@ -36,13 +36,12 @@ export function AppHeader({locale, authenticated}: {locale: Locale; authenticate
   const pathname = usePathname();
   const headerRef = useRef<HTMLElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [unreadNotificationCount, setUnreadNotificationCount] = useState<number | null>(null);
+  const [unreadNotificationCount, setUnreadNotificationCount] = useState(1);
 
   const segments = pathname.split("/").filter(Boolean);
   const isFocusedAttempt = segments.length === 3 && segments[1] === "attempts";
   const isServiceUnavailableSurface = segments[1] === "error";
   const isAuthSurface = ["login", "register", "forgot-password", "reset-password"].includes(segments[1] ?? "");
-  const hasUnreadNotifications = unreadNotificationCount === null ? true : unreadNotificationCount > 0;
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -64,14 +63,9 @@ export function AppHeader({locale, authenticated}: {locale: Locale; authenticate
     const syncUnread = () => {
       try {
         const stored = window.localStorage.getItem(NOTIFICATION_UNREAD_KEY);
-        if (stored === null) {
-          setUnreadNotificationCount(null);
-          return;
-        }
-        const parsed = Number(stored);
-        setUnreadNotificationCount(Number.isFinite(parsed) ? Math.max(0, Math.floor(parsed)) : null);
+        setUnreadNotificationCount(stored === null ? 1 : Math.max(0, Number(stored) || 0));
       } catch {
-        setUnreadNotificationCount(null);
+        setUnreadNotificationCount(1);
       }
     };
     // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -125,19 +119,38 @@ export function AppHeader({locale, authenticated}: {locale: Locale; authenticate
     </ul>
   );
 
-  const utilityActions = () => (
+  const notificationAction = (
+    <Link className={styles.notificationLink} href={`/${locale}/notifications`} prefetch={authenticated} aria-label={labels.notifications} title={labels.notifications}>
+      <BellIcon />
+      {unreadNotificationCount > 0 ? <span className={styles.notificationDot} aria-hidden="true" /> : null}
+      <span className={styles.notificationLabel}>{labels.notifications}</span>
+    </Link>
+  );
+
+  const localeSwitch = (
+    <Link className="locale-switch" href={`/${otherLocale}/dashboard`} hrefLang={otherLocale} prefetch={authenticated}>
+      {otherLocale === "fa" ? "فارسی" : "English"}
+    </Link>
+  );
+
+  const desktopAccountActions = (
     <>
-      {authenticated ? (
-        <Link className={styles.notificationLink} href={`/${locale}/notifications`} prefetch aria-label={labels.notifications} title={labels.notifications}>
-          <BellIcon />
-          {hasUnreadNotifications ? <span className={styles.notificationDot} aria-hidden="true" /> : null}
-          <span className={styles.notificationLabel}>{labels.notifications}</span>
-        </Link>
-      ) : null}
+      {notificationAction}
       <ThemeToggle locale={locale} />
-      <Link className="locale-switch" href={`/${otherLocale}/dashboard`} hrefLang={otherLocale} prefetch={authenticated}>
-        {otherLocale === "fa" ? "فارسی" : "English"}
-      </Link>
+      {localeSwitch}
+      {authenticated ? (
+        <UserMenu locale={locale} unreadCount={unreadNotificationCount} />
+      ) : (
+        <Link className="button button-quiet" href={`/${locale}/login`}>{labels.login}</Link>
+      )}
+    </>
+  );
+
+  const mobilePanelActions = (
+    <>
+      {notificationAction}
+      <ThemeToggle locale={locale} />
+      {localeSwitch}
       {!authenticated ? <Link className="button button-quiet" href={`/${locale}/login`}>{labels.login}</Link> : null}
     </>
   );
@@ -150,7 +163,7 @@ export function AppHeader({locale, authenticated}: {locale: Locale; authenticate
           <span className="brand-label">{labels.productName}</span>
         </Link>
         <nav className="desktop-nav" aria-label={locale === "fa" ? "ناوبری اصلی" : "Primary navigation"}>{navigation}</nav>
-        <div className="desktop-header-actions">{utilityActions()}</div>
+        <div className="desktop-header-actions">{desktopAccountActions}</div>
         <button
           className="mobile-menu-toggle"
           type="button"
@@ -161,10 +174,14 @@ export function AppHeader({locale, authenticated}: {locale: Locale; authenticate
         >
           <span className="menu-icon" aria-hidden="true"><span /><span /><span /></span>
         </button>
-        {authenticated ? <UserMenu locale={locale} unreadCount={unreadNotificationCount} /> : null}
+        {authenticated ? (
+          <div className={styles.mobileAccountTrigger}>
+            <UserMenu locale={locale} unreadCount={unreadNotificationCount} />
+          </div>
+        ) : null}
         <div id="mobile-navigation" className={`mobile-nav-panel${menuOpen ? " mobile-nav-open" : ""}`} onClick={() => setMenuOpen(false)}>
           <nav aria-label={locale === "fa" ? "ناوبری موبایل" : "Mobile navigation"}>{navigation}</nav>
-          <div className="mobile-header-actions">{utilityActions()}</div>
+          <div className="mobile-header-actions">{mobilePanelActions}</div>
         </div>
       </div>
     </header>
