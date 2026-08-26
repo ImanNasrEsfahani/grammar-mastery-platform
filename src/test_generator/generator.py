@@ -320,6 +320,299 @@ def matrix_round_exact(rows: Mapping[Any, int], cols: Mapping[Any, int], wfun) -
     }
 
 
+def _matrix_round_capped(
+    rows: Mapping[Any, int],
+    cols: Mapping[Any, int],
+    edge_caps: Mapping[tuple[Any, Any], int],
+    *,
+    seed: str,
+    stream: str,
+) -> dict[tuple[Any, Any], int]:
+    """Exact bipartite allocation with real inventory capacities on each cell."""
+    if sum(rows.values()) != sum(cols.values()):
+        raise GeneratorError("QUOTA_INFEASIBLE", "margins")
+
+    row_keys = list(rows)
+    col_keys = list(cols)
+    total = sum(rows.values())
+    source = 0
+    row_start = 1
+    col_start = 1 + len(row_keys)
+    sink = col_start + len(col_keys)
+    size = sink + 1
+    capacity = [[0] * size for _ in range(size)]
+    adjacency = [[] for _ in range(size)]
+
+    def edge(u: int, v: int, amount: int) -> None:
+        adjacency[u].append(v)
+        adjacency[v].append(u)
+        capacity[u][v] = amount
+
+    for index, row in enumerate(row_keys):
+        edge(source, row_start + index, int(rows[row]))
+    for index, col in enumerate(col_keys):
+        edge(col_start + index, sink, int(cols[col]))
+
+    for row_index, row in enumerate(row_keys):
+        ordered_cols = sorted(
+            col_keys,
+            key=lambda col: (_digest(seed, stream, row, col), str(col)),
+        )
+        for col in ordered_cols:
+            amount = max(0, int(edge_caps.get((row, col), 0)))
+            if amount:
+                edge(row_start + row_index, col_start + col_keys.index(col), amount)
+
+    flow = 0
+    while True:
+        parent = [-1] * size
+        parent[source] = source
+        queue = deque([source])
+        while queue and parent[sink] < 0:
+            u = queue.popleft()
+            for v in adjacency[u]:
+                if parent[v] < 0 and capacity[u][v] > 0:
+                    parent[v] = u
+                    queue.append(v)
+        if parent[sink] < 0:
+            break
+
+        pushed = 10**9
+        v = sink
+        while v != source:
+            pushed = min(pushed, capacity[parent[v]][v])
+            v = parent[v]
+        v = sink
+        while v != source:
+            u = parent[v]
+            capacity[u][v] -= pushed
+            capacity[v][u] += pushed
+            v = u
+        flow += pushed
+
+    if flow != total:
+        raise GeneratorError(
+            "QUOTA_INFEASIBLE",
+            "inventory capacity",
+            {"required": total, "flow": flow},
+        )
+
+    return {
+        (row, col): capacity[col_start + col_index][row_start + row_index]
+        for row_index, row in enumerate(row_keys)
+        for col_index, col in enumerate(col_keys)
+        if capacity[col_start + col_index][row_start + row_index]
+    }
+
+
+def _stratum_capacities(
+    pool: Sequence[Mapping[str, Any]],
+) -> dict[tuple[str, str, str], int]:
+    capacities: defaultdict[tuple[str, str, str], int] = defaultdict(int)
+    for candidate in pool:
+        capacities[
+            (
+                str(candidate["lesson_id"]),
+                str(candidate["difficulty"]),
+                str(candidate["question_type_code"]),
+            )
+        ] += 1
+    return dict(capacities)
+
+
+def _plan_fits_inventory(
+    strata: Mapping[tuple[tuple[str, str], str], int],
+    capacities: Mapping[tuple[str, str, str], int],
+) -> bool:
+    return all(
+        int(amount) <= int(capacities.get((lesson_id, difficulty, question_type), 0))
+        for ((lesson_id, difficulty), question_type), amount in strata.items()
+    )
+
+
+def _capacity_aware_custom_uniform_plan(
+    config: Mapping[str, Any],
+    pool: Sequence[Mapping[str, Any]],
+    *,
+    seed: str,
+    original_lesson_quota: Mapping[str, int],
+    difficulty_quota: Mapping[str, int],
+    original_type_quota: Mapping[str, int],
+    type_weights: Mapping[str, Mapping[str, float]] | None,
+) -> tuple[dict[str, int], dict[str, int], dict[tuple[tuple[str, str], str], int]]:
+    """Rebalance sparse CUSTOM+UNIFORM plans against the real eligible inventory.
+
+    Difficulty percentages remain hard constraints. Explicit type percentages also
+    remain hard constraints. Uniform lesson allocation and the default Stage-6 type
+    allocation are preferences: when an exact lesson×difficulty×type cell is empty,
+    the missing seat is reassigned inside the same scope instead of rejecting the
+    whole test while suitable questions still exist elsewhere.
+    """
+    capacities = _stratum_capacities(pool)
+    lessons = sorted({str(candidate["lesson_id"]) for candidate in pool})
+    explicit_type = config["type_allocation"]["strategy"] == "EXPLICIT_PCT"
+
+    by_difficulty: defaultdict[str, int] = defaultdict(int)
+    for (_, difficulty, _), amount in capacities.items():
+        by_difficulty[difficulty] += int(amount)
+    for difficulty, need in difficulty_quota.items():
+        if int(need) > int(by_difficulty.get(difficulty, 0)):
+            raise GeneratorError(
+                "QUOTA_INFEASIBLE",
+                "difficulty inventory",
+                {
+                    "difficulty": difficulty,
+                    "required": int(need),
+                    "available": int(by_difficulty.get(difficulty, 0)),
+                },
+            )
+
+    # lesson_selected is global across all difficulties. The original seeded
+    # UNIFORM lesson quota is still the target; we only go outside it when real
+    # inventory makes the original target impossible.
+    lesson_selected = {lesson_id: 0 for lesson_id in lessons}
+    strata: defaultdict[tuple[tuple[str, str], str], int] = defaultdict(int)
+
+    def choose_lesson(
+        available: Sequence[str],
+        *,
+        stream: str,
+    ) -> str:
+        def key(lesson_id: str):
+            target = int(original_lesson_quota.get(lesson_id, 0))
+            current = int(lesson_selected.get(lesson_id, 0))
+            deficit = target - current
+            return (
+                0 if deficit > 0 else 1,
+                -deficit if deficit > 0 else current,
+                _digest(seed, stream, lesson_id),
+                lesson_id,
+            )
+
+        return min(available, key=key)
+
+    if explicit_type:
+        type_quota = dict(original_type_quota)
+        pair_caps: defaultdict[tuple[str, str], int] = defaultdict(int)
+        for (_, difficulty, question_type), amount in capacities.items():
+            pair_caps[(difficulty, question_type)] += int(amount)
+
+        difficulty_type = _matrix_round_capped(
+            difficulty_quota,
+            type_quota,
+            pair_caps,
+            seed=seed,
+            stream="capacity-aware:difficulty-type",
+        )
+
+        for (difficulty, question_type), need in sorted(
+            difficulty_type.items(),
+            key=lambda item: (DIFFICULTIES.index(item[0][0]), str(item[0][1])),
+        ):
+            used_by_lesson: defaultdict[str, int] = defaultdict(int)
+            for seat in range(int(need)):
+                available = [
+                    lesson_id
+                    for lesson_id in lessons
+                    if used_by_lesson[lesson_id]
+                    < int(capacities.get((lesson_id, difficulty, question_type), 0))
+                ]
+                if not available:
+                    raise GeneratorError(
+                        "QUOTA_INFEASIBLE",
+                        "inventory capacity",
+                        {
+                            "difficulty": difficulty,
+                            "question_type": question_type,
+                            "required": int(need),
+                        },
+                    )
+                lesson_id = choose_lesson(
+                    available,
+                    stream=f"capacity-aware:lesson:{difficulty}:{question_type}:{seat}",
+                )
+                used_by_lesson[lesson_id] += 1
+                lesson_selected[lesson_id] += 1
+                strata[((lesson_id, difficulty), question_type)] += 1
+
+        return lesson_selected, type_quota, dict(strata)
+
+    # Default Stage-6 type allocation is a preference, not a hard global margin.
+    # Fill each requested difficulty exactly, balance lessons toward the original
+    # UNIFORM target, then choose an available type using its allocation factor.
+    selected_by_stratum: defaultdict[tuple[str, str, str], int] = defaultdict(int)
+    selected_type_counts: defaultdict[str, int] = defaultdict(int)
+
+    for difficulty in DIFFICULTIES:
+        need = int(difficulty_quota.get(difficulty, 0))
+        for seat in range(need):
+            available_lessons = []
+            for lesson_id in lessons:
+                remaining = sum(
+                    int(capacity) - int(selected_by_stratum[(lesson_id, difficulty, question_type)])
+                    for (lid, diff, question_type), capacity in capacities.items()
+                    if lid == lesson_id and diff == difficulty
+                )
+                if remaining > 0:
+                    available_lessons.append(lesson_id)
+
+            if not available_lessons:
+                raise GeneratorError(
+                    "QUOTA_INFEASIBLE",
+                    "difficulty inventory",
+                    {"difficulty": difficulty, "required": need},
+                )
+
+            lesson_id = choose_lesson(
+                available_lessons,
+                stream=f"capacity-aware:lesson:{difficulty}:{seat}",
+            )
+
+            available_types = [
+                question_type
+                for (lid, diff, question_type), capacity in capacities.items()
+                if lid == lesson_id
+                and diff == difficulty
+                and selected_by_stratum[(lesson_id, difficulty, question_type)] < int(capacity)
+            ]
+            if not available_types:
+                raise GeneratorError(
+                    "QUOTA_INFEASIBLE",
+                    "type inventory",
+                    {"lesson_id": lesson_id, "difficulty": difficulty},
+                )
+
+            local_weights = (type_weights or {}).get(lesson_id, {})
+
+            def type_key(question_type: str):
+                weight = max(0.0, float(local_weights.get(question_type, 0.0)))
+                used = selected_by_stratum[(lesson_id, difficulty, question_type)]
+                # Positive-weight types are preferred. The (used+1)/weight term is
+                # a deterministic weighted-fair-share score. Zero-weight types are
+                # still a safe final fallback if no positive-weight inventory exists.
+                return (
+                    0 if weight > 0 else 1,
+                    ((used + 1) / weight) if weight > 0 else float("inf"),
+                    _digest(
+                        seed,
+                        "capacity-aware:type",
+                        lesson_id,
+                        difficulty,
+                        question_type,
+                        seat,
+                    ),
+                    question_type,
+                )
+
+            question_type = min(available_types, key=type_key)
+            selected_by_stratum[(lesson_id, difficulty, question_type)] += 1
+            selected_type_counts[question_type] += 1
+            lesson_selected[lesson_id] += 1
+            strata[((lesson_id, difficulty), question_type)] += 1
+
+    return lesson_selected, dict(selected_type_counts), dict(strata)
+
+
 def generate_plan(
     config: Mapping[str, Any],
     candidates: Sequence[Mapping[str, Any]],
@@ -387,6 +680,30 @@ def generate_plan(
         ),
     )
 
+    # The historical planner above is preserved when its exact cells exist.
+    # Only sparse CUSTOM+UNIFORM plans are rebalanced. This fixes the false
+    # INSUFFICIENT_ELIGIBLE_INVENTORY case where, for example, 10 EASY questions
+    # exist in the selected scope but one randomly quota-selected lesson lacks its
+    # exact EASY/type cell.
+    capacities = _stratum_capacities(pool)
+    rebalanced_for_capacity = False
+    if not _plan_fits_inventory(strata, capacities):
+        can_rebalance = (
+            config.get("mode") == "custom"
+            and config.get("lesson_allocation", {}).get("strategy") == "UNIFORM"
+        )
+        if can_rebalance:
+            lesson_quota, type_quota, strata = _capacity_aware_custom_uniform_plan(
+                config,
+                pool,
+                seed=seed,
+                original_lesson_quota=lesson_quota,
+                difficulty_quota=difficulty_quota,
+                original_type_quota=type_quota,
+                type_weights=type_weights,
+            )
+            rebalanced_for_capacity = True
+
     return {
         "seed": seed,
         "lesson_quotas": lesson_quota,
@@ -400,4 +717,5 @@ def generate_plan(
         "quota_policy_version": QUOTA_POLICY_VERSION,
         "lesson_allocation_strategy": config["lesson_allocation"]["strategy"],
         "lesson_remainder_policy": "SEEDED_WEIGHTED_WITHOUT_REPLACEMENT",
+        "capacity_rebalanced": rebalanced_for_capacity,
     }
