@@ -13,8 +13,7 @@
   --login-gold: #d7a33d;
   --login-danger: #c83e47;
   width: min(1380px, calc(100vw - 2rem));
-  margin-left: 50%;
-  transform: translateX(-50%);
+  margin-inline: auto;
   color: var(--login-ink);
 }
 
