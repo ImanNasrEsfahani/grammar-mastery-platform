@@ -27,6 +27,7 @@ export function AppHeader({locale, authenticated}: {locale: Locale; authenticate
 
   const segments = pathname.split("/").filter(Boolean);
   const isFocusedAttempt = segments.length === 3 && segments[1] === "attempts";
+  const isWeaknessDetail = segments[1] === "weakness";
   const isServiceUnavailableSurface = segments[1] === "error";
   const isAuthSurface = ["login", "register", "forgot-password", "reset-password"].includes(segments[1] ?? "");
 
@@ -46,7 +47,9 @@ export function AppHeader({locale, authenticated}: {locale: Locale; authenticate
     };
   }, [menuOpen]);
 
-  if (isFocusedAttempt) return null;
+  // Weakness detail owns the reference header because its approved design uses a
+  // full-width 1440px shell that differs from the standard application header.
+  if (isFocusedAttempt || isWeaknessDetail) return null;
 
   if (isAuthSurface || isServiceUnavailableSurface) {
     const routeTail = segments.slice(1).join("/") || "login";

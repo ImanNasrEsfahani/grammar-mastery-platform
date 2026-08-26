@@ -1,12 +1,25 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import {useCallback, useEffect, useState} from "react";
 import Link from "next/link";
-import { ApiError, apiRequest } from "@/lib/api/client";
-import type { ReviewCollectionEnvelope } from "@/lib/api/types";
-import type { Locale } from "@/lib/i18n";
-import { LoadingCard } from "@/components/ui/LoadingCard";
-import { StatusPanel } from "@/components/ui/StatusPanel";
+import {ApiError, apiRequest} from "@/lib/api/client";
+import type {ReviewCollectionEnvelope} from "@/lib/api/types";
+import type {Locale} from "@/lib/i18n";
+import {LoadingCard} from "@/components/ui/LoadingCard";
+import {StatusPanel} from "@/components/ui/StatusPanel";
+
+function reviewDestination(locale: Locale, item: ReviewCollectionEnvelope["data"][number]) {
+  if (item.kind !== "MISTAKE") return `/${locale}/review/${item.id}`;
+
+  const weaknessKey = item.group_key || item.id;
+  const query = new URLSearchParams({
+    reviewId: item.id,
+    title: item.title,
+  });
+  if (item.repeat_count !== undefined) query.set("repeatCount", String(item.repeat_count));
+
+  return `/${locale}/weakness/${encodeURIComponent(weaknessKey)}?${query.toString()}`;
+}
 
 export function ReviewListClient({locale}: {locale: Locale}) {
   const isFa = locale === "fa";
@@ -27,7 +40,7 @@ export function ReviewListClient({locale}: {locale: Locale}) {
     <ul className="card-list">
       {data.data.map((item) => (
         <li key={item.id}>
-          <Link className="surface list-card" href={`/${locale}/review/${item.id}`}>
+          <Link className="surface list-card" href={reviewDestination(locale, item)}>
             <span className="lesson-number" aria-hidden="true">{item.kind === "MISTAKE" ? "!" : "↻"}</span>
             <span className="review-card-copy">
               <strong>{item.title}</strong>
