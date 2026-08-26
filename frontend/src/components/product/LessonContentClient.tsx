@@ -79,7 +79,7 @@ type LessonDetail = BaseLessonDetail & {
 
 type ViewState =
   | {kind: "loading"}
-  | {kind: "ready"; lesson: LessonDetail; contentUrl: string}
+  | {kind: "ready"; lesson: LessonDetail; contentUrl: string; contentHtml: string}
   | {kind: "missing"; lesson: LessonDetail; contentUrl: string}
   | {
       kind: "error";
@@ -102,10 +102,35 @@ const BAND_COPY: Record<MasteryBand, {icon: string; fa: string; en: string}> = {
   NO_EVIDENCE: {icon: "·", fa: "بدون شواهد", en: "No evidence"},
 };
 
-async function probeStaticHtml(url: string): Promise<Response> {
-  const headResponse = await fetch(url, {method: "HEAD", cache: "no-store"});
-  if (headResponse.status !== 405) return headResponse;
+async function fetchStaticHtml(url: string): Promise<Response> {
   return fetch(url, {method: "GET", cache: "no-store"});
+}
+
+function sanitizeLessonHtml(html: string): string {
+  const template = document.createElement("template");
+  template.innerHTML = html;
+
+  template.content
+    .querySelectorAll("script, iframe, object, embed")
+    .forEach((element) => element.remove());
+
+  template.content.querySelectorAll("*").forEach((element) => {
+    for (const attribute of Array.from(element.attributes)) {
+      const name = attribute.name.toLowerCase();
+      const value = attribute.value.trim();
+
+      if (name.startsWith("on")) {
+        element.removeAttribute(attribute.name);
+        continue;
+      }
+
+      if ((name === "href" || name === "src") && /^javascript:/i.test(value)) {
+        element.removeAttribute(attribute.name);
+      }
+    }
+  });
+
+  return template.innerHTML;
 }
 
 function clampPercent(value: number): number {
@@ -202,7 +227,7 @@ export function LessonContentClient({
         });
       }
       const contentUrl = grammarLessonUrl(bookSlug, lesson.lesson_no);
-      const contentResponse = await probeStaticHtml(contentUrl);
+      const contentResponse = await fetchStaticHtml(contentUrl);
 
       if (contentResponse.status === 404) {
         setState({kind: "missing", lesson, contentUrl});
@@ -216,7 +241,19 @@ export function LessonContentClient({
         });
       }
 
-      setState({kind: "ready", lesson, contentUrl});
+      const rawContentHtml = await contentResponse.text();
+      const contentHtml = sanitizeLessonHtml(rawContentHtml);
+      if (!contentHtml.trim()) {
+        throw new ApiError({
+          status: 502,
+          code: "EMPTY_LESSON_CONTENT",
+          message: isFa
+            ? "فایل HTML درس خالی است یا محتوای قابل نمایش ندارد."
+            : "The lesson HTML is empty or has no renderable content.",
+        });
+      }
+
+      setState({kind: "ready", lesson, contentUrl, contentHtml});
     } catch (caught) {
       if (caught instanceof ApiError) {
         setState({
@@ -237,7 +274,7 @@ export function LessonContentClient({
     }
   }, [bookSlug, isFa, lessonId]);
 
-  // Load the API-backed lesson and verify its static HTML when the route changes.
+  // Load the API-backed lesson and its static HTML when the route changes.
   // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => { void load(); }, [load]);
 
@@ -485,7 +522,11 @@ export function LessonContentClient({
           <div>
             <p className={styles.cardEyebrow}>{book.edition}</p>
             <h2 id="lesson-content-title">{isFa ? "محتوای آموزشی درس" : "Lesson learning content"}</h2>
-            <p>{isFa ? "نسخهٔ HTML کتاب برای مطالعه و مراجعه در همان صفحه حفظ شده است." : "The book HTML remains available on the same page for study and reference."}</p>
+            <p>
+              {isFa
+                ? "محتوای HTML درس مستقیماً داخل همین صفحه نمایش داده می‌شود."
+                : "The lesson HTML is rendered directly inside this page."}
+            </p>
           </div>
           <span className={styles.fileChip}>{fileName}</span>
         </div>
@@ -502,16 +543,11 @@ export function LessonContentClient({
             <code className={styles.path}>{`frontend/public${contentUrl}`}</code>
           </StatusPanel>
         ) : (
-          <div className={styles.frameWrap}>
-            <iframe
-              key={contentUrl}
-              className={styles.frame}
-              src={contentUrl}
-              title={`${book.titleFr} — ${lesson.title_fr}`}
-              sandbox="allow-same-origin"
-              referrerPolicy="no-referrer"
-            />
-          </div>
+          <div
+            key={contentUrl}
+            className={styles.frameWrap}
+            dangerouslySetInnerHTML={{__html: state.contentHtml}}
+          />
         )}
       </section>
     </section>
