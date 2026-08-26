@@ -146,6 +146,17 @@ urlpatterns.append(
     )
 )
 
+# Account Summary is an additive header provider. It intentionally stays out of
+# the frozen Stage 21 OpenAPI operation set and exposes only safe identity fields
+# needed by the avatar/user menu.
+urlpatterns.append(
+    path(
+        "account",
+        _view({"GET": "getAccountSummary"}, {"GET": AUTHENTICATED}),
+        name="getAccountSummary",
+    )
+)
+
 
 ROUTE_OPERATION_IDS = frozenset(
     operation_id

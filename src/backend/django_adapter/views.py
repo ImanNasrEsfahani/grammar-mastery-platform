@@ -4,6 +4,7 @@ from rest_framework.exceptions import MethodNotAllowed
 from rest_framework.views import APIView
 
 from backend.django_adapter import (
+    runtime_account,
     runtime_attempt_result,
     runtime_auth,
     runtime_dashboard,
@@ -19,9 +20,9 @@ from backend.errors import APIError
 class ContractEndpointView(APIView):
     """Route a frozen Stage 21 operation or an explicitly additive UI provider.
 
-    Runtime providers are bound incrementally. History, Grammar Search and the
-    Streak Detail surface are additive learner providers and intentionally stay
-    outside ROUTE_OPERATION_IDS so the frozen Stage 21 operation set remains
+    Runtime providers are bound incrementally. History, Grammar Search, Streak
+    Detail and Account Summary are additive learner providers and intentionally
+    stay outside ROUTE_OPERATION_IDS so the frozen Stage 21 operation set remains
     contract compatible.
     """
 
@@ -97,6 +98,8 @@ class ContractEndpointView(APIView):
             return runtime_search.grammar_search_request(request)
         if operation_id == "getStreakDetail":
             return runtime_streak.streak_detail_request(request)
+        if operation_id == "getAccountSummary":
+            return runtime_account.account_summary_request(request)
 
         raise APIError(
             503,
