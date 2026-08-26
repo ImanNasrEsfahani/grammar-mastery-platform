@@ -11,6 +11,7 @@ const PROTECTED_SECTIONS = new Set([
   "profile",
   "progress",
   "settings",
+  "notifications",
 ]);
 
 export function proxy(request: NextRequest) {

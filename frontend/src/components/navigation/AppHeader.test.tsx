@@ -11,6 +11,15 @@ test("mobile menu exposes navigation and toggles accessibly", () => {
   fireEvent.click(toggle);
   expect(screen.getByRole("button", {name: "بستن منو"})).toHaveAttribute("aria-expanded", "true");
   expect(screen.getByRole("navigation", {name: "ناوبری موبایل"})).toHaveTextContent("داشبورد");
+  expect(screen.getByRole("navigation", {name: "ناوبری موبایل"})).toHaveTextContent("پیشرفت");
   fireEvent.keyDown(document, {key: "Escape"});
   expect(screen.getByRole("button", {name: "باز کردن منو"})).toHaveAttribute("aria-expanded", "false");
+});
+
+test("header exposes notification bell to the notification center", () => {
+  window.localStorage.setItem("gmp-notifications-unread-v1", "3");
+  render(<AppHeader locale="fa" authenticated />);
+  const notificationLinks = screen.getAllByRole("link", {name: "اعلان‌ها"});
+  expect(notificationLinks.length).toBeGreaterThan(0);
+  expect(notificationLinks[0]!).toHaveAttribute("href", "/fa/notifications");
 });

@@ -151,6 +151,82 @@
   background: #2f6cf6;
 }
 
+.notificationLink {
+  position: relative;
+  inline-size: 44px;
+  block-size: 44px;
+  flex: 0 0 44px;
+  display: inline-grid;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  color: var(--ink);
+  background: var(--surface);
+  text-decoration: none;
+  transition: border-color 120ms ease, color 120ms ease, background-color 120ms ease;
+}
+
+.notificationLink:hover {
+  border-color: var(--primary);
+  color: var(--primary-strong);
+  background: var(--surface-soft);
+}
+
+.notificationLink svg {
+  inline-size: 21px;
+  block-size: 21px;
+  display: block;
+}
+
+.notificationDot {
+  position: absolute;
+  inset-block-start: 7px;
+  inset-inline-end: 8px;
+  inline-size: 8px;
+  block-size: 8px;
+  border-radius: 999px;
+  background: #ef6256;
+  box-shadow: 0 0 0 2px var(--surface);
+}
+
+.notificationLabel {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+:global(.mobile-header-actions) .notificationLink {
+  flex: 1 1 100%;
+  inline-size: 100%;
+  min-block-size: 44px;
+  display: inline-flex;
+  justify-content: flex-start;
+  gap: .6rem;
+  padding-inline: .75rem;
+}
+
+:global(.mobile-header-actions) .notificationLabel {
+  position: static;
+  inline-size: auto;
+  block-size: auto;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+  font-weight: 750;
+}
+
+:global(.mobile-header-actions) .notificationDot {
+  inset-inline-end: auto;
+  inset-inline-start: 31px;
+}
+
 @media (max-width: 640px) {
   .authHeader { padding: 10px 8px 0; }
   .authHeaderInner { width: 100%; padding: 0 12px; border-radius: 15px; }
@@ -163,4 +239,8 @@
   .authHeaderActions { gap: .1rem; }
   .authLocaleSwitch { padding-inline: .45rem; }
   .authPrimaryLink { min-width: 40px; padding-inline: .55rem; font-size: .8rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .notificationLink { transition: none; }
 }

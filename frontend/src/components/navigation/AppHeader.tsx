@@ -9,11 +9,23 @@ import type {Locale} from "@/lib/i18n";
 import {t} from "@/lib/i18n";
 import styles from "./AppHeader.module.css";
 
+const NOTIFICATION_UNREAD_KEY = "gmp-notifications-unread-v1";
+const NOTIFICATION_CHANGE_EVENT = "gmp-notifications-changed";
+
 function AuthBrandMark() {
   return (
     <svg viewBox="0 0 28 28" fill="none" aria-hidden="true">
       <path d="M5 5.5h7.8c1.5 0 2.7.6 3.2 1.6.6-1 1.8-1.6 3.3-1.6H23v16h-4.2c-1.8 0-3.1.6-3.8 1.6-.7-1-2-1.6-3.8-1.6H5v-16Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
       <path d="M15 7.2v15.1" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function BellIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M6.5 10.2c0-3.25 2.05-5.45 5.5-5.45s5.5 2.2 5.5 5.45v3.25l1.6 2.35H4.9l1.6-2.35V10.2Z" stroke="currentColor" strokeWidth="1.65" strokeLinejoin="round" />
+      <path d="M9.7 18.2c.45.72 1.22 1.05 2.3 1.05s1.85-.33 2.3-1.05" stroke="currentColor" strokeWidth="1.65" strokeLinecap="round" />
     </svg>
   );
 }
@@ -24,10 +36,10 @@ export function AppHeader({locale, authenticated}: {locale: Locale; authenticate
   const pathname = usePathname();
   const headerRef = useRef<HTMLElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [hasUnreadNotifications, setHasUnreadNotifications] = useState(true);
 
   const segments = pathname.split("/").filter(Boolean);
   const isFocusedAttempt = segments.length === 3 && segments[1] === "attempts";
-  const isWeaknessDetail = segments[1] === "weakness";
   const isServiceUnavailableSurface = segments[1] === "error";
   const isAuthSurface = ["login", "register", "forgot-password", "reset-password"].includes(segments[1] ?? "");
 
@@ -47,9 +59,26 @@ export function AppHeader({locale, authenticated}: {locale: Locale; authenticate
     };
   }, [menuOpen]);
 
-  // Weakness detail owns the reference header because its approved design uses a
-  // full-width 1440px shell that differs from the standard application header.
-  if (isFocusedAttempt || isWeaknessDetail) return null;
+  useEffect(() => {
+    const syncUnread = () => {
+      try {
+        const stored = window.localStorage.getItem(NOTIFICATION_UNREAD_KEY);
+        setHasUnreadNotifications(stored === null ? true : Number(stored) > 0);
+      } catch {
+        setHasUnreadNotifications(true);
+      }
+    };
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    syncUnread();
+    window.addEventListener("storage", syncUnread);
+    window.addEventListener(NOTIFICATION_CHANGE_EVENT, syncUnread);
+    return () => {
+      window.removeEventListener("storage", syncUnread);
+      window.removeEventListener(NOTIFICATION_CHANGE_EVENT, syncUnread);
+    };
+  }, []);
+
+  if (isFocusedAttempt) return null;
 
   if (isAuthSurface || isServiceUnavailableSurface) {
     const routeTail = segments.slice(1).join("/") || "login";
@@ -86,11 +115,17 @@ export function AppHeader({locale, authenticated}: {locale: Locale; authenticate
       <li><Link href={`/${locale}/tests/new`} prefetch={authenticated}>{labels.practice}</Link></li>
       <li><Link href={`/${locale}/review`} prefetch={authenticated}>{labels.review}</Link></li>
       <li><Link href={`/${locale}/lessons`} prefetch={authenticated}>{labels.lessons}</Link></li>
+      <li><Link href={`/${locale}/progress`} prefetch={authenticated}>{labels.progress}</Link></li>
     </ul>
   );
 
   const accountActions = (
     <>
+      <Link className={styles.notificationLink} href={`/${locale}/notifications`} prefetch={authenticated} aria-label={labels.notifications} title={labels.notifications}>
+        <BellIcon />
+        {hasUnreadNotifications ? <span className={styles.notificationDot} aria-hidden="true" /> : null}
+        <span className={styles.notificationLabel}>{labels.notifications}</span>
+      </Link>
       <ThemeToggle locale={locale} />
       <Link className="locale-switch" href={`/${otherLocale}/dashboard`} hrefLang={otherLocale} prefetch={authenticated}>
         {otherLocale === "fa" ? "فارسی" : "English"}
