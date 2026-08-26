@@ -375,7 +375,8 @@ export function ReviewRunnerClient({
         const pendingMatch = matchingIndexes.find(
           ({index}) => !saved.answers.some((answer) => answer.cursor === index),
         );
-        cursor = pendingMatch?.index ?? matchingIndexes[0].index;
+        const firstMatch = matchingIndexes[0];
+        if (firstMatch) cursor = pendingMatch?.index ?? firstMatch.index;
       }
       const hasReview = saved.order.includes(reviewId);
       persistSession({
@@ -605,7 +606,8 @@ export function ReviewRunnerClient({
       const digit = Number(event.key);
       if (digit >= 1 && digit <= item.question.options.length) {
         event.preventDefault();
-        setSelectedId(item.question.options[digit - 1].id);
+        const option = item.question.options[digit - 1];
+        if (option) setSelectedId(option.id);
       } else if (event.key === "Enter" && selectedId) {
         event.preventDefault();
         void submit();
