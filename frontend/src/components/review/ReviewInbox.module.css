@@ -426,11 +426,12 @@
 .skeletonTitle { width: 220px; height: 28px; }.skeletonLine { width: 370px; max-width: 70%; height: 12px; margin-top: 10px; }.loadingGrid { display: grid; grid-template-columns: .7fr 2.4fr .9fr; gap: 14px; margin-top: 26px; }.skeletonPanel { min-height: 520px; }
 @keyframes shimmer { to { background-position: -220% 0; } }
 
+/* Tablet: keep the desktop information architecture, but move filters to a drawer. */
 @media (max-width: 1220px) {
   .shell { grid-template-columns: 210px minmax(580px, 1fr); grid-template-areas: "left main"; }
   .rightRail {
     position: fixed;
-    inset-block: 74px 10px;
+    inset-block: 74px calc(10px + env(safe-area-inset-bottom));
     inset-inline-end: 10px;
     width: min(330px, calc(100vw - 28px));
     z-index: 80;
@@ -448,25 +449,97 @@
   .page[dir="rtl"] .rightRail { transform: translateX(calc(-100% - 30px)); }
   .rightRailOpen { transform: translateX(0) !important; opacity: 1; pointer-events: auto; }
   .filterButton { display: inline-flex; }
-  .drawerClose { display: grid; place-items: center; position: sticky; top: 0; z-index: 2; margin-inline-start: auto; width: 32px; height: 32px; border: 1px solid var(--ri-border); border-radius: 8px; background: var(--ri-panel); color: var(--ri-text); cursor: pointer; }
-  .drawerBackdrop { display: block; position: fixed; inset: 0; z-index: 70; border: 0; background: rgba(0, 12, 30, .46); backdrop-filter: blur(2px); }
+  .drawerClose {
+    display: grid;
+    place-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    margin-inline-start: auto;
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--ri-border);
+    border-radius: 9px;
+    background: var(--ri-panel);
+    color: var(--ri-text);
+    cursor: pointer;
+  }
+  .drawerBackdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 70;
+    border: 0;
+    background: rgba(0, 12, 30, .46);
+    backdrop-filter: blur(2px);
+  }
 }
 
+/* Real mobile/tablet layout. The old 100vw + translate centering caused the page
+   to be shifted outside .page-container on phones. */
 @media (max-width: 960px) {
-  .page { width: calc(100vw - 10px); padding: 10px; }
-  .shell { grid-template-columns: 1fr; grid-template-areas: "left" "main"; gap: 10px; }
-  .railCard { min-height: auto; padding: 8px; }
+  .page {
+    position: relative;
+    left: auto;
+    transform: none;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    min-height: calc(100vh - 66px);
+    margin: 0;
+    padding: 0;
+    overflow-x: clip;
+  }
+  .shell {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "left" "main";
+    gap: 12px;
+  }
+  .leftRail,
+  .main { width: 100%; min-width: 0; }
+  .railCard { min-height: auto; padding: 8px; border-radius: 14px; }
   .railCard > h2, .howCard { display: none; }
-  .queueNav { display: flex; overflow-x: auto; scrollbar-width: none; gap: 6px; }
+  .queueNav {
+    display: flex;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    gap: 6px;
+    overscroll-behavior-inline: contain;
+    -webkit-overflow-scrolling: touch;
+  }
   .queueNav::-webkit-scrollbar { display: none; }
-  .navItem { min-width: max-content; width: auto; grid-template-columns: 22px auto auto; min-height: 36px; padding-inline: 10px; }
-  .navCount { height: 22px; min-width: 23px; }
-  .pageHeader { align-items: flex-end; flex-wrap: wrap; }
-  .headerTools { flex: 1 1 100%; }
-  .searchBox { min-width: 0; }
+  .navItem {
+    min-width: max-content;
+    width: auto;
+    grid-template-columns: 22px auto auto;
+    min-height: 40px;
+    padding-inline: 11px;
+  }
+  .navCount { height: 24px; min-width: 24px; }
+  .pageHeader {
+    min-height: 0;
+    padding: 4px 2px 12px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+    align-items: stretch;
+  }
+  .pageHeader > div:first-child { width: 100%; min-width: 0; }
+  .headerTools { width: 100%; min-width: 0; flex: none; }
+  .searchBox { min-width: 0; width: 100%; }
+  .tabs { width: 100%; min-width: 0; }
+  .tabs button { min-width: 0; }
+  .listPanel { width: 100%; min-width: 0; }
+  .listToolbar { min-width: 0; }
   .columnHeader { display: none; }
   .reviewRow {
-    grid-template-columns: 22px 70px 1fr 52px;
+    grid-template-columns: 22px 70px minmax(0, 1fr) 52px;
     grid-template-areas:
       "select priority title actions"
       ". due topic actions"
@@ -475,44 +548,232 @@
     gap: 5px 10px;
     padding: 11px;
   }
-  .rowSelect { grid-area: select; }.priorityBadge { grid-area: priority; }.titleCell { grid-area: title; }.rowActions { grid-area: actions; }.dueCell { grid-area: due; }.topicCell { grid-area: topic; }.lessonCell { grid-area: lesson; }.detailCell { grid-area: detail; }
+  .rowSelect { grid-area: select; }
+  .priorityBadge { grid-area: priority; }
+  .titleCell { grid-area: title; }
+  .rowActions { grid-area: actions; }
+  .dueCell { grid-area: due; }
+  .topicCell { grid-area: topic; }
+  .lessonCell { grid-area: lesson; }
+  .detailCell { grid-area: detail; }
   .priorityBadge { min-height: 39px; }
   .rowActions { align-self: stretch; flex-direction: column; justify-content: center; }
-  .startButton { position: static; opacity: 1; transform: none; pointer-events: auto; writing-mode: vertical-rl; min-height: 62px; justify-content: center; }
+  .startButton {
+    position: static;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+    writing-mode: vertical-rl;
+    min-height: 62px;
+    justify-content: center;
+  }
   .titleCell h2 { font-size: 11px; }
-  .loadingGrid { grid-template-columns: 1fr; }.skeletonPanel:first-child, .skeletonPanel:last-child { display: none; }
+  .loadingGrid { grid-template-columns: 1fr; }
+  .skeletonPanel:first-child, .skeletonPanel:last-child { display: none; }
 }
 
+/* Phone layout: cards, touch targets and controls are intentionally rearranged,
+   rather than shrinking the desktop table. */
 @media (max-width: 620px) {
-  .page { padding: 8px; min-height: calc(100vh - 60px); }
-  .pageHeader { padding-inline: 2px; }
-  .pageHeader h1 { font-size: 20px; }
-  .pageHeader > div:first-child > p:last-child { font-size: 10.5px; line-height: 1.7; }
-  .headerTools { gap: 6px; }.filterButton { width: 40px; padding: 0; justify-content: center; }.filterButton:not(svg) { font-size: 0; }.filterButton svg { width: 18px; }
-  .searchBox kbd { display: none; }
-  .tabs { height: 42px; }.tabs button { font-size: 10px; }
-  .listToolbar { flex-wrap: wrap; }.loadedNote { order: 3; width: 100%; }.sortControl span { display: none; }
-  .bulkBar { align-items: flex-start; flex-direction: column; }.bulkBar > div { width: 100%; }
-  .reviewRow {
-    grid-template-columns: 22px 63px minmax(0, 1fr) 32px;
-    grid-template-areas:
-      "select priority title actions"
-      ". due topic actions"
-      ". detail detail actions";
-    min-height: 125px;
-    padding: 9px 8px;
+  .page { min-height: calc(100vh - 60px); }
+
+  .railCard { padding: 7px; }
+  .queueNav {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    overflow: visible;
+    gap: 6px;
   }
+  .navItem {
+    width: 100%;
+    min-width: 0;
+    min-height: 44px;
+    grid-template-columns: 24px minmax(0, 1fr) auto;
+    padding: 7px 9px;
+    font-size: 11.5px;
+  }
+  .navItem:first-child { grid-column: 1 / -1; }
+  .navItem > span:nth-child(2) {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .navCount { min-width: 24px; height: 24px; padding-inline: 6px; font-size: 10px; }
+
+  .pageHeader { padding: 2px 1px 11px; gap: 10px; }
+  .eyebrow { font-size: 9px; }
+  .pageHeader h1 { font-size: 20px; }
+  .pageHeader > div:first-child > p:last-child {
+    margin-top: 5px;
+    font-size: 10.5px;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+  }
+  .headerTools { gap: 7px; }
+  .searchBox { height: 44px; border-radius: 10px; padding-inline: 10px; }
+  .searchBox input { font-size: 11px; }
+  .searchBox kbd { display: none; }
+  .filterButton {
+    width: 44px;
+    min-width: 44px;
+    height: 44px;
+    padding: 0;
+    justify-content: center;
+    border-radius: 10px;
+    font-size: 0;
+  }
+  .filterButton svg { width: 19px; height: 19px; }
+
+  .tabs { height: 48px; border-radius: 10px 10px 0 0; }
+  .tabs button {
+    padding: 4px 2px;
+    font-size: 9.7px;
+    line-height: 1.3;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .tabs button span { font-size: 9px; }
+
+  .listPanel { min-height: 410px; border-radius: 0 0 13px 13px; }
+  .listToolbar {
+    min-height: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 8px;
+    padding: 9px 10px;
+  }
+  .selectAll { min-width: 0; font-size: 10px; }
+  .selectAll span {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .loadedNote { order: initial; grid-column: 1 / -1; width: 100%; margin: 0; font-size: 9px; }
+  .sortControl { min-width: 0; }
+  .sortControl span { display: none; }
+  .sortControl select { max-width: 145px; height: 34px; font-size: 10px; }
+
+  .bulkBar {
+    margin: 9px 9px 0;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .bulkBar > div { width: 100%; }
+  .bulkBar button, .bulkBar a { min-height: 36px; }
+
+  .reviewList {
+    gap: 8px;
+    padding: 8px;
+    background: var(--ri-panel-soft);
+  }
+  .reviewRow {
+    grid-template-columns: 22px 66px minmax(0, 1fr);
+    grid-template-areas:
+      "select priority title"
+      ". due topic"
+      ". detail detail"
+      "actions actions actions";
+    min-height: 0;
+    gap: 8px 10px;
+    padding: 12px;
+    border: 1px solid var(--ri-border);
+    border-radius: 12px;
+    background: var(--ri-panel);
+  }
+  .reviewRow:last-child { border-bottom: 1px solid var(--ri-border); }
+  .reviewRowSelected { box-shadow: inset 3px 0 0 var(--ri-primary); }
+  .page[dir="rtl"] .reviewRowSelected { box-shadow: inset -3px 0 0 var(--ri-primary); }
   .lessonCell { display: none; }
-  .rowActions .startButton { display: none; }
-  .rowActions { align-items: center; }
-  .titleCell p { max-width: 100%; }
-  .priorityBadge { min-height: 36px; font-size: 8.8px; }
-  .dueCell strong, .topicCell strong, .detailCell strong { font-size: 9.5px; }
-  .summaryTop { grid-template-columns: 94px 1fr; }
+  .priorityBadge { min-height: 42px; font-size: 9px; }
+  .dueCell strong, .topicCell strong, .detailCell strong { font-size: 10px; }
+  .dueCell time, .dueCell small, .topicCell small, .detailCell small { font-size: 8.8px; }
+  .titleCell h2 {
+    font-size: 11.2px;
+    line-height: 1.55;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+    overflow-wrap: anywhere;
+  }
+  .titleCell p {
+    max-width: 100%;
+    white-space: normal;
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+  }
+  .rowActions {
+    grid-area: actions;
+    align-self: auto;
+    width: 100%;
+    min-width: 0;
+    padding-top: 9px;
+    border-top: 1px solid var(--ri-border);
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 7px;
+  }
+  .rowActions .startButton {
+    display: inline-flex;
+    position: static;
+    flex: 1 1 auto;
+    min-width: 0;
+    min-height: 40px;
+    padding: 0 12px;
+    writing-mode: horizontal-tb;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+    justify-content: center;
+    border-radius: 9px;
+    font-size: 10.5px;
+  }
+  .iconButton { width: 40px; height: 40px; border-color: var(--ri-border); background: var(--ri-panel-soft); }
+
+  .emptyState { min-height: 290px; padding: 28px 18px; }
+  .emptyState h2 { font-size: 15px; line-height: 1.55; }
+  .emptyState p { font-size: 10.5px; line-height: 1.8; overflow-wrap: anywhere; }
+  .emptyState button, .emptyState a { min-height: 42px; font-size: 11px; }
+  .contractNote { padding-inline: 10px; font-size: 8px; line-height: 1.6; }
+
+  .rightRail {
+    inset-block: 72px calc(10px + env(safe-area-inset-bottom));
+    inset-inline-end: 10px;
+    width: calc(100vw - 20px);
+    padding: 9px;
+    border-radius: 15px;
+  }
+  .drawerClose { width: 40px; height: 40px; }
+  .summaryTop { grid-template-columns: 94px minmax(0, 1fr); }
+  .filtersCard > label { grid-template-columns: 82px minmax(0, 1fr); font-size: 9.5px; }
+  .filtersCard select { height: 36px; font-size: 10px; }
+  .clearButton { min-height: 40px; font-size: 10.5px; }
+
+  .stateCard { width: 100%; margin: 26px auto; padding: 24px 18px; }
+  .loadingShell { width: 100%; padding: 18px; }
+  .skeletonLine { max-width: 100%; }
+}
+
+@media (max-width: 390px) {
+  .navItem { font-size: 10.8px; }
+  .tabs button { font-size: 9px; }
+  .tabs button span { display: block; font-size: 8.5px; }
+  .reviewRow { grid-template-columns: 20px 60px minmax(0, 1fr); padding: 10px; gap: 7px 8px; }
+  .priorityBadge { padding-inline: 4px; }
+  .sortControl select { max-width: 126px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .page *, .page *::before, .page *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+  .page *, .page *::before, .page *::after {
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }
 
 @media (forced-colors: active) {

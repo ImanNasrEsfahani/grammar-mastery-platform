@@ -1,5 +1,6 @@
 import type {Metadata} from "next";
 import "./globals.css";
+import "./fonts.css";
 import "./dashboard.css";
 import "./theme-menu.css";
 import "./settings.css";
