@@ -1,6 +1,10 @@
-import Link from "next/link";
+import {InlineAlert, type FeedbackAction, type FeedbackTone} from "./FeedbackSystem";
 
 type StatusTone = "info" | "success" | "warning" | "danger";
+
+function mapTone(tone: StatusTone): FeedbackTone {
+  return tone === "danger" ? "error" : tone;
+}
 
 export function StatusPanel({
   title,
@@ -15,21 +19,18 @@ export function StatusPanel({
   action?: {label: string; href?: string; onClick?: () => void};
   requestId?: string;
 }) {
+  let feedbackAction: FeedbackAction | undefined;
+  if (action?.href) feedbackAction = {label: action.label, href: action.href};
+  else if (action?.onClick) feedbackAction = {label: action.label, onClick: action.onClick};
+
   return (
-    <section className={`status-panel status-${tone}`} role={tone === "danger" ? "alert" : "status"}>
-      <div className="status-icon" aria-hidden="true">
-        {tone === "success" ? "✓" : tone === "danger" ? "!" : tone === "warning" ? "↻" : "i"}
-      </div>
-      <div className="stack stack-small">
-        <h2 className="status-title">{title}</h2>
-        <div>{children}</div>
-        {requestId ? <code className="request-id">{requestId}</code> : null}
-        {action?.href ? (
-          <Link className="button button-secondary" href={action.href}>{action.label}</Link>
-        ) : action?.onClick ? (
-          <button className="button button-secondary" type="button" onClick={action.onClick}>{action.label}</button>
-        ) : null}
-      </div>
-    </section>
+    <InlineAlert
+      tone={mapTone(tone)}
+      label={title}
+      action={feedbackAction}
+      requestId={requestId}
+    >
+      {children}
+    </InlineAlert>
   );
 }

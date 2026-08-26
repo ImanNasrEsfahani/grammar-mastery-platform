@@ -1,0 +1,423 @@
+.viewport,
+.feedbackBlock,
+.confirmationStrip {
+  --fb-surface: #fffdfa;
+  --fb-surface-strong: #ffffff;
+  --fb-border: #cfdbec;
+  --fb-ink: #122650;
+  --fb-muted: #62718a;
+  --fb-blue: #2f6df6;
+  --fb-blue-soft: #eaf2ff;
+  --fb-green: #20b979;
+  --fb-green-soft: #e9f8f1;
+  --fb-orange: #f39a08;
+  --fb-orange-soft: #fff5e5;
+  --fb-red: #ef6256;
+  --fb-red-soft: #fff0ed;
+  --fb-shadow: 0 12px 32px rgba(32, 63, 112, 0.12);
+}
+
+:global(html[data-theme="dark"]) .viewport,
+:global(html[data-theme="dark"]) .feedbackBlock,
+:global(html[data-theme="dark"]) .confirmationStrip {
+  --fb-surface: #0a223a;
+  --fb-surface-strong: #0b2743;
+  --fb-border: #2a526f;
+  --fb-ink: #f4f7ff;
+  --fb-muted: #b4c2d3;
+  --fb-blue: #3d7cff;
+  --fb-blue-soft: #0d3154;
+  --fb-green: #2ec98b;
+  --fb-green-soft: #0b4535;
+  --fb-orange: #ffad19;
+  --fb-orange-soft: #4a3309;
+  --fb-red: #ff695d;
+  --fb-red-soft: #4b2927;
+  --fb-shadow: 0 16px 36px rgba(0, 0, 0, 0.32);
+}
+
+.viewport {
+  position: fixed;
+  inset-block-start: 82px;
+  inset-inline-end: 22px;
+  z-index: 70;
+  width: min(390px, calc(100vw - 44px));
+  display: grid;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.toast {
+  min-height: 72px;
+  padding: 10px 10px 10px 12px;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--fb-border);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--fb-surface-strong) 96%, transparent);
+  color: var(--fb-ink);
+  box-shadow: var(--fb-shadow);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  pointer-events: auto;
+  animation: feedbackEnter 160ms ease-out both;
+}
+
+.toneIcon {
+  inline-size: 31px;
+  block-size: 31px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  color: #fff;
+  font-size: 0.88rem;
+  font-weight: 950;
+  line-height: 1;
+  background: var(--tone);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, #fff 18%, transparent);
+}
+
+.toneSuccess { --tone: var(--fb-green); --tone-soft: var(--fb-green-soft); }
+.toneInfo { --tone: var(--fb-blue); --tone-soft: var(--fb-blue-soft); }
+.toneWarning { --tone: var(--fb-orange); --tone-soft: var(--fb-orange-soft); }
+.toneError { --tone: var(--fb-red); --tone-soft: var(--fb-red-soft); }
+
+.toastCopy {
+  min-inline-size: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.toastTitle {
+  color: var(--fb-ink);
+  font-size: 0.77rem;
+  line-height: 1.35;
+  font-weight: 900;
+}
+
+.toastMessage {
+  color: var(--fb-muted);
+  font-size: 0.7rem;
+  line-height: 1.55;
+  unicode-bidi: plaintext;
+  overflow-wrap: anywhere;
+}
+
+.toastControls {
+  min-inline-size: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.dismissButton {
+  inline-size: 32px;
+  block-size: 32px;
+  flex: 0 0 32px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  color: var(--fb-muted);
+  font-size: 1.15rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.dismissButton:hover {
+  color: var(--fb-ink);
+  background: color-mix(in srgb, var(--fb-border) 35%, transparent);
+}
+
+.toastAction,
+.blockAction,
+.cancelButton,
+.confirmButton {
+  min-height: 36px;
+  padding: 6px 13px;
+  border: 1px solid var(--tone, var(--fb-blue));
+  border-radius: 9px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: var(--tone, var(--fb-blue));
+  font-size: 0.7rem;
+  font-weight: 900;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.toastAction:hover,
+.blockAction:hover {
+  background: var(--tone-soft, var(--fb-blue-soft));
+}
+
+.toastActionDanger,
+.destructiveButton {
+  border-color: var(--fb-red);
+  background: var(--fb-red);
+  color: #fff;
+}
+
+.toastActionDanger:hover,
+.destructiveButton:hover {
+  background: color-mix(in srgb, var(--fb-red) 88%, #8f1f18);
+}
+
+.toastAction:disabled,
+.blockAction:disabled,
+.cancelButton:disabled,
+.confirmButton:disabled {
+  opacity: 0.55;
+  cursor: wait;
+}
+
+.feedbackBlock {
+  width: 100%;
+  min-height: 54px;
+  padding: 10px 12px;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--tone);
+  border-radius: 13px;
+  background: color-mix(in srgb, var(--tone-soft) 86%, var(--fb-surface));
+  color: var(--fb-ink);
+}
+
+.inlineAlert {
+  box-shadow: none;
+}
+
+.banner {
+  min-height: 62px;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--tone) 8%, transparent);
+}
+
+.blockCopy {
+  min-inline-size: 0;
+  display: grid;
+  gap: 3px;
+}
+
+.blockHeading {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.blockLabel {
+  color: var(--tone);
+  font-size: 0.73rem;
+  font-weight: 950;
+  white-space: nowrap;
+}
+
+.blockTitle {
+  color: var(--fb-ink);
+  font-size: 0.77rem;
+  font-weight: 900;
+}
+
+.blockMessage {
+  color: var(--fb-ink);
+  font-size: 0.72rem;
+  line-height: 1.6;
+  unicode-bidi: plaintext;
+  overflow-wrap: anywhere;
+}
+
+.blockActions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.requestId {
+  width: fit-content;
+  direction: ltr;
+  unicode-bidi: isolate;
+  color: var(--fb-muted);
+  font-size: 0.63rem;
+}
+
+.confirmationStrip {
+  width: 100%;
+  min-height: 58px;
+  padding: 9px 12px;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 11px;
+  border: 1px solid var(--fb-border);
+  border-radius: 12px;
+  background: var(--fb-blue-soft);
+  color: var(--fb-ink);
+}
+
+.confirmationDestructive {
+  background: color-mix(in srgb, var(--fb-red-soft) 72%, var(--fb-surface));
+  border-color: color-mix(in srgb, var(--fb-red) 45%, var(--fb-border));
+}
+
+.confirmationIcon {
+  inline-size: 29px;
+  block-size: 29px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: var(--fb-blue);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 950;
+}
+
+.confirmationDestructive .confirmationIcon {
+  background: var(--fb-red);
+}
+
+.confirmationMessage {
+  min-inline-size: 0;
+  font-size: 0.75rem;
+  line-height: 1.55;
+  unicode-bidi: plaintext;
+  overflow-wrap: anywhere;
+}
+
+.confirmationActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cancelButton {
+  min-width: 90px;
+  border-color: var(--fb-border);
+  color: var(--fb-ink);
+  background: var(--fb-surface-strong);
+}
+
+.cancelButton:hover {
+  border-color: var(--fb-blue);
+  background: var(--fb-blue-soft);
+}
+
+.confirmButton {
+  min-width: 104px;
+  border-color: var(--fb-blue);
+  background: var(--fb-blue);
+  color: #fff;
+}
+
+.confirmButton:hover {
+  background: color-mix(in srgb, var(--fb-blue) 88%, #163b92);
+}
+
+.destructiveButton {
+  border-color: var(--fb-red);
+  background: var(--fb-red);
+}
+
+@keyframes feedbackEnter {
+  from { opacity: 0; transform: translateY(-7px) scale(0.985); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (max-width: 767px) {
+  .viewport {
+    inset-block-start: auto;
+    inset-inline: 10px;
+    inset-block-end: calc(104px + env(safe-area-inset-bottom));
+    width: auto;
+    gap: 8px;
+  }
+
+  .toast {
+    min-height: 66px;
+    border-radius: 13px;
+    box-shadow: 0 10px 28px rgba(20, 48, 88, 0.18);
+  }
+
+  .feedbackBlock,
+  .confirmationStrip {
+    border-radius: 11px;
+  }
+
+  .confirmationStrip {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .confirmationActions {
+    grid-column: 1 / -1;
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 430px) {
+  .toast {
+    grid-template-columns: auto minmax(0, 1fr);
+    padding-inline: 10px;
+  }
+
+  .toastControls {
+    grid-column: 1 / -1;
+    justify-content: flex-end;
+  }
+
+  .toastAction {
+    min-width: 96px;
+  }
+
+  .feedbackBlock {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .blockActions {
+    grid-column: 1 / -1;
+    justify-content: flex-end;
+  }
+
+  .confirmationActions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cancelButton,
+  .confirmButton {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toast {
+    animation: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .toast,
+  .feedbackBlock,
+  .confirmationStrip,
+  .toneIcon,
+  .confirmationIcon,
+  .toastAction,
+  .blockAction,
+  .cancelButton,
+  .confirmButton {
+    border: 1px solid CanvasText;
+    forced-color-adjust: auto;
+  }
+}
