@@ -1,0 +1,674 @@
+.page {
+  display: grid;
+  gap: 1.25rem;
+  padding-block-end: 2rem;
+  color: var(--ink);
+}
+
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .5rem;
+  color: var(--muted);
+  font-size: .78rem;
+  font-weight: 650;
+}
+
+.breadcrumb a {
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  color: var(--primary);
+}
+
+.hero {
+  display: grid;
+  gap: .35rem;
+  padding-inline: .1rem;
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--primary);
+  font-size: .72rem;
+  font-weight: 850;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2rem, 5vw, 3.05rem);
+  line-height: 1.08;
+  letter-spacing: -.035em;
+  color: #142956;
+}
+
+:global(html[data-theme="dark"]) .hero h1 {
+  color: var(--ink);
+}
+
+.metaLine {
+  margin: .2rem 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .45rem;
+  color: var(--muted);
+  font-size: .9rem;
+}
+
+.metaLine i {
+  font-style: normal;
+  opacity: .65;
+}
+
+.statGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) minmax(280px, 1.7fr);
+  gap: .75rem;
+}
+
+.metricCard,
+.recommendationCard,
+.primaryPanel,
+.analysisPanel {
+  border: 1px solid color-mix(in srgb, var(--line) 88%, var(--primary) 12%);
+  background: color-mix(in srgb, var(--surface) 97%, var(--canvas) 3%);
+  box-shadow: 0 10px 32px color-mix(in srgb, var(--ink) 7%, transparent);
+}
+
+.metricCard {
+  min-block-size: 86px;
+  border-radius: 18px;
+  padding: .9rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+}
+
+.metricCard > div {
+  min-inline-size: 0;
+  display: grid;
+  gap: .12rem;
+}
+
+.metricCard span,
+.recommendationCard span {
+  color: var(--muted);
+  font-size: .72rem;
+  font-weight: 700;
+}
+
+.metricCard strong {
+  font-size: 1.35rem;
+  line-height: 1.1;
+  color: #142956;
+}
+
+.metricCard small {
+  color: var(--muted);
+  font-size: .67rem;
+}
+
+:global(html[data-theme="dark"]) .metricCard strong {
+  color: var(--ink);
+}
+
+.metricIcon {
+  inline-size: 40px;
+  block-size: 40px;
+  flex: 0 0 auto;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  color: white;
+  font-size: .82rem;
+  font-weight: 900;
+}
+
+.amber { background: #f59e0b; }
+.blue { background: #3268f5; }
+.green { background: #2db879; }
+.violet { background: #8657eb; }
+
+.recommendationCard {
+  min-block-size: 86px;
+  border-radius: 18px;
+  padding: .8rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .85rem;
+}
+
+.recommendationCard > div {
+  min-inline-size: 0;
+  display: grid;
+  gap: .25rem;
+}
+
+.recommendationCard strong {
+  max-inline-size: 26ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #142956;
+  font-size: .98rem;
+}
+
+:global(html[data-theme="dark"]) .recommendationCard strong {
+  color: var(--ink);
+}
+
+.recommendationCard a,
+.primaryButton {
+  min-block-size: 44px;
+  border-radius: 12px;
+  padding: .65rem 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  background: #3268f5;
+  color: white;
+  font-size: .78rem;
+  font-weight: 850;
+  text-decoration: none;
+}
+
+.recommendationCard a:hover,
+.primaryButton:hover {
+  background: #2457dc;
+}
+
+.workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(330px, .95fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+.primaryPanel,
+.analysisPanel {
+  border-radius: 24px;
+  padding: clamp(1rem, 2.3vw, 1.55rem);
+}
+
+.sectionHeading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.sectionHeading h2,
+.relatedLessons h2,
+.insightSection h3 {
+  margin: 0;
+  color: #142956;
+}
+
+:global(html[data-theme="dark"]) .sectionHeading h2,
+:global(html[data-theme="dark"]) .relatedLessons h2,
+:global(html[data-theme="dark"]) .insightSection h3 {
+  color: var(--ink);
+}
+
+.sectionHeading h2,
+.relatedLessons h2 {
+  font-size: 1.1rem;
+  font-weight: 900;
+}
+
+.sectionHeading p {
+  margin: .28rem 0 0;
+  color: var(--muted);
+  font-size: .72rem;
+}
+
+.subcategoryList {
+  margin-block-start: 1rem;
+  display: grid;
+  gap: .72rem;
+}
+
+.subcategoryCard {
+  min-inline-size: 0;
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr) minmax(230px, .9fr);
+  gap: .9rem;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 17px;
+  padding: .9rem;
+  background: color-mix(in srgb, var(--surface) 98%, var(--canvas) 2%);
+}
+
+.subcategoryCard:hover {
+  border-color: color-mix(in srgb, var(--primary) 42%, var(--line));
+}
+
+.subcategoryMark {
+  inline-size: 48px;
+  block-size: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  border: 1px solid color-mix(in srgb, currentColor 24%, var(--line));
+  background: color-mix(in srgb, currentColor 8%, var(--surface));
+}
+
+.subcategoryMark span {
+  inline-size: 14px;
+  block-size: 14px;
+  border: 2px solid currentColor;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  color: transparent;
+  box-shadow: inset 0 0 0 3px var(--surface);
+  background: currentColor;
+}
+
+.subcategoryCopy {
+  min-inline-size: 0;
+}
+
+.subcategoryCopy h3 {
+  margin: 0;
+  color: #142956;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1rem;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+:global(html[data-theme="dark"]) .subcategoryCopy h3 {
+  color: var(--ink);
+}
+
+.subcategoryCopy p {
+  margin: .24rem 0;
+  color: var(--muted);
+  font-size: .76rem;
+}
+
+.subcategoryCopy small,
+.subcategoryMastery small {
+  color: var(--muted);
+  font-size: .68rem;
+  font-weight: 700;
+}
+
+.subcategoryMastery {
+  min-inline-size: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: .28rem .65rem;
+  align-items: center;
+}
+
+.bandLabel {
+  grid-column: 1 / -1;
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  font-size: .7rem;
+  font-weight: 900;
+}
+
+.bandLabel i {
+  inline-size: 15px;
+  block-size: 15px;
+  border: 1.5px solid currentColor;
+  border-radius: 999px;
+  display: inline-grid;
+  place-items: center;
+  font-style: normal;
+  font-size: .55rem;
+}
+
+.progressTrack {
+  block-size: 7px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--line) 76%, var(--surface));
+}
+
+.progressTrack > span {
+  display: block;
+  block-size: 100%;
+  border-radius: inherit;
+  background: currentColor;
+}
+
+.subcategoryMastery > strong {
+  min-inline-size: 42px;
+  text-align: end;
+  font-size: .78rem;
+}
+
+.subcategoryMastery > small {
+  grid-column: 1 / -1;
+}
+
+.subcategoryMastery > a {
+  grid-column: 1 / -1;
+  justify-self: end;
+  display: inline-flex;
+  align-items: center;
+  gap: .28rem;
+  color: var(--primary);
+  font-size: .7rem;
+  font-weight: 850;
+  text-decoration: none;
+}
+
+.subcategoryMastery > a:hover {
+  text-decoration: underline;
+}
+
+.strong { color: #20ae70; }
+.developing { color: #f59e0b; }
+.weak { color: #e5574f; }
+.uncertain { color: #3268f5; }
+.noEvidence { color: var(--muted); }
+
+.relatedLessons {
+  margin-block-start: 1rem;
+  padding-block-start: .9rem;
+  border-block-start: 1px solid var(--line);
+}
+
+.lessonChips {
+  margin-block-start: .65rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .55rem;
+}
+
+.lessonChips a {
+  min-inline-size: 0;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  padding: .65rem .75rem;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: .6rem;
+  align-items: center;
+  background: color-mix(in srgb, var(--surface) 96%, var(--canvas) 4%);
+  text-decoration: none;
+}
+
+.lessonChips a:hover {
+  border-color: var(--primary);
+}
+
+.lessonChips span {
+  color: var(--primary);
+  font-size: .72rem;
+  font-weight: 900;
+}
+
+.lessonChips strong {
+  min-inline-size: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: .76rem;
+}
+
+.analysisPanel {
+  display: grid;
+  gap: 1rem;
+}
+
+.chartWrap {
+  border-block-end: 1px solid var(--line);
+  padding-block: .2rem .8rem;
+}
+
+.chart {
+  inline-size: 100%;
+  block-size: auto;
+  min-block-size: 190px;
+  overflow: visible;
+}
+
+.axis {
+  stroke: color-mix(in srgb, var(--line) 88%, var(--ink) 12%);
+  stroke-width: 1.5;
+}
+
+.gridLine {
+  stroke: color-mix(in srgb, var(--line) 72%, transparent);
+  stroke-width: 1;
+  stroke-dasharray: 4 6;
+}
+
+.trendLine {
+  fill: none;
+  stroke: #3268f5;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.trendDot {
+  fill: #3268f5;
+  stroke: var(--surface);
+  stroke-width: 2;
+}
+
+.lastValue {
+  fill: #3268f5;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.dateLabel {
+  fill: var(--muted);
+  font-size: 10px;
+}
+
+.chartEmpty,
+.emptyText {
+  margin: 0;
+  border: 1px dashed var(--line);
+  border-radius: 13px;
+  padding: 1rem;
+  color: var(--muted);
+  background: color-mix(in srgb, var(--surface-soft) 80%, transparent);
+  font-size: .75rem;
+}
+
+.insightSection {
+  display: grid;
+  gap: .55rem;
+}
+
+.insightSection h3 {
+  font-size: .82rem;
+  font-weight: 900;
+}
+
+.insightList {
+  display: grid;
+  gap: .4rem;
+}
+
+.insightRow {
+  min-inline-size: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .8rem;
+  padding: .35rem .5rem;
+  border-radius: 10px;
+  font-size: .72rem;
+}
+
+.insightRow span {
+  min-inline-size: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 750;
+}
+
+.insightRow strong {
+  flex: 0 0 auto;
+  font-size: .72rem;
+}
+
+.positive {
+  color: #20ae70;
+}
+
+.attentionRow {
+  border: 1px solid color-mix(in srgb, var(--danger) 24%, var(--line));
+  background: color-mix(in srgb, var(--danger-soft) 68%, var(--surface));
+}
+
+.attentionRow strong {
+  color: var(--danger);
+}
+
+.analysisActions {
+  margin-block-start: .15rem;
+  padding-block-start: .85rem;
+  border-block-start: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: 1fr 1.05fr;
+  gap: .55rem;
+}
+
+.secondaryButton,
+.primaryButton {
+  min-block-size: 42px;
+  border-radius: 11px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: .6rem .7rem;
+  font-size: .68rem;
+  font-weight: 850;
+  text-decoration: none;
+}
+
+.secondaryButton {
+  border: 1px solid color-mix(in srgb, var(--primary) 25%, var(--line));
+  color: var(--primary);
+  background: var(--surface);
+}
+
+.secondaryButton:hover {
+  background: color-mix(in srgb, var(--primary) 7%, var(--surface));
+}
+
+@media (max-width: 1080px) {
+  .statGrid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .recommendationCard {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 900px) {
+  .workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .analysisPanel {
+    position: static;
+  }
+
+  .subcategoryCard {
+    grid-template-columns: 48px minmax(0, 1fr);
+  }
+
+  .subcategoryMastery {
+    grid-column: 1 / -1;
+    padding-inline-start: calc(48px + .9rem);
+  }
+}
+
+@media (max-width: 720px) {
+  .statGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .recommendationCard {
+    grid-column: 1 / -1;
+  }
+
+  .lessonChips {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .page {
+    gap: 1rem;
+  }
+
+  .statGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .recommendationCard {
+    grid-column: auto;
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .recommendationCard a {
+    inline-size: 100%;
+  }
+
+  .subcategoryCard {
+    grid-template-columns: 42px minmax(0, 1fr);
+    gap: .7rem;
+  }
+
+  .subcategoryMark {
+    inline-size: 42px;
+    block-size: 42px;
+  }
+
+  .subcategoryMastery {
+    padding-inline-start: 0;
+  }
+
+  .analysisActions {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .subcategoryCard,
+  .recommendationCard a,
+  .primaryButton,
+  .secondaryButton {
+    transition: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .metricCard,
+  .recommendationCard,
+  .primaryPanel,
+  .analysisPanel,
+  .subcategoryCard,
+  .lessonChips a,
+  .secondaryButton {
+    border: 1px solid CanvasText;
+  }
+}
