@@ -1,12 +1,12 @@
 {
   "semantic_versions": {
-    "model": "mastery-evidence-v0.9.0",
+    "model": "mastery-evidence-v1.0.0",
     "provider": "mastery-provider-contract-v0.9.0"
   },
   "release_status": "ACCEPTED_REFERENCE_BY_OWNER",
   "runtime_status": "BLOCKED_EXPECTED_ZERO_PUBLISHED_HISTORY",
   "config": {
-    "prior_score_pct": 50,
+    "prior_score_pct": 0,
     "recency_half_life_days": 45,
     "difficulty_weights": {
       "EASY": 0.8,
@@ -31,8 +31,8 @@
       "min_confidence_for_label": 0.45
     }
   },
-  "formula": "recency=2^(-age/45); evidence score is difficulty*recency weighted correctness with repeated-misconception penalty; confidence excludes misconception multiplier; mastery=50+confidence*(evidence_score-50)",
+  "formula": "recency=2^(-age/45); evidence score is difficulty*recency weighted correctness with repeated-misconception penalty; confidence uses all effective evidence and stability; positive_exposure=1-exp(-correct_effective_evidence/12), capped at 0.99; visible mastery=0+positive_exposure*(evidence_score-0). This keeps confidence separate and guarantees that an added wrong answer cannot raise visible mastery.",
   "scope": "SUBTOPIC direct; LESSON equal active subtopic aggregation; CATEGORY Stage3-weighted lesson aggregation; TAG deferred",
-  "response_time": "diagnostic only in v0.9",
-  "reference_tests": "20/20 PASS"
+  "response_time": "diagnostic only in v1.0",
+  "reference_tests": "zero-origin v1 monotonic regression suite included and locally validated"
 }
