@@ -106,7 +106,7 @@ function removeFromOverlayStack(id: string) {
 }
 
 function isTopOverlay(id: string) {
-  return overlayStack[overlayStack.length - 1] === id;
+  return overlayStack.at(-1) === id;
 }
 
 function lockDocumentScroll() {
@@ -209,14 +209,19 @@ function useOverlayBehavior({
     if (event.key !== "Tab" || !isTopOverlay(stackId)) return;
     const panel = panelRef.current;
     if (!panel) return;
+
     const focusable = getFocusableElements(panel);
-    if (!focusable.length) {
+    const first = focusable[0];
+    const last = focusable.at(-1);
+
+    // With noUncheckedIndexedAccess enabled, array access remains possibly
+    // undefined even after a length check. Guard both values explicitly.
+    if (!first || !last) {
       event.preventDefault();
       panel.focus();
       return;
     }
-    const first = focusable[0];
-    const last = focusable[focusable.length - 1];
+
     const active = document.activeElement;
     if (event.shiftKey && (active === first || active === panel)) {
       event.preventDefault();

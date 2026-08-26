@@ -141,7 +141,11 @@ function ActionControl({
   const [busy, setBusy] = useState(false);
   const shouldDismiss = action.dismissOnAction !== false;
 
-  if ("href" in action) {
+  // IMPORTANT:
+  // `href?: never` still becomes `href?: undefined` when exactOptionalPropertyTypes
+  // is disabled. Therefore `"href" in action` does not narrow href to `string`
+  // under strict TypeScript. A value-based guard does.
+  if (typeof action.href === "string") {
     return (
       <Link
         className={className}
@@ -158,7 +162,7 @@ function ActionControl({
   const onClick = action.onClick;
 
   async function run() {
-    if (busy || !onClick) return;
+    if (busy || typeof onClick !== "function") return;
     setBusy(true);
     try {
       await onClick();
