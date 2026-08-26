@@ -1,0 +1,414 @@
+.page {
+  display: grid;
+  gap: 1.25rem;
+  padding-block-end: 2rem;
+  color: var(--ink);
+}
+
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .5rem;
+  color: var(--muted);
+  font-size: .78rem;
+  font-weight: 650;
+}
+
+.breadcrumb a { text-decoration: none; }
+.breadcrumb a:hover { color: var(--primary); }
+
+.hero {
+  display: grid;
+  gap: .3rem;
+  padding-inline: .1rem;
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--primary);
+  font-size: .72rem;
+  font-weight: 850;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  margin: 0;
+  color: #142956;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2rem, 5vw, 3.05rem);
+  line-height: 1.08;
+  letter-spacing: -.035em;
+}
+
+:global(html[data-theme="dark"]) .hero h1 { color: var(--ink); }
+
+.metaLine {
+  margin: .2rem 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .45rem;
+  color: var(--muted);
+  font-size: .9rem;
+}
+
+.metaLine i { font-style: normal; opacity: .65; }
+
+.statGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) minmax(300px, 1.75fr);
+  gap: .75rem;
+}
+
+.metricCard,
+.recommendationCard,
+.primaryPanel,
+.analysisPanel {
+  border: 1px solid color-mix(in srgb, var(--line) 88%, var(--primary) 12%);
+  background: color-mix(in srgb, var(--surface) 97%, var(--canvas) 3%);
+  box-shadow: 0 10px 32px color-mix(in srgb, var(--ink) 7%, transparent);
+}
+
+.metricCard {
+  min-block-size: 86px;
+  border-radius: 18px;
+  padding: .9rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+  min-inline-size: 0;
+}
+
+.metricCard > div { min-inline-size: 0; display: grid; gap: .12rem; }
+.metricCard span,
+.recommendationCard span { color: var(--muted); font-size: .72rem; font-weight: 700; }
+.metricCard strong { color: #142956; font-size: 1.35rem; line-height: 1.1; }
+.metricCard small { color: var(--muted); font-size: .64rem; overflow-wrap: anywhere; }
+:global(html[data-theme="dark"]) .metricCard strong { color: var(--ink); }
+
+.metricIcon {
+  inline-size: 40px;
+  block-size: 40px;
+  flex: 0 0 auto;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  color: white;
+  font-size: .82rem;
+  font-weight: 900;
+}
+
+.amber { background: #f59e0b; }
+.blue { background: #3268f5; }
+.green { background: #2db879; }
+.violet { background: #8657eb; }
+
+.recommendationCard {
+  min-block-size: 86px;
+  border-radius: 18px;
+  padding: .8rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .85rem;
+  min-inline-size: 0;
+}
+
+.recommendationCard > div { min-inline-size: 0; display: grid; gap: .25rem; }
+.recommendationCard strong {
+  max-inline-size: 26ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #142956;
+  font-size: 1rem;
+}
+:global(html[data-theme="dark"]) .recommendationCard strong { color: var(--ink); }
+
+.recommendationCard a,
+.primaryButton {
+  min-block-size: 44px;
+  border-radius: 12px;
+  padding: .65rem 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  background: #3268f5;
+  color: white;
+  font-size: .78rem;
+  font-weight: 850;
+  text-decoration: none;
+}
+.recommendationCard a:hover,
+.primaryButton:hover { background: #2457dc; }
+
+.workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1.62fr) minmax(340px, .98fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+.primaryPanel,
+.analysisPanel {
+  border-radius: 24px;
+  padding: clamp(1rem, 2.3vw, 1.55rem);
+  min-inline-size: 0;
+}
+
+.sectionHeading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.sectionHeading h2,
+.relatedLessons h3,
+.attentionSection h3 {
+  margin: 0;
+  color: #142956;
+}
+
+:global(html[data-theme="dark"]) .sectionHeading h2,
+:global(html[data-theme="dark"]) .relatedLessons h3,
+:global(html[data-theme="dark"]) .attentionSection h3 { color: var(--ink); }
+
+.sectionHeading h2 { font-size: 1.12rem; font-weight: 900; }
+.sectionHeading p { margin: .28rem 0 0; color: var(--muted); font-size: .72rem; }
+
+.countBadge {
+  min-inline-size: 32px;
+  block-size: 32px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: color-mix(in srgb, var(--primary) 11%, var(--surface));
+  color: var(--primary-strong);
+  font-size: .75rem;
+  font-weight: 900;
+}
+
+.conceptGrid {
+  margin-block-start: 1rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .8rem;
+}
+
+.conceptCard {
+  min-inline-size: 0;
+  min-block-size: 128px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: .9rem 1rem;
+  display: grid;
+  gap: .7rem;
+  background: color-mix(in srgb, var(--surface) 98%, var(--canvas) 2%);
+}
+
+.conceptCard:hover { border-color: color-mix(in srgb, var(--primary) 42%, var(--line)); }
+
+.conceptTopline {
+  min-inline-size: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: .75rem;
+}
+
+.conceptTopline > div { min-inline-size: 0; }
+.conceptTopline h3 {
+  margin: 0;
+  color: #142956;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.02rem;
+  overflow-wrap: anywhere;
+}
+:global(html[data-theme="dark"]) .conceptTopline h3 { color: var(--ink); }
+.conceptTopline p { margin: .25rem 0 0; color: var(--muted); font-size: .72rem; line-height: 1.5; }
+
+.bandLabel {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
+  border-radius: 999px;
+  padding: .22rem .5rem;
+  font-size: .63rem;
+  font-weight: 850;
+  white-space: nowrap;
+}
+.bandLabel i { font-style: normal; }
+
+.strong { color: #13865b; }
+.developing { color: #2465f2; }
+.weak { color: #e55248; }
+.uncertain { color: #8a52df; }
+.noEvidence { color: #7a8497; }
+.bandLabel.strong { background: color-mix(in srgb, #2db879 12%, var(--surface)); }
+.bandLabel.developing { background: color-mix(in srgb, #3268f5 11%, var(--surface)); }
+.bandLabel.weak { background: color-mix(in srgb, #ef5b50 11%, var(--surface)); }
+.bandLabel.uncertain { background: color-mix(in srgb, #8657eb 11%, var(--surface)); }
+.bandLabel.noEvidence { background: color-mix(in srgb, var(--muted) 9%, var(--surface)); }
+
+.conceptMeta {
+  min-inline-size: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: .45rem;
+  color: var(--muted);
+  font-size: .66rem;
+  font-weight: 750;
+}
+.conceptMeta a { color: var(--primary); text-decoration: none; font-weight: 850; }
+.errorMeta { color: #df4e43 !important; }
+
+.masteryRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: .65rem;
+}
+.masteryRow strong { min-inline-size: 42px; text-align: end; color: var(--primary-strong); font-size: .72rem; }
+
+.progressTrack {
+  block-size: 6px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--line) 72%, var(--surface));
+}
+.progressTrack > span { display: block; block-size: 100%; border-radius: inherit; background: currentColor; }
+.progressTrack > .strong { background: #2db879; }
+.progressTrack > .developing { background: #3268f5; }
+.progressTrack > .weak { background: #ef5b50; }
+.progressTrack > .uncertain { background: #8657eb; }
+.progressTrack > .noEvidence { background: #9aa4b5; }
+
+.misconceptionDetails {
+  border-block-start: 1px dashed var(--line);
+  padding-block-start: .55rem;
+  color: var(--muted);
+  font-size: .7rem;
+}
+.misconceptionDetails summary { cursor: pointer; color: #df4e43; font-weight: 800; }
+.misconceptionDetails p { margin: .45rem 0 0; line-height: 1.55; }
+
+.chartWrap { margin-block-start: 1rem; }
+.chart { inline-size: 100%; block-size: auto; overflow: visible; }
+.axis { stroke: color-mix(in srgb, var(--line) 88%, var(--muted)); stroke-width: 1.2; }
+.trendLine { fill: none; stroke: #3268f5; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.trendDot { fill: #3268f5; }
+.chartValue { fill: #3268f5; font-size: 13px; font-weight: 850; }
+.chartDates { display: flex; justify-content: space-between; gap: 1rem; margin-block-start: -.3rem; color: var(--muted); font-size: .63rem; }
+.chartEmpty {
+  min-block-size: 150px;
+  margin: 1rem 0 0;
+  border: 1px dashed var(--line);
+  border-radius: 16px;
+  padding: 1rem;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  color: var(--muted);
+  font-size: .75rem;
+}
+
+.relatedLessons,
+.attentionSection {
+  margin-block-start: 1.2rem;
+  padding-block-start: 1rem;
+  border-block-start: 1px solid var(--line);
+}
+.relatedLessons h3,
+.attentionSection h3 { font-size: .94rem; font-weight: 900; }
+
+.lessonList { margin-block-start: .75rem; display: grid; gap: .65rem; }
+.lessonCard {
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  padding: .8rem .9rem;
+  display: grid;
+  gap: .45rem;
+  background: color-mix(in srgb, var(--surface) 98%, var(--canvas) 2%);
+}
+.lessonTopline { display: flex; align-items: center; justify-content: space-between; gap: .7rem; color: var(--muted); font-size: .64rem; font-weight: 750; }
+.lessonTopline a { color: var(--primary); text-decoration: none; font-weight: 850; }
+.lessonTopline a span { margin-inline-start: .2rem; }
+.lessonCard > strong { color: #142956; font-family: Georgia, "Times New Roman", serif; font-size: .82rem; overflow-wrap: anywhere; }
+:global(html[data-theme="dark"]) .lessonCard > strong { color: var(--ink); }
+.lessonMetrics { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: .25rem .6rem; color: var(--muted); font-size: .62rem; }
+.lessonMetrics b { color: var(--primary); font-size: .72rem; }
+.lessonMetrics small { grid-column: 1 / -1; color: #df4e43; }
+
+.attentionList { margin-block-start: .7rem; display: grid; gap: .45rem; }
+.attentionList a {
+  min-inline-size: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .8rem;
+  border-radius: 10px;
+  padding: .35rem .45rem;
+  color: var(--ink);
+  text-decoration: none;
+  font-size: .72rem;
+}
+.attentionList a:hover { background: color-mix(in srgb, var(--primary) 7%, transparent); }
+.attentionList span { min-inline-size: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.attentionList strong { color: #df4e43; }
+
+.analysisFooter {
+  margin-block-start: 1rem;
+  display: grid;
+  gap: .7rem;
+}
+.analysisFooter > span { color: #df4e43; font-size: .7rem; font-weight: 750; }
+.primaryButton { inline-size: 100%; }
+
+.emptyText { color: var(--muted); font-size: .78rem; }
+
+@media (max-width: 1100px) {
+  .statGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .recommendationCard { grid-column: 1 / -1; }
+  .workspace { grid-template-columns: minmax(0, 1.35fr) minmax(300px, .9fr); }
+}
+
+@media (max-width: 860px) {
+  .workspace { grid-template-columns: 1fr; }
+  .analysisPanel { order: 2; }
+}
+
+@media (max-width: 680px) {
+  .page { gap: 1rem; }
+  .statGrid { grid-template-columns: 1fr 1fr; gap: .6rem; }
+  .recommendationCard { grid-column: 1 / -1; }
+  .metricCard { min-block-size: 80px; padding: .75rem; }
+  .metricIcon { inline-size: 36px; block-size: 36px; }
+  .metricCard strong { font-size: 1.15rem; }
+  .conceptGrid { grid-template-columns: 1fr; }
+  .primaryPanel, .analysisPanel { border-radius: 19px; }
+}
+
+@media (max-width: 480px) {
+  .statGrid { grid-template-columns: 1fr; }
+  .recommendationCard { display: grid; }
+  .recommendationCard a { inline-size: 100%; }
+  .conceptTopline { display: grid; }
+  .bandLabel { justify-self: start; }
+  .hero h1 { font-size: clamp(1.9rem, 12vw, 2.45rem); }
+}
+
+@media (forced-colors: active) {
+  .metricCard,
+  .recommendationCard,
+  .primaryPanel,
+  .analysisPanel,
+  .conceptCard,
+  .lessonCard { border: 1px solid CanvasText; }
+}
