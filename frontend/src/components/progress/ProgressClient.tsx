@@ -232,14 +232,14 @@ export function ProgressClient({locale}: {locale: Locale}) {
         <section className={`${styles.card} ${styles.improvedCard}`} aria-labelledby="improved-title">
           <SectionHeading title={isFa ? "بیشترین پیشرفت" : "Most Improved"} subtitle={isFa ? "تغییر ثبت‌شده نسبت به snapshot قبلی" : "Recorded change versus a previous snapshot"} />
           {derived.improved.length ? derived.improved.map(({item, delta}) => (
-            <InsightRow key={`${item.scope_type}:${item.scope_id}`} title={item.scope_title || item.scope_id} value={Math.round(item.mastery_score_pct)} delta={`+${Math.round(delta)}%`} positive />
+            <InsightRow key={`${item.scope_type}:${item.scope_id}`} title={item.scope_title || item.scope_id || (isFa ? "حوزه بدون عنوان" : "Untitled scope")} value={Math.round(item.mastery_score_pct)} delta={`+${Math.round(delta)}%`} positive />
           )) : <EmptyState>{isFa ? "API فعلی delta مقایسه‌ای برای حوزه‌ها ارائه نکرده است؛ مقدار ساختگی نمایش داده نمی‌شود." : "The current API does not expose comparable scope deltas, so no improvement is fabricated."}</EmptyState>}
         </section>
 
         <section className={`${styles.card} ${styles.attentionCard}`} aria-labelledby="attention-title">
           <SectionHeading title={isFa ? "نیازمند توجه" : "Needs Attention"} subtitle={isFa ? "کمترین تسلط میان حوزه‌های دارای شواهد" : "Lowest mastery among evidence-backed scopes"} />
           {derived.needsAttention.length ? derived.needsAttention.map((item) => (
-            <InsightRow key={`${item.scope_type}:${item.scope_id}`} title={item.scope_title || item.scope_id} value={Math.round(item.mastery_score_pct)} />
+            <InsightRow key={`${item.scope_type}:${item.scope_id}`} title={item.scope_title || item.scope_id || (isFa ? "حوزه بدون عنوان" : "Untitled scope")} value={Math.round(item.mastery_score_pct)} />
           )) : <EmptyState>{isFa ? "هنوز حوزه‌ای برای اولویت‌بندی وجود ندارد." : "There is not enough evidence to prioritize a weak area yet."}</EmptyState>}
           <Link className={styles.practiceLink} href={`/${locale}/practice`}>{isFa ? "تمرین نقاط ضعف" : "Practice weak areas"}</Link>
         </section>
