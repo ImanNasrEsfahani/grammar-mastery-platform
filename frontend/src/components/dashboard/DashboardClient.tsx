@@ -226,7 +226,7 @@ export function DashboardClient({locale}: {locale: Locale}) {
             <h2 id="weekly-progress-title">{isFa ? "پیشرفت هفتگی" : "Weekly progress"}</h2>
             <span className="dashboard-icon-badge" aria-hidden="true">▥</span>
           </div>
-          {derived.trend.length ? <WeeklyBars points={derived.trend} /> : <EmptyDashboardState>{isFa ? "API فعلی هنوز سری روزانه قابل‌نمایش ارائه نکرده است." : "The current API snapshot does not expose a displayable daily series yet."}</EmptyDashboardState>}
+          {derived.trend.length ? <WeeklyBars points={derived.trend} /> : <EmptyDashboardState>{isFa ? "هنوز تمرین کافی برای ایجاد حداقل داده‌های لازم جهت نمایش روند هفتگی انجام نشده است." : "Not enough practice has been completed yet to generate the minimum data required to display the weekly trend."}</EmptyDashboardState>}
         </section>
 
         <section className="surface dashboard-daily-goal stack stack-small" aria-labelledby="daily-goal-title">

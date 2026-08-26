@@ -28,10 +28,31 @@ type ApiAwareReview = ReviewSummary & {
   lesson_title?: string | null;
   subtopic_id?: string | null;
   subtopic_title?: string | null;
+  subtopic_title_fa?: string | null;
+  subtopic_title_fr?: string | null;
   misconception_id?: string | null;
   misconception_label?: string | null;
   difficulty?: "EASY" | "MEDIUM" | "HARD" | "VERY_HARD" | null;
   mastery_score_pct?: number | null;
+};
+
+type TopicLookupSubtopic = {
+  id: string;
+  title_fr?: string | null;
+  title_fa?: string | null;
+  display_title?: string | null;
+};
+
+type TopicLookupEnvelope = {
+  data?: {
+    categories?: Array<{
+      subcategories?: Array<{
+        lessons?: Array<{
+          subtopics?: TopicLookupSubtopic[];
+        }>;
+      }>;
+    }>;
+  };
 };
 
 const PAGE_SIZE = 100;
@@ -60,6 +81,7 @@ const copy = {
     priority: "اولویت",
     nextDue: "موعد مرور بعدی",
     topic: "مبحث",
+    topicUnavailable: "مبحث نامشخص",
     lesson: "درس",
     details: "جزئیات",
     lastError: "مورد مرور",
@@ -150,6 +172,7 @@ const copy = {
     priority: "Priority",
     nextDue: "Next due",
     topic: "Topic",
+    topicUnavailable: "Topic unavailable",
     lesson: "Lesson",
     details: "Details",
     lastError: "Review item",
@@ -246,6 +269,55 @@ function parseMisconception(item: ApiAwareReview): {id: string; label: string} |
   return id ? {id, label: id} : null;
 }
 
+const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+
+function readableTopicValue(value?: string | null): string | null {
+  const text = value?.trim();
+  if (!text) return null;
+  if (UUID_PATTERN.test(text)) return null;
+  if (/^(?:MISCONCEPTION|SUBTOPIC|LESSON):/i.test(text)) return null;
+  return text;
+}
+
+function buildTopicTitleLookup(envelope: TopicLookupEnvelope | null | undefined, locale: Locale) {
+  const result = new Map<string, string>();
+  for (const category of envelope?.data?.categories ?? []) {
+    for (const subcategory of category.subcategories ?? []) {
+      for (const lesson of subcategory.lessons ?? []) {
+        for (const subtopic of lesson.subtopics ?? []) {
+          const title = readableTopicValue(subtopic.display_title)
+            || (locale === "fa" ? readableTopicValue(subtopic.title_fa) : readableTopicValue(subtopic.title_fr))
+            || (locale === "fa" ? readableTopicValue(subtopic.title_fr) : null);
+          if (subtopic.id && title) result.set(subtopic.id, title);
+        }
+      }
+    }
+  }
+  return result;
+}
+
+function resolvedTopicTitle(
+  item: ApiAwareReview,
+  locale: Locale,
+  topicTitles: Map<string, string>,
+  labels: typeof copy.fa | typeof copy.en,
+) {
+  const titleAsId = item.subtopic_title && UUID_PATTERN.test(item.subtopic_title.trim())
+    ? item.subtopic_title.trim()
+    : null;
+  const ids = [item.subtopic_id, titleAsId].filter((value): value is string => Boolean(value));
+  for (const id of ids) {
+    const localized = topicTitles.get(id);
+    if (localized) return localized;
+  }
+
+  const apiLocalized = locale === "fa" ? item.subtopic_title_fa : item.subtopic_title_fr;
+  return readableTopicValue(apiLocalized)
+    || readableTopicValue(item.subtopic_title)
+    || (locale === "fa" ? readableTopicValue(item.subtopic_title_fr) : null)
+    || labels.topicUnavailable;
+}
+
 function dueDate(item: ApiAwareReview): Date | null {
   if (item.kind === "MISTAKE" && item.status === "UNRESOLVED") return new Date(0);
   if (!item.due_at) return null;
@@ -329,6 +401,7 @@ export function ReviewInbox({locale}: {locale: Locale}) {
   const [timeTab, setTimeTab] = useState<TimeTab>("all");
   const [items, setItems] = useState<ApiAwareReview[]>([]);
   const [page, setPage] = useState<PageShape | null>(null);
+  const [topicTitles, setTopicTitles] = useState<Map<string, string>>(new Map());
   const [loading, setLoading] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
   const [error, setError] = useState<ApiError | null>(null);
@@ -367,6 +440,17 @@ export function ReviewInbox({locale}: {locale: Locale}) {
     return `/api/backend/reviews?${params.toString()}`;
   }, [difficulty, lesson, misconception, mode, repeat, sort]);
 
+  const loadTopicTitles = useCallback(async () => {
+    try {
+      const envelope = await apiRequest<TopicLookupEnvelope>(`/api/backend/mastery-map?locale=${locale}`);
+      setTopicTitles(buildTopicTitleLookup(envelope, locale));
+    } catch {
+      // Topic localization is enhancement data. The review queue must remain usable
+      // even when the mastery-map endpoint is temporarily unavailable.
+      setTopicTitles(new Map());
+    }
+  }, [locale]);
+
   const load = useCallback(async () => {
     setLoading(true);
     setError(null);
@@ -391,6 +475,7 @@ export function ReviewInbox({locale}: {locale: Locale}) {
   }, [baseQuery, labels.error]);
 
   useEffect(() => { void load(); }, [load]);
+  useEffect(() => { void loadTopicTitles(); }, [loadTopicTitles]);
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
@@ -472,7 +557,8 @@ export function ReviewInbox({locale}: {locale: Locale}) {
       if (lesson !== "ALL" && item.lesson_id !== lesson) return false;
       if (difficulty !== "ALL" && item.difficulty !== difficulty) return false;
       if (q) {
-        const haystack = [item.title, item.group_key, item.lesson_title, item.subtopic_title, item.misconception_label]
+        const topicTitle = resolvedTopicTitle(item, locale, topicTitles, labels);
+        const haystack = [item.title, item.group_key, item.lesson_title, topicTitle, item.misconception_label]
           .filter(Boolean).join(" ").toLocaleLowerCase(locale === "fa" ? "fa" : "en");
         if (!haystack.includes(q)) return false;
       }
@@ -482,7 +568,7 @@ export function ReviewInbox({locale}: {locale: Locale}) {
       result = [...result].sort((a, b) => repeatCount(b) - repeatCount(a) || a.title.localeCompare(b.title));
     }
     return result;
-  }, [difficulty, dueFilter, items, lesson, locale, misconception, priority, repeat, search, sort, timeTab]);
+  }, [difficulty, dueFilter, items, labels, lesson, locale, misconception, priority, repeat, search, sort, timeTab, topicTitles]);
 
   const visibleIds = useMemo(() => new Set(filtered.map((item) => item.id)), [filtered]);
   const allVisibleSelected = filtered.length > 0 && filtered.every((item) => selected.has(item.id));
@@ -660,6 +746,7 @@ export function ReviewInbox({locale}: {locale: Locale}) {
                 {filtered.map((item) => {
                   const currentPriority = displayPriority(item);
                   const misconceptionData = parseMisconception(item);
+                  const topicTitle = resolvedTopicTitle(item, locale, topicTitles, labels);
                   const isBusy = busyIds.has(item.id);
                   const mastery = typeof item.mastery_score_pct === "number" ? Math.max(0, Math.min(100, item.mastery_score_pct)) : null;
                   return (
@@ -667,7 +754,7 @@ export function ReviewInbox({locale}: {locale: Locale}) {
                       <div className={styles.rowSelect}><input type="checkbox" checked={selected.has(item.id)} onChange={() => toggleSelected(item.id)} aria-label={`${labels.selected}: ${item.title}`}/></div>
                       <div className={`${styles.priorityBadge} ${styles[`priority${currentPriority}`]}`}><span>{currentPriority === "HIGH" ? labels.high : currentPriority === "MEDIUM" ? labels.medium : labels.low}</span><i aria-hidden="true"><b/><b/><b/></i></div>
                       <div className={styles.dueCell}><strong>{dueLabel(item, locale, labels)}</strong>{item.due_at ? <time dateTime={item.due_at}>{new Date(item.due_at).toLocaleDateString(isFa ? "fa-IR" : "en-CA", {month: "short", day: "numeric"})}</time> : <small>{statusLabel(item, labels)}</small>}</div>
-                      <div className={styles.topicCell}><strong dir="auto">{item.subtopic_title || misconceptionData?.label || (item.kind === "SPACED" ? labels.srs : labels.misconceptionFallback)}</strong><small>{item.kind === "MISTAKE" ? labels.mistake : labels.srs}</small></div>
+                      <div className={styles.topicCell}><strong dir="auto">{topicTitle}</strong><small>{item.kind === "MISTAKE" ? labels.mistake : labels.srs}</small></div>
                       <div className={styles.lessonCell}>{item.lesson_no ? <><strong>{labels.lesson} {item.lesson_no}</strong><small dir="auto">{item.lesson_title || ""}</small></> : <><strong>—</strong><small title={labels.lessonUnavailable}>{labels.lessonFilter}</small></>}</div>
                       <div className={styles.detailCell}><strong>{item.kind === "MISTAKE" ? `${labels.repeat}: ${repeatCount(item).toLocaleString(isFa ? "fa-IR" : "en-CA")}` : statusLabel(item, labels)}</strong><small>{mastery !== null ? `${labels.mastery}: ${Math.round(mastery)}%` : `${labels.mastery}: —`}</small></div>
                       <div className={styles.titleCell}>

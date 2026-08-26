@@ -23,8 +23,38 @@ type UserMenuProps = {
   unreadCount?: number;
 };
 
+type AccountSummaryEnvelope = {
+  data: {
+    id: string;
+    email: string;
+    display_name?: string | null;
+    locale?: string;
+    timezone?: string;
+    created_at?: string;
+    updated_at?: string;
+    provider_version?: string;
+  };
+};
+
+type AccountIdentity = {
+  displayName: string;
+  email: string;
+};
+
 const NOTIFICATION_UNREAD_KEY = "gmp-notifications-unread-v1";
 const NOTIFICATION_CHANGE_EVENT = "gmp-notifications-changed";
+
+let accountSummaryPromise: Promise<AccountSummaryEnvelope | null> | null = null;
+
+function loadAccountSummary() {
+  if (!accountSummaryPromise) {
+    accountSummaryPromise = apiRequest<AccountSummaryEnvelope>("/api/backend/account").catch(() => {
+      accountSummaryPromise = null;
+      return null;
+    });
+  }
+  return accountSummaryPromise;
+}
 
 type MenuIconName = "profile" | "history" | "settings" | "notifications" | "logout";
 
@@ -77,7 +107,7 @@ function Icon({name}: {name: MenuIconName}) {
 
 function initials(name: string) {
   const parts = name.trim().split(/\s+/).filter(Boolean);
-  if (!parts.length) return "U";
+  if (!parts.length || name === "…") return "U";
   if (parts.length === 1) return parts[0]?.slice(0, 1).toUpperCase() ?? "U";
   return `${parts[0]?.slice(0, 1) ?? ""}${parts.at(-1)?.slice(0, 1) ?? ""}`.toUpperCase();
 }
@@ -104,9 +134,11 @@ export function UserMenu({
   const [busy, setBusy] = useState(false);
   const [storedUnreadCount, setStoredUnreadCount] = useState(0);
   const [masteryPct, setMasteryPct] = useState<number | null>(null);
+  const [accountIdentity, setAccountIdentity] = useState<AccountIdentity | null>(null);
   const masteryRequestedRef = useRef(false);
 
-  const name = displayName?.trim() || (isFa ? "زبان‌آموز" : "Learner");
+  const resolvedEmail = email?.trim() || accountIdentity?.email || "";
+  const name = displayName?.trim() || accountIdentity?.displayName || resolvedEmail || "…";
   const effectiveUnreadCount = unreadCount ?? storedUnreadCount;
   const hasUnread = effectiveUnreadCount > 0;
 
@@ -136,6 +168,23 @@ export function UserMenu({
       window.setTimeout(() => triggerRef.current?.focus(), 0);
     }
   }, []);
+
+  useEffect(() => {
+    if (displayName?.trim() && email?.trim()) return;
+
+    let cancelled = false;
+    void loadAccountSummary().then((summary) => {
+      if (cancelled || !summary?.data) return;
+      setAccountIdentity({
+        displayName: summary.data.display_name?.trim() || "",
+        email: summary.data.email?.trim() || "",
+      });
+    });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [displayName, email]);
 
   useEffect(() => {
     if (unreadCount !== undefined) return;
@@ -237,6 +286,7 @@ export function UserMenu({
     try {
       await fetch("/api/session/logout", {method: "POST", cache: "no-store"});
     } finally {
+      accountSummaryPromise = null;
       router.replace(`/${locale}/login`);
       router.refresh();
     }
@@ -250,7 +300,7 @@ export function UserMenu({
   ];
 
   return (
-    <div className={styles.root} ref={rootRef}>
+    <div className={styles.root} ref={rootRef} data-locale={locale}>
       <button
         ref={triggerRef}
         className={styles.trigger}
@@ -288,7 +338,7 @@ export function UserMenu({
               <span className={styles.summaryAvatar} aria-hidden="true">{initials(name)}</span>
               <div className={styles.summaryCopy}>
                 <strong>{name}</strong>
-                <span>{email || copy.account}</span>
+                <span dir="auto">{resolvedEmail || copy.account}</span>
                 <div className={styles.summaryMeta}>
                   <span className={styles.levelChip} dir="ltr">{levelPath}</span>
                   <span className={styles.masteryChip}>

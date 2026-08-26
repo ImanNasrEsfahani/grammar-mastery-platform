@@ -234,6 +234,21 @@
   }
 }
 
+/* Give the primary desktop navigation a little more breathing room and a
+   wider hit area on large monitors without changing tablet/mobile layouts. */
+@media (min-width: 80rem) {
+  :global(.desktop-nav .nav-list) {
+    gap: 1.55rem;
+  }
+
+  :global(.desktop-nav .nav-list a) {
+    min-block-size: 2.75rem;
+    display: inline-flex;
+    align-items: center;
+    padding-inline: .25rem;
+  }
+}
+
 @media (max-width: 40rem) {
   .authHeader {
     padding-block-start: .55rem;

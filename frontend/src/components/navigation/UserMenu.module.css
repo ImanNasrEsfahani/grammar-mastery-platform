@@ -117,11 +117,17 @@
 
 .panel {
   width: min(352px, calc(100vw - 24px));
+  max-width: calc(100vw - 24px);
+  max-height: calc(100dvh - 84px);
   position: absolute;
   top: calc(100% + 10px);
   right: 0;
+  left: auto;
   z-index: 79;
   padding: 14px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
   border: 1px solid #d7e2f2;
   border-radius: 20px;
   color: #12264f;
@@ -130,6 +136,17 @@
   backdrop-filter: blur(18px);
   animation: menuIn 140ms ease-out;
   transform-origin: top right;
+}
+
+/*
+ * Desktop collision-safe anchoring:
+ * English account actions live on the right edge, so the panel grows left.
+ * Persian account actions live on the left edge, so the panel grows right.
+ */
+.root[data-locale="fa"] .panel {
+  right: auto;
+  left: 0;
+  transform-origin: top left;
 }
 
 @keyframes menuIn {
@@ -457,6 +474,7 @@
 
   .panel {
     width: min(332px, calc(100vw - 24px));
+    max-width: calc(100vw - 24px);
     max-height: calc(100dvh - 24px);
     position: fixed;
     top: 12px;
@@ -466,14 +484,28 @@
     z-index: 199;
     margin: 0;
     padding: 14px;
+    overflow-x: hidden;
     overflow-y: auto;
+    overscroll-behavior: contain;
     border-radius: 24px;
     animation: drawerIn 180ms ease-out;
     transform-origin: center right;
   }
 
+  .root[data-locale="fa"] .panel {
+    right: auto;
+    left: 12px;
+    animation-name: drawerInRtl;
+    transform-origin: center left;
+  }
+
   @keyframes drawerIn {
     from { opacity: .72; transform: translateX(24px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  @keyframes drawerInRtl {
+    from { opacity: .72; transform: translateX(-24px); }
     to { opacity: 1; transform: translateX(0); }
   }
 
