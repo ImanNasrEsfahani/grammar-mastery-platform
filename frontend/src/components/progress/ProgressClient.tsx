@@ -241,7 +241,7 @@ export function ProgressClient({locale}: {locale: Locale}) {
           {derived.needsAttention.length ? derived.needsAttention.map((item) => (
             <InsightRow key={`${item.scope_type}:${item.scope_id}`} title={item.scope_title || item.scope_id || (isFa ? "حوزه بدون عنوان" : "Untitled scope")} value={Math.round(item.mastery_score_pct)} />
           )) : <EmptyState>{isFa ? "هنوز حوزه‌ای برای اولویت‌بندی وجود ندارد." : "There is not enough evidence to prioritize a weak area yet."}</EmptyState>}
-          <Link className={styles.practiceLink} href={`/${locale}/practice`}>{isFa ? "تمرین نقاط ضعف" : "Practice weak areas"}</Link>
+          <Link className={styles.practiceLink} href={`/${locale}/tests/new`}>{isFa ? "تمرین نقاط ضعف" : "Practice weak areas"}</Link>
         </section>
       </div>
 
@@ -259,7 +259,7 @@ export function ProgressClient({locale}: {locale: Locale}) {
           <strong>{isFa ? "روی ضعیف‌ترین حوزه تمرکز کنید" : "Turn progress into the next focused step"}</strong>
           <p>{isFa ? "صفحه Progress فقط وضعیت ذخیره‌شده را نمایش می‌دهد؛ منطق یادگیری در backend باقی می‌ماند." : "Progress visualizes persisted state; learning decisions remain backend-owned."}</p>
         </div>
-        <Link className="button button-primary" href={`/${locale}/practice`}>{isFa ? "شروع تمرین" : "Start practice"}</Link>
+        <Link className="button button-primary" href={`/${locale}/tests/new`}>{isFa ? "شروع تمرین" : "Start practice"}</Link>
       </footer>
     </div>
   );

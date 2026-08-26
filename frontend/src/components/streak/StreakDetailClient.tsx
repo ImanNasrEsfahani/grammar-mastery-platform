@@ -296,7 +296,7 @@ export function StreakDetailClient({locale}: {locale: Locale}) {
               <small>{copy.policyTechnical}: {data.policy.active_day_definition}</small>
             </div>
             <div className={styles.safetyActions}>
-              <Link className={styles.primaryButton} href={`/${locale}/practice`}>{copy.continuePractice}</Link>
+              <Link className={styles.primaryButton} href={`/${locale}/tests/new`}>{copy.continuePractice}</Link>
               <button className={styles.secondaryButton} type="button" onClick={() => setGoalDialogOpen(true)}>{copy.setDailyGoal}</button>
             </div>
           </article>

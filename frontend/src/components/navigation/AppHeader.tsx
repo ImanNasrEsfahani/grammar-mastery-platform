@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import {usePathname} from "next/navigation";
+import {usePathname, useSearchParams} from "next/navigation";
 import {useEffect, useRef, useState} from "react";
 import {ThemeToggle} from "@/components/navigation/ThemeToggle";
 import {UserMenu} from "@/components/navigation/UserMenu";
@@ -34,6 +34,7 @@ export function AppHeader({locale, authenticated}: {locale: Locale; authenticate
   const labels = t(locale);
   const otherLocale = locale === "fa" ? "en" : "fa";
   const pathname = usePathname();
+  const searchParams = useSearchParams();
   const headerRef = useRef<HTMLElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [unreadNotificationCount, setUnreadNotificationCount] = useState(1);
@@ -82,6 +83,8 @@ export function AppHeader({locale, authenticated}: {locale: Locale; authenticate
 
   if (isAuthSurface || isServiceUnavailableSurface) {
     const routeTail = segments.slice(1).join("/") || "login";
+    const queryString = searchParams.toString();
+    const authLocaleHref = `/${otherLocale}/${routeTail}${queryString ? `?${queryString}` : ""}`;
     const brandHref = isServiceUnavailableSurface && authenticated ? `/${locale}/dashboard` : `/${locale}/login`;
     return (
       <header className={styles.authHeader} ref={headerRef}>
@@ -95,7 +98,7 @@ export function AppHeader({locale, authenticated}: {locale: Locale; authenticate
           </Link>
           <div className={styles.authHeaderActions}>
             <ThemeToggle locale={locale} />
-            <Link className={styles.authLocaleSwitch} href={`/${otherLocale}/${routeTail}`} hrefLang={otherLocale}>
+            <Link className={styles.authLocaleSwitch} href={authLocaleHref} hrefLang={otherLocale}>
               {otherLocale.toUpperCase()} <span aria-hidden="true">▾</span>
             </Link>
             {isServiceUnavailableSurface ? (

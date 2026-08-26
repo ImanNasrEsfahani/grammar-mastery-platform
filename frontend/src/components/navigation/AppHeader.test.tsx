@@ -1,8 +1,19 @@
 import {fireEvent, render, screen} from "@testing-library/react";
-import {expect, test, vi} from "vitest";
+import {beforeEach, expect, test, vi} from "vitest";
 import {AppHeader} from "./AppHeader";
 
-vi.mock("next/navigation", () => ({usePathname: () => "/fa/dashboard", useRouter: () => ({replace: vi.fn(), refresh: vi.fn()})}));
+const navigationState = vi.hoisted(() => ({pathname: "/fa/dashboard", search: ""}));
+
+vi.mock("next/navigation", () => ({
+  usePathname: () => navigationState.pathname,
+  useSearchParams: () => new URLSearchParams(navigationState.search),
+  useRouter: () => ({replace: vi.fn(), refresh: vi.fn()}),
+}));
+
+beforeEach(() => {
+  navigationState.pathname = "/fa/dashboard";
+  navigationState.search = "";
+});
 
 test("mobile menu exposes navigation and toggles accessibly", () => {
   render(<AppHeader locale="fa" authenticated />);
@@ -28,4 +39,16 @@ test("authenticated header exposes the designed avatar account trigger", () => {
   render(<AppHeader locale="fa" authenticated />);
   expect(screen.getAllByRole("button", {name: /باز کردن منوی حساب کاربری/}).length).toBeGreaterThan(0);
   expect(screen.queryByRole("button", {name: "خروج"})).not.toBeInTheDocument();
+});
+
+test("auth locale switch preserves reset-password query state", () => {
+  navigationState.pathname = "/fa/reset-password";
+  navigationState.search = "token=abc123&source=email";
+
+  render(<AppHeader locale="fa" authenticated={false} />);
+
+  expect(screen.getByRole("link", {name: /EN/})).toHaveAttribute(
+    "href",
+    "/en/reset-password?token=abc123&source=email",
+  );
 });
