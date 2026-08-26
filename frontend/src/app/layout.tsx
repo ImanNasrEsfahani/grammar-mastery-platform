@@ -63,6 +63,13 @@ export default function RootLayout({children}: Readonly<{children: React.ReactNo
   return (
     <html lang="fa" dir="rtl" suppressHydrationWarning>
       <head>
+        <link
+          rel="preload"
+          href="/fonts/iranyekan/subset-IRANYekan.2cadc674.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
         <script dangerouslySetInnerHTML={{__html: preferenceInitializer}} />
       </head>
       <body>{children}</body>

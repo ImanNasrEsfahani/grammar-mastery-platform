@@ -1,70 +1,36 @@
 /*
- * Global Persian UI font.
+ * IRANYekan global Persian font
  *
- * Font binaries are intentionally not stored in this package/repository.
- * Place your licensed IRANYekanX WOFF2 files under:
- *   /public/fonts/iranyekan/
+ * Expected font file:
+ * /public/fonts/iranyekan/subset-IRANYekan.2cadc674.woff2
  *
- * Persian/Arabic glyphs use IRANYekanX. Latin glyphs continue to fall back
- * to Inter/system UI fonts so French and English remain crisp.
+ * The supplied font is a Persian/Arabic subset (Regular / weight 400).
+ * Latin characters are not present in the font, so French/English
+ * automatically fall back to Inter/system fonts.
  */
 
 @font-face {
-  font-family: "IRANYekanX";
-  src: url("/fonts/iranyekan/IRANYekanX-Regular.woff2") format("woff2");
+  font-family: "IRANYekan";
+  src: url("/fonts/iranyekan/subset-IRANYekan.2cadc674.woff2") format("woff2");
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  unicode-range:
-    U+0600-06FF,
-    U+0750-077F,
-    U+08A0-08FF,
-    U+FB50-FDFF,
-    U+FE70-FEFF,
-    U+200C-200F,
-    U+202A-202E,
-    U+2066-2069;
 }
 
-@font-face {
-  font-family: "IRANYekanX";
-  src: url("/fonts/iranyekan/IRANYekanX-Medium.woff2") format("woff2");
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  unicode-range:
-    U+0600-06FF,
-    U+0750-077F,
-    U+08A0-08FF,
-    U+FB50-FDFF,
-    U+FE70-FEFF,
-    U+200C-200F,
-    U+202A-202E,
-    U+2066-2069;
-}
-
-@font-face {
-  font-family: "IRANYekanX";
-  src: url("/fonts/iranyekan/IRANYekanX-Bold.woff2") format("woff2");
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  unicode-range:
-    U+0600-06FF,
-    U+0750-077F,
-    U+08A0-08FF,
-    U+FB50-FDFF,
-    U+FE70-FEFF,
-    U+200C-200F,
-    U+202A-202E,
-    U+2066-2069;
-}
-
-/*
- * globals.css already applies var(--font-ui) to body and form controls inherit it.
- * Overriding the variable here makes IRANYekanX the site-wide default for Persian.
- */
 :root {
-  --font-ui: "IRANYekanX", Inter, ui-sans-serif, system-ui, -apple-system,
+  --font-ui: "IRANYekan", Inter, ui-sans-serif, system-ui, -apple-system,
     BlinkMacSystemFont, "Segoe UI", Tahoma, Arial, sans-serif;
+}
+
+/* Make the global family explicit as well as overriding --font-ui. */
+html,
+body {
+  font-family: var(--font-ui);
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
 }
