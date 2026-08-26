@@ -5,10 +5,11 @@ import {useCallback, useEffect, useMemo, useState} from "react";
 import {LoadingCard} from "@/components/ui/LoadingCard";
 import {StatusPanel} from "@/components/ui/StatusPanel";
 import {ApiError, apiRequest} from "@/lib/api/client";
-import type {DashboardEnvelope, NextActionEnvelope} from "@/lib/api/types";
+import type {DashboardEnvelope} from "@/lib/api/types";
 import type {Locale} from "@/lib/i18n";
 
-type CachedDashboard = {savedAt: string; dashboard: DashboardEnvelope; nextAction: NextActionEnvelope};
+type DashboardAction = {code: string; destination: string; reason: string};
+type CachedDashboard = {savedAt: string; dashboard: DashboardEnvelope; nextAction: DashboardAction};
 type LooseRecord = Record<string, unknown>;
 type TrendPoint = {label: string; value: number};
 
@@ -17,29 +18,31 @@ export function DashboardClient({locale}: {locale: Locale}) {
   const [data, setData] = useState<CachedDashboard | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<ApiError | null>(null);
+  const snapshotKey = `gmp-dashboard-safe-snapshot-v2:${locale}`;
 
   const load = useCallback(async () => {
     setLoading(true);
     setError(null);
     try {
-      const [dashboard, nextAction] = await Promise.all([
-        apiRequest<DashboardEnvelope>("/api/backend/dashboard"),
-        apiRequest<NextActionEnvelope>("/api/backend/next-actions/current"),
-      ]);
-      if (!dashboard || !nextAction) throw new ApiError({status: 502, code: "EMPTY_DASHBOARD", message: "Dashboard data was empty."});
+      // One backend snapshot is enough. The authoritative action code is already
+      // part of /dashboard; destination/reason are projected locally from that
+      // same snapshot instead of issuing a second heavy next-action request.
+      const dashboard = await apiRequest<DashboardEnvelope>("/api/backend/dashboard");
+      if (!dashboard) throw new ApiError({status: 502, code: "EMPTY_DASHBOARD", message: "Dashboard data was empty."});
+      const nextAction = actionFromDashboard(dashboard.data, locale);
       const snapshot = {savedAt: new Date().toISOString(), dashboard, nextAction};
-      sessionStorage.setItem("gmp-dashboard-safe-snapshot", JSON.stringify(snapshot));
+      sessionStorage.setItem(snapshotKey, JSON.stringify(snapshot));
       setData(snapshot);
     } catch (caught) {
       setError(caught instanceof ApiError ? caught : new ApiError({status: 0, code: "NETWORK_ERROR", message: "Dashboard loading failed."}));
-      const cached = sessionStorage.getItem("gmp-dashboard-safe-snapshot");
+      const cached = sessionStorage.getItem(snapshotKey);
       if (cached) {
-        try { setData(JSON.parse(cached) as CachedDashboard); } catch { sessionStorage.removeItem("gmp-dashboard-safe-snapshot"); }
+        try { setData(JSON.parse(cached) as CachedDashboard); } catch { sessionStorage.removeItem(snapshotKey); }
       }
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [locale, snapshotKey]);
 
   // Initial fetch synchronizes the client view with the persisted dashboard snapshot.
   // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -97,7 +100,7 @@ export function DashboardClient({locale}: {locale: Locale}) {
   }
 
   const dashboard = data.dashboard.data;
-  const action = data.nextAction.data;
+  const action = data.nextAction;
   const inProgress = dashboard.in_progress_attempt;
   const answered = inProgress?.answered_count ?? 0;
   const questionCount = inProgress?.question_count ?? 0;
@@ -226,7 +229,7 @@ export function DashboardClient({locale}: {locale: Locale}) {
             <h2 id="weekly-progress-title">{isFa ? "پیشرفت هفتگی" : "Weekly progress"}</h2>
             <span className="dashboard-icon-badge" aria-hidden="true">▥</span>
           </div>
-          {derived.trend.length ? <WeeklyBars points={derived.trend} /> : <EmptyDashboardState>{isFa ? "هنوز تمرین کافی برای ایجاد حداقل داده‌های لازم جهت نمایش روند هفتگی انجام نشده است." : "Not enough practice has been completed yet to generate the minimum data required to display the weekly trend."}</EmptyDashboardState>}
+          {derived.trend.length ? <WeeklyBars points={derived.trend} /> : <EmptyDashboardState>{isFa ? "API فعلی هنوز سری روزانه قابل‌نمایش ارائه نکرده است." : "The current API snapshot does not expose a displayable daily series yet."}</EmptyDashboardState>}
         </section>
 
         <section className="surface dashboard-daily-goal stack stack-small" aria-labelledby="daily-goal-title">
@@ -319,6 +322,89 @@ function Achievement({icon, value, label}: {icon: string; value: string; label: 
 
 function EmptyDashboardState({children}: {children: React.ReactNode}) {
   return <div className="dashboard-empty-state"><span aria-hidden="true">· · ·</span><p>{children}</p></div>;
+}
+
+function actionFromDashboard(dashboard: DashboardEnvelope["data"], locale: Locale): DashboardAction {
+  const isFa = locale === "fa";
+  const code = String(dashboard.next_action || "REGULAR_PRACTICE");
+  const dueCount = Number(dashboard.review_queue?.due_count ?? 0);
+  const unresolvedCount = Number(dashboard.error_review?.unresolved_group_count ?? 0);
+  const confidentLessons = dashboard.mastery
+    .filter((item) => item.scope_type === "LESSON" && item.confidence >= 0.45 && item.evidence_count > 0)
+    .slice()
+    .sort((a, b) => (
+      a.mastery_score_pct - b.mastery_score_pct
+      || b.confidence - a.confidence
+      || String(a.scope_id).localeCompare(String(b.scope_id))
+    ));
+  const weakestLesson = confidentLessons[0] ?? null;
+
+  switch (code) {
+    case "OVERDUE_REVIEW":
+      return {
+        code,
+        destination: `/${locale}/review`,
+        reason: isFa
+          ? `${dueCount} مرور به زمان انجام رسیده و در اولویت است.`
+          : `${dueCount} review item(s) are due and take priority.`,
+      };
+    case "DUE_REVIEW":
+      // Compatibility only: runtime v1.0.1 no longer selects raw unresolved
+      // mistake groups ahead of the Stage 17 concept clock.
+      return {
+        code,
+        destination: `/${locale}/review`,
+        reason: isFa
+          ? `${unresolvedCount} گروه خطای حل‌نشده برای مرور وجود دارد.`
+          : `${unresolvedCount} unresolved error group(s) are ready for review.`,
+      };
+    case "CRITICAL_CONFIDENT_LESSON":
+      return {
+        code,
+        destination: weakestLesson ? `/${locale}/lessons/${weakestLesson.scope_id}` : `/${locale}/tests/new`,
+        reason: isFa
+          ? "یک درس با شواهد کافی، تسلط کمتر از ۴۰٪ دارد."
+          : "A lesson has sufficient evidence and mastery below 40%.",
+      };
+    case "WEAK_CONFIDENT_LESSON":
+      return {
+        code,
+        destination: weakestLesson ? `/${locale}/lessons/${weakestLesson.scope_id}` : `/${locale}/tests/new`,
+        reason: isFa
+          ? "یک درس با شواهد کافی در بازه تسلط ضعیف قرار دارد."
+          : "A lesson has sufficient evidence and is in the weak mastery range.",
+      };
+    case "DEVELOPING_LESSON":
+      return {
+        code,
+        destination: weakestLesson ? `/${locale}/lessons/${weakestLesson.scope_id}` : `/${locale}/tests/new`,
+        reason: isFa
+          ? "یک درس با شواهد کافی هنوز در حال توسعه است."
+          : "A lesson has sufficient evidence and is still developing.",
+      };
+    case "BUILD_EVIDENCE":
+      return {
+        code,
+        destination: `/${locale}/tests/new`,
+        reason: isFa
+          ? "هنوز شواهد یادگیری کافی برای برچسب‌گذاری نقاط ضعف وجود ندارد."
+          : "There is not enough learning evidence yet to label weaknesses.",
+      };
+    case "REGULAR_PRACTICE":
+      return {
+        code,
+        destination: `/${locale}/tests/new`,
+        reason: isFa
+          ? "مرور فوری یا ضعف مطمئن شناسایی نشده است؛ تمرین منظم ادامه یابد."
+          : "No urgent review or confident weakness is detected; continue regular practice.",
+      };
+    default:
+      return {
+        code,
+        destination: `/${locale}/tests/new`,
+        reason: isFa ? "تمرین بعدی شما آماده است." : "Your next practice is ready.",
+      };
+  }
 }
 
 function asRecord(value: unknown): LooseRecord {

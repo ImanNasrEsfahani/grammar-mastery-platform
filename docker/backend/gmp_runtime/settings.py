@@ -51,6 +51,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "backend.django_adapter.middleware.RequestIdMiddleware",
+    "backend.django_adapter.middleware.PerformanceTimingMiddleware",
 ]
 
 ROOT_URLCONF = "gmp_runtime.urls"
@@ -100,9 +101,27 @@ STAGE21_JWT_ACCESS_TTL_SECONDS = _int(
 STAGE21_SESSION_TTL_SECONDS = _int(
     "STAGE21_SESSION_TTL_SECONDS", 30 * 24 * 60 * 60
 )
-STAGE21_TOKEN_VERIFIER = (
-    "backend.django_adapter.runtime_auth.verify_authorization_header"
+
+# Performance hotfix: normal authenticated requests no longer lock/update the
+# auth_sessions row. last_seen_at is touched at most once per interval.
+STAGE21_SESSION_TOUCH_INTERVAL_SECONDS = _int(
+    "STAGE21_SESSION_TOUCH_INTERVAL_SECONDS", 10 * 60
 )
+if not 60 <= STAGE21_SESSION_TOUCH_INTERVAL_SECONDS <= 60 * 60:
+    raise ImproperlyConfigured(
+        "STAGE21_SESSION_TOUCH_INTERVAL_SECONDS must be between 60 and 3600."
+    )
+STAGE21_TOKEN_VERIFIER = (
+    "backend.django_adapter.runtime_auth_fast.verify_authorization_header"
+)
+
+# Lightweight request/SQL observability. Slow SQL logs never include bound
+# parameters, so credentials and answer payloads are not written to logs.
+PERF_SLOW_QUERY_MS = _int("PERF_SLOW_QUERY_MS", 100)
+PERF_SLOW_REQUEST_MS = _int("PERF_SLOW_REQUEST_MS", 500)
+PERF_LOG_ALL_REQUESTS = _bool("PERF_LOG_ALL_REQUESTS", False)
+if PERF_SLOW_QUERY_MS < 1 or PERF_SLOW_REQUEST_MS < 1:
+    raise ImproperlyConfigured("Performance timing thresholds must be positive.")
 
 REST_FRAMEWORK = {
     "UNAUTHENTICATED_USER": None,
@@ -149,4 +168,11 @@ LOGGING = {
         }
     },
     "root": {"handlers": ["console"], "level": os.getenv("LOG_LEVEL", "INFO")},
+    "loggers": {
+        "gmp.performance": {
+            "handlers": ["console"],
+            "level": os.getenv("PERF_LOG_LEVEL", "INFO"),
+            "propagate": False,
+        }
+    },
 }

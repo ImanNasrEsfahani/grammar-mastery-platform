@@ -2,7 +2,14 @@ import type { NextRequest } from "next/server";
 
 const DEFAULT_API_BASE = "http://127.0.0.1:8000/api/v1";
 const FORWARDED_REQUEST_HEADERS = ["accept", "accept-language", "content-type", "idempotency-key", "x-request-id"] as const;
-const FORWARDED_RESPONSE_HEADERS = ["content-type", "x-request-id", "retry-after", "idempotent-replayed"] as const;
+const FORWARDED_RESPONSE_HEADERS = [
+  "content-type",
+  "x-request-id",
+  "retry-after",
+  "idempotent-replayed",
+  "server-timing",
+  "x-response-time-ms",
+] as const;
 
 export function djangoApiBaseUrl(): URL {
   const configured = process.env.DJANGO_API_BASE_URL ?? DEFAULT_API_BASE;

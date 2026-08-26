@@ -6,7 +6,7 @@ from decimal import Decimal
 from typing import Any
 import uuid
 
-from django.db import connection, transaction
+from django.db import connection
 from django.utils import timezone
 from rest_framework.response import Response
 
@@ -15,7 +15,7 @@ from backend.errors import APIError
 from backend.security import Principal
 
 
-DASHBOARD_RUNTIME_VERSION = "postgres-dashboard-provider-v1.0.0"
+DASHBOARD_RUNTIME_VERSION = "postgres-dashboard-provider-v1.0.1"
 DASHBOARD_CONTRACT_VERSION = "dashboard-contract-v0.9.0"
 CONFIDENCE_GATE = 0.45
 MASTERY_BANDS = {"NO_EVIDENCE", "UNCERTAIN", "WEAK", "DEVELOPING", "STRONG"}
@@ -107,6 +107,9 @@ def _reason(
             if fa
             else f"{due_count} review item(s) are due and take priority."
         ),
+        # Kept for backward-compatible callers/cached clients. New action
+        # selection no longer promotes raw unresolved Stage 16 groups ahead of
+        # the Stage 17 concept clock.
         "DUE_REVIEW": (
             f"{unresolved_group_count} گروه خطای حل‌نشده برای مرور وجود دارد."
             if fa
@@ -144,11 +147,9 @@ def _reason(
 def _select_next_action(snapshot: dict[str, Any]) -> NextAction:
     locale_prefix = _locale_prefix(snapshot.get("profile_locale"))
     review_queue = snapshot["review_queue"]
-    error_review = snapshot["error_review"]
     mastery = snapshot["mastery"]
 
     due_count = int(review_queue.get("due_count", 0))
-    unresolved_group_count = int(error_review.get("unresolved_group_count", 0))
 
     if due_count > 0:
         return NextAction(
@@ -161,16 +162,11 @@ def _select_next_action(snapshot: dict[str, Any]) -> NextAction:
             ),
         )
 
-    if unresolved_group_count > 0:
-        return NextAction(
-            code="DUE_REVIEW",
-            destination=f"/{locale_prefix}/review",
-            reason=_reason(
-                "DUE_REVIEW",
-                locale_prefix=locale_prefix,
-                unresolved_group_count=unresolved_group_count,
-            ),
-        )
+    # Stage 17 is the learner-facing review clock. Raw unresolved Stage 16
+    # mistake groups remain visible in dashboard/error-review data, but they no
+    # longer force DUE_REVIEW before a concept is actually due. This removes the
+    # runtime_review fallback that used to rebuild the entire dashboard a second
+    # time merely to undo that legacy selection.
 
     confident_lessons = [
         item
@@ -352,27 +348,26 @@ def _load_review_queue(
 
 
 def _load_error_review(cursor, user_id: uuid.UUID) -> dict[str, Any]:
+    # Two round-trips instead of three: both summary counts are collected in a
+    # single statement, while the top-three grouping query remains separate.
     cursor.execute(
         """
         SELECT
-            count(*) FILTER (WHERE unresolved_count > 0)
-        FROM v_error_review_groups
-        WHERE user_id = %s
+            (
+                SELECT count(*) FILTER (WHERE unresolved_count > 0)
+                FROM v_error_review_groups
+                WHERE user_id = %s
+            ) AS unresolved_group_count,
+            (
+                SELECT count(*)
+                FROM error_review_items
+                WHERE user_id = %s
+                  AND resolution_status = 'CORRECTED'
+            ) AS corrected_item_count
         """,
-        [user_id],
+        [user_id, user_id],
     )
-    unresolved_group_count = int(cursor.fetchone()[0] or 0)
-
-    cursor.execute(
-        """
-        SELECT count(*)
-        FROM error_review_items
-        WHERE user_id = %s
-          AND resolution_status = 'CORRECTED'
-        """,
-        [user_id],
-    )
-    corrected_item_count = int(cursor.fetchone()[0] or 0)
+    unresolved_group_count, corrected_item_count = cursor.fetchone()
 
     cursor.execute(
         """
@@ -414,8 +409,8 @@ def _load_error_review(cursor, user_id: uuid.UUID) -> dict[str, Any]:
         )
 
     return {
-        "unresolved_group_count": unresolved_group_count,
-        "corrected_item_count": corrected_item_count,
+        "unresolved_group_count": int(unresolved_group_count or 0),
+        "corrected_item_count": int(corrected_item_count or 0),
         "top_misconception_groups": top_groups,
     }
 
@@ -570,45 +565,58 @@ def _load_trend(cursor, user_id: uuid.UUID) -> dict[str, Any]:
 
 
 def _load_activity(cursor, user_id: uuid.UUID) -> dict[str, int]:
+    # One SQL round-trip instead of three independent count queries.
     cursor.execute(
         """
-        SELECT count(*)
-        FROM user_answers AS ua
-        JOIN test_attempts AS ta
-          ON ta.id = ua.attempt_id
-        WHERE ta.user_id = %s
+        SELECT
+            (
+                SELECT count(*)
+                FROM user_answers AS ua
+                JOIN test_attempts AS ta
+                  ON ta.id = ua.attempt_id
+                WHERE ta.user_id = %s
+            ) AS questions_answered,
+            (
+                SELECT count(*)
+                FROM test_attempts
+                WHERE user_id = %s
+                  AND status = 'COMPLETED'
+            ) AS tests_completed,
+            (
+                SELECT count(*)
+                FROM error_review_events
+                WHERE user_id = %s
+                  AND event_type = 'RETRY_SUBMITTED'
+            ) AS reviews_completed
         """,
-        [user_id],
+        [user_id, user_id, user_id],
     )
-    questions_answered = int(cursor.fetchone()[0] or 0)
-
-    cursor.execute(
-        """
-        SELECT count(*)
-        FROM test_attempts
-        WHERE user_id = %s
-          AND status = 'COMPLETED'
-        """,
-        [user_id],
-    )
-    tests_completed = int(cursor.fetchone()[0] or 0)
-
-    cursor.execute(
-        """
-        SELECT count(*)
-        FROM error_review_events
-        WHERE user_id = %s
-          AND event_type = 'RETRY_SUBMITTED'
-        """,
-        [user_id],
-    )
-    reviews_completed = int(cursor.fetchone()[0] or 0)
-
+    questions_answered, tests_completed, reviews_completed = cursor.fetchone()
     return {
-        "questions_answered": questions_answered,
-        "tests_completed": tests_completed,
-        "reviews_completed": reviews_completed,
+        "questions_answered": int(questions_answered or 0),
+        "tests_completed": int(tests_completed or 0),
+        "reviews_completed": int(reviews_completed or 0),
     }
+
+
+def _load_profile_locale(cursor, user_id: uuid.UUID) -> str:
+    cursor.execute(
+        """
+        SELECT locale
+        FROM users
+        WHERE id = %s
+          AND status = 'ACTIVE'
+        """,
+        [user_id],
+    )
+    user_row = cursor.fetchone()
+    if user_row is None:
+        raise APIError(
+            401,
+            "TOKEN_INVALID",
+            "The access token is invalid or expired.",
+        )
+    return str(user_row[0])
 
 
 def _load_dashboard_snapshot(
@@ -617,33 +625,20 @@ def _load_dashboard_snapshot(
     as_of: datetime | None = None,
 ) -> dict[str, Any]:
     timestamp = as_of or timezone.now()
-    with transaction.atomic():
-        with connection.cursor() as cursor:
-            cursor.execute(
-                """
-                SELECT locale
-                FROM users
-                WHERE id = %s
-                  AND status = 'ACTIVE'
-                """,
-                [user_id],
-            )
-            user_row = cursor.fetchone()
-            if user_row is None:
-                raise APIError(
-                    401,
-                    "TOKEN_INVALID",
-                    "The access token is invalid or expired.",
-                )
 
-            profile_locale = str(user_row[0])
-            mastery = _load_mastery(cursor, user_id, _locale_prefix(profile_locale))
-            review_queue = _load_review_queue(cursor, user_id, timestamp)
-            error_review = _load_error_review(cursor, user_id)
-            recent_test = _load_recent_test(cursor, user_id)
-            in_progress_attempt = _load_in_progress_attempt(cursor, user_id)
-            trend = _load_trend(cursor, user_id)
-            activity = _load_activity(cursor, user_id)
+    # This is a read-only projection. The former transaction.atomic() added a
+    # transaction boundary but, under PostgreSQL READ COMMITTED, did not provide
+    # a single repeatable snapshot across statements. Avoiding it removes needless
+    # transaction overhead while preserving the effective consistency semantics.
+    with connection.cursor() as cursor:
+        profile_locale = _load_profile_locale(cursor, user_id)
+        mastery = _load_mastery(cursor, user_id, _locale_prefix(profile_locale))
+        review_queue = _load_review_queue(cursor, user_id, timestamp)
+        error_review = _load_error_review(cursor, user_id)
+        recent_test = _load_recent_test(cursor, user_id)
+        in_progress_attempt = _load_in_progress_attempt(cursor, user_id)
+        trend = _load_trend(cursor, user_id)
+        activity = _load_activity(cursor, user_id)
 
     snapshot = {
         "as_of": _iso(timestamp),
@@ -659,6 +654,26 @@ def _load_dashboard_snapshot(
     action = _select_next_action(snapshot)
     snapshot["next_action"] = action.code
     return snapshot
+
+
+def _load_next_action_snapshot(
+    user_id: uuid.UUID,
+    *,
+    as_of: datetime | None = None,
+) -> dict[str, Any]:
+    """Load only the fields required by the standalone next-action endpoint."""
+
+    timestamp = as_of or timezone.now()
+    with connection.cursor() as cursor:
+        profile_locale = _load_profile_locale(cursor, user_id)
+        mastery = _load_mastery(cursor, user_id, _locale_prefix(profile_locale))
+        review_queue = _load_review_queue(cursor, user_id, timestamp)
+
+    return {
+        "profile_locale": profile_locale,
+        "mastery": mastery,
+        "review_queue": review_queue,
+    }
 
 
 def _dashboard_projection(snapshot: dict[str, Any]) -> dict[str, Any]:
@@ -689,7 +704,7 @@ def dashboard_request(request) -> Response:
 
 def next_action_request(request) -> Response:
     principal = _principal(request)
-    snapshot = _load_dashboard_snapshot(_uuid(principal.user_id))
+    snapshot = _load_next_action_snapshot(_uuid(principal.user_id))
     action = _select_next_action(snapshot)
     return Response(
         {
