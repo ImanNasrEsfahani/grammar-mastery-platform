@@ -278,7 +278,8 @@ function scoreTone(score: number | null) {
 }
 
 function lessonLabel(attempt: HistoryAttempt, locale: Locale) {
-  if (attempt.lessons.length === 1) return attempt.lessons[0].title_fr;
+  const firstLesson = attempt.lessons[0];
+  if (attempt.lessons.length === 1 && firstLesson) return firstLesson.title_fr;
   if (attempt.lessons.length > 1) return `${copy[locale].mixedLessons} (${formatNumber(attempt.lessons.length, locale)})`;
   return attempt.title || "—";
 }
@@ -369,17 +370,20 @@ export function HistoryClient({locale}: {locale: Locale}) {
       <div className={styles.workspace}>
         <aside className={styles.sidebar} aria-label={locale === "fa" ? "ناوبری حساب" : "Account navigation"}>
           <nav className={styles.sideNav}>
-            {sideRoutes.map((route, index) => (
-              <Link
-                href={`/${locale}/${route}`}
-                key={route}
-                className={`${styles.sideLink} ${route === "history" ? styles.sideLinkActive : ""}`}
-                aria-current={route === "history" ? "page" : undefined}
-              >
-                <Icon name={sideIcons[index]} size={19} />
-                <span>{c.nav[index]}</span>
-              </Link>
-            ))}
+            {sideRoutes.map((route, index) => {
+              const icon = sideIcons[index] ?? "home";
+              return (
+                <Link
+                  href={`/${locale}/${route}`}
+                  key={route}
+                  className={`${styles.sideLink} ${route === "history" ? styles.sideLinkActive : ""}`}
+                  aria-current={route === "history" ? "page" : undefined}
+                >
+                  <Icon name={icon} size={19} />
+                  <span>{c.nav[index]}</span>
+                </Link>
+              );
+            })}
           </nav>
           <div className={styles.goalCard}>
             <h2>{c.dailyGoal}</h2>
@@ -457,6 +461,7 @@ export function HistoryClient({locale}: {locale: Locale}) {
                       {data?.items.map((attempt) => {
                         const timestamp = formatDateTime(attempt.completed_at ?? attempt.started_at, locale);
                         const tone = scoreTone(attempt.score_pct);
+                        const firstLesson = attempt.lessons[0];
                         return <tr key={attempt.attempt_id}>
                           <td data-label={c.activityType}>
                             <span className={`${styles.activityType} ${styles[`type${attempt.activity_type}`]}`}>
@@ -465,7 +470,7 @@ export function HistoryClient({locale}: {locale: Locale}) {
                             </span>
                           </td>
                           <td data-label={c.mode}><span className={`${styles.modeBadge} ${styles[`mode${attempt.mode.toUpperCase()}`] ?? ""}`}><Icon name={attempt.mode.toUpperCase() === "TCF" ? "cap" : attempt.mode.toUpperCase() === "CUSTOM" ? "sliders" : "target"} size={16}/>{modeLabel(attempt.mode, locale)}</span></td>
-                          <td data-label={c.lesson} className={styles.lessonCell}><strong dir="ltr">{lessonLabel(attempt, locale)}</strong>{attempt.lessons.length === 1 && <small>{locale === "fa" ? `درس ${formatNumber(attempt.lessons[0].lesson_no, locale)}` : `Lesson ${attempt.lessons[0].lesson_no}`}</small>}</td>
+                          <td data-label={c.lesson} className={styles.lessonCell}><strong dir="ltr">{lessonLabel(attempt, locale)}</strong>{attempt.lessons.length === 1 && firstLesson ? <small>{locale === "fa" ? `درس ${formatNumber(firstLesson.lesson_no, locale)}` : `Lesson ${firstLesson.lesson_no}`}</small> : null}</td>
                           <td data-label={c.questions}><span className={styles.tabular}>{formatNumber(attempt.question_count, locale)}</span></td>
                           <td data-label={c.result}><span className={styles.completed}><Icon name="check" size={16}/>{c.completed}</span></td>
                           <td data-label={c.score}><div className={styles.scoreCell}><strong>{formatPct(attempt.score_pct, locale)}</strong><span className={styles[`score${tone}`]}>{formatNumber(attempt.correct_count, locale)}/{formatNumber(attempt.question_count, locale)}</span><small>{c.accuracy}: {formatPct(attempt.accuracy_pct, locale)}</small></div></td>
