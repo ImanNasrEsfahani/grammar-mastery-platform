@@ -237,9 +237,9 @@ export function LessonContentClient({
     }
   }, [bookSlug, isFa, lessonId]);
 
-  useEffect(() => {
-    void load();
-  }, [load]);
+  // Load the API-backed lesson and verify its static HTML when the route changes.
+  // eslint-disable-next-line react-hooks/set-state-in-effect
+  useEffect(() => { void load(); }, [load]);
 
   if (state.kind === "loading") {
     return <LoadingCard label={isFa ? "بارگذاری جزئیات درس" : "Loading lesson details"} />;

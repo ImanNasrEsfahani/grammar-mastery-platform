@@ -347,6 +347,8 @@ export function HistoryClient({locale}: {locale: Locale}) {
     }
   }, [c.loadError, dateFrom, dateTo, lessonId, mode, page, pageSize, score]);
 
+  // Data fetching is intentionally initiated on mount/filter changes.
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => { void fetchHistory(); }, [fetchHistory]);
 
   const clearFilters = () => {

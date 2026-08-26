@@ -223,9 +223,9 @@ export function ProfileClient({locale}: {locale: Locale}) {
     }
   }, []);
 
-  useEffect(() => {
-    void load();
-  }, [load]);
+  // The profile snapshot is hydrated from the API once on mount.
+  // eslint-disable-next-line react-hooks/set-state-in-effect
+  useEffect(() => { void load(); }, [load]);
 
   const derived = useMemo(() => {
     if (!data) return null;

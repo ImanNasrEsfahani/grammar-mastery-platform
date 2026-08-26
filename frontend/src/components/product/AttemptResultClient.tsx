@@ -194,11 +194,12 @@ export function AttemptResultClient({attemptId, locale}: {attemptId: string; loc
   const score = clamp(data.score_pct);
   const ringStyle = {"--score": score} as CSSProperties;
   const difficultyTotal = Math.max(1, data.difficulty_analysis.reduce((sum, row) => sum + row.total, 0));
-  let difficultyCursor = 0;
-  const difficultyStops = data.difficulty_analysis.map((row) => {
-    const start = difficultyCursor;
-    difficultyCursor += (row.total / difficultyTotal) * 100;
-    return `${DIFFICULTY_COLORS[row.difficulty] ?? "var(--result-muted)"} ${start}% ${difficultyCursor}%`;
+  const difficultyStops = data.difficulty_analysis.map((row, index) => {
+    const start = data.difficulty_analysis
+      .slice(0, index)
+      .reduce((sum, item) => sum + (item.total / difficultyTotal) * 100, 0);
+    const end = start + (row.total / difficultyTotal) * 100;
+    return `${DIFFICULTY_COLORS[row.difficulty] ?? "var(--result-muted)"} ${start}% ${end}%`;
   });
   const difficultyDonutStyle = {"--difficulty-donut": `conic-gradient(${difficultyStops.join(", ")})`} as CSSProperties;
 

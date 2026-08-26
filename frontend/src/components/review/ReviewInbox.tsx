@@ -266,10 +266,15 @@ function dayDelta(item: ApiAwareReview, now = new Date()): number | null {
   return Math.round((a - b) / 86_400_000);
 }
 
+function repeatCount(item: ApiAwareReview): number {
+  return item.repeat_count ?? 0;
+}
+
 function displayPriority(item: ApiAwareReview, now = new Date()): Priority {
   const delta = dayDelta(item, now);
-  if (item.marked || item.repeat_count >= 3 || (delta !== null && delta < 0)) return "HIGH";
-  if (item.repeat_count >= 2 || item.kind === "MISTAKE" || (delta !== null && delta <= 2)) return "MEDIUM";
+  const repeats = repeatCount(item);
+  if (item.marked || repeats >= 3 || (delta !== null && delta < 0)) return "HIGH";
+  if (repeats >= 2 || item.kind === "MISTAKE" || (delta !== null && delta <= 2)) return "MEDIUM";
   return "LOW";
 }
 
@@ -448,7 +453,7 @@ export function ReviewInbox({locale}: {locale: Locale}) {
       if (!matchesTime(item, timeTab)) return false;
       if (priority !== "ALL" && displayPriority(item) !== priority) return false;
       if (!matchesDue(item, dueFilter)) return false;
-      if (minimumRepeat && item.repeat_count < minimumRepeat) return false;
+      if (minimumRepeat && repeatCount(item) < minimumRepeat) return false;
       if (misconception !== "ALL" && parseMisconception(item)?.id !== misconception) return false;
       if (lesson !== "ALL" && item.lesson_id !== lesson) return false;
       if (difficulty !== "ALL" && item.difficulty !== difficulty) return false;
@@ -460,7 +465,7 @@ export function ReviewInbox({locale}: {locale: Locale}) {
       return true;
     });
     if (sort === "repeat") {
-      result = [...result].sort((a, b) => b.repeat_count - a.repeat_count || a.title.localeCompare(b.title));
+      result = [...result].sort((a, b) => repeatCount(b) - repeatCount(a) || a.title.localeCompare(b.title));
     }
     return result;
   }, [difficulty, dueFilter, items, lesson, locale, misconception, priority, repeat, search, sort, timeTab]);
@@ -649,7 +654,7 @@ export function ReviewInbox({locale}: {locale: Locale}) {
                       <div className={styles.dueCell}><strong>{dueLabel(item, locale, labels)}</strong>{item.due_at ? <time dateTime={item.due_at}>{new Date(item.due_at).toLocaleDateString(isFa ? "fa-IR" : "en-CA", {month: "short", day: "numeric"})}</time> : <small>{statusLabel(item, labels)}</small>}</div>
                       <div className={styles.topicCell}><strong dir="auto">{item.subtopic_title || misconceptionData?.label || (item.kind === "SPACED" ? labels.srs : labels.misconceptionFallback)}</strong><small>{item.kind === "MISTAKE" ? labels.mistake : labels.srs}</small></div>
                       <div className={styles.lessonCell}>{item.lesson_no ? <><strong>{labels.lesson} {item.lesson_no}</strong><small dir="auto">{item.lesson_title || ""}</small></> : <><strong>—</strong><small title={labels.lessonUnavailable}>{labels.lessonFilter}</small></>}</div>
-                      <div className={styles.detailCell}><strong>{item.kind === "MISTAKE" ? `${labels.repeat}: ${item.repeat_count.toLocaleString(isFa ? "fa-IR" : "en-CA")}` : statusLabel(item, labels)}</strong><small>{mastery !== null ? `${labels.mastery}: ${Math.round(mastery)}%` : `${labels.mastery}: —`}</small></div>
+                      <div className={styles.detailCell}><strong>{item.kind === "MISTAKE" ? `${labels.repeat}: ${repeatCount(item).toLocaleString(isFa ? "fa-IR" : "en-CA")}` : statusLabel(item, labels)}</strong><small>{mastery !== null ? `${labels.mastery}: ${Math.round(mastery)}%` : `${labels.mastery}: —`}</small></div>
                       <div className={styles.titleCell}>
                         <div className={styles.titleTop}><span className={`${styles.kindDot} ${item.kind === "MISTAKE" ? styles.kindMistake : styles.kindSpaced}`}/><span className={styles.kindLabel}>{item.kind === "MISTAKE" ? labels.mistake : labels.srs}</span>{item.marked ? <span className={styles.markedPill}><Icon name="bookmark" size={13}/>{labels.marked}</span> : null}</div>
                         <h2 dir="auto">{item.title}</h2>

@@ -448,9 +448,9 @@ export function ReviewRunnerClient({
     }
   }, [loadQueue, reviewId]);
 
-  useEffect(() => {
-    void load();
-  }, [load]);
+  // Synchronize the runner with the requested review item on route changes.
+  // eslint-disable-next-line react-hooks/set-state-in-effect
+  useEffect(() => { void load(); }, [load]);
 
   const currentIndex = useMemo(() => {
     if (!session) return 0;
