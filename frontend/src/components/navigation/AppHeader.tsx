@@ -4,13 +4,35 @@ import Link from "next/link";
 import {usePathname} from "next/navigation";
 import {useEffect, useRef, useState} from "react";
 import {LogoutButton} from "@/components/navigation/LogoutButton";
+import {MobileBottomNavigation} from "@/components/navigation/MobileBottomNavigation";
 import {ThemeToggle} from "@/components/navigation/ThemeToggle";
+import {apiRequest} from "@/lib/api/client";
 import type {Locale} from "@/lib/i18n";
 import {t} from "@/lib/i18n";
 import styles from "./AppHeader.module.css";
 
 const NOTIFICATION_UNREAD_KEY = "gmp-notifications-unread-v1";
 const NOTIFICATION_CHANGE_EVENT = "gmp-notifications-changed";
+
+type LooseRecord = Record<string, unknown>;
+
+function asRecord(value: unknown): LooseRecord | null {
+  return value && typeof value === "object" && !Array.isArray(value)
+    ? (value as LooseRecord)
+    : null;
+}
+
+function readReviewDueCount(value: unknown): number | null {
+  const root = asRecord(value);
+  const data = asRecord(root?.data);
+  const queue = asRecord(data?.review_queue);
+  const due = queue?.due_count;
+  if (typeof due === "number" && Number.isFinite(due)) return Math.max(0, Math.floor(due));
+  if (typeof due === "string" && due.trim() && Number.isFinite(Number(due))) {
+    return Math.max(0, Math.floor(Number(due)));
+  }
+  return null;
+}
 
 function AuthBrandMark() {
   return (
@@ -30,34 +52,38 @@ function BellIcon() {
   );
 }
 
+function UserIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <circle cx="12" cy="8.25" r="3.25" stroke="currentColor" strokeWidth="1.65" />
+      <path d="M5.8 19.1c.7-3.25 2.75-5 6.2-5s5.5 1.75 6.2 5" stroke="currentColor" strokeWidth="1.65" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function ChevronIcon() {
+  return (
+    <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="m7.5 5.5 4.5 4.5-4.5 4.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 export function AppHeader({locale, authenticated}: {locale: Locale; authenticated: boolean}) {
   const labels = t(locale);
+  const isFa = locale === "fa";
   const otherLocale = locale === "fa" ? "en" : "fa";
   const pathname = usePathname();
-  const headerRef = useRef<HTMLElement>(null);
-  const [menuOpen, setMenuOpen] = useState(false);
+  const drawerRef = useRef<HTMLDivElement>(null);
+  const avatarRef = useRef<HTMLButtonElement>(null);
   const [hasUnreadNotifications, setHasUnreadNotifications] = useState(true);
+  const [reviewDueCount, setReviewDueCount] = useState(0);
+  const [accountOpen, setAccountOpen] = useState(false);
 
   const segments = pathname.split("/").filter(Boolean);
   const isFocusedAttempt = segments.length === 3 && segments[1] === "attempts";
   const isServiceUnavailableSurface = segments[1] === "error";
   const isAuthSurface = ["login", "register", "forgot-password", "reset-password"].includes(segments[1] ?? "");
-
-  useEffect(() => {
-    if (!menuOpen) return;
-    const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setMenuOpen(false);
-    };
-    const closeOutside = (event: PointerEvent) => {
-      if (!headerRef.current?.contains(event.target as Node)) setMenuOpen(false);
-    };
-    document.addEventListener("keydown", closeOnEscape);
-    document.addEventListener("pointerdown", closeOutside);
-    return () => {
-      document.removeEventListener("keydown", closeOnEscape);
-      document.removeEventListener("pointerdown", closeOutside);
-    };
-  }, [menuOpen]);
 
   useEffect(() => {
     const syncUnread = () => {
@@ -78,13 +104,69 @@ export function AppHeader({locale, authenticated}: {locale: Locale; authenticate
     };
   }, []);
 
+  useEffect(() => {
+    if (!authenticated || isFocusedAttempt) return;
+    let cancelled = false;
+    void (async () => {
+      try {
+        const dashboard = await apiRequest<unknown>("/api/backend/dashboard");
+        const due = readReviewDueCount(dashboard);
+        if (!cancelled && due !== null) setReviewDueCount(due);
+      } catch {
+        // Navigation remains fully usable if the badge source is temporarily unavailable.
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [authenticated, isFocusedAttempt, pathname]);
+
+  useEffect(() => {
+    if (!accountOpen) return;
+    const previousOverflow = document.body.style.overflow;
+    const previousFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    document.body.style.overflow = "hidden";
+
+    const drawer = drawerRef.current;
+    const focusable = drawer
+      ? Array.from(drawer.querySelectorAll<HTMLElement>("a[href], button:not([disabled]), [tabindex]:not([tabindex='-1'])"))
+      : [];
+    focusable[0]?.focus();
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        setAccountOpen(false);
+        return;
+      }
+      if (event.key !== "Tab" || focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (!first || !last) return;
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = previousOverflow;
+      (avatarRef.current ?? previousFocus)?.focus();
+    };
+  }, [accountOpen]);
+
   if (isFocusedAttempt) return null;
 
   if (isAuthSurface || isServiceUnavailableSurface) {
     const routeTail = segments.slice(1).join("/") || "login";
     const brandHref = isServiceUnavailableSurface && authenticated ? `/${locale}/dashboard` : `/${locale}/login`;
     return (
-      <header className={styles.authHeader} ref={headerRef}>
+      <header className={styles.authHeader}>
         <div className={styles.authHeaderInner}>
           <Link className={styles.authBrand} href={brandHref}>
             <span className={styles.authBrandMark}><AuthBrandMark /></span>
@@ -136,30 +218,105 @@ export function AppHeader({locale, authenticated}: {locale: Locale; authenticate
     </>
   );
 
+  const drawerLinks = [
+    {href: `/${locale}/profile`, label: isFa ? "پروفایل" : "Profile", code: "P"},
+    {href: `/${locale}/history`, label: isFa ? "تاریخچه" : "History", code: "H"},
+    {href: `/${locale}/settings`, label: isFa ? "تنظیمات" : "Settings", code: "S"},
+    {href: `/${locale}/notifications`, label: labels.notifications, code: "N"},
+  ];
+
   return (
-    <header className="app-header" ref={headerRef}>
-      <div className="header-inner">
-        <Link className="brand" href={`/${locale}/dashboard`} prefetch={authenticated}>
-          <span className="brand-mark" aria-hidden="true">G</span>
-          <span className="brand-label">{labels.productName}</span>
-        </Link>
-        <nav className="desktop-nav" aria-label={locale === "fa" ? "ناوبری اصلی" : "Primary navigation"}>{navigation}</nav>
-        <div className="desktop-header-actions">{accountActions}</div>
-        <button
-          className="mobile-menu-toggle"
-          type="button"
-          aria-expanded={menuOpen}
-          aria-controls="mobile-navigation"
-          aria-label={menuOpen ? (locale === "fa" ? "بستن منو" : "Close menu") : (locale === "fa" ? "باز کردن منو" : "Open menu")}
-          onClick={() => setMenuOpen((current) => !current)}
-        >
-          <span className="menu-icon" aria-hidden="true"><span /><span /><span /></span>
-        </button>
-        <div id="mobile-navigation" className={`mobile-nav-panel${menuOpen ? " mobile-nav-open" : ""}`} onClick={() => setMenuOpen(false)}>
-          <nav aria-label={locale === "fa" ? "ناوبری موبایل" : "Mobile navigation"}>{navigation}</nav>
-          <div className="mobile-header-actions">{accountActions}</div>
+    <>
+      <header className={`app-header ${styles.appChrome}`}>
+        <div className={`header-inner ${styles.headerInner}`}>
+          <Link className={`brand ${styles.desktopBrand}`} href={`/${locale}/dashboard`} prefetch={authenticated}>
+            <span className="brand-mark" aria-hidden="true">G</span>
+            <span className="brand-label">{labels.productName}</span>
+          </Link>
+
+          <Link className={styles.mobileBrand} href={`/${locale}/dashboard`} prefetch={authenticated} aria-label="Grammar Mastery">
+            <span className={styles.mobileBrandMark}><AuthBrandMark /></span>
+            <span className={styles.mobileBrandLabel}>
+              <strong>GRAMMAR</strong>
+              <small>MASTERY</small>
+            </span>
+          </Link>
+
+          <nav className="desktop-nav" aria-label={isFa ? "ناوبری اصلی" : "Primary navigation"}>{navigation}</nav>
+          <div className="desktop-header-actions">{accountActions}</div>
+
+          <div className={styles.mobileHeaderActions}>
+            <Link className={`${styles.notificationLink} ${styles.mobileNotificationLink}`} href={`/${locale}/notifications`} prefetch={authenticated} aria-label={labels.notifications} title={labels.notifications}>
+              <BellIcon />
+              {hasUnreadNotifications ? <span className={styles.notificationDot} aria-hidden="true" /> : null}
+            </Link>
+            {authenticated ? (
+              <button
+                ref={avatarRef}
+                className={styles.mobileAvatarButton}
+                type="button"
+                aria-haspopup="dialog"
+                aria-expanded={accountOpen}
+                aria-controls="mobile-account-drawer"
+                aria-label={isFa ? "باز کردن منوی حساب" : "Open account menu"}
+                onClick={() => setAccountOpen(true)}
+              >
+                <UserIcon />
+                {hasUnreadNotifications ? <span className={styles.avatarUnreadDot} aria-hidden="true" /> : null}
+              </button>
+            ) : (
+              <Link className={styles.mobileAvatarButton} href={`/${locale}/login`} aria-label={labels.login}>
+                <UserIcon />
+              </Link>
+            )}
+          </div>
         </div>
-      </div>
-    </header>
+      </header>
+
+      <MobileBottomNavigation
+        locale={locale}
+        pathname={pathname}
+        authenticated={authenticated}
+        reviewDueCount={reviewDueCount}
+      />
+
+      {authenticated && accountOpen ? (
+        <div className={styles.drawerLayer}>
+          <button className={styles.drawerBackdrop} type="button" aria-label={isFa ? "بستن منوی حساب" : "Close account menu"} onClick={() => setAccountOpen(false)} />
+          <div
+            id="mobile-account-drawer"
+            ref={drawerRef}
+            className={styles.mobileAccountDrawer}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="mobile-account-title"
+          >
+            <div className={styles.drawerHandle} aria-hidden="true" />
+            <div className={styles.drawerSummary}>
+              <span className={styles.drawerAvatar}><UserIcon /></span>
+              <div>
+                <strong id="mobile-account-title">Grammar Mastery</strong>
+                <span dir="ltr">B1 → B2</span>
+              </div>
+              <button className={styles.drawerClose} type="button" onClick={() => setAccountOpen(false)} aria-label={isFa ? "بستن" : "Close"}>×</button>
+            </div>
+
+            <nav className={styles.drawerNav} aria-label={isFa ? "منوی حساب کاربری" : "Account menu"}>
+              {drawerLinks.map((item) => (
+                <Link key={item.href} href={item.href} prefetch={authenticated} onClick={() => setAccountOpen(false)}>
+                  <span className={styles.drawerItemCode} aria-hidden="true">{item.code}</span>
+                  <span>{item.label}</span>
+                  <span className={styles.drawerChevron}><ChevronIcon /></span>
+                </Link>
+              ))}
+            </nav>
+
+            <div className={styles.drawerLogout}>
+              <LogoutButton locale={locale} label={labels.logout} />
+            </div>
+          </div>
+        </div>
+      ) : null}
+    </>
   );
 }
