@@ -256,8 +256,16 @@
   }
 
   .authHeaderInner {
+    min-block-size: 3.75rem;
     padding-inline: .7rem;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    gap: .75rem;
     border-radius: .9rem;
+  }
+
+  .authBrand {
+    flex: 0 1 auto;
   }
 
   .authBrandLabel strong {
@@ -269,8 +277,14 @@
   }
 
   .authHeaderActions {
-    flex: 1 1 100%;
-    justify-content: flex-start;
+    flex: 0 0 auto;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    gap: .2rem;
+  }
+
+  .authLocaleSwitch {
+    padding-inline: .55rem;
   }
 }
 
