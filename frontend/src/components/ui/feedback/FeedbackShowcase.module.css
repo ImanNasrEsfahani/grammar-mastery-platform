@@ -1,0 +1,407 @@
+
+:global(body:has([data-feedback-showcase="true"]) .app-header),
+:global(body:has([data-feedback-showcase="true"]) nav[aria-label="ناوبری پایین موبایل"]),
+:global(body:has([data-feedback-showcase="true"]) nav[aria-label="Mobile bottom navigation"]) {
+  display: none !important;
+}
+
+.referenceHeader {
+  min-height: 66px;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border: 1px solid #d7e2f2;
+  border-radius: 19px;
+  background: rgba(255,255,255,.92);
+  box-shadow: 0 8px 26px rgba(29,58,105,.025);
+  direction: ltr;
+}
+
+.referenceBrand {
+  display: inline-flex;
+  align-items: center;
+  gap: .75rem;
+  color: #10285b;
+  text-decoration: none;
+}
+
+.referenceMark {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  color: #2f6cf6;
+}
+
+.referenceMark svg { width: 28px; height: 28px; }
+
+.referenceBrandCopy { display: grid; line-height: .92; letter-spacing: .02em; }
+.referenceBrandCopy strong { font-size: 1.1rem; font-weight: 900; }
+.referenceBrandCopy small { margin-top: .14rem; font-size: .72rem; font-weight: 900; letter-spacing: .045em; }
+.referenceLabel { color: #65738d; font-size: .82rem; font-weight: 850; letter-spacing: .02em; }
+
+:global(html[data-theme="dark"]) .referenceHeader {
+  border-color: #294f71;
+  background: rgba(7,27,47,.92);
+}
+
+:global(html[data-theme="dark"]) .referenceBrand { color: #e1ad4d; }
+:global(html[data-theme="dark"]) .referenceMark { color: #e1ad4d; }
+:global(html[data-theme="dark"]) .referenceLabel { color: #a8b7d1; }
+
+.page {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1330px, calc(100vw - 48px));
+  display: grid;
+  gap: 24px;
+  color: var(--ink);
+}
+
+.pageHeading {
+  padding: 2px 30px 4px;
+}
+
+.pageHeading h1 {
+  margin: 0;
+  color: #10285b;
+  font-size: clamp(2rem, 3vw, 2.6rem);
+  line-height: 1.12;
+  letter-spacing: 0.01em;
+  font-weight: 900;
+}
+
+.pageHeading p {
+  margin: 8px 0 0;
+  color: #65738d;
+  font-size: 0.96rem;
+}
+
+.topGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(330px, 1fr);
+  gap: 24px;
+}
+
+.bottomGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.panel {
+  min-width: 0;
+  padding: 22px 24px 20px;
+  border: 1px solid #c8d9ee;
+  border-radius: 22px;
+  background: #fffdf9;
+  box-shadow: 0 8px 24px rgba(29, 58, 105, 0.025);
+}
+
+.panel h2 {
+  margin: 0 0 17px;
+  color: #10285b;
+  font-size: 1.28rem;
+  line-height: 1.2;
+  font-weight: 900;
+}
+
+.panelNote,
+.autoDismiss {
+  margin: -8px 0 16px;
+  color: #66758f;
+  font-size: 0.76rem;
+  direction: ltr;
+  text-align: left;
+}
+
+.variantList,
+.alertList,
+.actionList {
+  display: grid;
+  gap: 9px;
+}
+
+.previewToast {
+  --preview-accent: #2f6cf6;
+  width: 100%;
+  min-height: 50px;
+  padding: 7px 16px 7px 14px;
+  display: grid;
+  grid-template-columns: 32px 74px minmax(0, 1fr) 24px;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #c8d9ee;
+  border-radius: 13px;
+  color: var(--ink);
+  background: #fff;
+  text-align: start;
+  cursor: pointer;
+}
+
+.previewToast:hover {
+  border-color: var(--preview-accent);
+  box-shadow: 0 6px 16px color-mix(in srgb, var(--preview-accent) 10%, transparent);
+}
+
+.previewIcon {
+  inline-size: 31px;
+  block-size: 31px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  color: white;
+  background: var(--preview-accent);
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
+.previewToast > strong {
+  color: #10285b;
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
+.previewMessage {
+  min-width: 0;
+  color: #65738d;
+  font-size: 0.72rem;
+  overflow-wrap: anywhere;
+}
+
+.previewDismiss {
+  justify-self: end;
+  color: #65738d;
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
+.toneSuccess { --preview-accent: #21b979; }
+.toneInfo { --preview-accent: #2f6cf6; }
+.toneWarning { --preview-accent: #f59d0c; }
+.toneError { --preview-accent: #f26455; }
+
+.stackPreview {
+  width: min(335px, 100%);
+  margin: 25px auto 0;
+  display: grid;
+  gap: 8px;
+}
+
+.miniToast {
+  --preview-accent: #2f6cf6;
+  min-height: 56px;
+  padding: 8px 12px;
+  display: grid;
+  grid-template-columns: 31px minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #c8d9ee;
+  border-radius: 13px;
+  background: #fff;
+}
+
+.miniToast > div {
+  min-width: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.miniToast strong {
+  color: #10285b;
+  font-size: 0.74rem;
+  font-weight: 900;
+}
+
+.miniToast small {
+  color: #65738d;
+  font-size: 0.62rem;
+  overflow-wrap: anywhere;
+}
+
+.autoDismiss {
+  margin: -2px 0 0;
+}
+
+.actionStrip {
+  min-height: 57px;
+  padding: 8px 14px 8px 18px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 130px;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid #c8d9ee;
+  border-radius: 13px;
+  background: #fff;
+  font-size: 0.77rem;
+}
+
+.linkAction,
+.retryButton,
+.restoreBanner {
+  min-height: 37px;
+  border-radius: 10px;
+  font: inherit;
+  font-size: 0.76rem;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.linkAction {
+  border: 1px solid #2f6cf6;
+  color: #2f6cf6;
+  background: transparent;
+}
+
+.retryCopy {
+  color: #f26455;
+}
+
+.retryButton {
+  border: 1px solid #f26455;
+  color: white;
+  background: #f26455;
+}
+
+.restoreBanner {
+  width: fit-content;
+  padding-inline: 14px;
+  border: 1px solid var(--primary);
+  color: var(--primary-strong);
+  background: var(--surface);
+}
+
+.accessibilityBar {
+  min-height: 42px;
+  padding: 8px 18px;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  border: 1px solid #c8d9ee;
+  border-radius: 14px;
+  background: #fffdf9;
+  color: #64738c;
+  font-size: 0.72rem;
+}
+
+.accessibilityBar strong {
+  color: #10285b;
+  font-size: 0.76rem;
+}
+
+:global(html[data-theme="dark"]) .pageHeading h1,
+:global(html[data-theme="dark"]) .panel h2,
+:global(html[data-theme="dark"]) .previewToast > strong,
+:global(html[data-theme="dark"]) .miniToast strong,
+:global(html[data-theme="dark"]) .accessibilityBar strong {
+  color: #f0f5ff;
+}
+
+:global(html[data-theme="dark"]) .pageHeading p,
+:global(html[data-theme="dark"]) .panelNote,
+:global(html[data-theme="dark"]) .autoDismiss,
+:global(html[data-theme="dark"]) .previewMessage,
+:global(html[data-theme="dark"]) .previewDismiss,
+:global(html[data-theme="dark"]) .miniToast small,
+:global(html[data-theme="dark"]) .accessibilityBar {
+  color: #a8b7d1;
+}
+
+:global(html[data-theme="dark"]) .panel,
+:global(html[data-theme="dark"]) .accessibilityBar {
+  border-color: #294f71;
+  background: #0d2944;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+:global(html[data-theme="dark"]) .previewToast,
+:global(html[data-theme="dark"]) .miniToast,
+:global(html[data-theme="dark"]) .actionStrip {
+  border-color: #294f71;
+  background: #0a2138;
+}
+
+:global(html[data-theme="dark"]) .linkAction {
+  color: #5f91ff;
+  border-color: #3e7dff;
+}
+
+:global(html[data-theme="dark"]) .restoreBanner {
+  background: #071b2f;
+}
+
+@media (max-width: 980px) {
+  .topGrid,
+  .bottomGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .stackPreview {
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .referenceHeader { min-height: 58px; padding-inline: 14px; border-radius: 15px; }
+  .referenceBrandCopy strong { font-size: .98rem; }
+  .referenceBrandCopy small { font-size: .64rem; }
+  .referenceLabel { font-size: .72rem; }
+
+  .page {
+    width: calc(100vw - 16px);
+    gap: 14px;
+  }
+
+  .pageHeading {
+    padding-inline: 8px;
+  }
+
+  .pageHeading h1 {
+    font-size: 1.65rem;
+  }
+
+  .panel {
+    padding: 18px 14px;
+    border-radius: 17px;
+  }
+
+  .previewToast {
+    grid-template-columns: 31px minmax(0, 1fr) 22px;
+  }
+
+  .previewToast > strong {
+    grid-column: 2;
+  }
+
+  .previewMessage {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .previewIcon {
+    grid-row: 1 / 3;
+  }
+
+  .previewDismiss {
+    grid-column: 3;
+    grid-row: 1 / 3;
+  }
+
+  .actionStrip {
+    grid-template-columns: 1fr;
+  }
+
+  .linkAction,
+  .retryButton {
+    width: 100%;
+  }
+
+  .accessibilityBar {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 3px;
+  }
+}

@@ -1,0 +1,374 @@
+.toastViewport {
+  position: fixed;
+  inset-block-start: 92px;
+  inset-inline-end: clamp(14px, 2.2vw, 32px);
+  z-index: 90;
+  width: min(370px, calc(100vw - 28px));
+  display: grid;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.toast {
+  --feedback-accent: #2f6cf6;
+  --feedback-soft: #edf4ff;
+  --feedback-border: #bfd2f5;
+  position: relative;
+  min-height: 64px;
+  padding: 11px 42px 11px 12px;
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--feedback-border);
+  border-radius: 14px;
+  color: var(--ink);
+  background: color-mix(in srgb, var(--surface) 96%, var(--feedback-soft) 4%);
+  box-shadow: 0 16px 38px rgba(29, 58, 105, 0.13);
+  pointer-events: auto;
+  animation: toastEnter 180ms ease-out both;
+}
+
+.toastIcon,
+.inlineIcon {
+  inline-size: 30px;
+  block-size: 30px;
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 auto;
+  border-radius: 999px;
+  color: white;
+  background: var(--feedback-accent);
+  font-size: 0.91rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.toastCopy {
+  min-width: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.toastCopy strong {
+  font-size: 0.86rem;
+  font-weight: 900;
+}
+
+.toastCopy p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.toastAction,
+.inlineAction,
+.bannerDismiss {
+  min-height: 34px;
+  border: 0;
+  border-radius: 9px;
+  padding: 0 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--feedback-accent);
+  background: transparent;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.toastAction:hover,
+.inlineAction:hover,
+.bannerDismiss:hover {
+  background: color-mix(in srgb, var(--feedback-accent) 9%, transparent);
+}
+
+.dismissButton {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-end: 10px;
+  transform: translateY(-50%);
+  inline-size: 30px;
+  block-size: 30px;
+  border: 0;
+  border-radius: 9px;
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+  background: transparent;
+  font-size: 1.12rem;
+  cursor: pointer;
+}
+
+.dismissButton:hover {
+  color: var(--ink);
+  background: var(--surface-soft);
+}
+
+.tone_success {
+  --feedback-accent: #22b779;
+  --feedback-soft: #e8f8f0;
+  --feedback-border: #a8dfc9;
+}
+
+.tone_info {
+  --feedback-accent: #2f6cf6;
+  --feedback-soft: #eaf2ff;
+  --feedback-border: #afc9ff;
+}
+
+.tone_warning {
+  --feedback-accent: #f59d0c;
+  --feedback-soft: #fff5df;
+  --feedback-border: #efc06d;
+}
+
+.tone_error {
+  --feedback-accent: #f26455;
+  --feedback-soft: #fff0ed;
+  --feedback-border: #efb2aa;
+}
+
+.inlineAlert,
+.banner {
+  --feedback-accent: #2f6cf6;
+  --feedback-soft: #eaf2ff;
+  --feedback-border: #2f6cf6;
+  min-height: 48px;
+  padding: 10px 14px;
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid var(--feedback-border);
+  border-radius: 12px;
+  color: var(--ink);
+  background: color-mix(in srgb, var(--feedback-soft) 76%, var(--surface) 24%);
+}
+
+.inlineAlert .inlineIcon,
+.banner .inlineIcon {
+  inline-size: 25px;
+  block-size: 25px;
+  font-size: 0.76rem;
+}
+
+.inlineCopy {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 16px;
+}
+
+.inlineCopy strong {
+  color: var(--feedback-accent);
+  font-size: 0.82rem;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.inlineCopy > div {
+  color: var(--ink);
+  font-size: 0.8rem;
+  line-height: 1.55;
+}
+
+.banner {
+  border-inline-start-width: 4px;
+  border-radius: 10px;
+}
+
+.bannerActions {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.confirmationStrip {
+  min-height: 60px;
+  padding: 10px 14px 10px 18px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 16px;
+  border: 1px solid #c9d8ed;
+  border-radius: 13px;
+  background: color-mix(in srgb, var(--primary) 7%, var(--surface) 93%);
+}
+
+.confirmationDanger {
+  border-color: color-mix(in srgb, #f26455 36%, var(--line) 64%);
+}
+
+.confirmationMessage {
+  font-size: 0.84rem;
+  font-weight: 900;
+  line-height: 1.55;
+}
+
+.confirmationActions {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cancelButton,
+.confirmButton {
+  min-width: 92px;
+  min-height: 38px;
+  border-radius: 10px;
+  padding: 0 15px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.cancelButton {
+  border: 1px solid var(--line);
+  color: var(--ink);
+  background: var(--surface);
+}
+
+.confirmButton {
+  border: 1px solid #f26455;
+  color: white;
+  background: #f26455;
+}
+
+.confirmButton:hover:not(:disabled) {
+  background: #df5144;
+  border-color: #df5144;
+}
+
+.cancelButton:hover:not(:disabled) {
+  border-color: var(--primary);
+  color: var(--primary-strong);
+}
+
+.cancelButton:disabled,
+.confirmButton:disabled {
+  opacity: 0.58;
+  cursor: not-allowed;
+}
+
+.buttonSpinner {
+  inline-size: 12px;
+  block-size: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-block-start-color: white;
+  border-radius: 999px;
+  animation: spin 700ms linear infinite;
+}
+
+:global(html[data-theme="dark"]) .toast {
+  border-color: color-mix(in srgb, var(--feedback-accent) 34%, #2b4c69 66%);
+  background: #0b2239;
+  box-shadow: 0 16px 38px rgba(0, 0, 0, 0.34);
+}
+
+:global(html[data-theme="dark"]) .toastCopy p {
+  color: #aabbd0;
+}
+
+:global(html[data-theme="dark"]) .inlineAlert,
+:global(html[data-theme="dark"]) .banner {
+  border-color: var(--feedback-accent);
+  background: color-mix(in srgb, var(--feedback-accent) 17%, #0b2239 83%);
+}
+
+:global(html[data-theme="dark"]) .confirmationStrip {
+  border-color: #2c5071;
+  background: #0d2a47;
+}
+
+:global(html[data-theme="dark"]) .confirmationDanger {
+  border-color: #355b78;
+}
+
+:global(html[data-theme="dark"]) .cancelButton {
+  border-color: #2c5071;
+  background: #071b2f;
+}
+
+@keyframes toastEnter {
+  from { opacity: 0; transform: translateY(-8px) scale(0.985); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 720px) {
+  .toastViewport {
+    inset-block-start: auto;
+    inset-inline: 10px;
+    inset-block-end: calc(78px + env(safe-area-inset-bottom));
+    width: auto;
+  }
+
+  .toast {
+    grid-template-columns: 32px minmax(0, 1fr) auto;
+    min-height: 60px;
+  }
+
+  .inlineAlert,
+  .banner {
+    grid-template-columns: 26px minmax(0, 1fr);
+  }
+
+  .inlineAction,
+  .bannerActions {
+    grid-column: 2;
+    justify-self: start;
+  }
+
+  .inlineCopy {
+    grid-template-columns: 1fr;
+    gap: 3px;
+  }
+
+  .confirmationStrip {
+    grid-template-columns: 1fr;
+    padding: 13px;
+  }
+
+  .confirmationActions {
+    width: 100%;
+  }
+
+  .cancelButton,
+  .confirmButton {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toast,
+  .buttonSpinner {
+    animation: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .toast,
+  .inlineAlert,
+  .banner,
+  .confirmationStrip,
+  .cancelButton,
+  .confirmButton {
+    border: 1px solid CanvasText;
+  }
+}

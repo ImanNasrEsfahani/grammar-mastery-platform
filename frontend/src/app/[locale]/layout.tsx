@@ -1,6 +1,7 @@
 import {cookies} from "next/headers";
 import {notFound} from "next/navigation";
 import {AppHeader} from "@/components/navigation/AppHeader";
+import {FeedbackProvider} from "@/components/ui/feedback";
 import {isLocale, localeDirection, localeLanguage, locales, t} from "@/lib/i18n";
 
 export function generateStaticParams() {
@@ -23,10 +24,12 @@ export default async function LocaleLayout({
   return (
     <div lang={localeLanguage(rawLocale)} dir={localeDirection(rawLocale)} className="app-frame">
       <a className="skip-link" href="#main-content">{labels.skip}</a>
-      <AppHeader locale={rawLocale} authenticated={authenticated} />
-      <main id="main-content" className="page-container" tabIndex={-1}>
-        {children}
-      </main>
+      <FeedbackProvider locale={rawLocale}>
+        <AppHeader locale={rawLocale} authenticated={authenticated} />
+        <main id="main-content" className="page-container" tabIndex={-1}>
+          {children}
+        </main>
+      </FeedbackProvider>
     </div>
   );
 }
