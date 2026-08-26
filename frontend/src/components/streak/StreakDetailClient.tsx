@@ -386,7 +386,8 @@ function GoalDonut({progress, value, caption}: {progress: number; value: string;
 
 function ConsistencyGrid({days, locale, copy}: {days: DayActivity[]; locale: Locale; copy: Copy}) {
   const normalized = days.slice(-30);
-  const padding = normalized.length ? weekdayIndex(normalized[0].date) : 0;
+  const firstDay = normalized[0];
+  const padding = firstDay ? weekdayIndex(firstDay.date) : 0;
   return (
     <div className={styles.calendarWrap}>
       <div className={styles.weekdayHeader} aria-hidden="true">
