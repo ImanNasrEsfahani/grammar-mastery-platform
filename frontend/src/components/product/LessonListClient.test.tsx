@@ -98,3 +98,22 @@ test("search filters the lesson cards without fabricating data", async () => {
   expect(screen.getByText("L’ADJECTIF (1)")).toBeInTheDocument();
   expect(screen.queryByText("LE VERBE « ÊTRE »")).not.toBeInTheDocument();
 });
+
+test("each lesson practice link carries lesson scope and the lesson id", async () => {
+  vi.mocked(apiRequest)
+    .mockResolvedValueOnce(lessons)
+    .mockResolvedValueOnce(mastery);
+
+  render(<LessonListClient locale="fa" />);
+  await screen.findByText("LE VERBE « ÊTRE »");
+
+  const practiceLinks = screen.getAllByRole("link", {name: "ساخت تمرین"});
+  expect(practiceLinks[0]).toHaveAttribute(
+    "href",
+    "/fa/tests/new?scope=lessons&lesson=11111111-1111-4111-8111-111111111111",
+  );
+  expect(practiceLinks[1]).toHaveAttribute(
+    "href",
+    "/fa/tests/new?scope=lessons&lesson=22222222-2222-4222-8222-222222222222",
+  );
+});

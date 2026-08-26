@@ -465,6 +465,7 @@ export function LessonListClient({locale}: {locale: Locale}) {
                 const subcategoryLabel = (isFa ? lesson.subcategory_title_fa : lesson.subcategory_title_fr) ?? lesson.subcategory_title_fr ?? lesson.subcategory_title_fa;
                 const lessonNo = String(lesson.lesson_no).padStart(2, "0");
                 const detailHref = `/${locale}/lessons/${lesson.id}?book=${DEFAULT_GRAMMAR_BOOK_SLUG}`;
+                const practiceHref = `/${locale}/tests/new?scope=lessons&lesson=${encodeURIComponent(lesson.id)}`;
                 return (
                   <article className={styles.lessonCard} key={lesson.id}>
                     <div className={styles.cardTopline}>
@@ -501,7 +502,7 @@ export function LessonListClient({locale}: {locale: Locale}) {
                     </div>
                     <div className={styles.cardActions}>
                       <Link className={styles.detailButton} href={detailHref}>{copy.details}<span aria-hidden="true">←</span></Link>
-                      <Link className={styles.practiceLink} href={`/${locale}/tests/new`}>{copy.practice}</Link>
+                      <Link className={styles.practiceLink} href={practiceHref}>{copy.practice}</Link>
                     </div>
                   </article>
                 );
