@@ -330,7 +330,7 @@ function actionFromDashboard(dashboard: DashboardEnvelope["data"], locale: Local
   const dueCount = Number(dashboard.review_queue?.due_count ?? 0);
   const unresolvedCount = Number(dashboard.error_review?.unresolved_group_count ?? 0);
   const confidentLessons = dashboard.mastery
-    .filter((item) => item.scope_type === "LESSON" && item.confidence >= 0.45 && item.evidence_count > 0)
+    .filter((item) => item.scope_type === "LESSON" && item.confidence >= 0.45 && (item.evidence_count ?? 0) > 0)
     .slice()
     .sort((a, b) => (
       a.mastery_score_pct - b.mastery_score_pct
