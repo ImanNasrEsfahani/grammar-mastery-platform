@@ -205,7 +205,7 @@ export function AttemptResultClient({attemptId, locale}: {attemptId: string; loc
   async function share() {
     const shareData = {
       title: isFa ? "نتیجه تمرین Grammar Mastery" : "Grammar Mastery practice result",
-      text: isFa ? `امتیاز من: ${Math.round(data.score_pct)}%` : `My score: ${Math.round(data.score_pct)}%`,
+      text: isFa ? `امتیاز من: ${Math.round(score)}%` : `My score: ${Math.round(score)}%`,
       url: window.location.href,
     };
     try {
