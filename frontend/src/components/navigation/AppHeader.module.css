@@ -1,23 +1,21 @@
 .authHeader {
-  position: sticky;
-  top: 0;
-  z-index: 30;
-  padding: 22px 30px 0;
+  padding-block-start: clamp(0.6rem, 2vw, 1.25rem);
+  padding-inline: var(--layout-gutter, 1rem);
   background: transparent;
-  direction: ltr;
 }
 
 .authHeaderInner {
-  width: min(1380px, calc(100vw - 2rem));
-  min-height: 64px;
-  margin: 0 auto;
-  padding: 0 24px;
+  inline-size: min(100%, 85rem);
+  min-block-size: 4rem;
+  margin-inline: auto;
+  padding-inline: clamp(0.75rem, 2vw, 1.5rem);
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 0.6rem 1rem;
   border: 1px solid #d7e2f2;
-  border-radius: 19px;
+  border-radius: 1.2rem;
   background: rgba(255,255,255,.92);
   box-shadow: 0 8px 26px rgba(29,58,105,.025);
   backdrop-filter: blur(10px);
@@ -30,6 +28,7 @@
 }
 
 .authBrand {
+  min-inline-size: 0;
   display: inline-flex;
   align-items: center;
   gap: .75rem;
@@ -42,8 +41,9 @@
 }
 
 .authBrandMark {
-  width: 28px;
-  height: 28px;
+  inline-size: 1.75rem;
+  block-size: 1.75rem;
+  flex: 0 0 1.75rem;
   display: grid;
   place-items: center;
   color: #2f6cf6;
@@ -54,63 +54,77 @@
 }
 
 .authBrandMark svg {
-  width: 28px;
-  height: 28px;
+  inline-size: 100%;
+  block-size: 100%;
 }
 
 .authBrandLabel {
+  min-inline-size: 0;
   display: grid;
-  line-height: .92;
+  line-height: .95;
   letter-spacing: .02em;
 }
 
 .authBrandLabel strong {
-  font-size: 1.1rem;
-  font-weight: 900;
+  font-size: calc(1.05rem + var(--ui-font-adjust, 0rem));
+  font-weight: 800;
 }
 
 .authBrandLabel small {
-  margin-top: .14rem;
-  font-size: .72rem;
-  font-weight: 900;
+  margin-block-start: .14rem;
+  font-size: calc(.69rem + var(--ui-font-adjust, 0rem));
+  font-weight: 750;
   letter-spacing: .045em;
 }
 
 .authHeaderActions {
+  min-inline-size: 0;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: .35rem;
+  justify-content: flex-end;
+  gap: .25rem;
 }
 
 .authHeaderActions :global(.theme-toggle) {
-  width: 40px;
-  min-width: 40px;
-  min-height: 40px;
+  inline-size: 2.5rem;
+  min-inline-size: 2.5rem;
+  min-block-size: 2.5rem;
   padding: 0;
   border: 0;
   background: transparent;
 }
 
-.authHeaderActions :global(.theme-toggle-label) {
+.authHeaderActions :global(.theme-toggle-label),
+.notificationLabel {
   position: absolute;
-  width: 1px;
-  height: 1px;
+  inline-size: 1px;
+  block-size: 1px;
+  margin: -1px;
+  padding: 0;
   overflow: hidden;
-  clip: rect(0, 0, 0, 0);
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.authLocaleSwitch,
+.authPrimaryLink {
+  min-block-size: 2.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: .65rem;
+  text-decoration: none;
   white-space: nowrap;
 }
 
 .authLocaleSwitch {
-  min-height: 40px;
-  display: inline-flex;
-  align-items: center;
   gap: .45rem;
-  padding: 0 .75rem;
-  border-radius: 10px;
+  padding-inline: .75rem;
   color: #10285b;
-  font-size: .92rem;
-  font-weight: 850;
-  text-decoration: none;
+  font-size: calc(.9rem + var(--ui-font-adjust, 0rem));
+  font-weight: 700;
 }
 
 :global(html[data-theme="dark"]) .authLocaleSwitch {
@@ -122,18 +136,12 @@
 }
 
 .authPrimaryLink {
-  min-height: 40px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 1rem;
+  padding-inline: 1rem;
   border: 1px solid #2f6cf6;
-  border-radius: 10px;
   color: #1f5cf0;
   background: transparent;
-  font-size: .88rem;
-  font-weight: 850;
-  text-decoration: none;
+  font-size: calc(.86rem + var(--ui-font-adjust, 0rem));
+  font-weight: 700;
 }
 
 .authPrimaryLink:hover {
@@ -153,13 +161,13 @@
 
 .notificationLink {
   position: relative;
-  inline-size: 44px;
-  block-size: 44px;
-  flex: 0 0 44px;
+  inline-size: 2.75rem;
+  block-size: 2.75rem;
+  flex: 0 0 2.75rem;
   display: inline-grid;
   place-items: center;
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: .75rem;
   color: var(--ink);
   background: var(--surface);
   text-decoration: none;
@@ -173,38 +181,25 @@
 }
 
 .notificationLink svg {
-  inline-size: 21px;
-  block-size: 21px;
+  inline-size: 1.3rem;
+  block-size: 1.3rem;
   display: block;
 }
 
 .notificationDot {
   position: absolute;
-  inset-block-start: 7px;
-  inset-inline-end: 8px;
-  inline-size: 8px;
-  block-size: 8px;
+  inset-block-start: .42rem;
+  inset-inline-end: .5rem;
+  inline-size: .5rem;
+  block-size: .5rem;
   border-radius: 999px;
   background: #ef6256;
   box-shadow: 0 0 0 2px var(--surface);
 }
 
-.notificationLabel {
-  position: absolute;
-  inline-size: 1px;
-  block-size: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-
 :global(.mobile-header-actions) .notificationLink {
-  flex: 1 1 100%;
   inline-size: 100%;
-  min-block-size: 44px;
+  min-block-size: 2.75rem;
   display: inline-flex;
   justify-content: flex-start;
   gap: .6rem;
@@ -219,12 +214,12 @@
   overflow: visible;
   clip: auto;
   white-space: normal;
-  font-weight: 750;
+  font-weight: 650;
 }
 
 :global(.mobile-header-actions) .notificationDot {
   inset-inline-end: auto;
-  inset-inline-start: 31px;
+  inset-inline-start: 1.95rem;
 }
 
 .mobileAccountTrigger {
@@ -233,26 +228,39 @@
   flex: 0 0 auto;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 60rem) {
   .mobileAccountTrigger {
     display: none;
   }
 }
 
-@media (max-width: 640px) {
-  .authHeader { padding: 10px 8px 0; }
-  .authHeaderInner { width: 100%; padding: 0 12px; border-radius: 15px; }
-  .authBrandLabel strong { font-size: .98rem; }
-  .authBrandLabel small { font-size: .64rem; }
-  .authPrimaryLink { padding-inline: .7rem; }
-}
+@media (max-width: 40rem) {
+  .authHeader {
+    padding-block-start: .55rem;
+    padding-inline: .5rem;
+  }
 
-@media (max-width: 430px) {
-  .authHeaderActions { gap: .1rem; }
-  .authLocaleSwitch { padding-inline: .45rem; }
-  .authPrimaryLink { min-width: 40px; padding-inline: .55rem; font-size: .8rem; }
+  .authHeaderInner {
+    padding-inline: .7rem;
+    border-radius: .9rem;
+  }
+
+  .authBrandLabel strong {
+    font-size: calc(.94rem + var(--ui-font-adjust, 0rem));
+  }
+
+  .authBrandLabel small {
+    font-size: calc(.62rem + var(--ui-font-adjust, 0rem));
+  }
+
+  .authHeaderActions {
+    flex: 1 1 100%;
+    justify-content: flex-start;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .notificationLink { transition: none; }
+  .notificationLink {
+    transition: none;
+  }
 }

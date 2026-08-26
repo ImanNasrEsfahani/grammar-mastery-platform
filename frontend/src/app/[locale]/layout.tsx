@@ -22,7 +22,12 @@ export default async function LocaleLayout({
   const authenticated = Boolean(cookieStore.get("gmp_access_token")?.value);
 
   return (
-    <div lang={localeLanguage(rawLocale)} dir={localeDirection(rawLocale)} className="app-frame">
+    <div
+      lang={localeLanguage(rawLocale)}
+      dir={localeDirection(rawLocale)}
+      data-locale={rawLocale}
+      className="app-frame"
+    >
       <FeedbackProvider locale={rawLocale}>
         <a className="skip-link" href="#main-content">{labels.skip}</a>
         <AppHeader locale={rawLocale} authenticated={authenticated} />

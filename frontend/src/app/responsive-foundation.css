@@ -1,0 +1,327 @@
+/*
+ * Responsive foundation v1.0
+ *
+ * Loaded AFTER the legacy global styles so layout behavior is driven by
+ * normal flow, logical properties and content constraints instead of
+ * viewport-centering/positioning hacks.
+ *
+ * Positioning is intentionally reserved for true overlays, popovers,
+ * decorations and accessibility helpers inside their component styles.
+ */
+
+:root {
+  --layout-content-max: 85rem;
+  --layout-reading-max: 72rem;
+  --layout-gutter: clamp(0.875rem, 2.2vw, 1.5rem);
+  --layout-section-gap: clamp(0.875rem, 1.8vw, 1.35rem);
+  --ui-font-adjust: 0rem;
+}
+
+html,
+body {
+  max-inline-size: 100%;
+  overflow-x: clip;
+}
+
+body {
+  min-inline-size: 0;
+}
+
+.app-frame {
+  inline-size: 100%;
+  min-inline-size: 0;
+}
+
+/* Persian UI: a little smaller and visually lighter without touching French. */
+.app-frame[dir="rtl"] {
+  --ui-font-adjust: -0.035rem;
+  line-height: 1.72;
+}
+
+.app-frame[dir="rtl"] :where(h1, h2, h3, h4, h5, h6) {
+  letter-spacing: 0;
+  font-weight: 700;
+  line-height: 1.42;
+}
+
+.app-frame[dir="rtl"] :where(strong, b, label, button, .button, .nav-list a) {
+  font-weight: 650;
+}
+
+/* Explicit French/LTR islands always win over surrounding Persian UI. */
+html body .app-frame :where([dir="ltr"], [lang="fr"], [lang^="fr-"]) {
+  direction: ltr;
+  unicode-bidi: isolate;
+  text-align: start;
+  --ui-font-adjust: 0rem;
+}
+
+html body .app-frame :where([dir="rtl"], [lang="fa"], [lang^="fa-"]) {
+  unicode-bidi: isolate;
+  text-align: start;
+}
+
+/* Every flex/grid descendant is allowed to shrink instead of forcing overflow. */
+.app-frame :where(*) {
+  min-inline-size: 0;
+}
+
+.app-frame :where(img, video, canvas, iframe) {
+  max-inline-size: 100%;
+  block-size: auto;
+}
+
+.app-frame svg:not([width]):not([height]) {
+  max-inline-size: 100%;
+}
+
+/* Main page shell: no 100vw escape, no transform centering, no fixed header offset. */
+#main-content.page-container {
+  inline-size: min(100%, var(--layout-content-max));
+  max-inline-size: var(--layout-content-max);
+  margin-inline: auto;
+  padding-inline: var(--layout-gutter);
+  padding-block: clamp(1rem, 2vw, 1.5rem) clamp(2.25rem, 4vw, 4rem);
+  overflow: visible;
+}
+
+/*
+ * Many legacy page roots escaped .page-container using left:50% / 100vw /
+ * translateX(-50%). A page root should participate in normal flow.
+ */
+#main-content > :where(*) {
+  position: static;
+  inset: auto;
+  inline-size: 100%;
+  max-inline-size: 100%;
+  min-inline-size: 0;
+  margin-inline: 0;
+  transform: none;
+}
+
+/* Generic page wrappers should inherit the active locale unless they opt in to dir. */
+#main-content > :where(*) > :where(div, section, article):not([dir]) {
+  direction: inherit;
+}
+
+/* Side rails scroll naturally with the document. */
+#main-content :where(aside) {
+  position: static;
+  inset: auto;
+  max-inline-size: 100%;
+  align-self: start;
+}
+
+/* Header: normal flow. Mobile navigation expands below it instead of overlaying content. */
+.app-header {
+  position: static;
+  inset: auto;
+}
+
+.header-inner {
+  position: static;
+  inline-size: min(100%, var(--layout-content-max));
+  max-inline-size: var(--layout-content-max);
+  margin-inline: auto;
+  padding-inline: var(--layout-gutter);
+  min-block-size: 4.125rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem 0.9rem;
+}
+
+.brand {
+  min-inline-size: 0;
+  max-inline-size: min(70%, 26rem);
+}
+
+.brand-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mobile-menu-toggle {
+  margin-inline-start: auto;
+  flex: 0 0 auto;
+}
+
+.mobile-nav-panel {
+  position: static;
+  inset: auto;
+  order: 50;
+  flex: 1 0 100%;
+  inline-size: 100%;
+  max-inline-size: 100%;
+  box-shadow: none;
+}
+
+.mobile-nav-panel .nav-list {
+  inline-size: 100%;
+}
+
+.mobile-header-actions {
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.mobile-header-actions > * {
+  min-inline-size: 0;
+}
+
+/* Runner controls belong to document flow; they must never cover answers/content. */
+.runner-navigation {
+  position: static;
+  inset: auto;
+  padding: 0;
+  margin-block-start: var(--layout-section-gap);
+  background: transparent;
+  border-block-start: 0;
+}
+
+.runner-navigation-inner {
+  inline-size: 100%;
+  max-inline-size: 47.5rem;
+  margin-inline: auto;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+/* Shared grids favor content-aware wrapping instead of device-specific widths. */
+.dashboard-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+}
+
+.choice-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+}
+
+.status-panel,
+.metric-row,
+.answer-option,
+.feedback-result,
+.cluster {
+  min-inline-size: 0;
+}
+
+.answer-option {
+  overflow-wrap: anywhere;
+}
+
+/* Tables remain semantically tables; the nearest existing scroller may scroll them. */
+#main-content :where(table) {
+  max-inline-size: 100%;
+}
+
+/* Long mixed-language strings, IDs and lesson names cannot widen a grid track. */
+#main-content :where(p, li, dd, dt, h1, h2, h3, h4, h5, h6, a, button, label) {
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 59.999rem) {
+  #main-content.page-container {
+    padding-inline: clamp(0.75rem, 3.2vw, 1rem);
+    padding-block-end: 2.25rem;
+  }
+
+  .desktop-nav,
+  .desktop-header-actions {
+    display: none;
+  }
+
+  .mobile-menu-toggle {
+    display: grid;
+  }
+
+  .mobile-header-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem;
+  }
+
+  .mobile-header-actions > :last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+
+  .status-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .runner-navigation-inner {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 60rem) {
+  .header-inner {
+    flex-wrap: nowrap;
+  }
+
+  .desktop-nav {
+    display: block;
+    flex: 1 1 auto;
+    min-inline-size: 0;
+  }
+
+  .desktop-nav .nav-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.35rem 0.8rem;
+  }
+
+  .desktop-header-actions {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 0.45rem;
+    margin-inline-start: auto;
+  }
+
+  .mobile-menu-toggle,
+  .mobile-nav-panel {
+    display: none;
+  }
+}
+
+@media (max-width: 34rem) {
+  :root {
+    --layout-gutter: 0.75rem;
+  }
+
+  .brand {
+    max-inline-size: calc(100% - 3.5rem);
+  }
+
+  .brand-mark {
+    inline-size: 2rem;
+    block-size: 2rem;
+    flex: 0 0 2rem;
+  }
+
+  .brand-label {
+    font-size: calc(0.9rem + var(--ui-font-adjust, 0rem));
+  }
+
+  .mobile-header-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .mobile-header-actions > * {
+    inline-size: 100%;
+  }
+
+  .surface {
+    padding: clamp(0.85rem, 4vw, 1.1rem);
+    border-radius: 0.95rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+  }
+}
