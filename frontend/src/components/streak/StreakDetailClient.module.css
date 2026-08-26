@@ -1,0 +1,197 @@
+.page {
+  --streak-bg: #f4f7fc;
+  --streak-card: #fffdfa;
+  --streak-card-soft: #eef4fd;
+  --streak-border: #cbdced;
+  --streak-text: #102a56;
+  --streak-muted: #71829e;
+  --streak-blue: #2f6df2;
+  --streak-green: #31b97e;
+  --streak-orange: #f59b05;
+  --streak-purple: #8555ef;
+  --streak-rest: #eaf0f7;
+  --streak-track: #dce6f2;
+  min-height: calc(100dvh - 72px);
+  background: var(--streak-bg);
+  color: var(--streak-text);
+  padding: 28px 24px 64px;
+}
+
+:global(html[data-theme="dark"]) .page {
+  --streak-bg: #061b2d;
+  --streak-card: #0a2840;
+  --streak-card-soft: #103353;
+  --streak-border: #2b4f6c;
+  --streak-text: #f4f7fb;
+  --streak-muted: #9fb2c7;
+  --streak-blue: #3373f5;
+  --streak-green: #31bd84;
+  --streak-orange: #f5a008;
+  --streak-purple: #8b59f3;
+  --streak-rest: #173a56;
+  --streak-track: #294964;
+}
+
+.shell { max-width: 1330px; margin: 0 auto; }
+.topRow { min-height: 26px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.backLink, .refreshButton {
+  display: inline-flex; align-items: center; gap: 8px; color: var(--streak-muted); text-decoration: none;
+  font-size: .9rem; font-weight: 750; background: transparent; border: 0; cursor: pointer;
+}
+.backLink:hover, .refreshButton:hover { color: var(--streak-blue); }
+.backLink svg { width: 18px; height: 18px; }
+.intro { margin: 20px 0 24px; }
+.intro h1 { margin: 0; font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.12; letter-spacing: -.03em; }
+.intro p { margin: 8px 0 0; color: var(--streak-muted); font-size: 1rem; }
+
+.kpiGrid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.kpiCard {
+  min-height: 92px; display: grid; grid-template-columns: 52px minmax(0, 1fr) auto; align-items: center; gap: 16px;
+  padding: 14px 18px; background: var(--streak-card); border: 1.5px solid var(--streak-border); border-radius: 17px;
+  box-shadow: 0 1px 0 rgba(15, 42, 86, .03);
+}
+.kpiIcon { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; color: white; }
+.kpiIcon svg { width: 22px; height: 22px; }
+.accentGreen .kpiIcon { background: var(--streak-green); }
+.accentOrange .kpiIcon { background: var(--streak-orange); }
+.accentPurple .kpiIcon { background: var(--streak-purple); }
+.accentBlue .kpiIcon { background: var(--streak-blue); }
+.kpiCopy { min-width: 0; display: grid; gap: 5px; }
+.kpiCopy span { color: var(--streak-muted); font-size: .83rem; font-weight: 750; }
+.kpiCopy strong { font-size: clamp(1.2rem, 2vw, 1.6rem); white-space: nowrap; }
+.kpiAccessory { align-self: center; color: var(--streak-blue); font-size: .8rem; font-weight: 900; }
+.accentGreen .kpiAccessory { color: var(--streak-green); }
+.accentOrange .kpiAccessory { color: var(--streak-orange); }
+.accentPurple .kpiAccessory { color: var(--streak-purple); }
+
+.middleGrid { display: grid; grid-template-columns: 1.05fr 1.3fr .82fr; gap: 22px; margin-top: 24px; }
+.card { background: var(--streak-card); border: 1.5px solid var(--streak-border); border-radius: 22px; padding: 24px; }
+.card h2 { margin: 0; font-size: 1.25rem; letter-spacing: -.015em; }
+.goalCard, .consistencyCard, .milestoneCard { min-height: 280px; }
+.goalBody { display: grid; grid-template-columns: minmax(150px, .95fr) minmax(135px, 1fr); align-items: center; gap: 22px; margin-top: 20px; }
+.donutWrap { width: 172px; max-width: 100%; aspect-ratio: 1; margin: 0 auto; position: relative; }
+.donutWrap svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.donutTrack, .donutValue { fill: none; stroke-width: 14; }
+.donutTrack { stroke: var(--streak-track); }
+.donutValue { stroke: var(--streak-green); stroke-linecap: butt; }
+.donutWrap > span { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; gap: 4px; }
+.donutWrap strong { font-size: 2rem; }
+.donutWrap small { color: var(--streak-muted); font-size: .72rem; max-width: 95px; }
+.goalFacts { margin: 0; display: grid; gap: 17px; }
+.goalFacts div { display: grid; gap: 4px; }
+.goalFacts dt { color: var(--streak-muted); font-size: .78rem; }
+.goalFacts dd { margin: 0; font-size: 1.05rem; font-weight: 900; }
+.warningValue { color: var(--streak-orange); }
+.dataNote { margin: 14px 0 0; color: var(--streak-muted); font-size: .72rem; line-height: 1.65; }
+
+.cardHeadingInline { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.subtleBadge { color: var(--streak-green); background: color-mix(in srgb, var(--streak-green) 11%, transparent); padding: 5px 9px; border-radius: 999px; font-size: .75rem; font-weight: 900; }
+.calendarWrap { margin-top: 18px; }
+.weekdayHeader, .consistencyGrid { display: grid; grid-template-columns: repeat(7, minmax(28px, 1fr)); gap: 10px; }
+.weekdayHeader { margin-bottom: 10px; }
+.weekdayHeader span { text-align: center; color: var(--streak-muted); font-size: .7rem; font-weight: 800; }
+.dayActive, .dayRest, .calendarSpacer { aspect-ratio: 1.1; border-radius: 9px; }
+.dayActive { background: var(--streak-green); }
+.dayRest { background: var(--streak-rest); border: 1px solid color-mix(in srgb, var(--streak-border) 70%, transparent); }
+.calendarSpacer { visibility: hidden; }
+.consistencyFooter { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-top: 16px; color: var(--streak-muted); font-size: .82rem; }
+.consistencyFooter strong { color: var(--streak-green); }
+
+.milestonePanel { background: var(--streak-card-soft); border: 1px solid var(--streak-border); border-radius: 16px; padding: 18px; margin-top: 20px; display: grid; gap: 8px; }
+.milestonePanel strong { font-size: 1.12rem; direction: ltr; text-align: start; }
+.milestonePanel span { color: var(--streak-muted); font-size: .78rem; }
+.progressTrack { height: 8px; overflow: hidden; background: var(--streak-track); }
+.progressTrack span { display: block; height: 100%; background: var(--streak-orange); }
+.milestoneSteps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 28px; }
+.milestoneSteps span { min-height: 48px; display: grid; place-items: center; border: 1px solid var(--streak-border); border-radius: 11px; font-size: .73rem; font-weight: 900; white-space: nowrap; }
+.milestoneDone { color: white; border-color: var(--streak-green) !important; background: var(--streak-green); }
+
+.bottomGrid { display: grid; grid-template-columns: 1.7fr 1fr; gap: 24px; margin-top: 24px; }
+.weekCard, .safetyCard { min-height: 220px; }
+.weekHeader { display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; }
+.weekHeader > div { display: flex; align-items: baseline; gap: 24px; }
+.weekHeader span { color: var(--streak-muted); font-size: .75rem; }
+.weekHeader strong { font-size: 1.25rem; }
+.weeklyBars { height: 128px; display: grid; grid-template-columns: repeat(7, 1fr); align-items: end; gap: 18px; border-inline-start: 2px solid var(--streak-border); border-bottom: 2px solid var(--streak-border); padding: 0 16px 0 22px; margin-top: 18px; }
+.barItem { height: 100%; display: grid; grid-template-rows: 20px 1fr 20px; align-items: end; justify-items: center; gap: 3px; }
+.barItem strong { font-size: .68rem; }
+.barItem small { color: var(--streak-muted); font-size: .72rem; }
+.barTrack { width: min(42px, 70%); height: 100%; display: flex; align-items: end; }
+.barTrack > span { width: 100%; min-height: 2px; display: block; background: var(--streak-blue); }
+.barTrack > .barHighlight { background: var(--streak-green); }
+.policyPanel { margin-top: 20px; padding: 16px 18px; background: var(--streak-card-soft); border: 1px solid var(--streak-border); border-radius: 15px; }
+.policyPanel strong { font-size: .9rem; }
+.policyPanel p { margin: 8px 0 0; color: var(--streak-muted); font-size: .75rem; line-height: 1.55; }
+.policyPanel small { display: block; margin-top: 7px; color: var(--streak-muted); font-size: .65rem; direction: ltr; text-align: start; }
+.safetyActions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 22px; }
+.primaryButton, .secondaryButton { min-height: 44px; border-radius: 11px; display: inline-flex; justify-content: center; align-items: center; padding: 0 16px; font-weight: 900; font-size: .86rem; text-decoration: none; cursor: pointer; }
+.primaryButton { border: 1px solid var(--streak-blue); background: var(--streak-blue); color: white; }
+.secondaryButton { border: 1px solid var(--streak-border); background: transparent; color: var(--streak-blue); }
+.primaryButton:hover { filter: brightness(.97); }
+.secondaryButton:hover { background: var(--streak-card-soft); }
+.timezoneNote { margin: 14px 4px 0; color: var(--streak-muted); font-size: .68rem; }
+
+.dialogBackdrop { position: fixed; inset: 0; z-index: 80; display: grid; place-items: center; background: rgba(2, 15, 28, .58); padding: 20px; }
+.dialog { width: min(430px, 100%); background: var(--streak-card); color: var(--streak-text); border: 1px solid var(--streak-border); border-radius: 20px; padding: 22px; box-shadow: 0 24px 80px rgba(0,0,0,.25); }
+.dialogHeader { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.dialogHeader h2 { margin: 0; font-size: 1.2rem; }
+.dialog > p { color: var(--streak-muted); line-height: 1.6; font-size: .85rem; }
+.iconButton { width: 34px; height: 34px; border: 1px solid var(--streak-border); background: transparent; color: var(--streak-text); border-radius: 9px; cursor: pointer; font-size: 1.2rem; }
+.goalInputLabel { display: grid; gap: 8px; color: var(--streak-muted); font-size: .78rem; font-weight: 800; }
+.goalInputLabel input { width: 100%; min-height: 44px; border: 1px solid var(--streak-border); background: var(--streak-bg); color: var(--streak-text); border-radius: 10px; padding: 0 12px; font: inherit; }
+.dialogActions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 18px; }
+.dialog > small { display: block; margin-top: 14px; color: var(--streak-muted); line-height: 1.55; }
+
+.errorCard { max-width: 620px; margin: 80px auto; background: var(--streak-card); border: 1px solid var(--streak-border); border-radius: 20px; padding: 28px; display: grid; gap: 14px; text-align: center; }
+.errorCard p { margin: 0; color: var(--streak-muted); }
+.errorCard .primaryButton { width: max-content; min-width: 140px; justify-self: center; }
+.skeleton { position: relative; overflow: hidden; background: var(--streak-card); }
+.skeleton::after { content: ""; position: absolute; inset: 0; transform: translateX(-100%); background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--streak-text) 7%, transparent), transparent); animation: shimmer 1.2s infinite; }
+.skeletonTitle { width: 48%; height: 42px; border-radius: 10px; margin-top: 48px; }
+.skeletonCard { min-height: 280px; }
+.loadingText { color: var(--streak-muted); }
+@keyframes shimmer { 100% { transform: translateX(100%); } }
+
+@media (max-width: 1100px) {
+  .kpiGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .middleGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .milestoneCard { grid-column: 1 / -1; min-height: auto; }
+  .milestoneSteps { max-width: 520px; }
+  .bottomGrid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 720px) {
+  .page { padding: 18px 14px 44px; }
+  .intro { margin-top: 16px; }
+  .intro h1 { font-size: 2rem; }
+  .kpiGrid, .middleGrid { grid-template-columns: 1fr; gap: 12px; }
+  .kpiCard { min-height: 84px; grid-template-columns: 46px 1fr auto; padding: 12px 14px; }
+  .kpiIcon { width: 40px; height: 40px; }
+  .card { padding: 18px; border-radius: 17px; }
+  .goalCard, .consistencyCard, .milestoneCard { min-height: 0; }
+  .goalBody { grid-template-columns: 1fr; }
+  .goalFacts { grid-template-columns: repeat(3, 1fr); text-align: center; gap: 8px; }
+  .goalFacts dd { font-size: .9rem; }
+  .weekdayHeader, .consistencyGrid { gap: 7px; }
+  .dayActive, .dayRest, .calendarSpacer { border-radius: 7px; }
+  .consistencyFooter { align-items: flex-start; flex-direction: column; }
+  .milestoneSteps { grid-template-columns: repeat(2, 1fr); margin-top: 18px; }
+  .weekHeader { align-items: flex-start; flex-direction: column; }
+  .weekHeader > div { width: 100%; justify-content: space-between; }
+  .weeklyBars { height: 150px; gap: 8px; padding-inline: 8px; }
+  .barTrack { width: min(32px, 78%); }
+  .safetyActions { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 460px) {
+  .kpiGrid { grid-template-columns: 1fr; }
+  .goalFacts { grid-template-columns: 1fr; text-align: start; }
+  .goalFacts div { grid-template-columns: 1fr auto; align-items: baseline; }
+  .weekdayHeader, .consistencyGrid { gap: 5px; }
+  .weeklyBars { gap: 4px; }
+  .barTrack { width: 24px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton::after { animation: none; }
+}

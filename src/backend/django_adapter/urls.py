@@ -135,6 +135,17 @@ urlpatterns.append(
     )
 )
 
+# Daily Goal / Streak Detail is an additive Stage 18/19 learner surface. The
+# provider stays outside the frozen Stage 21 route set while exposing the exact
+# data needed by the dedicated page without making /dashboard query-heavy.
+urlpatterns.append(
+    path(
+        "streak",
+        _view({"GET": "getStreakDetail"}, {"GET": USER}),
+        name="getStreakDetail",
+    )
+)
+
 
 ROUTE_OPERATION_IDS = frozenset(
     operation_id
