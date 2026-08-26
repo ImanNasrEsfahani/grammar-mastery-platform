@@ -41,63 +41,22 @@ ROUTE_SPECS = [
     ("next-actions/current", {"GET": "getCurrentNextAction"}, {"GET": USER}),
     ("analytics/jobs", {"POST": "createAnalyticsJob"}, {"POST": ADMIN}),
     ("analytics/jobs/<str:jobId>", {"GET": "getAnalyticsJob"}, {"GET": ADMIN}),
-    (
-        "admin/questions",
-        {"GET": "listAdminQuestions", "POST": "createAdminQuestionDraft"},
-        {"GET": VIEW_BANK, "POST": EDIT_DRAFT},
-    ),
-    (
-        "admin/questions/<str:questionId>",
-        {"PATCH": "createAdminQuestionRevision"},
-        {"PATCH": EDIT_DRAFT},
-    ),
-    (
-        "admin/questions/<str:questionId>/review",
-        {"POST": "reviewAdminQuestion"},
-        {"POST": REVIEW},
-    ),
-    (
-        "admin/questions/<str:questionId>/retire",
-        {"POST": "retireAdminQuestion"},
-        {"POST": ADMIN},
-    ),
-    (
-        "admin/questions/<str:questionId>/retire-request",
-        {"POST": "requestAdminQuestionRetirement"},
-        {"POST": RETIRE_REQUEST},
-    ),
-    (
-        "admin/imports/preview",
-        {"POST": "previewAdminImport"},
-        {"POST": EDIT_DRAFT},
-    ),
-    (
-        "admin/imports/commit",
-        {"POST": "commitAdminImport"},
-        {"POST": EDIT_DRAFT},
-    ),
-    (
-        "admin/questions/bulk-status/preview",
-        {"POST": "previewAdminBulkStatus"},
-        {"POST": EDIT_DRAFT},
-    ),
-    (
-        "admin/questions/bulk-status/commit",
-        {"POST": "commitAdminBulkStatus"},
-        {"POST": EDIT_DRAFT},
-    ),
+    ("admin/questions", {"GET": "listAdminQuestions", "POST": "createAdminQuestionDraft"}, {"GET": VIEW_BANK, "POST": EDIT_DRAFT}),
+    ("admin/questions/<str:questionId>", {"PATCH": "createAdminQuestionRevision"}, {"PATCH": EDIT_DRAFT}),
+    ("admin/questions/<str:questionId>/review", {"POST": "reviewAdminQuestion"}, {"POST": REVIEW}),
+    ("admin/questions/<str:questionId>/retire", {"POST": "retireAdminQuestion"}, {"POST": ADMIN}),
+    ("admin/questions/<str:questionId>/retire-request", {"POST": "requestAdminQuestionRetirement"}, {"POST": RETIRE_REQUEST}),
+    ("admin/imports/preview", {"POST": "previewAdminImport"}, {"POST": EDIT_DRAFT}),
+    ("admin/imports/commit", {"POST": "commitAdminImport"}, {"POST": EDIT_DRAFT}),
+    ("admin/questions/bulk-status/preview", {"POST": "previewAdminBulkStatus"}, {"POST": EDIT_DRAFT}),
+    ("admin/questions/bulk-status/commit", {"POST": "commitAdminBulkStatus"}, {"POST": EDIT_DRAFT}),
     ("admin/audit-log", {"GET": "listAdminAuditEvents"}, {"GET": AUDIT}),
 ]
 
 
 def _view(operations, roles_by_method):
-    kwargs = {
-        "operations": operations,
-        "required_roles_by_method": roles_by_method,
-    }
-    if roles_by_method and all(
-        "PUBLIC" in tuple(roles) for roles in roles_by_method.values()
-    ):
+    kwargs = {"operations": operations, "required_roles_by_method": roles_by_method}
+    if roles_by_method and all("PUBLIC" in tuple(roles) for roles in roles_by_method.values()):
         kwargs["authentication_classes"] = []
     return ContractEndpointView.as_view(**kwargs)
 
@@ -105,57 +64,21 @@ def _view(operations, roles_by_method):
 urlpatterns = []
 for route, operations, roles_by_method in ROUTE_SPECS:
     route_name = next(iter(operations.values())) if len(operations) == 1 else "adminQuestions"
-    urlpatterns.append(
-        path(
-            route,
-            _view(operations, roles_by_method),
-            name=route_name,
-        )
-    )
+    urlpatterns.append(path(route, _view(operations, roles_by_method), name=route_name))
 
-# Stage 19 History surface extension. It is intentionally not added to
-# ROUTE_SPECS/ROUTE_OPERATION_IDS so the frozen 34-operation Stage 21 contract
-# and its regression tests remain unchanged.
-urlpatterns.append(
-    path(
-        "history",
-        _view({"GET": "listHistory"}, {"GET": USER}),
-        name="listHistory",
-    )
-)
+# Additive learner/UI providers. These intentionally stay outside the frozen
+# Stage 21 ROUTE_SPECS/ROUTE_OPERATION_IDS contract.
+urlpatterns.append(path("history", _view({"GET": "listHistory"}, {"GET": USER}), name="listHistory"))
+urlpatterns.append(path("search", _view({"GET": "searchGrammar"}, {"GET": USER}), name="searchGrammar"))
+urlpatterns.append(path("streak", _view({"GET": "getStreakDetail"}, {"GET": USER}), name="getStreakDetail"))
+urlpatterns.append(path("account", _view({"GET": "getAccountSummary"}, {"GET": AUTHENTICATED}), name="getAccountSummary"))
 
-# Grammar Search is another additive learner UI provider. Like History it stays
-# outside the frozen Stage 21 OpenAPI operation set; no existing contract route
-# or operationId is changed.
-urlpatterns.append(
-    path(
-        "search",
-        _view({"GET": "searchGrammar"}, {"GET": USER}),
-        name="searchGrammar",
-    )
-)
-
-# Daily Goal / Streak Detail is an additive Stage 18/19 learner surface. The
-# provider stays outside the frozen Stage 21 route set while exposing the exact
-# data needed by the dedicated page without making /dashboard query-heavy.
-urlpatterns.append(
-    path(
-        "streak",
-        _view({"GET": "getStreakDetail"}, {"GET": USER}),
-        name="getStreakDetail",
-    )
-)
-
-# Account Summary is an additive header provider. It intentionally stays out of
-# the frozen Stage 21 OpenAPI operation set and exposes only safe identity fields
-# needed by the avatar/user menu.
-urlpatterns.append(
-    path(
-        "account",
-        _view({"GET": "getAccountSummary"}, {"GET": AUTHENTICATED}),
-        name="getAccountSummary",
-    )
-)
+# Real persisted notifications. Read state belongs to the server, not localStorage.
+urlpatterns.append(path("notifications", _view({"GET": "listNotifications"}, {"GET": USER}), name="listNotifications"))
+urlpatterns.append(path("notifications/unread-count", _view({"GET": "getNotificationUnreadCount"}, {"GET": USER}), name="getNotificationUnreadCount"))
+urlpatterns.append(path("notifications/seen", _view({"POST": "markNotificationsSeen"}, {"POST": USER}), name="markNotificationsSeen"))
+urlpatterns.append(path("notifications/read-all", _view({"POST": "markAllNotificationsRead"}, {"POST": USER}), name="markAllNotificationsRead"))
+urlpatterns.append(path("notifications/<str:notificationId>/read", _view({"POST": "markNotificationRead"}, {"POST": USER}), name="markNotificationRead"))
 
 
 ROUTE_OPERATION_IDS = frozenset(

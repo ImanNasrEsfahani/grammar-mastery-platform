@@ -9,8 +9,9 @@ import type {Locale} from "@/lib/i18n";
 import {t} from "@/lib/i18n";
 import styles from "./AppHeader.module.css";
 
-const NOTIFICATION_UNREAD_KEY = "gmp-notifications-unread-v1";
 const NOTIFICATION_CHANGE_EVENT = "gmp-notifications-changed";
+
+type UnreadEnvelope = {data: {unread_count: number}};
 
 function AuthBrandMark() {
   return (
@@ -37,7 +38,7 @@ export function AppHeader({locale, authenticated}: {locale: Locale; authenticate
   const searchParams = useSearchParams();
   const headerRef = useRef<HTMLElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [unreadNotificationCount, setUnreadNotificationCount] = useState(1);
+  const [unreadNotificationCount, setUnreadNotificationCount] = useState(0);
 
   const segments = pathname.split("/").filter(Boolean);
   const isFocusedAttempt = segments.length === 3 && segments[1] === "attempts";
@@ -61,23 +62,39 @@ export function AppHeader({locale, authenticated}: {locale: Locale; authenticate
   }, [menuOpen]);
 
   useEffect(() => {
-    const syncUnread = () => {
+    if (!authenticated) {
+      setUnreadNotificationCount(0);
+      return;
+    }
+
+    let cancelled = false;
+    const syncUnread = async () => {
       try {
-        const stored = window.localStorage.getItem(NOTIFICATION_UNREAD_KEY);
-        setUnreadNotificationCount(stored === null ? 1 : Math.max(0, Number(stored) || 0));
+        const response = await fetch("/api/backend/notifications/unread-count", {
+          headers: {Accept: "application/json"},
+          cache: "no-store",
+          credentials: "same-origin",
+        });
+        if (!response.ok) throw new Error("notification count failed");
+        const payload = await response.json() as UnreadEnvelope;
+        if (!cancelled) setUnreadNotificationCount(Math.max(0, Number(payload.data?.unread_count) || 0));
       } catch {
-        setUnreadNotificationCount(1);
+        if (!cancelled) setUnreadNotificationCount(0);
       }
     };
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    syncUnread();
-    window.addEventListener("storage", syncUnread);
-    window.addEventListener(NOTIFICATION_CHANGE_EVENT, syncUnread);
+
+    void syncUnread();
+    const onChange = () => { void syncUnread(); };
+    const interval = window.setInterval(onChange, 60_000);
+    window.addEventListener("focus", onChange);
+    window.addEventListener(NOTIFICATION_CHANGE_EVENT, onChange);
     return () => {
-      window.removeEventListener("storage", syncUnread);
-      window.removeEventListener(NOTIFICATION_CHANGE_EVENT, syncUnread);
+      cancelled = true;
+      window.clearInterval(interval);
+      window.removeEventListener("focus", onChange);
+      window.removeEventListener(NOTIFICATION_CHANGE_EVENT, onChange);
     };
-  }, []);
+  }, [authenticated, pathname]);
 
   if (isFocusedAttempt) return null;
 
@@ -91,21 +108,12 @@ export function AppHeader({locale, authenticated}: {locale: Locale; authenticate
         <div className={styles.authHeaderInner}>
           <Link className={styles.authBrand} href={brandHref}>
             <span className={styles.authBrandMark}><AuthBrandMark /></span>
-            <span className={styles.authBrandLabel} aria-label="Grammar Mastery">
-              <strong>GRAMMAR</strong>
-              <small>MASTERY</small>
-            </span>
+            <span className={styles.authBrandLabel} aria-label="Grammar Mastery"><strong>GRAMMAR</strong><small>MASTERY</small></span>
           </Link>
           <div className={styles.authHeaderActions}>
             <ThemeToggle locale={locale} />
-            <Link className={styles.authLocaleSwitch} href={authLocaleHref} hrefLang={otherLocale}>
-              {otherLocale.toUpperCase()} <span aria-hidden="true">▾</span>
-            </Link>
-            {isServiceUnavailableSurface ? (
-              <Link className={styles.authPrimaryLink} href={authenticated ? `/${locale}/dashboard` : `/${locale}/login`}>
-                {authenticated ? labels.dashboard : labels.login}
-              </Link>
-            ) : null}
+            <Link className={styles.authLocaleSwitch} href={authLocaleHref} hrefLang={otherLocale}>{otherLocale.toUpperCase()} <span aria-hidden="true">▾</span></Link>
+            {isServiceUnavailableSurface ? <Link className={styles.authPrimaryLink} href={authenticated ? `/${locale}/dashboard` : `/${locale}/login`}>{authenticated ? labels.dashboard : labels.login}</Link> : null}
           </div>
         </div>
       </header>
@@ -130,22 +138,14 @@ export function AppHeader({locale, authenticated}: {locale: Locale; authenticate
     </Link>
   );
 
-  const localeSwitch = (
-    <Link className="locale-switch" href={`/${otherLocale}/dashboard`} hrefLang={otherLocale} prefetch={authenticated}>
-      {otherLocale === "fa" ? "فارسی" : "English"}
-    </Link>
-  );
+  const localeSwitch = <Link className="locale-switch" href={`/${otherLocale}/dashboard`} hrefLang={otherLocale} prefetch={authenticated}>{otherLocale === "fa" ? "فارسی" : "English"}</Link>;
 
   const desktopAccountActions = (
     <>
       {notificationAction}
       <ThemeToggle locale={locale} />
       {localeSwitch}
-      {authenticated ? (
-        <UserMenu locale={locale} unreadCount={unreadNotificationCount} />
-      ) : (
-        <Link className="button button-quiet" href={`/${locale}/login`}>{labels.login}</Link>
-      )}
+      {authenticated ? <UserMenu locale={locale} unreadCount={unreadNotificationCount} /> : <Link className="button button-quiet" href={`/${locale}/login`}>{labels.login}</Link>}
     </>
   );
 
@@ -161,27 +161,13 @@ export function AppHeader({locale, authenticated}: {locale: Locale; authenticate
   return (
     <header className="app-header" ref={headerRef}>
       <div className="header-inner">
-        <Link className="brand" href={`/${locale}/dashboard`} prefetch={authenticated}>
-          <span className="brand-mark" aria-hidden="true">G</span>
-          <span className="brand-label">{labels.productName}</span>
-        </Link>
+        <Link className="brand" href={`/${locale}/dashboard`} prefetch={authenticated}><span className="brand-mark" aria-hidden="true">G</span><span className="brand-label">{labels.productName}</span></Link>
         <nav className="desktop-nav" aria-label={locale === "fa" ? "ناوبری اصلی" : "Primary navigation"}>{navigation}</nav>
         <div className="desktop-header-actions">{desktopAccountActions}</div>
-        <button
-          className="mobile-menu-toggle"
-          type="button"
-          aria-expanded={menuOpen}
-          aria-controls="mobile-navigation"
-          aria-label={menuOpen ? (locale === "fa" ? "بستن منو" : "Close menu") : (locale === "fa" ? "باز کردن منو" : "Open menu")}
-          onClick={() => setMenuOpen((current) => !current)}
-        >
+        <button className="mobile-menu-toggle" type="button" aria-expanded={menuOpen} aria-controls="mobile-navigation" aria-label={menuOpen ? (locale === "fa" ? "بستن منو" : "Close menu") : (locale === "fa" ? "باز کردن منو" : "Open menu")} onClick={() => setMenuOpen((current) => !current)}>
           <span className="menu-icon" aria-hidden="true"><span /><span /><span /></span>
         </button>
-        {authenticated ? (
-          <div className={styles.mobileAccountTrigger}>
-            <UserMenu locale={locale} unreadCount={unreadNotificationCount} />
-          </div>
-        ) : null}
+        {authenticated ? <div className={styles.mobileAccountTrigger}><UserMenu locale={locale} unreadCount={unreadNotificationCount} /></div> : null}
         <div id="mobile-navigation" className={`mobile-nav-panel${menuOpen ? " mobile-nav-open" : ""}`} onClick={() => setMenuOpen(false)}>
           <nav aria-label={locale === "fa" ? "ناوبری موبایل" : "Mobile navigation"}>{navigation}</nav>
           <div className="mobile-header-actions">{mobilePanelActions}</div>

@@ -1,18 +1,11 @@
 from __future__ import annotations
 
-"""Additive runtime provider for the Daily Goal / Streak detail surface.
+"""Daily Goal / Streak provider based only on real accepted answers.
 
-The Stage 21 OpenAPI operation set stays frozen. This provider is deliberately
-registered as an additive Stage 19 learner surface, in the same style as
-History and Grammar Search.
-
-Streak policy:
-- An ACTIVE_DAY is a local calendar day with at least one accepted user answer.
-- A streak remains "at risk" during the current day when yesterday was active;
-  it is not declared broken before the current local day has ended.
-- The time-based daily goal is presentation/user-preference data and does not
-  alter streak history. This prevents the gamification counter from rewarding
-  repeated easy questions merely to protect a streak.
+ACTIVE_DAY is an application-local calendar day with at least one accepted
+user answer. Login, dashboard visits and notification views never extend the
+streak. If yesterday was active and today has not yet been active, the streak
+is AT_RISK_TODAY rather than prematurely broken.
 """
 
 from datetime import date, datetime, time, timedelta
@@ -26,7 +19,7 @@ from rest_framework.response import Response
 from backend.django_adapter import runtime_dashboard
 
 
-STREAK_RUNTIME_VERSION = "postgres-streak-detail-provider-v1.0.0"
+STREAK_RUNTIME_VERSION = "postgres-streak-detail-provider-v1.0.1"
 MILESTONES = (7, 14, 30, 60)
 WINDOW_DAYS = 30
 WEEK_DAYS = 7
@@ -95,12 +88,7 @@ def _streak_metrics(active_dates: Iterable[date], today: date) -> dict[str, Any]
     }
 
 
-def _activity_by_day(
-    user_id: uuid.UUID,
-    *,
-    start: date,
-    end: date,
-) -> dict[date, dict[str, int]]:
+def _activity_by_day(user_id: uuid.UUID, *, start: date, end: date) -> dict[date, dict[str, int]]:
     tz = timezone.get_current_timezone()
     tz_name = timezone.get_current_timezone_name()
     lower = timezone.make_aware(datetime.combine(start, time.min), tz)
@@ -115,8 +103,7 @@ def _activity_by_day(
                 COALESCE(sum(COALESCE(ua.response_ms, 0)), 0) AS response_ms,
                 count(ua.response_ms) AS timed_answer_count
             FROM user_answers AS ua
-            JOIN test_attempts AS ta
-              ON ta.id = ua.attempt_id
+            JOIN test_attempts AS ta ON ta.id = ua.attempt_id
             WHERE ta.user_id = %s
               AND ua.answered_at IS NOT NULL
               AND ua.answered_at >= %s
@@ -145,8 +132,7 @@ def _all_active_dates(user_id: uuid.UUID) -> list[date]:
             """
             SELECT DISTINCT timezone(%s, ua.answered_at)::date AS activity_date
             FROM user_answers AS ua
-            JOIN test_attempts AS ta
-              ON ta.id = ua.attempt_id
+            JOIN test_attempts AS ta ON ta.id = ua.attempt_id
             WHERE ta.user_id = %s
               AND ua.answered_at IS NOT NULL
             ORDER BY 1
@@ -159,13 +145,7 @@ def _all_active_dates(user_id: uuid.UUID) -> list[date]:
 def _day_projection(item: date, aggregate: dict[date, dict[str, int]]) -> dict[str, Any]:
     stored = aggregate.get(item)
     if stored is None:
-        return {
-            "date": item.isoformat(),
-            "questions_answered": 0,
-            "practice_seconds": 0,
-            "timed_answer_count": 0,
-            "active": False,
-        }
+        return {"date": item.isoformat(), "questions_answered": 0, "practice_seconds": 0, "timed_answer_count": 0, "active": False}
     return {
         "date": item.isoformat(),
         "questions_answered": stored["questions_answered"],
@@ -217,20 +197,11 @@ def _streak_projection(user_id: uuid.UUID, *, as_of: datetime | None = None) -> 
             "rate_pct": round((active_30 / len(calendar_days)) * 100) if calendar_days else 0,
             "days": calendar_days,
         },
-        "week": {
-            "days": week_days,
-            "average_practice_seconds": average_seconds,
-        },
+        "week": {"days": week_days, "average_practice_seconds": average_seconds},
     }
 
 
 def streak_detail_request(request) -> Response:
     principal = _principal(request)
     data = _streak_projection(_uuid(principal.user_id))
-    return Response(
-        {
-            "data": data,
-            "meta": _api_meta(request),
-        },
-        status=200,
-    )
+    return Response({"data": data, "meta": _api_meta(request)}, status=200)

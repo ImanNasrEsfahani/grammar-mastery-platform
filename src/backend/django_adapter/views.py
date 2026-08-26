@@ -10,6 +10,7 @@ from backend.django_adapter import (
     runtime_dashboard,
     runtime_history,
     runtime_learning,
+    runtime_notifications,
     runtime_review,
     runtime_search,
     runtime_streak,
@@ -21,9 +22,9 @@ class ContractEndpointView(APIView):
     """Route a frozen Stage 21 operation or an explicitly additive UI provider.
 
     Runtime providers are bound incrementally. History, Grammar Search, Streak
-    Detail and Account Summary are additive learner providers and intentionally
-    stay outside ROUTE_OPERATION_IDS so the frozen Stage 21 operation set remains
-    contract compatible.
+    Detail, Account Summary and Notifications are additive learner providers and
+    intentionally stay outside ROUTE_OPERATION_IDS so the frozen Stage 21
+    operation set remains contract compatible.
     """
 
     operations: dict[str, str] = {}
@@ -44,50 +45,29 @@ class ContractEndpointView(APIView):
         if operation_id == "listLessons":
             return runtime_learning.list_lessons_request(request)
         if operation_id == "getLesson":
-            return runtime_learning.lesson_detail_request(
-                request,
-                lesson_id=kwargs.get("lessonId"),
-            )
+            return runtime_learning.lesson_detail_request(request, lesson_id=kwargs.get("lessonId"))
         if operation_id == "createTest":
             return runtime_learning.create_test_request(request)
         if operation_id == "startAttempt":
-            return runtime_learning.start_attempt_request(
-                request, test_id=kwargs.get("testId")
-            )
+            return runtime_learning.start_attempt_request(request, test_id=kwargs.get("testId"))
         if operation_id == "getNextAttemptQuestion":
-            return runtime_learning.next_attempt_question_request(
-                request, attempt_id=kwargs.get("attemptId")
-            )
+            return runtime_learning.next_attempt_question_request(request, attempt_id=kwargs.get("attemptId"))
         if operation_id == "submitAttemptAnswer":
-            return runtime_review.submit_attempt_answer_request(
-                request, attempt_id=kwargs.get("attemptId")
-            )
+            return runtime_review.submit_attempt_answer_request(request, attempt_id=kwargs.get("attemptId"))
         if operation_id == "completeAttempt":
-            return runtime_learning.complete_attempt_request(
-                request, attempt_id=kwargs.get("attemptId")
-            )
+            return runtime_learning.complete_attempt_request(request, attempt_id=kwargs.get("attemptId"))
         if operation_id == "getAttemptResult":
-            return runtime_attempt_result.attempt_result_request(
-                request, attempt_id=kwargs.get("attemptId")
-            )
+            return runtime_attempt_result.attempt_result_request(request, attempt_id=kwargs.get("attemptId"))
         if operation_id == "listReviews":
             return runtime_review.list_reviews_request(request)
         if operation_id == "getReviewItem":
-            return runtime_review.get_review_item_request(
-                request, review_id=kwargs.get("reviewId")
-            )
+            return runtime_review.get_review_item_request(request, review_id=kwargs.get("reviewId"))
         if operation_id == "gradeReview":
-            return runtime_review.grade_review_request(
-                request, review_id=kwargs.get("reviewId")
-            )
+            return runtime_review.grade_review_request(request, review_id=kwargs.get("reviewId"))
         if operation_id == "revealReviewAnswer":
-            return runtime_review.reveal_review_answer_request(
-                request, review_id=kwargs.get("reviewId")
-            )
+            return runtime_review.reveal_review_answer_request(request, review_id=kwargs.get("reviewId"))
         if operation_id == "setReviewMark":
-            return runtime_review.set_review_mark_request(
-                request, review_id=kwargs.get("reviewId")
-            )
+            return runtime_review.set_review_mark_request(request, review_id=kwargs.get("reviewId"))
         if operation_id == "getDashboard":
             return runtime_review.dashboard_request(request)
         if operation_id == "getCurrentNextAction":
@@ -100,6 +80,16 @@ class ContractEndpointView(APIView):
             return runtime_streak.streak_detail_request(request)
         if operation_id == "getAccountSummary":
             return runtime_account.account_summary_request(request)
+        if operation_id == "listNotifications":
+            return runtime_notifications.list_notifications_request(request)
+        if operation_id == "getNotificationUnreadCount":
+            return runtime_notifications.unread_count_request(request)
+        if operation_id == "markNotificationsSeen":
+            return runtime_notifications.mark_seen_request(request)
+        if operation_id == "markAllNotificationsRead":
+            return runtime_notifications.mark_all_read_request(request)
+        if operation_id == "markNotificationRead":
+            return runtime_notifications.mark_read_request(request, notification_id=kwargs.get("notificationId"))
 
         raise APIError(
             503,
