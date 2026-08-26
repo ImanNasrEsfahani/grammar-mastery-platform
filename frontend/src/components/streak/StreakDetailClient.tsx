@@ -506,65 +506,6 @@ function copyFor(locale: Locale) {
       weekdayShort: ["د", "س", "چ", "پ", "ج", "ش", "ی"],
     };
   }
-  if (locale === "fr") {
-    return {
-      back: "Retour au tableau de bord",
-      title: "Objectif quotidien et série d’entraînement",
-      subtitle: "Suivez votre régularité, terminez l’objectif du jour et avancez vers le prochain jalon.",
-      summaryAria: "Résumé de l’objectif quotidien et de la série",
-      todayGoal: "Objectif du jour",
-      currentStreak: "Série actuelle",
-      longestStreak: "Plus longue série",
-      todayQuestions: "Questions aujourd’hui",
-      minutes: "min",
-      days: "jours",
-      questions: "questions",
-      dailyProgress: "Progression de l’objectif quotidien",
-      timeToday: "Temps aujourd’hui",
-      questionsAnswered: "Questions répondues",
-      remaining: "Restant",
-      of: "sur",
-      consistency30: "Régularité — 30 derniers jours",
-      consistencyRate: "Taux de régularité",
-      activeDays: (active: number, total: number) => `${active} jours actifs sur ${total}`,
-      nextMilestone: "Prochain jalon",
-      milestoneName: (days: number) => `Régularité ${days} jours`,
-      daysToMilestone: (days: number) => `Encore ${days} jours avant le jalon`,
-      milestoneProgress: "Progression du jalon",
-      allMilestones: "Tous les jalons sont atteints",
-      allMilestonesDone: "Votre série dépasse les jalons affichés.",
-      weeklyTrend: "Tendance hebdomadaire",
-      dailyAverage: "Moyenne quotidienne",
-      streakSafety: "Protection de la série",
-      missedDayPolicy: "Politique de jour manqué",
-      policyDescription: (status: StreakDetailData["streak_status"]) => status === "ACTIVE_TODAY"
-        ? "Une activité est enregistrée aujourd’hui et la série est active."
-        : status === "AT_RISK_TODAY"
-          ? "Aucune activité aujourd’hui pour le moment ; vous avez jusqu’à la fin de la journée."
-          : "La série précédente est interrompue ; une nouvelle journée active relancera la série.",
-      policyTechnical: "Règle",
-      continuePractice: "Continuer l’entraînement",
-      setDailyGoal: "Régler l’objectif quotidien",
-      refresh: "Actualiser",
-      retry: "Réessayer",
-      unavailable: "Détail de la série indisponible",
-      unavailableDetail: "Le service n’a pas pu renvoyer les données de série.",
-      loginRequired: "Connectez-vous d’abord",
-      login: "Connexion",
-      loading: "Chargement du détail de la série…",
-      timingWarning: (pct: number) => `Le temps d’entraînement est dérivé des temps de réponse et la couverture chronométrée d’aujourd’hui est de ${pct} % ; la durée peut donc être sous-estimée.`,
-      timezone: "Fuseau de calcul",
-      goalDialogHint: "Choisissez un objectif réaliste. Il motive votre pratique mais ne modifie pas le calcul de la série.",
-      minutesPerDay: "Minutes par jour",
-      cancel: "Annuler",
-      save: "Enregistrer",
-      close: "Fermer",
-      localGoalNote: "Dans cette version, l’objectif est conservé dans ce navigateur pour ne pas modifier le contrat Stage 21.",
-      active: "Jour actif",
-      restDay: "Repos",
-      weekdayShort: ["L", "M", "M", "J", "V", "S", "D"],
-    };
-  }
   return {
     back: "Back to dashboard",
     title: "Daily goal & practice streak",
@@ -624,13 +565,13 @@ function copyFor(locale: Locale) {
   };
 }
 
-function formatNumber(value: number, locale: Locale | "fa") {
-  const localeCode = locale === "fa" ? "fa-IR" : locale === "fr" ? "fr-FR" : "en-CA";
+function formatNumber(value: number, locale: Locale) {
+  const localeCode = locale === "fa" ? "fa-IR" : "en-CA";
   return new Intl.NumberFormat(localeCode, {maximumFractionDigits: 0}).format(value);
 }
 
 function formatMinutes(value: number, locale: Locale) {
-  const localeCode = locale === "fa" ? "fa-IR" : locale === "fr" ? "fr-FR" : "en-CA";
+  const localeCode = locale === "fa" ? "fa-IR" : "en-CA";
   return new Intl.NumberFormat(localeCode, {maximumFractionDigits: value < 10 ? 1 : 0}).format(value);
 }
 
@@ -641,7 +582,7 @@ function formatSigned(value: number, locale: Locale) {
 
 function formatDate(isoDate: string, locale: Locale) {
   const date = new Date(`${isoDate}T12:00:00`);
-  const localeCode = locale === "fa" ? "fa-IR" : locale === "fr" ? "fr-FR" : "en-CA";
+  const localeCode = locale === "fa" ? "fa-IR" : "en-CA";
   return new Intl.DateTimeFormat(localeCode, {month: "short", day: "numeric"}).format(date);
 }
 
