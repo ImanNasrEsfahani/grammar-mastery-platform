@@ -1,0 +1,656 @@
+.viewportBreakout {
+  position: relative;
+  left: 50%;
+  inline-size: min(1360px, calc(100vw - 2rem));
+  transform: translateX(-50%);
+}
+
+.page {
+  --milestone-blue: #2f6ef6;
+  --milestone-green: #2dbb84;
+  --milestone-amber: #ff9f0a;
+  --milestone-violet: #8257ee;
+  --milestone-panel: #fffdfa;
+  --milestone-soft: #f4f7fb;
+  --milestone-soft-blue: #edf3ff;
+  --milestone-track: #e4eaf3;
+  display: grid;
+  gap: 1.25rem;
+  color: var(--ink);
+}
+
+.pageHeading {
+  padding-block: 0.25rem 0.1rem;
+}
+
+.eyebrow {
+  margin: 0 0 0.25rem;
+  color: var(--primary);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.pageHeading h1 {
+  margin: 0;
+  font-size: clamp(1.85rem, 3.2vw, 2.45rem);
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+.pageHeading > p:last-child {
+  margin: 0.35rem 0 0;
+  color: var(--muted);
+  font-size: 0.96rem;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+.statCard {
+  min-block-size: 82px;
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 17px;
+  background: var(--milestone-panel);
+}
+
+.statIcon,
+.milestoneIcon,
+.nearestIcon,
+.recentIcon {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  color: white;
+  font-weight: 900;
+}
+
+.statIcon {
+  inline-size: 42px;
+  block-size: 42px;
+  font-size: 1.05rem;
+}
+
+.statCard > div {
+  min-inline-size: 0;
+  display: grid;
+  gap: 0.12rem;
+}
+
+.statCard small {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.statCard strong {
+  direction: ltr;
+  unicode-bidi: isolate;
+  font-size: 1.32rem;
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+}
+
+.tone_blue { --tone: var(--milestone-blue); }
+.tone_green { --tone: var(--milestone-green); }
+.tone_amber { --tone: var(--milestone-amber); }
+.tone_violet { --tone: var(--milestone-violet); }
+
+.statCard .statIcon,
+.milestoneCard .milestoneIcon,
+.nearestCard .nearestIcon,
+.recentIcon {
+  background: var(--tone);
+}
+
+.contentGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 350px;
+  gap: 1rem;
+  align-items: start;
+}
+
+.mainColumn {
+  min-inline-size: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.tabs {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(120px, 1fr));
+  gap: 0.7rem;
+  padding: 0.55rem 0.7rem;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--milestone-panel);
+  scrollbar-width: thin;
+}
+
+.tabs button {
+  min-block-size: 38px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 0.45rem 0.75rem;
+  background: var(--surface);
+  color: var(--ink);
+  cursor: pointer;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.tabs button:hover {
+  border-color: var(--primary);
+  color: var(--primary-strong);
+}
+
+.tabs .activeTab {
+  border-color: var(--milestone-blue);
+  background: var(--milestone-blue);
+  color: white;
+}
+
+.milestonesPanel,
+.sidePanel {
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--milestone-panel);
+}
+
+.milestonesPanel {
+  padding: clamp(1rem, 2vw, 1.45rem);
+}
+
+.panelHeading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-block-end: 1rem;
+}
+
+.panelHeading h2,
+.sidePanel h2 {
+  margin: 0;
+  font-size: 1.18rem;
+  line-height: 1.3;
+}
+
+.panelHeading p {
+  max-inline-size: 72ch;
+  margin: 0.28rem 0 0;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.panelHeading > span {
+  min-inline-size: 34px;
+  block-size: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: var(--milestone-soft-blue);
+  color: var(--primary-strong);
+  font-weight: 900;
+}
+
+.milestoneGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.milestoneCard {
+  min-inline-size: 0;
+  min-block-size: 174px;
+  display: grid;
+  grid-template-rows: auto 1fr auto auto;
+  align-content: start;
+  gap: 0.65rem;
+  padding: 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 17px;
+  background: var(--surface);
+}
+
+.milestoneCard:hover {
+  border-color: color-mix(in srgb, var(--tone) 45%, var(--line));
+}
+
+.completedCard {
+  background: color-mix(in srgb, var(--tone) 3%, var(--surface));
+}
+
+.milestoneIcon {
+  inline-size: 39px;
+  block-size: 39px;
+  font-size: 0.95rem;
+}
+
+.milestoneCopy {
+  min-inline-size: 0;
+}
+
+.milestoneName {
+  display: block;
+  overflow-wrap: anywhere;
+  font-size: 0.94rem;
+  line-height: 1.35;
+}
+
+.milestoneCopy p {
+  margin: 0.28rem 0 0;
+  color: var(--muted);
+  font-size: 0.76rem;
+  line-height: 1.55;
+}
+
+.earnedMeta,
+.progressMeta {
+  min-inline-size: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  color: var(--muted);
+  font-size: 0.72rem;
+}
+
+.earnedMeta span {
+  color: var(--tone);
+  font-weight: 900;
+}
+
+.earnedMeta time,
+.earnedMeta small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.progressMeta strong {
+  direction: ltr;
+  unicode-bidi: isolate;
+  color: var(--tone);
+  font-variant-numeric: tabular-nums;
+}
+
+.progressMeta span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.progressTrack {
+  block-size: 6px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--milestone-track);
+}
+
+.progressTrack > span {
+  display: block;
+  block-size: 100%;
+  border-radius: inherit;
+  background: var(--tone);
+}
+
+.sidebar {
+  display: grid;
+  gap: 1rem;
+  position: sticky;
+  inset-block-start: 88px;
+}
+
+.sidePanel {
+  padding: 1rem;
+}
+
+.nearestCard {
+  margin-block-start: 0.85rem;
+  padding: 1rem;
+  border: 1px solid color-mix(in srgb, var(--tone) 22%, var(--line));
+  border-radius: 17px;
+  background: color-mix(in srgb, var(--tone) 6%, var(--milestone-soft-blue));
+}
+
+.nearestTop {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.72rem;
+  margin-block-end: 0.85rem;
+}
+
+.nearestIcon {
+  inline-size: 36px;
+  block-size: 36px;
+}
+
+.nearestTop > div {
+  min-inline-size: 0;
+}
+
+.nearestTop strong {
+  display: block;
+  font-size: 1rem;
+  overflow-wrap: anywhere;
+}
+
+.nearestTop p {
+  margin: 0.25rem 0 0;
+  color: var(--muted);
+  font-size: 0.73rem;
+  line-height: 1.5;
+}
+
+.sideAction {
+  min-block-size: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 100%;
+  margin-block-start: 0.85rem;
+  border: 1px solid color-mix(in srgb, var(--tone) 45%, var(--line));
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--tone);
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.sideAction:hover {
+  background: color-mix(in srgb, var(--tone) 7%, var(--surface));
+}
+
+.recentList {
+  display: grid;
+  gap: 0.55rem;
+  margin-block-start: 0.85rem;
+}
+
+.recentItem {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  min-inline-size: 0;
+  padding: 0.68rem;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  background: var(--surface);
+}
+
+.recentIcon {
+  inline-size: 34px;
+  block-size: 34px;
+  font-size: 0.83rem;
+}
+
+.recentItem > div {
+  min-inline-size: 0;
+  display: grid;
+  gap: 0.08rem;
+}
+
+.recentItem strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.8rem;
+}
+
+.recentItem small {
+  color: var(--muted);
+  font-size: 0.69rem;
+}
+
+.emptyRecent {
+  margin: 0.8rem 0 0;
+  padding: 0.8rem;
+  border-radius: 12px;
+  background: var(--milestone-soft);
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.viewAllButton {
+  inline-size: 100%;
+  min-block-size: 38px;
+  margin-block-start: 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--primary);
+  cursor: pointer;
+  font-size: 0.76rem;
+  font-weight: 900;
+}
+
+.viewAllButton:hover {
+  border-color: var(--primary);
+  background: var(--milestone-soft-blue);
+}
+
+.allComplete {
+  display: grid;
+  place-items: center;
+  gap: 0.5rem;
+  margin-block-start: 0.85rem;
+  padding: 1.1rem;
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--milestone-green) 8%, var(--surface));
+  color: var(--success);
+  text-align: center;
+}
+
+.allComplete span {
+  inline-size: 38px;
+  block-size: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--milestone-green);
+  color: white;
+  font-weight: 900;
+}
+
+.allComplete p {
+  margin: 0;
+  font-size: 0.8rem;
+}
+
+.modelNote {
+  display: grid;
+  gap: 0.15rem;
+  padding-inline: 0.25rem;
+  color: var(--muted);
+  font-size: 0.67rem;
+}
+
+.modelNote code {
+  color: var(--primary-strong);
+  font-size: 0.68rem;
+}
+
+:global(html[data-theme="dark"]) .page {
+  --milestone-panel: #0d2035;
+  --milestone-soft: #13283f;
+  --milestone-soft-blue: #132e4e;
+  --milestone-track: #29435f;
+}
+
+:global(html[data-theme="dark"]) .statCard,
+:global(html[data-theme="dark"]) .tabs,
+:global(html[data-theme="dark"]) .milestonesPanel,
+:global(html[data-theme="dark"]) .sidePanel {
+  background: var(--milestone-panel);
+  border-color: #2d4d68;
+}
+
+:global(html[data-theme="dark"]) .milestoneCard,
+:global(html[data-theme="dark"]) .recentItem,
+:global(html[data-theme="dark"]) .tabs button,
+:global(html[data-theme="dark"]) .sideAction,
+:global(html[data-theme="dark"]) .viewAllButton {
+  background: #0a1a2d;
+  border-color: #2d4d68;
+}
+
+:global(html[data-theme="dark"]) .tabs .activeTab {
+  border-color: var(--milestone-blue);
+  background: var(--milestone-blue);
+  color: white;
+}
+
+:global(html[data-theme="dark"]) .nearestCard {
+  background: #123250;
+  border-color: #355d7b;
+}
+
+:global(html[data-theme="dark"]) .emptyRecent {
+  background: #10263d;
+}
+
+:global(html[data-theme="dark"]) .completedCard {
+  background: color-mix(in srgb, var(--tone) 8%, #0a1a2d);
+}
+
+@media (max-width: 1120px) {
+  .contentGrid {
+    grid-template-columns: minmax(0, 1fr) 310px;
+  }
+
+  .milestoneGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 880px) {
+  .statsGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .contentGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: static;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .modelNote {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 620px) {
+  .viewportBreakout {
+    inline-size: calc(100vw - 1rem);
+  }
+
+  .page {
+    gap: 0.85rem;
+  }
+
+  .pageHeading h1 {
+    font-size: 1.75rem;
+  }
+
+  .pageHeading > p:last-child {
+    font-size: 0.84rem;
+  }
+
+  .statsGrid {
+    gap: 0.55rem;
+  }
+
+  .statCard {
+    min-block-size: 76px;
+    gap: 0.65rem;
+    padding: 0.72rem;
+  }
+
+  .statIcon {
+    inline-size: 36px;
+    block-size: 36px;
+  }
+
+  .statCard small {
+    font-size: 0.69rem;
+  }
+
+  .statCard strong {
+    font-size: 1.08rem;
+  }
+
+  .tabs {
+    grid-template-columns: repeat(5, 126px);
+    padding: 0.45rem;
+  }
+
+  .milestonesPanel {
+    padding: 0.8rem;
+  }
+
+  .panelHeading p {
+    display: none;
+  }
+
+  .milestoneGrid,
+  .sidebar {
+    grid-template-columns: 1fr;
+  }
+
+  .milestoneCard {
+    min-block-size: 155px;
+  }
+
+  .modelNote {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 390px) {
+  .statsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tabs button,
+  .sideAction,
+  .viewAllButton {
+    transition: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .statCard,
+  .tabs,
+  .milestonesPanel,
+  .sidePanel,
+  .milestoneCard,
+  .recentItem,
+  .nearestCard {
+    border: 1px solid CanvasText;
+  }
+
+  .progressTrack > span,
+  .statIcon,
+  .milestoneIcon,
+  .nearestIcon,
+  .recentIcon {
+    forced-color-adjust: none;
+  }
+}
