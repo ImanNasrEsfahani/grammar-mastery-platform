@@ -207,9 +207,18 @@ export function LessonListClient({locale}: {locale: Locale}) {
       setError(toApiError(lessonResult.reason));
       return;
     }
+    if (lessonResult.value === null) {
+      setLessons(null);
+      setError(new ApiError({
+        status: 502,
+        code: "EMPTY_LESSON_RESPONSE",
+        message: "The lessons endpoint returned an empty response.",
+      }));
+      return;
+    }
 
     setLessons(lessonResult.value.data);
-    if (masteryResult.status === "fulfilled") {
+    if (masteryResult.status === "fulfilled" && masteryResult.value !== null) {
       setMasteryItems(masteryResult.value.data.filter((item) => item.scope_type === "LESSON"));
     } else {
       setMasteryItems([]);
