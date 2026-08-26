@@ -210,6 +210,8 @@ export function SettingsClient({locale, authenticated}: {locale: Locale; authent
   const [activeSection, setActiveSection] = useState<SettingsSectionId>("appearance");
 
   useEffect(() => {
+    // Preferences are intentionally hydrated from browser storage when locale changes.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     const current = readPreferences(locale);
     setSaved(current);
     setDraft(current);

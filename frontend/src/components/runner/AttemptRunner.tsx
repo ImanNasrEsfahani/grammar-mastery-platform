@@ -170,6 +170,8 @@ export function AttemptRunner({
     submitHint: "Enter",
   }, [isFa]);
 
+  /* Client-only attempt metadata/bookmarks are intentionally hydrated from Web Storage here. */
+  /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
     if (!expectedTotal || expectedTotal < 1) {
       try {
@@ -204,6 +206,7 @@ export function AttemptRunner({
     const timer = window.setInterval(tick, 1000);
     return () => window.clearInterval(timer);
   }, [attemptId, expectedTotal]);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   const completeAttempt = useCallback(async () => {
     try {
@@ -250,6 +253,8 @@ export function AttemptRunner({
     }
   }, [attemptId, completeAttempt]);
 
+  // Loading the server-backed next question on mount/attempt changes is intentional.
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => { void loadQuestion(); }, [loadQuestion]);
 
   const acceptReceipt = useCallback(async (envelope: AnswerReceiptEnvelope, record: PendingAnswerRecord) => {

@@ -81,11 +81,11 @@ function largestRemainder(total: number, shares: number[]) {
   const out = expected.map(Math.floor);
   let remaining = total - out.reduce((sum, value) => sum + value, 0);
   const ranked = expected
-    .map((value, index) => ({index, remainder: value - out[index]}))
+    .map((value, index) => ({index, remainder: value - (out[index] ?? 0)}))
     .sort((a, b) => b.remainder - a.remainder || a.index - b.index);
   for (const item of ranked) {
     if (!remaining) break;
-    out[item.index] += 1;
+    out[item.index] = (out[item.index] ?? 0) + 1;
     remaining -= 1;
   }
   return out;
@@ -111,6 +111,8 @@ export function TestBuilder({locale}: {locale: Locale}) {
   const [error, setError] = useState<ApiError | null>(null);
 
   useEffect(() => {
+    // Builder state is intentionally restored from URL/session/local storage once on mount.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     try {
       const params = new URLSearchParams(window.location.search);
       const handoff = params.get("restore") === "1" ? window.sessionStorage.getItem(SESSION_HANDOFF_KEY) : null;
@@ -253,20 +255,21 @@ export function TestBuilder({locale}: {locale: Locale}) {
   const coverageCounts = largestRemainder(count, [60, 20, 10, 10]);
   const coverage = isFa
     ? [
-        {label: "انتخاب فرم / گزینه", count: coverageCounts[0], color: "#3576e8"},
-        {label: "جای خالی", count: coverageCounts[1], color: "#2eaf78"},
-        {label: "تحلیل جمله", count: coverageCounts[2], color: "#f1a62e"},
-        {label: "بازنویسی / کاربرد", count: coverageCounts[3], color: "#8b68d7"},
+        {label: "انتخاب فرم / گزینه", count: coverageCounts[0] ?? 0, color: "#3576e8"},
+        {label: "جای خالی", count: coverageCounts[1] ?? 0, color: "#2eaf78"},
+        {label: "تحلیل جمله", count: coverageCounts[2] ?? 0, color: "#f1a62e"},
+        {label: "بازنویسی / کاربرد", count: coverageCounts[3] ?? 0, color: "#8b68d7"},
       ]
     : [
-        {label: "Form / choice", count: coverageCounts[0], color: "#3576e8"},
-        {label: "Cloze", count: coverageCounts[1], color: "#2eaf78"},
-        {label: "Sentence analysis", count: coverageCounts[2], color: "#f1a62e"},
-        {label: "Rewrite / use", count: coverageCounts[3], color: "#8b68d7"},
+        {label: "Form / choice", count: coverageCounts[0] ?? 0, color: "#3576e8"},
+        {label: "Cloze", count: coverageCounts[1] ?? 0, color: "#2eaf78"},
+        {label: "Sentence analysis", count: coverageCounts[2] ?? 0, color: "#f1a62e"},
+        {label: "Rewrite / use", count: coverageCounts[3] ?? 0, color: "#8b68d7"},
       ];
 
+  const coverageColors = ["#3576e8", "#2eaf78", "#f1a62e", "#8b68d7"] as const;
   const donutStyle = {
-    "--coverage-donut": `conic-gradient(${coverage[0].color} 0 60%, ${coverage[1].color} 60% 80%, ${coverage[2].color} 80% 90%, ${coverage[3].color} 90% 100%)`,
+    "--coverage-donut": `conic-gradient(${coverageColors[0]} 0 60%, ${coverageColors[1]} 60% 80%, ${coverageColors[2]} 80% 90%, ${coverageColors[3]} 90% 100%)`,
   } as CSSProperties;
 
   function toggleLesson(lessonId: string) {
@@ -277,7 +280,7 @@ export function TestBuilder({locale}: {locale: Locale}) {
     return {mode, scopeChoice, selectedLessonIds, selectedGroupId, count, difficultyPreset, typePreset, advancedOpen};
   }
 
-  function changeLanguage(nextLocale: "fa" | "fr") {
+  function changeLanguage(nextLocale: Locale) {
     if (nextLocale === locale) return;
     try {
       window.sessionStorage.setItem(SESSION_HANDOFF_KEY, JSON.stringify(draft()));
@@ -389,7 +392,7 @@ export function TestBuilder({locale}: {locale: Locale}) {
                   <strong>{modeCopy[value].title}</strong>
                   <small>{modeCopy[value].detail}</small>
                 </span>
-                <span className={`${styles.modeIcon} ${styles[`modeIcon${value[0].toUpperCase()}${value.slice(1)}`]}`}><Icon name={value} /></span>
+                <span className={`${styles.modeIcon} ${styles[`modeIcon${value.charAt(0).toUpperCase()}${value.slice(1)}`]}`}><Icon name={value} /></span>
               </label>
             ))}
           </div>
@@ -408,7 +411,7 @@ export function TestBuilder({locale}: {locale: Locale}) {
                 <span className={styles.radioVisual} aria-hidden="true" />
                 <strong>{card.title}</strong>
                 <small>{card.detail}</small>
-                <span className={`${styles.scopeIcon} ${styles[`scopeIcon${card.value[0].toUpperCase()}${card.value.slice(1)}`]}`}><Icon name={card.icon} /></span>
+                <span className={`${styles.scopeIcon} ${styles[`scopeIcon${card.value.charAt(0).toUpperCase()}${card.value.slice(1)}`]}`}><Icon name={card.icon} /></span>
               </label>
             ))}
           </div>
@@ -465,7 +468,7 @@ export function TestBuilder({locale}: {locale: Locale}) {
               <div className={styles.difficultyGrid}>
                 {(Object.keys(difficultyLabels) as DifficultyPreset[]).map((value) => (
                   <button type="button" className={`${styles.difficultyChip} ${difficultyPreset === value ? styles.chipSelected : ""}`} key={value} onClick={() => setDifficultyPreset(value)}>
-                    <span className={`${styles.difficultyDot} ${styles[`difficulty${value[0].toUpperCase()}${value.slice(1)}`]}`} />
+                    <span className={`${styles.difficultyDot} ${styles[`difficulty${value.charAt(0).toUpperCase()}${value.slice(1)}`]}`} />
                     {difficultyLabels[value]}
                   </button>
                 ))}
@@ -500,7 +503,7 @@ export function TestBuilder({locale}: {locale: Locale}) {
                 <div className={styles.advancedHeading}><strong>{isFa ? "زبان رابط و توضیحات" : "Interface & explanation language"}</strong><small>{isFa ? "تغییر زبان، همین تنظیمات جلسه را هنگام جابه‌جایی حفظ می‌کند." : "Changing language preserves this builder draft during the route handoff."}</small></div>
                 <div className={styles.languageSwitch}>
                   <button type="button" className={locale === "fa" ? styles.languageSelected : ""} onClick={() => changeLanguage("fa")}><Icon name="globe" /> فارسی</button>
-                  <button type="button" className={locale === "fr" ? styles.languageSelected : ""} onClick={() => changeLanguage("fr")}><Icon name="globe" /> Français</button>
+                  <button type="button" className={locale === "en" ? styles.languageSelected : ""} onClick={() => changeLanguage("en")}><Icon name="globe" /> English</button>
                 </div>
               </div>
 

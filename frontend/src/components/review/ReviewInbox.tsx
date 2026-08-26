@@ -373,6 +373,13 @@ export function ReviewInbox({locale}: {locale: Locale}) {
     setActionMessage(null);
     try {
       const envelope = await apiRequest<ReviewCollectionEnvelope>(baseQuery());
+      if (!envelope) {
+        throw new ApiError({
+          status: 502,
+          code: "EMPTY_REVIEW_RESPONSE",
+          message: labels.error,
+        });
+      }
       setItems((envelope.data || []) as ApiAwareReview[]);
       setPage(envelope.page as PageShape);
       setSelected(new Set());
@@ -404,6 +411,13 @@ export function ReviewInbox({locale}: {locale: Locale}) {
     setError(null);
     try {
       const envelope = await apiRequest<ReviewCollectionEnvelope>(baseQuery(cursor));
+      if (!envelope) {
+        throw new ApiError({
+          status: 502,
+          code: "EMPTY_REVIEW_RESPONSE",
+          message: labels.error,
+        });
+      }
       setItems((current) => {
         const map = new Map(current.map((item) => [item.id, item]));
         for (const item of envelope.data as ApiAwareReview[]) map.set(item.id, item);
@@ -501,7 +515,7 @@ export function ReviewInbox({locale}: {locale: Locale}) {
       method: "PUT",
       body: JSON.stringify({marked}),
     })));
-    const succeeded = new Set(supported.filter((_, index) => results[index].status === "fulfilled").map((item) => item.id));
+    const succeeded = new Set(supported.filter((_, index) => results[index]?.status === "fulfilled").map((item) => item.id));
     setItems((current) => current.map((item) => succeeded.has(item.id) ? {...item, marked} : item));
     const failed = results.filter((result) => result.status === "rejected").length;
     if (failed) setActionMessage(isFa ? `${failed.toLocaleString("fa-IR")} مورد به‌روزرسانی نشد.` : `${failed} item(s) could not be updated.`);
@@ -531,6 +545,7 @@ export function ReviewInbox({locale}: {locale: Locale}) {
   };
 
   const selectedItems = items.filter((item) => selected.has(item.id));
+  const firstSelectedItem = selectedItems[0];
 
   if (loading && !items.length) {
     return (
@@ -628,7 +643,7 @@ export function ReviewInbox({locale}: {locale: Locale}) {
                 <div>
                   <button type="button" onClick={() => void setMarked(selectedItems, true)}><Icon name="bookmark" size={16}/>{labels.bulkMark}</button>
                   <button type="button" onClick={() => void setMarked(selectedItems, false)}>{labels.bulkUnmark}</button>
-                  {selectedItems[0] ? <Link href={`/${locale}/review/${selectedItems[0].id}`}>{labels.bulkOpen}</Link> : null}
+                  {firstSelectedItem ? <Link href={`/${locale}/review/${firstSelectedItem.id}`}>{labels.bulkOpen}</Link> : null}
                   <button type="button" onClick={() => setSelected(new Set())}>{labels.clearSelection}</button>
                 </div>
               </div>

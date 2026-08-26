@@ -315,7 +315,7 @@ export function GrammarSearchClient({
     if (initialQuery) void execute(initialQuery, initialKind, false);
   }, [execute, initialKind, initialQuery]);
 
-  const results = data?.data.results ?? [];
+  const results = useMemo(() => data?.data.results ?? [], [data]);
   const selected = useMemo(
     () => results.find((item) => item.key === selectedKey) ?? results[0] ?? null,
     [results, selectedKey],
@@ -540,4 +540,3 @@ function ResultInspector({result, locale, query, copy}: {result: SearchResult; l
     </div>
   );
 }
-

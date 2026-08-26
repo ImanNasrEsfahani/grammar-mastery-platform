@@ -28,6 +28,8 @@ export function ProgressiveLoading({
   const [cycle, setCycle] = useState(0);
 
   useEffect(() => {
+    // Resetting the visual phase is intentional whenever retry/timing starts a new loading cycle.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setPhase("quiet");
     const announceTimer = window.setTimeout(() => setPhase("announced"), Math.max(0, announceAfterMs));
     const slowTimer = window.setTimeout(() => setPhase("slow"), Math.max(announceAfterMs, slowAfterMs));
