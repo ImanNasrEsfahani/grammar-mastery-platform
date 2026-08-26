@@ -30,6 +30,13 @@ type AttemptMeta = {
   mode?: string;
 };
 
+type QuestionHistoryEntry = {
+  question: AttemptQuestion;
+  selectedOptionId: string | null;
+  feedback: AnswerFeedback | null;
+  startedAt: number;
+};
+
 type ReportDraft = {
   schema_version: "runner-report-draft-v1";
   created_at: string;
@@ -81,6 +88,8 @@ export function AttemptRunner({
   const startedAtRef = useRef<number>(0);
   const completionKeyRef = useRef<string>("");
   const pendingRef = useRef<PendingAnswerRecord | null>(null);
+  const historyRef = useRef<QuestionHistoryEntry[]>([]);
+  const historyIndexRef = useRef(-1);
   const [phase, setPhase] = useState<RunnerPhase>("loading");
   const [question, setQuestion] = useState<AttemptQuestion | null>(null);
   const [selectedOptionId, setSelectedOptionId] = useState<string | null>(null);
@@ -95,6 +104,7 @@ export function AttemptRunner({
   const [reportReason, setReportReason] = useState<ReportReason>("AMBIGUOUS");
   const [reportNote, setReportNote] = useState("");
   const [reportSaved, setReportSaved] = useState(false);
+  const [historyIndex, setHistoryIndex] = useState(-1);
 
   const copy = useMemo(() => isFa ? {
     focus: "حالت تمرکز",
@@ -113,6 +123,8 @@ export function AttemptRunner({
     keyboard: "کلیدهای صفحه‌کلید",
     chooseWith: "برای انتخاب گزینه",
     submitWith: "برای ثبت پاسخ",
+    previous: "سؤال قبلی",
+    previousWith: "برای سؤال قبلی",
     nextWith: "برای سؤال بعدی",
     bookmark: "علامت‌گذاری",
     bookmarked: "علامت‌گذاری شد",
@@ -149,6 +161,8 @@ export function AttemptRunner({
     keyboard: "Keyboard shortcuts",
     chooseWith: "Choose an option",
     submitWith: "Submit answer",
+    previous: "Previous question",
+    previousWith: "Previous question",
     nextWith: "Next question",
     bookmark: "Bookmark",
     bookmarked: "Bookmarked",
@@ -232,20 +246,38 @@ export function AttemptRunner({
         await completeAttempt();
         return;
       }
-      setQuestion(envelope.data);
-      setSelectedOptionId(null);
-      setFeedback(null);
-      setReportSaved(false);
-      startedAtRef.current = performance.now();
+
       const pending = await getPendingAnswer(attemptId, envelope.data.test_question_id);
-      if (pending) {
-        pendingRef.current = pending;
-        setSelectedOptionId(pending.selected_option_id);
-        setPhase("offline");
-      } else {
-        pendingRef.current = null;
-        setPhase("ready");
-      }
+      const existingIndex = historyRef.current.findIndex(
+        (entry) => entry.question.test_question_id === envelope.data.test_question_id,
+      );
+      const existingEntry = existingIndex >= 0 ? historyRef.current[existingIndex] : undefined;
+      const entry: QuestionHistoryEntry = existingEntry
+        ? {
+            ...existingEntry,
+            question: envelope.data,
+            selectedOptionId: pending?.selected_option_id ?? existingEntry.selectedOptionId,
+          }
+        : {
+            question: envelope.data,
+            selectedOptionId: pending?.selected_option_id ?? null,
+            feedback: null,
+            startedAt: performance.now(),
+          };
+
+      const nextIndex = existingEntry ? existingIndex : historyRef.current.length;
+      if (existingEntry) historyRef.current[existingIndex] = entry;
+      else historyRef.current.push(entry);
+
+      historyIndexRef.current = nextIndex;
+      setHistoryIndex(nextIndex);
+      setQuestion(entry.question);
+      setSelectedOptionId(entry.selectedOptionId);
+      setFeedback(entry.feedback);
+      setReportSaved(false);
+      startedAtRef.current = entry.startedAt;
+      pendingRef.current = pending;
+      setPhase(pending ? "offline" : entry.feedback ? "feedback" : "ready");
       requestAnimationFrame(() => headingRef.current?.focus());
     } catch (caught) {
       setError(caught instanceof ApiError ? caught : new ApiError({status: 0, code: "NETWORK_ERROR", message: "Question loading failed."}));
@@ -260,6 +292,17 @@ export function AttemptRunner({
   const acceptReceipt = useCallback(async (envelope: AnswerReceiptEnvelope, record: PendingAnswerRecord) => {
     await removePendingAnswer(record.attempt_id, record.test_question_id);
     pendingRef.current = null;
+    const entryIndex = historyRef.current.findIndex(
+      (entry) => entry.question.test_question_id === record.test_question_id,
+    );
+    const entry = entryIndex >= 0 ? historyRef.current[entryIndex] : undefined;
+    if (entry) {
+      historyRef.current[entryIndex] = {
+        ...entry,
+        selectedOptionId: record.selected_option_id,
+        feedback: envelope.data.feedback,
+      };
+    }
     setFeedback(envelope.data.feedback);
     setPhase("feedback");
   }, []);
@@ -292,6 +335,12 @@ export function AttemptRunner({
     }
   }, [acceptReceipt, attemptId]);
 
+  const selectOption = useCallback((optionId: string) => {
+    setSelectedOptionId(optionId);
+    const entry = historyRef.current[historyIndexRef.current];
+    if (entry && !entry.feedback) entry.selectedOptionId = optionId;
+  }, []);
+
   const submit = useCallback(() => {
     if (!question || !selectedOptionId || phase === "submitting") return;
     const record: PendingAnswerRecord = {
@@ -311,6 +360,37 @@ export function AttemptRunner({
     if (pendingRef.current) void sendRecord(pendingRef.current);
     else void loadQuestion();
   }, [loadQuestion, sendRecord]);
+
+  const showHistoryEntry = useCallback((index: number) => {
+    const entry = historyRef.current[index];
+    if (!entry) return;
+    historyIndexRef.current = index;
+    setHistoryIndex(index);
+    pendingRef.current = null;
+    setQuestion(entry.question);
+    setSelectedOptionId(entry.selectedOptionId);
+    setFeedback(entry.feedback);
+    setError(null);
+    setReportSaved(false);
+    startedAtRef.current = entry.startedAt;
+    setPhase(entry.feedback ? "feedback" : "ready");
+    requestAnimationFrame(() => headingRef.current?.focus());
+  }, []);
+
+  const goPrevious = useCallback(() => {
+    if (phase !== "ready" && phase !== "feedback") return;
+    showHistoryEntry(historyIndexRef.current - 1);
+  }, [phase, showHistoryEntry]);
+
+  const goNext = useCallback(() => {
+    if (phase !== "ready" && phase !== "feedback") return;
+    const nextIndex = historyIndexRef.current + 1;
+    if (nextIndex < historyRef.current.length) {
+      showHistoryEntry(nextIndex);
+      return;
+    }
+    if (phase === "feedback") void loadQuestion();
+  }, [loadQuestion, phase, showHistoryEntry]);
 
   useEffect(() => {
     const onOnline = () => { if (pendingRef.current) void sendRecord(pendingRef.current); };
@@ -389,14 +469,17 @@ export function AttemptRunner({
         const option = question.options[index];
         if (option) {
           event.preventDefault();
-          setSelectedOptionId(option.id);
+          selectOption(option.id);
         }
       } else if (phase === "ready" && event.key === "Enter" && selectedOptionId) {
         event.preventDefault();
         submit();
       } else if (phase === "feedback" && ["n", "Enter"].includes(event.key.toLowerCase())) {
         event.preventDefault();
-        void loadQuestion();
+        goNext();
+      } else if ((phase === "ready" || phase === "feedback") && event.key.toLowerCase() === "p") {
+        event.preventDefault();
+        goPrevious();
       } else if (event.key.toLowerCase() === "b") {
         event.preventDefault();
         toggleBookmark();
@@ -407,7 +490,7 @@ export function AttemptRunner({
     };
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [loadQuestion, phase, question, selectedOptionId, submit, toggleBookmark]);
+  }, [goNext, goPrevious, phase, question, selectOption, selectedOptionId, submit, toggleBookmark]);
 
   if (phase === "loading" && !question) {
     return (
@@ -430,8 +513,10 @@ export function AttemptRunner({
   }
 
   const offline = phase === "offline";
-  const primaryLabel = offline ? labels.retry : phase === "feedback" ? labels.next : labels.submit;
-  const onPrimary = offline ? retry : phase === "feedback" ? () => { void loadQuestion(); } : submit;
+  const primaryLabel = offline || phase === "error" ? labels.retry : phase === "feedback" ? labels.next : labels.submit;
+  const onPrimary = offline || phase === "error" ? retry : phase === "feedback" ? goNext : submit;
+  const canGoPrevious = (phase === "ready" || phase === "feedback") && historyIndex > 0;
+  const primaryDisabled = phase === "loading" || phase === "submitting" || (phase === "ready" && !selectedOptionId);
   const bookmarked = bookmarks.includes(question.question_revision_id);
   const answeredCount = Math.max(0, question.position - 1 + (phase === "feedback" ? 1 : 0));
   const remainingCount = totalQuestions ? Math.max(0, totalQuestions - answeredCount) : undefined;
@@ -486,7 +571,7 @@ export function AttemptRunner({
             selectedOptionId={selectedOptionId}
             feedback={feedback}
             locked={phase === "loading" || phase === "submitting" || phase === "feedback" || offline}
-            onSelect={setSelectedOptionId}
+            onSelect={selectOption}
             labels={{correct: labels.correct, incorrect: labels.incorrect, selectAnswer: labels.selectAnswer}}
             uiLocale={locale}
             actions={{
@@ -549,6 +634,7 @@ export function AttemptRunner({
             <div className={styles.keyRow} aria-label="1 2 3 4"><kbd>1</kbd><kbd>2</kbd><kbd>3</kbd><kbd>4</kbd></div>
             <p>{copy.chooseWith}</p>
             <div className={styles.shortcutLine}><kbd>Enter</kbd><span>{phase === "feedback" ? copy.nextWith : copy.submitWith}</span></div>
+            <div className={styles.shortcutLine}><kbd>P</kbd><span>{copy.previousWith}</span></div>
             <div className={styles.shortcutLine}><kbd>B</kbd><span>{copy.bookmark}</span></div>
             <div className={styles.shortcutLine}><kbd>R</kbd><span>{copy.report}</span></div>
           </section>
@@ -559,9 +645,21 @@ export function AttemptRunner({
         <div className={styles.bottomInner}>
           <button className={styles.mobileBookmark} type="button" aria-pressed={bookmarked} onClick={toggleBookmark}>{bookmarked ? "★" : "☆"}<span>{bookmarked ? copy.bookmarked : copy.bookmark}</span></button>
           <span className={styles.enterHint}><kbd>{copy.submitHint}</kbd><span>{phase === "feedback" ? copy.nextWith : copy.submitWith}</span></span>
-          <button className={styles.primaryAction} type="button" disabled={(!selectedOptionId && phase === "ready") || phase === "submitting"} aria-busy={phase === "submitting"} onClick={onPrimary}>
-            <span>{primaryLabel}</span><span aria-hidden="true">›</span>
-          </button>
+          <div style={{display: "grid", gridTemplateColumns: "minmax(0, .9fr) minmax(0, 1.25fr)", gap: ".5rem"}}>
+            <button
+              className={styles.secondaryAction}
+              type="button"
+              disabled={!canGoPrevious}
+              aria-disabled={!canGoPrevious}
+              onClick={goPrevious}
+              style={{width: "100%", display: "inline-flex", alignItems: "center", justifyContent: "center", gap: ".4rem", paddingInline: ".55rem", fontSize: ".78rem"}}
+            >
+              <span aria-hidden="true">{isFa ? "›" : "‹"}</span><span>{copy.previous}</span>
+            </button>
+            <button className={styles.primaryAction} type="button" disabled={primaryDisabled} aria-busy={phase === "submitting" || phase === "loading"} onClick={onPrimary}>
+              <span>{primaryLabel}</span><span aria-hidden="true">{isFa ? "‹" : "›"}</span>
+            </button>
+          </div>
         </div>
       </div>
 
