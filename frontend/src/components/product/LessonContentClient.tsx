@@ -62,19 +62,29 @@ type LessonRecentActivity = {
   completed_at: string;
 };
 
+type LessonLearning = {
+  overview: LessonMasterySnapshot;
+  subtopics: LessonLearningSubtopic[];
+  unresolved_mistake_count: number;
+  review_item_id?: string | null;
+  misconceptions: LessonMisconceptionInsight[];
+  recent_activity: LessonRecentActivity[];
+};
+
+type LessonBookReference = {
+  book_pages?: string | null;
+  pdf_pages?: string | null;
+};
+
 type LessonDetail = BaseLessonDetail & {
-  book_reference: {
-    book_pages?: string | null;
-    pdf_pages?: string | null;
-  };
-  learning: {
-    overview: LessonMasterySnapshot;
-    subtopics: LessonLearningSubtopic[];
-    unresolved_mistake_count: number;
-    review_item_id?: string | null;
-    misconceptions: LessonMisconceptionInsight[];
-    recent_activity: LessonRecentActivity[];
-  };
+  book_reference: LessonBookReference;
+  learning: LessonLearning;
+  insights_available: boolean;
+};
+
+type LessonDetailPayload = BaseLessonDetail & {
+  book_reference?: LessonBookReference;
+  learning?: LessonLearning;
 };
 
 type ViewState =
@@ -101,6 +111,47 @@ const BAND_COPY: Record<MasteryBand, {icon: string; fa: string; en: string}> = {
   UNCERTAIN: {icon: "?", fa: "شواهد ناکافی", en: "Uncertain"},
   NO_EVIDENCE: {icon: "·", fa: "بدون شواهد", en: "No evidence"},
 };
+
+function emptyLearning(): LessonLearning {
+  return {
+    overview: {
+      mastery_score_pct: 0,
+      confidence: 0,
+      coverage_ratio: 0,
+      evidence_count: 0,
+      mastery_band: "NO_EVIDENCE",
+      model_version: "unavailable",
+      source: "NO_EVIDENCE",
+    },
+    subtopics: [],
+    unresolved_mistake_count: 0,
+    review_item_id: null,
+    misconceptions: [],
+    recent_activity: [],
+  };
+}
+
+/**
+ * Stage-21's current lesson-detail provider returns the canonical lesson and
+ * subtopics, but it does not yet include the later `learning` and
+ * `book_reference` extensions. Those extensions are useful enhancements, not
+ * prerequisites for rendering the actual lesson HTML.
+ *
+ * Keep the learner-facing page backward-compatible with the frozen Stage-21
+ * response so a missing analytics extension can never hide valid lesson
+ * content.
+ */
+function normalizeLessonDetail(raw: BaseLessonDetail): LessonDetail {
+  const payload = raw as LessonDetailPayload;
+  const insightsAvailable = Boolean(payload.learning);
+
+  return {
+    ...payload,
+    book_reference: payload.book_reference ?? {},
+    learning: payload.learning ?? emptyLearning(),
+    insights_available: insightsAvailable,
+  };
+}
 
 async function fetchStaticHtml(url: string): Promise<Response> {
   return fetch(url, {method: "GET", cache: "no-store"});
@@ -216,16 +267,10 @@ export function LessonContentClient({
         });
       }
 
-      const lesson = envelope.data as LessonDetail;
-      if (!lesson.learning || !lesson.book_reference) {
-        throw new ApiError({
-          status: 502,
-          code: "LESSON_INSIGHTS_UNAVAILABLE",
-          message: isFa
-            ? "خلاصهٔ یادگیری این درس در پاسخ سرور موجود نیست."
-            : "The lesson learning summary is missing from the server response.",
-        });
-      }
+      // Important: missing learning/book_reference is a non-fatal contract
+      // mismatch between the current Stage-21 backend and the newer UI.
+      // Normalize it instead of blocking the educational content.
+      const lesson = normalizeLessonDetail(envelope.data);
       const contentUrl = grammarLessonUrl(bookSlug, lesson.lesson_no);
       const contentResponse = await fetchStaticHtml(contentUrl);
 
@@ -316,9 +361,15 @@ export function LessonContentClient({
     )[0] ?? null;
 
   const overviewHasEvidence = learning.overview.evidence_count > 0;
-  const masteryValue = overviewHasEvidence ? learning.overview.mastery_score_pct : null;
-  const confidenceValue = learning.overview.confidence * 100;
-  const coverageValue = learning.overview.coverage_ratio * 100;
+  const masteryValue = lesson.insights_available && overviewHasEvidence
+    ? learning.overview.mastery_score_pct
+    : null;
+  const confidenceValue = lesson.insights_available
+    ? learning.overview.confidence * 100
+    : null;
+  const coverageValue = lesson.insights_available
+    ? learning.overview.coverage_ratio * 100
+    : null;
   const practiceHref = `/${locale}/tests/new?lesson=${lesson.id}`;
   const reviewHref = learning.review_item_id
     ? `/${locale}/review/${learning.review_item_id}`
@@ -441,7 +492,20 @@ export function LessonContentClient({
         <aside className={styles.insightsPanel} aria-labelledby="lesson-insights-title">
           <h2 id="lesson-insights-title">{isFa ? "نقاط مهم برای شما" : "What matters for you"}</h2>
 
-          {topMisconception ? (
+          {!lesson.insights_available ? (
+            <StatusPanel
+              title={isFa ? "تحلیل یادگیری فعلاً از API دریافت نشده است" : "Learning analytics are not currently returned by the API"}
+              tone="warning"
+            >
+              <p>
+                {isFa
+                  ? "خود درس و زیرموضوع‌ها در دسترس‌اند و بدون وابستگی به این بخش نمایش داده می‌شوند. شاخص‌های شخصی پس از اتصال پاسخ توسعه‌یافتهٔ Backend دوباره فعال می‌شوند."
+                  : "The lesson and subtopics are available and render independently. Personalized metrics will automatically resume when the extended backend payload is available."}
+              </p>
+            </StatusPanel>
+          ) : null}
+
+          {lesson.insights_available && topMisconception ? (
             <article className={`${styles.insightCard} ${styles.misconceptionCard}`}>
               <p className={styles.cardEyebrow}>{isFa ? "خطای احتمالی شما" : "Likely misconception"}</p>
               <h3>{isFa ? (topMisconception.name_fa || topMisconception.statement_fa) : topMisconception.family}</h3>
@@ -455,35 +519,37 @@ export function LessonContentClient({
                 <Link href={reviewHref}>{isFa ? "مرور همین خطا ←" : "Review this mistake →"}</Link>
               ) : null}
             </article>
-          ) : (
+          ) : lesson.insights_available ? (
             <article className={styles.insightCard}>
               <p className={styles.cardEyebrow}>{isFa ? "خطاهای مفهومی" : "Misconceptions"}</p>
               <h3>{isFa ? "الگوی تکرارشونده‌ای ثبت نشده است" : "No repeated pattern is recorded"}</h3>
               <p>{isFa ? "با پاسخ‌دادن به سؤال‌های بیشتر، این بخش دقیق‌تر می‌شود." : "This area becomes more precise as you answer more questions."}</p>
             </article>
-          )}
+          ) : null}
 
-          <article className={styles.insightCard}>
-            <p className={styles.cardEyebrow}>{isFa ? "فعالیت اخیر" : "Recent activity"}</p>
-            {latestActivity ? (
-              <>
-                <h3>{formatActivityDate(latestActivity.completed_at, locale, isFa)}</h3>
-                <p>
-                  {latestActivity.question_count} {isFa ? "سؤال" : "questions"}
-                  {latestActivity.accuracy_pct != null ? ` · ${Math.round(latestActivity.accuracy_pct)}% ${isFa ? "دقت" : "accuracy"}` : ""}
-                  {` · ${formatDuration(latestActivity.duration_seconds, isFa)}`}
-                </p>
-                {latestActivity.accuracy_pct != null ? (
-                  <progress max={100} value={clampPercent(latestActivity.accuracy_pct)} aria-label={isFa ? "دقت آخرین تمرین" : "Latest practice accuracy"} />
-                ) : null}
-                <Link href={`/${locale}/attempts/${latestActivity.attempt_id}/result`}>
-                  {isFa ? "مشاهده نتیجه ←" : "View result →"}
-                </Link>
-              </>
-            ) : (
-              <p>{isFa ? "بعد از اولین تمرین، نتیجهٔ اخیر اینجا نمایش داده می‌شود." : "Your latest lesson result will appear here after the first practice."}</p>
-            )}
-          </article>
+          {lesson.insights_available ? (
+            <article className={styles.insightCard}>
+              <p className={styles.cardEyebrow}>{isFa ? "فعالیت اخیر" : "Recent activity"}</p>
+              {latestActivity ? (
+                <>
+                  <h3>{formatActivityDate(latestActivity.completed_at, locale, isFa)}</h3>
+                  <p>
+                    {latestActivity.question_count} {isFa ? "سؤال" : "questions"}
+                    {latestActivity.accuracy_pct != null ? ` · ${Math.round(latestActivity.accuracy_pct)}% ${isFa ? "دقت" : "accuracy"}` : ""}
+                    {` · ${formatDuration(latestActivity.duration_seconds, isFa)}`}
+                  </p>
+                  {latestActivity.accuracy_pct != null ? (
+                    <progress max={100} value={clampPercent(latestActivity.accuracy_pct)} aria-label={isFa ? "دقت آخرین تمرین" : "Latest practice accuracy"} />
+                  ) : null}
+                  <Link href={`/${locale}/attempts/${latestActivity.attempt_id}/result`}>
+                    {isFa ? "مشاهده نتیجه ←" : "View result →"}
+                  </Link>
+                </>
+              ) : (
+                <p>{isFa ? "بعد از اولین تمرین، نتیجهٔ اخیر اینجا نمایش داده می‌شود." : "Your latest lesson result will appear here after the first practice."}</p>
+              )}
+            </article>
+          ) : null}
 
           <article className={`${styles.insightCard} ${styles.suggestionCard}`}>
             <p className={styles.cardEyebrow}>{isFa ? "پیشنهاد تمرین" : "Practice suggestion"}</p>
@@ -501,8 +567,8 @@ export function LessonContentClient({
                 <h3>{isFa ? "ساخت شواهد یادگیری" : "Build learning evidence"}</h3>
                 <p>
                   {isFa
-                    ? "هنوز ضعف قابل اتکایی برای این درس برچسب‌گذاری نشده است. یک تمرین انجام دهید تا سنجش دقیق‌تر شود."
-                    : "No reliable weakness label is available for this lesson yet. Complete a practice to improve the evidence."}
+                    ? "یک تمرین از همین درس انجام دهید تا دادهٔ کافی برای تشخیص نقاط ضعف ایجاد شود."
+                    : "Complete a practice from this lesson to build enough evidence for weakness detection."}
                 </p>
               </>
             )}
