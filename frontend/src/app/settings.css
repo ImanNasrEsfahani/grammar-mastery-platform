@@ -382,25 +382,90 @@ html[data-theme="dark"] .settings-radio-cards button.selected .radio-dot {
   .settings-side-stack .settings-section:last-child { grid-column: 1 / -1; }
 }
 
-@media (max-width: 760px) {
+/*
+ * Mobile layout:
+ * - normal narrow viewports use the 760px breakpoint;
+ * - coarse-pointer devices also get the true single-column layout up to 1040px.
+ *
+ * The second condition is deliberate: mobile Safari can occasionally expose a
+ * wider CSS viewport (for example when "Request Desktop Website" is active),
+ * which previously left the settings cards in the two-column tablet layout.
+ * Fine-pointer laptops/desktops keep the existing multi-column arrangement.
+ */
+@media (max-width: 760px), (max-width: 1040px) and (hover: none) and (pointer: coarse) {
   .settings-page-header { align-items: stretch; flex-direction: column; }
   .settings-header-actions { justify-content: stretch; }
   .settings-header-actions .button { flex: 1 1 auto; }
   .settings-dirty-indicator { flex-basis: 100%; }
-  .settings-layout { display: flex; flex-direction: column; }
-  .settings-nav { position: static; inline-size: 100%; }
-  .settings-nav nav { display: flex; overflow-x: auto; padding-block-end: 0.2rem; scrollbar-width: thin; }
-  .settings-nav nav a { flex: 0 0 auto; grid-template-columns: auto auto; min-block-size: 40px; }
+
+  .settings-layout {
+    display: flex;
+    flex-direction: column;
+    inline-size: 100%;
+    min-inline-size: 0;
+  }
+
+  .settings-nav {
+    position: static;
+    inline-size: 100%;
+  }
+  .settings-nav nav {
+    display: flex;
+    overflow-x: auto;
+    padding-block-end: 0.2rem;
+    scrollbar-width: thin;
+  }
+  .settings-nav nav a {
+    flex: 0 0 auto;
+    grid-template-columns: auto auto;
+    min-block-size: 40px;
+  }
   .settings-nav nav a b { display: none; }
   .settings-nav-note { display: none; }
-  .settings-main, .settings-side-stack { inline-size: 100%; }
-  .settings-side-stack { display: grid; grid-template-columns: 1fr; }
-  .settings-row, .settings-row-stacked { grid-template-columns: 1fr; gap: 0.55rem; align-items: stretch; }
-  .settings-row-control { justify-content: flex-start; }
+
+  .settings-main,
+  .settings-side-stack {
+    inline-size: 100%;
+    min-inline-size: 0;
+  }
+  .settings-side-stack {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .settings-side-stack .settings-section,
+  .settings-side-stack .settings-section:last-child {
+    grid-column: 1;
+    inline-size: 100%;
+  }
+
+  .settings-section {
+    inline-size: 100%;
+    max-inline-size: 100%;
+  }
+
+  .settings-row,
+  .settings-row-stacked,
+  .settings-section-compact .settings-row-stacked {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.55rem;
+    align-items: stretch;
+  }
+  .settings-row-control {
+    inline-size: 100%;
+    justify-content: flex-start;
+  }
   [dir="rtl"] .settings-row-control { justify-content: flex-start; }
-  .settings-row select, .settings-section select { inline-size: 100%; }
-  .settings-segmented { inline-size: 100%; }
-  .settings-radio-cards { grid-template-columns: 1fr; }
+  .settings-row select,
+  .settings-section select {
+    inline-size: 100%;
+    min-inline-size: 0;
+  }
+  .settings-segmented {
+    inline-size: 100%;
+    min-inline-size: 0;
+  }
+  .settings-segmented.full { inline-size: 100%; }
+  .settings-radio-cards { grid-template-columns: minmax(0, 1fr); }
   .settings-range-control { inline-size: 100%; }
 }
 
