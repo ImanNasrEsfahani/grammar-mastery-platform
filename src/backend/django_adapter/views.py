@@ -10,6 +10,7 @@ from backend.django_adapter import (
     runtime_dashboard,
     runtime_history,
     runtime_learning,
+    runtime_mastery,
     runtime_notifications,
     runtime_review,
     runtime_search,
@@ -68,6 +69,8 @@ class ContractEndpointView(APIView):
             return runtime_review.reveal_review_answer_request(request, review_id=kwargs.get("reviewId"))
         if operation_id == "setReviewMark":
             return runtime_review.set_review_mark_request(request, review_id=kwargs.get("reviewId"))
+        if operation_id == "getMastery":
+            return runtime_mastery.mastery_request(request)
         if operation_id == "getDashboard":
             return runtime_review.dashboard_request(request)
         if operation_id == "getCurrentNextAction":

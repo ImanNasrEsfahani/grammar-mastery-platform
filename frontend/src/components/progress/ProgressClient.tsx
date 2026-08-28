@@ -193,7 +193,7 @@ export function ProgressClient({locale}: {locale: Locale}) {
               ))}
             </div>
           ) : <EmptyState>{isFa ? "هنوز داده کافی برای نقشه تسلط وجود ندارد." : "No mastery evidence is available yet."}</EmptyState>}
-          <a className={styles.textButton} href="#mastery-by-topic">{isFa ? "مشاهده نقشه تسلط" : "View mastery map"}</a>
+          <Link className={styles.textButton} href={`/${locale}/mastery-map`}>{isFa ? "مشاهده نقشه تسلط" : "View mastery map"}</Link>
         </section>
 
         <section className={styles.card} aria-labelledby="study-progress-title">
