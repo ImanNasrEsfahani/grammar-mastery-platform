@@ -72,6 +72,7 @@ urlpatterns.append(path("history", _view({"GET": "listHistory"}, {"GET": USER}),
 urlpatterns.append(path("search", _view({"GET": "searchGrammar"}, {"GET": USER}), name="searchGrammar"))
 urlpatterns.append(path("streak", _view({"GET": "getStreakDetail"}, {"GET": USER}), name="getStreakDetail"))
 urlpatterns.append(path("account", _view({"GET": "getAccountSummary"}, {"GET": AUTHENTICATED}), name="getAccountSummary"))
+urlpatterns.append(path("mastery-map", _view({"GET": "getMasteryMap"}, {"GET": USER}), name="getMasteryMap"))
 
 # Real persisted notifications. Read state belongs to the server, not localStorage.
 urlpatterns.append(path("notifications", _view({"GET": "listNotifications"}, {"GET": USER}), name="listNotifications"))

@@ -11,6 +11,7 @@ from backend.django_adapter import (
     runtime_history,
     runtime_learning,
     runtime_mastery,
+    runtime_mastery_map,
     runtime_notifications,
     runtime_review,
     runtime_search,
@@ -23,9 +24,9 @@ class ContractEndpointView(APIView):
     """Route a frozen Stage 21 operation or an explicitly additive UI provider.
 
     Runtime providers are bound incrementally. History, Grammar Search, Streak
-    Detail, Account Summary and Notifications are additive learner providers and
-    intentionally stay outside ROUTE_OPERATION_IDS so the frozen Stage 21
-    operation set remains contract compatible.
+    Detail, Account Summary, Mastery Map and Notifications are additive learner
+    providers and intentionally stay outside ROUTE_OPERATION_IDS so the frozen
+    Stage 21 operation set remains contract compatible.
     """
 
     operations: dict[str, str] = {}
@@ -71,6 +72,8 @@ class ContractEndpointView(APIView):
             return runtime_review.set_review_mark_request(request, review_id=kwargs.get("reviewId"))
         if operation_id == "getMastery":
             return runtime_mastery.mastery_request(request)
+        if operation_id == "getMasteryMap":
+            return runtime_mastery_map.mastery_map_request(request)
         if operation_id == "getDashboard":
             return runtime_review.dashboard_request(request)
         if operation_id == "getCurrentNextAction":
