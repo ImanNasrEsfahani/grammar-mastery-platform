@@ -48,6 +48,23 @@ describe("ReviewInbox", () => {
     mockedApi.mockResolvedValue(envelope as never);
   });
 
+  it("keeps the default inbox on the SRS concept schedule instead of mistake history", async () => {
+    render(<ReviewInbox locale="en" />);
+
+    expect(await screen.findByRole("heading", {name: "Review Inbox"})).toBeInTheDocument();
+
+    await waitFor(() => {
+      const reviewCall = mockedApi.mock.calls.find(([url]) =>
+        typeof url === "string" && url.startsWith("/api/backend/reviews?"),
+      );
+      expect(reviewCall).toBeDefined();
+      const url = String(reviewCall?.[0]);
+      expect(url).toContain("filter%5Bkind%5D=SPACED");
+      // Keep future SRS schedules available to the Week/Later planning tabs.
+      expect(url).not.toContain("filter%5Bdue%5D=true");
+    });
+  });
+
   it("renders the real review queue and filters loaded rows by search", async () => {
     const user = userEvent.setup();
     render(<ReviewInbox locale="en" />);

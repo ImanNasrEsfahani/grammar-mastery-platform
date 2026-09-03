@@ -424,6 +424,10 @@ export function ReviewInbox({locale}: {locale: Locale}) {
     params.set("page[size]", String(PAGE_SIZE));
     params.set("sort", sort === "-due_at" ? "-due_at" : "due_at");
     if (cursor) params.set("page[after]", cursor);
+    // The main inbox is the SRS concept schedule. Historical Stage-16 mistakes
+    // stay available under "My mistakes", but must not masquerade as a review
+    // that is still due after the concept's due_at has already moved forward.
+    if (mode === "inbox") params.set("filter[kind]", "SPACED");
     if (mode === "mistakes") params.set("filter[kind]", "MISTAKE");
     if (mode === "spaced") params.set("filter[kind]", "SPACED");
     if (mode === "saved") params.set("filter[marked]", "true");

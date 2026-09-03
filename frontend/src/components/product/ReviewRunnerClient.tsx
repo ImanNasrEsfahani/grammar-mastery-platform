@@ -537,7 +537,28 @@ export function ReviewRunnerClient({
         ...base.answers.filter((entry) => entry.cursor !== currentIndex),
         answer,
       ];
-      persistSession({...base, cursor: currentIndex, answers});
+
+      // gradeReview already persists the new SRS clock on the server. Keep the
+      // session snapshot in lock-step with that response so the sidebar and the
+      // current-card due label stop showing the pre-grade date immediately.
+      const schedule = payload.data.schedule ?? payload.data.review_item.schedule ?? null;
+      const existingSummary = base.summaries.find((summary) => summary.id === reviewId);
+      const nextSummary: ReviewSummary = {
+        ...(existingSummary ?? fallbackSummary(payload.data.review_item)),
+        id: reviewId,
+        kind: payload.data.review_item.kind
+          ?? existingSummary?.kind
+          ?? (schedule ? "SPACED" : "MISTAKE"),
+        status: schedule?.status ?? payload.data.review_item.resolution_status,
+        due_at: schedule?.due_at ?? existingSummary?.due_at ?? null,
+        marked: payload.data.review_item.marked,
+      };
+      persistSession({
+        ...base,
+        cursor: currentIndex,
+        answers,
+        summaries: mergeSummaries(base.summaries, [nextSummary]),
+      });
     } catch (caught) {
       setError(
         caught instanceof ApiError

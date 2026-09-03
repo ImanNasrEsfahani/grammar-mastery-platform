@@ -174,6 +174,32 @@ test("reveals misconception, related rule and mastery impact only after grading"
   expect(screen.getByText(/امتیاز آزمون اصلی بازنویسی نمی‌شود/)).toBeInTheDocument();
 });
 
+test("syncs the session summary to the new SRS due_at immediately after grading", async () => {
+  vi.mocked(apiRequest)
+    .mockResolvedValueOnce(itemPayload())
+    .mockResolvedValueOnce(queuePayload())
+    .mockResolvedValueOnce(gradePayload(false));
+
+  const user = userEvent.setup();
+  render(<ReviewRunnerClient locale="fa" reviewId={reviewId} />);
+
+  await screen.findByText("Le livre ______ j’ai acheté est très intéressant.");
+  await user.click(screen.getByText("dont"));
+  await user.click(screen.getByRole("button", {name: "ثبت پاسخ"}));
+  expect(await screen.findByText("نیاز به مرور دوباره")).toBeInTheDocument();
+
+  await waitFor(() => {
+    const raw = window.sessionStorage.getItem("gmp-review-session-v1:fa");
+    expect(raw).not.toBeNull();
+    const stored = JSON.parse(raw ?? "{}") as {
+      summaries?: Array<{id: string; status: string; due_at?: string | null}>;
+    };
+    const summary = stored.summaries?.find((entry) => entry.id === reviewId);
+    expect(summary?.status).toBe("SCHEDULED");
+    expect(summary?.due_at).toBe("2026-08-26T17:00:00Z");
+  });
+});
+
 test("supports keyboard selection and repeat-in-session with visible queue confirmation", async () => {
   vi.mocked(apiRequest)
     .mockResolvedValueOnce(itemPayload())
