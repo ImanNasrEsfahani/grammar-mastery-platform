@@ -271,12 +271,42 @@ export function DashboardClient({locale}: {locale: Locale}) {
 }
 
 function OverallRing({value, isFa}: {value: number | null; isFa: boolean}) {
-  const safe = value ?? 0;
+  const safe = Math.max(0, Math.min(100, value ?? 0));
+  const radius = 41;
+  const center = 50;
+
+  // Draw the progress as one OPEN arc instead of a dash pattern on a closed
+  // circle. This avoids the SVG seam at the circle's start/end point that was
+  // visible as a notch/split in Chromium at the top of the progress ring.
+  const angle = safe >= 100 ? 359.999 : safe * 3.6;
+  const toPoint = (degrees: number) => {
+    const radians = (degrees * Math.PI) / 180;
+    return {
+      x: center + radius * Math.cos(radians),
+      y: center + radius * Math.sin(radians),
+    };
+  };
+  const start = toPoint(0);
+  const end = toPoint(angle);
+  const arcPath = safe > 0
+    ? `M ${start.x} ${start.y} A ${radius} ${radius} 0 ${angle > 180 ? 1 : 0} 1 ${end.x} ${end.y}`
+    : null;
+
   return (
     <div className="overall-ring-wrap">
       <svg className="overall-ring" viewBox="0 0 100 100" role="img" aria-label={value === null ? (isFa ? "تسلط کلی هنوز محاسبه نشده است" : "Overall mastery is not available yet") : `${isFa ? "تسلط کلی" : "Overall mastery"}: ${value}%`}>
-        <circle className="overall-ring-track" cx="50" cy="50" r="41" pathLength="100" />
-        <circle className="overall-ring-value" cx="50" cy="50" r="41" pathLength="100" strokeDasharray={`${safe} ${100 - safe}`} />
+        <circle className="overall-ring-track" cx="50" cy="50" r="41" />
+        {arcPath ? (
+          <path
+            className="overall-ring-value"
+            d={arcPath}
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="9"
+            strokeLinecap="round"
+            vectorEffect="non-scaling-stroke"
+          />
+        ) : null}
       </svg>
       <span><strong>{value === null ? "—" : `${value}%`}</strong><small>{isFa ? "پیشرفت کلی" : "overall"}</small></span>
     </div>

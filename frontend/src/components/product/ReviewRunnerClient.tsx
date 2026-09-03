@@ -597,6 +597,17 @@ export function ReviewRunnerClient({
     setSummaryView(true);
   }, [currentIndex, navigateTo, session]);
 
+  // When the final queued answer has been graded and persisted, the review
+  // session is complete. Move directly to the existing summary instead of
+  // leaving the learner on the last answered question with nowhere obvious
+  // to go. A requested repeat keeps the session open because a new item has
+  // been appended to the queue.
+  useEffect(() => {
+    if (!feedback || !session || submitting || repeatPending) return;
+    if (answeredCount < totalItems) return;
+    setSummaryView(true);
+  }, [answeredCount, feedback, repeatPending, session, submitting, totalItems]);
+
   useEffect(() => {
     if (!item || feedback || submitting || item.reviewability === "HISTORY_ONLY") return;
     const onKeyDown = (event: KeyboardEvent) => {
