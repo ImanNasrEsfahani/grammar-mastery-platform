@@ -53,6 +53,7 @@ type ReviewItem = {
 
 type PriorityLevel = "high" | "medium" | "low";
 type ApiPriorityLevel = "HIGH" | "MEDIUM" | "LOW";
+type ReviewSessionMode = "single" | "due";
 
 type ReviewSummary = {
   id: string;
@@ -101,7 +102,8 @@ type SessionAnswer = {
 };
 
 type ReviewSession = {
-  version: 1;
+  version: 2;
+  mode: ReviewSessionMode;
   started_at: number;
   cursor: number;
   order: string[];
@@ -119,49 +121,56 @@ type PriorityInfo = {
 
 const SESSION_MAX_AGE_MS = 12 * 60 * 60 * 1000;
 const REVIEW_PRIORITY_VERSION = "review-priority-ui-v1.0.0";
+const REVIEW_PAGE_SIZE = 100;
+const MAX_QUEUE_PAGES = 500;
 
-function sessionKey(locale: Locale) {
-  return `gmp-review-session-v1:${locale}`;
+function sessionKey(locale: Locale, mode: ReviewSessionMode, reviewId: string) {
+  return mode === "due"
+    ? `gmp-review-session-v2:${locale}:due`
+    : `gmp-review-session-v2:${locale}:single:${reviewId}`;
 }
 
-function readSession(locale: Locale): ReviewSession | null {
+function readSession(locale: Locale, mode: ReviewSessionMode, reviewId: string): ReviewSession | null {
   if (typeof window === "undefined") return null;
+  const key = sessionKey(locale, mode, reviewId);
   try {
-    const raw = window.sessionStorage.getItem(sessionKey(locale));
+    const raw = window.sessionStorage.getItem(key);
     if (!raw) return null;
     const parsed = JSON.parse(raw) as ReviewSession;
     if (
-      parsed.version !== 1 ||
+      parsed.version !== 2 ||
+      parsed.mode !== mode ||
       !Array.isArray(parsed.order) ||
       !Array.isArray(parsed.summaries) ||
       !Array.isArray(parsed.answers) ||
       !Array.isArray(parsed.repeat_requested_ids) ||
       Date.now() - parsed.started_at > SESSION_MAX_AGE_MS
     ) {
-      window.sessionStorage.removeItem(sessionKey(locale));
+      window.sessionStorage.removeItem(key);
       return null;
     }
     return parsed;
   } catch {
+    window.sessionStorage.removeItem(key);
     return null;
   }
 }
 
-function writeSession(locale: Locale, session: ReviewSession) {
+function writeSession(locale: Locale, reviewId: string, session: ReviewSession) {
   if (typeof window === "undefined") return;
-  window.sessionStorage.setItem(sessionKey(locale), JSON.stringify(session));
+  window.sessionStorage.setItem(sessionKey(locale, session.mode, reviewId), JSON.stringify(session));
 }
 
-function clearSession(locale: Locale) {
+function clearSession(locale: Locale, mode: ReviewSessionMode, reviewId: string) {
   if (typeof window === "undefined") return;
-  window.sessionStorage.removeItem(sessionKey(locale));
+  window.sessionStorage.removeItem(sessionKey(locale, mode, reviewId));
 }
 
 function fallbackSummary(item: ReviewItem): ReviewSummary {
   return {
     id: item.id,
     kind: item.kind ?? (item.schedule ? "SPACED" : "MISTAKE"),
-    status: item.resolution_status,
+    status: item.schedule?.status ?? item.resolution_status,
     title: item.question.question_type,
     repeat_count: item.schedule?.consecutive_correct_reviews ?? 0,
     due_at: item.schedule?.due_at ?? null,
@@ -175,6 +184,15 @@ function mergeSummaries(current: ReviewSummary[], incoming: ReviewSummary[]) {
     map.set(summary.id, {...map.get(summary.id), ...summary});
   }
   return [...map.values()];
+}
+
+function isDueTodayOrOverdue(summary: ReviewSummary, now = new Date()) {
+  if (summary.kind !== "SPACED" || !["DUE", "SCHEDULED"].includes(summary.status) || !summary.due_at) return false;
+  const due = new Date(summary.due_at);
+  if (Number.isNaN(due.getTime())) return false;
+  const dueDay = new Date(due.getFullYear(), due.getMonth(), due.getDate()).getTime();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
+  return dueDay <= today;
 }
 
 function normalizeApiPriority(priority: ApiPriorityLevel | null | undefined): PriorityLevel | null {
@@ -339,9 +357,13 @@ function scheduleStateLabel(schedule: ReviewSchedule | null, isFa: boolean) {
 export function ReviewRunnerClient({
   locale,
   reviewId,
+  sessionMode = "single",
+  forceFresh = false,
 }: {
   locale: Locale;
   reviewId: string;
+  sessionMode?: ReviewSessionMode;
+  forceFresh?: boolean;
 }) {
   const isFa = locale === "fa";
   const router = useRouter();
@@ -358,30 +380,45 @@ export function ReviewRunnerClient({
 
   const persistSession = useCallback((next: ReviewSession) => {
     setSession(next);
-    writeSession(locale, next);
-  }, [locale]);
+    writeSession(locale, reviewId, next);
+  }, [locale, reviewId]);
 
   const ensureSession = useCallback((queue: ReviewSummary[], loadedItem: ReviewItem) => {
     const fallback = fallbackSummary(loadedItem);
-    const dueQueue = queue.length ? queue : [fallback];
-    const saved = readSession(locale);
+    if (forceFresh) clearSession(locale, sessionMode, reviewId);
+    const saved = forceFresh ? null : readSession(locale, sessionMode, reviewId);
 
-    if (saved) {
-      const matchingIndexes = saved.order
-        .map((id, index) => ({id, index}))
-        .filter((entry) => entry.id === reviewId);
-      let cursor = saved.cursor;
-      if (saved.order[cursor] !== reviewId && matchingIndexes.length) {
-        const pendingMatch = matchingIndexes.find(
-          ({index}) => !saved.answers.some((answer) => answer.cursor === index),
-        );
-        const firstMatch = matchingIndexes[0];
-        if (firstMatch) cursor = pendingMatch?.index ?? firstMatch.index;
+    if (sessionMode === "single") {
+      // A completed singleton must never leak into a later click on the same card.
+      // Only an unanswered singleton is resumable; inbox links also pass fresh=1.
+      if (saved && saved.order.length === 1 && saved.order[0] === reviewId && saved.answers.length === 0) {
+        persistSession({
+          ...saved,
+          cursor: 0,
+          summaries: mergeSummaries(saved.summaries, [fallback]),
+        });
+        return;
       }
+      persistSession({
+        version: 2,
+        mode: "single",
+        started_at: Date.now(),
+        cursor: 0,
+        order: [reviewId],
+        summaries: [fallback],
+        answers: [],
+        repeat_requested_ids: [],
+      });
+      return;
+    }
+
+    const dueQueue = queue.length ? queue : [fallback];
+    if (saved) {
       const hasReview = saved.order.includes(reviewId);
+      const matchingIndex = saved.order.indexOf(reviewId);
       persistSession({
         ...saved,
-        cursor: hasReview ? cursor : saved.order.length,
+        cursor: hasReview ? matchingIndex : saved.order.length,
         order: hasReview ? saved.order : [...saved.order, reviewId],
         summaries: mergeSummaries(mergeSummaries([fallback], saved.summaries), dueQueue),
       });
@@ -391,7 +428,8 @@ export function ReviewRunnerClient({
     const order = dueQueue.map((summary) => summary.id);
     if (!order.includes(reviewId)) order.unshift(reviewId);
     persistSession({
-      version: 1,
+      version: 2,
+      mode: "due",
       started_at: Date.now(),
       cursor: Math.max(0, order.indexOf(reviewId)),
       order,
@@ -399,21 +437,66 @@ export function ReviewRunnerClient({
       answers: [],
       repeat_requested_ids: [],
     });
-  }, [locale, persistSession, reviewId]);
+  }, [forceFresh, locale, persistSession, reviewId, sessionMode]);
 
   const loadQueue = useCallback(async (loadedItem: ReviewItem) => {
+    if (sessionMode === "single") {
+      ensureSession([], loadedItem);
+      return;
+    }
+
     setQueueLoading(true);
     try {
-      const payload = await apiRequest<ReviewCollectionEnvelope>(
-        "/api/backend/reviews?page[size]=25&filter[due]=true",
+      const merged = new Map<string, ReviewSummary>();
+      const seenCursors = new Set<string>();
+      let cursor: string | null = null;
+      let completed = false;
+
+      for (let pageIndex = 0; pageIndex < MAX_QUEUE_PAGES; pageIndex += 1) {
+        const params = new URLSearchParams();
+        params.set("page[size]", String(REVIEW_PAGE_SIZE));
+        params.set("sort", "due_at");
+        params.set("filter[kind]", "SPACED");
+        if (cursor) params.set("page[after]", cursor);
+
+        const payload = await apiRequest<ReviewCollectionEnvelope>(
+          `/api/backend/reviews?${params.toString()}`,
+        );
+        if (!payload) throw new Error("Review queue returned no payload.");
+
+        for (const summary of payload.data ?? []) merged.set(summary.id, summary);
+        const nextCursor = payload.page?.next_cursor ?? null;
+        const hasMore = Boolean(payload.page?.has_more && nextCursor);
+        if (!hasMore) {
+          completed = true;
+          break;
+        }
+        if (!nextCursor || seenCursors.has(nextCursor)) {
+          throw new Error("Review queue pagination returned a repeated cursor.");
+        }
+        seenCursors.add(nextCursor);
+        cursor = nextCursor;
+      }
+
+      if (!completed) throw new Error("Review queue exceeded the pagination safety limit.");
+      const dueQueue = [...merged.values()].filter((summary) => isDueTodayOrOverdue(summary));
+      ensureSession(dueQueue, loadedItem);
+    } catch (caught) {
+      setError(
+        caught instanceof ApiError
+          ? caught
+          : new ApiError({
+              status: 0,
+              code: "REVIEW_QUEUE_LOAD_FAILED",
+              message: isFa
+                ? "صف کامل مرورهای سررسید بارگذاری نشد. برای جلوگیری از ساخت جلسه ناقص، جلسه شروع نشد."
+                : "The complete due-review queue could not be loaded, so an incomplete session was not started.",
+            }),
       );
-      ensureSession(payload?.data ?? [], loadedItem);
-    } catch {
-      ensureSession([], loadedItem);
     } finally {
       setQueueLoading(false);
     }
-  }, [ensureSession]);
+  }, [ensureSession, isFa, sessionMode]);
 
   const load = useCallback(async () => {
     setError(null);
@@ -492,8 +575,8 @@ export function ReviewRunnerClient({
 
   const navigateTo = useCallback((targetId: string, targetCursor: number) => {
     if (session) persistSession({...session, cursor: targetCursor});
-    router.push(`/${locale}/review/${targetId}`);
-  }, [locale, persistSession, router, session]);
+    router.push(`/${locale}/review/${targetId}?mode=${sessionMode}`);
+  }, [locale, persistSession, router, session, sessionMode]);
 
   const submit = useCallback(async () => {
     if (!selectedId || submitting || feedbackData || !item) return;
@@ -520,7 +603,8 @@ export function ReviewRunnerClient({
       setFeedbackData(payload.data);
 
       const base = session ?? {
-        version: 1 as const,
+        version: 2 as const,
+        mode: sessionMode,
         started_at: Date.now(),
         cursor: 0,
         order: [reviewId],
@@ -538,9 +622,6 @@ export function ReviewRunnerClient({
         answer,
       ];
 
-      // gradeReview already persists the new SRS clock on the server. Keep the
-      // session snapshot in lock-step with that response so the sidebar and the
-      // current-card due label stop showing the pre-grade date immediately.
       const schedule = payload.data.schedule ?? payload.data.review_item.schedule ?? null;
       const existingSummary = base.summaries.find((summary) => summary.id === reviewId);
       const nextSummary: ReviewSummary = {
@@ -572,7 +653,7 @@ export function ReviewRunnerClient({
     } finally {
       setSubmitting(false);
     }
-  }, [currentIndex, feedbackData, item, persistSession, reviewId, selectedId, session, submitting]);
+  }, [currentIndex, feedbackData, item, persistSession, reviewId, selectedId, session, sessionMode, submitting]);
 
   const toggleRepeatInSession = useCallback(() => {
     if (!item || !session) return;
@@ -600,9 +681,9 @@ export function ReviewRunnerClient({
   }, [currentIndex, item, persistSession, reviewId, session]);
 
   const finishSession = useCallback(() => {
-    clearSession(locale);
+    clearSession(locale, sessionMode, reviewId);
     router.push(`/${locale}/review`);
-  }, [locale, router]);
+  }, [locale, reviewId, router, sessionMode]);
 
   const goNext = useCallback(() => {
     if (!session) {
@@ -618,11 +699,6 @@ export function ReviewRunnerClient({
     setSummaryView(true);
   }, [currentIndex, navigateTo, session]);
 
-  // When the final queued answer has been graded and persisted, the review
-  // session is complete. Move directly to the existing summary instead of
-  // leaving the learner on the last answered question with nowhere obvious
-  // to go. A requested repeat keeps the session open because a new item has
-  // been appended to the queue.
   useEffect(() => {
     if (!feedback || !session || submitting || repeatPending) return;
     if (answeredCount < totalItems) return;
@@ -676,6 +752,19 @@ export function ReviewRunnerClient({
     return <LoadingCard label={isFa ? "آماده‌سازی جلسه مرور" : "Preparing review session"} />;
   }
 
+  if (sessionMode === "due" && item && !session && !queueLoading && error) {
+    return (
+      <StatusPanel
+        title={error.message}
+        tone="danger"
+        requestId={error.requestId}
+        action={{label: isFa ? "تلاش دوباره" : "Retry", onClick: load}}
+      >
+        <p>{error.code}</p>
+      </StatusPanel>
+    );
+  }
+
   if (!item) {
     return (
       <StatusPanel
@@ -704,26 +793,13 @@ export function ReviewRunnerClient({
             : "This session is stored as review evidence; the original test score is not rewritten."}
         </p>
         <div className={styles.summaryMetrics}>
-          <div>
-            <strong>{formatNumber(answeredCount, isFa)}</strong>
-            <span>{isFa ? "مرور انجام‌شده" : "Reviewed"}</span>
-          </div>
-          <div>
-            <strong>{formatNumber(sessionAccuracy, isFa)}%</strong>
-            <span>{isFa ? "دقت جلسه" : "Session accuracy"}</span>
-          </div>
-          <div>
-            <strong>{formatNumber(session?.repeat_requested_ids.length ?? 0, isFa)}</strong>
-            <span>{isFa ? "تکرار در جلسه" : "Repeated in session"}</span>
-          </div>
+          <div><strong>{formatNumber(answeredCount, isFa)}</strong><span>{isFa ? "مرور انجام‌شده" : "Reviewed"}</span></div>
+          <div><strong>{formatNumber(sessionAccuracy, isFa)}%</strong><span>{isFa ? "دقت جلسه" : "Session accuracy"}</span></div>
+          <div><strong>{formatNumber(session?.repeat_requested_ids.length ?? 0, isFa)}</strong><span>{isFa ? "تکرار در جلسه" : "Repeated in session"}</span></div>
         </div>
         <div className={styles.summaryActions}>
-          <button className={styles.primaryButton} type="button" onClick={finishSession}>
-            {isFa ? "بازگشت به صندوق مرور" : "Back to review inbox"}
-          </button>
-          <Link className={styles.secondaryButton} href={`/${locale}/tests/new`}>
-            {isFa ? "ساخت تمرین جدید" : "Build a practice test"}
-          </Link>
+          <button className={styles.primaryButton} type="button" onClick={finishSession}>{isFa ? "بازگشت به صندوق مرور" : "Back to review inbox"}</button>
+          <Link className={styles.secondaryButton} href={`/${locale}/tests/new`}>{isFa ? "ساخت تمرین جدید" : "Build a practice test"}</Link>
         </div>
       </section>
     );
@@ -740,9 +816,7 @@ export function ReviewRunnerClient({
   const intervalAfter = scheduleAfter?.interval_days ?? null;
   const streakBefore = scheduleBefore?.consecutive_correct_reviews ?? null;
   const streakAfter = scheduleAfter?.consecutive_correct_reviews ?? null;
-  const impactDelta = intervalBefore !== null && intervalAfter !== null
-    ? intervalAfter - intervalBefore
-    : null;
+  const impactDelta = intervalBefore !== null && intervalAfter !== null ? intervalAfter - intervalBefore : null;
   const queueRows = session?.order.map((id, index) => ({
     id,
     index,
@@ -752,114 +826,48 @@ export function ReviewRunnerClient({
 
   return (
     <div className={styles.reviewSession} dir="ltr">
-      <aside
-        dir={isFa ? "rtl" : "ltr"}
-        className={styles.inboxPanel}
-        aria-label={isFa ? "فهرست جلسه مرور" : "Review session list"}
-      >
+      <aside dir={isFa ? "rtl" : "ltr"} className={styles.inboxPanel} aria-label={isFa ? "فهرست جلسه مرور" : "Review session list"}>
         <div className={styles.panelHeader}>
-          <div>
-            <span className={styles.eyebrow}>{isFa ? "صندوق بازبینی" : "Review inbox"}</span>
-            <h2>{isFa ? "مرور خطاها" : "Error review"}</h2>
-          </div>
-          <Link
-            className={styles.backLink}
-            href={`/${locale}/review`}
-            aria-label={isFa ? "بازگشت به صندوق مرور" : "Back to review inbox"}
-          >‹</Link>
+          <div><span className={styles.eyebrow}>{isFa ? "صندوق بازبینی" : "Review inbox"}</span><h2>{sessionMode === "single" ? (isFa ? "مرور این مورد" : "Single review") : (isFa ? "مرور سررسیدها" : "Due reviews")}</h2></div>
+          <Link className={styles.backLink} href={`/${locale}/review`} aria-label={isFa ? "بازگشت به صندوق مرور" : "Back to review inbox"}>‹</Link>
         </div>
-        <div className={styles.listCaption}>
-          <span>{isFa ? "لیست مرور" : "Review list"}</span>
-          <span>{queueLoading ? "…" : `(${formatNumber(totalItems, isFa)})`}</span>
-        </div>
+        <div className={styles.listCaption}><span>{isFa ? "لیست مرور" : "Review list"}</span><span>{queueLoading ? "…" : `(${formatNumber(totalItems, isFa)})`}</span></div>
         <div className={styles.queueList}>
           {queueRows.map(({id, index, summary, answered}) => {
             const rowPriority = priorityInfoFor(summary ?? null);
             const active = index === currentIndex;
             return (
-              <button
-                type="button"
-                key={`${id}-${index}`}
-                className={`${styles.queueCard} ${active ? styles.queueCardActive : ""}`}
-                aria-current={active ? "step" : undefined}
-                aria-label={`${summary?.title ?? "Grammar review"}; ${priorityLabel(rowPriority.level, isFa)}; ${formatDue(summary?.due_at, isFa)}`}
-                onClick={() => navigateTo(id, index)}
-              >
-                <span className={`${styles.priorityBadge} ${styles[`priority_${rowPriority.level}`]}`}>
-                  {priorityLabel(rowPriority.level, isFa)}
-                </span>
-                <span className={styles.queueCopy}>
-                  <strong>{summary?.title ?? (isFa ? "مرور گرامر" : "Grammar review")}</strong>
-                  <small>↻ {formatDue(summary?.due_at, isFa)}</small>
-                </span>
-                <span
-                  className={`${styles.repeatBubble} ${answered ? (answered.is_correct ? styles.repeatBubbleCorrect : styles.repeatBubbleIncorrect) : ""}`}
-                  aria-label={isFa ? "تعداد تکرار" : "Repeat count"}
-                >
-                  {formatNumber(summary?.repeat_count ?? 0, isFa)}
-                </span>
+              <button type="button" key={`${id}-${index}`} className={`${styles.queueCard} ${active ? styles.queueCardActive : ""}`} aria-current={active ? "step" : undefined} aria-label={`${summary?.title ?? "Grammar review"}; ${priorityLabel(rowPriority.level, isFa)}; ${formatDue(summary?.due_at, isFa)}`} onClick={() => navigateTo(id, index)}>
+                <span className={`${styles.priorityBadge} ${styles[`priority_${rowPriority.level}`]}`}>{priorityLabel(rowPriority.level, isFa)}</span>
+                <span className={styles.queueCopy}><strong>{summary?.title ?? (isFa ? "مرور گرامر" : "Grammar review")}</strong><small>↻ {formatDue(summary?.due_at, isFa)}</small></span>
+                <span className={`${styles.repeatBubble} ${answered ? (answered.is_correct ? styles.repeatBubbleCorrect : styles.repeatBubbleIncorrect) : ""}`} aria-label={isFa ? "تعداد تکرار" : "Repeat count"}>{formatNumber(summary?.repeat_count ?? 0, isFa)}</span>
               </button>
             );
           })}
         </div>
-        <button className={styles.finishButton} type="button" onClick={finishSession}>
-          {isFa ? "پایان جلسه مرور" : "Finish review session"}
-        </button>
+        <button className={styles.finishButton} type="button" onClick={finishSession}>{isFa ? "پایان جلسه مرور" : "Finish review session"}</button>
       </aside>
 
       <main dir={isFa ? "rtl" : "ltr"} className={styles.runnerColumn}>
         <section className={styles.focusHeader} aria-label={isFa ? "پیشرفت سؤال جاری" : "Current review progress"}>
           <div className={styles.focusMeta}>
             <div className={styles.focusCounter}>
-              <button
-                type="button"
-                className={styles.roundButton}
-                disabled={!previousId}
-                onClick={() => previousId && navigateTo(previousId, currentIndex - 1)}
-                aria-label={isFa ? "مرور قبلی" : "Previous review"}
-              >‹</button>
-              <strong>
-                {isFa ? "سؤال" : "Question"} {formatNumber(currentIndex + 1, isFa)} {isFa ? "از" : "of"} {formatNumber(totalItems, isFa)}
-              </strong>
-              <button
-                type="button"
-                className={styles.roundButton}
-                disabled={!feedback || !nextId}
-                onClick={() => feedback && nextId && navigateTo(nextId, currentIndex + 1)}
-                aria-label={isFa ? "مرور بعدی" : "Next review"}
-              >›</button>
+              <button type="button" className={styles.roundButton} disabled={!previousId} onClick={() => previousId && navigateTo(previousId, currentIndex - 1)} aria-label={isFa ? "مرور قبلی" : "Previous review"}>‹</button>
+              <strong>{isFa ? "سؤال" : "Question"} {formatNumber(currentIndex + 1, isFa)} {isFa ? "از" : "of"} {formatNumber(totalItems, isFa)}</strong>
+              <button type="button" className={styles.roundButton} disabled={!feedback || !nextId} onClick={() => feedback && nextId && navigateTo(nextId, currentIndex + 1)} aria-label={isFa ? "مرور بعدی" : "Next review"}>›</button>
             </div>
-            <div className={styles.dueMeta}>
-              <span>{isFa ? "تکرار" : "Repeat"}: <strong>{formatNumber(currentSummary?.repeat_count ?? 0, isFa)}</strong></span>
-              <span>{isFa ? "سررسید" : "Due"}: <strong>{formatDue(currentSummary?.due_at, isFa)}</strong></span>
-            </div>
+            <div className={styles.dueMeta}><span>{isFa ? "تکرار" : "Repeat"}: <strong>{formatNumber(currentSummary?.repeat_count ?? 0, isFa)}</strong></span><span>{isFa ? "سررسید" : "Due"}: <strong>{formatDue(currentSummary?.due_at, isFa)}</strong></span></div>
           </div>
-          <div className={styles.progressTrack} aria-label={`${progressPct}%`}>
-            <span style={{inlineSize: `${Math.max(4, progressPct)}%`}} />
-          </div>
+          <div className={styles.progressTrack} aria-label={`${progressPct}%`}><span style={{inlineSize: `${Math.max(4, progressPct)}%`}} /></div>
           <small>{formatNumber(progressPct, isFa)}% {isFa ? "تکمیل جلسه" : "session complete"}</small>
         </section>
 
-        {error ? (
-          <StatusPanel title={error.message} tone="danger" requestId={error.requestId}>
-            <p>{error.code}</p>
-          </StatusPanel>
-        ) : null}
+        {error ? <StatusPanel title={error.message} tone="danger" requestId={error.requestId}><p>{error.code}</p></StatusPanel> : null}
 
         {item.reviewability === "HISTORY_ONLY" && !feedback ? (
           <section className={styles.historyOnlyCard}>
             <div className={styles.historyIcon} aria-hidden="true">i</div>
-            <div>
-              <h2>{isFa ? "این مورد فقط برای تاریخچه نگهداری می‌شود" : "This item is history-only"}</h2>
-              <p>
-                {isFa
-                  ? "سؤال دیگر برای تلاش مجدد ایمن نیست و در آزمون جدید استفاده نمی‌شود."
-                  : "This question is no longer safe for another retry and is excluded from new tests."}
-              </p>
-              <Link className={styles.secondaryButton} href={`/${locale}/review`}>
-                {isFa ? "بازگشت به صندوق مرور" : "Back to review inbox"}
-              </Link>
-            </div>
+            <div><h2>{isFa ? "این مورد فقط برای تاریخچه نگهداری می‌شود" : "This item is history-only"}</h2><p>{isFa ? "سؤال دیگر برای تلاش مجدد ایمن نیست و در آزمون جدید استفاده نمی‌شود." : "This question is no longer safe for another retry and is excluded from new tests."}</p><Link className={styles.secondaryButton} href={`/${locale}/review`}>{isFa ? "بازگشت به صندوق مرور" : "Back to review inbox"}</Link></div>
           </section>
         ) : (
           <section className={styles.questionCard} aria-labelledby="review-question">
@@ -867,296 +875,92 @@ export function ReviewRunnerClient({
               <div className={styles.tagRow}>
                 <span className={styles.lessonChip}>{currentSummary?.title ?? item.kind ?? "Review"}</span>
                 <span className={styles.metaChip}>{difficultyLabel(item.question.difficulty, isFa)}</span>
-                <span
-                  className={`${styles.priorityBadge} ${styles[`priority_${priority.level}`]}`}
-                  title={isFa ? priority.reasonFa : priority.reasonEn}
-                  data-priority-version={REVIEW_PRIORITY_VERSION}
-                >
-                  {isFa ? "اولویت" : "Priority"} {priorityLabel(priority.level, isFa)}
-                </span>
+                <span className={`${styles.priorityBadge} ${styles[`priority_${priority.level}`]}`} title={isFa ? priority.reasonFa : priority.reasonEn} data-priority-version={REVIEW_PRIORITY_VERSION}>{isFa ? "اولویت" : "Priority"} {priorityLabel(priority.level, isFa)}</span>
               </div>
-              {previousAnswer ? (
-                <span className={styles.previousAnswer}>
-                  {isFa ? "پاسخ قبلی" : "Previous answer"}: <b dir="ltr">{previousAnswer}</b>
-                </span>
-              ) : null}
+              {previousAnswer ? <span className={styles.previousAnswer}>{isFa ? "پاسخ قبلی" : "Previous answer"}: <b dir="ltr">{previousAnswer}</b></span> : null}
             </div>
 
-            <h1
-              className={styles.questionStem}
-              id="review-question"
-              dir={item.question.stem_locale.startsWith("fa") ? "rtl" : "ltr"}
-            >
-              {item.question.stem}
-            </h1>
-            <p className={styles.optionInstruction}>
-              {isFa
-                ? "یک گزینه را از حافظه انتخاب کنید. میانبرهای ۱ تا ۴ فعال‌اند."
-                : "Choose from memory. Keyboard shortcuts 1–4 are available."}
-            </p>
+            <h1 className={styles.questionStem} id="review-question" dir={item.question.stem_locale.startsWith("fa") ? "rtl" : "ltr"}>{item.question.stem}</h1>
+            <p className={styles.optionInstruction}>{isFa ? "یک گزینه را از حافظه انتخاب کنید. میانبرهای ۱ تا ۴ فعال‌اند." : "Choose from memory. Keyboard shortcuts 1–4 are available."}</p>
 
             <div className={styles.optionList} role="group" aria-labelledby="review-question">
               {item.question.options.map((option, index) => {
                 const isSelected = selectedId === option.id;
-                const status = feedback && option.id === feedback.correct_option_id
-                  ? (isFa ? "درست" : "Correct")
-                  : feedback && option.id === feedback.selected_option_id && !feedback.is_correct
-                    ? (isFa ? "پاسخ شما" : "Your answer")
-                    : null;
+                const status = feedback && option.id === feedback.correct_option_id ? (isFa ? "درست" : "Correct") : feedback && option.id === feedback.selected_option_id && !feedback.is_correct ? (isFa ? "پاسخ شما" : "Your answer") : null;
                 return (
-                  <button
-                    className={optionClass(option.id, selectedId, feedback)}
-                    type="button"
-                    key={option.id}
-                    disabled={Boolean(feedback) || submitting}
-                    aria-pressed={!feedback ? isSelected : undefined}
-                    aria-keyshortcuts={`${index + 1}`}
-                    onClick={() => setSelectedId(option.id)}
-                  >
-                    <span className={styles.optionKey}>{index + 1}</span>
-                    <span className={styles.optionText} dir="ltr">{option.text}</span>
-                    {status ? <span className={styles.optionStatus}>{status}</span> : <span />}
+                  <button className={optionClass(option.id, selectedId, feedback)} type="button" key={option.id} disabled={Boolean(feedback) || submitting} aria-pressed={!feedback ? isSelected : undefined} aria-keyshortcuts={`${index + 1}`} onClick={() => setSelectedId(option.id)}>
+                    <span className={styles.optionKey}>{index + 1}</span><span className={styles.optionText} dir="ltr">{option.text}</span>{status ? <span className={styles.optionStatus}>{status}</span> : <span />}
                   </button>
                 );
               })}
             </div>
 
             {feedback ? (
-              <div
-                className={`${styles.feedbackCard} ${feedback.is_correct ? styles.feedbackCorrect : styles.feedbackIncorrect}`}
-                aria-live="polite"
-              >
-                <div className={styles.feedbackHeading}>
-                  <span className={styles.feedbackIcon} aria-hidden="true">{feedback.is_correct ? "✓" : "!"}</span>
-                  <div>
-                    <strong>
-                      {feedback.is_correct
-                        ? (isFa ? "درست پاسخ دادید" : "Correct")
-                        : (isFa ? "نیاز به مرور دوباره" : "Needs another review")}
-                    </strong>
-                    {scheduleMessage ? <p>{scheduleMessage}</p> : null}
-                  </div>
-                </div>
+              <div className={`${styles.feedbackCard} ${feedback.is_correct ? styles.feedbackCorrect : styles.feedbackIncorrect}`} aria-live="polite">
+                <div className={styles.feedbackHeading}><span className={styles.feedbackIcon} aria-hidden="true">{feedback.is_correct ? "✓" : "!"}</span><div><strong>{feedback.is_correct ? (isFa ? "درست پاسخ دادید" : "Correct") : (isFa ? "نیاز به مرور دوباره" : "Needs another review")}</strong>{scheduleMessage ? <p>{scheduleMessage}</p> : null}</div></div>
                 {feedback.full_explanation ? <p className={styles.fullExplanation}>{feedback.full_explanation}</p> : null}
               </div>
             ) : null}
 
             <div className={styles.questionFooter}>
               <div className={styles.repeatControl}>
-                <button
-                  className={styles.repeatButton}
-                  type="button"
-                  disabled={!feedback || !session}
-                  aria-pressed={repeatRequested}
-                  onClick={toggleRepeatInSession}
-                >
-                  <span aria-hidden="true">↻</span>
-                  {repeatRequested
-                    ? (isFa ? "لغو تکرار در همین جلسه" : "Remove session repeat")
-                    : (isFa ? "تکرار در همین جلسه" : "Repeat in this session")}
-                </button>
-                <span className={styles.repeatStatus} aria-live="polite">
-                  {repeatRequested && repeatQueueIndex >= 0
-                    ? (isFa
-                        ? `برای انتهای صف اضافه شد؛ نوبت ${formatNumber(repeatQueueIndex + 1, true)} از ${formatNumber(totalItems, true)}.`
-                        : `Added to the end of this session: item ${repeatQueueIndex + 1} of ${totalItems}.`)
-                    : (feedback
-                        ? (isFa ? "در صورت نیاز می‌توانید همین مفهوم را دوباره در این جلسه ببینید." : "Optionally revisit this concept later in the same session.")
-                        : (isFa ? "پس از ثبت پاسخ فعال می‌شود." : "Available after grading."))}
-                </span>
+                <button className={styles.repeatButton} type="button" disabled={!feedback || !session} aria-pressed={repeatRequested} onClick={toggleRepeatInSession}><span aria-hidden="true">↻</span>{repeatRequested ? (isFa ? "لغو تکرار در همین جلسه" : "Remove session repeat") : (isFa ? "تکرار در همین جلسه" : "Repeat in this session")}</button>
+                <span className={styles.repeatStatus} aria-live="polite">{repeatRequested && repeatQueueIndex >= 0 ? (isFa ? `برای انتهای صف اضافه شد؛ نوبت ${formatNumber(repeatQueueIndex + 1, true)} از ${formatNumber(totalItems, true)}.` : `Added to the end of this session: item ${repeatQueueIndex + 1} of ${totalItems}.`) : (feedback ? (isFa ? "در صورت نیاز می‌توانید همین مفهوم را دوباره در این جلسه ببینید." : "Optionally revisit this concept later in the same session.") : (isFa ? "پس از ثبت پاسخ فعال می‌شود." : "Available after grading."))}</span>
               </div>
-              {feedback ? (
-                <button className={styles.primaryButton} type="button" onClick={goNext}>
-                  {nextId || repeatPending ? (isFa ? "بعدی" : "Next") : (isFa ? "خلاصه جلسه" : "Session summary")}
-                  <span aria-hidden="true">›</span>
-                </button>
-              ) : (
-                <button
-                  className={styles.primaryButton}
-                  type="button"
-                  disabled={!selectedId || submitting}
-                  onClick={() => void submit()}
-                >
-                  {submitting ? (isFa ? "در حال بررسی…" : "Checking…") : (isFa ? "ثبت پاسخ" : "Submit answer")}
-                </button>
-              )}
+              {feedback ? <button className={styles.primaryButton} type="button" onClick={goNext}>{nextId || repeatPending ? (isFa ? "بعدی" : "Next") : (isFa ? "خلاصه جلسه" : "Session summary")}<span aria-hidden="true">›</span></button> : <button className={styles.primaryButton} type="button" disabled={!selectedId || submitting} onClick={() => void submit()}>{submitting ? (isFa ? "در حال بررسی…" : "Checking…") : (isFa ? "ثبت پاسخ" : "Submit answer")}</button>}
             </div>
           </section>
         )}
       </main>
 
-      <aside
-        dir={isFa ? "rtl" : "ltr"}
-        className={styles.insightColumn}
-        aria-label={isFa ? "تحلیل جلسه مرور" : "Review session insights"}
-      >
+      <aside dir={isFa ? "rtl" : "ltr"} className={styles.insightColumn} aria-label={isFa ? "تحلیل جلسه مرور" : "Review session insights"}>
         <section className={styles.progressCard} style={progressStyle}>
-          <div className={styles.cardTitleRow}>
-            <h2>{isFa ? "پیشرفت جلسه" : "Session progress"}</h2>
-            <span className={styles.miniStatus}>{formatNumber(remainingCount, isFa)} {isFa ? "باقی‌مانده" : "left"}</span>
-          </div>
-          <div className={styles.progressBody}>
-            <div className={styles.progressRing} role="img" aria-label={`${progressPct}%`}>
-              <span>{formatNumber(progressPct, isFa)}%</span>
-            </div>
-            <dl className={styles.statsList}>
-              <div><dt>{isFa ? "پاسخ داده‌شده" : "Answered"}</dt><dd>{formatNumber(answeredCount, isFa)}/{formatNumber(totalItems, isFa)}</dd></div>
-              <div><dt><i className={styles.dotGreen} />{isFa ? "درست" : "Correct"}</dt><dd>{formatNumber(correctCount, isFa)}</dd></div>
-              <div><dt><i className={styles.dotRed} />{isFa ? "غلط" : "Incorrect"}</dt><dd>{formatNumber(incorrectCount, isFa)}</dd></div>
-              <div><dt><i className={styles.dotOrange} />{isFa ? "نیاز به مرور" : "Remaining"}</dt><dd>{formatNumber(remainingCount, isFa)}</dd></div>
-            </dl>
-          </div>
+          <div className={styles.cardTitleRow}><h2>{isFa ? "پیشرفت جلسه" : "Session progress"}</h2><span className={styles.miniStatus}>{formatNumber(remainingCount, isFa)} {isFa ? "باقی‌مانده" : "left"}</span></div>
+          <div className={styles.progressBody}><div className={styles.progressRing} role="img" aria-label={`${progressPct}%`}><span>{formatNumber(progressPct, isFa)}%</span></div><dl className={styles.statsList}><div><dt>{isFa ? "پاسخ داده‌شده" : "Answered"}</dt><dd>{formatNumber(answeredCount, isFa)}/{formatNumber(totalItems, isFa)}</dd></div><div><dt><i className={styles.dotGreen} />{isFa ? "درست" : "Correct"}</dt><dd>{formatNumber(correctCount, isFa)}</dd></div><div><dt><i className={styles.dotRed} />{isFa ? "غلط" : "Incorrect"}</dt><dd>{formatNumber(incorrectCount, isFa)}</dd></div><div><dt><i className={styles.dotOrange} />{isFa ? "نیاز به مرور" : "Remaining"}</dt><dd>{formatNumber(remainingCount, isFa)}</dd></div></dl></div>
         </section>
 
         <section className={styles.priorityCard} aria-labelledby="priority-card-title">
-          <div className={styles.cardTitleRow}>
-            <h2 id="priority-card-title">{isFa ? "اولویت مرور" : "Review priority"}</h2>
-            <span className={`${styles.priorityBadge} ${styles[`priority_${priority.level}`]}`}>
-              {priorityLabel(priority.level, isFa)}
-            </span>
-          </div>
-          <p>{isFa ? priority.reasonFa : priority.reasonEn}</p>
-          <small>
-            {priority.source === "api"
-              ? (isFa ? "اولویت از API صف مرور دریافت شده است." : "Priority came from the review queue API.")
-              : (isFa ? `محاسبه جایگزین نسخه ${REVIEW_PRIORITY_VERSION}` : `Fallback policy ${REVIEW_PRIORITY_VERSION}`)}
-          </small>
+          <div className={styles.cardTitleRow}><h2 id="priority-card-title">{isFa ? "اولویت مرور" : "Review priority"}</h2><span className={`${styles.priorityBadge} ${styles[`priority_${priority.level}`]}`}>{priorityLabel(priority.level, isFa)}</span></div>
+          <p>{isFa ? priority.reasonFa : priority.reasonEn}</p><small>{priority.source === "api" ? (isFa ? "اولویت از API صف مرور دریافت شده است." : "Priority came from the review queue API.") : (isFa ? `محاسبه جایگزین نسخه ${REVIEW_PRIORITY_VERSION}` : `Fallback policy ${REVIEW_PRIORITY_VERSION}`)}</small>
         </section>
 
         {feedback ? (
           <>
             <section className={styles.misconceptionCard} aria-labelledby="misconception-card-title">
-              <div className={styles.cardTitleRow}>
-                <h2 id="misconception-card-title">{isFa ? "اشتباه محتمل شما" : "Likely misconception"}</h2>
-                <span className={styles.repeatCountBadge}>
-                  {formatNumber(currentSummary?.repeat_count ?? 0, isFa)}×
-                </span>
-              </div>
-              {misconceptionLabel ? (
-                <strong className={styles.misconception} dir="ltr">{misconceptionLabel}</strong>
-              ) : (
-                <strong className={styles.noInference}>
-                  {isFa ? "الگوی خطای مشخصی ثبت نشده است" : "No specific error pattern is recorded"}
-                </strong>
-              )}
-              {feedback.selected_option_explanation ? (
-                <p>{feedback.selected_option_explanation}</p>
-              ) : (
-                <p>
-                  {isFa
-                    ? "برای این گزینه توضیح اختصاصی ثبت نشده؛ از حدس زدن نوع misconception خودداری شده است."
-                    : "No option-specific explanation was returned, so no misconception is inferred beyond the recorded evidence."}
-                </p>
-              )}
+              <div className={styles.cardTitleRow}><h2 id="misconception-card-title">{isFa ? "اشتباه محتمل شما" : "Likely misconception"}</h2><span className={styles.repeatCountBadge}>{formatNumber(currentSummary?.repeat_count ?? 0, isFa)}×</span></div>
+              {misconceptionLabel ? <strong className={styles.misconception} dir="ltr">{misconceptionLabel}</strong> : <strong className={styles.noInference}>{isFa ? "الگوی خطای مشخصی ثبت نشده است" : "No specific error pattern is recorded"}</strong>}
+              {feedback.selected_option_explanation ? <p>{feedback.selected_option_explanation}</p> : <p>{isFa ? "برای این گزینه توضیح اختصاصی ثبت نشده؛ از حدس زدن نوع misconception خودداری شده است." : "No option-specific explanation was returned, so no misconception is inferred beyond the recorded evidence."}</p>}
             </section>
 
             <section className={styles.ruleCard} aria-labelledby="rule-card-title">
-              <div className={styles.cardTitleRow}>
-                <h2 id="rule-card-title">{isFa ? "قاعده مرتبط" : "Related rule"}</h2>
-                <span className={styles.ruleIcon} aria-hidden="true">§</span>
-              </div>
-              {feedback.correct_option_explanation ? (
-                <p className={styles.ruleLead} dir="auto">{feedback.correct_option_explanation}</p>
-              ) : (
-                <p className={styles.mutedCopy}>
-                  {isFa ? "توضیح قاعده همراه پاسخ ثبت نشده است." : "No related-rule explanation was returned with this answer."}
-                </p>
-              )}
-              {feedback.full_explanation && feedback.full_explanation !== feedback.correct_option_explanation ? (
-                <details className={styles.ruleDetails}>
-                  <summary>{isFa ? "توضیح کامل" : "Full explanation"}</summary>
-                  <p dir="auto">{feedback.full_explanation}</p>
-                </details>
-              ) : null}
-              <Link className={styles.inlineLink} href={`/${locale}/lessons`}>
-                {isFa ? "مرور قاعده در درس‌ها" : "Review the rule in Lessons"}
-              </Link>
+              <div className={styles.cardTitleRow}><h2 id="rule-card-title">{isFa ? "قاعده مرتبط" : "Related rule"}</h2><span className={styles.ruleIcon} aria-hidden="true">§</span></div>
+              {feedback.correct_option_explanation ? <p className={styles.ruleLead} dir="auto">{feedback.correct_option_explanation}</p> : <p className={styles.mutedCopy}>{isFa ? "توضیح قاعده همراه پاسخ ثبت نشده است." : "No related-rule explanation was returned with this answer."}</p>}
+              {feedback.full_explanation && feedback.full_explanation !== feedback.correct_option_explanation ? <details className={styles.ruleDetails}><summary>{isFa ? "توضیح کامل" : "Full explanation"}</summary><p dir="auto">{feedback.full_explanation}</p></details> : null}
+              <Link className={styles.inlineLink} href={`/${locale}/lessons`}>{isFa ? "مرور قاعده در درس‌ها" : "Review the rule in Lessons"}</Link>
             </section>
 
             <section className={styles.masteryCard} aria-labelledby="mastery-card-title">
-              <div className={styles.cardTitleRow}>
-                <h2 id="mastery-card-title">{isFa ? "اثر بر تسلط" : "Mastery impact"}</h2>
-                <span className={`${styles.masterySignal} ${feedback.is_correct ? styles.masteryPositive : styles.masteryNegative}`}>
-                  {feedback.is_correct ? "↗" : "↘"}
-                </span>
-              </div>
-              <div className={styles.masteryHeadline}>
-                <span aria-hidden="true">{feedback.is_correct ? "✓" : "!"}</span>
-                <strong>
-                  {scheduleAfter?.graduated
-                    ? (isFa ? "این مورد تثبیت شد" : "This item graduated")
-                    : feedback.is_correct
-                      ? (isFa ? "شاهد مثبت یادگیری ثبت شد" : "Positive learning evidence recorded")
-                      : (isFa ? "شاهد ضعف جدید ثبت شد" : "New weakness evidence recorded")}
-                </strong>
-              </div>
+              <div className={styles.cardTitleRow}><h2 id="mastery-card-title">{isFa ? "اثر بر تسلط" : "Mastery impact"}</h2><span className={`${styles.masterySignal} ${feedback.is_correct ? styles.masteryPositive : styles.masteryNegative}`}>{feedback.is_correct ? "↗" : "↘"}</span></div>
+              <div className={styles.masteryHeadline}><span aria-hidden="true">{feedback.is_correct ? "✓" : "!"}</span><strong>{scheduleAfter?.graduated ? (isFa ? "این مورد تثبیت شد" : "This item graduated") : feedback.is_correct ? (isFa ? "شاهد مثبت یادگیری ثبت شد" : "Positive learning evidence recorded") : (isFa ? "شاهد ضعف جدید ثبت شد" : "New weakness evidence recorded")}</strong></div>
               <dl className={styles.masteryMetrics}>
-                <div>
-                  <dt>{isFa ? "فاصله مرور" : "Review interval"}</dt>
-                  <dd>
-                    {intervalBefore !== null ? formatNumber(intervalBefore, isFa) : "—"}
-                    <span aria-hidden="true">→</span>
-                    {intervalAfter !== null ? formatNumber(intervalAfter, isFa) : "—"}
-                    <small>{isFa ? "روز" : "days"}</small>
-                  </dd>
-                </div>
-                <div>
-                  <dt>{isFa ? "درست متوالی" : "Correct streak"}</dt>
-                  <dd>
-                    {streakBefore !== null ? formatNumber(streakBefore, isFa) : "—"}
-                    <span aria-hidden="true">→</span>
-                    {streakAfter !== null ? formatNumber(streakAfter, isFa) : "—"}
-                  </dd>
-                </div>
-                <div>
-                  <dt>{isFa ? "وضعیت" : "State"}</dt>
-                  <dd>{scheduleStateLabel(scheduleAfter, isFa)}</dd>
-                </div>
-                <div>
-                  <dt>{isFa ? "مرور بعدی" : "Next due"}</dt>
-                  <dd>{scheduleAfter?.graduated ? (isFa ? "خارج از صف" : "Out of queue") : formatDue(scheduleAfter?.due_at, isFa)}</dd>
-                </div>
+                <div><dt>{isFa ? "فاصله مرور" : "Review interval"}</dt><dd>{intervalBefore !== null ? formatNumber(intervalBefore, isFa) : "—"}<span aria-hidden="true">→</span>{intervalAfter !== null ? formatNumber(intervalAfter, isFa) : "—"}<small>{isFa ? "روز" : "days"}</small></dd></div>
+                <div><dt>{isFa ? "درست متوالی" : "Correct streak"}</dt><dd>{streakBefore !== null ? formatNumber(streakBefore, isFa) : "—"}<span aria-hidden="true">→</span>{streakAfter !== null ? formatNumber(streakAfter, isFa) : "—"}</dd></div>
+                <div><dt>{isFa ? "وضعیت" : "State"}</dt><dd>{scheduleStateLabel(scheduleAfter, isFa)}</dd></div>
+                <div><dt>{isFa ? "مرور بعدی" : "Next due"}</dt><dd>{scheduleAfter?.graduated ? (isFa ? "خارج از صف" : "Out of queue") : formatDue(scheduleAfter?.due_at, isFa)}</dd></div>
               </dl>
-              {impactDelta !== null ? (
-                <p className={styles.impactDelta}>
-                  {isFa
-                    ? `تغییر فاصله: ${impactDelta >= 0 ? "+" : ""}${formatNumber(impactDelta, true)} روز`
-                    : `Interval change: ${impactDelta >= 0 ? "+" : ""}${impactDelta} days`}
-                </p>
-              ) : null}
-              <small className={styles.masteryDisclaimer}>
-                {isFa
-                  ? "این کارت فقط اثر همین رویداد مرور را از داده SRS نشان می‌دهد؛ امتیاز آزمون اصلی بازنویسی نمی‌شود."
-                  : "This card shows the effect of this review event from SRS evidence only; the original test score is not rewritten."}
-              </small>
+              {impactDelta !== null ? <p className={styles.impactDelta}>{isFa ? `تغییر فاصله: ${impactDelta >= 0 ? "+" : ""}${formatNumber(impactDelta, true)} روز` : `Interval change: ${impactDelta >= 0 ? "+" : ""}${impactDelta} days`}</p> : null}
+              <small className={styles.masteryDisclaimer}>{isFa ? "این کارت فقط اثر همین رویداد مرور را از داده SRS نشان می‌دهد؛ امتیاز آزمون اصلی بازنویسی نمی‌شود." : "This card shows the effect of this review event from SRS evidence only; the original test score is not rewritten."}</small>
             </section>
           </>
         ) : (
-          <section className={styles.learningLockedCard}>
-            <span className={styles.lockedIcon} aria-hidden="true">◎</span>
-            <h2>{isFa ? "تحلیل پس از پاسخ" : "Post-answer analysis"}</h2>
-            <p>
-              {isFa
-                ? "ابتدا از حافظه پاسخ دهید؛ سپس Misconception، قاعده مرتبط و اثر بر تسلط نمایش داده می‌شود."
-                : "Answer from memory first; misconception, related rule and mastery impact appear after grading."}
-            </p>
-          </section>
+          <section className={styles.learningLockedCard}><span className={styles.lockedIcon} aria-hidden="true">◎</span><h2>{isFa ? "تحلیل پس از پاسخ" : "Post-answer analysis"}</h2><p>{isFa ? "ابتدا از حافظه پاسخ دهید؛ سپس Misconception، قاعده مرتبط و اثر بر تسلط نمایش داده می‌شود." : "Answer from memory first; misconception, related rule and mastery impact appear after grading."}</p></section>
         )}
 
         <section className={styles.recommendationCard}>
           <h2>{isFa ? "تمرین‌های پیشنهادی" : "Suggested practice"}</h2>
-          <Link href={`/${locale}/tests/new?mode=review`} className={styles.recommendationLink}>
-            <span aria-hidden="true">◎</span>
-            <span>{isFa ? "تمرین این زیرموضوع" : "Practice this subtopic"}</span>
-          </Link>
-          <Link href={`/${locale}/tests/new?mode=mistakes`} className={styles.recommendationLink}>
-            <span aria-hidden="true">▣</span>
-            <span>{isFa ? "سؤال‌های مشابه بیشتر" : "More similar questions"}</span>
-          </Link>
-          <Link href={`/${locale}/lessons`} className={styles.recommendationLink}>
-            <span aria-hidden="true">⌂</span>
-            <span>{isFa ? "مرور قاعده در درس‌ها" : "Review the rule in Lessons"}</span>
-          </Link>
+          <Link href={`/${locale}/tests/new?mode=review`} className={styles.recommendationLink}><span aria-hidden="true">◎</span><span>{isFa ? "تمرین این زیرموضوع" : "Practice this subtopic"}</span></Link>
+          <Link href={`/${locale}/tests/new?mode=mistakes`} className={styles.recommendationLink}><span aria-hidden="true">▣</span><span>{isFa ? "سؤال‌های مشابه بیشتر" : "More similar questions"}</span></Link>
+          <Link href={`/${locale}/lessons`} className={styles.recommendationLink}><span aria-hidden="true">⌂</span><span>{isFa ? "مرور قاعده در درس‌ها" : "Review the rule in Lessons"}</span></Link>
         </section>
       </aside>
     </div>

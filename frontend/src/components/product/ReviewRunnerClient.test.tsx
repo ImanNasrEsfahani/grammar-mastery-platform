@@ -5,7 +5,6 @@ import {ReviewRunnerClient} from "./ReviewRunnerClient";
 import {apiRequest} from "@/lib/api/client";
 
 const push = vi.fn();
-
 vi.mock("next/navigation", () => ({
   useRouter: () => ({push}),
 }));
@@ -18,11 +17,12 @@ vi.mock("@/lib/api/client", async (importOriginal) => {
 const reviewId = "11111111-1111-4111-8111-111111111111";
 const optionA = "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa";
 const optionB = "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb";
+const dueYesterday = new Date(Date.now() - 86_400_000).toISOString();
 
-function itemPayload() {
+function itemPayload(id = reviewId) {
   return {
     data: {
-      id: reviewId,
+      id,
       kind: "SPACED",
       resolution_status: "UNRESOLVED",
       reviewability: "RETRY_ALLOWED",
@@ -32,7 +32,7 @@ function itemPayload() {
       schedule: {
         status: "DUE",
         learning_state: "REVIEW",
-        due_at: "2026-08-22T17:00:00Z",
+        due_at: dueYesterday,
         interval_days: 30,
         consecutive_correct_reviews: 2,
         graduated: false,
@@ -57,67 +57,62 @@ function itemPayload() {
   };
 }
 
-function queuePayload() {
+function summary(id: string, index: number) {
   return {
-    data: [
-      {
-        id: reviewId,
-        kind: "SPACED",
-        status: "DUE",
-        title: "Les pronoms relatifs (que/dont)",
-        group_key: "que ↔ dont",
-        repeat_count: 3,
-        due_at: "2026-08-22T17:00:00Z",
-        marked: false,
-      },
-      {
-        id: "33333333-3333-4333-8333-333333333333",
-        kind: "MISTAKE",
-        status: "DUE",
-        title: "Le passé composé",
-        group_key: "auxiliary_choice",
-        repeat_count: 2,
-        due_at: "2026-08-23T17:00:00Z",
-        marked: false,
-      },
-    ],
-    page: {page_size: 25, has_more: false, next_cursor: null},
-    meta: {request_id: "rq", api_version: "v1"},
+    id,
+    kind: "SPACED" as const,
+    status: "DUE",
+    title: index === 0 ? "Les pronoms relatifs (que/dont)" : `Review concept ${index + 1}`,
+    group_key: index === 0 ? "que ↔ dont" : null,
+    repeat_count: index % 4,
+    due_at: dueYesterday,
+    marked: false,
   };
 }
 
-function gradePayload(isCorrect = true) {
+function makeId(index: number) {
+  const tail = String(index + 1).padStart(12, "0");
+  return `00000000-0000-4000-8000-${tail}`;
+}
+
+function queuePages(total = 137) {
+  const all = Array.from({length: total}, (_, index) => summary(index === 0 ? reviewId : makeId(index), index));
+  return [
+    {data: all.slice(0, 100), page: {page_size: 100, has_more: true, next_cursor: "cursor-100"}, meta: {request_id: "q1", api_version: "v1"}},
+    {data: all.slice(100), page: {page_size: 100, has_more: false, next_cursor: null}, meta: {request_id: "q2", api_version: "v1"}},
+  ];
+}
+
+function gradePayload() {
   return {
     data: {
       review_item: {
         ...itemPayload().data,
-        resolution_status: isCorrect ? "CORRECTED" : "UNRESOLVED",
+        resolution_status: "CORRECTED",
         feedback_state: "REVEALED",
         schedule: {
-          status: isCorrect ? "COMPLETED" : "SCHEDULED",
-          learning_state: isCorrect ? null : "LAPSED",
-          due_at: isCorrect ? "2026-10-21T17:00:00Z" : "2026-08-26T17:00:00Z",
-          interval_days: isCorrect ? 60 : 1,
-          consecutive_correct_reviews: isCorrect ? 3 : 0,
-          graduated: isCorrect,
+          status: "SCHEDULED",
+          learning_state: "REVIEW",
+          due_at: new Date(Date.now() + 7 * 86_400_000).toISOString(),
+          interval_days: 7,
+          consecutive_correct_reviews: 3,
+          graduated: false,
           scheduler_version: "review-practice-policy-v1.0.0",
         },
       },
       feedback: {
-        is_correct: isCorrect,
+        is_correct: true,
         selected_option_id: optionB,
         correct_option_id: optionB,
-        selected_option_explanation: "que cannot replace de + noun here.",
         correct_option_explanation: "dont replaces de + noun.",
-        full_explanation: "Use dont when the relative relation contains de.",
       },
       schedule: {
-        status: isCorrect ? "COMPLETED" : "SCHEDULED",
-        learning_state: isCorrect ? null : "LAPSED",
-        due_at: isCorrect ? "2026-10-21T17:00:00Z" : "2026-08-26T17:00:00Z",
-        interval_days: isCorrect ? 60 : 1,
-        consecutive_correct_reviews: isCorrect ? 3 : 0,
-        graduated: isCorrect,
+        status: "SCHEDULED",
+        learning_state: "REVIEW",
+        due_at: new Date(Date.now() + 7 * 86_400_000).toISOString(),
+        interval_days: 7,
+        consecutive_correct_reviews: 3,
+        graduated: false,
         scheduler_version: "review-practice-policy-v1.0.0",
       },
     },
@@ -130,99 +125,89 @@ beforeEach(() => {
   window.sessionStorage.clear();
 });
 
-test("renders the complete review workspace with progress and priority", async () => {
-  vi.mocked(apiRequest)
-    .mockResolvedValueOnce(itemPayload())
-    .mockResolvedValueOnce(queuePayload());
+test("a row-level review is strictly a 1-of-1 session and never loads the due queue", async () => {
+  vi.mocked(apiRequest).mockResolvedValueOnce(itemPayload());
 
-  render(<ReviewRunnerClient locale="fa" reviewId={reviewId} />);
+  render(<ReviewRunnerClient locale="fa" reviewId={reviewId} sessionMode="single" forceFresh />);
 
   expect(await screen.findByText("Le livre ______ j’ai acheté est très intéressant.")).toBeInTheDocument();
+  expect(screen.getByText("سؤال ۱ از ۱")).toBeInTheDocument();
+
+  await waitFor(() => {
+    const reviewListCalls = vi.mocked(apiRequest).mock.calls.filter(([url]) => String(url).startsWith("/api/backend/reviews?"));
+    expect(reviewListCalls).toHaveLength(0);
+  });
+
+  const stored = window.sessionStorage.getItem(`gmp-review-session-v2:fa:single:${reviewId}`);
+  expect(stored).not.toBeNull();
+  expect(JSON.parse(stored ?? "{}").order).toEqual([reviewId]);
+});
+
+test("due mode walks every API page and builds one logical session containing all 137 due reviews", async () => {
+  const [firstPage, secondPage] = queuePages(137);
+  vi.mocked(apiRequest).mockImplementation(async (url) => {
+    const value = String(url);
+    if (value === `/api/backend/reviews/${reviewId}`) return itemPayload() as never;
+    if (value.includes("page%5Bafter%5D=cursor-100")) return secondPage as never;
+    if (value.startsWith("/api/backend/reviews?")) return firstPage as never;
+    throw new Error(`Unexpected API call: ${value}`);
+  });
+
+  render(<ReviewRunnerClient locale="fa" reviewId={reviewId} sessionMode="due" forceFresh />);
+
   expect(await screen.findByText("Les pronoms relatifs (que/dont)")).toBeInTheDocument();
-  expect(screen.getByText(/پاسخ قبلی/)).toHaveTextContent("que");
-  expect(screen.getByRole("heading", {name: "پیشرفت جلسه"})).toBeInTheDocument();
-  expect(screen.getByRole("heading", {name: "اولویت مرور"})).toBeInTheDocument();
-  expect(screen.getAllByText("بالا").length).toBeGreaterThan(0);
-  expect(screen.getByText(/3 تکرار ثبت شده/)).toBeInTheDocument();
-  expect(screen.getByText(/تحلیل پس از پاسخ/)).toBeInTheDocument();
+  await waitFor(() => expect(screen.getByText("(۱۳۷)")).toBeInTheDocument());
+
+  const queueCalls = vi.mocked(apiRequest).mock.calls.map(([url]) => String(url)).filter((url) => url.startsWith("/api/backend/reviews?"));
+  expect(queueCalls).toHaveLength(2);
+  expect(queueCalls[0]).toContain("page%5Bsize%5D=100");
+  expect(queueCalls[0]).toContain("filter%5Bkind%5D=SPACED");
+  expect(queueCalls.join(" ")).not.toContain("page%5Bsize%5D=25");
+
+  const stored = window.sessionStorage.getItem("gmp-review-session-v2:fa:due");
+  expect(stored).not.toBeNull();
+  expect(JSON.parse(stored ?? "{}").order).toHaveLength(137);
 });
 
-test("reveals misconception, related rule and mastery impact only after grading", async () => {
-  vi.mocked(apiRequest)
-    .mockResolvedValueOnce(itemPayload())
-    .mockResolvedValueOnce(queuePayload())
-    .mockResolvedValueOnce(gradePayload(true));
+test("due navigation keeps the due-session scope and drops the one-shot fresh flag", async () => {
+  const [firstPage, secondPage] = queuePages(101);
+  vi.mocked(apiRequest).mockImplementation(async (url) => {
+    const value = String(url);
+    if (value === `/api/backend/reviews/${reviewId}`) return itemPayload() as never;
+    if (value.includes("page%5Bafter%5D=cursor-100")) return secondPage as never;
+    if (value.startsWith("/api/backend/reviews?")) return firstPage as never;
+    throw new Error(`Unexpected API call: ${value}`);
+  });
 
   const user = userEvent.setup();
-  render(<ReviewRunnerClient locale="fa" reviewId={reviewId} />);
+  render(<ReviewRunnerClient locale="fa" reviewId={reviewId} sessionMode="due" forceFresh />);
+  await screen.findByText("Les pronoms relatifs (que/dont)");
+  const second = await screen.findByRole("button", {name: /Review concept 2/i});
+  await user.click(second);
 
+  expect(push).toHaveBeenCalledWith(expect.stringMatching(/\/fa\/review\/.+\?mode=due$/));
+  expect(push).not.toHaveBeenCalledWith(expect.stringContaining("fresh=1"));
+});
+
+test("single-session grading updates only the scoped v2 session", async () => {
+  vi.mocked(apiRequest)
+    .mockResolvedValueOnce(itemPayload())
+    .mockResolvedValueOnce(gradePayload() as never);
+
+  const user = userEvent.setup();
+  render(<ReviewRunnerClient locale="fa" reviewId={reviewId} sessionMode="single" forceFresh />);
   await screen.findByText("Le livre ______ j’ai acheté est très intéressant.");
-  expect(screen.queryByRole("heading", {name: "اشتباه محتمل شما"})).not.toBeInTheDocument();
-
   await user.click(screen.getByText("dont"));
   await user.click(screen.getByRole("button", {name: "ثبت پاسخ"}));
 
-  expect(await screen.findByText("درست پاسخ دادید")).toBeInTheDocument();
-  expect(screen.getByText(/از صف مرور فعال خارج شد/)).toBeInTheDocument();
-  expect(screen.getByRole("heading", {name: "اشتباه محتمل شما"})).toBeInTheDocument();
-  expect(screen.getByText("que ↔ dont")).toBeInTheDocument();
-  expect(screen.getByRole("heading", {name: "قاعده مرتبط"})).toBeInTheDocument();
-  expect(screen.getByText("dont replaces de + noun.")).toBeInTheDocument();
-  expect(screen.getByRole("heading", {name: "اثر بر تسلط"})).toBeInTheDocument();
-  expect(screen.getByText(/30/)).toBeInTheDocument();
-  expect(screen.getByText(/60/)).toBeInTheDocument();
-  expect(screen.getByText(/امتیاز آزمون اصلی بازنویسی نمی‌شود/)).toBeInTheDocument();
-});
-
-test("syncs the session summary to the new SRS due_at immediately after grading", async () => {
-  vi.mocked(apiRequest)
-    .mockResolvedValueOnce(itemPayload())
-    .mockResolvedValueOnce(queuePayload())
-    .mockResolvedValueOnce(gradePayload(false));
-
-  const user = userEvent.setup();
-  render(<ReviewRunnerClient locale="fa" reviewId={reviewId} />);
-
-  await screen.findByText("Le livre ______ j’ai acheté est très intéressant.");
-  await user.click(screen.getByText("dont"));
-  await user.click(screen.getByRole("button", {name: "ثبت پاسخ"}));
-  expect(await screen.findByText("نیاز به مرور دوباره")).toBeInTheDocument();
-
   await waitFor(() => {
-    const raw = window.sessionStorage.getItem("gmp-review-session-v1:fa");
-    expect(raw).not.toBeNull();
-    const stored = JSON.parse(raw ?? "{}") as {
-      summaries?: Array<{id: string; status: string; due_at?: string | null}>;
-    };
-    const summary = stored.summaries?.find((entry) => entry.id === reviewId);
-    expect(summary?.status).toBe("SCHEDULED");
-    expect(summary?.due_at).toBe("2026-08-26T17:00:00Z");
+    const stored = window.sessionStorage.getItem(`gmp-review-session-v2:fa:single:${reviewId}`);
+    expect(stored).not.toBeNull();
+    const parsed = JSON.parse(stored ?? "{}");
+    expect(parsed.version).toBe(2);
+    expect(parsed.mode).toBe("single");
+    expect(parsed.order).toEqual([reviewId]);
+    expect(parsed.answers).toHaveLength(1);
   });
-});
-
-test("supports keyboard selection and repeat-in-session with visible queue confirmation", async () => {
-  vi.mocked(apiRequest)
-    .mockResolvedValueOnce(itemPayload())
-    .mockResolvedValueOnce(queuePayload())
-    .mockResolvedValueOnce(gradePayload(false));
-
-  const user = userEvent.setup();
-  render(<ReviewRunnerClient locale="fa" reviewId={reviewId} />);
-
-  await screen.findByText("Le livre ______ j’ai acheté est très intéressant.");
-  await user.keyboard("2");
-  await user.keyboard("{Enter}");
-
-  expect(await screen.findByText("نیاز به مرور دوباره")).toBeInTheDocument();
-  const repeat = screen.getByRole("button", {name: "تکرار در همین جلسه"});
-  await user.click(repeat);
-
-  expect(screen.getByRole("button", {name: "لغو تکرار در همین جلسه"})).toHaveAttribute("aria-pressed", "true");
-  expect(screen.getByText(/برای انتهای صف اضافه شد/)).toBeInTheDocument();
-
-  await waitFor(() => {
-    const stored = window.sessionStorage.getItem("gmp-review-session-v1:fa");
-    expect(stored).toContain(reviewId);
-    expect(stored).toContain("repeat_requested_ids");
-  });
+  expect(window.sessionStorage.getItem("gmp-review-session-v1:fa")).toBeNull();
 });

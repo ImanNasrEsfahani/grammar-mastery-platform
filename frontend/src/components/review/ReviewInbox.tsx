@@ -16,12 +16,6 @@ type RepeatFilter = "ALL" | "2" | "3" | "5";
 type DueFilter = "ALL" | "NOW" | "WEEK" | "LATER" | "NO_DATE";
 type SortChoice = "due_at" | "-due_at" | "repeat";
 
-type PageShape = ReviewCollectionEnvelope["page"] & {
-  next_cursor?: string | null;
-  has_more?: boolean;
-  page_size?: number;
-};
-
 type ApiAwareReview = ReviewSummary & {
   lesson_id?: string | null;
   lesson_no?: number | null;
@@ -56,6 +50,7 @@ type TopicLookupEnvelope = {
 };
 
 const PAGE_SIZE = 100;
+const MAX_QUEUE_PAGES = 500;
 
 const copy = {
   fa: {
@@ -97,7 +92,10 @@ const copy = {
     repeat: "تکرار",
     mastery: "تسلط",
     masteryUnavailable: "قرارداد فعلی API اثر/امتیاز تسلط را در لیست مرور برنمی‌گرداند.",
-    start: "شروع مرور",
+    start: "مرور این مورد",
+    startDue: "شروع مرور همه سررسیدها",
+    noDue: "فعلاً مورد سررسیدشده‌ای برای امروز ندارید",
+    dueLoadError: "شمارش مرورهای سررسید بارگذاری نشد؛ دوباره تلاش کنید.",
     open: "باز کردن",
     mark: "نشان‌کردن برای مرور",
     unmark: "برداشتن نشان",
@@ -124,8 +122,6 @@ const copy = {
     bulkUnmark: "برداشتن نشان",
     bulkOpen: "باز کردن اولین مورد",
     bulkMistakeOnly: "نشان‌گذاری فقط برای موارد Mistake توسط API پشتیبانی می‌شود؛ موارد SRS بدون تغییر می‌مانند.",
-    loadMore: "بارگذاری موارد بیشتر",
-    loadingMore: "در حال بارگذاری…",
     empty: "فعلاً موردی در این بخش نیست",
     emptyBody: "با ادامه تمرین، موارد مرور واقعی بر اساس خطاها و برنامه فاصله‌دار اینجا ظاهر می‌شوند.",
     filteredEmpty: "موردی با این فیلترها پیدا نشد",
@@ -146,7 +142,7 @@ const copy = {
     filterPanelOpen: "باز کردن پنل فیلترها",
     filterPanelClose: "بستن پنل فیلترها",
     uiPriorityNote: "اولویت نمایشی از موعد، تکرار و نشان‌گذاری محاسبه می‌شود؛ ترتیب پایه و وضعیت صف از سرور است.",
-    loadedOnly: "جستجو و فیلترهای نمایشی روی موارد بارگذاری‌شده اعمال می‌شوند.",
+    completeQueue: "شمارش‌ها بر اساس کل صف بارگذاری‌شده از همه صفحه‌های API محاسبه می‌شوند.",
     offlineHint: "اگر اتصال قطع شود، آخرین صف بارگذاری‌شده در صفحه باقی می‌ماند؛ تغییرات نیازمند اتصال هستند.",
   },
   en: {
@@ -188,7 +184,10 @@ const copy = {
     repeat: "Repeats",
     mastery: "Mastery",
     masteryUnavailable: "The current review-list API contract does not expose mastery impact/score.",
-    start: "Start review",
+    start: "Review this item",
+    startDue: "Start all due reviews",
+    noDue: "There are no reviews due today",
+    dueLoadError: "Due-review count could not be loaded. Try again.",
     open: "Open",
     mark: "Mark for review",
     unmark: "Remove mark",
@@ -215,8 +214,6 @@ const copy = {
     bulkUnmark: "Unmark",
     bulkOpen: "Open first",
     bulkMistakeOnly: "The API only supports marking Mistake items; SRS items are left unchanged.",
-    loadMore: "Load more",
-    loadingMore: "Loading…",
     empty: "Nothing is waiting here",
     emptyBody: "As you practice, real mistakes and spaced-review schedules will appear here.",
     filteredEmpty: "No items match these filters",
@@ -237,7 +234,7 @@ const copy = {
     filterPanelOpen: "Open filters",
     filterPanelClose: "Close filters",
     uiPriorityNote: "Display priority is derived from due time, repetition and saved state; queue state and default order remain server-owned.",
-    loadedOnly: "Search and presentation filters apply to items currently loaded in the inbox.",
+    completeQueue: "Counts are calculated from the complete queue loaded across all API pages.",
     offlineHint: "If connectivity drops, the last loaded queue remains visible; changes require a connection.",
   },
 } as const;
@@ -255,7 +252,6 @@ function Icon({name, size = 18}: {name: string; size?: number}) {
   if (name === "chevron") return <svg {...common}><path d="m9 18 6-6-6-6"/></svg>;
   if (name === "dots") return <svg {...common}><circle cx="5" cy="12" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/><circle cx="19" cy="12" r="1" fill="currentColor" stroke="none"/></svg>;
   if (name === "layers") return <svg {...common}><path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 12 9 5 9-5M3 16l9 5 9-5"/></svg>;
-  if (name === "grid") return <svg {...common}><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><rect x="14" y="14" width="6" height="6" rx="1"/></svg>;
   if (name === "close") return <svg {...common}><path d="m6 6 12 12M18 6 6 18"/></svg>;
   return <svg {...common}><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 17h.01"/></svg>;
 }
@@ -296,21 +292,13 @@ function buildTopicTitleLookup(envelope: TopicLookupEnvelope | null | undefined,
   return result;
 }
 
-function resolvedTopicTitle(
-  item: ApiAwareReview,
-  locale: Locale,
-  topicTitles: Map<string, string>,
-  labels: typeof copy.fa | typeof copy.en,
-) {
-  const titleAsId = item.subtopic_title && UUID_PATTERN.test(item.subtopic_title.trim())
-    ? item.subtopic_title.trim()
-    : null;
+function resolvedTopicTitle(item: ApiAwareReview, locale: Locale, topicTitles: Map<string, string>, labels: typeof copy.fa | typeof copy.en) {
+  const titleAsId = item.subtopic_title && UUID_PATTERN.test(item.subtopic_title.trim()) ? item.subtopic_title.trim() : null;
   const ids = [item.subtopic_id, titleAsId].filter((value): value is string => Boolean(value));
   for (const id of ids) {
     const localized = topicTitles.get(id);
     if (localized) return localized;
   }
-
   const apiLocalized = locale === "fa" ? item.subtopic_title_fa : item.subtopic_title_fr;
   return readableTopicValue(apiLocalized)
     || readableTopicValue(item.subtopic_title)
@@ -369,6 +357,12 @@ function matchesDue(item: ApiAwareReview, filter: DueFilter, now = new Date()) {
   return delta > 7;
 }
 
+function isActiveSpacedDue(item: ApiAwareReview, now = new Date()) {
+  if (item.kind !== "SPACED" || !["DUE", "SCHEDULED"].includes(item.status)) return false;
+  const delta = dayDelta(item, now);
+  return delta !== null && delta <= 0;
+}
+
 function dueLabel(item: ApiAwareReview, locale: Locale, labels: typeof copy.fa | typeof copy.en) {
   if (item.kind === "MISTAKE" && item.status === "UNRESOLVED") return labels.now;
   const delta = dayDelta(item);
@@ -380,13 +374,7 @@ function dueLabel(item: ApiAwareReview, locale: Locale, labels: typeof copy.fa |
 }
 
 function statusLabel(item: ApiAwareReview, labels: typeof copy.fa | typeof copy.en) {
-  const map: Record<string, string> = {
-    UNRESOLVED: labels.unresolved,
-    CORRECTED: labels.correctedStatus,
-    DUE: labels.due,
-    SCHEDULED: labels.scheduled,
-    SUSPENDED: labels.suspended,
-  };
+  const map: Record<string, string> = {UNRESOLVED: labels.unresolved, CORRECTED: labels.correctedStatus, DUE: labels.due, SCHEDULED: labels.scheduled, SUSPENDED: labels.suspended};
   return map[item.status] || item.status.replaceAll("_", " ");
 }
 
@@ -400,10 +388,11 @@ export function ReviewInbox({locale}: {locale: Locale}) {
   const [mode, setMode] = useState<QueueMode>("inbox");
   const [timeTab, setTimeTab] = useState<TimeTab>("all");
   const [items, setItems] = useState<ApiAwareReview[]>([]);
-  const [page, setPage] = useState<PageShape | null>(null);
+  const [dueItems, setDueItems] = useState<ApiAwareReview[]>([]);
+  const [dueQueueLoading, setDueQueueLoading] = useState(true);
+  const [dueQueueError, setDueQueueError] = useState(false);
   const [topicTitles, setTopicTitles] = useState<Map<string, string>>(new Map());
   const [loading, setLoading] = useState(true);
-  const [loadingMore, setLoadingMore] = useState(false);
   const [error, setError] = useState<ApiError | null>(null);
   const [search, setSearch] = useState("");
   const [priority, setPriority] = useState<PriorityFilter>("ALL");
@@ -424,19 +413,13 @@ export function ReviewInbox({locale}: {locale: Locale}) {
     params.set("page[size]", String(PAGE_SIZE));
     params.set("sort", sort === "-due_at" ? "-due_at" : "due_at");
     if (cursor) params.set("page[after]", cursor);
-    // The main inbox is the SRS concept schedule. Historical Stage-16 mistakes
-    // stay available under "My mistakes", but must not masquerade as a review
-    // that is still due after the concept's due_at has already moved forward.
-    if (mode === "inbox") params.set("filter[kind]", "SPACED");
+    if (mode === "inbox" || mode === "spaced") params.set("filter[kind]", "SPACED");
     if (mode === "mistakes") params.set("filter[kind]", "MISTAKE");
-    if (mode === "spaced") params.set("filter[kind]", "SPACED");
     if (mode === "saved") params.set("filter[marked]", "true");
     if (mode === "corrected") {
       params.set("filter[kind]", "MISTAKE");
       params.set("filter[resolution_status]", "CORRECTED");
     }
-    // These four parameters are ignored safely by the current runtime and become
-    // server-backed when the Review list contract is extended with the matching filters.
     if (lesson !== "ALL") params.set("filter[lesson_id]", lesson);
     if (misconception !== "ALL") params.set("filter[misconception_id]", misconception);
     if (difficulty !== "ALL") params.set("filter[difficulty]", difficulty);
@@ -449,8 +432,6 @@ export function ReviewInbox({locale}: {locale: Locale}) {
       const envelope = await apiRequest<TopicLookupEnvelope>(`/api/backend/mastery-map?locale=${locale}`);
       setTopicTitles(buildTopicTitleLookup(envelope, locale));
     } catch {
-      // Topic localization is enhancement data. The review queue must remain usable
-      // even when the mastery-map endpoint is temporarily unavailable.
       setTopicTitles(new Map());
     }
   }, [locale]);
@@ -460,25 +441,80 @@ export function ReviewInbox({locale}: {locale: Locale}) {
     setError(null);
     setActionMessage(null);
     try {
-      const envelope = await apiRequest<ReviewCollectionEnvelope>(baseQuery());
-      if (!envelope) {
-        throw new ApiError({
-          status: 502,
-          code: "EMPTY_REVIEW_RESPONSE",
-          message: labels.error,
-        });
+      const merged = new Map<string, ApiAwareReview>();
+      const seenCursors = new Set<string>();
+      let cursor: string | null = null;
+      let completed = false;
+
+      for (let pageIndex = 0; pageIndex < MAX_QUEUE_PAGES; pageIndex += 1) {
+        const envelope: ReviewCollectionEnvelope = await apiRequest<ReviewCollectionEnvelope>(baseQuery(cursor));
+        if (!envelope) {
+          throw new ApiError({status: 502, code: "EMPTY_REVIEW_RESPONSE", message: labels.error});
+        }
+        for (const item of (envelope.data || []) as ApiAwareReview[]) merged.set(item.id, item);
+        const nextCursor: string | null = envelope.page?.next_cursor ?? null;
+        const hasMore = Boolean(envelope.page?.has_more && nextCursor);
+        if (!hasMore) {
+          completed = true;
+          break;
+        }
+        if (!nextCursor || seenCursors.has(nextCursor)) {
+          throw new ApiError({status: 502, code: "INVALID_REVIEW_CURSOR", message: labels.error});
+        }
+        seenCursors.add(nextCursor);
+        cursor = nextCursor;
       }
-      setItems((envelope.data || []) as ApiAwareReview[]);
-      setPage(envelope.page as PageShape);
+      if (!completed) {
+        throw new ApiError({status: 502, code: "REVIEW_QUEUE_TOO_LARGE", message: labels.error});
+      }
+
+      const allItems = [...merged.values()];
+      setItems(allItems);
       setSelected(new Set());
     } catch (caught) {
       setError(caught instanceof ApiError ? caught : new ApiError({status: 0, code: "NETWORK_ERROR", message: labels.error}));
     } finally {
       setLoading(false);
     }
-  }, [baseQuery, labels.error]);
+  }, [baseQuery, labels.error, mode]);
+
+  const loadDueQueue = useCallback(async () => {
+    setDueQueueLoading(true);
+    setDueQueueError(false);
+    try {
+      const merged = new Map<string, ApiAwareReview>();
+      const seenCursors = new Set<string>();
+      let cursor: string | null = null;
+      let completed = false;
+
+      for (let pageIndex = 0; pageIndex < MAX_QUEUE_PAGES; pageIndex += 1) {
+        const params = new URLSearchParams();
+        params.set("page[size]", String(PAGE_SIZE));
+        params.set("sort", "due_at");
+        params.set("filter[kind]", "SPACED");
+        if (cursor) params.set("page[after]", cursor);
+        const envelope: ReviewCollectionEnvelope = await apiRequest<ReviewCollectionEnvelope>(`/api/backend/reviews?${params.toString()}`);
+        if (!envelope) throw new Error("Empty due-review response");
+        for (const item of (envelope.data || []) as ApiAwareReview[]) merged.set(item.id, item);
+        const nextCursor: string | null = envelope.page?.next_cursor ?? null;
+        const hasMore = Boolean(envelope.page?.has_more && nextCursor);
+        if (!hasMore) { completed = true; break; }
+        if (!nextCursor || seenCursors.has(nextCursor)) throw new Error("Repeated due-review cursor");
+        seenCursors.add(nextCursor);
+        cursor = nextCursor;
+      }
+      if (!completed) throw new Error("Due-review queue exceeded pagination safety limit");
+      setDueItems([...merged.values()].filter((item) => isActiveSpacedDue(item)));
+    } catch {
+      setDueItems([]);
+      setDueQueueError(true);
+    } finally {
+      setDueQueueLoading(false);
+    }
+  }, []);
 
   useEffect(() => { void load(); }, [load]);
+  useEffect(() => { void loadDueQueue(); }, [loadDueQueue]);
   useEffect(() => { void loadTopicTitles(); }, [loadTopicTitles]);
 
   useEffect(() => {
@@ -492,33 +528,6 @@ export function ReviewInbox({locale}: {locale: Locale}) {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [filtersOpen]);
-
-  const loadMore = async () => {
-    const cursor = page?.next_cursor;
-    if (!cursor || loadingMore) return;
-    setLoadingMore(true);
-    setError(null);
-    try {
-      const envelope = await apiRequest<ReviewCollectionEnvelope>(baseQuery(cursor));
-      if (!envelope) {
-        throw new ApiError({
-          status: 502,
-          code: "EMPTY_REVIEW_RESPONSE",
-          message: labels.error,
-        });
-      }
-      setItems((current) => {
-        const map = new Map(current.map((item) => [item.id, item]));
-        for (const item of envelope.data as ApiAwareReview[]) map.set(item.id, item);
-        return [...map.values()];
-      });
-      setPage(envelope.page as PageShape);
-    } catch (caught) {
-      setError(caught instanceof ApiError ? caught : new ApiError({status: 0, code: "NETWORK_ERROR", message: labels.error}));
-    } finally {
-      setLoadingMore(false);
-    }
-  };
 
   const misconceptionOptions = useMemo(() => {
     const values = new Map<string, string>();
@@ -537,10 +546,7 @@ export function ReviewInbox({locale}: {locale: Locale}) {
     return [...values.entries()].sort((a, b) => a[1].localeCompare(b[1]));
   }, [items, labels.lesson]);
 
-  const difficultyOptions = useMemo(() => {
-    const values = new Set(items.map((item) => item.difficulty).filter(Boolean) as string[]);
-    return [...values];
-  }, [items]);
+  const difficultyOptions = useMemo(() => [...new Set(items.map((item) => item.difficulty).filter(Boolean) as string[])], [items]);
 
   const timeCounts = useMemo(() => ({
     all: items.length,
@@ -562,21 +568,17 @@ export function ReviewInbox({locale}: {locale: Locale}) {
       if (difficulty !== "ALL" && item.difficulty !== difficulty) return false;
       if (q) {
         const topicTitle = resolvedTopicTitle(item, locale, topicTitles, labels);
-        const haystack = [item.title, item.group_key, item.lesson_title, topicTitle, item.misconception_label]
-          .filter(Boolean).join(" ").toLocaleLowerCase(locale === "fa" ? "fa" : "en");
+        const haystack = [item.title, item.group_key, item.lesson_title, topicTitle, item.misconception_label].filter(Boolean).join(" ").toLocaleLowerCase(locale === "fa" ? "fa" : "en");
         if (!haystack.includes(q)) return false;
       }
       return true;
     });
-    if (sort === "repeat") {
-      result = [...result].sort((a, b) => repeatCount(b) - repeatCount(a) || a.title.localeCompare(b.title));
-    }
+    if (sort === "repeat") result = [...result].sort((a, b) => repeatCount(b) - repeatCount(a) || a.title.localeCompare(b.title));
     return result;
   }, [difficulty, dueFilter, items, labels, lesson, locale, misconception, priority, repeat, search, sort, timeTab, topicTitles]);
 
   const visibleIds = useMemo(() => new Set(filtered.map((item) => item.id)), [filtered]);
   const allVisibleSelected = filtered.length > 0 && filtered.every((item) => selected.has(item.id));
-
   const priorities = useMemo(() => {
     const result = {HIGH: 0, MEDIUM: 0, LOW: 0};
     for (const item of items) result[displayPriority(item)] += 1;
@@ -587,6 +589,7 @@ export function ReviewInbox({locale}: {locale: Locale}) {
   const mediumPct = (priorities.MEDIUM / totalPriorities) * 100;
   const dueTodayCount = items.filter((item) => matchesTime(item, "today")).length;
   const waitingCount = Math.max(0, items.length - dueTodayCount);
+  const firstDueItem = dueItems[0] ?? null;
 
   const clearFilters = () => {
     setPriority("ALL"); setDueFilter("ALL"); setMisconception("ALL"); setLesson("ALL");
@@ -595,71 +598,29 @@ export function ReviewInbox({locale}: {locale: Locale}) {
 
   const setMarked = async (targets: ApiAwareReview[], marked: boolean) => {
     const supported = targets.filter((item) => item.kind === "MISTAKE");
-    if (!supported.length) {
-      setActionMessage(labels.bulkMistakeOnly);
-      return;
-    }
+    if (!supported.length) { setActionMessage(labels.bulkMistakeOnly); return; }
     setActionMessage(null);
     setBusyIds((current) => new Set([...current, ...supported.map((item) => item.id)]));
-    const results = await Promise.allSettled(supported.map((item) => apiRequest(`/api/backend/reviews/${item.id}/mark`, {
-      method: "PUT",
-      body: JSON.stringify({marked}),
-    })));
+    const results = await Promise.allSettled(supported.map((item) => apiRequest(`/api/backend/reviews/${item.id}/mark`, {method: "PUT", body: JSON.stringify({marked})})));
     const succeeded = new Set(supported.filter((_, index) => results[index]?.status === "fulfilled").map((item) => item.id));
     setItems((current) => current.map((item) => succeeded.has(item.id) ? {...item, marked} : item));
     const failed = results.filter((result) => result.status === "rejected").length;
     if (failed) setActionMessage(isFa ? `${failed.toLocaleString("fa-IR")} مورد به‌روزرسانی نشد.` : `${failed} item(s) could not be updated.`);
     else if (targets.length !== supported.length) setActionMessage(labels.bulkMistakeOnly);
-    setBusyIds((current) => {
-      const next = new Set(current);
-      supported.forEach((item) => next.delete(item.id));
-      return next;
-    });
+    setBusyIds((current) => { const next = new Set(current); supported.forEach((item) => next.delete(item.id)); return next; });
   };
 
-  const toggleSelected = (id: string) => {
-    setSelected((current) => {
-      const next = new Set(current);
-      if (next.has(id)) next.delete(id); else next.add(id);
-      return next;
-    });
-  };
-
-  const selectVisible = () => {
-    setSelected((current) => {
-      const next = new Set(current);
-      if (allVisibleSelected) visibleIds.forEach((id) => next.delete(id));
-      else visibleIds.forEach((id) => next.add(id));
-      return next;
-    });
-  };
-
+  const toggleSelected = (id: string) => setSelected((current) => { const next = new Set(current); if (next.has(id)) next.delete(id); else next.add(id); return next; });
+  const selectVisible = () => setSelected((current) => { const next = new Set(current); if (allVisibleSelected) visibleIds.forEach((id) => next.delete(id)); else visibleIds.forEach((id) => next.add(id)); return next; });
   const selectedItems = items.filter((item) => selected.has(item.id));
   const firstSelectedItem = selectedItems[0];
 
   if (loading && !items.length) {
-    return (
-      <div className={styles.page} dir={isFa ? "rtl" : "ltr"}>
-        <div className={styles.loadingShell} role="status" aria-live="polite">
-          <div className={styles.skeletonTitle}/><div className={styles.skeletonLine}/>
-          <div className={styles.loadingGrid}><div className={styles.skeletonPanel}/><div className={styles.skeletonPanel}/><div className={styles.skeletonPanel}/></div>
-          <span className="visually-hidden">{labels.loading}</span>
-        </div>
-      </div>
-    );
+    return <div className={styles.page} dir={isFa ? "rtl" : "ltr"}><div className={styles.loadingShell} role="status" aria-live="polite"><div className={styles.skeletonTitle}/><div className={styles.skeletonLine}/><div className={styles.loadingGrid}><div className={styles.skeletonPanel}/><div className={styles.skeletonPanel}/><div className={styles.skeletonPanel}/></div><span className="visually-hidden">{labels.loading}</span></div></div>;
   }
 
   if (error && !items.length) {
-    return (
-      <div className={styles.page} dir={isFa ? "rtl" : "ltr"}>
-        <section className={styles.stateCard} role="alert">
-          <span className={styles.stateIcon}><Icon name="info" size={24}/></span>
-          <h1>{labels.error}</h1><p>{error.message}</p>
-          <button type="button" className={styles.primaryButton} onClick={() => void load()}>{labels.retry}</button>
-          {error.requestId ? <small>Request ID: {error.requestId}</small> : null}
-        </section>
-      </div>
-    );
+    return <div className={styles.page} dir={isFa ? "rtl" : "ltr"}><section className={styles.stateCard} role="alert"><span className={styles.stateIcon}><Icon name="info" size={24}/></span><h1>{labels.error}</h1><p>{error.message}</p><button type="button" className={styles.primaryButton} onClick={() => void load()}>{labels.retry}</button>{error.requestId ? <small>Request ID: {error.requestId}</small> : null}</section></div>;
   }
 
   return (
@@ -669,81 +630,70 @@ export function ReviewInbox({locale}: {locale: Locale}) {
           <section className={styles.railCard}>
             <h2>{labels.navTitle}</h2>
             <nav className={styles.queueNav}>
-              {([
-                ["inbox", "inbox", labels.inbox],
-                ["mistakes", "mistake", labels.mistakes],
-                ["spaced", "clock", labels.spaced],
-                ["saved", "bookmark", labels.saved],
-                ["corrected", "check", labels.corrected],
+              {([[
+                "inbox", "inbox", labels.inbox], ["mistakes", "mistake", labels.mistakes], ["spaced", "clock", labels.spaced], ["saved", "bookmark", labels.saved], ["corrected", "check", labels.corrected],
               ] as const).map(([value, icon, label]) => (
                 <button key={value} type="button" className={`${styles.navItem} ${mode === value ? styles.navItemActive : ""}`} onClick={() => setMode(value)} aria-current={mode === value ? "page" : undefined}>
-                  <span className={styles.navIcon}><Icon name={icon}/></span><span>{label}</span>
-                  <span className={styles.navCount}>{mode === value ? items.length : value === "mistakes" ? items.filter((x) => x.kind === "MISTAKE").length : value === "spaced" ? items.filter((x) => x.kind === "SPACED").length : value === "saved" ? items.filter((x) => x.marked).length : ""}</span>
+                  <span className={styles.navIcon}><Icon name={icon}/></span><span>{label}</span><span className={styles.navCount}>{mode === value ? items.length : ""}</span>
                 </button>
               ))}
             </nav>
-            <div className={styles.howCard}>
-              <span className={styles.howIcon}><Icon name="layers"/></span>
-              <h3>{labels.howTitle}</h3><p>{labels.howBody}</p>
-              <Link href={`/${locale}/progress`} className={styles.textLink}>{labels.learnMore}<Icon name="chevron" size={15}/></Link>
-            </div>
+            <div className={styles.howCard}><span className={styles.howIcon}><Icon name="layers"/></span><h3>{labels.howTitle}</h3><p>{labels.howBody}</p><Link href={`/${locale}/progress`} className={styles.textLink}>{labels.learnMore}<Icon name="chevron" size={15}/></Link></div>
           </section>
         </aside>
 
         <main className={styles.main}>
           <header className={styles.pageHeader}>
-            <div>
-              <p className={styles.eyebrow}>{labels.eyebrow}</p>
-              <h1>{labels.title}</h1>
-              <p>{labels.subtitle}</p>
-            </div>
+            <div><p className={styles.eyebrow}>{labels.eyebrow}</p><h1>{labels.title}</h1><p>{labels.subtitle}</p></div>
             <div className={styles.headerTools}>
-              <label className={styles.searchBox}>
-                <Icon name="search"/>
-                <input ref={searchRef} type="search" value={search} onChange={(event) => setSearch(event.target.value)} placeholder={labels.search} aria-label={labels.search}/>
-                <kbd>/</kbd>
-              </label>
+              <label className={styles.searchBox}><Icon name="search"/><input ref={searchRef} type="search" value={search} onChange={(event) => setSearch(event.target.value)} placeholder={labels.search} aria-label={labels.search}/><kbd>/</kbd></label>
               <button type="button" className={styles.filterButton} onClick={() => setFiltersOpen(true)} aria-label={labels.filterPanelOpen}><Icon name="filter"/>{labels.filters}</button>
             </div>
           </header>
 
+          <div style={{display: "flex", inlineSize: "100%", marginBlockEnd: "10px"}}>
+            {firstDueItem ? (
+              <Link
+                className={styles.primaryButton}
+                style={{inlineSize: "100%", textDecoration: "none", display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "8px"}}
+                href={`/${locale}/review/${firstDueItem.id}?mode=due&fresh=1`}
+              >
+                {labels.startDue} ({dueItems.length.toLocaleString(isFa ? "fa-IR" : "en-CA")}) <Icon name="chevron" size={16}/>
+              </Link>
+            ) : dueQueueError ? (
+              <button
+                type="button"
+                className={styles.primaryButton}
+                style={{inlineSize: "100%"}}
+                onClick={() => void loadDueQueue()}
+              >
+                {labels.dueLoadError}
+              </button>
+            ) : (
+              <span className={styles.loadedNote} style={{inlineSize: "100%", textAlign: "center", paddingBlock: "8px"}}>
+                {dueQueueLoading ? labels.loading : labels.noDue}
+              </span>
+            )}
+          </div>
+
           <div className={styles.tabs} role="tablist" aria-label={isFa ? "بازه زمانی مرور" : "Review time window"}>
-            {([
-              ["all", labels.all, timeCounts.all],
-              ["today", labels.today, timeCounts.today],
-              ["week", labels.week, timeCounts.week],
-              ["later", labels.later, timeCounts.later],
-            ] as const).map(([value, label, count]) => (
+            {([ ["all", labels.all, timeCounts.all], ["today", labels.today, timeCounts.today], ["week", labels.week, timeCounts.week], ["later", labels.later, timeCounts.later] ] as const).map(([value, label, count]) => (
               <button key={value} role="tab" type="button" aria-selected={timeTab === value} className={timeTab === value ? styles.tabActive : ""} onClick={() => setTimeTab(value)}>{label} <span>({count.toLocaleString(isFa ? "fa-IR" : "en-CA")})</span></button>
             ))}
           </div>
 
           <section className={styles.listPanel} aria-label={labels.inbox}>
             <div className={styles.listToolbar}>
-              <label className={styles.selectAll}>
-                <input type="checkbox" checked={allVisibleSelected} onChange={selectVisible}/><span>{labels.selectVisible}</span>
-              </label>
+              <label className={styles.selectAll}><input type="checkbox" checked={allVisibleSelected} onChange={selectVisible}/><span>{labels.selectVisible}</span></label>
               <span className={styles.loadedNote}>{filtered.length.toLocaleString(isFa ? "fa-IR" : "en-CA")} {labels.itemCount}</span>
               <label className={styles.sortControl}><span>{labels.sort}</span><select value={sort} onChange={(event) => setSort(event.target.value as SortChoice)}><option value="due_at">{labels.sourceOrder}</option><option value="-due_at">{labels.newestDue}</option><option value="repeat">{labels.repeatSort}</option></select></label>
             </div>
 
-            {selected.size > 0 ? (
-              <div className={styles.bulkBar} role="region" aria-label={isFa ? "اقدامات گروهی" : "Bulk actions"}>
-                <strong>{selected.size.toLocaleString(isFa ? "fa-IR" : "en-CA")} {labels.selected}</strong>
-                <div>
-                  <button type="button" onClick={() => void setMarked(selectedItems, true)}><Icon name="bookmark" size={16}/>{labels.bulkMark}</button>
-                  <button type="button" onClick={() => void setMarked(selectedItems, false)}>{labels.bulkUnmark}</button>
-                  {firstSelectedItem ? <Link href={`/${locale}/review/${firstSelectedItem.id}`}>{labels.bulkOpen}</Link> : null}
-                  <button type="button" onClick={() => setSelected(new Set())}>{labels.clearSelection}</button>
-                </div>
-              </div>
-            ) : null}
+            {selected.size > 0 ? <div className={styles.bulkBar} role="region" aria-label={isFa ? "اقدامات گروهی" : "Bulk actions"}><strong>{selected.size.toLocaleString(isFa ? "fa-IR" : "en-CA")} {labels.selected}</strong><div><button type="button" onClick={() => void setMarked(selectedItems, true)}><Icon name="bookmark" size={16}/>{labels.bulkMark}</button><button type="button" onClick={() => void setMarked(selectedItems, false)}>{labels.bulkUnmark}</button>{firstSelectedItem ? <Link href={`/${locale}/review/${firstSelectedItem.id}?mode=single&fresh=1`}>{labels.bulkOpen}</Link> : null}<button type="button" onClick={() => setSelected(new Set())}>{labels.clearSelection}</button></div></div> : null}
             {actionMessage ? <p className={styles.actionMessage} role="status">{actionMessage}</p> : null}
             {error ? <div className={styles.inlineError} role="alert"><span>{error.message}</span><button type="button" onClick={() => void load()}>{labels.retry}</button></div> : null}
 
-            <div className={styles.columnHeader} aria-hidden="true">
-              <span>{labels.priority}</span><span>{labels.nextDue}</span><span>{labels.topic}</span><span>{labels.lesson}</span><span>{labels.details}</span><span>{labels.lastError}</span>
-            </div>
+            <div className={styles.columnHeader} aria-hidden="true"><span>{labels.priority}</span><span>{labels.nextDue}</span><span>{labels.topic}</span><span>{labels.lesson}</span><span>{labels.details}</span><span>{labels.lastError}</span></div>
 
             {filtered.length ? (
               <div className={styles.reviewList}>
@@ -761,30 +711,16 @@ export function ReviewInbox({locale}: {locale: Locale}) {
                       <div className={styles.topicCell}><strong dir="auto">{topicTitle}</strong><small>{item.kind === "MISTAKE" ? labels.mistake : labels.srs}</small></div>
                       <div className={styles.lessonCell}>{item.lesson_no ? <><strong>{labels.lesson} {item.lesson_no}</strong><small dir="auto">{item.lesson_title || ""}</small></> : <><strong>—</strong><small title={labels.lessonUnavailable}>{labels.lessonFilter}</small></>}</div>
                       <div className={styles.detailCell}><strong>{item.kind === "MISTAKE" ? `${labels.repeat}: ${repeatCount(item).toLocaleString(isFa ? "fa-IR" : "en-CA")}` : statusLabel(item, labels)}</strong><small>{mastery !== null ? `${labels.mastery}: ${Math.round(mastery)}%` : `${labels.mastery}: —`}</small></div>
-                      <div className={styles.titleCell}>
-                        <div className={styles.titleTop}><span className={`${styles.kindDot} ${item.kind === "MISTAKE" ? styles.kindMistake : styles.kindSpaced}`}/><span className={styles.kindLabel}>{item.kind === "MISTAKE" ? labels.mistake : labels.srs}</span>{item.marked ? <span className={styles.markedPill}><Icon name="bookmark" size={13}/>{labels.marked}</span> : null}</div>
-                        <h2 dir="auto">{item.title}</h2>
-                        <p dir="auto">{misconceptionData ? `Misconception: ${compactId(misconceptionData.label)}` : item.group_key ? compactId(item.group_key) : statusLabel(item, labels)}</p>
-                      </div>
-                      <div className={styles.rowActions}>
-                        <Link className={styles.startButton} href={`/${locale}/review/${item.id}`}>{labels.start}<Icon name="chevron" size={16}/></Link>
-                        {item.kind === "MISTAKE" ? <button type="button" className={styles.iconButton} disabled={isBusy} onClick={() => void setMarked([item], !item.marked)} aria-label={item.marked ? labels.unmark : labels.mark}><Icon name="bookmark" size={17}/></button> : null}
-                        <Link href={`/${locale}/review/${item.id}`} className={styles.iconButton} aria-label={labels.menuLabel}><Icon name="dots" size={18}/></Link>
-                      </div>
+                      <div className={styles.titleCell}><div className={styles.titleTop}><span className={`${styles.kindDot} ${item.kind === "MISTAKE" ? styles.kindMistake : styles.kindSpaced}`}/><span className={styles.kindLabel}>{item.kind === "MISTAKE" ? labels.mistake : labels.srs}</span>{item.marked ? <span className={styles.markedPill}><Icon name="bookmark" size={13}/>{labels.marked}</span> : null}</div><h2 dir="auto">{item.title}</h2><p dir="auto">{misconceptionData ? `Misconception: ${compactId(misconceptionData.label)}` : item.group_key ? compactId(item.group_key) : statusLabel(item, labels)}</p></div>
+                      <div className={styles.rowActions}><Link className={styles.startButton} href={`/${locale}/review/${item.id}?mode=single&fresh=1`}>{labels.start}<Icon name="chevron" size={16}/></Link>{item.kind === "MISTAKE" ? <button type="button" className={styles.iconButton} disabled={isBusy} onClick={() => void setMarked([item], !item.marked)} aria-label={item.marked ? labels.unmark : labels.mark}><Icon name="bookmark" size={17}/></button> : null}<Link href={`/${locale}/review/${item.id}?mode=single&fresh=1`} className={styles.iconButton} aria-label={labels.menuLabel}><Icon name="dots" size={18}/></Link></div>
                     </article>
                   );
                 })}
               </div>
             ) : (
-              <div className={styles.emptyState}>
-                <span><Icon name={items.length ? "filter" : "inbox"} size={28}/></span>
-                <h2>{items.length ? labels.filteredEmpty : labels.empty}</h2><p>{items.length ? labels.filteredBody : labels.emptyBody}</p>
-                {items.length ? <button type="button" onClick={clearFilters}>{labels.clearFilters}</button> : <Link href={`/${locale}/tests/new`}>{isFa ? "شروع تمرین" : "Start practice"}</Link>}
-              </div>
+              <div className={styles.emptyState}><span><Icon name={items.length ? "filter" : "inbox"} size={28}/></span><h2>{items.length ? labels.filteredEmpty : labels.empty}</h2><p>{items.length ? labels.filteredBody : labels.emptyBody}</p>{items.length ? <button type="button" onClick={clearFilters}>{labels.clearFilters}</button> : <Link href={`/${locale}/tests/new`}>{isFa ? "شروع تمرین" : "Start practice"}</Link>}</div>
             )}
-
-            {page?.has_more && page.next_cursor ? <div className={styles.loadMoreWrap}><button type="button" className={styles.loadMore} disabled={loadingMore} onClick={() => void loadMore()}>{loadingMore ? labels.loadingMore : labels.loadMore}</button></div> : null}
-            <p className={styles.contractNote}>{labels.loadedOnly}</p>
+            <p className={styles.contractNote}>{labels.completeQueue}</p>
           </section>
         </main>
 
@@ -792,10 +728,7 @@ export function ReviewInbox({locale}: {locale: Locale}) {
           <button type="button" className={styles.drawerClose} onClick={() => setFiltersOpen(false)} aria-label={labels.filterPanelClose}><Icon name="close"/></button>
           <section className={styles.summaryCard}>
             <h2>{labels.summary}</h2>
-            <div className={styles.summaryTop}>
-              <div className={styles.donut} style={{"--high": `${highPct}%`, "--medium": `${highPct + mediumPct}%`} as CSSProperties}><div><strong>{items.length.toLocaleString(isFa ? "fa-IR" : "en-CA")}</strong><span>{labels.questions}</span></div></div>
-              <dl><div><dt><i className={styles.legendHigh}/>{labels.high}</dt><dd>{priorities.HIGH.toLocaleString(isFa ? "fa-IR" : "en-CA")}</dd></div><div><dt><i className={styles.legendMedium}/>{labels.medium}</dt><dd>{priorities.MEDIUM.toLocaleString(isFa ? "fa-IR" : "en-CA")}</dd></div><div><dt><i className={styles.legendLow}/>{labels.low}</dt><dd>{priorities.LOW.toLocaleString(isFa ? "fa-IR" : "en-CA")}</dd></div></dl>
-            </div>
+            <div className={styles.summaryTop}><div className={styles.donut} style={{"--high": `${highPct}%`, "--medium": `${highPct + mediumPct}%`} as CSSProperties}><div><strong>{items.length.toLocaleString(isFa ? "fa-IR" : "en-CA")}</strong><span>{labels.questions}</span></div></div><dl><div><dt><i className={styles.legendHigh}/>{labels.high}</dt><dd>{priorities.HIGH.toLocaleString(isFa ? "fa-IR" : "en-CA")}</dd></div><div><dt><i className={styles.legendMedium}/>{labels.medium}</dt><dd>{priorities.MEDIUM.toLocaleString(isFa ? "fa-IR" : "en-CA")}</dd></div><div><dt><i className={styles.legendLow}/>{labels.low}</dt><dd>{priorities.LOW.toLocaleString(isFa ? "fa-IR" : "en-CA")}</dd></div></dl></div>
             <div className={styles.summaryStats}><div><strong>{dueTodayCount.toLocaleString(isFa ? "fa-IR" : "en-CA")}</strong><span>{labels.dueToday}</span></div><div><strong>{waitingCount.toLocaleString(isFa ? "fa-IR" : "en-CA")}</strong><span>{labels.waiting}</span></div></div>
             <p className={styles.priorityNote}>{labels.uiPriorityNote}</p>
           </section>
