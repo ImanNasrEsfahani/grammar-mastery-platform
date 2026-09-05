@@ -447,7 +447,7 @@ export function ReviewInbox({locale}: {locale: Locale}) {
       let completed = false;
 
       for (let pageIndex = 0; pageIndex < MAX_QUEUE_PAGES; pageIndex += 1) {
-        const envelope = await apiRequest<ReviewCollectionEnvelope>(baseQuery(cursor));
+        const envelope: ReviewCollectionEnvelope | null = await apiRequest<ReviewCollectionEnvelope>(baseQuery(cursor));
         if (!envelope) {
           throw new ApiError({status: 502, code: "EMPTY_REVIEW_RESPONSE", message: labels.error});
         }
@@ -493,7 +493,7 @@ export function ReviewInbox({locale}: {locale: Locale}) {
         params.set("sort", "due_at");
         params.set("filter[kind]", "SPACED");
         if (cursor) params.set("page[after]", cursor);
-        const envelope = await apiRequest<ReviewCollectionEnvelope>(`/api/backend/reviews?${params.toString()}`);
+        const envelope: ReviewCollectionEnvelope | null = await apiRequest<ReviewCollectionEnvelope>(`/api/backend/reviews?${params.toString()}`);
         if (!envelope) throw new Error("Empty due-review response");
         for (const item of (envelope.data || []) as ApiAwareReview[]) merged.set(item.id, item);
         const nextCursor: string | null = envelope.page?.next_cursor ?? null;
