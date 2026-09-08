@@ -9,7 +9,7 @@ permissions:
 
 jobs:
   build-and-push:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     timeout-minutes: 30
 
     steps:
@@ -31,6 +31,7 @@ jobs:
         with:
           context: .
           file: docker/frontend/Dockerfile
+          platforms: linux/arm64
           push: true
 
           build-args: |
