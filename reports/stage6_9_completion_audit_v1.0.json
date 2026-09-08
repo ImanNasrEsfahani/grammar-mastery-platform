@@ -1,0 +1,88 @@
+{
+  "audit_version": "stage6-9-completion-audit-v1.0.0",
+  "generated_from": {
+    "target_workbook": "question_bank_full_batch_plan_v1.0.xlsx",
+    "final_registry": "question_bank_global_registry_B238.csv",
+    "final_registry_sha256": "d225f0a2e0c4eaf49ea129542b596a86708cbdc38d96ec6875fe2e92b5f9c198",
+    "github_repo": "ImanNasrEsfahani/grammar-mastery-platform",
+    "write_policy": "read-only; no commit or push performed"
+  },
+  "overall_controller_status": "COMPLETE",
+  "stages": {
+    "6": {
+      "name": "Question Type Catalogue Controller",
+      "status": "COMPLETE",
+      "evidence": {
+        "questions": 10636,
+        "catalogue_types": 15,
+        "observed_types": 15,
+        "all_observed": true
+      },
+      "output": "data/question_authoring/stage6/stage6_question_type_contracts_controller_v1.0.json"
+    },
+    "7": {
+      "name": "Distractor / Misconception Controller",
+      "status": "COMPLETE",
+      "finding": "The orchestration dependency config/stage7_distractor_rules.json was missing; this overlay supplies it from the existing recovered rules/catalogue contracts.",
+      "outputs": [
+        "config/stage7_distractor_rules.json",
+        "data/question_authoring/stage7/README_ORIGINAL_STAGE7_SOURCE.md"
+      ]
+    },
+    "8": {
+      "name": "Difficulty Model Controller",
+      "status": "COMPLETE",
+      "evidence": {
+        "actual_difficulty_counts": {
+          "EASY": 2181,
+          "MEDIUM": 4116,
+          "HARD": 3203,
+          "VERY_HARD": 1136
+        },
+        "levels": [
+          "EASY",
+          "MEDIUM",
+          "HARD",
+          "VERY_HARD"
+        ]
+      },
+      "output": "data/planning/stage8_difficulty_model_controller_v1.0.json"
+    },
+    "9": {
+      "name": "Difficulty Distribution Controller",
+      "status": "COMPLETE",
+      "inventory_conformance": "DRIFT_DETECTED",
+      "evidence": {
+        "target_total": 10636,
+        "actual_total": 10636,
+        "target_difficulty_counts": {
+          "EASY": 2180,
+          "MEDIUM": 4116,
+          "HARD": 3203,
+          "VERY_HARD": 1137
+        },
+        "actual_difficulty_counts": {
+          "EASY": 2181,
+          "MEDIUM": 4116,
+          "HARD": 3203,
+          "VERY_HARD": 1136
+        },
+        "lessons_exact": 51,
+        "lessons_with_drift": [
+          "L51"
+        ]
+      },
+      "outputs": [
+        "config/stage9_difficulty_distribution_controller.json",
+        "data/planning/stage9_inventory_reconciliation_v1.0.csv"
+      ]
+    }
+  },
+  "non_destructive_decisions": [
+    "Did not rewrite config/stage6_question_type_policy.json.",
+    "Did not rewrite config/stage8_difficulty_policy.json.",
+    "Did not rewrite data/planning/stage9_lesson_difficulty_targets_v1.0.csv.",
+    "Did not relabel any B230 question merely to force a target match.",
+    "Did not commit or push to GitHub."
+  ]
+}

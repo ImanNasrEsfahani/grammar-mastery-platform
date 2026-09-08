@@ -1,0 +1,99 @@
+{
+  "controller_version": "stage7-distractor-misconception-controller-v1.0.0",
+  "controller_status": "COMPLETE",
+  "ruleset_version": "distractor-rule-set-v0.9.0",
+  "recovery_version": "question-authoring-recovery-v1.0.0",
+  "canonical_dependencies": {
+    "historical_catalogue": {
+      "path": "data/question_authoring/stage7/stage7_misconception_catalogue_v0.9.csv",
+      "git_blob_sha": "1c1c6948187f5e2944b0033dd8eeb9096744f556"
+    },
+    "recovered_catalogue": {
+      "path": "data/question_authoring/stage7/stage7_misconception_catalogue_recovered_v1.0.csv",
+      "git_blob_sha": "f29839f77cede96ca7f6a9aa3ecace645e10e2ed"
+    },
+    "id_provenance": {
+      "path": "data/question_authoring/stage7/stage7_recovery_id_provenance_v1.0.csv",
+      "git_blob_sha": "75ae3bcaf0cd67bff476bd692078a6d3955f2132"
+    },
+    "rule_table": {
+      "path": "data/question_authoring/stage7/stage7_distractor_rules_recovered_v1.0.csv",
+      "git_blob_sha": "add62b4906c4f3a7ae98ca556df3f478e50b94e5"
+    },
+    "stage6_gate": "config/stage6_question_type_policy.json",
+    "question_schema": "schemas/question_import.schema.json"
+  },
+  "misconception_families": [
+    "OVERGENERALIZATION",
+    "NEAR_FORM_CONFUSION",
+    "CONTEXT_ROLE_MISMATCH",
+    "EXCEPTION_NEGLECT"
+  ],
+  "global_rules": [
+    {
+      "code": "G01_SINGLE_CORRECT",
+      "contract": "Exactly one defensible correct option."
+    },
+    {
+      "code": "G02_MAP_MISCONCEPTION",
+      "contract": "Each diagnostic wrong option maps to a valid misconception ID; the correct option misconception is blank."
+    },
+    {
+      "code": "G03_REALISTIC_WRONG",
+      "contract": "Wrong options are plausible for a learner but definitively wrong in the stated context."
+    },
+    {
+      "code": "G04_BALANCE_PARALLEL",
+      "contract": "Balance length, style, tense, register and naturalness across options."
+    },
+    {
+      "code": "G05_NEAR_RULE_HARD",
+      "contract": "Near-rule distractors are allowed/encouraged for hard items when they remain unambiguous."
+    },
+    {
+      "code": "G06_NO_TYPO_ONLY",
+      "contract": "Do not use spelling/typo-only noise as a substitute for a grammar misconception."
+    },
+    {
+      "code": "G07_NO_SEMANTIC_DUPLICATES",
+      "contract": "No two options may be semantically equivalent under the stated context."
+    },
+    {
+      "code": "G08_EXPLANATION_SAFE",
+      "contract": "Full and option-level explanations must not contradict the keyed answer or misconception mapping."
+    },
+    {
+      "code": "G09_POSITION_STYLE_BALANCE",
+      "contract": "Avoid systematic correct-position and stylistic answer cues."
+    },
+    {
+      "code": "G10_COMPATIBILITY_GATE",
+      "contract": "Distractors must remain within the Stage 6 lesson/subtopic/type compatibility contract."
+    },
+    {
+      "code": "G11_POSTDEPLOY_SELECTION_METRIC",
+      "contract": "Flag weak distractors heuristically when selection rate is <5% with N>=100; Stage 27 owns final calibrated thresholds."
+    },
+    {
+      "code": "G12_NO_FIXED_REUSE",
+      "contract": "Do not reuse a fixed distractor set mechanically across unrelated stems."
+    }
+  ],
+  "option_level_contract": {
+    "option_count": 4,
+    "single_correct": true,
+    "correct_option_misconception_must_be_blank": true,
+    "every_diagnostic_wrong_option_requires_valid_misconception_id": true,
+    "full_explanation_required": true,
+    "option_explanations_required": true,
+    "traceability": "selected wrong option -> misconception_id -> subtopic -> weakness/review",
+    "semantic_duplicate_check_required": true,
+    "naturalness_balance_required": true
+  },
+  "id_integrity": {
+    "historical_ids_are_stable": true,
+    "recovery_must_not_regenerate_ids": true,
+    "provenance_file_required_for_recovered_rows": true
+  },
+  "runtime_note": "This file fills the previously missing config/stage7_distractor_rules.json dependency referenced by the authoring/orchestration plan. It points to the canonical CSV catalogues rather than duplicating their row data."
+}

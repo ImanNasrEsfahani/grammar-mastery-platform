@@ -1,23 +1,28 @@
-# Original Stage 7 misconception catalogue location
+# Stage 7 source status — corrected controller record
 
-The historical Stage 7 source file must be committed at exactly:
+Stage 7 is governed by the historical misconception catalogue plus the recovered/provenance artefacts already present in this repository.
 
-`data/question_authoring/stage7/stage7_misconception_catalogue_v0.9.csv`
+The older note that the historical v0.9 catalogue still needed to be committed is obsolete. The canonical source set is now:
 
-Keep it **alongside** the recovered Stage 7 files. Do not overwrite:
+- `stage7_misconception_catalogue_v0.9.csv` — historical catalogue; existing IDs are authoritative.
+- `stage7_misconception_catalogue_recovered_v1.0.csv` — recovered/controller copy.
+- `stage7_recovery_id_provenance_v1.0.csv` — provenance linking recovered records to preserved IDs.
+- `stage7_distractor_rules_recovered_v1.0.csv` — canonical recovered rule table.
+- `config/stage7_distractor_rules.json` — operational controller config added by the Stage 6–9 closure pack.
 
-- `stage7_misconception_catalogue_recovered_v1.0.csv`
-- `stage7_recovery_id_provenance_v1.0.csv`
-- `stage7_distractor_rules_recovered_v1.0.csv`
+## ID integrity
 
-Why this original file is retained:
+Historical misconception IDs must never be regenerated merely because the catalogue was recovered or consolidated. New IDs require an explicit, versioned migration. The provenance file is retained so a wrong option can be traced deterministically through misconception → subtopic → weakness/review.
 
-- it preserves historical misconception UUIDs used by earlier Question Bank artifacts;
-- it provides durable repository provenance instead of depending on a chat/File Library copy;
-- it can be copied from the checked-out repository into PostgreSQL containers for one-time repair/migration work.
+## Completion status
 
-Expected historical filename:
+**Stage 7 controller: COMPLETE**
 
-`stage7_misconception_catalogue_v0.9.csv`
-
-Important: this package intentionally does not fabricate or reconstruct that CSV. The exact historical source bytes must be taken from the existing project File Library copy.
+The controller requires:
+1. exactly one defensible correct option;
+2. blank misconception ID on the correct option;
+3. a valid misconception ID on each diagnostic distractor;
+4. plausible, balanced and non-duplicate distractors;
+5. option-level/full explanations consistent with the key and misconception;
+6. the Stage 6 compatibility gate;
+7. post-deployment distractor metrics without rewriting historical authoring data.

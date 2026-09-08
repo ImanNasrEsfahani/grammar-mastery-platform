@@ -1,0 +1,84 @@
+{
+  "controller_version": "stage8-difficulty-model-controller-v1.0.0",
+  "controller_status": "COMPLETE",
+  "canonical_policy": {
+    "path": "config/stage8_difficulty_policy.json",
+    "git_blob_sha": "a7102a0dbfbf6e969abf0b5cbe1aafe085895601",
+    "semantic_versions": {
+      "rubric": "difficulty-rubric-v0.9.0",
+      "initial": "initial-difficulty-model-v0.9.0",
+      "observed": "observed-difficulty-metric-v0.9.0",
+      "confidence": "difficulty-confidence-v0.9.0",
+      "recalibration": "difficulty-recalibration-v0.9.0"
+    }
+  },
+  "levels": {
+    "EASY": [
+      1.0,
+      1.74
+    ],
+    "MEDIUM": [
+      1.75,
+      2.49
+    ],
+    "HARD": [
+      2.5,
+      3.24
+    ],
+    "VERY_HARD": [
+      3.25,
+      4.0
+    ]
+  },
+  "initial_model": {
+    "formula": "1 + .25*Rules + .25*Distractor + .15*Context + .15*Exception + .20*Inference; each dimension 0..3",
+    "dimensions": {
+      "rules": 0.25,
+      "distractor_similarity": 0.25,
+      "context_integration": 0.15,
+      "exception_burden": 0.15,
+      "inference_burden": 0.2
+    },
+    "immutability_contract": "difficulty_score_initial and difficulty_model_version are historical authoring facts for a question revision. Observed data must never overwrite them.",
+    "anchors_seen_in_final_bank": {
+      "EASY": 1.45,
+      "MEDIUM": 2.2,
+      "HARD": 2.85,
+      "VERY_HARD": 3.55
+    }
+  },
+  "hard_gate": "Ambiguous/multiple-correct, unsupported trick/exception or incompatible items => BLOCKED_NOT_SCORABLE; ambiguity is never converted into VERY_HARD.",
+  "observed_layer": {
+    "formula": "1 + 3*(.85*(1-MasteryAdjustedCorrectRate)+.15*CorrectRTPercentile)",
+    "storage_contract": "Observed/calibrated metrics must live in a separate metric/review layer keyed to question revision and model version.",
+    "history_contract": "Recalibration creates a proposal/new version/review event; it does not rewrite historical initial difficulty."
+  },
+  "confidence": {
+    "NONE": "N=0",
+    "LOW": "1<=N<=49",
+    "MEDIUM": "50<=N<=199",
+    "HIGH": "N>=200 and >=30 eligible attempts per mastery band and RT reference cohort>=200"
+  },
+  "recalibration": {
+    "auto_publish": false,
+    "high_confidence_drift": "opens review",
+    "two_level_drift_or_negative_discrimination": "routes to QA first",
+    "version_required": true
+  },
+  "inventory_check": {
+    "questions": 10636,
+    "difficulty_levels_observed": [
+      "EASY",
+      "HARD",
+      "MEDIUM",
+      "VERY_HARD"
+    ],
+    "actual_counts": {
+      "EASY": 2181,
+      "MEDIUM": 4116,
+      "HARD": 3203,
+      "VERY_HARD": 1136
+    },
+    "initial_and_observed_are_separate_by_contract": true
+  }
+}

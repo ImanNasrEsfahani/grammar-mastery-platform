@@ -1,0 +1,112 @@
+{
+  "controller_version": "stage9-difficulty-distribution-controller-v1.0.0",
+  "controller_status": "COMPLETE",
+  "inventory_conformance": "DRIFT_DETECTED",
+  "canonical_target": {
+    "path": "data/planning/stage9_lesson_difficulty_targets_v1.0.csv",
+    "git_blob_sha": "813ad10d560ee4fb175f9aeffdd5f789fa131055",
+    "policy_version": "difficulty-distribution-policy-v0.9.0",
+    "schema_version": "stage9-difficulty-distribution-schema-v0.9.0"
+  },
+  "profiles": {
+    "FOUNDATION": {
+      "EASY": 30,
+      "MEDIUM": 45,
+      "HARD": 20,
+      "VERY_HARD": 5
+    },
+    "FOUNDATION_COMPLEX": {
+      "EASY": 25,
+      "MEDIUM": 40,
+      "HARD": 30,
+      "VERY_HARD": 5
+    },
+    "BASELINE": {
+      "EASY": 20,
+      "MEDIUM": 40,
+      "HARD": 30,
+      "VERY_HARD": 10
+    },
+    "DISCRIMINATION": {
+      "EASY": 15,
+      "MEDIUM": 35,
+      "HARD": 35,
+      "VERY_HARD": 15
+    },
+    "COMPLEX": {
+      "EASY": 15,
+      "MEDIUM": 30,
+      "HARD": 40,
+      "VERY_HARD": 15
+    }
+  },
+  "distribution_contract": {
+    "profiles_sum_to_100": true,
+    "target_and_actual_are_separate": true,
+    "controlled_override_must_be_explicit_and_versioned": true,
+    "history_must_not_be_rewritten_to_hide_inventory_drift": true,
+    "small_count_rounding": "Use a deterministic largest-remainder/Hamilton allocation after applying the selected profile; tie-breaking must be stable and documented by the generator implementation.",
+    "large_count_check": "Allocated integer counts must sum exactly to the lesson target.",
+    "calibration_policy_change": "Future calibration may revise a versioned target policy; historical question revisions retain their original authoring difficulty."
+  },
+  "global_reconciliation": {
+    "target_questions": 10636,
+    "actual_questions": 10636,
+    "target_difficulty_counts": {
+      "EASY": 2180,
+      "MEDIUM": 4116,
+      "HARD": 3203,
+      "VERY_HARD": 1137
+    },
+    "actual_difficulty_counts": {
+      "EASY": 2181,
+      "MEDIUM": 4116,
+      "HARD": 3203,
+      "VERY_HARD": 1136
+    },
+    "delta_actual_minus_target": {
+      "EASY": 1,
+      "MEDIUM": 0,
+      "HARD": 0,
+      "VERY_HARD": -1
+    },
+    "lessons_exact": 51,
+    "lessons_with_drift": 1
+  },
+  "known_drift": {
+    "lesson": "L51",
+    "target": {
+      "EASY": 36,
+      "MEDIUM": 71,
+      "HARD": 95,
+      "VERY_HARD": 36
+    },
+    "actual": {
+      "EASY": 37,
+      "MEDIUM": 71,
+      "HARD": 95,
+      "VERY_HARD": 35
+    },
+    "delta_actual_minus_target": {
+      "EASY": 1,
+      "MEDIUM": 0,
+      "HARD": 0,
+      "VERY_HARD": -1
+    },
+    "localized_batch": "B230",
+    "orchestration_plan_B230": {
+      "EASY": 7,
+      "MEDIUM": 15,
+      "HARD": 20,
+      "VERY_HARD": 8
+    },
+    "authored_validation_B230": {
+      "EASY": 8,
+      "MEDIUM": 15,
+      "HARD": 20,
+      "VERY_HARD": 7
+    },
+    "resolution_policy": "Do not relabel a question or rewrite the target automatically. Resolve by content review: either revise one B230 item so it genuinely satisfies VERY_HARD under Stage 8 with a new question revision, or approve a separately versioned controlled override with pedagogical justification."
+  },
+  "reconciliation_artifact": "data/planning/stage9_inventory_reconciliation_v1.0.csv"
+}

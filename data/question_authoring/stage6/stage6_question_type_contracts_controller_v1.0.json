@@ -1,0 +1,328 @@
+{
+  "controller_version": "stage6-question-type-controller-v1.0.0",
+  "controller_status": "COMPLETE",
+  "scope": "Additive audit/controller contract. It does not replace or mutate the historical Stage 6 semantic versions.",
+  "canonical_dependencies": {
+    "policy": {
+      "path": "config/stage6_question_type_policy.json",
+      "git_blob_sha": "5330b6495f524854311ce0a1a6542504bfa0b8fc"
+    },
+    "catalogue": {
+      "path": "data/question_authoring/stage6/stage6_question_type_catalogue_reference_v1.0.csv",
+      "git_blob_sha": "834ba7d78109164247955c91930a1362ee6a2d0a"
+    },
+    "lesson_compatibility": {
+      "path": "data/question_authoring/stage6/stage6_lesson_type_compatibility_recovered_v1.0.csv",
+      "git_blob_sha": "313fb2dc403372f1b0364d3790c722d87b150d45"
+    },
+    "subtopic_compatibility": {
+      "path": "data/question_authoring/stage6/stage6_subtopic_type_compatibility_recovered_v1.0.csv",
+      "git_blob_sha": "e6a53f7ecb6af32b5269fa1ddbe0cac6fd59f5ce"
+    },
+    "allocation": {
+      "path": "data/question_authoring/stage6/stage6_question_type_targets_recovered_v1.0.csv",
+      "git_blob_sha": "8f5edea191c6304b498b44fc4a3fcb9281a7abce"
+    }
+  },
+  "invariants": {
+    "response_mode": "SINGLE_CHOICE_4",
+    "question_type_must_be_explicit": true,
+    "compatibility_gate": [
+      "PREFERRED",
+      "ALLOWED",
+      "CONDITIONAL",
+      "NOT_SUITABLE"
+    ],
+    "not_suitable_generated_must_equal": 0,
+    "answer_cue_prohibition": [
+      "systematic answer-length cue",
+      "wording cue",
+      "position cue",
+      "all/none shortcut unless explicitly justified"
+    ],
+    "media_extensibility": "Use existing media_type/media_uri/media_alt_text/media_transcript/media_source_ref fields without changing question-type semantics; new media-native semantics require a versioned catalogue change.",
+    "ui_support": "All 15 current types render through the generic 4-option single-choice contract; type-specific presentation may be layered without inferring type from stem text."
+  },
+  "inventory_reconciliation": {
+    "registry_path": "question_bank_global_registry_B238.csv",
+    "registry_sha256": "d225f0a2e0c4eaf49ea129542b596a86708cbdc38d96ec6875fe2e92b5f9c198",
+    "questions": 10636,
+    "active_types_expected": 15,
+    "active_types_observed": 15,
+    "all_catalogue_types_observed": true,
+    "question_type_counts": {
+      "CLOZE_CONTEXT": 1978,
+      "CLOZE_SINGLE": 1155,
+      "CONJUGATION": 222,
+      "CONTRAST_RULES": 1045,
+      "CORRECT_SENTENCE": 952,
+      "DIALOGUE_COMPLETE": 1209,
+      "ERROR_LOCATION": 538,
+      "FA_TO_FR": 398,
+      "FR_TO_FA": 768,
+      "INCORRECT_SENTENCE": 792,
+      "PREPOSITION_CHOICE": 285,
+      "PRONOUN_CHOICE": 229,
+      "REGISTER_CHOICE": 58,
+      "REWRITE_EQUIV": 811,
+      "TENSE_CHOICE": 196
+    }
+  },
+  "contracts": [
+    {
+      "type_id": "e9f1df52-d4b8-5e27-a3fb-c7301f53be50",
+      "question_type_code": "CLOZE_SINGLE",
+      "cognitive_level": "RECALL",
+      "response_mode": "SINGLE_CHOICE_4",
+      "compatibility_contract": "Lesson/subtopic must be eligible in the canonical Stage 6 compatibility matrices; CONDITIONAL requires its guardrail; NOT_SUITABLE is blocked.",
+      "ui_contract": "Explicit question_type drives presentation/validation; never infer type from wording.",
+      "media_contract": "Optional schema media fields may support the item; they may not create a hidden new question type.",
+      "origin": "controller_hardening_v1.0",
+      "pedagogical_goal": "Isolate one grammatical form/rule with minimal irrelevant context.",
+      "stem_contract": "One explicit blank; enough grammatical context for exactly one defensible option.",
+      "distractor_contract": "Same grammatical slot/category; realistic near-forms, never random lexical noise.",
+      "ambiguity_guards": [
+        "Do not leave person/number/tense under-specified.",
+        "Do not use multiple semantically valid completions."
+      ]
+    },
+    {
+      "type_id": "32374c7b-9284-562f-8bcd-c3bbcad6728f",
+      "question_type_code": "CLOZE_CONTEXT",
+      "cognitive_level": "APPLICATION",
+      "response_mode": "SINGLE_CHOICE_4",
+      "compatibility_contract": "Lesson/subtopic must be eligible in the canonical Stage 6 compatibility matrices; CONDITIONAL requires its guardrail; NOT_SUITABLE is blocked.",
+      "ui_contract": "Explicit question_type drives presentation/validation; never infer type from wording.",
+      "media_contract": "Optional schema media fields may support the item; they may not create a hidden new question type.",
+      "origin": "controller_hardening_v1.0",
+      "pedagogical_goal": "Apply a rule inside discourse or sentence context.",
+      "stem_contract": "Context must materially determine the answer, not merely decorate a single blank.",
+      "distractor_contract": "Competing forms that would be plausible under a nearby context/rule.",
+      "ambiguity_guards": [
+        "Temporal/logical cues must be sufficient.",
+        "Avoid two readings that license two answers."
+      ]
+    },
+    {
+      "type_id": "21ebada3-ac9a-519a-a0b1-58a57ba7e9c9",
+      "question_type_code": "CORRECT_SENTENCE",
+      "cognitive_level": "DISCRIMINATION",
+      "response_mode": "SINGLE_CHOICE_4",
+      "compatibility_contract": "Lesson/subtopic must be eligible in the canonical Stage 6 compatibility matrices; CONDITIONAL requires its guardrail; NOT_SUITABLE is blocked.",
+      "ui_contract": "Explicit question_type drives presentation/validation; never infer type from wording.",
+      "media_contract": "Optional schema media fields may support the item; they may not create a hidden new question type.",
+      "origin": "controller_hardening_v1.0",
+      "pedagogical_goal": "Discriminate a fully grammatical construction from close alternatives.",
+      "stem_contract": "Four parallel candidate sentences; exactly one conforms to the targeted rule in the stated context.",
+      "distractor_contract": "Each wrong sentence should instantiate a traceable misconception.",
+      "ambiguity_guards": [
+        "Avoid hidden world-knowledge truth tests.",
+        "Keep lexical meaning comparable across options."
+      ]
+    },
+    {
+      "type_id": "a2fbc3d0-466a-5e81-bfdd-376ec6796aae",
+      "question_type_code": "INCORRECT_SENTENCE",
+      "cognitive_level": "DISCRIMINATION",
+      "response_mode": "SINGLE_CHOICE_4",
+      "compatibility_contract": "Lesson/subtopic must be eligible in the canonical Stage 6 compatibility matrices; CONDITIONAL requires its guardrail; NOT_SUITABLE is blocked.",
+      "ui_contract": "Explicit question_type drives presentation/validation; never infer type from wording.",
+      "media_contract": "Optional schema media fields may support the item; they may not create a hidden new question type.",
+      "origin": "controller_hardening_v1.0",
+      "pedagogical_goal": "Detect the single sentence that violates the targeted rule.",
+      "stem_contract": "State the selection direction explicitly; exactly one option is grammatically invalid for the target.",
+      "distractor_contract": "The three non-answer options must be clearly valid exemplars, not merely less natural.",
+      "ambiguity_guards": [
+        "Do not mix grammar error with spelling-only defects.",
+        "Avoid register judgments unless register is the target."
+      ]
+    },
+    {
+      "type_id": "646c0bc6-2722-50af-b7c9-ae0657805553",
+      "question_type_code": "ERROR_LOCATION",
+      "cognitive_level": "DISCRIMINATION",
+      "response_mode": "SINGLE_CHOICE_4",
+      "compatibility_contract": "Lesson/subtopic must be eligible in the canonical Stage 6 compatibility matrices; CONDITIONAL requires its guardrail; NOT_SUITABLE is blocked.",
+      "ui_contract": "Explicit question_type drives presentation/validation; never infer type from wording.",
+      "media_contract": "Optional schema media fields may support the item; they may not create a hidden new question type.",
+      "origin": "controller_hardening_v1.0",
+      "pedagogical_goal": "Locate or classify the grammatical error.",
+      "stem_contract": "A sentence contains one targeted error; options identify location/category consistently.",
+      "distractor_contract": "Non-answer locations/categories must be plausible diagnostic alternatives.",
+      "ambiguity_guards": [
+        "Only one target error may be present.",
+        "Segmentation must not overlap ambiguously."
+      ]
+    },
+    {
+      "type_id": "bd178d4e-0325-51b4-9c06-8040893e4437",
+      "question_type_code": "CONJUGATION",
+      "cognitive_level": "RECALL",
+      "response_mode": "SINGLE_CHOICE_4",
+      "compatibility_contract": "Lesson/subtopic must be eligible in the canonical Stage 6 compatibility matrices; CONDITIONAL requires its guardrail; NOT_SUITABLE is blocked.",
+      "ui_contract": "Explicit question_type drives presentation/validation; never infer type from wording.",
+      "media_contract": "Optional schema media fields may support the item; they may not create a hidden new question type.",
+      "origin": "controller_hardening_v1.0",
+      "pedagogical_goal": "Retrieve the correct finite/non-finite verb form under explicit morphosyntactic conditions.",
+      "stem_contract": "Verb, subject/person, and required tense/mood must be inferable from the prompt/context.",
+      "distractor_contract": "Nearby person/number/tense/mood forms of the same verb when possible.",
+      "ambiguity_guards": [
+        "Do not require an unstated tense.",
+        "Avoid homographic alternatives unless context disambiguates."
+      ]
+    },
+    {
+      "type_id": "8fb82828-73d5-573a-8ccd-7d165372beab",
+      "question_type_code": "TENSE_CHOICE",
+      "cognitive_level": "APPLICATION",
+      "response_mode": "SINGLE_CHOICE_4",
+      "compatibility_contract": "Lesson/subtopic must be eligible in the canonical Stage 6 compatibility matrices; CONDITIONAL requires its guardrail; NOT_SUITABLE is blocked.",
+      "ui_contract": "Explicit question_type drives presentation/validation; never infer type from wording.",
+      "media_contract": "Optional schema media fields may support the item; they may not create a hidden new question type.",
+      "origin": "controller_hardening_v1.0",
+      "pedagogical_goal": "Choose the tense/mood demanded by temporal, aspectual or discourse context.",
+      "stem_contract": "Temporal/discourse clues must make the intended tense defensible.",
+      "distractor_contract": "Neighboring tenses/moods that correspond to common learner confusions.",
+      "ambiguity_guards": [
+        "Do not rely on prescriptive preference when two tenses are standard.",
+        "Include required time anchors."
+      ]
+    },
+    {
+      "type_id": "b6e57a62-931c-5b3f-8aff-dafe096d5d65",
+      "question_type_code": "PRONOUN_CHOICE",
+      "cognitive_level": "APPLICATION",
+      "response_mode": "SINGLE_CHOICE_4",
+      "compatibility_contract": "Lesson/subtopic must be eligible in the canonical Stage 6 compatibility matrices; CONDITIONAL requires its guardrail; NOT_SUITABLE is blocked.",
+      "ui_contract": "Explicit question_type drives presentation/validation; never infer type from wording.",
+      "media_contract": "Optional schema media fields may support the item; they may not create a hidden new question type.",
+      "origin": "controller_hardening_v1.0",
+      "pedagogical_goal": "Select the pronoun dictated by antecedent, syntactic role and governing preposition.",
+      "stem_contract": "Antecedent and verb valency/preposition must be explicit or uniquely recoverable.",
+      "distractor_contract": "Competing pronoun forms tied to role/preposition/person-vs-thing misconceptions.",
+      "ambiguity_guards": [
+        "No unclear antecedent.",
+        "Do not test two independent pronoun-placement rules at once unless intentional."
+      ]
+    },
+    {
+      "type_id": "080bebd0-8e3d-51e9-ad82-13c256bc513a",
+      "question_type_code": "PREPOSITION_CHOICE",
+      "cognitive_level": "APPLICATION",
+      "response_mode": "SINGLE_CHOICE_4",
+      "compatibility_contract": "Lesson/subtopic must be eligible in the canonical Stage 6 compatibility matrices; CONDITIONAL requires its guardrail; NOT_SUITABLE is blocked.",
+      "ui_contract": "Explicit question_type drives presentation/validation; never infer type from wording.",
+      "media_contract": "Optional schema media fields may support the item; they may not create a hidden new question type.",
+      "origin": "controller_hardening_v1.0",
+      "pedagogical_goal": "Select the preposition required by the target construction/meaning.",
+      "stem_contract": "The governing word/construction and relevant meaning must be explicit.",
+      "distractor_contract": "Nearby prepositions associated with documented confusions.",
+      "ambiguity_guards": [
+        "Avoid free lexical collocation outside the lesson unless source-grounded.",
+        "No regional variants unless register/region is explicit."
+      ]
+    },
+    {
+      "type_id": "e7c92ba5-b1c8-5672-b377-08c7a1641350",
+      "question_type_code": "REWRITE_EQUIV",
+      "cognitive_level": "DISCRIMINATION",
+      "response_mode": "SINGLE_CHOICE_4",
+      "compatibility_contract": "Lesson/subtopic must be eligible in the canonical Stage 6 compatibility matrices; CONDITIONAL requires its guardrail; NOT_SUITABLE is blocked.",
+      "ui_contract": "Explicit question_type drives presentation/validation; never infer type from wording.",
+      "media_contract": "Optional schema media fields may support the item; they may not create a hidden new question type.",
+      "origin": "controller_hardening_v1.0",
+      "pedagogical_goal": "Recognize a reformulation that preserves meaning while applying a target structure.",
+      "stem_contract": "Source proposition and requested equivalence/constraint must be clear.",
+      "distractor_contract": "Options should preserve surface plausibility but alter grammar/meaning in diagnostic ways.",
+      "ambiguity_guards": [
+        "Only one option may preserve both proposition and target grammatical relation.",
+        "Do not reward stylistic preference alone."
+      ]
+    },
+    {
+      "type_id": "d925f39a-26df-5760-8581-4e1577d0afb3",
+      "question_type_code": "FR_TO_FA",
+      "cognitive_level": "RECALL",
+      "response_mode": "SINGLE_CHOICE_4",
+      "compatibility_contract": "Lesson/subtopic must be eligible in the canonical Stage 6 compatibility matrices; CONDITIONAL requires its guardrail; NOT_SUITABLE is blocked.",
+      "ui_contract": "Explicit question_type drives presentation/validation; never infer type from wording.",
+      "media_contract": "Optional schema media fields may support the item; they may not create a hidden new question type.",
+      "origin": "controller_hardening_v1.0",
+      "pedagogical_goal": "Test grammatical interpretation from French into Persian, not unrestricted literary translation.",
+      "stem_contract": "Target meaning should hinge on the grammar under study.",
+      "distractor_contract": "Persian alternatives reflect specific misreadings of tense, pronoun, negation, relation, etc.",
+      "ambiguity_guards": [
+        "Accept natural Persian equivalence conceptually, but MCQ must have one intended interpretation.",
+        "Avoid lexical ambiguity unrelated to grammar."
+      ]
+    },
+    {
+      "type_id": "eb413534-d902-573b-860e-7f0e219c7e51",
+      "question_type_code": "FA_TO_FR",
+      "cognitive_level": "APPLICATION",
+      "response_mode": "SINGLE_CHOICE_4",
+      "compatibility_contract": "Lesson/subtopic must be eligible in the canonical Stage 6 compatibility matrices; CONDITIONAL requires its guardrail; NOT_SUITABLE is blocked.",
+      "ui_contract": "Explicit question_type drives presentation/validation; never infer type from wording.",
+      "media_contract": "Optional schema media fields may support the item; they may not create a hidden new question type.",
+      "origin": "controller_hardening_v1.0",
+      "pedagogical_goal": "Select the French rendering that correctly realizes the targeted grammar.",
+      "stem_contract": "Persian prompt plus context must constrain the intended grammar sufficiently.",
+      "distractor_contract": "French alternatives reflect predictable transfer/morphosyntactic errors.",
+      "ambiguity_guards": [
+        "Do not make an open translation task masquerade as single-choice.",
+        "Context must rule out multiple equally natural French renderings."
+      ]
+    },
+    {
+      "type_id": "5bf2c002-80ba-5784-bcec-9f852d0e3b91",
+      "question_type_code": "DIALOGUE_COMPLETE",
+      "cognitive_level": "APPLICATION",
+      "response_mode": "SINGLE_CHOICE_4",
+      "compatibility_contract": "Lesson/subtopic must be eligible in the canonical Stage 6 compatibility matrices; CONDITIONAL requires its guardrail; NOT_SUITABLE is blocked.",
+      "ui_contract": "Explicit question_type drives presentation/validation; never infer type from wording.",
+      "media_contract": "Optional schema media fields may support the item; they may not create a hidden new question type.",
+      "origin": "controller_hardening_v1.0",
+      "pedagogical_goal": "Apply grammar in an interactional context.",
+      "stem_contract": "Dialogue turns must establish speaker relation, intent and enough context for one completion.",
+      "distractor_contract": "Natural utterances that fail the targeted grammar/register/meaning in a traceable way.",
+      "ambiguity_guards": [
+        "Do not allow multiple pragmatically valid replies.",
+        "Register must be explicit when it drives the answer."
+      ]
+    },
+    {
+      "type_id": "45b6af11-30d8-5189-89b9-210478143d49",
+      "question_type_code": "REGISTER_CHOICE",
+      "cognitive_level": "DISCRIMINATION",
+      "response_mode": "SINGLE_CHOICE_4",
+      "compatibility_contract": "Lesson/subtopic must be eligible in the canonical Stage 6 compatibility matrices; CONDITIONAL requires its guardrail; NOT_SUITABLE is blocked.",
+      "ui_contract": "Explicit question_type drives presentation/validation; never infer type from wording.",
+      "media_contract": "Optional schema media fields may support the item; they may not create a hidden new question type.",
+      "origin": "controller_hardening_v1.0",
+      "pedagogical_goal": "Discriminate forms by français standard/courant/familier/soutenu where the lesson supports it.",
+      "stem_contract": "Situation, relationship and/or medium must state the required register.",
+      "distractor_contract": "Grammatically possible forms with mismatched register, plus documented structural confusions.",
+      "ambiguity_guards": [
+        "No register question without context.",
+        "Do not label a form wrong merely because it is less preferred stylistically."
+      ]
+    },
+    {
+      "type_id": "fce34dfe-f5ca-5be6-8d2b-254d546e745a",
+      "question_type_code": "CONTRAST_RULES",
+      "cognitive_level": "DISCRIMINATION",
+      "response_mode": "SINGLE_CHOICE_4",
+      "compatibility_contract": "Lesson/subtopic must be eligible in the canonical Stage 6 compatibility matrices; CONDITIONAL requires its guardrail; NOT_SUITABLE is blocked.",
+      "ui_contract": "Explicit question_type drives presentation/validation; never infer type from wording.",
+      "media_contract": "Optional schema media fields may support the item; they may not create a hidden new question type.",
+      "origin": "controller_hardening_v1.0",
+      "pedagogical_goal": "Distinguish two or more near rules/structures by their usage conditions and meaning.",
+      "stem_contract": "Context must expose the decisive contrast and ask for the rule/form that fits it.",
+      "distractor_contract": "Options embody the competing rule or an overgeneralization of it.",
+      "ambiguity_guards": [
+        "State enough context to activate only one side of the contrast.",
+        "Do not reduce contrast to vocabulary trivia."
+      ]
+    }
+  ]
+}
