@@ -33,7 +33,6 @@ services:
       DJANGO_DB_NAME: ${POSTGRES_DB:-grammar_mastery}
       DJANGO_DB_USER: ${POSTGRES_USER:-grammar_mastery}
       DJANGO_DB_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env.docker}
-      # Existing Stage 26 migration_runner.py consumes libpq PG* variables.
       PGHOST: postgres
       PGPORT: "5432"
       PGDATABASE: ${POSTGRES_DB:-grammar_mastery}
@@ -58,11 +57,7 @@ services:
       - app
 
   frontend:
-    build:
-      context: .
-      dockerfile: docker/frontend/Dockerfile
-      args:
-        NEXT_PUBLIC_DEFAULT_LOCALE: ${NEXT_PUBLIC_DEFAULT_LOCALE:-fa}
+    image: ghcr.io/imannasresfahani/grammar-mastery-frontend:latest
     restart: unless-stopped
     init: true
     env_file:

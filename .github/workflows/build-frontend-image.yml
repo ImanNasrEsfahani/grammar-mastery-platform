@@ -2,6 +2,13 @@ name: Build Frontend Docker Image
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "frontend/**"
+      - "docker/frontend/**"
+      - ".github/workflows/build-frontend-image.yml"
 
 permissions:
   contents: read
