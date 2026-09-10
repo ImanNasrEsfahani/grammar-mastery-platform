@@ -20,8 +20,8 @@ export function DashboardClient({locale}: {locale: Locale}) {
   const [error, setError] = useState<ApiError | null>(null);
   const snapshotKey = `gmp-dashboard-safe-snapshot-v2:${locale}`;
 
-  const load = useCallback(async () => {
-    setLoading(true);
+  const load = useCallback(async (background = false) => {
+    if (!background) setLoading(true);
     setError(null);
     try {
       // One backend snapshot is enough. The authoritative action code is already
@@ -35,18 +35,32 @@ export function DashboardClient({locale}: {locale: Locale}) {
       setData(snapshot);
     } catch (caught) {
       setError(caught instanceof ApiError ? caught : new ApiError({status: 0, code: "NETWORK_ERROR", message: "Dashboard loading failed."}));
-      const cached = sessionStorage.getItem(snapshotKey);
-      if (cached) {
-        try { setData(JSON.parse(cached) as CachedDashboard); } catch { sessionStorage.removeItem(snapshotKey); }
+      if (!data) {
+        const cached = readDashboardSnapshot(snapshotKey);
+        if (cached) setData(cached);
       }
     } finally {
       setLoading(false);
     }
-  }, [locale, snapshotKey]);
+  }, [data, locale, snapshotKey]);
 
-  // Initial fetch synchronizes the client view with the persisted dashboard snapshot.
-  // eslint-disable-next-line react-hooks/set-state-in-effect
-  useEffect(() => { void load(); }, [load]);
+  // Stale-while-revalidate:
+  // show the last safe snapshot immediately, then refresh it in the background.
+  // This removes the dashboard API round-trip from the critical rendering path
+  // on return visits within the same browser tab/session.
+  useEffect(() => {
+    const cached = readDashboardSnapshot(snapshotKey);
+    if (cached) {
+      setData(cached);
+      setLoading(false);
+      void load(true);
+      return;
+    }
+    void load(false);
+  // load intentionally depends on data; including it here would cause a refresh loop
+  // after every successful snapshot update.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [snapshotKey]);
 
   const derived = useMemo(() => {
     if (!data) return null;
@@ -439,6 +453,23 @@ function actionFromDashboard(dashboard: DashboardEnvelope["data"], locale: Local
 
 function asRecord(value: unknown): LooseRecord {
   return value !== null && typeof value === "object" && !Array.isArray(value) ? value as LooseRecord : {};
+}
+
+function readDashboardSnapshot(snapshotKey: string): CachedDashboard | null {
+  if (typeof window === "undefined") return null;
+  const cached = sessionStorage.getItem(snapshotKey);
+  if (!cached) return null;
+  try {
+    const parsed = JSON.parse(cached) as CachedDashboard;
+    if (!parsed?.dashboard?.data || !parsed?.nextAction || !parsed?.savedAt) {
+      sessionStorage.removeItem(snapshotKey);
+      return null;
+    }
+    return parsed;
+  } catch {
+    sessionStorage.removeItem(snapshotKey);
+    return null;
+  }
 }
 
 function readNumber(value: unknown, keys: string[]): number | null {
