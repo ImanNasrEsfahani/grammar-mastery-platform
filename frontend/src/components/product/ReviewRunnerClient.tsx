@@ -389,8 +389,6 @@ export function ReviewRunnerClient({
     const saved = forceFresh ? null : readSession(locale, sessionMode, reviewId);
 
     if (sessionMode === "single") {
-      // A completed singleton must never leak into a later click on the same card.
-      // Only an unanswered singleton is resumable; inbox links also pass fresh=1.
       if (saved && saved.order.length === 1 && saved.order[0] === reviewId && saved.answers.length === 0) {
         persistSession({
           ...saved,
@@ -445,6 +443,15 @@ export function ReviewRunnerClient({
       return;
     }
 
+    // Fast path: once a due-session has been materialized, reuse it on every
+    // subsequent question. This avoids re-downloading and re-paginating the
+    // complete review queue after each router.push().
+    const saved = forceFresh ? null : readSession(locale, sessionMode, reviewId);
+    if (saved && saved.order.length > 0) {
+      ensureSession([], loadedItem);
+      return;
+    }
+
     setQueueLoading(true);
     try {
       const merged = new Map<string, ReviewSummary>();
@@ -457,6 +464,10 @@ export function ReviewRunnerClient({
         params.set("page[size]", String(REVIEW_PAGE_SIZE));
         params.set("sort", "due_at");
         params.set("filter[kind]", "SPACED");
+        // Important: this activates the backend's direct due-review query.
+        // Without it the client receives every scheduled concept and filters
+        // due items only after all pages have crossed the network.
+        params.set("filter[due]", "true");
         if (cursor) params.set("page[after]", cursor);
 
         const payload = await apiRequest<ReviewCollectionEnvelope>(
@@ -479,6 +490,8 @@ export function ReviewRunnerClient({
       }
 
       if (!completed) throw new Error("Review queue exceeded the pagination safety limit.");
+      // Keep the defensive client-side check in case an older backend is used,
+      // but normally every row returned by filter[due]=true is already due.
       const dueQueue = [...merged.values()].filter((summary) => isDueTodayOrOverdue(summary));
       ensureSession(dueQueue, loadedItem);
     } catch (caught) {
@@ -496,7 +509,7 @@ export function ReviewRunnerClient({
     } finally {
       setQueueLoading(false);
     }
-  }, [ensureSession, isFa, sessionMode]);
+  }, [ensureSession, forceFresh, isFa, locale, reviewId, sessionMode]);
 
   const load = useCallback(async () => {
     setError(null);
@@ -531,8 +544,6 @@ export function ReviewRunnerClient({
     }
   }, [loadQueue, reviewId]);
 
-  // Synchronize the runner with the requested review item on route changes.
-  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => { void load(); }, [load]);
 
   const currentIndex = useMemo(() => {

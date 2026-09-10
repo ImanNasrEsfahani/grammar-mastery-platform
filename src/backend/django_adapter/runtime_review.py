@@ -35,7 +35,6 @@ _float = runtime_learning._float
 _iso = runtime_learning._iso
 _validation = runtime_learning._validation
 _body_uuid = runtime_learning._body_uuid
-_candidate_rows = runtime_learning._candidate_rows
 _fetch_snapshot = runtime_learning._fetch_snapshot
 _answer_feedback = runtime_learning._answer_feedback
 _begin_idempotency = runtime_learning._begin_idempotency
@@ -74,8 +73,6 @@ def list_reviews_request(request) -> Response:
             {"sort": ["Use due_at or -due_at."]},
         )
 
-    # Explicit due+MISTAKE has no rows by policy; mistake history is still
-    # available through the original non-due filters.
     if kind not in (None, "", "SPACED", "MISTAKE"):
         raise APIError(400, "QUERY_PARAMETER_INVALID", "The review kind is invalid.")
 
@@ -156,9 +153,6 @@ def _review_public_question(
     if not isinstance(options, list) or len(options) != 4:
         raise APIError(500, "INTERNAL_ERROR", "The stored review options are invalid.")
     return {
-        # The frozen AttemptQuestion contract requires test_question_id and
-        # position. For concept review there is no test_questions row, so the
-        # owner-scoped review id is used as the opaque projection id.
         "test_question_id": str(projection_id or snapshot["question_revision_id"]),
         "question_revision_id": str(snapshot["question_revision_id"]),
         "position": 1,
@@ -259,6 +253,82 @@ def _load_spaced_review_row(cursor, user_id: uuid.UUID, review_id: uuid.UUID, *,
     return cursor.fetchone()
 
 
+def _candidate_rows_for_subtopic(cursor, subtopic_id: uuid.UUID) -> list[dict[str, Any]]:
+    """Return only safe-candidate metadata for one review subtopic.
+
+    The former implementation called runtime_learning._candidate_rows(), which
+    materializes the entire published question inventory (and tag arrays) before
+    Python filters it to one subtopic. Review selection only needs a tiny subset
+    of those fields, so constrain the query at PostgreSQL level.
+    """
+    cursor.execute(
+        """
+        SELECT
+            q.id,
+            q.question_uid,
+            COALESCE(
+                stc.compatibility_status::text,
+                ltc.compatibility_status::text,
+                'NOT_SUITABLE'
+            ) AS compatibility_status,
+            q.guardrail_satisfied
+        FROM questions AS q
+        JOIN grammar_lessons AS gl
+          ON gl.id = q.lesson_id
+         AND gl.active = TRUE
+        JOIN grammar_subtopics AS gs
+          ON gs.id = q.primary_subtopic_id
+         AND gs.active = TRUE
+        JOIN question_types AS qt
+          ON qt.id = q.question_type_id
+         AND qt.active = TRUE
+        LEFT JOIN subtopic_question_type_compatibility AS stc
+          ON stc.subtopic_id = q.primary_subtopic_id
+         AND stc.question_type_id = q.question_type_id
+         AND stc.compatibility_version = q.compatibility_version
+        LEFT JOIN lesson_question_type_compatibility AS ltc
+          ON ltc.lesson_id = q.lesson_id
+         AND ltc.question_type_id = q.question_type_id
+         AND ltc.compatibility_version = q.compatibility_version
+        WHERE q.primary_subtopic_id = %s
+          AND q.status = 'PUBLISHED'
+          AND q.retired_at IS NULL
+          AND q.correct_option_id IS NOT NULL
+          AND (
+              SELECT count(*)
+              FROM question_options AS qo
+              WHERE qo.question_id = q.id
+          ) = 4
+          AND NOT EXISTS (
+              SELECT 1
+              FROM questions AS newer
+              WHERE newer.question_uid = q.question_uid
+                AND newer.revision > q.revision
+          )
+        ORDER BY q.id
+        """,
+        [subtopic_id],
+    )
+
+    rows: list[dict[str, Any]] = []
+    for revision_id, question_uid, compatibility_status, guardrail_satisfied in cursor.fetchall():
+        compatibility = str(compatibility_status)
+        serving = compatibility in {"PREFERRED", "ALLOWED"} or (
+            compatibility == "CONDITIONAL" and bool(guardrail_satisfied)
+        )
+        if not serving:
+            continue
+        rows.append(
+            {
+                "question_revision_id": str(revision_id),
+                "question_uid": str(question_uid),
+                "compatibility_status": compatibility,
+                "serving_enabled": True,
+            }
+        )
+    return rows
+
+
 def _select_spaced_review_snapshot(
     cursor,
     *,
@@ -272,12 +342,7 @@ def _select_spaced_review_snapshot(
         for value in metadata.get("recent_review_question_uids", [])
         if value
     ][:3]
-    candidates = [
-        row
-        for row in _candidate_rows(cursor)
-        if row.get("subtopic_id") == str(subtopic_id)
-        and row.get("serving_enabled")
-    ]
+    candidates = _candidate_rows_for_subtopic(cursor, subtopic_id)
     if not candidates:
         raise APIError(
             409,
@@ -861,9 +926,6 @@ def grade_review_request(request, review_id: Any) -> Response:
                         "REVIEW_NOT_DUE",
                         "This concept is not due for review yet.",
                     )
-                # Recompute the same deterministic due question that GET served.
-                # This binds grading to the displayed question instead of accepting
-                # an arbitrary safe option from the same subtopic.
                 snapshot = _select_spaced_review_snapshot(
                     cursor,
                     queue_id=queue_id,
@@ -1046,6 +1108,7 @@ def set_review_mark_request(request, review_id: Any) -> Response:
                 schedule=schedule,
             )
     return Response({"data": data, "meta": _meta(request)}, status=200)
+
 
 def _graduated_before_normal_answer(request, attempt_id: Any):
     """Return preserved graduation state when a normal answer is correct.
@@ -1313,4 +1376,3 @@ def next_action_request(request) -> Response:
     }
     response.data = mutable
     return response
-
