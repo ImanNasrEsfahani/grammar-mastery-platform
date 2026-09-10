@@ -110,7 +110,9 @@ export function AuthForm({mode, locale}: {mode: "login" | "register"; locale: Lo
   const [error, setError] = useState<ApiError | null>(null);
   const [fields, setFields] = useState<AuthFields>({email: "", password: "", displayName: ""});
   const [showPassword, setShowPassword] = useState(false);
-  const [rememberMe, setRememberMe] = useState(false);
+  // Persistent sessions are the friendlier default; users can still opt out
+  // before submitting the form.
+  const [rememberMe, setRememberMe] = useState(true);
 
   async function submit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();

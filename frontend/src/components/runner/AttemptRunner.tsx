@@ -645,10 +645,11 @@ export function AttemptRunner({
         <div className={styles.bottomInner}>
           <button className={styles.mobileBookmark} type="button" aria-pressed={bookmarked} onClick={toggleBookmark}>{bookmarked ? "★" : "☆"}<span>{bookmarked ? copy.bookmarked : copy.bookmark}</span></button>
           <span className={styles.enterHint}><kbd>{copy.submitHint}</kbd><span>{phase === "feedback" ? copy.nextWith : copy.submitWith}</span></span>
-          <div style={{display: "grid", gridTemplateColumns: "minmax(0, .9fr) minmax(0, 1.25fr)", gap: ".5rem"}}>
+          <div className={styles.actionPair} dir="ltr">
             <button
               className={styles.secondaryAction}
               type="button"
+              dir={isFa ? "rtl" : "ltr"}
               disabled={!canGoPrevious}
               aria-disabled={!canGoPrevious}
               onClick={goPrevious}
@@ -656,7 +657,7 @@ export function AttemptRunner({
             >
               <span aria-hidden="true">{isFa ? "›" : "‹"}</span><span>{copy.previous}</span>
             </button>
-            <button className={styles.primaryAction} type="button" disabled={primaryDisabled} aria-busy={phase === "submitting" || phase === "loading"} onClick={onPrimary}>
+            <button className={styles.primaryAction} type="button" dir={isFa ? "rtl" : "ltr"} disabled={primaryDisabled} aria-busy={phase === "submitting" || phase === "loading"} onClick={onPrimary}>
               <span>{primaryLabel}</span><span aria-hidden="true">{isFa ? "‹" : "›"}</span>
             </button>
           </div>

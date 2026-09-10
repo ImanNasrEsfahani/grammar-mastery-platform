@@ -70,4 +70,21 @@ describe("AttemptRunner", () => {
     expect(seenKeys[0]).toBe(seenKeys[1]);
     await expect(getPendingAnswer(ids.attempt, ids.question)).resolves.toBeNull();
   });
+
+  it("reverses the previous and submit positions in the Persian runner", async () => {
+    vi.stubGlobal("fetch", vi.fn(async (input: RequestInfo | URL) => {
+      const url = String(input);
+      if (url.endsWith("/next")) return jsonResponse(nextEnvelope);
+      throw new Error(`Unexpected fetch: ${url}`);
+    }));
+    render(<AttemptRunner attemptId={ids.attempt} locale="fa" />);
+
+    const previous = await screen.findByRole("button", {name: /سؤال قبلی/});
+    const submit = screen.getByRole("button", {name: /ثبت پاسخ/});
+    const actionPair = previous.parentElement;
+
+    expect(actionPair).toHaveAttribute("dir", "ltr");
+    expect(actionPair?.children[0]).toBe(previous);
+    expect(actionPair?.children[1]).toBe(submit);
+  });
 });

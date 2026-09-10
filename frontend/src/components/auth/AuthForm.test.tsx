@@ -22,7 +22,7 @@ beforeEach(() => {
 
 test("login renders the missing design controls", () => {
   render(<AuthForm mode="login" locale="en" />);
-  expect(screen.getByRole("checkbox", {name: "Remember me"})).toBeInTheDocument();
+  expect(screen.getByRole("checkbox", {name: "Remember me"})).toBeChecked();
   expect(screen.getByRole("link", {name: "Forgot password?"})).toHaveAttribute("href", "/en/forgot-password");
   expect(screen.getByRole("link", {name: "Create one"})).toHaveAttribute("href", "/en/register");
   expect(screen.getByRole("button", {name: "Show password"})).toBeInTheDocument();
@@ -37,11 +37,10 @@ test("show hide password is functional", () => {
   expect(screen.getByRole("button", {name: "Hide password"})).toBeInTheDocument();
 });
 
-test("remember me is forwarded only to the frontend session endpoint", async () => {
+test("remember me is enabled by default and is forwarded to the frontend session endpoint", async () => {
   render(<AuthForm mode="login" locale="en" />);
   fireEvent.change(screen.getByLabelText("Email"), {target: {value: "user@example.com"}});
   fireEvent.change(screen.getByLabelText("Password"), {target: {value: "secret-pass"}});
-  fireEvent.click(screen.getByRole("checkbox", {name: "Remember me"}));
   fireEvent.click(screen.getByRole("button", {name: "Sign in"}));
 
   await waitFor(() => expect(apiRequest).toHaveBeenCalledTimes(1));
@@ -54,4 +53,16 @@ test("remember me is forwarded only to the frontend session endpoint", async () 
   });
   expect(replace).toHaveBeenCalledWith("/en/dashboard");
   expect(refresh).toHaveBeenCalled();
+});
+
+test("remember me can still be disabled explicitly", async () => {
+  render(<AuthForm mode="login" locale="en" />);
+  fireEvent.change(screen.getByLabelText("Email"), {target: {value: "user@example.com"}});
+  fireEvent.change(screen.getByLabelText("Password"), {target: {value: "secret-pass"}});
+  fireEvent.click(screen.getByRole("checkbox", {name: "Remember me"}));
+  fireEvent.click(screen.getByRole("button", {name: "Sign in"}));
+
+  await waitFor(() => expect(apiRequest).toHaveBeenCalledTimes(1));
+  const [, init] = vi.mocked(apiRequest).mock.calls[0];
+  expect(JSON.parse(String(init?.body))).toMatchObject({remember_me: false});
 });

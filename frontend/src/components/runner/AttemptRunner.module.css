@@ -338,6 +338,10 @@
 .mobileBookmark { display: none; }
 .enterHint { min-width: 0; display: inline-flex; align-items: center; justify-content: center; gap: .5rem; color: var(--runner-muted); font-size: .75rem; }
 .enterHint kbd { min-height: 28px; min-width: 50px; font-size: .7rem; }
+.actionPair { min-width: 0; display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.25fr); gap: .5rem; }
+/* Keep the visual order intentional instead of relying on CSS Grid's implicit RTL auto-placement. */
+.page[dir="rtl"] .actionPair .secondaryAction { grid-column: 2; }
+.page[dir="rtl"] .actionPair .primaryAction { grid-column: 1; }
 .primaryAction {
   min-width: 0;
   min-height: 50px;
