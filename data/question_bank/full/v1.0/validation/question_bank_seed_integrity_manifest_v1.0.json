@@ -1,6 +1,6 @@
 {
   "manifest_version": "question-bank-seed-integrity-v1.1",
-  "generated_at_utc": "2026-09-12T00:55:36.405091+00:00",
+  "generated_at_utc": "2026-09-12T01:10:14.284127+00:00",
   "catalog": {
     "path": "data/question_bank/full/v1.0/master/question_bank_seed_catalog.json",
     "catalog_version": "question-bank-repository-seed-catalog-v1.0",
@@ -223,22 +223,22 @@
     {
       "path": "data/question_bank/full/v1.0/master/question_bank_full_L43.csv",
       "rows": 256,
-      "sha256": "8eec80286e64eaebeb75401ad1ab82aab5f83b8e386b0f019bb82ba9d92473cb"
+      "sha256": "56d2652fdd912a3ef0e265cc1192c76eeff76e29d01314b5ea32311a0683b906"
     },
     {
       "path": "data/question_bank/full/v1.0/master/question_bank_full_L44.csv",
       "rows": 198,
-      "sha256": "64fe026131edce68acb51b81faa2e8a7291aedaec8f8ef4cbbf00c9e5be3a6f1"
+      "sha256": "1498c8d5eac133ae6940f978317281d0707b4a64f05de0aaa94571c39a9014da"
     },
     {
       "path": "data/question_bank/full/v1.0/master/question_bank_full_L45.csv",
       "rows": 167,
-      "sha256": "c5e19e7614d765e9a03c6ab2d45b7cc0a4c12a9db1bb936d54f764c3f2a91517"
+      "sha256": "b29a5806fde5589f3eda9a3e834b8c0de9b9926e9596e00db8640a4507105add"
     },
     {
       "path": "data/question_bank/full/v1.0/master/question_bank_full_L46.csv",
       "rows": 156,
-      "sha256": "bc7f639800f8c330f80e598f8b346458cc923a6a64dd4c61e7108f90e983aca3"
+      "sha256": "f744fcfea291d3c571462095a0ad6e44c2464a2a0b390c34845f98c16ac9b374"
     },
     {
       "path": "data/question_bank/full/v1.0/master/question_bank_full_L47.csv",
@@ -272,7 +272,7 @@
     }
   ],
   "actual_total_rows": 10636,
-  "aggregate_digest": "442eabdb3e9fa0ec62e7655a1a2e547811fec0ea98daa5a4ba829ec0816501f3",
+  "aggregate_digest": "8d0bbd26d826a22f12a638b6ac003192b08b4f2a5e561f509146b8312a73d5e4",
   "validation_artifact": {
     "path": "data/question_bank/full/v1.0/validation/question_bank_full_B001_B238_L01_L52_validation.json",
     "sha256": "e46b43c013bf4cf7526f2a8da878aa93a7824f796b79d1d7e2369a06aa0bd2a5"
