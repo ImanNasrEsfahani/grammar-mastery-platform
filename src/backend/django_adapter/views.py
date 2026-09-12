@@ -17,6 +17,7 @@ from backend.django_adapter import (
     runtime_review,
     runtime_search,
     runtime_streak,
+    runtime_test_creation,
 )
 from backend.errors import APIError
 
@@ -51,7 +52,9 @@ class ContractEndpointView(APIView):
         if operation_id == "getLesson":
             return runtime_learning.lesson_detail_request(request, lesson_id=kwargs.get("lessonId"))
         if operation_id == "createTest":
-            return runtime_learning.create_test_request(request)
+            return runtime_test_creation.create_test_request(request)
+        if operation_id == "getTest":
+            return runtime_test_creation.get_test_request(request, test_id=kwargs.get("testId"))
         if operation_id == "startAttempt":
             return runtime_learning.start_attempt_request(request, test_id=kwargs.get("testId"))
         if operation_id == "getNextAttemptQuestion":

@@ -1,5 +1,7 @@
 import type { ErrorResponse } from "./types";
 
+const DEFAULT_REQUEST_TIMEOUT_MS = 40_000;
+
 export class ApiError extends Error {
   readonly status: number;
   readonly code: string;
@@ -44,22 +46,76 @@ function isErrorResponse(value: unknown): value is ErrorResponse {
   );
 }
 
+function timeoutSignal(upstreamSignal?: AbortSignal | null): {
+  signal: AbortSignal;
+  cleanup: () => void;
+  didTimeout: () => boolean;
+} {
+  const controller = new AbortController();
+  let timedOut = false;
+  const timeout = globalThis.setTimeout(() => {
+    timedOut = true;
+    controller.abort();
+  }, DEFAULT_REQUEST_TIMEOUT_MS);
+
+  const abortFromUpstream = () => controller.abort(upstreamSignal?.reason);
+  if (upstreamSignal) {
+    if (upstreamSignal.aborted) abortFromUpstream();
+    else upstreamSignal.addEventListener("abort", abortFromUpstream, {once: true});
+  }
+
+  return {
+    signal: controller.signal,
+    didTimeout: () => timedOut,
+    cleanup: () => {
+      globalThis.clearTimeout(timeout);
+      upstreamSignal?.removeEventListener("abort", abortFromUpstream);
+    },
+  };
+}
+
 export async function apiRequest<T>(path: string, init: RequestInit = {}): Promise<T | null> {
   if (!path.startsWith("/")) throw new Error("API path must be same-origin and absolute.");
   const headers = new Headers(init.headers);
+  const requestId = headers.get("X-Request-ID") ?? crypto.randomUUID();
   headers.set("Accept", "application/json");
-  headers.set("X-Request-ID", headers.get("X-Request-ID") ?? crypto.randomUUID());
+  headers.set("X-Request-ID", requestId);
   if (init.body && !headers.has("Content-Type")) headers.set("Content-Type", "application/json");
 
+  const timeout = timeoutSignal(init.signal);
   let response: Response;
   try {
-    response = await fetch(path, {...init, headers, cache: "no-store"});
-  } catch {
+    response = await fetch(path, {
+      ...init,
+      headers,
+      signal: timeout.signal,
+      cache: "no-store",
+    });
+  } catch (caught) {
+    if (timeout.didTimeout()) {
+      throw new ApiError({
+        status: 504,
+        code: "REQUEST_TIMEOUT",
+        message: "The request took too long and was cancelled. Please try again.",
+        requestId,
+      });
+    }
+    if (caught instanceof DOMException && caught.name === "AbortError") {
+      throw new ApiError({
+        status: 0,
+        code: "REQUEST_ABORTED",
+        message: "The request was cancelled.",
+        requestId,
+      });
+    }
     throw new ApiError({
       status: 0,
       code: "NETWORK_ERROR",
       message: "The service could not be reached.",
+      requestId,
     });
+  } finally {
+    timeout.cleanup();
   }
 
   if (response.status === 204) return null;
@@ -79,7 +135,7 @@ export async function apiRequest<T>(path: string, init: RequestInit = {}): Promi
       status: response.status,
       code: "INVALID_ERROR_RESPONSE",
       message: "The server returned an unreadable error.",
-      requestId: response.headers.get("X-Request-ID") ?? "missing-request-id",
+      requestId: response.headers.get("X-Request-ID") ?? requestId,
     });
   }
   return payload as T;
