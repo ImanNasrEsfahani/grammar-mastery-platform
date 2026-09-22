@@ -11,7 +11,7 @@
   },
   "canonical_source": {
     "path": "data/question_bank/full/v1.0/master/question_bank_full_L06.csv",
-    "sha256": "d26c0d51ae1ddde517e62e799ff26f9bd93b359e7fc9edfb6d717c4dd3feaf24",
+    "sha256": "e0e7640153e815cd9e7fe03ff57fa8e225e5f456a9d9b6897c3d49d4933e40f9",
     "rows": 169,
     "schema_columns": 46
   },
