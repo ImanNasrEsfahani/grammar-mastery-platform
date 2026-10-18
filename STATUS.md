@@ -1,55 +1,72 @@
-# Project status — canonical baseline + Stage 16–24 handoff
+# Grammar Mastery — Project Status
 
-| Stage | Scope | Repository status |
-|---:|---|---|
-| 1 | Knowledge Map | `READY_FINAL` |
-| 2 | Taxonomy | `READY_FINAL` |
-| 3 | TCF Weighting | `ACCEPTED_REFERENCE_GOVERNANCE_RESOLVED` |
-| 4 | Question Capacity | `ACCEPTED_REFERENCE_GOVERNANCE_RESOLVED` |
-| 5 | Excel Master | `ACCEPTED_REFERENCE_GOVERNANCE_RESOLVED` |
-| 6 | Question Type Catalogue | `ACCEPTED_REFERENCE_GOVERNANCE_RESOLVED` |
-| 7 | Distractor Engineering | `ACCEPTED_REFERENCE_GOVERNANCE_RESOLVED` |
-| 8 | Difficulty System | `ACCEPTED_REFERENCE_GOVERNANCE_RESOLVED` |
-| 9 | Difficulty Distribution | `ACCEPTED_REFERENCE_GOVERNANCE_RESOLVED` |
-| 10 | Question Import Schema | `ACCEPTED_REFERENCE_GOVERNANCE_RESOLVED` |
-| 11 | Question QA Workflow | `ACCEPTED_REFERENCE_GOVERNANCE_RESOLVED` |
-| 12 | Relational Database | `ACCEPTED_REFERENCE_GOVERNANCE_RESOLVED` |
-| 13 | Test Generator | `ACCEPTED_REFERENCE_DEFAULT_MIGRATION_SEEDS_PUBLISHED_INVENTORY_LIVE_EVIDENCE_PENDING` |
-| 14 | Adaptive Selection | `ACCEPTED_REFERENCE_STAGE15_PROVIDER_RESOLVED_SEEDED_INVENTORY_LIVE_EVIDENCE_PENDING` |
-| 15 | Mastery System | `ACCEPTED_REFERENCE_OWNER_APPROVED_RUNTIME_AWAITS_REAL_EVIDENCE` |
-| 16 | Error Review | `REFERENCE_VALIDATED_26_26_SQLITE_PASS_PENDING_OWNER_ACCEPTANCE` |
-| 17 | Spaced Repetition | `REFERENCE_VALIDATED_32_32_SQLITE_PASS_PENDING_OWNER_ACCEPTANCE` |
-| 18 | Learning Dashboard | `RECONSTRUCTED_REFERENCE_PENDING_OWNER_REVIEW` |
-| 19 | Site IA / Page Responsibilities | `RECONSTRUCTED_REFERENCE_PRIOR_63_PASS_PENDING_OWNER_REVIEW` |
-| 20 | Admin Panel Contract | `RECONSTRUCTED_REFERENCE_PENDING_OWNER_REVIEW` |
-| 21 | Backend and Core APIs | `DJANGO_DRF_PROFILE_VALIDATED_PENDING_OWNER_ACCEPTANCE` |
-| 22 | Frontend and Fast Question Experience | `NEXTJS_REFERENCE_IMPLEMENTATION_VALIDATED_PENDING_OWNER_ACCEPTANCE` |
-| 23 | Question Bank Import Pipeline | `REFERENCE_IMPLEMENTATION_VALIDATED_PENDING_OWNER_ACCEPTANCE` |
-| 24 | Multi-layer Testing | `REFERENCE_MULTILAYER_SUITE_VALIDATED_LIVE_STACK_EVIDENCE_PENDING_OWNER_ACCEPTANCE` |
+**Product:** [Grammar Mastery](https://grammar.imannasr.com)  
+**Maintainer and product owner:** [Iman Nasr](https://github.com/ImanNasrEsfahani)  
+**Status updated:** 2026-10-17 (Pacific Time; historical snapshots may have different dates)  
+**Evidence baseline:** GitHub `main` commit [`9fda187`](https://github.com/ImanNasrEsfahani/grammar-mastery-platform/commit/9fda187ce939be1d0722a94640e2a7a4630740b4).
 
-## Operational blockers (not design defects)
+> **Current operational status: LIVE / IN USE (owner-confirmed).** Grammar Mastery is a production-deployed French learning application used by real customers and by its creator. This is an account of current product usage, **not** a claim that all production endpoints, analytics, backups, security gates or adaptive-learning outcomes have been independently audited.
 
-- **Question inventory:** the repository contains 3,640 canonical B001-B081 / L01-L18P04 rows across the seed catalog's two Stage10 source shards. The default Stage26 migration imports the catalog seed and leaves all 3,640 `PUBLISHED` and serving on a fresh database; live target execution is still evidence-pending.
-- **Independent review:** the owner-requested canonical migration publication is recorded as a SYSTEM seed release with `human_review_claimed=false`. New or non-seed real questions still require Stage 11 independent review (`reviewer != author/generator`) before `APPROVED/PUBLISHED`.
-- **PostgreSQL target execution:** the canonical PostgreSQL DDL still needs to be exercised on the eventual target environment.
-- **Empirical calibration:** observed difficulty, adaptive weights, distractor quality and mastery/SRS calibration remain Stage 27 responsibilities after live data exists.
-- **Stage 16/17 acceptance:** the original packages are checksum-verified and reference-tested, but their source manifests recorded final Iman acceptance as pending.
-- **Stage 18–20 artifact provenance:** the earlier sandbox deliverables were not persisted in Library. The repository versions are explicit reconstructions from the roadmap and recoverable prior decisions, not byte-identical recoveries.
-- **Stage 21 selected stack:** Django 5.2 LTS plus Django REST Framework 3.16+ is fixed for Backend; Next.js 16 Active LTS is fixed for the Stage 22 Frontend. Production base URL and analytics worker remain explicit deployment decisions.
-- **Stage 21 security/deployment:** signing-key lifecycle and calibrated production rate limits remain Stage 25 work; PostgreSQL Patch 006 has not been executed on a live target.
-- **Stage 21 acceptance:** 45/45 Stage 21 tests and the integrated 130/130 suite pass, but formal Iman content/technical acceptance is not inferred from implementation alone.
-- **Stage 22 runtime evidence:** the Next.js implementation is contract-tested and the default migration supplies a published seed inventory, but real end-to-end learning validation still requires a deployed Django/PostgreSQL target.
-- **Stage 22 production decisions:** the public origin, production API base URL, analytics worker and security header/key lifecycle remain Stage 25–26 deployment decisions; bearer tokens are already excluded from browser storage.
-- **Stage 22 acceptance:** 142/142 integrated Python tests, 12/12 dedicated Stage 22 contract tests and 7/7 frontend tests pass; lint, strict TypeScript and the Next.js production build also pass. The implementation is ready for Iman's content/technical review; owner acceptance is not inferred automatically.
-- **Stage 23 migration compatibility:** Stage 24 found that the unapplied v1.0 Patch 007 reuses the Stage 12 `import_batches` name with an incompatible shape. The historical v1.0 file remains immutable evidence and is explicitly superseded by v1.1 using `question_import_*` tables. The corrected sequence still needs live PostgreSQL execution.
-- **Stage 23 production adapters:** the CSV/XLSX reference behavior is validated, but object storage, background-worker behavior and the HTTP adapter still need Stage 26 execution on the eventual target environment.
-- **Stage 23 security/retention:** raw-file scanning, production retention/privacy rules and calibrated upload limits belong to Stage 25; the safe current policy retains hashed evidence and performs no automated deletion.
-- **Stage 23 acceptance:** 20/20 dedicated Stage 23 behavior tests and the integrated 162/162 Python suite pass. Imported rows are Draft-only and still require Stage 11 independent review before publication; owner acceptance is not inferred automatically.
-- **Stage 24 local evidence:** the integrated run discovers 179 Python tests; 177 pass and 2 live-PostgreSQL tests skip without `GMP_STAGE24_POSTGRES_DSN`. The 8/8 frontend Vitest suite passes, including the full runner lifecycle; lint, strict TypeScript and production build are part of the Stage 24 CI gate.
-- **Stage 24 performance boundary:** the deterministic in-memory reference profile uses 10,636 candidate questions, 304 mastery scopes and 10,636 dashboard history points. Its local p95 guardrails pass, but this is not a production SLA or deployed-system measurement.
-- **Stage 24 live evidence:** PostgreSQL 15 CI service, deployed HTTP API E2E and real browser E2E cannot be claimed from this environment. The checked-in Stage26 PostgreSQL rehearsal validates published/serving inventory against the canonical seed count recorded in `system_versions` instead of a hard-coded row count; deployed HTTP/browser evidence still depends on the Stage26 deployed stack.
-- **Stage 24 acceptance:** roadmap outputs and local reference gates are reviewable, but formal Iman acceptance and live-stack evidence remain pending and are not inferred automatically.
+## Snapshot: product, content and verification are different dimensions
 
-## Governance
+| Dimension | Current statement | Evidence / limitation |
+| --- | --- | --- |
+| Live application | **LIVE / IN USE**, with real learners/customers | Confirmed by the product owner; public URL above. Exact customer and usage counts are not claimed. |
+| Main stack | Next.js 16 / React 19 / TypeScript; Django 5.2 / DRF; PostgreSQL 15; Docker | `frontend/package.json`, `requirements.txt`, `docker-compose.yml` |
+| Authored question-bank inventory | **10,636 records** / **52 lessons** / **B001–B238** / **46 columns** | [`question_bank_seed_catalog.json`](data/question_bank/full/v1.0/master/question_bank_seed_catalog.json) and [static validation](data/question_bank/full/v1.0/validation/question_bank_full_B001_B238_L01_L52_validation.json) |
+| Source question status | **DRAFT** in the canonical authoring CSV files | Source status is not the same as database publication/serving status. |
+| Currently `PUBLISHED` / serving in production | **Not measured in this repository audit** | Run the read-only [production count report](tools/report_production_counts.sh) on an authorized server. Do not substitute source counts. |
+| Stage 23 Import/Preview/Commit | **OPEN GATE:** manifest-hash drift marker recorded | Existing bootstrap validates the marker; do not remove it from JSON to simulate resolution. See [import status](docs/verification/QUESTION_BANK_IMPORT_STATUS.md). |
+| Stage 26 live release evidence | **Not included in checked-in historical reference package** | An operating product does not imply that its backup/restore, E2E, security and monitoring records have been attached to GitHub. |
+| Stage 27 empirical calibration | **Not demonstrated by current public records** | Reference tests exist; real-learner calibration needs aggregate, privacy-conscious production observations. |
 
-Content Owner: **Iman**. Technical Owner/Reviewer: **Iman**. The authoritative source book and Persian wording decisions are frozen in `docs/governance/`.
+**Historical number reconciliation:** Earlier stage documents report a **3,640-question** seed and an **8,175-question** intermediate bank. The latest authoritative **repository source inventory** has **10,636** rows. These are dated snapshots, not conflicting claims about the current live database. No number is asserted for production serving until measured.
+
+## Engineering-stage ledger (historical, not live-availability flags)
+
+The following summarizes the versioned stage documents. `Reference validated` means that local/specification tests were described as passing at the time; it does **not** mean a corresponding production feature is absent today, nor that a live end-to-end release is formally signed off.
+
+| Stages | Historical development scope | Current evidence boundary |
+| --- | --- | --- |
+| 01–12 | Learning map, taxonomy, difficulty/weighting, QA policy, relational schema | Source and design artifacts recorded in `docs/`, `data/`, `database/`. |
+| 13–15 | Test generation, adaptive selection, mastery | Reference and integration implementations; measure actual behavior in the current live environment separately. |
+| 16–17 | Error review and spaced repetition | Reference-tested packages; historical owner-acceptance notes should not be interpreted as the product being offline. |
+| 18–20 | Dashboard, information architecture and administration contracts | Reconstructed/reviewed reference artifacts; live feature matrix requires a current release evidence record. |
+| 21 | Django/DRF backend and core REST API contracts | Code and API contracts present; published per-endpoint live verification not consolidated in repo. |
+| 22 | Next.js/React frontend | Source, components, tests and build pipeline present. |
+| 23 | Question-bank import workflow | Reference-test artifacts present, but the explicitly recorded **manifest-hash drift** in the standard Import/Preview/Commit path is not signed off as resolved. |
+| 24 | Multi-layer test coverage | Local/reference test evidence recorded; do not convert historical pass counts into current production pass claims. |
+| 25 | Security policies and contracts | Validate production secrets, auth, headers and release-specific security behavior separately. |
+| 26 | Deploy, migration, backup, monitoring, rollback | Runbooks and release gates documented; actual live verification record and restore exercise must be supplied. |
+| 27 | Question-quality and learning-model calibration | Versioned reference framework; live/empirical calibration evidence pending publication. |
+
+For historical per-stage status strings and original acceptance commentary, inspect `docs/stages/`, previous Git history of `STATUS.md`, and their immutable stage manifests. This dashboard deliberately separates **current product availability** from **historical formal acceptance records** instead of silently rewriting history.
+
+## Release verification gates still requiring evidence
+
+1. **Production counts:** read-only measurement of lesson, question-by-status, serving-question and migration metadata counts. Use [`tools/report_production_counts.sh`](tools/report_production_counts.sh). Never publish user-level/private data.
+2. **Learner journey:** capture dated evidence of registration/login, lesson navigation, question serving, submission, results, review and next practice recommendation. Validate each feature actually claimed for the current release.
+3. **Standard Import path:** reproduce, diagnose and resolve the Stage 23 manifest-drift blocker with a test and a reversible migration plan; do not alter immutable historical package evidence to force PASS.
+4. **Operations:** record live deployment SHA, backups and restore drill, monitoring/alerts, HTTPS/security headers and approved rollback plan.
+5. **Learning-model calibration:** use real aggregate usage to validate adaptive, mastery and spaced-repetition quality, without implying that synthetic reference fixtures are empirical results.
+6. **Owner sign-off:** record `APPROVED`, `CONDITIONAL APPROVED` or `BLOCKED`, with dated evidence, in the [acceptance record](docs/verification/RELEASE_ACCEPTANCE_RECORD.md).
+
+**None of these open *evidence* gates contradicts the owner-confirmed fact that the product is operating and used by customers.** Equally, the product's operation alone does not prove each specialized gate has passed.
+
+## Read-only checks and evidence
+
+```bash
+# From the repository root: source CSV, catalog, schema and blocker consistency
+python tools/audit_project_static.py --root .
+
+# On the authorized Docker host only; no database writes or user details
+bash tools/report_production_counts.sh
+```
+
+- [Production verification checklist](docs/verification/PRODUCTION_VERIFICATION.md)
+- [Question-bank / import status](docs/verification/QUESTION_BANK_IMPORT_STATUS.md)
+- [Release approval record](docs/verification/RELEASE_ACCEPTANCE_RECORD.md)
+- [Source inventory](data/question_bank/full/v1.0/master/question_bank_seed_catalog.json)
+- [Current user-facing README](README.md)
+
+**Governance:** Product/content owner and final approver: **Iman Nasr**. A PASS in static tests, a successful build, or generation of this document does **not** substitute for explicit owner approval and measured live evidence.

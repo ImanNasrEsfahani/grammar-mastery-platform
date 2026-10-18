@@ -1,0 +1,35 @@
+name: Grammar Mastery - Read-only Question Source Audit
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'data/question_bank/full/v1.0/**'
+      - 'ops/question_bank/bootstrap.py'
+      - 'tools/audit_project_static.py'
+      - 'tests/test_current_source_audit.py'
+      - '.github/workflows/source-inventory-audit.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  static-source-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Audit tool unit tests
+        run: python -m unittest discover -s tests -p 'test_current_source_audit.py' -v
+      - name: Read-only source inventory checks
+        run: python tools/audit_project_static.py --root . --json-output "$RUNNER_TEMP/question-bank-audit.json"
+      - name: Explain scope of success
+        if: success()
+        run: |
+          echo 'PASS means SOURCE CSV/CATALOG integrity only.'
+          echo 'It does not certify deployed services, live PostgreSQL, Standard Stage23 Import or learning outcomes.'

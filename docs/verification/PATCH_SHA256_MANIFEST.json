@@ -1,0 +1,61 @@
+{
+  "package": "grammar-mastery-current-status-static-verification-patch",
+  "prepared_local_date": "2026-10-17",
+  "repository": "ImanNasrEsfahani/grammar-mastery-platform",
+  "reviewed_base_commit": "9fda187ce939be1d0722a94640e2a7a4630740b4",
+  "baseline_status_git_blob_sha1": "223312c23c9d06b4004eb7fd24c25088a9db7370",
+  "baseline_fresh_bootstrap_git_blob_sha1": "df33d7bcb6763180b8c5a6c065be4574cdbf2b77",
+  "scope": "Docs/status reconciliation and read-only audit; NOT production certification or Stage23 bug fix",
+  "files": [
+    {
+      "path": ".github/workflows/source-inventory-audit.yml",
+      "bytes": 1165,
+      "sha256": "ed91e46b8397def0d8c573ad742637bb4af63990b01e4bbbfb71b1fc91bfe412"
+    },
+    {
+      "path": "PATCH_INSTALL_FA.md",
+      "bytes": 6624,
+      "sha256": "64bc79bdd63f7806488480e86cbed6230d2547e2bc4fe174201ec922233caa5b"
+    },
+    {
+      "path": "README_FRESH_DATABASE_WITH_PUBLISHED_QUESTIONS.md",
+      "bytes": 4158,
+      "sha256": "bdc0e46abf78964bc016b7d706ba0f61d4ec012a2caf8cf09d4d37a5650c1759"
+    },
+    {
+      "path": "STATUS.md",
+      "bytes": 7946,
+      "sha256": "1da192d9ed4ef9666489e75bb1c3511f89afad299f837d2036a68d3e35a857e4"
+    },
+    {
+      "path": "docs/verification/PRODUCTION_VERIFICATION.md",
+      "bytes": 5142,
+      "sha256": "8b89a40158668b78492542d5b100d4af4a1f0a5a688eb902c887cc5333168693"
+    },
+    {
+      "path": "docs/verification/QUESTION_BANK_IMPORT_STATUS.md",
+      "bytes": 4016,
+      "sha256": "316fa410d44adf78b9e0a78779390bc7aef0f71c634a4af445b7ea52156eba11"
+    },
+    {
+      "path": "docs/verification/RELEASE_ACCEPTANCE_RECORD.md",
+      "bytes": 1916,
+      "sha256": "8685b70b7d8b9c566546393d696332c6b02f93e840b20d5a537bab2445019134"
+    },
+    {
+      "path": "tests/test_current_source_audit.py",
+      "bytes": 4431,
+      "sha256": "f5e84d12df404651c42334e2beeb38d311b402687094f5c9d612754c535b78c5"
+    },
+    {
+      "path": "tools/audit_project_static.py",
+      "bytes": 9193,
+      "sha256": "d1c26bbdf5c60b10c0ebeb7642c7763b0f7f53ab225a7b58143cad62d736e4e0"
+    },
+    {
+      "path": "tools/report_production_counts.sh",
+      "bytes": 1329,
+      "sha256": "97b951db90bc59eab7401d9cd932e9b68eb5701d57d1f6c4d3d0cae589ab72ad"
+    }
+  ]
+}
