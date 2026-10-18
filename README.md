@@ -1,29 +1,29 @@
 # Grammar Mastery
 
-**A data-driven French grammar practice and personalized learning platform.**
+**A live French grammar learning platform — built with Next.js, Django, and PostgreSQL.**
 
 [**Try the web app**](https://grammar.imannasr.com) · [**Explore the source**](https://github.com/ImanNasrEsfahani/grammar-mastery-platform) · [**Technical documentation**](docs/stages/) · [**Project status**](STATUS.md)
 
 **Stack:** Next.js 16 · React 19 · TypeScript · Python · Django 5.2 / Django REST Framework · PostgreSQL 15 · Docker · GitHub Actions · Vitest / Python unit tests
 
-Grammar Mastery is a full-stack educational software project focused on helping French learners practice consistently, recognize recurring mistakes, and make informed decisions about what to study next. It was conceived as a personal learning tool for structured French grammar preparation, including TCF Canada-oriented study, and developed into a modular platform with a versioned question bank, assessment workflows, learner-progress models, and supporting deployment infrastructure.
+**Grammar Mastery is running in production and is actively used by real learners, including customers and its creator.** Originally built to support Iman Nasr's own French study and TCF Canada preparation, it has grown into a full-stack educational product for structured grammar practice, reviewing mistakes, and following learning progress.
 
-The project combines a real web application with a documented, testable learning-engine architecture. **The repository is the source of truth for implementation and reference validation; production feature availability and published question counts must be checked against the deployed environment.**
+The application combines a working web service with a modular learning-engine architecture, a versioned question bank, automated testing, and Docker-based operations. This repository documents the implementation and historical engineering decisions behind the running product. **Some older status reports describe pending validation at the time they were written; they are not a statement that the current web application is offline or unused.**
 
-> **Project ownership:** Designed and developed by [Iman Nasr](https://github.com/ImanNasrEsfahani), a full-stack developer working across React/Next.js, Python/Django, SQL data modeling, API integration, testing, and Linux/Docker deployment.
+> **Creator & maintainer:** [Iman Nasr](https://github.com/ImanNasrEsfahani) — full-stack design and development spanning React/Next.js, Python/Django, SQL data modeling, REST APIs, automated testing, and Docker/Linux deployment. Iman also uses the live application for his own ongoing French study.
 
 ## At a glance
 
-| Area | What the repository contains |
+| Area | Product and engineering snapshot |
 | --- | --- |
 | Learning content | **10,636** versioned question records spanning **52 lessons** and batches **B001–B238**, validated for the repository's canonical 46-column format |
-| Practice experience | Next.js interfaces and Django/API components for lessons, tests, answers, and learner-facing study workflows |
+| Live application | **Production-deployed and actively used** for French learning; used by customers and by the creator himself |
 | Personalization | Reference implementations and contracts for adaptive question selection, mastery estimation, error review, and spaced repetition |
 | Progress insights | Dashboard, progress, history, and weakness-related interface and API contracts |
 | Engineering | PostgreSQL schema/migrations, typed API contracts, automated tests, Docker-based runtime, and a GitHub Actions frontend-image workflow |
-| Public access | [grammar.imannasr.com](https://grammar.imannasr.com) — live site reported by the project owner; this README does not independently certify every live feature |
+| Public access | **[grammar.imannasr.com](https://grammar.imannasr.com)** — the running production application |
 
-**Important question-bank distinction:** The **10,636** figure describes the versioned **repository source inventory**, *not an independently verified count of questions currently served by the production database*. The source CSV records retain `DRAFT` status; publication follows controlled database workflows. See [the seed catalog](data/question_bank/full/v1.0/master/question_bank_seed_catalog.json) and [static validation report](data/question_bank/full/v1.0/validation/question_bank_full_B001_B238_L01_L52_validation.json).
+**Question-bank counting:** The **10,636** figure refers to versioned question records in the **repository source inventory**. It is **not presented as the number of questions currently published or served by the production database**. Source CSV records retain `DRAFT` authoring status; serving/publication is tracked separately. See the [seed catalog](data/question_bank/full/v1.0/master/question_bank_seed_catalog.json) and [static validation report](data/question_bank/full/v1.0/validation/question_bank_full_B001_B238_L01_L52_validation.json).
 
 ## The learning problem
 
@@ -37,7 +37,7 @@ Grammar Mastery approaches this as both a **learning-design problem** and a **so
 4. **Repeatable quality:** apply explicit schemas, validation gates, tests, and controlled publishing to the question bank.
 5. **Production-minded delivery:** keep the browser experience, API, database, testing, and operations concerns separated.
 
-The platform is designed to support regular short practice sessions. Its adaptive, mastery, review, and spaced-repetition models have repository implementations and test coverage; **empirical calibration against real learner outcomes remains a separate operational milestone**.
+The live product supports an ongoing French-study use case. Its adaptive selection, mastery, error-review, and spaced-repetition domain modules have repository implementations and test coverage. **Measuring and refining these models against real usage data remains a distinct engineering activity**; using a live product is not the same as claiming experimentally proven learning gains.
 
 ## Product capabilities and engineering scope
 
@@ -56,7 +56,7 @@ The platform is designed to support regular short practice sessions. Its adaptiv
 - **Spaced repetition:** review scheduling and revisit flows designed to reinforce retention.
 - **Learning dashboard:** interfaces for progress, next actions, review queues, and learning history.
 
-These capabilities should be read as **implemented interfaces, domain components, and/or reference-tested workflows**, not a blanket claim that every endpoint and user journey is fully wired to the current public production deployment. The deployment-specific truth is recorded in the relevant runtime and release evidence.
+The **application itself is live and used by real learners**. This section describes the capabilities represented in the codebase and the product architecture; it does not imply that every reference algorithm, administrative endpoint, or planned feature is part of every deployed release. For release-specific behavior, consult the corresponding runtime configuration and operational evidence.
 
 ### Question-bank quality and governance
 
@@ -139,7 +139,7 @@ Useful starting points:
 
 ## Run and validate locally
 
-> **Prerequisites:** Docker with Compose; for frontend-only development, Node.js **24+** and npm. Database initialization, seed publication, runtime API availability, and production configuration are separate concerns; starting containers alone does not prove the complete learning journey works.
+> **Prerequisites:** Docker with Compose; for frontend-only development, Node.js **24+** and npm. These instructions describe a **new local environment**, not the already running production site. Database initialization and content publication are separate operations; starting local containers alone does not reproduce production data or user activity.
 
 ### Option A — Start the containerized development/staging stack
 
@@ -186,30 +186,33 @@ PYTHONPATH=src python -m unittest discover -s tests -p 'test_*.py'
 
 Some tests require a real PostgreSQL service or deployment-specific configuration and may be skipped or blocked without those dependencies. Passing local/reference tests is not equivalent to a production end-to-end certification. See [stage-specific reports](docs/stages/) for the scope of each validation gate.
 
-## Project status and evidence boundaries
+## Production status and engineering evidence
 
-**The application is presented by its owner as publicly deployed** at [grammar.imannasr.com](https://grammar.imannasr.com). The public repository also records completed source-content work and substantial reference implementations, but several operational records were written before later question-bank extensions and are not always synchronized.
+**Current product status: LIVE / IN USE.** [Grammar Mastery](https://grammar.imannasr.com) is a production-deployed French learning application with real users, including customers. Its creator, Iman Nasr, also actively uses it for French study. This is the **current operational status confirmed by the project owner**. No specific customer count, paid-subscription count, uptime percentage, or production question-serving total is claimed here.
 
-| Topic | Verified repository evidence | What is *not* automatically established |
+**Why some documents say “pending”:** Repository stage reports were captured at different times and often describe whether a particular *reference implementation, migration rehearsal, acceptance step, or formal verification artifact* had been completed. Those historical labels should not be read as proof that the currently operating web application has no real users. Similarly, the existence of a live site does not by itself certify every optional API, dataset, or experimental learning model.
+
+| Area | Current understanding | Supporting evidence and scope |
 | --- | --- | --- |
-| Question bank | **10,636** source rows; **52** lesson CSVs; **B001–B238**; passing static validation | 10,636 `PUBLISHED` rows or 10,636 currently served questions in the live database |
-| Frontend | Next.js routes, UI components, TypeScript tooling and tests | Every route verified against the currently deployed backend |
-| Backend | Django/DRF configuration, REST contracts, learning modules and runtime adapters | All API endpoints operational in every deployment |
-| Testing | Unit/contract/reference test artifacts and a frontend validation script | A universally passing live end-to-end suite or measured production SLA |
-| Personalization | Adaptive, mastery, review and SRS reference logic | Empirically optimized learning outcomes or live model calibration |
-| Release | Docker and deployment runbooks; image-building GitHub Actions workflow | Production-specific backup, monitoring, recovery, and approval evidence |
+| **Product availability and use** | **Live production service; actively used by customers and its creator** | Owner-confirmed current status; [open the application](https://grammar.imannasr.com). Private customer details and analytics are not published. |
+| **Question-bank source inventory** | **10,636** versioned question records, **52 lessons**, **B001–B238** | [Canonical source catalog](data/question_bank/full/v1.0/master/question_bank_seed_catalog.json) and [static validation](data/question_bank/full/v1.0/validation/question_bank_full_B001_B238_L01_L52_validation.json). This is not a live `PUBLISHED`-row count. |
+| **Frontend** | Next.js/React/TypeScript application with learning routes, components, and typed API integration | [`frontend/`](frontend/) and [`frontend/package.json`](frontend/package.json). Actual enabled features depend on the deployed release. |
+| **Backend and data** | Django/DRF and PostgreSQL code, schemas, learning-domain modules, and runtime adapters | [`src/`](src/), [`database/`](database/), and [core API contract](api/stage21_core_api_spec_v1.0.yaml). |
+| **Adaptive learning and review** | Adaptive-selection, mastery, error-review, and spaced-repetition modules are part of the implemented/tested architecture | Domain code and stage reports; empirically calibrated effectiveness is not claimed. |
+| **Testing and delivery** | Versioned Python/frontend tests, validation tooling, Docker setup, and GitHub Actions frontend-image workflow | [`tests/`](tests/), [`frontend/`](frontend/), [deployment notes](docs/deployment/DOCKER_LINUX_SERVER.md). A measured production SLA or universal live E2E pass is not claimed. |
 
-**Documentation reconciliation:** Earlier root-level status/runbook snapshots describe a **3,640-row seed**, and an earlier bootstrap example references **8,175 rows**. The [current canonical seed catalog](data/question_bank/full/v1.0/master/question_bank_seed_catalog.json) and [full-plan validation](data/question_bank/full/v1.0/validation/question_bank_full_B001_B238_L01_L52_validation.json) define **10,636 source rows** as the newer repository baseline. These figures refer to different content snapshots; they should not be interpreted as interchangeable production counts.
+**Historical inventory reconciliation:** Earlier status/runbook snapshots refer to a **3,640-question seed**, and another historical bootstrap example mentions **8,175 questions**. The [current canonical catalog](data/question_bank/full/v1.0/master/question_bank_seed_catalog.json) and [consolidation validation](data/question_bank/full/v1.0/validation/question_bank_full_B001_B238_L01_L52_validation.json) establish the newer **10,636-question source inventory**. The figures describe different repository snapshots/workflows; none alone specifies how many items a learner can currently access online.
 
-The Stage 23 standard Import/Preview/Commit path carries a recorded manifest-drift blocker in the seed catalog. The canonical seed/bootstrap path is separate. Stage 27's empirical calibration also requires genuine live usage data and explicit operational verification: see [Stage 27](docs/stages/stage27/README.md). This README intentionally does not claim those pending gates have passed.
+The Stage 23 standard Import/Preview/Commit workflow has a recorded manifest-drift blocker in the source catalog; the canonical seed/bootstrap process is a separate path. Stage 27's empirical calibration similarly requires real usage measurements and review of model changes. These **workflow-specific status items do not negate the production operation of Grammar Mastery**. See [Stage 27](docs/stages/stage27/README.md) and [historical stage status](STATUS.md) for their technical scope.
 
 ## Next engineering priorities
 
-- Reconcile historical status documents with the latest 10,636-row source inventory and actual deployed PostgreSQL counts.
-- Verify key learner journeys against the deployed API and database, and record reproducible smoke/E2E evidence.
-- Resolve remaining import-pipeline and production release-evidence gates without bypassing content review.
-- Use real, privacy-conscious learner telemetry to evaluate and calibrate adaptive selection, review timing and question quality.
-- Keep the live site's feature matrix and this README synchronized with tested releases.
+- Update historical `STATUS.md` and stage handoff documents to distinguish the **operating production product** from past acceptance/release-evidence checkpoints.
+- Record non-sensitive production verification for key learner journeys (for example, a repeatable login → practice → results check), without disclosing user data.
+- Reconcile the **10,636-record repository inventory** with the currently published/serving question counts using authorized production database checks.
+- Resolve remaining import-pipeline and release-evidence gates without bypassing content review, backup, or recovery procedures.
+- Use privacy-conscious, aggregated real-world learning data to evaluate question quality and calibrate personalized selection/review models.
+- Keep public product documentation synchronized with each tested deployment.
 
 ## Maintainer and scope
 
